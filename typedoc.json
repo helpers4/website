@@ -1,11 +1,15 @@
 {
     "$schema": "https://typedoc.org/schema.json",
     "entryPoints": [
-        "./src/observable/index.ts",
-        "./src/promise/index.ts",
-        "./src/string/index.ts",
-        "./src/url/index.ts"
+        "./helpers4/observable/src/index.ts",
+        "./helpers4/promise/src/index.ts",
+        "./helpers4/string/src/index.ts",
+        "./helpers4/url/src/index.ts"
     ],
-    "out": "doc",
-    "mergeModulesMergeMode": "off",
+    "exclude": [
+        "*.spec.ts"
+    ],
+    "mergeModulesMergeMode": "module",
+    "name": "Helpers4",
+    "out": "doc"
 }

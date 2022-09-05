@@ -4,6 +4,12 @@
   "description": "Documentation centralization repository",
   "repository": "https://github.com/helpers4/doc",
   "license": "AGPL-3.0",
+  "workspaces": [
+    "observable",
+    "promise",
+    "string",
+    "url"
+  ],
   "keywords": [
     "helpers4",
     "doc"
@@ -12,8 +18,7 @@
   "scripts": {
     "reset-hard": "git clean -dfx && git reset --hard && pnpm i",
     "doc:html": "typedoc --options typedoc.json",
-    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d doc",
-    "preinstall": "npx only-allow pnpm"
+    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d doc"
   },
   "devDependencies": {
     "gh-pages": "^4.0.0",

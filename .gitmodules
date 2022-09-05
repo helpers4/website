@@ -1,0 +1,12 @@
+[submodule "helpers4/observable"]
+	path = helpers4/observable
+	url = https://github.com/helpers4/observable.git
+[submodule "helpers4/promise"]
+	path = helpers4/promise
+	url = https://github.com/helpers4/promise.git
+[submodule "helpers4/string"]
+	path = helpers4/string
+	url = https://github.com/helpers4/string.git
+[submodule "helpers4/url"]
+	path = helpers4/url
+	url = https://github.com/helpers4/url.git

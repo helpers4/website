@@ -3,7 +3,7 @@
     "incremental": true,
     "target": "es2017",
     "outDir": "build",
-    "rootDir": "src",
+    "rootDir": "helpers4",
     "moduleResolution": "node",
     "module": "commonjs",
     "declaration": true,
@@ -37,15 +37,15 @@
     "types": [],
     "typeRoots": [
       "node_modules/@types",
-      "src/**/types"
+      "helpers4/**/src/**/types"
     ]
   },
   "include": [
-    "src/**/*.ts",
+    "helpers4/**/src/**/*.ts",
   ],
   "exclude": [
     "node_modules/**",
-    "src/**/*.spec.ts"
+    "helpers4/**/src/**/*.spec.ts"
   ],
   "compileOnSave": false
 }
