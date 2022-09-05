@@ -1,0 +1,11 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": [
+        "./src/observable/index.ts",
+        "./src/promise/index.ts",
+        "./src/string/index.ts",
+        "./src/url/index.ts"
+    ],
+    "out": "doc",
+    "mergeModulesMergeMode": "off",
+}

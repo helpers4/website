@@ -1,0 +1,25 @@
+{
+  "name": "@helpers4",
+  "version": "1.0.0",
+  "description": "Documentation centralization repository",
+  "repository": "https://github.com/helpers4/doc",
+  "license": "AGPL-3.0",
+  "keywords": [
+    "helpers4",
+    "doc"
+  ],
+  "private": true,
+  "scripts": {
+    "reset-hard": "git clean -dfx && git reset --hard && pnpm i",
+    "doc:html": "typedoc --options typedoc.json",
+    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d doc",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "rxjs": ">=7",
+    "typedoc": "^0.23.14",
+    "typedoc-plugin-merge-modules": "^4.0.1",
+    "typescript": "^4.8.2"
+  }
+}
