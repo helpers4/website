@@ -21,6 +21,7 @@
     "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d doc"
   },
   "devDependencies": {
+    "@types/node": "^18.11.7",
     "gh-pages": "^4.0.0",
     "rxjs": ">=7",
     "typedoc": "^0.23.14",
