@@ -1,0 +1,27 @@
+{
+  "id": "actions/conventional-commits",
+  "title": "Conventional Commits",
+  "description": "Validate commit messages against the Conventional Commits specification.",
+  "source": "@site/docs/actions/conventional-commits.md",
+  "sourceDirName": "actions",
+  "slug": "/actions/conventional-commits",
+  "permalink": "/action/actions/conventional-commits",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/helpers4/action/tree/main/docs/docs/actions/conventional-commits.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Getting Started",
+    "permalink": "/action/getting-started"
+  },
+  "next": {
+    "title": "GitHub Actions",
+    "permalink": "/action/intro"
+  }
+}

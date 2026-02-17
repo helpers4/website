@@ -1,0 +1,15 @@
+{
+  "id": "docs/intro",
+  "title": "Version 1.x (Legacy)",
+  "description": "This documentation covers version 1.x of the TypeScript Helpers library.",
+  "source": "@site/versioned_docs/version-1.4.0/docs/intro.md",
+  "sourceDirName": "docs",
+  "slug": "/docs/intro",
+  "permalink": "/ts/1.4.0/docs/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/helpers4/typescript/tree/main/docs/versioned_docs/version-1.4.0/docs/intro.md",
+  "tags": [],
+  "version": "1.4.0",
+  "frontMatter": {}
+}

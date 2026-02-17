@@ -1,0 +1,15 @@
+{
+  "id": "docs/intro",
+  "title": "Version 2.x (Current)",
+  "description": "Welcome to TypeScript Helpers v2.x! This is the current stable version with enhanced features and improved API.",
+  "source": "@site/versioned_docs/version-2.0.0/docs/intro.md",
+  "sourceDirName": "docs",
+  "slug": "/docs/intro",
+  "permalink": "/ts/docs/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/helpers4/typescript/tree/main/docs/versioned_docs/version-2.0.0/docs/intro.md",
+  "tags": [],
+  "version": "2.0.0",
+  "frontMatter": {}
+}

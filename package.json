@@ -1,31 +1,39 @@
 {
-  "name": "@helpers4",
+  "name": "@helpers4/website",
   "version": "1.0.0",
-  "description": "Documentation centralization repository",
-  "repository": "https://github.com/helpers4/doc",
+  "description": "helpers4 unified website: landing page + documentation",
   "license": "AGPL-3.0",
-  "workspaces": [
-    "observable",
-    "promise",
-    "string",
-    "url"
-  ],
-  "keywords": [
-    "helpers4",
-    "doc"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helpers4/helpers4.github.io"
+  },
   "private": true,
+  "engines": {
+    "pnpm": ">=9.0.0",
+    "node": ">=20.0.0"
+  },
   "scripts": {
-    "reset-hard": "git clean -dfx && git reset --hard && pnpm i",
-    "doc:html": "typedoc --options typedoc.json",
-    "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d doc"
+    "install-all": "pnpm install",
+    "build:landing": "pnpm --filter landing build",
+    "build:docs:typescript": "pnpm --filter ./docs/typescript build",
+    "build:docs:devcontainer": "pnpm --filter ./docs/devcontainer build",
+    "build:docs:action": "pnpm --filter ./docs/github-action build",
+    "build:all": "pnpm build:landing && sh ./merge-builds.sh",
+    "merge-builds": "sh ./merge-builds.sh",
+    "build": "pnpm build:all",
+    "dev:landing": "pnpm --filter landing dev",
+    "dev:docs:typescript": "pnpm --filter ./docs/typescript start",
+    "dev:docs:devcontainer": "pnpm --filter ./docs/devcontainer start",
+    "dev:docs:action": "pnpm --filter ./docs/github-action start",
+    "generate-docs:typescript": "node scripts/generate-typescript-docs.js",
+    "generate-docs:devcontainer": "node scripts/generate-devcontainer-docs.js",
+    "generate-docs:action": "node scripts/generate-action-docs.js",
+    "sync-from-repos": "node scripts/sync-from-repos.js",
+    "clean": "pnpm --filter landing clean && pnpm --filter ./docs/typescript clean && pnpm --filter ./docs/devcontainer clean && pnpm --filter ./docs/github-action clean && rm -rf dist build coverage",
+    "reset-hard": "git clean -dfx && git reset --hard && pnpm install"
   },
   "devDependencies": {
-    "@types/node": "^18.11.7",
-    "gh-pages": "^4.0.0",
-    "rxjs": ">=7",
-    "typedoc": "^0.23.14",
-    "typedoc-plugin-merge-modules": "^4.0.1",
-    "typescript": "^4.8.2"
-  }
+    "@types/node": "^20.0.0"
+  },
+  "packageManager": "pnpm@10.30.0+sha512.2b5753de015d480eeb88f5b5b61e0051f05b4301808a82ec8b840c9d2adf7748eb352c83f5c1593ca703ff1017295bc3fdd3119abb9686efc96b9fcb18200937"
 }

@@ -1,0 +1,48 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/ts/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Current",
+          "isLast": true,
+          "path": "/ts/",
+          "mainDocId": "api",
+          "docs": [
+            {
+              "id": "api",
+              "path": "/ts/api",
+              "sidebar": "docs"
+            },
+            {
+              "id": "getting-started",
+              "path": "/ts/getting-started",
+              "sidebar": "docs"
+            },
+            {
+              "id": "installation",
+              "path": "/ts/installation",
+              "sidebar": "docs"
+            },
+            {
+              "id": "intro",
+              "path": "/ts/intro",
+              "sidebar": "docs"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "docs": {
+              "link": {
+                "path": "/ts/api",
+                "label": "api"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

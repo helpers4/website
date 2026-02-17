@@ -1,0 +1,24 @@
+{
+  "id": "getting-started",
+  "title": "Getting Started",
+  "description": "Welcome to the helpers4 GitHub Actions collection! Reusable actions for common development workflows.",
+  "source": "@site/docs/getting-started.md",
+  "sourceDirName": ".",
+  "slug": "/getting-started",
+  "permalink": "/action/getting-started",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/helpers4/action/tree/main/docs/docs/getting-started.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "Getting Started"
+  },
+  "sidebar": "docs",
+  "next": {
+    "title": "Conventional Commits",
+    "permalink": "/action/actions/conventional-commits"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "intro",
+  "title": "GitHub Actions",
+  "description": "This is the documentation for helpers4 GitHub Actions - a collection of GitHub Actions for common development workflows.",
+  "source": "@site/docs/intro.md",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/action/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/helpers4/action/tree/main/docs/docs/intro.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "Conventional Commits",
+    "permalink": "/action/actions/conventional-commits"
+  }
+}

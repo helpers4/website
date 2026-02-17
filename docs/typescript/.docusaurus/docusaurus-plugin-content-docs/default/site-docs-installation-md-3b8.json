@@ -1,0 +1,28 @@
+{
+  "id": "installation",
+  "title": "Installation & Setup",
+  "description": "NPM Installation",
+  "source": "@site/docs/installation.md",
+  "sourceDirName": ".",
+  "slug": "/installation",
+  "permalink": "/ts/installation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/helpers4/typescript/tree/main/docs/docs/installation.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "Installation & Setup"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Getting Started",
+    "permalink": "/ts/getting-started"
+  },
+  "next": {
+    "title": "Welcome to TypeScript Helpers",
+    "permalink": "/ts/intro"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "features/vite-plus",
+  "title": "vite-plus",
+  "description": "Complete Vite+ development environment with pre-configured tooling and VS Code extensions.",
+  "source": "@site/docs/features/vite-plus.md",
+  "sourceDirName": "features",
+  "slug": "/features/vite-plus",
+  "permalink": "/dev-container/features/vite-plus",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/helpers4/devcontainer/tree/main/docs/docs/features/vite-plus.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Getting Started",
+    "permalink": "/dev-container/getting-started"
+  },
+  "next": {
+    "title": "DevContainer Features",
+    "permalink": "/dev-container/intro"
+  }
+}

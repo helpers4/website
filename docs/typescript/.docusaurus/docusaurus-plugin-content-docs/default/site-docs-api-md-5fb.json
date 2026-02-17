@@ -1,0 +1,24 @@
+{
+  "id": "api",
+  "title": "API Reference",
+  "description": "Overview",
+  "source": "@site/docs/api.md",
+  "sourceDirName": ".",
+  "slug": "/api",
+  "permalink": "/ts/api",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/helpers4/typescript/tree/main/docs/docs/api.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "API Reference"
+  },
+  "sidebar": "docs",
+  "next": {
+    "title": "Getting Started",
+    "permalink": "/ts/getting-started"
+  }
+}

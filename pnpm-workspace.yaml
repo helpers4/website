@@ -1,0 +1,5 @@
+packages:
+  - 'landing'
+  - 'docs/typescript'
+  - 'docs/devcontainer'
+  - 'docs/github-action'

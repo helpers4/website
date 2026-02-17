@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>helpers4 - Utilities Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="helpers4: Open source utilities library for TypeScript with zero dependencies" />
+    <meta name="theme-color" content="#2563eb" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: linear-gradient(135deg, #f5f7fa 0%, #f0f4f8 100%);
+        color: #1f2937;
+        line-height: 1.6;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid #e5e7eb;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2563eb;
+      }
+      
+      nav a {
+        color: #6b7280;
+        text-decoration: none;
+        margin: 0 1.5rem;
+        transition: color 0.3s;
+      }
+      
+      nav a:hover {
+        color: #2563eb;
+      }
+      
+      .hero {
+        text-align: center;
+        padding: 6rem 0;
+      }
+      
+      .hero h1 {
+        font-size: 3.5rem;
+        margin: 1rem 0;
+        color: #111827;
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .hero p {
+        font-size: 1.25rem;
+        color: #6b7280;
+        margin: 1rem 0 2rem;
+      }
+      
+      .cta-button {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        background: #2563eb;
+        color: white;
+        text-decoration: none;
+        border-radius: 0.5rem;
+        transition: background 0.3s;
+        margin: 0.5rem;
+      }
+      
+      .cta-button:hover {
+        background: #1e40af;
+      }
+      
+      .cta-button.secondary {
+        background: transparent;
+        color: #2563eb;
+        border: 2px solid #2563eb;
+      }
+      
+      .cta-button.secondary:hover {
+        background: #eff6ff;
+      }
+      
+      .libraries {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 4rem 0;
+      }
+      
+      .library-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      
+      .library-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      
+      .library-card h3 {
+        color: #2563eb;
+        margin: 1rem 0;
+      }
+      
+      .library-card p {
+        color: #6b7280;
+        font-size: 0.95rem;
+      }
+      
+      .stats {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+      }
+      
+      .stat {
+        text-align: center;
+      }
+      
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2563eb;
+      }
+      
+      .stat-label {
+        color: #6b7280;
+        font-size: 0.9rem;
+      }
+      
+      footer {
+        margin-top: 6rem;
+        padding: 3rem 0;
+        border-top: 1px solid #e5e7eb;
+        background: white;
+        text-align: center;
+        color: #6b7280;
+      }
+      
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+        
+        nav {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        nav a {
+          margin: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="container">
+      <span class="logo">h4</span>
+      <div>
+        <a href="https://github.com/helpers4" target="_blank">GitHub</a>
+        <a href="/ts">Docs</a>
+        <a href="https://www.npmjs.com/org/helpers4" target="_blank">npm</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <section class="hero">
+        <h1>helpers4</h1>
+        <p>Open-source utilities library for TypeScript<br />Tree-shakeable • Zero dependencies • Type-safe</p>
+        
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value">12+</div>
+            <div class="stat-label">Categories</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">100+</div>
+            <div class="stat-label">Utilities</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">∞</div>
+            <div class="stat-label">Tree-shakeable</div>
+          </div>
+        </div>
+        
+        <div>
+          <a href="/ts" class="cta-button">Read Docs</a>
+          <a href="https://github.com/helpers4/typescript" class="cta-button secondary" target="_blank">View on GitHub</a>
+        </div>
+      </section>
+
+      <section class="libraries">
+        <article class="library-card">
+          <h3>TypeScript</h3>
+          <p>Core utilities for TypeScript: arrays, dates, objects, promises, strings, URL parsing, and more.</p>
+          <div style="margin-top: 1.5rem;">
+            <a href="/ts" style="color: #2563eb; text-decoration: none;">Visit docs →</a>
+          </div>
+        </article>
+
+        <article class="library-card">
+          <h3>DevContainer</h3>
+          <p>Development container features for consistent development environments across teams.</p>
+          <div style="margin-top: 1.5rem;">
+            <a href="/dev-container" style="color: #2563eb; text-decoration: none;">Visit docs →</a>
+          </div>
+        </article>
+
+        <article class="library-card">
+          <h3>GitHub Actions</h3>
+          <p>Reusable GitHub Actions for automation, CI/CD pipelines, and workflow optimization.</p>
+          <div style="margin-top: 1.5rem;">
+            <a href="/action" style="color: #2563eb; text-decoration: none;">Visit docs →</a>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 helpers4. MIT License.</p>
+    </footer>
+  </body>
+</html>

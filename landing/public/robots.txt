@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /ts/
+Allow: /dev-container/
+Allow: /action/
+
+Disallow: /_next/
+Disallow: /api/
+
+Sitemap: https://helpers4.dev/sitemap.xml

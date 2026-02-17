@@ -1,0 +1,27 @@
+{
+  "/dev-container/-d38": {
+    "__comp": "5e95c892",
+    "__context": {
+      "plugin": "aba21aa0"
+    }
+  },
+  "/dev-container/-39e": {
+    "__comp": "a7bd4aaa",
+    "__props": "14a288fc"
+  },
+  "/dev-container/-55b": {
+    "__comp": "a94703ab"
+  },
+  "/dev-container/features/vite-plus-a46": {
+    "__comp": "17896441",
+    "content": "3a107d36"
+  },
+  "/dev-container/getting-started-bac": {
+    "__comp": "17896441",
+    "content": "d589d3a7"
+  },
+  "/dev-container/intro-ee6": {
+    "__comp": "17896441",
+    "content": "0e384e19"
+  }
+}

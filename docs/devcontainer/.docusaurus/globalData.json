@@ -1,0 +1,43 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/dev-container/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/dev-container/",
+          "mainDocId": "getting-started",
+          "docs": [
+            {
+              "id": "features/vite-plus",
+              "path": "/dev-container/features/vite-plus",
+              "sidebar": "docs"
+            },
+            {
+              "id": "getting-started",
+              "path": "/dev-container/getting-started",
+              "sidebar": "docs"
+            },
+            {
+              "id": "intro",
+              "path": "/dev-container/intro",
+              "sidebar": "docs"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "docs": {
+              "link": {
+                "path": "/dev-container/getting-started",
+                "label": "getting-started"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}
