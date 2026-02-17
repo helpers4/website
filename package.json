@@ -5,7 +5,7 @@
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/helpers4/helpers4.github.io"
+    "url": "https://github.com/helpers4/website"
   },
   "private": true,
   "engines": {
