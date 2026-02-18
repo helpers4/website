@@ -1,6 +1,7 @@
 {
   "name": "@helpers4/website",
   "version": "1.0.0",
+  "type": "module",
   "description": "helpers4 unified website: landing page + documentation",
   "license": "AGPL-3.0",
   "repository": {
@@ -13,6 +14,7 @@
     "node": ">=20.0.0"
   },
   "scripts": {
+    "postinstall": "node scripts/post-install.js",
     "install-all": "pnpm install",
     "build:landing": "pnpm --filter landing build",
     "build:docs:typescript": "pnpm --filter ./docs/typescript build",
