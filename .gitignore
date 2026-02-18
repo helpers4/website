@@ -1,4 +1,10 @@
+# VS Code
 .history
+
+# Copilot
+.copilot/*
+
+# Build and dependencies
 build
 doc
 node_modules
