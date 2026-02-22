@@ -20,15 +20,30 @@
   },
   "forwardPorts": [
     3000,
+    3001,
+    3002,
+    3003,
     5173
   ],
   "portsAttributes": {
     "3000": {
-      "label": "Dev Server / Docusaurus",
+      "label": "Landing (Vite)",
+      "onAutoForward": "notify"
+    },
+    "3001": {
+      "label": "TypeScript Docs (Docusaurus)",
+      "onAutoForward": "notify"
+    },
+    "3002": {
+      "label": "DevContainer Docs (Docusaurus)",
+      "onAutoForward": "notify"
+    },
+    "3003": {
+      "label": "GitHub Actions Docs (Docusaurus)",
       "onAutoForward": "notify"
     },
     "5173": {
-      "label": "Vite Dev Server (Landing)",
+      "label": "Vite Dev Server (Fallback)",
       "onAutoForward": "notify"
     }
   }
