@@ -7,4 +7,6 @@
 # Build and dependencies
 build
 doc
+dist/
+docs/**/.docusaurus/
 node_modules
