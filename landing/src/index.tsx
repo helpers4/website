@@ -3,15 +3,18 @@ import { NavBar } from './components/navbar';
 import { Hero } from './components/hero';
 import { Libraries } from './components/libraries';
 import { Footer } from './components/footer';
-import styles from './index.module.css';
 
 export default component$(() => {
   return (
-    <main class={styles.main}>
-      <NavBar />
+    <wa-page>
+      <div slot="header">
+        <NavBar />
+      </div>
       <Hero />
       <Libraries />
-      <Footer />
-    </main>
+      <div slot="footer">
+        <Footer />
+      </div>
+    </wa-page>
   );
 });

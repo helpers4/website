@@ -8,71 +8,90 @@ export const Libraries = component$(() => {
   return (
     <section id="libraries" class={styles.section}>
       <div class={styles.container}>
-        <h2 class={styles.title}>Our Libraries</h2>
+        <h2 class={styles.title}>Libraries</h2>
         <p class={styles.subtitle}>
-          Carefully crafted tools to power your development workflow
+          Essential tools for modern development
         </p>
 
         <div class={styles.grid}>
           <Resource
             value={githubStats}
-            onPending={() => <div>Loading stats...</div>}
-            onRejected={() => <div>Failed to load stats</div>}
+            onPending={() => (
+              <div class={styles.loading}>
+                <wa-spinner></wa-spinner>
+                <span>Loading stats...</span>
+              </div>
+            )}
+            onRejected={() => (
+              <wa-callout variant="danger" class={styles.error}>
+                <wa-icon slot="icon" name="triangle-exclamation"></wa-icon>
+                Failed to load stats
+              </wa-callout>
+            )}
             onResolved={(stats) => (
               <>
-                <article class={styles.card}>
-                  <div class={styles.cardHeader}>
+                <wa-card appearance="outlined" class={styles.card}>
+                  <div slot="header">
                     <h3>TypeScript Helpers</h3>
                     <GithubCard repo={stats?.typescript} />
                   </div>
                   <p class={styles.description}>
-                    Tree-shakable utility functions organized by category: arrays, dates, functions, numbers, objects, promises, strings, URLs, versions, and more.
+                    Tree-shakable utility functions: arrays, dates, numbers, objects, promises, strings, URLs, versions, and more.
                   </p>
-                  <div class={styles.features}>
-                    <span class={styles.badge}>TypeScript</span>
-                    <span class={styles.badge}>ESM</span>
-                    <span class={styles.badge}>Versioned</span>
+                  <div class={styles.badges}>
+                    <wa-badge variant="brand">TypeScript</wa-badge>
+                    <wa-badge variant="success">ESM</wa-badge>
+                    <wa-badge variant="neutral">Versioned</wa-badge>
                   </div>
-                  <a href="/ts/" class={styles.link}>
-                    Explore Documentation →
-                  </a>
-                </article>
+                  <div slot="footer">
+                    <wa-button variant="brand" appearance="plain" href="/ts/">
+                      <wa-icon slot="start" name="arrow-right"></wa-icon>
+                      Learn more
+                    </wa-button>
+                  </div>
+                </wa-card>
 
-                <article class={styles.card}>
-                  <div class={styles.cardHeader}>
+                <wa-card appearance="outlined" class={styles.card}>
+                  <div slot="header">
                     <h3>DevContainer Features</h3>
                     <GithubCard repo={stats?.devcontainer} />
                   </div>
                   <p class={styles.description}>
-                    Pre-configured development container features for modern web development. Includes Vite, TypeScript, Angular, Git absorb, and shell history management.
+                    Pre-configured dev container features for modern web development. Vite, TypeScript, Git tools, and more.
                   </p>
-                  <div class={styles.features}>
-                    <span class={styles.badge}>Vite</span>
-                    <span class={styles.badge}>7 Features</span>
-                    <span class={styles.badge}>Docker</span>
+                  <div class={styles.badges}>
+                    <wa-badge variant="brand">Docker</wa-badge>
+                    <wa-badge variant="success">7 Features</wa-badge>
+                    <wa-badge variant="neutral">Dev</wa-badge>
                   </div>
-                  <a href="/dev-container/" class={styles.link}>
-                    Explore Documentation →
-                  </a>
-                </article>
+                  <div slot="footer">
+                    <wa-button variant="brand" appearance="plain" href="/dev-container/">
+                      <wa-icon slot="start" name="arrow-right"></wa-icon>
+                      Learn more
+                    </wa-button>
+                  </div>
+                </wa-card>
 
-                <article class={styles.card}>
-                  <div class={styles.cardHeader}>
+                <wa-card appearance="outlined" class={styles.card}>
+                  <div slot="header">
                     <h3>GitHub Actions</h3>
                     <GithubCard repo={stats?.action} />
                   </div>
                   <p class={styles.description}>
-                    Reusable GitHub Actions for common development workflows. Validate commits, automate releases, and integrate with your CI/CD pipeline.
+                    Reusable actions for CI/CD workflows. Commit validation, releases, and automation.
                   </p>
-                  <div class={styles.features}>
-                    <span class={styles.badge}>GitHub Marketplace</span>
-                    <span class={styles.badge}>Actions</span>
-                    <span class={styles.badge}>CI/CD</span>
+                  <div class={styles.badges}>
+                    <wa-badge variant="brand">CI/CD</wa-badge>
+                    <wa-badge variant="success">GitHub</wa-badge>
+                    <wa-badge variant="neutral">Automation</wa-badge>
                   </div>
-                  <a href="/action/" class={styles.link}>
-                    Explore Documentation →
-                  </a>
-                </article>
+                  <div slot="footer">
+                    <wa-button variant="brand" appearance="plain" href="/action/">
+                      <wa-icon slot="start" name="arrow-right"></wa-icon>
+                      Learn more
+                    </wa-button>
+                  </div>
+                </wa-card>
               </>
             )}
           />

@@ -1,39 +1,40 @@
 import { component$ } from '@builder.io/qwik';
+import styles from './hero.module.css';
 
 export const Hero = component$(() => {
   return (
-    <section class="hero">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          Modular Utilities
-          <br />
-          <span class="gradient-text">for Modern Development</span>
-        </h1>
-        <p class="hero-subtitle">
-          A collection of open-source libraries built for TypeScript, DevContainers, and GitHub Actions.
-          Choose what you need. Use only what you use.
+    <section class={styles.hero}>
+      <div class={styles.content}>
+        <h1 class={styles.title}>helpers4</h1>
+        <p class={styles.subtitle}>
+          Modern open-source utilities for TypeScript, DevContainers, and GitHub Actions.<br />
+          Tree-shakable • Zero dependencies • Modular
         </p>
-        <div class="hero-cta">
-          <a href="#libraries" class="btn btn-primary">
-            Explore Libraries →
-          </a>
-          <a href="https://github.com/helpers4" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+        
+        <div class={styles.stats}>
+          <wa-card appearance="filled" class={styles.stat}>
+            <div class={styles.statValue}>3</div>
+            <div class={styles.statLabel}>Libraries</div>
+          </wa-card>
+          <wa-card appearance="filled" class={styles.stat}>
+            <div class={styles.statValue}>12+</div>
+            <div class={styles.statLabel}>Categories</div>
+          </wa-card>
+          <wa-card appearance="filled" class={styles.stat}>
+            <div class={styles.statValue}>∞</div>
+            <div class={styles.statLabel}>Tree-shakable</div>
+          </wa-card>
+        </div>
+        
+        <div class={styles.cta}>
+          <wa-button variant="brand" href="#libraries">
+            <wa-icon slot="start" name="grid"></wa-icon>
+            Explore Libraries
+          </wa-button>
+          <wa-button variant="brand" appearance="outlined" href="https://github.com/helpers4" target="_blank">
+            <wa-icon slot="start" name="github" library="fa-brands"></wa-icon>
             View on GitHub
-          </a>
-        </div>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-box">
-          <div class="stat-number">3</div>
-          <div class="stat-label">Libraries</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-number">12+</div>
-          <div class="stat-label">Categories</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-number">∞</div>
-          <div class="stat-label">Tree-shakable</div>
+          </wa-button>
         </div>
       </div>
     </section>
