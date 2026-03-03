@@ -1,15 +1,15 @@
 .footer {
-  background: #1f2937;
-  color: #e5e7eb;
+  background: var(--wa-color-surface-highest);
+  color: var(--wa-color-text-primary);
   padding: 3rem 0 1rem 0;
   margin-top: 4rem;
-  border-top: 1px solid #374151;
+  border-top: 1px solid var(--wa-color-stroke-default);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--wa-space-m);
 }
 
 .grid {
@@ -19,51 +19,48 @@
   margin-bottom: 2rem;
 }
 
-.section {
-  h4 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin: 0 0 1rem 0;
-    color: #f3f4f6;
-  }
+.section h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem 0;
+  color: var(--wa-color-text-primary);
+}
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    li {
-      margin-bottom: 0.5rem;
+.section li {
+  margin-bottom: 0.5rem;
+}
 
-      a {
-        color: #d1d5db;
-        text-decoration: none;
-        transition: color 0.2s ease;
-        font-size: 0.9rem;
+.section a {
+  color: var(--wa-color-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-size: 0.9rem;
+}
 
-        &:hover {
-          color: #60a5fa;
-        }
-      }
-    }
-  }
+.section a:hover {
+  color: var(--wa-color-brand-500);
 }
 
 .bottom {
-  border-top: 1px solid #374151;
   padding-top: 2rem;
   text-align: center;
+}
 
-  p {
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-    color: #9ca3af;
-  }
+.bottom p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--wa-color-text-secondary);
 }
 
 .license {
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--wa-color-text-tertiary);
 }

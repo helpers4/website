@@ -3,20 +3,23 @@ import styles from './footer.module.css';
 
 export const Footer = component$(() => {
   return (
-    <footer class={styles.footer}>
+    <div class={styles.footer}>
       <div class={styles.container}>
         <div class={styles.grid}>
           <div class={styles.section}>
             <h4>Organization</h4>
             <ul>
               <li>
-                <a href="https://github.com/helpers4">GitHub Organization</a>
+                <wa-button appearance="plain" href="https://github.com/helpers4" target="_blank">
+                  <wa-icon slot="start" name="github" library="fa-brands"></wa-icon>
+                  GitHub Organization
+                </wa-button>
               </li>
               <li>
-                <a href="https://github.com/helpers4?tab=repositories">All Repositories</a>
-              </li>
-              <li>
-                <a href="https://github.com/helpers4/helpers4.github.io">Website Source</a>
+                <wa-button appearance="plain" href="https://github.com/helpers4?tab=repositories" target="_blank">
+                  <wa-icon slot="start" name="folder"></wa-icon>
+                  All Repositories
+                </wa-button>
               </li>
             </ul>
           </div>
@@ -25,13 +28,22 @@ export const Footer = component$(() => {
             <h4>Libraries</h4>
             <ul>
               <li>
-                <a href="/ts/">TypeScript Helpers</a>
+                <wa-button appearance="plain" href="/ts/">
+                  <wa-icon slot="start" name="code"></wa-icon>
+                  TypeScript
+                </wa-button>
               </li>
               <li>
-                <a href="/dev-container/">DevContainer Features</a>
+                <wa-button appearance="plain" href="/dev-container/">
+                  <wa-icon slot="start" name="cube"></wa-icon>
+                  DevContainer
+                </wa-button>
               </li>
               <li>
-                <a href="/action/">GitHub Actions</a>
+                <wa-button appearance="plain" href="/action/">
+                  <wa-icon slot="start" name="bolt"></wa-icon>
+                  GitHub Actions
+                </wa-button>
               </li>
             </ul>
           </div>
@@ -40,33 +52,32 @@ export const Footer = component$(() => {
             <h4>Links</h4>
             <ul>
               <li>
-                <a href="https://www.npmjs.com/org/helpers4" target="_blank" rel="noopener noreferrer">
+                <wa-button appearance="plain" href="https://www.npmjs.com/org/helpers4" target="_blank">
+                  <wa-icon slot="start" name="npm" library="fa-brands"></wa-icon>
                   npm Organization
-                </a>
+                </wa-button>
               </li>
               <li>
-                <a href="https://github.com/marketplace?type=actions&query=helpers4" target="_blank" rel="noopener noreferrer">
+                <wa-button appearance="plain" href="https://github.com/marketplace?type=actions&query=helpers4" target="_blank">
+                  <wa-icon slot="start" name="store"></wa-icon>
                   GitHub Marketplace
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/helpers4" target="_blank" rel="noopener noreferrer">
-                  GitHub
-                </a>
+                </wa-button>
               </li>
             </ul>
           </div>
         </div>
+
+        <wa-divider></wa-divider>
 
         <div class={styles.bottom}>
           <p>
             Built with ❤️ by the helpers4 community
           </p>
           <p class={styles.license}>
-            MIT License - See individual repositories for details
+            AGPL-3.0 License - See individual repositories for details
           </p>
         </div>
       </div>
-    </footer>
+    </div>
   );
 });
