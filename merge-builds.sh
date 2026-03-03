@@ -3,7 +3,9 @@
 
 set -e
 
-ROOT_DIR="/home/berenger/Projects/helpers4/helpers4.github.io"
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT_DIR="$SCRIPT_DIR"
 DIST_DIR="$ROOT_DIR/dist"
 
 echo "🔨 Merging builds..."
