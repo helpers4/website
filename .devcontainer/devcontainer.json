@@ -18,6 +18,9 @@
     "ghcr.io/helpers4/devcontainer/vite-plus:1": {},
     "ghcr.io/helpers4/devcontainer/package-auto-install:1": {}
   },
+  "containerEnv": {
+    "NPM_TOKEN_WEB_AWESOME": "${localEnv:NPM_TOKEN_WEB_AWESOME}"
+  },
   "forwardPorts": [
     3000,
     3001,
