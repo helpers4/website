@@ -6,33 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="helpers4: Open source utilities library for TypeScript with zero dependencies" />
     <meta name="theme-color" content="#2563eb" />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html, body {
-        height: 100%;
-      }
-
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background: var(--wa-color-surface, #fafafa);
-        color: var(--wa-color-text-primary, #1f2937);
-        line-height: 1.6;
-      }
-
-      main {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-    </style>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="icon" type="image/png" href="/helpers4-logo.png" />
+    <script type="module" src="/src/main.ts"></script>
   </head>
   <body>
-    <main id="root"></main>
-    <script type="module" src="/src/main.tsx"></script>
+    <main style="max-width: 960px; margin: 0 auto; padding: 24px 16px 48px;">
+      <header style="margin-bottom: 20px;">
+        <img src="/helpers4-logo.png" alt="helpers4 logo" style="height: 56px; width: auto; margin-bottom: 12px;" />
+        <h1>helpers4</h1>
+        <p>Open-source tooling for TypeScript helpers, DevContainer features, and GitHub Actions.</p>
+      </header>
+
+      <section style="margin-bottom: 24px;">
+        <p>Choose a library to explore its documentation:</p>
+      </section>
+
+      <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 24px;">
+        <wa-card appearance="outlined">
+          <h3 slot="header">TypeScript</h3>
+          <p>Tree-shakable utility functions with strict typing.</p>
+          <wa-button slot="footer" variant="brand" href="/ts/">Open TypeScript docs</wa-button>
+        </wa-card>
+
+        <wa-card appearance="outlined">
+          <h3 slot="header">DevContainer</h3>
+          <p>Reusable development container features for consistent environments.</p>
+          <wa-button slot="footer" variant="brand" href="/dev-container/">Open DevContainer docs</wa-button>
+        </wa-card>
+
+        <wa-card appearance="outlined">
+          <h3 slot="header">GitHub Action</h3>
+          <p>Automation workflows and publishing support for repositories.</p>
+          <wa-button slot="footer" variant="brand" href="/action/">Open Action docs</wa-button>
+        </wa-card>
+      </section>
+
+      <section>
+        <p>More updates are coming soon across all helpers4 projects.</p>
+      </section>
+    </main>
   </body>
 </html>
