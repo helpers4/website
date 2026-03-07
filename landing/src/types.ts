@@ -3,10 +3,12 @@
  */
 
 export type ProjectCard = {
-  name: string;
+  title: string;
+  label: string;
   description: string;
   docsHref: string;
   repoPath: string;
+  stars?: number;
 };
 
 export type RepoStars = Record<string, number | null>;
