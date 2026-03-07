@@ -12,11 +12,15 @@ interface CardsListProps {
 }
 
 export function CardsList({ projects }: CardsListProps) {
-  const [starsByRepo, setStarsByRepo] = useState<RepoStars>({});
+  const [starsByRepo, setStarsByRepo] = useState<RepoStars>(() => {
+    // Initialize with hardcoded stars to avoid GitHub API rate limit
+    return Object.fromEntries(projects.map((p) => [p.repoPath, p.stars ?? null]));
+  });
 
   useEffect(() => {
     let active = true;
 
+    // Try to fetch live stars, but fallback to hardcoded values on rate limit
     void fetchAllStars(projects.map((p) => p.repoPath)).then((stars) => {
       if (active) {
         setStarsByRepo(stars);
@@ -31,13 +35,13 @@ export function CardsList({ projects }: CardsListProps) {
   const cards = useMemo(
     () =>
       projects.map((project) => (
-        <CardItem key={project.repoPath} card={project} stars={starsByRepo[project.repoPath] ?? null} />
+        <CardItem key={project.repoPath} card={project} stars={starsByRepo[project.repoPath] ?? project.stars ?? null} />
       )),
     [projects, starsByRepo],
   );
 
   return (
-    <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', marginBottom: '24px' }}>
+    <section className="wa-grid" style={{ '--min-column-size': '40ch' }}>
       {cards}
     </section>
   );
