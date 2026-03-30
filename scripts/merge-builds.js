@@ -80,11 +80,11 @@ function mergeBuild() {
     console.warn('⚠ Landing build not found at:', landingDist);
   }
 
-  // Copy TypeScript docs to dist/ts/
+  // Copy TypeScript docs to dist/typescript/
   const tsDist = path.join(rootDir, 'docs', 'typescript', 'build');
   if (fs.existsSync(tsDist)) {
-    console.log('✓ Copying TypeScript docs to dist/ts/');
-    copyDir(tsDist, path.join(distRoot, 'ts'));
+    console.log('✓ Copying TypeScript docs to dist/typescript/');
+    copyDir(tsDist, path.join(distRoot, 'typescript'));
   } else {
     console.warn('⚠ TypeScript docs build not found at:', tsDist);
   }

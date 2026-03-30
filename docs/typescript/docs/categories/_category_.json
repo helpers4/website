@@ -1,0 +1,12 @@
+{
+  "label": "Categories",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "API Categories",
+    "description": "Browse TypeScript utility functions organized by category. Each category can be imported separately for optimal tree-shaking.",
+    "slug": "/categories"
+  }
+}

@@ -6,7 +6,7 @@ const config: Config = {
   tagline: 'Tree-shakable TypeScript utility functions',
   favicon: 'img/favicon.ico',
   url: 'https://helpers4.dev',
-  baseUrl: '/ts/',
+  baseUrl: '/typescript/',
   organizationName: 'helpers4',
   projectName: 'typescript',
   onBrokenLinks: 'warn',
@@ -41,12 +41,11 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/helpers4-og.png',
     navbar: {
       title: 'TypeScript Helpers',
       logo: {
         alt: 'helpers4 Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {
@@ -62,6 +61,11 @@ const config: Config = {
         {
           href: 'https://github.com/helpers4/typescript',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          href: 'https://helpers4.dev',
+          label: '🏠 Home',
           position: 'right',
         },
       ],

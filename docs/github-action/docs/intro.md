@@ -1,3 +1,8 @@
+---
+sidebar_position: 0
+slug: /
+---
+
 # GitHub Actions
 
 This is the documentation for **helpers4 GitHub Actions** - a collection of GitHub Actions for common development workflows.

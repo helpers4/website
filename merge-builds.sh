@@ -16,7 +16,7 @@ mkdir -p "$DIST_DIR"
 # Build TypeScript docs
 echo "📚 TypeScript docs..."
 cd "$ROOT_DIR/docs/typescript"
-pnpm exec docusaurus build --out-dir "$DIST_DIR/ts"
+pnpm exec docusaurus build --out-dir "$DIST_DIR/typescript"
 
 # Build DevContainer docs
 echo "🐳 DevContainer docs..."

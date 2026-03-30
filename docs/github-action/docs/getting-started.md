@@ -148,8 +148,7 @@ Browse all helpers4 actions on [GitHub Marketplace](https://github.com/marketpla
 
 ## Next Steps
 
-- Explore [Actions Documentation](./actions)
-- View [examples](./examples)
+- Explore [Actions Documentation](./actions/conventional-commits)
 - Check the [GitHub Repository](https://github.com/helpers4/action)
 
 ## Support

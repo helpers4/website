@@ -173,8 +173,7 @@ All features support standard devcontainer.json configuration:
 
 ## Next Steps
 
-- Explore individual [Features Documentation](./features)
-- View [examples](./examples)
+- Explore individual [Features](./features/vite-plus)
 - Check the [GitHub Repository](https://github.com/helpers4/devcontainer)
 
 ## Support

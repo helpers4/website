@@ -9,7 +9,7 @@ export const PROJECTS: ProjectCard[] = [
     title: 'For JS and TypeScript',
     label: 'TypeScript',
     description: 'Tree-shakable utility functions with strict typing.',
-    docsHref: '/ts/',
+    docsHref: '/typescript/',
     repoPath: 'helpers4/typescript',
     stars: 0,
   },
