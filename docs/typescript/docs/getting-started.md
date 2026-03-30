@@ -98,8 +98,7 @@ const result = deepMerge({ a: 1 }, { b: 2 });
 
 ## Next Steps
 
-- Browse the [API Reference](./api)
-- Check out [Examples](./examples)
+- Browse the [Categories](./categories)
 - View the [GitHub Repository](https://github.com/helpers4/typescript)
 
 ## Contributing

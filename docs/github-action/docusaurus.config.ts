@@ -36,12 +36,11 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/helpers4-og.png',
     navbar: {
       title: 'GitHub Actions',
       logo: {
         alt: 'helpers4 Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {
@@ -53,6 +52,11 @@ const config: Config = {
         {
           href: 'https://github.com/helpers4/action',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          href: 'https://helpers4.dev',
+          label: '🏠 Home',
           position: 'right',
         },
       ],
@@ -78,7 +82,7 @@ const config: Config = {
           items: [
             {
               label: 'TypeScript Helpers',
-              href: 'https://helpers4.dev/ts',
+              href: 'https://helpers4.dev/typescript',
             },
             {
               label: 'DevContainer Features',

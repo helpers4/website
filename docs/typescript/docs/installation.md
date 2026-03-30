@@ -207,7 +207,7 @@ Check bundler configuration:
 
 ## Next Steps
 
-- Explore the [API Reference](./api)
+- Explore the [Categories](./categories)
 - Check out specific categories:
   - [Array Utils](./categories/array)
   - [Date Utils](./categories/date)

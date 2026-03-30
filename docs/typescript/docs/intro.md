@@ -1,3 +1,8 @@
+---
+sidebar_position: 0
+slug: /
+---
+
 # Welcome to TypeScript Helpers
 
 This is the documentation for the **@helpers4/typescript** library - a collection of tree-shakable, framework-agnostic utility functions organized by category.
@@ -6,7 +11,7 @@ This is the documentation for the **@helpers4/typescript** library - a collectio
 
 - **[GitHub Repository](https://github.com/helpers4/typescript)** - View source code
 - **[npm Package](https://www.npmjs.com/package/@helpers4/all)** - Install from npm
-- **[API Reference](/api)** - Complete API documentation
+- **[API Reference](/categories)** - Complete API documentation
 
 ## What is helpers4?
 
