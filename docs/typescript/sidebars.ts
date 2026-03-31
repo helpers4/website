@@ -2,9 +2,16 @@ import type { SidebarsConfig } from '@docusaurus/types';
 
 const sidebars: SidebarsConfig = {
   docs: [
-    'intro',
-    'getting-started',
-    'installation',
+    {
+      type: 'category',
+      label: 'Getting Started',
+      collapsed: false,
+      link: { type: 'doc', id: 'intro' },
+      items: [
+        'getting-started',
+        'installation',
+      ],
+    },
     {
       type: 'category',
       label: 'Array',
@@ -18,7 +25,14 @@ const sidebars: SidebarsConfig = {
         'categories/array/intersection',
         'categories/array/oneInCommon',
         'categories/array/quickCompare',
-        'categories/array/sort',
+        'categories/array/sortNumberAscFn',
+        'categories/array/sortNumberDescFn',
+        'categories/array/sortStringAscFn',
+        'categories/array/sortStringDescFn',
+        'categories/array/sortStringAscInsensitiveFn',
+        'categories/array/createSortByStringFn',
+        'categories/array/createSortByNumberFn',
+        'categories/array/createSortByDateFn',
         'categories/array/unique',
       ],
     },
@@ -29,11 +43,15 @@ const sidebars: SidebarsConfig = {
       link: { type: 'doc', id: 'categories/date/index' },
       items: [
         'categories/date/compare',
-        'categories/date/difference',
-        'categories/date/format',
-        'categories/date/is',
+        'categories/date/daysDifference',
+        'categories/date/toISO8601',
+        'categories/date/toRFC3339',
+        'categories/date/toRFC2822',
+        'categories/date/isSameDay',
         'categories/date/safeDate',
-        'categories/date/timestamp',
+        'categories/date/dateToISOString',
+        'categories/date/isTimestampInSeconds',
+        'categories/date/normalizeTimestamp',
       ],
     },
     {
@@ -56,7 +74,8 @@ const sidebars: SidebarsConfig = {
       link: { type: 'doc', id: 'categories/number/index' },
       items: [
         'categories/number/clamp',
-        'categories/number/random',
+        'categories/number/randomBetween',
+        'categories/number/randomIntBetween',
         'categories/number/roundTo',
       ],
     },
@@ -110,6 +129,7 @@ const sidebars: SidebarsConfig = {
         'categories/string/errorToReadableMessage',
         'categories/string/kebabCase',
         'categories/string/labelize',
+        'categories/string/slugify',
       ],
     },
     {
@@ -120,7 +140,15 @@ const sidebars: SidebarsConfig = {
       items: [
         'categories/type/isEmpty',
         'categories/type/isSpecialObject',
-        'categories/type/typeChecks',
+        'categories/type/isSet',
+        'categories/type/isString',
+        'categories/type/isNumber',
+        'categories/type/isBoolean',
+        'categories/type/isArray',
+        'categories/type/isObject',
+        'categories/type/isFunction',
+        'categories/type/isDate',
+        'categories/type/isValidRegex',
       ],
     },
     {

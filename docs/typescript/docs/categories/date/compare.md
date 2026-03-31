@@ -9,24 +9,16 @@ Comparison of two dates.
 ## Import
 
 ```ts
-import { DateCompareOptions, compare } from '@helpers4/date';
+import { compare, DateCompareOptions } from '@helpers4/date';
 ```
 
-## `DateCompareOptions`
-
-Options for date comparison
-
-```ts
-interface DateCompareOptions
-```
-
-## `compare`
-
-Comparison of two dates.
+## Signature
 
 ```ts
 function compare(dateA: Date, dateB: Date, options: DateCompareOptions =
 ```
+
+## Parameters
 
 | Parameter | Description |
 |-----------|-------------|
@@ -34,7 +26,19 @@ function compare(dateA: Date, dateB: Date, options: DateCompareOptions =
 | `dateB` | Second date to compare |
 | `options` | Comparison options |
 
-**Returns:** `true` if dates are identical according to the specified precision, `false` otherwise
+## Returns
+
+`true` if dates are identical according to the specified precision, `false` otherwise
+
+## Types
+
+### `DateCompareOptions`
+
+Options for date comparison
+
+```ts
+interface DateCompareOptions
+```
 
 ## Source
 

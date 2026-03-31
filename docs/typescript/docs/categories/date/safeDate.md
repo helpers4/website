@@ -9,36 +9,24 @@ Safely creates a Date object from various input types
 ## Import
 
 ```ts
-import { safeDate, dateToISOString } from '@helpers4/date';
+import { safeDate } from '@helpers4/date';
 ```
 
-## `safeDate`
-
-Safely creates a Date object from various input types
+## Signature
 
 ```ts
 function safeDate(input: string | number | Date | null | undefined): Date | null
 ```
 
+## Parameters
+
 | Parameter | Description |
 |-----------|-------------|
 | `input` | String, number, or Date input |
 
-**Returns:** Valid Date object or null if invalid
+## Returns
 
-## `dateToISOString`
-
-Formats a date to ISO string or returns null
-
-```ts
-function dateToISOString(input: string | number | Date | null | undefined): string | null
-```
-
-| Parameter | Description |
-|-----------|-------------|
-| `input` | Date input |
-
-**Returns:** ISO string or null
+Valid Date object or null if invalid
 
 ## Source
 

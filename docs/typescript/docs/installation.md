@@ -207,11 +207,11 @@ Check bundler configuration:
 
 ## Next Steps
 
-- Explore the [Categories](./categories)
+- Explore the [Categories](./categories/array/index.md)
 - Check out specific categories:
-  - [Array Utils](./categories/array)
-  - [Date Utils](./categories/date)
-  - [Function Utils](./categories/function)
+  - [Array Utils](./categories/array/index.md)
+  - [Date Utils](./categories/date/index.md)
+  - [Function Utils](./categories/function/index.md)
 
 ---
 

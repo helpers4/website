@@ -31,4 +31,4 @@ True if same day
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/date/isSameDay.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/date/is.ts)

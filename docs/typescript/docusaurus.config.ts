@@ -106,6 +106,11 @@ const config: Config = {
       theme: require('prism-react-renderer').themes.github,
       darkTheme: require('prism-react-renderer').themes.nightOwl,
     },
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
   } satisfies Preset.ThemeConfig,
 };
 
