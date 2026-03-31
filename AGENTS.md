@@ -1,49 +1,23 @@
-# AGENTS.md - AI Coding Agent Instructions
-
-This file provides context and guidelines for AI coding agents (GitHub Copilot, Claude, etc.) working on helpers4 repositories.
+# AGENTS.md - Website & Documentation Portal
 
 ## ⛔ CRITICAL RESTRICTIONS
 
-### Forbidden Actions
 - **NEVER execute `git push`** - The user will push manually after review
 - **NEVER use GPT models** - Use Claude models only (claude-sonnet-4, Claude Opus 4.5)
+- **Everything in English** - Code, comments, commits, documentation, logs, PR descriptions
 
-### Model Restriction Rationale
-Claude models have shown consistent behavior with this codebase's coding conventions and TypeScript strict mode requirements. GPT models are not preferred for this project.
+## Organization Context
 
-## Organization Overview
+**helpers4** is a collection of open-source utilities across 5 repos: `typescript`, `devcontainer`, `action`, `website` (this repo), `.github`. All licensed AGPL-3.0.
 
-**helpers4** is a collection of open-source utilities:
-- **typescript**: Tree-shakable TypeScript utility functions (12+ categories)
-- **devcontainer**: Development container features for consistent environments
-- **action**: GitHub Actions for automation and CI/CD workflows
-- **website**: Documentation and landing page
-
-## General Principles
-
-### Code Style
-- Use TypeScript with strict mode enabled
-- Avoid `any` type - use `unknown` or specific types instead
-- Include JSDoc comments with `@param`, `@returns`, `@example`
-- Use 2-space indentation
-- Use single quotes for strings
-- Prefer descriptive variable and function names
-
-### Commit Messages
+## Commit Messages
 
 Follow [Conventional Commits](https://www.conventionalcommits.org/) with a gitmoji between the scope and the description.
 
 **Format:** `<type>(<scope>): <emoji> <description>`
 
-**Examples:**
-- `feat(landing): ✨ add hero section with animations`
-- `fix(docs): 🐛 resolve broken sidebar links`
-- `docs(lib-typescript): 📝 update helper docs generation`
-- `chore(CI-CD): 🔧 update deployment workflow`
-
 **Scopes:** landing, docs, lib-typescript, lib-devcontainer, lib-action, build, CI-CD
 
-**Types:**
 | Emoji | Type | Description |
 |-------|------|-------------|
 | ✨ | feat | New feature |
@@ -58,116 +32,113 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/) with a gitmo
 | 📦 | build | Build system |
 | ⏪ | revert | Revert |
 
-### Testing
+**Examples:**
+- `feat(landing): ✨ add hero section with animations`
+- `fix(docs): 🐛 resolve broken sidebar links`
+- `docs(lib-typescript): 📝 update helper docs generation`
+- `chore(CI-CD): 🔧 update deployment workflow`
 
-- Add tests for new features
-- Ensure all tests pass locally
-- Use the test framework specified in each repository
-- Aim for good coverage on critical paths
+---
 
-### Documentation
+## This Repository
 
-- Update README for user-facing changes
-- Add/update comments for complex logic
-- Update CHANGELOG if provided
+**Purpose:** Landing page + 3 Docusaurus documentation portals for the helpers4 organization. Deployed on Cloudflare Pages at **helpers4.dev**.
 
-## Repository-Specific Guidelines
+### Tech Stack
 
-### TypeScript (`helpers4/typescript`)
+- **Landing page:** Vite 7.x + React 18
+- **Documentation:** Docusaurus 3.x (3 independent instances)
+- **Package Manager:** pnpm workspaces
+- **Deployment:** Cloudflare Pages
 
-**Purpose**: Utility functions organized by category (array, date, object, promise, string, etc.)
+### Project Structure
 
-**Tech Stack**:
-- Node.js >= 24.0.0
-- TypeScript 5.x
-- Vite + Rollup for builds
-- Vitest for testing
-- oxlint for linting
-
-**Key Rules**:
-- Tree-shakable exports only
-- One helper function per file
-- Tests colocated (`.test.ts` or `.spec.ts`)
-- Each category has `index.ts` for re-exports
-- License header required on all source files
-
-**Commands**:
-```bash
-pnpm test              # Run tests
-pnpm build             # Build all packages
-pnpm typecheck         # TypeScript check
-pnpm lint              # Lint with oxlint
+```
+website/
+├── landing/                          # Landing page (/)
+│   ├── src/                          # React components
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.ts
+├── docs/
+│   ├── typescript/                   # Docusaurus → /typescript
+│   │   ├── docusaurus.config.ts      # Reads version from ../../typescript/package.json
+│   │   ├── sidebars.ts
+│   │   └── docs/                     # Generated + static pages
+│   ├── devcontainer/                 # Docusaurus → /dev-container
+│   │   ├── docusaurus.config.ts
+│   │   └── docs/
+│   └── github-action/               # Docusaurus → /action
+│       ├── docusaurus.config.ts
+│       └── docs/
+├── scripts/
+│   ├── generate-helper-docs.js       # TS source → per-function Markdown pages
+│   ├── generate-devcontainer-docs.js # Feature READMEs → Docusaurus
+│   ├── generate-action-docs.js       # Action README → Docusaurus
+│   ├── generate-typescript-docs.js   # Orchestrator for TS docs
+│   ├── sync-from-repos.js            # Run all generators
+│   ├── merge-builds.js               # Merge all outputs into dist/
+│   └── post-install.js
+├── merge-builds.sh                   # Bash wrapper
+├── pnpm-workspace.yaml               # 4 workspaces
+├── package.json                       # Root orchestrator
+└── dist/                              # Final deployed output
 ```
 
-### DevContainer (`helpers4/devcontainer`)
+### Key Commands
 
-**Purpose**: Development container features for consistent dev environments
+```bash
+# Development (each on different port)
+pnpm dev:landing                      # localhost:3000
+pnpm dev:docs:typescript              # localhost:3001
+pnpm dev:docs:devcontainer            # localhost:3002
+pnpm dev:docs:action                  # localhost:3003
 
-**Tech Stack**:
-- Docker-based dev containers
-- Various feature packages (typescript-dev, vite-plus, git-absorb, etc.)
+# Building
+pnpm build:landing                    # Build landing page
+pnpm build:docs:typescript            # Build TS Docusaurus
+pnpm build:docs:devcontainer          # Build DevContainer Docusaurus
+pnpm build:docs:action                # Build Action Docusaurus
+pnpm build:all                        # Build everything
+pnpm build                            # Full build + merge into dist/
 
-**Key Files**:
-- `devcontainer-feature.json` - Feature metadata
-- `install.sh` - Feature installation script
-- `test.sh` - Feature tests
+# Documentation generation (from source repos)
+pnpm generate-docs:typescript         # Generate TS helper pages
+pnpm generate-docs:devcontainer       # Generate devcontainer pages
+pnpm generate-docs:action             # Generate action pages
+pnpm sync-from-repos                  # All generation at once
 
-### Action (`helpers4/action`)
+# Cleanup
+pnpm clean                            # Remove build artifacts
+```
 
-**Purpose**: GitHub Actions for workflow automation
+### Architecture
 
-**Key Files**:
-- `action.yml` - Action metadata
-- `scripts/` - Implementation scripts
-- `README.md` - Usage documentation
+**Build pipeline:**
+1. Each workspace builds independently (landing → Vite, docs → Docusaurus)
+2. `merge-builds.js` merges all outputs into `dist/`
+3. Final structure: `dist/index.html` (landing) + `dist/typescript/` + `dist/dev-container/` + `dist/action/`
 
-### Website (`helpers4/website`)
+**Doc generation:**
+- `generate-helper-docs.js` reads TypeScript source files (JSDoc) and creates one Markdown page per function, with related types attached
+- `generate-devcontainer-docs.js` converts feature READMEs to Docusaurus format
+- `generate-action-docs.js` converts action README to Docusaurus format
+- Generators require source repos available locally (sibling directories)
 
-**Purpose**: Documentation portals and landing page
+**Docusaurus instances:**
+- Each has its own `docusaurus.config.ts`, `sidebars.ts`, `package.json`
+- TypeScript instance displays a dynamic version badge from `typescript/package.json`
+- No versioning — docs always reflect the current version
 
-**Tech Stack**:
-- Qwik (landing page)
-- Docusaurus (documentation portals)
-- Vite for builds
+### License Header (required on all source files)
 
-**Sections**:
-- `/`: Landing page
-- `/ts`: TypeScript documentation
-- `/dev-container`: DevContainer documentation
-- `/action`: GitHub Actions documentation
-
-## Common Tasks
-
-### Adding a Feature
-1. Create your changes
-2. Add tests
-3. Follow commit conventions
-4. Ensure tests pass locally
-5. Create clear PR description
-
-### Fixing a Bug
-1. Identify root cause
-2. Write minimal fix
-3. Add test case for the bug
-4. Verify no regressions
-
-### Updating Documentation
-1. Keep changes accurate and current
-2. Use clear, concise language
-3. Include code examples where helpful
-4. Test links and examples
-
-## Contributing Owners
-
-- **@baxyz** - Organization owner and maintainer
-
-## Important Notes
-
-- **Open communication**: Ask questions in issues/PRs if unclear
-- **Test locally**: Always verify changes work locally first
-- **Review existing code**: Understand patterns before implementing
-- **Backward compatibility**: Consider implications for existing users
-- **Type safety**: Maintain strong typing across the project
+```typescript
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+```
 
 ## Repository Links
 
