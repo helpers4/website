@@ -66,17 +66,17 @@ import { chunk, unique } from '@helpers4/array';
 
 Explore helpers by category:
 
-- **[Array](./categories/array.md)** - Array manipulation: chunk, unique, intersection, flatten, etc.
-- **[Date](./categories/date.md)** - Date operations: compare, format, add, subtract, etc.
-- **[Function](./categories/function.md)** - Function utilities: debounce, throttle, memoize, etc.
-- **[Number](./categories/number.md)** - Number helpers: clamp, random, roundTo, etc.
-- **[Object](./categories/object.md)** - Object utilities: deepClone, deepMerge, deepCompare, etc.
-- **[Observable](./categories/observable.md)** - RxJS Observable operators
-- **[Promise](./categories/promise.md)** - Promise utilities: all, race, timeout, etc.
-- **[String](./categories/string.md)** - String manipulation: capitalize, kebabCase, etc.
-- **[Type](./categories/type.md)** - Type guards and utilities
-- **[URL](./categories/url.md)** - URL parsing and manipulation
-- **[Version](./categories/version.md)** - SemVer utilities: parse, compare, increment
+- **[Array](./categories/array/index.md)** - Array manipulation: chunk, unique, intersection, flatten, etc.
+- **[Date](./categories/date/index.md)** - Date operations: compare, format, add, subtract, etc.
+- **[Function](./categories/function/index.md)** - Function utilities: debounce, throttle, memoize, etc.
+- **[Number](./categories/number/index.md)** - Number helpers: clamp, random, roundTo, etc.
+- **[Object](./categories/object/index.md)** - Object utilities: deepClone, deepMerge, deepCompare, etc.
+- **[Observable](./categories/observable/index.md)** - RxJS Observable operators
+- **[Promise](./categories/promise/index.md)** - Promise utilities: all, race, timeout, etc.
+- **[String](./categories/string/index.md)** - String manipulation: capitalize, kebabCase, etc.
+- **[Type](./categories/type/index.md)** - Type guards and utilities
+- **[URL](./categories/url/index.md)** - URL parsing and manipulation
+- **[Version](./categories/version/index.md)** - SemVer utilities: parse, compare, increment
 
 ## TypeScript Support
 
@@ -98,7 +98,7 @@ const result = deepMerge({ a: 1 }, { b: 2 });
 
 ## Next Steps
 
-- Browse the [Categories](./categories)
+- Browse the [Categories](./categories/array/index.md)
 - View the [GitHub Repository](https://github.com/helpers4/typescript)
 
 ## Contributing

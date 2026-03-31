@@ -15,7 +15,14 @@
       "categories/array/intersection",
       "categories/array/oneInCommon",
       "categories/array/quickCompare",
-      "categories/array/sort",
+      "categories/array/sortNumberAscFn",
+      "categories/array/sortNumberDescFn",
+      "categories/array/sortStringAscFn",
+      "categories/array/sortStringDescFn",
+      "categories/array/sortStringAscInsensitiveFn",
+      "categories/array/createSortByStringFn",
+      "categories/array/createSortByNumberFn",
+      "categories/array/createSortByDateFn",
       "categories/array/unique"
     ]
   },
@@ -29,11 +36,15 @@
     },
     "items": [
       "categories/date/compare",
-      "categories/date/difference",
-      "categories/date/format",
-      "categories/date/is",
+      "categories/date/daysDifference",
+      "categories/date/toISO8601",
+      "categories/date/toRFC3339",
+      "categories/date/toRFC2822",
+      "categories/date/isSameDay",
       "categories/date/safeDate",
-      "categories/date/timestamp"
+      "categories/date/dateToISOString",
+      "categories/date/isTimestampInSeconds",
+      "categories/date/normalizeTimestamp"
     ]
   },
   {
@@ -62,7 +73,8 @@
     },
     "items": [
       "categories/number/clamp",
-      "categories/number/random",
+      "categories/number/randomBetween",
+      "categories/number/randomIntBetween",
       "categories/number/roundTo"
     ]
   },
@@ -127,7 +139,8 @@
       "categories/string/capitalize",
       "categories/string/errorToReadableMessage",
       "categories/string/kebabCase",
-      "categories/string/labelize"
+      "categories/string/labelize",
+      "categories/string/slugify"
     ]
   },
   {
@@ -141,7 +154,15 @@
     "items": [
       "categories/type/isEmpty",
       "categories/type/isSpecialObject",
-      "categories/type/typeChecks"
+      "categories/type/isSet",
+      "categories/type/isString",
+      "categories/type/isNumber",
+      "categories/type/isBoolean",
+      "categories/type/isArray",
+      "categories/type/isObject",
+      "categories/type/isFunction",
+      "categories/type/isDate",
+      "categories/type/isValidRegex"
     ]
   },
   {

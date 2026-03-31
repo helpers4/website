@@ -31,4 +31,4 @@ Number of days difference
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/date/daysDifference.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/date/difference.ts)

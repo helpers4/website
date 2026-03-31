@@ -31,22 +31,32 @@ Claude models have shown consistent behavior with this codebase's coding convent
 
 ### Commit Messages
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
+Follow [Conventional Commits](https://www.conventionalcommits.org/) with a gitmoji between the scope and the description.
 
-```
-<type>(<scope>): <description>
+**Format:** `<type>(<scope>): <emoji> <description>`
 
-- Detail 1
-- Detail 2
-```
+**Examples:**
+- `feat(landing): ✨ add hero section with animations`
+- `fix(docs): 🐛 resolve broken sidebar links`
+- `docs(lib-typescript): 📝 update helper docs generation`
+- `chore(CI-CD): 🔧 update deployment workflow`
 
-**Types**:
-- `feat`: ✨ New feature
-- `fix`: 🐛 Bug fix
-- `refactor`: ♻️ Code refactoring
-- `docs`: 📚 Documentation
-- `test`: 🧪 Tests
-- `chore`: 🔧 Maintenance
+**Scopes:** landing, docs, lib-typescript, lib-devcontainer, lib-action, build, CI-CD
+
+**Types:**
+| Emoji | Type | Description |
+|-------|------|-------------|
+| ✨ | feat | New feature |
+| 🐛 | fix | Bug fix |
+| 📝 | docs | Documentation |
+| ♻️ | refactor | Code refactoring |
+| ✅ | test | Tests |
+| 🔧 | chore | Maintenance |
+| 🚀 | perf | Performance |
+| 💄 | style | Code style |
+| 👷 | ci | CI/CD |
+| 📦 | build | Build system |
+| ⏪ | revert | Revert |
 
 ### Testing
 
