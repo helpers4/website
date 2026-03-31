@@ -130,6 +130,19 @@ pnpm clean                            # Remove build artifacts
 - TypeScript instance displays a dynamic version badge from `typescript/package.json`
 - No versioning — docs always reflect the current version
 
+### CI/CD Workflows
+
+| Workflow | Trigger | Jobs |
+|----------|---------|------|
+| `pr-validation.yml` | Pull request → main | conventional-commits, build, typecheck, pr-comment |
+| `deploy.yml` | Push → main | Build + deploy to Cloudflare Pages |
+
+- **conventional-commits** — Validates PR commit messages against conventional commit format
+- **build** — Full site build (`pnpm build`)
+- **typecheck** — TypeScript type checking (`tsc --noEmit`)
+- **pr-comment** — Posts/updates a status summary comment on the PR
+- **deploy** — Builds and deploys to Cloudflare Pages (push to main only)
+
 ### License Header (required on all source files)
 
 ```typescript
