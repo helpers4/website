@@ -1,5 +1,16 @@
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+// Read version from the typescript repo's package.json
+let tsVersion = 'latest';
+try {
+  const tsPkg = JSON.parse(readFileSync(join(__dirname, '..', '..', '..', 'typescript', 'package.json'), 'utf-8'));
+  tsVersion = tsPkg.version || tsVersion;
+} catch {
+  // Fallback if typescript repo is not alongside website
+}
 
 const config: Config = {
   title: 'TypeScript Helpers | helpers4',
@@ -26,11 +37,6 @@ const config: Config = {
           routeBasePath: '/',
           editUrl:
             'https://github.com/helpers4/typescript/tree/main/docs/',
-          versions: {
-            current: {
-              label: 'Current',
-            },
-          },
         },
         blog: false,
         theme: {
@@ -55,7 +61,8 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          type: 'docsVersionDropdown',
+          href: 'https://github.com/helpers4/typescript/releases',
+          label: `v${tsVersion}`,
           position: 'right',
         },
         {
