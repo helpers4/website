@@ -22,8 +22,8 @@ function App() {
         </p>
         <p>
           Free to use under the LGPL-3.0 license, including commercial use.
-          Modifications must be shared under the same license.
-          If you use this code to provide a network service, you must make the source code available to users.
+          If you distribute modified LGPL-covered code, those modifications must remain under LGPL.
+          Running a network service alone does not trigger AGPL-style source-sharing obligations.
         </p>
       </section>
 
