@@ -15,7 +15,7 @@ import { compare, DateCompareOptions } from '@helpers4/date';
 ## Signature
 
 ```ts
-function compare(dateA: Date, dateB: Date, options: DateCompareOptions =
+function compare(dateA: Date, dateB: Date, options: DateCompareOptions = {}): boolean
 ```
 
 ## Parameters
@@ -37,7 +37,9 @@ function compare(dateA: Date, dateB: Date, options: DateCompareOptions =
 Options for date comparison
 
 ```ts
-interface DateCompareOptions
+interface DateCompareOptions {
+	precision?: 'milliseconds' | 'seconds' | 'minutes' | 'hours' | 'days';
+}
 ```
 
 ## Source

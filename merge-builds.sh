@@ -10,7 +10,10 @@ DIST_DIR="$ROOT_DIR/dist"
 
 echo "🔨 Merging builds..."
 
-# Ensure dist directory exists
+# Clean previous output to avoid stale artifacts
+rm -rf "$DIST_DIR"
+
+# Recreate dist directory
 mkdir -p "$DIST_DIR"
 
 # Build TypeScript docs
