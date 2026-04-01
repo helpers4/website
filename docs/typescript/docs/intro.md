@@ -12,6 +12,7 @@ This is the documentation for the **@helpers4/typescript** library - a collectio
 - **[GitHub Repository](https://github.com/helpers4/typescript)** - View source code
 - **[npm Package](https://www.npmjs.com/package/@helpers4/all)** - Install from npm
 - **[API Reference](./categories/array/index.md)** - Complete API documentation
+- **[License (AGPL-3.0)](./legal/license)** - What you can and cannot do
 
 ## What is helpers4?
 

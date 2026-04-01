@@ -16,3 +16,7 @@ This is the documentation for **helpers4 GitHub Actions** - a collection of GitH
 Actions are published to the [GitHub Marketplace](https://github.com/marketplace?type=actions&query=helpers4).
 
 Learn more in the [GitHub repository](https://github.com/helpers4/action).
+
+## License
+
+This project is licensed under AGPL-3.0. See the [human-readable summary](./legal/license) to understand what you can and cannot do.
