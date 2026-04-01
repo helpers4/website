@@ -27,4 +27,4 @@ Learn more in the [GitHub repository](https://github.com/helpers4/devcontainer).
 
 ## License
 
-This project is licensed under AGPL-3.0. See the [human-readable summary](./legal/license) to understand what you can and cannot do.
+This project is licensed under LGPL-3.0. See the [human-readable summary](./legal/license) to understand what you can and cannot do.

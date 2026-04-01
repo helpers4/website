@@ -1,5 +1,5 @@
 /**
- * @license AGPL-3.0-or-later
+ * @license LGPL-3.0-or-later
  */
 
 import { createRoot } from 'react-dom/client';
@@ -21,7 +21,7 @@ function App() {
           Open-source libraries for developers.
         </p>
         <p>
-          Free to use under the AGPL-3.0 license, including commercial use.
+          Free to use under the LGPL-3.0 license, including commercial use.
           Modifications must be shared under the same license.
           If you use this code to provide a network service, you must make the source code available to users.
         </p>

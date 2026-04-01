@@ -2,7 +2,7 @@
   "name": "@helpers4/docs-devcontainer",
   "version": "1.0.0",
   "description": "DevContainer features documentation",
-  "license": "AGPL-3.0",
+  "license": "LGPL-3.0",
   "scripts": {
     "build": "docusaurus build --out-dir ../../../dist/dev-container",
     "dev": "docusaurus start --port 3002",

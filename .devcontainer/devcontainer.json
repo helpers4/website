@@ -11,7 +11,7 @@
     "ghcr.io/helpers4/devcontainer/essential-dev:1": {},
     "ghcr.io/helpers4/devcontainer/auto-header:1": {
       "projectName": "helpers4",
-      "license": "AGPL-3.0-or-later"
+      "license": "LGPL-3.0-or-later"
     },
     "ghcr.io/helpers4/devcontainer/typescript-dev:1": {},
     "ghcr.io/joshuanianji/devcontainer-features/mount-pnpm-store:1": {},

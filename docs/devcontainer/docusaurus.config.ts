@@ -91,7 +91,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} helpers4 - AGPL-3.0 License`,
+      copyright: `Copyright © ${new Date().getFullYear()} helpers4 - LGPL-3.0 License`,
     },
     prism: {
       theme: require('prism-react-renderer').themes.github,

@@ -2,7 +2,7 @@
   "name": "@helpers4/docs-action",
   "version": "1.0.0",
   "description": "GitHub Actions documentation",
-  "license": "AGPL-3.0",
+  "license": "LGPL-3.0",
   "scripts": {
     "build": "docusaurus build --out-dir ../../../dist/action",
     "dev": "docusaurus start --port 3003",

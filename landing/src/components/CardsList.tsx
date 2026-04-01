@@ -1,5 +1,5 @@
 /**
- * @license AGPL-3.0-or-later
+ * @license LGPL-3.0-or-later
  */
 
 import { useEffect, useMemo, useState } from 'react';
