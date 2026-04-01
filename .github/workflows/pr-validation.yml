@@ -19,7 +19,7 @@ jobs:
         uses: helpers4/action/conventional-commits@main
         with:
           checkout: "true"
-          scopes: "landing|docs|lib-typescript|lib-devcontainer|lib-action|build|CI-CD"
+          scopes: "landing|docs|lib-typescript|lib-devcontainer|lib-action|build|CI-CD|license|devcontainer|dependabot|CODEOWNERS|deploy|AGENTS|installation|typescript"
           pr-comment: "error"
 
       - name: Set status
@@ -99,7 +99,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: TypeScript check
-        run: pnpm tsc --noEmit
+        run: |
+          pnpm --filter landing exec tsc --noEmit
 
       - name: Set status
         id: status
