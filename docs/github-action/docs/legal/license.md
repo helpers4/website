@@ -4,11 +4,13 @@ sidebar_label: License (LGPL-3.0)
 
 # Understanding the LGPL-3.0 License
 
-All **helpers4** projects are licensed under the [GNU Lesser General Public License v3.0 (LGPL-3.0)](https://www.gnu.org/licenses/lgpl-3.0.html). Here's what that means in practice.
+All **helpers4** projects are licensed under the [GNU Lesser General Public License v3.0 (LGPL-3.0)](https://www.gnu.org/licenses/lgpl-3.0.html). Here's a practical summary.
 
 ## What is LGPL-3.0?
 
-The LGPL-3.0 is a **copyleft** open-source license. It ensures that the software — and any modifications — remain free and open-source, even when used over a network (e.g. a web application).
+LGPL-3.0 is a **weak copyleft** license, mainly designed for libraries. It allows broad use (including commercial use), while requiring that changes to the LGPL-covered code remain under LGPL when distributed.
+
+> Important: LGPL-3.0 does **not** include the AGPL “network use” clause.
 
 ## What you **can** do
 
@@ -23,32 +25,32 @@ The LGPL-3.0 is a **copyleft** open-source license. It ensures that the software
 
 - ✅ Use helpers4 in internal tools and public-facing applications
 - ✅ Modify the code to fit your needs
-- ✅ Distribute your application — as long as you **share the source code** of any modified version under LGPL-3.0
+- ✅ Distribute software that uses helpers4
 
 ### As a company
 
-- ✅ Use helpers4 in internal tools that are **not distributed and not exposed as a network service**
-- ✅ Use it in open-source products licensed under LGPL-3.0
-- ✅ Build and deploy network services (web apps, APIs, SaaS) — but you **must** make the complete source code (including modifications) available to users of that service
+- ✅ Use helpers4 in proprietary or open-source products
+- ✅ Use helpers4 in internal tools
+- ✅ Run SaaS / network services using helpers4
 
 ## What you **must** do
 
 | Requirement | Details |
 |---|---|
-| **Share source code** | If you distribute the software or run it as a network service, you must provide the complete source code to all users |
-| **Keep the license** | Any derivative work must also be licensed under LGPL-3.0 |
-| **State changes** | If you modify the code, you must clearly indicate what was changed |
-| **Include original** | You must include the original copyright notice and license text |
+| **Keep notices** | Keep copyright and license notices for LGPL-covered code |
+| **Provide LGPL text** | Include a copy of the LGPL license when distributing |
+| **Publish LGPL modifications** | If you distribute modified LGPL-covered code, provide corresponding source under LGPL |
+| **Allow relinking/debugging rights** | Do not block users from exercising LGPL rights on the LGPL-covered parts |
 
 ## What you **cannot** do
 
-- ❌ Re-license the code under a proprietary or more permissive license
-- ❌ Use it in closed-source network services without sharing the source code
-- ❌ Remove or alter the copyright and license notices
+- ❌ Remove or alter copyright/license notices on LGPL-covered code
+- ❌ Re-license LGPL-covered code as proprietary
+- ❌ Distribute modified LGPL-covered code without preserving LGPL obligations
 
 ## In short
 
-> If your project is open-source or for personal use, you're good to go. If you plan to use helpers4 in a closed-source commercial product or SaaS, you'll need to open-source the parts that use helpers4 (or the entire application, depending on how it's integrated).
+> You can use helpers4 in commercial, closed-source, and SaaS contexts. LGPL obligations apply to the LGPL-covered code and its distributed modifications—not to network use alone.
 
 ## Full license text
 
