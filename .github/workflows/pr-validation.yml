@@ -19,7 +19,7 @@ jobs:
         uses: helpers4/action/conventional-commits@main
         with:
           checkout: "true"
-          scopes: "landing|docs|lib-typescript|lib-devcontainer|lib-action|build|CI-CD|license|devcontainer|dependabot|CODEOWNERS|deploy|AGENTS|installation|typescript"
+          scopes: "landing|docs|lib-typescript|lib-devcontainer|lib-action|build|CI-CD|license|devcontainer|dependabot|CODEOWNERS|deploy|AGENTS|installation|typescript|pr-validation"
           pr-comment: "error"
 
       - name: Set status
@@ -53,6 +53,8 @@ jobs:
           version: 9
 
       - name: Install dependencies
+        env:
+          NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
         run: pnpm install --frozen-lockfile
 
       - name: Generate documentation
@@ -96,6 +98,8 @@ jobs:
           version: 9
 
       - name: Install dependencies
+        env:
+          NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
         run: pnpm install --frozen-lockfile
 
       - name: TypeScript check
