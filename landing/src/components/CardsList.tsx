@@ -2,7 +2,7 @@
  * @license LGPL-3.0-or-later
  */
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { type ProjectCard, type RepoStars } from '../types';
 import { fetchAllStars } from '../utils/github';
 import { CardItem } from './CardItem';
@@ -12,6 +12,10 @@ interface CardsListProps {
 }
 
 export function CardsList({ projects }: CardsListProps) {
+  const gridStyle = {
+    '--min-column-size': '40ch',
+  } as CSSProperties;
+
   const [starsByRepo, setStarsByRepo] = useState<RepoStars>(() => {
     // Initialize with hardcoded stars to avoid GitHub API rate limit
     return Object.fromEntries(projects.map((p) => [p.repoPath, p.stars ?? null]));
@@ -41,7 +45,7 @@ export function CardsList({ projects }: CardsListProps) {
   );
 
   return (
-    <section className="wa-grid" style={{ '--min-column-size': '40ch' }}>
+    <section className="wa-grid" style={gridStyle}>
       {cards}
     </section>
   );
