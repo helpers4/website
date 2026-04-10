@@ -217,6 +217,9 @@ ${ex.code}
   // --- legal docs from licenses ---
   generateLegalDocs(categories);
 
+  // --- all-functions reference page ---
+  generateAllFunctionsPage(categories);
+
   console.log(`\n✅ Generated documentation for ${categories.length} categories (${totalFunctions} functions)`);
   console.log(`📁 Output: ${docsOutputPath}\n`);
 
@@ -272,4 +275,45 @@ ${rows}
 
   fs.writeFileSync(path.join(legalDir, 'open-source-libraries.md'), content);
   console.log('  ✓ legal/open-source-libraries (auto-generated)');
+}
+
+/**
+ * Generate a single page listing all functions across all categories.
+ * Useful for search (Ctrl+F) and SEO indexing.
+ */
+function generateAllFunctionsPage(categories) {
+  const refDir = path.join(rootDir, 'docs', 'typescript', 'docs', 'reference');
+  fs.mkdirSync(refDir, { recursive: true });
+
+  let rows = [];
+
+  for (const category of categories) {
+    const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
+    if (!api?.functions) continue;
+
+    for (const fn of api.functions) {
+      rows.push(
+        `| [\`${fn.name}\`](../categories/${category}/${fn.name}) | [${category}](../categories/${category}/) | ${escapeMarkdownTable(fn.description)} |`
+      );
+    }
+  }
+
+  const content = `---
+sidebar_label: "All Functions"
+sidebar_position: 1
+title: "All Functions"
+description: "Complete alphabetical list of all @helpers4 TypeScript utility functions across every category."
+---
+
+# All Functions
+
+All **${rows.length}** helpers available in \`@helpers4/*\`, sorted alphabetically.
+
+| Function | Category | Description |
+|----------|----------|-------------|
+${rows.sort((a, b) => a.localeCompare(b)).join('\n')}
+`;
+
+  fs.writeFileSync(path.join(refDir, 'all-functions.md'), content);
+  console.log('  ✓ reference/all-functions (auto-generated)');
 }
