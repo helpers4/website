@@ -25,6 +25,16 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Comparisons',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'comparisons/radashi',
+        'comparisons/alternatives',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Legal',
       collapsible: true,
       collapsed: true,
