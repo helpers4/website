@@ -6,28 +6,13 @@ sidebar_label: "sortNumberDescFn"
 
 Sort numbers in descending order
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
 import { sortNumberDescFn } from '@helpers4/array';
 ```
-
-## Signature
-
-```ts
-const sortNumberDescFn: SortFn<number> = (a: number, b: number) => b - a;
-```
-
-## Parameters
-
-| Parameter | Description |
-|-----------|-------------|
-| `a` | First number |
-| `b` | Second number |
-
-## Returns
-
-Sort order
 
 ## Source
 

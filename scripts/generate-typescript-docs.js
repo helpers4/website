@@ -2,93 +2,268 @@
 
 /**
  * Script: generate-typescript-docs.js
- * 
- * Generates TypeScript API documentation from the typescript repo's source code.
- * 
- * This script:
- * 1. Clones/updates the typescript repo (if not exists)
- * 2. Runs typedoc to generate API docs
- * 3. Converts to Docusaurus format
- * 4. Handles versioning (v1, v2, current)
+ *
+ * Generates TypeScript API documentation from the typescript repo's build output.
+ *
+ * This script reads the pre-built meta/ JSON files (api.json, examples.json,
+ * licenses.json) from each category in typescript/build/ and generates
+ * Docusaurus-compatible markdown files.
  */
 
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 const typescriptRepoPath = path.join(rootDir, '..', 'typescript');
+const buildPath = path.join(typescriptRepoPath, 'build');
 const docsOutputPath = path.join(rootDir, 'docs', 'typescript', 'docs', 'categories');
 
 console.log('📚 Generating TypeScript API documentation...\n');
 
-// Check if typescript repo exists
 if (!fs.existsSync(typescriptRepoPath)) {
   console.error('❌ TypeScript repo not found at:', typescriptRepoPath);
-  console.error('Make sure the typescript repo is cloned alongside this repo.');
   process.exit(1);
 }
 
-// Create output directory
-if (!fs.existsSync(docsOutputPath)) {
-  fs.mkdirSync(docsOutputPath, { recursive: true });
+if (!fs.existsSync(buildPath)) {
+  console.error('❌ Build directory not found. Run the typescript build first.');
+  process.exit(1);
+}
+
+// Clean and recreate output
+if (fs.existsSync(docsOutputPath)) {
+  fs.rmSync(docsOutputPath, { recursive: true });
+}
+fs.mkdirSync(docsOutputPath, { recursive: true });
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function readJson(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  } catch {
+    return null;
+  }
+}
+
+function escapeMarkdownTable(str) {
+  return (str || '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
 }
 
 try {
-  // List all helper categories
-  const helpersPath = path.join(typescriptRepoPath, 'helpers');
-  
-  if (!fs.existsSync(helpersPath)) {
-    console.warn('⚠ Helpers directory not found');
-    process.exit(0);
-  }
-
-  const categories = fs.readdirSync(helpersPath).filter(f => 
-    fs.statSync(path.join(helpersPath, f)).isDirectory()
-  );
+  // Discover categories from build/ (skip "all" bundle)
+  const categories = fs.readdirSync(buildPath).filter(f =>
+    f !== 'all' && fs.statSync(path.join(buildPath, f)).isDirectory()
+    && fs.existsSync(path.join(buildPath, f, 'meta', 'api.json'))
+  ).sort();
 
   console.log(`📁 Found ${categories.length} categories:\n`);
 
-  // Generate stub documentation for each category
-  for (const category of categories) {
-    const docFile = path.join(docsOutputPath, `${category}.md`);
-    
-    const content = `---
-sidebar_position: ${categories.indexOf(category) + 1}
-title: ${category.charAt(0).toUpperCase() + category.slice(1)}
+  let totalFunctions = 0;
+
+  for (const [index, category] of categories.entries()) {
+    const categoryDir = path.join(docsOutputPath, category);
+    fs.mkdirSync(categoryDir, { recursive: true });
+
+    const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
+    const examples = readJson(path.join(buildPath, category, 'meta', 'examples.json'));
+    const licenses = readJson(path.join(buildPath, category, 'meta', 'licenses.json'));
+
+    if (!api) {
+      console.warn(`  ⚠ No api.json for ${category}, skipping`);
+      continue;
+    }
+
+    const functions = api.functions || [];
+    totalFunctions += functions.length;
+
+    // Build examples lookup: { functionName: examples[] }
+    const examplesMap = {};
+    if (examples?.functions) {
+      for (const fn of examples.functions) {
+        examplesMap[fn.name] = fn.examples || [];
+      }
+    }
+
+    // --- _category_.json ---
+    const categoryMeta = {
+      label: capitalize(category),
+      position: index + 1,
+      collapsible: true,
+      collapsed: true,
+      link: { type: 'generated-index', slug: `/categories/${category}` },
+    };
+    fs.writeFileSync(
+      path.join(categoryDir, '_category_.json'),
+      JSON.stringify(categoryMeta, null, 2) + '\n'
+    );
+
+    // --- index.md (category overview) ---
+    const depsList = licenses?.dependencies?.length
+      ? '\n## Dependencies\n\n| Package | License |\n|---------|:-------:|\n' +
+      licenses.dependencies.map(d => `| [${d.name}](${d.homepage || d.repository || '#'}) | ${d.license} |`).join('\n') + '\n'
+      : '';
+
+    const functionsTable = functions.map(fn =>
+      `| [\`${fn.name}\`](${fn.name}) | ${escapeMarkdownTable(fn.description)} |`
+    ).join('\n');
+
+    const indexMd = `---
+sidebar_label: "${capitalize(category)}"
+sidebar_position: 0
+title: "${capitalize(category)} Helpers"
 ---
 
-# ${category.charAt(0).toUpperCase() + category.slice(1)} Utilities
+# ${capitalize(category)} Helpers
 
-Helpers for ${category} operations.
+Utility functions for working with ${category} operations.
 
-## Available Functions
+## Functions
 
-Browse the category in the [API reference](#).
+| Function | Description |
+|----------|-------------|
+${functionsTable}
+${depsList}
+`;
+    fs.writeFileSync(path.join(categoryDir, 'index.md'), indexMd);
 
-### Common Functions
+    // --- individual function docs ---
+    for (const fn of functions) {
+      const fnExamples = examplesMap[fn.name] || fn.examples || [];
+      const sig = fn.signatures?.[0];
 
-- Check the [API Reference](../api) for all available functions in this category
-
-## Examples
-
-See the documentation for detailed examples.
-
+      let content = `---
+sidebar_label: "${fn.name}"
 ---
 
-For more information, visit [GitHub](https://github.com/helpers4/typescript/tree/main/helpers/${category})
+# ${fn.name}
+
+${fn.description || ''}
 `;
 
-    fs.writeFileSync(docFile, content);
-    console.log(`  ✓ ${category}`);
+      if (fn.since) {
+        content += `\n> Available since v${fn.since}\n`;
+      }
+
+      content += `
+## Import
+
+\`\`\`ts
+import { ${fn.name} } from '@helpers4/${category}';
+\`\`\`
+`;
+
+      if (sig) {
+        content += `
+## Signature
+
+\`\`\`ts
+${sig.signature}
+\`\`\`
+`;
+
+        if (sig.params?.length) {
+          content += `
+## Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+${sig.params.map(p => `| \`${p.name}\` | \`${escapeMarkdownTable(p.type)}\` | ${escapeMarkdownTable(p.description)}${p.optional ? ' *(optional)*' : ''} |`).join('\n')}
+`;
+        }
+
+        if (sig.returns) {
+          content += `
+## Returns
+
+\`${sig.returns.type}\` — ${sig.returns.description || ''}
+`;
+        }
+      }
+
+      if (fnExamples.length) {
+        content += `
+## Examples
+`;
+        for (const ex of fnExamples) {
+          content += `
+### ${ex.title}
+
+${ex.description || ''}
+
+\`\`\`ts
+${ex.code}
+\`\`\`
+`;
+        }
+      }
+
+      content += `
+## Source
+
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/${category}/${fn.sourceFile || fn.name + '.ts'})
+`;
+
+      fs.writeFileSync(path.join(categoryDir, `${fn.name}.md`), content);
+    }
+
+    console.log(`  ✓ ${category} (${functions.length} functions)`);
   }
 
-  console.log(`\n✅ Generated documentation for ${categories.length} categories`);
+  // --- legal docs from licenses ---
+  generateLegalDocs(categories);
+
+  console.log(`\n✅ Generated documentation for ${categories.length} categories (${totalFunctions} functions)`);
   console.log(`📁 Output: ${docsOutputPath}\n`);
 
 } catch (error) {
   console.error('❌ Error generating documentation:', error.message);
   process.exit(1);
+}
+
+/**
+ * Generate the open-source-libraries legal page from all categories' licenses.json
+ */
+function generateLegalDocs(categories) {
+  const legalDir = path.join(rootDir, 'docs', 'typescript', 'docs', 'legal');
+  const allDeps = new Map();
+
+  for (const category of categories) {
+    const licenses = readJson(path.join(buildPath, category, 'meta', 'licenses.json'));
+    if (licenses?.dependencies) {
+      for (const dep of licenses.dependencies) {
+        if (!allDeps.has(dep.name)) {
+          allDeps.set(dep.name, dep);
+        }
+      }
+    }
+  }
+
+  if (allDeps.size === 0) return;
+
+  const rows = [...allDeps.values()]
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map(d => `| [${d.name}](${d.homepage || d.repository || '#'}) | ${d.license} |`)
+    .join('\n');
+
+  const content = `---
+sidebar_label: "Open Source Libraries"
+sidebar_position: 2
+---
+
+# Open Source Libraries
+
+The following open-source libraries are used by helpers4 TypeScript helpers:
+
+| Package | License |
+|---------|:-------:|
+${rows}
+`;
+
+  fs.writeFileSync(path.join(legalDir, 'open-source-libraries.md'), content);
+  console.log('  ✓ legal/open-source-libraries (auto-generated)');
 }

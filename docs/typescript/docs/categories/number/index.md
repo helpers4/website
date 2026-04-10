@@ -1,11 +1,12 @@
 ---
-sidebar_label: "Overview"
+sidebar_label: "Number"
 sidebar_position: 0
+title: "Number Helpers"
 ---
 
 # Number Helpers
 
-Utility functions for working with numbers.
+Utility functions for working with number operations.
 
 ## Functions
 

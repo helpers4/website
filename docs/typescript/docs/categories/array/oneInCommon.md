@@ -6,6 +6,8 @@ sidebar_label: "oneInCommon"
 
 Simple helper that check if two lists shared at least an item in common.
 
+> Available since v1.0.0
+
 ## Import
 
 ```ts
@@ -15,19 +17,39 @@ import { oneInCommon } from '@helpers4/array';
 ## Signature
 
 ```ts
-function oneInCommon<T>(a: readonly T[], b: readonly T[]): boolean
+oneInCommon<T>(a: readonly T[], b: readonly T[]): boolean
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `a` | One list |
-| `b` | Another list |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `a` | `readonly T[]` | One list |
+| `b` | `readonly T[]` | Another list |
 
 ## Returns
 
-`true` if one item is in common, `false` otherwise.
+`boolean` — `true` if one item is in common, `false` otherwise.
+
+## Examples
+
+### Detect shared element
+
+Returns true when at least one element is shared between both arrays.
+
+```ts
+oneInCommon([1, 2, 3], [3, 4, 5])
+// => true
+```
+
+### No common elements
+
+Returns false when no elements are shared.
+
+```ts
+oneInCommon([1, 2], [3, 4])
+// => false
+```
 
 ## Source
 

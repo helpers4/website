@@ -6,6 +6,8 @@ sidebar_label: "createSortByDateFn"
 
 Creates a sort function for objects by date property
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,18 @@ import { createSortByDateFn } from '@helpers4/array';
 ## Signature
 
 ```ts
-function createSortByDateFn<T extends Record<string, any>>( property?: keyof T ): SortFn<T>
+createSortByDateFn<T extends Record<string, any>>(property?: keyof T): SortFn<T>
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `property` | The property to sort by (defaults to 'date') |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `property` | `keyof T` | The property to sort by (defaults to 'date') *(optional)* |
 
 ## Returns
 
-Sort function
+`SortFn<T>` — Sort function
 
 ## Source
 

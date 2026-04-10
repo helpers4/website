@@ -6,6 +6,8 @@ sidebar_label: "normalizeTimestamp"
 
 Converts a timestamp to JavaScript milliseconds format
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,18 @@ import { normalizeTimestamp } from '@helpers4/date';
 ## Signature
 
 ```ts
-function normalizeTimestamp(timestamp: number): number
+normalizeTimestamp(timestamp: number): number
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `timestamp` | The timestamp (in seconds or milliseconds) |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `timestamp` | `number` | The timestamp (in seconds or milliseconds) |
 
 ## Returns
 
-Timestamp in milliseconds
+`number` — Timestamp in milliseconds
 
 ## Source
 

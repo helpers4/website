@@ -6,6 +6,8 @@ sidebar_label: "kebabCase"
 
 Converts camelCase to kebab-case
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,29 @@ import { kebabCase } from '@helpers4/string';
 ## Signature
 
 ```ts
-function kebabCase(str: string): string
+kebabCase(str: string): string
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `str` | The camelCase string to convert |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `str` | `string` | The camelCase string to convert |
 
 ## Returns
 
-String in kebab-case
+`string` — String in kebab-case
+
+## Examples
+
+### Convert camelCase to kebab-case
+
+Converts a camelCase string to kebab-case.
+
+```ts
+kebabCase('myComponentName')
+// => 'my-component-name'
+```
 
 ## Source
 

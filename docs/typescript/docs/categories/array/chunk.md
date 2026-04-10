@@ -6,6 +6,8 @@ sidebar_label: "chunk"
 
 Chunks an array into smaller arrays of specified size
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,19 +17,48 @@ import { chunk } from '@helpers4/array';
 ## Signature
 
 ```ts
-function chunk<T>(array: T[], size: number): T[][]
+chunk<T>(array: T[], size: number): T[][]
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `array` | The array to chunk |
-| `size` | The size of each chunk |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `array` | `T[]` | The array to chunk |
+| `size` | `number` | The size of each chunk |
 
 ## Returns
 
-Array of chunks
+`T[][]` — Array of chunks
+
+## Examples
+
+### Split an array into pairs
+
+Chunks an array of 5 elements into groups of 2, with the last chunk containing the remainder.
+
+```ts
+chunk([1, 2, 3, 4, 5], 2)
+// => [[1, 2], [3, 4], [5]]
+```
+
+### Handle exact divisions
+
+When the array length is evenly divisible by the chunk size, all chunks are equal.
+
+```ts
+chunk([1, 2, 3, 4], 2)
+// => [[1, 2], [3, 4]]
+```
+
+### Return empty array for invalid size
+
+A size of 0 or negative returns an empty array.
+
+```ts
+chunk([1, 2, 3], 0)
+// => []
+```
 
 ## Source
 

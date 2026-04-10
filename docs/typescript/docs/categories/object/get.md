@@ -6,6 +6,8 @@ sidebar_label: "get"
 
 Gets a value from an object using a dot-notated path
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,20 +17,40 @@ import { get } from '@helpers4/object';
 ## Signature
 
 ```ts
-function get<T = any>(obj: any, path: string, defaultValue?: T): T | undefined
+get<T = any>(obj: any, path: string, defaultValue?: T): T | undefined
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `obj` | The object to get value from |
-| `path` | The dot-notated path (e.g., 'a.b.c') |
-| `defaultValue` | Default value if path doesn't exist |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `obj` | `any` | The object to get value from |
+| `path` | `string` | The dot-notated path (e.g., 'a.b.c') |
+| `defaultValue` | `T` | Default value if path doesn't exist *(optional)* |
 
 ## Returns
 
-The value at the path or default value
+`T | undefined` — The value at the path or default value
+
+## Examples
+
+### Access a nested property
+
+Uses a dot-notated path to retrieve a deeply nested value.
+
+```ts
+get({ a: { b: { c: 42 } } }, 'a.b.c')
+// => 42
+```
+
+### Return default for missing path
+
+Returns the default value when the path does not exist.
+
+```ts
+get({ a: 1 }, 'b.c', 'default')
+// => 'default'
+```
 
 ## Source
 

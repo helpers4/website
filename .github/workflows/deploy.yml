@@ -2,7 +2,14 @@ name: Build and Deploy to Cloudflare Pages
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      typescript-version:
+        description: "TypeScript release version to fetch build artifacts from (e.g.
+          2.0.0). Leave empty to use committed docs."
+        required: false
+        type: string
 
 jobs:
   build-and-deploy:
@@ -11,14 +18,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: "24"
-          cache: "pnpm"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
@@ -26,19 +30,49 @@ jobs:
           version: 9
 
       - name: Install dependencies
+        env:
+          NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
         run: pnpm install --frozen-lockfile
 
-      - name: Generate documentation
+      - name: Regenerate TypeScript docs (if version specified)
+        if: inputs.typescript-version != ''
         run: |
-          pnpm generate-docs:typescript || true
-          pnpm generate-docs:devcontainer || true
-          pnpm generate-docs:action || true
+          VERSION="${{ inputs.typescript-version }}"
+          echo "📦 Downloading TypeScript build artifacts for v${VERSION}..."
+
+          gh release download "v${VERSION}" \
+            --repo helpers4/typescript \
+            --pattern "build-meta.tar.gz" \
+            --dir /tmp
+
+          mkdir -p /tmp/typescript/build
+          tar -xzf /tmp/build-meta.tar.gz -C /tmp/typescript/build
+
+          ln -sfn /tmp/typescript "${{ github.workspace }}/../typescript"
+          node scripts/generate-typescript-docs.js
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Regenerate DevContainer docs
+        continue-on-error: true
+        run: |
+          if [ -d "${{ github.workspace }}/../devcontainer" ]; then
+            node scripts/generate-devcontainer-docs.js
+          else
+            echo "⚠ DevContainer repo not available, using committed docs"
+          fi
+
+      - name: Regenerate Action docs
+        continue-on-error: true
+        run: |
+          if [ -d "${{ github.workspace }}/../action" ]; then
+            node scripts/generate-action-docs.js
+          else
+            echo "⚠ Action repo not available, using committed docs"
+          fi
 
       - name: Build all packages
         run: pnpm build:all
-
-      - name: Merge builds
-        run: pnpm merge-builds
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7

@@ -6,37 +6,49 @@ sidebar_label: "deepCompare"
 
 Deep comparison of two objects that returns detailed information about differences.
 
+> Available since v2.0.0
+
 ## Import
 
 ```ts
-import { deepCompare, DeepCompareResult } from '@helpers4/object';
+import { deepCompare } from '@helpers4/object';
 ```
 
 ## Signature
 
 ```ts
-function deepCompare(objA: object | undefined | null, objB: object | undefined | null): true | false | DeepCompareResult
+deepCompare(objA: object | null | undefined, objB: object | null | undefined): boolean | DeepCompareResult
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `objA` | First object to compare (can be object, undefined, or null) |
-| `objB` | Second object to compare (can be object, undefined, or null) |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `objA` | `object \| null \| undefined` | First object to compare (can be object, undefined, or null) |
+| `objB` | `object \| null \| undefined` | Second object to compare (can be object, undefined, or null) |
 
 ## Returns
 
-`true` if objects are identical, `false` if incompatible types, or a `DeepCompareResult` object detailing differences
+`boolean | DeepCompareResult` — `true` if objects are identical, `false` if incompatible types, or a `DeepCompareResult` object detailing differences
 
-## Types
+## Examples
 
-### `DeepCompareResult`
+### Compare nested objects
 
-Result type for deep comparison when objects are not identical
+Deeply compares two objects, returning true when they are structurally equal.
 
 ```ts
-interface DeepCompareResult
+deepCompare({ a: { b: 1 } }, { a: { b: 1 } })
+// => true
+```
+
+### Detect deep differences
+
+Returns a detailed diff object when nested values differ.
+
+```ts
+deepCompare({ a: { b: 1 } }, { a: { b: 2 } })
+// => { a: { b: false } }
 ```
 
 ## Source

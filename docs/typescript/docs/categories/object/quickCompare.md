@@ -7,6 +7,8 @@ sidebar_label: "quickCompare"
 Quick comparison of two objects using JSON.stringify.
 This is a fast but simple comparison that may not work for all edge cases.
 
+> Available since v2.0.0
+
 ## Import
 
 ```ts
@@ -16,19 +18,30 @@ import { quickCompare } from '@helpers4/object';
 ## Signature
 
 ```ts
-function quickCompare(objA: unknown, objB: unknown): boolean
+quickCompare(objA: unknown, objB: unknown): boolean
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `objA` | First object to compare |
-| `objB` | Second object to compare |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `objA` | `unknown` | First object to compare |
+| `objB` | `unknown` | Second object to compare |
 
 ## Returns
 
-`true` if objects are identical according to JSON.stringify, `false` otherwise
+`boolean` — `true` if objects are identical according to JSON.stringify, `false` otherwise
+
+## Examples
+
+### Compare two equal objects
+
+Uses JSON.stringify for a fast comparison.
+
+```ts
+quickCompare({ a: 1, b: 2 }, { a: 1, b: 2 })
+// => true
+```
 
 ## Source
 

@@ -1,11 +1,12 @@
 ---
-sidebar_label: "Overview"
+sidebar_label: "Function"
 sidebar_position: 0
+title: "Function Helpers"
 ---
 
 # Function Helpers
 
-Utility functions for working with functions.
+Utility functions for working with function operations.
 
 ## Functions
 

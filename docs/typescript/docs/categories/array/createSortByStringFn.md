@@ -6,6 +6,8 @@ sidebar_label: "createSortByStringFn"
 
 Creates a sort function for objects by string property
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,19 +17,19 @@ import { createSortByStringFn } from '@helpers4/array';
 ## Signature
 
 ```ts
-function createSortByStringFn<T extends Record<string, any>>( property?: keyof T, caseInsensitive: boolean = false ): SortFn<T>
+createSortByStringFn<T extends Record<string, any>>(property?: keyof T, caseInsensitive: boolean): SortFn<T>
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `property` | The property to sort by (defaults to trying 'value', 'label', 'title', 'description') |
-| `caseInsensitive` | Whether to ignore case |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `property` | `keyof T` | The property to sort by (defaults to trying 'value', 'label', 'title', 'description') *(optional)* |
+| `caseInsensitive` | `boolean` | Whether to ignore case |
 
 ## Returns
 
-Sort function
+`SortFn<T>` — Sort function
 
 ## Source
 

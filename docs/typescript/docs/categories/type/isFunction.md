@@ -6,6 +6,8 @@ sidebar_label: "isFunction"
 
 Checks if a value is a function
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,18 @@ import { isFunction } from '@helpers4/type';
 ## Signature
 
 ```ts
-function isFunction(value: unknown): value is Function
+isFunction(value: unknown): value
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `value` | The value to check |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `unknown` | The value to check |
 
 ## Returns
 
-True if value is a function
+`value` — True if value is a function
 
 ## Source
 

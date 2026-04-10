@@ -6,6 +6,8 @@ sidebar_label: "daysDifference"
 
 Gets the difference in days between two dates
 
+> Available since v2.0.0
+
 ## Import
 
 ```ts
@@ -15,19 +17,30 @@ import { daysDifference } from '@helpers4/date';
 ## Signature
 
 ```ts
-function daysDifference(date1: Date, date2: Date): number
+daysDifference(date1: Date, date2: Date): number
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `date1` | First date |
-| `date2` | Second date |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `date1` | `Date` | First date |
+| `date2` | `Date` | Second date |
 
 ## Returns
 
-Number of days difference
+`number` — Number of days difference
+
+## Examples
+
+### Calculate days between two dates
+
+Returns the absolute number of days between two dates.
+
+```ts
+daysDifference(new Date('2025-01-01'), new Date('2025-01-10'))
+// => 9
+```
 
 ## Source
 

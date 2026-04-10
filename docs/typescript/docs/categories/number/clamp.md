@@ -6,6 +6,8 @@ sidebar_label: "clamp"
 
 Clamps a number between min and max values
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,20 +17,32 @@ import { clamp } from '@helpers4/number';
 ## Signature
 
 ```ts
-function clamp(value: number, min: number, max: number): number
+clamp(value: number, min: number, max: number): number
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `value` | The value to clamp |
-| `min` | Minimum value |
-| `max` | Maximum value |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `number` | The value to clamp |
+| `min` | `number` | Minimum value |
+| `max` | `number` | Maximum value |
 
 ## Returns
 
-Clamped value
+`number` — Clamped value
+
+## Examples
+
+### Clamp a value within range
+
+Restricts a number to be within a min/max range.
+
+```ts
+clamp(15, 0, 10)  // => 10
+clamp(-5, 0, 10)  // => 0
+clamp(5, 0, 10)   // => 5
+```
 
 ## Source
 

@@ -6,6 +6,8 @@ sidebar_label: "dateToISOString"
 
 Formats a date to ISO string or returns null
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,18 @@ import { dateToISOString } from '@helpers4/date';
 ## Signature
 
 ```ts
-function dateToISOString(input: string | number | Date | null | undefined): string | null
+dateToISOString(input: string | number | Date | null | undefined): string | null
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `input` | Date input |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `input` | `string \| number \| Date \| null \| undefined` | Date input |
 
 ## Returns
 
-ISO string or null
+`string | null` — ISO string or null
 
 ## Source
 

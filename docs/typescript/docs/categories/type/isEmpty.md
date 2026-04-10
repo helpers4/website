@@ -13,6 +13,8 @@ Supported types:
 - `Map` / `Set` → size === 0
 - plain object → no own enumerable properties
 
+> Available since v2.0.0
+
 ## Import
 
 ```ts
@@ -22,26 +24,40 @@ import { isEmpty } from '@helpers4/type';
 ## Signature
 
 ```ts
-function isEmpty(value: unknown): boolean
+isEmpty(value: unknown): boolean
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `value` | The value to check |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `unknown` | The value to check |
 
 ## Returns
 
-`true` if the value is considered empty, `false` otherwise
+`boolean` — `true` if the value is considered empty, `false` otherwise
 
-## Example
+## Examples
+
+### Check empty values
+
+Returns true for null, undefined, empty strings, arrays, objects, Maps, and Sets.
 
 ```ts
-isEmpty('') // true
-isEmpty([]) // true
-isEmpty({}) // true
-isEmpty('foo') // false
+isEmpty('')     // => true
+isEmpty([])     // => true
+isEmpty({})     // => true
+isEmpty(null)   // => true
+```
+
+### Non-empty values
+
+Returns false for values with content.
+
+```ts
+isEmpty('hello') // => false
+isEmpty([1])     // => false
+isEmpty(42)      // => false
 ```
 
 ## Source

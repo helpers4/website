@@ -6,6 +6,8 @@ sidebar_label: "debounce"
 
 Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time the debounced function was invoked
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,19 +17,33 @@ import { debounce } from '@helpers4/function';
 ## Signature
 
 ```ts
-function debounce<T extends (...args: any[]) => any>( func: T, delay: number ): (...args: Parameters<T>) => void
+debounce<T extends function>(func: T, delay: number): function
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `func` | The function to debounce |
-| `delay` | The number of milliseconds to delay |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `func` | `T` | The function to debounce |
+| `delay` | `number` | The number of milliseconds to delay |
 
 ## Returns
 
-The debounced function
+`function` — The debounced function
+
+## Examples
+
+### Debounce a function
+
+The debounced function is only called once after the delay, even if invoked multiple times.
+
+```ts
+const fn = debounce((x: number) => console.log(x), 100);
+fn(1);
+fn(2);
+fn(3);
+// Only logs 3 after 100ms
+```
 
 ## Source
 

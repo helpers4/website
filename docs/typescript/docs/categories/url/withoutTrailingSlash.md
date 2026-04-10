@@ -10,6 +10,8 @@ This function is useful for ensuring that URLs are properly formatted
 without a trailing slash, which is often required in web development for
 consistency and to avoid issues with relative paths.
 
+> Available since v1.0.0
+
 ## Import
 
 ```ts
@@ -19,28 +21,28 @@ import { withoutTrailingSlash } from '@helpers4/url';
 ## Signature
 
 ```ts
-function withoutTrailingSlash( url: string | undefined | null, ): string | undefined | null
+withoutTrailingSlash(url: string): string
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `url` | The URL string to be processed. Can be `string`, `undefined`, or `null`. |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `url` | `string` | The URL string to be processed. Can be `string`, `undefined`, or `null`. |
 
 ## Returns
 
-The URL string without a trailing slash, or `undefined` if the input is `undefined`, or `null` if the input is `null`.
+`string` — The URL string without a trailing slash, or `undefined` if the input is `undefined`, or `null` if the input is `null`.
 
-## Example
+## Examples
+
+### Remove trailing slash
+
+Strips the trailing slash from a URL path.
 
 ```ts
-withoutTrailingSlash('') // => ''
-withoutTrailingSlash('/') // => ''
-withoutTrailingSlash('no/slash/') // => 'no/slash'
-withoutTrailingSlash('already/has/slash') // => 'already/has/slash'
-withoutTrailingSlash(undefined) // => undefined
-withoutTrailingSlash(null) // => null
+withoutTrailingSlash('path/to/resource/')
+// => 'path/to/resource'
 ```
 
 ## Source

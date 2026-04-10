@@ -6,6 +6,8 @@ sidebar_label: "isDate"
 
 Checks if a value is a Date
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,18 @@ import { isDate } from '@helpers4/type';
 ## Signature
 
 ```ts
-function isDate(value: unknown): value is Date
+isDate(value: unknown): value
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `value` | The value to check |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `unknown` | The value to check |
 
 ## Returns
 
-True if value is a Date
+`value` — True if value is a Date
 
 ## Source
 

@@ -6,6 +6,8 @@ sidebar_label: "capitalize"
 
 Capitalizes the first letter of a string
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,38 @@ import { capitalize } from '@helpers4/string';
 ## Signature
 
 ```ts
-function capitalize(str: string): string
+capitalize(str: string): string
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `str` | The string to capitalize |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `str` | `string` | The string to capitalize |
 
 ## Returns
 
-String with first letter capitalized
+`string` — String with first letter capitalized
+
+## Examples
+
+### Capitalize a word
+
+Uppercases the first letter and lowercases the rest.
+
+```ts
+capitalize('hello')
+// => 'Hello'
+```
+
+### Handle mixed case
+
+Lowercases all letters except the first one.
+
+```ts
+capitalize('hELLO')
+// => 'Hello'
+```
 
 ## Source
 

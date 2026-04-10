@@ -6,37 +6,29 @@ sidebar_label: "isSet"
 
 Checks if a value is set (not undefined nor null)
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
-import { isSet, Maybe } from '@helpers4/type';
+import { isSet } from '@helpers4/type';
 ```
 
 ## Signature
 
 ```ts
-function isSet<T>(value: Maybe<T>): value is T
+isSet<T>(value: Maybe<T>): value
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `value` | The value to check |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `Maybe<T>` | The value to check |
 
 ## Returns
 
-True if value is not undefined nor null
-
-## Types
-
-### `Maybe`
-
-Type for values that can be T, undefined, or null
-
-```ts
-type Maybe<T> = T | undefined | null;
-```
+`value` — True if value is not undefined nor null
 
 ## Source
 
