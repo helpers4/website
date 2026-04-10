@@ -10,7 +10,6 @@ All **helpers4** projects are licensed under the [GNU Lesser General Public Lice
 
 LGPL-3.0 is a **weak copyleft** license, mainly designed for libraries. It allows broad use (including commercial use), while requiring that changes to the LGPL-covered code remain under LGPL when distributed.
 
-> Important: LGPL-3.0 does **not** include the AGPL “network use” clause.
 
 ## What you **can** do
 
@@ -50,7 +49,7 @@ LGPL-3.0 is a **weak copyleft** license, mainly designed for libraries. It allow
 
 ## In short
 
-> You can use helpers4 in commercial, closed-source, and SaaS contexts. LGPL obligations apply to the LGPL-covered code and its distributed modifications—not to network use alone.
+> You can use helpers4 in commercial, closed-source, and SaaS contexts. LGPL obligations apply only to the LGPL-covered code and its distributed modifications.
 
 ## Full license text
 

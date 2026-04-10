@@ -31,6 +31,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'legal/license',
         'legal/open-source-libraries',
+        'legal/website-dependencies',
       ],
     },
   ],
