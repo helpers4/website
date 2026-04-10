@@ -7,7 +7,7 @@ sidebar_position: 2
 
 The following open-source libraries are used by helpers4 TypeScript helpers:
 
-| Package | License |
-|---------|:-------:|
-| [radashi](https://radashi.js.org) | MIT |
-| [rxjs](https://rxjs.dev) | Apache-2.0 |
+| Package | License | Used by |
+|---------|:-------:|---------|
+| [radashi](https://radashi.js.org) | MIT | `array`, `object`, `string` |
+| [rxjs](https://rxjs.dev) | Apache-2.0 | `observable` |
