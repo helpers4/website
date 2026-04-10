@@ -230,24 +230,30 @@ ${ex.code}
  */
 function generateLegalDocs(categories) {
   const legalDir = path.join(rootDir, 'docs', 'typescript', 'docs', 'legal');
-  const allDeps = new Map();
+
+  // Collect deps with their categories
+  const depMap = new Map(); // name → { dep, categories: string[] }
 
   for (const category of categories) {
     const licenses = readJson(path.join(buildPath, category, 'meta', 'licenses.json'));
     if (licenses?.dependencies) {
       for (const dep of licenses.dependencies) {
-        if (!allDeps.has(dep.name)) {
-          allDeps.set(dep.name, dep);
+        if (!depMap.has(dep.name)) {
+          depMap.set(dep.name, { dep, categories: [category] });
+        } else {
+          depMap.get(dep.name).categories.push(category);
         }
       }
     }
   }
 
-  if (allDeps.size === 0) return;
+  if (depMap.size === 0) return;
 
-  const rows = [...allDeps.values()]
-    .sort((a, b) => a.name.localeCompare(b.name))
-    .map(d => `| [${d.name}](${d.homepage || d.repository || '#'}) | ${d.license} |`)
+  const rows = [...depMap.values()]
+    .sort((a, b) => a.dep.name.localeCompare(b.dep.name))
+    .map(({ dep, categories: cats }) =>
+      `| [${dep.name}](${dep.homepage || dep.repository || '#'}) | ${dep.license} | ${cats.map(c => `\`${c}\``).join(', ')} |`
+    )
     .join('\n');
 
   const content = `---
@@ -259,8 +265,8 @@ sidebar_position: 2
 
 The following open-source libraries are used by helpers4 TypeScript helpers:
 
-| Package | License |
-|---------|:-------:|
+| Package | License | Used by |
+|---------|:-------:|---------|
 ${rows}
 `;
 
