@@ -6,6 +6,8 @@ sidebar_label: "isObject"
 
 Checks if a value is a plain object
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,18 @@ import { isObject } from '@helpers4/type';
 ## Signature
 
 ```ts
-function isObject(value: unknown): value is Record<string, unknown>
+isObject(value: unknown): value
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `value` | The value to check |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `unknown` | The value to check |
 
 ## Returns
 
-True if value is a plain object
+`value` — True if value is a plain object
 
 ## Source
 

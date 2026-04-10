@@ -6,6 +6,8 @@ sidebar_label: "slugify"
 
 Converts a string into a URL-friendly slug.
 
+> Available since v2.0.0
+
 ## Import
 
 ```ts
@@ -15,24 +17,37 @@ import { slugify } from '@helpers4/string';
 ## Signature
 
 ```ts
-function slugify(str: string): string
+slugify(str: string): string
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `str` | The string to convert into a slug. |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `str` | `string` | The string to convert into a slug. |
 
 ## Returns
 
-A lowercase, hyphen-separated slug safe for URLs.
+`string` — A lowercase, hyphen-separated slug safe for URLs.
 
-## Example
+## Examples
+
+### Create a URL-safe slug
+
+Converts a string into a lowercase, hyphen-separated slug.
 
 ```ts
-slugify('Hello World!');
-// 'hello-world'
+slugify('Hello World!')
+// => 'hello-world'
+```
+
+### Handle accented characters
+
+Normalizes Unicode characters and strips diacritics.
+
+```ts
+slugify('Crème brûlée')
+// => 'creme-brulee'
 ```
 
 ## Source

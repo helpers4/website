@@ -6,6 +6,8 @@ sidebar_label: "createSortByNumberFn"
 
 Creates a sort function for objects by number property
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,18 @@ import { createSortByNumberFn } from '@helpers4/array';
 ## Signature
 
 ```ts
-function createSortByNumberFn<T extends Record<string, any>>( property?: keyof T ): SortFn<T>
+createSortByNumberFn<T extends Record<string, any>>(property?: keyof T): SortFn<T>
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `property` | The property to sort by (defaults to 'value') |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `property` | `keyof T` | The property to sort by (defaults to 'value') *(optional)* |
 
 ## Returns
 
-Sort function
+`SortFn<T>` — Sort function
 
 ## Source
 

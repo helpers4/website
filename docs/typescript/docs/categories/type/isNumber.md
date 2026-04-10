@@ -6,6 +6,8 @@ sidebar_label: "isNumber"
 
 Checks if a value is a number
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,18 @@ import { isNumber } from '@helpers4/type';
 ## Signature
 
 ```ts
-function isNumber(value: unknown): value is number
+isNumber(value: unknown): value
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `value` | The value to check |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `unknown` | The value to check |
 
 ## Returns
 
-True if value is a number
+`value` — True if value is a number
 
 ## Source
 

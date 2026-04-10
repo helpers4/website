@@ -1,0 +1,10 @@
+{
+  "label": "Url",
+  "position": 10,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "slug": "/categories/url"
+  }
+}

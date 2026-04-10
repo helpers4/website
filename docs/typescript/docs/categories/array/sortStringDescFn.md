@@ -6,28 +6,13 @@ sidebar_label: "sortStringDescFn"
 
 Sort strings in descending order
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
 import { sortStringDescFn } from '@helpers4/array';
 ```
-
-## Signature
-
-```ts
-const sortStringDescFn: SortFn<string> = (a: string, b: string) => b.localeCompare(a);
-```
-
-## Parameters
-
-| Parameter | Description |
-|-----------|-------------|
-| `a` | First string |
-| `b` | Second string |
-
-## Returns
-
-Sort order
 
 ## Source
 

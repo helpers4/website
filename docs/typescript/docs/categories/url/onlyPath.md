@@ -12,6 +12,8 @@ For example, all these parameters will return `/path`:
  - `/path#fragment`
  - `/path?query=thing#fragment`
 
+> Available since v1.0.0
+
 ## Import
 
 ```ts
@@ -21,28 +23,28 @@ import { onlyPath } from '@helpers4/url';
 ## Signature
 
 ```ts
-function onlyPath( url: string | undefined | null, ): string | undefined | null
+onlyPath(url: string): string
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `url` | The URL string to be processed. Can be `string`, `undefined`, or `null`. |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `url` | `string` | The URL string to be processed. Can be `string`, `undefined`, or `null`. |
 
 ## Returns
 
-The URL string without query and fragment, or `undefined` if the input is `undefined`, or `null` if the input is `null`.
+`string` — The URL string without query and fragment, or `undefined` if the input is `undefined`, or `null` if the input is `null`.
 
-## Example
+## Examples
+
+### Extract the path from a URL
+
+Strips query parameters and fragments from a URL path.
 
 ```ts
-onlyPath('/path') // => '/path'
-onlyPath('/path?query=thing') // => '/path'
-onlyPath('/path#fragment') // => '/path'
-onlyPath('/path?query=thing#fragment') // => '/path'
-onlyPath(undefined) // => undefined
-onlyPath(null) // => null
+onlyPath('/path?query=thing#fragment')
+// => '/path'
 ```
 
 ## Source

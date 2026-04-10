@@ -6,40 +6,55 @@ sidebar_label: "compare"
 
 Comparison of two dates.
 
+> Available since v2.0.0
+
 ## Import
 
 ```ts
-import { compare, DateCompareOptions } from '@helpers4/date';
+import { compare } from '@helpers4/date';
 ```
 
 ## Signature
 
 ```ts
-function compare(dateA: Date, dateB: Date, options: DateCompareOptions = {}): boolean
+compare(dateA: Date, dateB: Date, options: DateCompareOptions): boolean
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `dateA` | First date to compare |
-| `dateB` | Second date to compare |
-| `options` | Comparison options |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `dateA` | `Date` | First date to compare |
+| `dateB` | `Date` | Second date to compare |
+| `options` | `DateCompareOptions` | Comparison options |
 
 ## Returns
 
-`true` if dates are identical according to the specified precision, `false` otherwise
+`boolean` — `true` if dates are identical according to the specified precision, `false` otherwise
 
-## Types
+## Examples
 
-### `DateCompareOptions`
+### Compare dates with millisecond precision
 
-Options for date comparison
+By default, two identical Date objects are equal.
 
 ```ts
-interface DateCompareOptions {
-	precision?: 'milliseconds' | 'seconds' | 'minutes' | 'hours' | 'days';
-}
+const d = new Date('2025-01-19T12:00:00Z');
+compare(d, new Date('2025-01-19T12:00:00Z'))
+// => true
+```
+
+### Compare only by day
+
+Using day precision ignores the time part.
+
+```ts
+compare(
+  new Date('2025-01-19T08:00:00Z'),
+  new Date('2025-01-19T23:59:59Z'),
+  { precision: 'days' }
+)
+// => true
 ```
 
 ## Source

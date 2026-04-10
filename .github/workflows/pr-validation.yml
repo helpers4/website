@@ -57,17 +57,8 @@ jobs:
           NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
         run: pnpm install --frozen-lockfile
 
-      - name: Generate documentation
-        run: |
-          pnpm generate-docs:typescript || true
-          pnpm generate-docs:devcontainer || true
-          pnpm generate-docs:action || true
-
       - name: Build all packages
         run: pnpm build:all
-
-      - name: Merge builds
-        run: pnpm merge-builds
 
       - name: Set status
         id: status

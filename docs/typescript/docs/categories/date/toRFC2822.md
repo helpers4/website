@@ -8,6 +8,8 @@ Converts a date to RFC 2822 format
 Format: Day, DD Mon YYYY HH:mm:ss +0000
 Used in email headers (Date field) and HTTP headers
 
+> Available since v2.0.0
+
 ## Import
 
 ```ts
@@ -17,23 +19,29 @@ import { toRFC2822 } from '@helpers4/date';
 ## Signature
 
 ```ts
-function toRFC2822(date: Date | number | string): string | null
+toRFC2822(date: string | number | Date): string | null
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `date` | Date to convert (Date object, timestamp, or date string) |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `date` | `string \| number \| Date` | Date to convert (Date object, timestamp, or date string) |
 
 ## Returns
 
-RFC 2822 formatted string or null if invalid date
+`string | null` — RFC 2822 formatted string or null if invalid date
 
-## Example
+## Examples
+
+### toRFC2822
+
+
 
 ```ts
+```ts
 toRFC2822(new Date('2025-01-19T12:30:00Z')) // 'Sun, 19 Jan 2025 12:30:00 +0000'
+```
 ```
 
 ## Source

@@ -10,6 +10,8 @@ This function is useful for ensuring that URLs are properly formatted
 without a leading slash, which is often required in web development for
 consistency and to avoid issues with relative paths.
 
+> Available since v1.0.0
+
 ## Import
 
 ```ts
@@ -19,28 +21,28 @@ import { withoutLeadingSlash } from '@helpers4/url';
 ## Signature
 
 ```ts
-function withoutLeadingSlash( url: string | undefined | null, ): string | undefined | null
+withoutLeadingSlash(url: string): string
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `url` | The URL string to be processed. Can be `string`, `undefined`, or `null`. |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `url` | `string` | The URL string to be processed. Can be `string`, `undefined`, or `null`. |
 
 ## Returns
 
-The URL string without a leading slash, or `undefined` if the input is `undefined`, or `null` if the input is `null`.
+`string` — The URL string without a leading slash, or `undefined` if the input is `undefined`, or `null` if the input is `null`.
 
-## Example
+## Examples
+
+### Remove leading slash
+
+Strips the leading slash from a URL path.
 
 ```ts
-withoutLeadingSlash('') // => ''
-withoutLeadingSlash('/') // => ''
-withoutLeadingSlash('/no/slash') // => 'no/slash'
-withoutLeadingSlash('already/has/slash') // => 'already/has/slash'
-withoutLeadingSlash(undefined) // => undefined
-withoutLeadingSlash(null) // => null
+withoutLeadingSlash('/path/to/resource')
+// => 'path/to/resource'
 ```
 
 ## Source

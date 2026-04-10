@@ -6,28 +6,13 @@ sidebar_label: "sortStringAscFn"
 
 Sort strings in ascending order
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
 import { sortStringAscFn } from '@helpers4/array';
 ```
-
-## Signature
-
-```ts
-const sortStringAscFn: SortFn<string> = (a: string, b: string) => a.localeCompare(b);
-```
-
-## Parameters
-
-| Parameter | Description |
-|-----------|-------------|
-| `a` | First string |
-| `b` | Second string |
-
-## Returns
-
-Sort order
 
 ## Source
 

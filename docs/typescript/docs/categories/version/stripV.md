@@ -6,6 +6,8 @@ sidebar_label: "stripV"
 
 Strip the leading "v" from a version string if it exists.
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,29 +17,37 @@ import { stripV } from '@helpers4/version';
 ## Signature
 
 ```ts
-function stripV(version: string | null | undefined): string | null | undefined
+stripV(version: string): string
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `version` | The version string to process |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `version` | `string` | The version string to process |
 
 ## Returns
 
-The version string without leading "v", or the original value if it's not a string or doesn't start with "v"
+`string` — The version string without leading "v", or the original value if it's not a string or doesn't start with "v"
 
-## Example
+## Examples
+
+### Remove v prefix from a version string
+
+Strips the leading "v" from a git tag-style version string.
 
 ```ts
-stripV("v1.2.3")     // "1.2.3"
-stripV("1.2.3")      // "1.2.3"
-stripV("v20.1.0")    // "20.1.0"
-stripV(null)         // null
-stripV(undefined)    // undefined
-stripV("")           // ""
-stripV("1.0.0-beta") // "1.0.0-beta"
+stripV('v1.2.3')
+// => '1.2.3'
+```
+
+### No-op when there is no v prefix
+
+Returns the string unchanged when it does not start with "v".
+
+```ts
+stripV('1.2.3')
+// => '1.2.3'
 ```
 
 ## Source

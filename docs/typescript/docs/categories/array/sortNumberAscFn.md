@@ -6,37 +6,42 @@ sidebar_label: "sortNumberAscFn"
 
 Sort numbers in ascending order
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
-import { sortNumberAscFn, SortFn } from '@helpers4/array';
+import { sortNumberAscFn } from '@helpers4/array';
 ```
 
-## Signature
+## Examples
+
+### Sort numbers ascending
+
+Use sortNumberAscFn as a comparator for Array.sort().
 
 ```ts
-const sortNumberAscFn: SortFn<number> = (a: number, b: number) => a - b;
+[3, 1, 2].sort(sortNumberAscFn)
+// => [1, 2, 3]
 ```
 
-## Parameters
+### Sort strings alphabetically
 
-| Parameter | Description |
-|-----------|-------------|
-| `a` | First number |
-| `b` | Second number |
-
-## Returns
-
-Sort order
-
-## Types
-
-### `SortFn`
-
-Sort function type for arrays
+Use sortStringAscFn for locale-aware string sorting.
 
 ```ts
-type SortFn<T> = (a: T, b: T) => number;
+['banana', 'apple', 'cherry'].sort(sortStringAscFn)
+// => ['apple', 'banana', 'cherry']
+```
+
+### Sort objects by property
+
+Use createSortByStringFn to sort objects by a specific string property.
+
+```ts
+const items = [{ name: 'Charlie' }, { name: 'Alice' }, { name: 'Bob' }];
+items.sort(createSortByStringFn('name'))
+// => [{ name: 'Alice' }, { name: 'Bob' }, { name: 'Charlie' }]
 ```
 
 ## Source

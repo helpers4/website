@@ -6,6 +6,8 @@ sidebar_label: "isBoolean"
 
 Checks if a value is a boolean
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,18 @@ import { isBoolean } from '@helpers4/type';
 ## Signature
 
 ```ts
-function isBoolean(value: unknown): value is boolean
+isBoolean(value: unknown): value
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `value` | The value to check |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `unknown` | The value to check |
 
 ## Returns
 
-True if value is a boolean
+`value` — True if value is a boolean
 
 ## Source
 

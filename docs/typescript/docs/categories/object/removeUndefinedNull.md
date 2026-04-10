@@ -6,6 +6,8 @@ sidebar_label: "removeUndefinedNull"
 
 Remove null and undefined values from an object.
 
+> Available since v1.0.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,29 @@ import { removeUndefinedNull } from '@helpers4/object';
 ## Signature
 
 ```ts
-function removeUndefinedNull<T extends Record<string, string | number | boolean | null | undefined>>(obj: T | null | undefined): Partial<T> | null | undefined
+removeUndefinedNull<T extends Record<string, string | number | boolean | null | undefined>>(obj: T): Partial<T>
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `obj` | an object |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `obj` | `T` | an object |
 
 ## Returns
 
-A shallow copy of the object without null or undefined values
+`Partial<T>` — A shallow copy of the object without null or undefined values
+
+## Examples
+
+### Strip null and undefined values
+
+Returns a shallow copy of the object without null or undefined properties.
+
+```ts
+removeUndefinedNull({ a: 1, b: null, c: undefined, d: 'ok' })
+// => { a: 1, d: 'ok' }
+```
 
 ## Source
 

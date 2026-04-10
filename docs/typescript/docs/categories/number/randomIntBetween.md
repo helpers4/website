@@ -6,6 +6,8 @@ sidebar_label: "randomIntBetween"
 
 Generates a random integer between min and max (inclusive)
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,19 +17,19 @@ import { randomIntBetween } from '@helpers4/number';
 ## Signature
 
 ```ts
-function randomIntBetween(min: number, max: number): number
+randomIntBetween(min: number, max: number): number
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `min` | Minimum value |
-| `max` | Maximum value |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `min` | `number` | Minimum value |
+| `max` | `number` | Maximum value |
 
 ## Returns
 
-Random integer between min and max
+`number` — Random integer between min and max
 
 ## Source
 

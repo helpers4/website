@@ -6,6 +6,8 @@ sidebar_label: "isArray"
 
 Checks if a value is an array
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,18 @@ import { isArray } from '@helpers4/type';
 ## Signature
 
 ```ts
-function isArray(value: unknown): value is unknown[]
+isArray(value: unknown): value
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `value` | The value to check |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `value` | `unknown` | The value to check |
 
 ## Returns
 
-True if value is an array
+`value` — True if value is an array
 
 ## Source
 

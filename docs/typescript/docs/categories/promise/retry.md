@@ -6,6 +6,8 @@ sidebar_label: "retry"
 
 Retries a promise-returning function up to maxAttempts times
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,20 +17,36 @@ import { retry } from '@helpers4/promise';
 ## Signature
 
 ```ts
-async function retry<T>( fn: () => Promise<T>, maxAttempts: number = 3, delayMs: number = 1000 ): Promise<T>
+retry<T>(fn: function, maxAttempts: number, delayMs: number): Promise<T>
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `fn` | The function to retry |
-| `maxAttempts` | Maximum number of attempts |
-| `delayMs` | Delay between attempts in milliseconds |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `fn` | `function` | The function to retry |
+| `maxAttempts` | `number` | Maximum number of attempts |
+| `delayMs` | `number` | Delay between attempts in milliseconds |
 
 ## Returns
 
-Promise that resolves with the result or rejects with the last error
+`Promise<T>` — Promise that resolves with the result or rejects with the last error
+
+## Examples
+
+### Retry a failing function
+
+Retries the function up to maxAttempts times before giving up.
+
+```ts
+let attempt = 0;
+await retry(() => {
+  attempt++;
+  if (attempt < 3) throw new Error('not yet');
+  return Promise.resolve('success');
+}, 3, 10)
+// => 'success' (after 2 failures)
+```
 
 ## Source
 

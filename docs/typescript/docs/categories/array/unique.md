@@ -6,6 +6,8 @@ sidebar_label: "unique"
 
 Removes duplicate values from an array
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,29 @@ import { unique } from '@helpers4/array';
 ## Signature
 
 ```ts
-function unique<T>(array: T[]): T[]
+unique<T>(array: T[]): T[]
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `array` | The array to remove duplicates from |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `array` | `T[]` | The array to remove duplicates from |
 
 ## Returns
 
-New array with unique values only
+`T[]` — New array with unique values only
+
+## Examples
+
+### Remove duplicates
+
+Returns a new array with duplicate values removed.
+
+```ts
+unique([1, 2, 2, 3, 3, 3])
+// => [1, 2, 3]
+```
 
 ## Source
 

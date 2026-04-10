@@ -10,6 +10,8 @@ This function is useful for ensuring that URLs are properly formatted
 with a leading slash, which is often required in web development for
 consistency and to avoid issues with relative paths.
 
+> Available since v1.0.0
+
 ## Import
 
 ```ts
@@ -19,27 +21,37 @@ import { withLeadingSlash } from '@helpers4/url';
 ## Signature
 
 ```ts
-function withLeadingSlash( url: string | undefined | null, ): string | undefined | null
+withLeadingSlash(url: string): string
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `url` | The URL string to be processed. Can be `string`, `undefined`, or `null`. |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `url` | `string` | The URL string to be processed. Can be `string`, `undefined`, or `null`. |
 
 ## Returns
 
-The URL string with a leading slash, or `undefined` if the input is `undefined`, or `null` if the input is `null`.
+`string` — The URL string with a leading slash, or `undefined` if the input is `undefined`, or `null` if the input is `null`.
 
-## Example
+## Examples
+
+### Add a leading slash
+
+Ensures the URL starts with a forward slash.
 
 ```ts
-withLeadingSlash('') // => '/'
-withLeadingSlash('no/slash') // => '/no/slash'
-withLeadingSlash('/already/has/slash') // => '/already/has/slash'
-withLeadingSlash(undefined) // => undefined
-withLeadingSlash(null) // => null
+withLeadingSlash('path/to/resource')
+// => '/path/to/resource'
+```
+
+### Already has leading slash
+
+Does not add a duplicate slash.
+
+```ts
+withLeadingSlash('/already/has/slash')
+// => '/already/has/slash'
 ```
 
 ## Source

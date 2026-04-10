@@ -6,6 +6,8 @@ sidebar_label: "extractPureURI"
 
 Extracts the pure URI from a URL by removing query parameters and fragments.
 
+> Available since v1.9.0
+
 ## Import
 
 ```ts
@@ -15,18 +17,29 @@ import { extractPureURI } from '@helpers4/url';
 ## Signature
 
 ```ts
-function extractPureURI(url: string | undefined | null): string | undefined | null
+extractPureURI(url: string): string
 ```
 
 ## Parameters
 
-| Parameter | Description |
-|-----------|-------------|
-| `url` | The URL string to process |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `url` | `string` | The URL string to process |
 
 ## Returns
 
-The URI without query parameters and fragments, or the original value if undefined/null
+`string` — The URI without query parameters and fragments, or the original value if undefined/null
+
+## Examples
+
+### Remove query parameters and fragments
+
+Strips everything after ? or # from the URL.
+
+```ts
+extractPureURI('https://example.com/path?query=1#section')
+// => 'https://example.com/path'
+```
 
 ## Source
 
