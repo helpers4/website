@@ -10,10 +10,10 @@ DIST_DIR="$ROOT_DIR/dist"
 
 echo "🔨 Merging builds..."
 
-# Clean previous output to avoid stale artifacts
-rm -rf "$DIST_DIR"
+# Clean only Docusaurus output directories (preserve landing page build)
+rm -rf "$DIST_DIR/typescript" "$DIST_DIR/dev-container" "$DIST_DIR/action"
 
-# Recreate dist directory
+# Ensure dist directory exists
 mkdir -p "$DIST_DIR"
 
 # Build TypeScript docs
