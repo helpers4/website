@@ -1,11 +1,11 @@
 ---
-sidebar_label: "Open Source Libraries"
+sidebar_label: "Library Dependencies"
 sidebar_position: 2
 ---
 
-# Open Source Libraries
+# Library Dependencies
 
-The following open-source libraries are used by helpers4 TypeScript helpers:
+Third-party packages used by `@helpers4/*` TypeScript helpers at runtime:
 
 | Package | License | Used by |
 |---------|:-------:|---------|
