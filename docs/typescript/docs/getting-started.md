@@ -3,80 +3,62 @@ sidebar_position: 1
 title: Getting Started
 ---
 
-# Getting Started with TypeScript Helpers
-
-Welcome to the **@helpers4** TypeScript utilities library! This guide will help you get started with the library.
+# Getting Started
 
 ## Installation
 
-Install the package from npm:
+Install all helpers at once:
 
 ```bash
-npm install @helpers4/all
-# or
 pnpm add @helpers4/all
-# or
-yarn add @helpers4/all
+# or: npm install @helpers4/all
 ```
 
-Or install specific categories:
+Or install only the categories you need:
 
 ```bash
-# Only array utilities
-pnpm add @helpers4/array
-
-# Only date utilities
-pnpm add @helpers4/date
-
-# Mix and match!
-pnpm add @helpers4/object @helpers4/string @helpers4/url
+pnpm add @helpers4/array @helpers4/date @helpers4/url
 ```
+
+Available packages: `@helpers4/array`, `@helpers4/date`, `@helpers4/function`, `@helpers4/math`, `@helpers4/number`, `@helpers4/object`, `@helpers4/observable`, `@helpers4/promise`, `@helpers4/string`, `@helpers4/type`, `@helpers4/url`, `@helpers4/version`.
 
 ## Quick Start
 
-Import and use functions:
-
 ```typescript
 import { chunk, unique } from '@helpers4/array';
-import { compare, format } from '@helpers4/date';
+import { compare } from '@helpers4/date';
 import { debounce } from '@helpers4/function';
 
-// Array utilities
 const chunks = chunk([1, 2, 3, 4, 5], 2);
-const unique_items = unique([1, 1, 2, 2, 3]);
-
-// Date utilities
+const uniqueItems = unique([1, 1, 2, 2, 3]);
 const diff = compare(new Date('2024-01-01'), new Date('2024-12-31'));
-const formatted = format(new Date(), 'YYYY-MM-DD');
-
-// Function utilities
 const debouncedFn = debounce(() => console.log('done!'), 300);
 ```
 
-## Tree-shaking
+All imports are tree-shakable — your bundler will only include the functions you actually use.
 
-All helpers are designed to be tree-shakable. When you import only what you need, your bundler will eliminate unused code:
+## CommonJS
 
-```typescript
-// Only chunk and unique are included in your bundle
-import { chunk, unique } from '@helpers4/array';
+```javascript
+const { chunk } = require('@helpers4/array');
 ```
 
-## Categories
+## TypeScript Configuration
 
-Explore helpers by category:
+Ensure your `tsconfig.json` targets modern JavaScript:
 
-- **[Array](./categories/array/index.md)** - Array manipulation: chunk, unique, intersection, flatten, etc.
-- **[Date](./categories/date/index.md)** - Date operations: compare, format, add, subtract, etc.
-- **[Function](./categories/function/index.md)** - Function utilities: debounce, throttle, memoize, etc.
-- **[Number](./categories/number/index.md)** - Number helpers: clamp, random, roundTo, etc.
-- **[Object](./categories/object/index.md)** - Object utilities: deepClone, deepMerge, deepCompare, etc.
-- **[Observable](./categories/observable/index.md)** - RxJS Observable operators
-- **[Promise](./categories/promise/index.md)** - Promise utilities: all, race, timeout, etc.
-- **[String](./categories/string/index.md)** - String manipulation: capitalize, kebabCase, etc.
-- **[Type](./categories/type/index.md)** - Type guards and utilities
-- **[URL](./categories/url/index.md)** - URL parsing and manipulation
-- **[Version](./categories/version/index.md)** - SemVer utilities: parse, compare, increment
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022"],
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  }
+}
+```
 
 ## TypeScript Support
 
