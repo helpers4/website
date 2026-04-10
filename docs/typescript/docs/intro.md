@@ -21,5 +21,14 @@ helpers4 provides modular, production-ready utility functions for TypeScript/Jav
 - ✅ **Tree-shakable** - Only import what you use
 - ✅ **Framework-agnostic** - Works with any JS framework (or no framework)
 - ✅ **Well-typed** - Full TypeScript support with strict mode
-- ✅ **Zero dependencies** - Lightweight and self-contained
-- ✅ **Well tested** - High test coverage
+- ✅ **Minimal dependencies** - Only [radashi](https://radashi.js.org) as runtime dependency
+- ✅ **Well tested** - High test and mutation coverage
+
+## helpers4 vs Radashi
+
+helpers4 uses [radashi](https://radashi.js.org) internally and the two libraries are **complementary**:
+
+- **radashi** is a general-purpose toolkit of low-level data primitives — sorting, grouping, cloning, picking, mapping over objects and arrays.
+- **helpers4** focuses on higher-level, domain-specific utilities — date comparison, URL manipulation, semver parsing, observable combinators, typed promise guards.
+
+In short, radashi gives you building blocks for data structures; helpers4 gives you ready-made solutions for common domain problems. See the [full comparison](./comparisons/radashi) for details.
