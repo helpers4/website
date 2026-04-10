@@ -6,6 +6,15 @@ const sidebars: SidebarsConfig = {
     'getting-started',
     {
       type: 'category',
+      label: 'Reference',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'reference/all-functions',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Categories',
       collapsible: true,
       collapsed: false,
