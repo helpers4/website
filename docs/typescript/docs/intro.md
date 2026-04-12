@@ -26,7 +26,7 @@ helpers4 provides modular, production-ready utility functions for TypeScript/Jav
 - ✅ **Framework-agnostic** - Works with any JS framework (or no framework)
 - ✅ **Well-typed** - Full TypeScript support with strict mode
 - ✅ **Minimal dependencies** - Only [radashi](https://radashi.js.org) as runtime dependency
-- ✅ **Battle-tested** - 100% line coverage and >80% mutation score (Stryker)
+- ✅ **Battle-tested** - 100% line coverage and >90% mutation score (Stryker)
 
 ## helpers4 vs Radashi
 
