@@ -14,6 +14,10 @@ This is the documentation for the **@helpers4/typescript** library - a collectio
 - **[API Reference](./categories/array/index.md)** - Complete API documentation
 - **[License (LGPL-3.0)](./legal/license)** - What you can and cannot do
 
+## What's new in V2?
+
+V2 introduces **no breaking changes** — existing code continues to work as-is. It brings a new CI pipeline for builds and the website, improved quality (better test and mutation coverage), and new helpers across existing categories.
+
 ## What is helpers4?
 
 helpers4 provides modular, production-ready utility functions for TypeScript/JavaScript projects:
@@ -22,7 +26,7 @@ helpers4 provides modular, production-ready utility functions for TypeScript/Jav
 - ✅ **Framework-agnostic** - Works with any JS framework (or no framework)
 - ✅ **Well-typed** - Full TypeScript support with strict mode
 - ✅ **Minimal dependencies** - Only [radashi](https://radashi.js.org) as runtime dependency
-- ✅ **Well tested** - High test and mutation coverage
+- ✅ **Battle-tested** - 100% line coverage and >80% mutation score (Stryker)
 
 ## helpers4 vs Radashi
 
