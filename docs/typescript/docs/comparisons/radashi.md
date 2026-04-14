@@ -6,7 +6,7 @@ title: "helpers4 vs Radashi — Detailed Comparison"
 
 # helpers4 vs Radashi
 
-[Radashi](https://radashi.js.org) is a general-purpose TypeScript utility toolkit (~130 functions), and the actively maintained fork of Radash. helpers4 **uses radashi internally** for some array, object, and string operations — the two libraries are complementary, not competing.
+[Radashi](https://radashi.js.org) is a general-purpose TypeScript utility toolkit (~130 functions), and the actively maintained fork of Radash. The two libraries are **complementary, not competing**.
 
 This page details the differences to help you decide whether you need helpers4, radashi, or both.
 
@@ -15,9 +15,24 @@ This page details the differences to help you decide whether you need helpers4, 
 | | helpers4 | radashi |
 |---|---|---|
 | **Goal** | Domain-specific helpers not found in general toolkits | General-purpose utility belt |
+| **Scope** | Welcomes domain-specific categories (URL, date, semver…) | Core limited to the most popular/common utilities |
 | **Package strategy** | Independent `@helpers4/*` packages per category | Single `radashi` package |
-| **Dependencies** | Uses radashi for some array/object/string ops | Zero dependencies |
+| **Dependencies** | Zero runtime dependencies | Zero dependencies |
 | **License** | LGPL-3.0 | MIT |
+
+### Origin story
+
+helpers4 was born from a recurring problem: **repeatedly recoding the same domain-specific helpers** (URL manipulation, string humanisation, promise guards…) across projects due to licensing constraints. These helpers follow the same lean ethos as general toolkit libraries but are typically considered too niche for inclusion in them.
+
+The question was raised directly to the Radashi community: [_"How Far Should More Helper Functions Be Integrated?"_](https://github.com/orgs/radashi-org/discussions/279). The answer was clear — Radashi core stays focused on the most popular utilities, and niche helpers belong either in a future `radashi-edge` package or in complementary third-party libraries. This confirmed the need for helpers4 as a standalone project.
+
+A concrete example played out with [PR #328](https://github.com/radashi-org/radashi/pull/328), which proposed 6 URL helpers (from helpers4) to Radashi core. The PR was acknowledged as well-built, but the maintainers felt the functions weren't common enough for inclusion in core — reinforcing the complementary positioning of both libraries.
+
+### Key philosophical differences
+
+- **Breadth vs focus**: helpers4 embraces categories that radashi deliberately excludes — dates, URLs, semver, observables — because they don't meet radashi's popularity threshold for core.
+- **Tree-shaking makes breadth viable**: With modern bundlers, having many functions in independent packages adds zero overhead. helpers4 leans into this.
+- **Complementary, not competing**: helpers4 and radashi target different use cases and are designed to work together.
 
 ## What helpers4 adds that radashi doesn't have
 
@@ -165,4 +180,4 @@ For functions that exist in both libraries, here's how they compare:
 
 ## Summary
 
-helpers4 and radashi are **complementary**. helpers4 focuses on domain-specific helpers (dates, URLs, semver, observables, promise guards) that general toolkit libraries like radashi don't provide. Where they overlap (arrays, objects, strings, functions), helpers4 delegates to radashi internally rather than reimplementing.
+helpers4 and radashi are **complementary**. helpers4 focuses on domain-specific helpers (dates, URLs, semver, observables, promise guards) that general toolkit libraries like radashi don't provide. Where their features overlap (arrays, objects, strings, functions), helpers4 provides its own implementation with zero runtime dependencies.

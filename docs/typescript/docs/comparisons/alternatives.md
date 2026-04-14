@@ -12,7 +12,7 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 | Library | Functions | Size (min+gz) | Tree-shakable | TypeScript | Dependencies | License | Maintained |
 |---------|:---------:|:-------------:|:-------------:|:----------:|:------------:|:-------:|:----------:|
-| **helpers4** | ~85 | ~2 KB per pkg | per-package | native | 1 (radashi) | LGPL-3.0 | Yes |
+| **helpers4** | ~85 | ~2 KB per pkg | per-package | native | 0 | LGPL-3.0 | Yes |
 | **radashi** | ~130 | ~15 KB | ESM | native | 0 | MIT | Yes |
 | **radash** | ~90 | ~12 KB | ESM | native | 0 | MIT | No (archived) |
 | **lodash** | ~300 | ~70 KB | via lodash-es | `@types/lodash` | 0 | MIT | Low |
@@ -21,13 +21,13 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 ## helpers4 vs Radashi
 
-[Radashi](https://radashi.js.org) is a general-purpose TypeScript toolkit (~130 functions) and the maintained fork of Radash. helpers4 **uses radashi internally** for some array, object, and string operations.
+[Radashi](https://radashi.js.org) is a general-purpose TypeScript toolkit (~130 functions) and the maintained fork of Radash. The two libraries are **complementary**.
 
 | | helpers4 | radashi |
 |---|---|---|
 | **Focus** | Domain-specific (dates, URLs, semver, observables, promise guards) | Low-level data primitives (sort, group, clone, pick, map) |
 | **Architecture** | Independent `@helpers4/*` packages per category | Single `radashi` package |
-| **Relationship** | Uses radashi internally | Standalone |
+| **Dependencies** | Zero runtime dependencies | Zero dependencies |
 
 **Key difference**: Radashi provides building blocks for data structures; helpers4 provides ready-made solutions for common domain problems. They're complementary — see the [detailed comparison](./radashi).
 

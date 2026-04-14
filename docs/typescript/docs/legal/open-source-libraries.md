@@ -5,9 +5,10 @@ sidebar_position: 2
 
 # Library Dependencies
 
-Third-party packages used by `@helpers4/*` TypeScript helpers at runtime:
+`@helpers4/*` TypeScript helpers have **zero runtime dependencies**.
 
-| Package | License | Used by |
-|---------|:-------:|---------|
-| [radashi](https://radashi.js.org) | MIT | `array`, `object`, `string` |
-| [rxjs](https://rxjs.dev) | Apache-2.0 | `observable` |
+### Peer dependencies (optional)
+
+| Package | License | Used by | Notes |
+|---------|:-------:|---------|-------|
+| [rxjs](https://rxjs.dev) | Apache-2.0 | `observable` | Types only (peer dependency) |
