@@ -93,6 +93,7 @@ Every helper ships with:
 - **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main)
 - **Benchmarks** (Vitest Bench) — performance tracked per build
 - **Dependency security audit** — `pnpm audit` on every PR and release
+- **OpenSSF Scorecard** — [view report](https://securityscorecards.dev/viewer/?uri=github.com/helpers4/typescript)
 
 ## Next Steps
 
