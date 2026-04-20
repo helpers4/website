@@ -54,6 +54,33 @@ function escapeMarkdownTable(str) {
   return (str || '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
 }
 
+/**
+ * Returns the first sentence of a description, capped at 120 characters.
+ * Keeps the category index compact.
+ */
+function firstSentence(str) {
+  if (!str) return '';
+  const clean = str.replace(/\n/g, ' ').trim();
+  const end = clean.search(/\.\s|\.$/);
+  const sentence = end !== -1 ? clean.slice(0, end + 1) : clean;
+  return sentence.length > 120 ? sentence.slice(0, 117) + '…' : sentence;
+}
+
+/**
+ * Formats a native alternative entry for a Markdown table row.
+ * name   — "flatten / flat" style name from native-alternatives.json
+ * native — "Array.prototype.flat(depth?)" native API
+ * since  — "ES2019"
+ */
+function nativeRow(name, native, since, forLink) {
+  const tag = `Use native: \`${native}\`${since ? ` *(${since})*` : ''}`;
+  if (forLink) {
+    // all-functions page: include category link column
+    return { name, tag };
+  }
+  return `| \`${escapeMarkdownTable(name)}\` | ${tag} |`;
+}
+
 try {
   // Discover categories from build/ (skip "all" bundle)
   const categories = fs.readdirSync(buildPath).filter(f =>
@@ -72,6 +99,7 @@ try {
     const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
     const examples = readJson(path.join(buildPath, category, 'meta', 'examples.json'));
     const licenses = readJson(path.join(buildPath, category, 'meta', 'licenses.json'));
+    const natives = readJson(path.join(buildPath, category, 'meta', 'native-alternatives.json'));
 
     if (!api) {
       console.warn(`  ⚠ No api.json for ${category}, skipping`);
@@ -108,9 +136,19 @@ try {
       licenses.dependencies.map(d => `| [${d.name}](${d.homepage || d.repository || '#'}) | ${d.license} |`).join('\n') + '\n'
       : '';
 
-    const functionsTable = functions.map(fn =>
-      `| [\`${fn.name}\`](${fn.name}) | ${escapeMarkdownTable(fn.description)} |`
-    ).join('\n');
+    // Merge implemented helpers and native alternatives, sorted alphabetically by name
+    const allEntries = [
+      ...functions.map(fn => ({
+        sortKey: fn.name.toLowerCase(),
+        row: `| [\`${fn.name}\`](${fn.name}) | ${escapeMarkdownTable(firstSentence(fn.description))} |`,
+      })),
+      ...(natives?.functions || []).map(n => ({
+        sortKey: n.name.toLowerCase(),
+        row: `| \`${escapeMarkdownTable(n.name)}\` | Use native: \`${escapeMarkdownTable(n.native)}\`${n.since ? ` *(${n.since})*` : ''} |`,
+      })),
+    ].sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+
+    const allFunctionRows = allEntries.map(e => e.row).join('\n');
 
     const indexMd = `---
 sidebar_label: "${capitalize(category)}"
@@ -126,7 +164,7 @@ Utility functions for working with ${category} operations.
 
 | Function | Description |
 |----------|-------------|
-${functionsTable}
+${allFunctionRows}
 ${depsList}
 `;
     fs.writeFileSync(path.join(categoryDir, 'index.md'), indexMd);
@@ -285,6 +323,7 @@ ${rows}
 
 /**
  * Generate a single page listing all functions across all categories.
+ * Includes native alternatives (no link, tagged "Use native:").
  * Useful for search (Ctrl+F) and SEO indexing.
  */
 function generateAllFunctionsPage(categories) {
@@ -292,6 +331,7 @@ function generateAllFunctionsPage(categories) {
   fs.mkdirSync(refDir, { recursive: true });
 
   let rows = [];
+  let nativeCount = 0;
 
   for (const category of categories) {
     const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
@@ -299,25 +339,42 @@ function generateAllFunctionsPage(categories) {
 
     for (const fn of api.functions) {
       rows.push(
-        `| [\`${fn.name}\`](../categories/${category}/${fn.name}) | [${category}](../categories/${category}/) | ${escapeMarkdownTable(fn.description)} |`
+        `| [\`${fn.name}\`](../categories/${category}/${fn.name}) | [${category}](../categories/${category}/) | ${escapeMarkdownTable(firstSentence(fn.description))} |`
       );
     }
+
+    const natives = readJson(path.join(buildPath, category, 'meta', 'native-alternatives.json'));
+    for (const n of (natives?.functions || [])) {
+      const tag = `Use native: \`${escapeMarkdownTable(n.native)}\`${n.since ? ` *(${n.since})*` : ''}`;
+      rows.push(
+        `| \`${escapeMarkdownTable(n.name)}\` | [${category}](../categories/${category}/) | ${tag} |`
+      );
+      nativeCount++;
+    }
   }
+
+  rows.sort((a, b) => {
+    // Extract the bare name (between first pair of backticks) for sorting
+    const name = r => (r.match(/`([^`]+)`/) || ['', ''])[1].toLowerCase();
+    return name(a).localeCompare(name(b));
+  });
+
+  const implementedCount = rows.length - nativeCount;
 
   const content = `---
 sidebar_label: "All Functions"
 sidebar_position: 1
 title: "All Functions"
-description: "Complete alphabetical list of all @helpers4 TypeScript utility functions across every category."
+description: "Complete list of all @helpers4 TypeScript utility functions and native alternatives, by category."
 ---
 
 # All Functions
 
-All **${rows.length}** helpers available in \`@helpers4/*\`, sorted alphabetically.
+**${implementedCount}** implemented helpers + **${nativeCount}** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
-${rows.sort((a, b) => a.localeCompare(b)).join('\n')}
+${rows.join('\n')}
 `;
 
   fs.writeFileSync(path.join(refDir, 'all-functions.md'), content);

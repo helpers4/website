@@ -41,11 +41,11 @@ Every exported function carries JSDoc with `@param`, `@returns`, `@example`, and
 
 Documentation written after the fact is documentation that drifts. We write it alongside the implementation so the intent and the code stay in sync.
 
-## Check native first
+## Native APIs are not competition
 
-Before adding a helper, we verify it doesn't duplicate something the platform already provides. We maintain a [`native-alternatives.json`](https://github.com/helpers4/typescript/blob/main/docs/native-alternatives.json) list for this purpose.
+We don't wrap what the platform already provides. When a function becomes standard JavaScript — `flat`, `groupBy`, `findIndex` — we remove it from the library rather than keeping it for convenience.
 
-A helper that wraps a one-liner native call adds complexity without value. We only add helpers where the abstraction meaningfully reduces friction.
+This keeps the library lean and pushes users toward code that doesn't need a dependency at all. A helper that saves you one method call isn't a helper; it's maintenance overhead.
 
 ## Open source, genuinely
 
