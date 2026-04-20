@@ -40,10 +40,8 @@ toRFC3339(date: string | number | Date, includeMilliseconds: boolean): string | 
 
 
 ```ts
-```ts
 toRFC3339(new Date('2025-01-19T12:30:45.123Z')) // '2025-01-19T12:30:45Z'
 toRFC3339(new Date('2025-01-19T12:30:45.123Z'), true) // '2025-01-19T12:30:45.123Z'
-```
 ```
 
 ## Source

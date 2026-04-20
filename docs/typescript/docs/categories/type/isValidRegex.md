@@ -37,11 +37,9 @@ isValidRegex(value: string): boolean
 
 
 ```ts
-```ts
 isValidRegex('[a-z]+') // => true
 isValidRegex('.*')     // => true
 isValidRegex('[')      // => false
-```
 ```
 
 ## Source

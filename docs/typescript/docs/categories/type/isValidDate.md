@@ -19,7 +19,7 @@ import { isValidDate } from '@helpers4/type';
 ## Signature
 
 ```ts
-isValidDate(value: unknown): value
+isValidDate(value: unknown): value is Date
 ```
 
 ## Parameters
@@ -30,7 +30,7 @@ isValidDate(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a Date instance with a valid time value
+`value is Date` — True if value is a Date instance with a valid time value
 
 ## Examples
 

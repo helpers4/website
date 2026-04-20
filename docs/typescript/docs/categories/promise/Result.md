@@ -7,8 +7,6 @@ sidebar_label: "Result"
 Result tuple representing either a successful value or an error.
 On success: `[undefined, T]`. On error: `[Error, undefined]`.
 
-> Available since vunknown
-
 ## Import
 
 ```ts

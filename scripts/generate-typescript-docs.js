@@ -51,7 +51,7 @@ function readJson(filePath) {
 }
 
 function escapeMarkdownTable(str) {
-  return (str || '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
+  return (str || '').replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/\n/g, ' ');
 }
 
 /**
@@ -192,7 +192,7 @@ sidebar_label: "${fn.name}"
 ${fn.description || ''}
 `;
 
-      if (fn.since) {
+      if (fn.since && fn.since !== 'unknown') {
         content += `\n> Available since v${fn.since}\n`;
       }
 
@@ -237,13 +237,14 @@ ${sig.params.map(p => `| \`${p.name}\` | \`${escapeMarkdownTable(p.type)}\` | ${
 ## Examples
 `;
         for (const ex of fnExamples) {
+          const exCode = (ex.code || '').replace(/^```\w*\n?/, '').replace(/\n?```$/, '').trim();
           content += `
 ### ${ex.title}
 
 ${ex.description || ''}
 
 \`\`\`ts
-${ex.code}
+${exCode}
 \`\`\`
 `;
         }

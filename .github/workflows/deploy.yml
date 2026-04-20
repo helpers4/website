@@ -6,8 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       typescript-version:
-        description: "TypeScript release version to fetch build artifacts from (e.g.
-          2.0.0). Leave empty to use committed docs."
+        description: >-
+          TypeScript release version to fetch build artifacts from (e.g. 2.0.0).
+          Leave empty to use committed docs.
         required: false
         type: string
 
