@@ -26,8 +26,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
-        with:
-          version: 9
 
       - name: Install dependencies
         env:
@@ -36,8 +34,12 @@ jobs:
 
       - name: Regenerate TypeScript docs (if version specified)
         if: inputs.typescript-version != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_TS_VERSION: ${{ inputs.typescript-version }}
+          GH_WORKSPACE: ${{ github.workspace }}
         run: |
-          VERSION="${{ inputs.typescript-version }}"
+          VERSION="${INPUT_TS_VERSION}"
           echo "📦 Downloading TypeScript build artifacts for v${VERSION}..."
 
           gh release download "v${VERSION}" \
@@ -48,15 +50,15 @@ jobs:
           mkdir -p /tmp/typescript/build
           tar -xzf /tmp/build-meta.tar.gz -C /tmp/typescript/build
 
-          ln -sfn /tmp/typescript "${{ github.workspace }}/../typescript"
+          ln -sfn /tmp/typescript "${GH_WORKSPACE}/../typescript"
           node scripts/generate-typescript-docs.js
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Regenerate DevContainer docs
         continue-on-error: true
+        env:
+          GH_WORKSPACE: ${{ github.workspace }}
         run: |
-          if [ -d "${{ github.workspace }}/../devcontainer" ]; then
+          if [ -d "${GH_WORKSPACE}/../devcontainer" ]; then
             node scripts/generate-devcontainer-docs.js
           else
             echo "⚠ DevContainer repo not available, using committed docs"
@@ -64,8 +66,10 @@ jobs:
 
       - name: Regenerate Action docs
         continue-on-error: true
+        env:
+          GH_WORKSPACE: ${{ github.workspace }}
         run: |
-          if [ -d "${{ github.workspace }}/../action" ]; then
+          if [ -d "${GH_WORKSPACE}/../action" ]; then
             node scripts/generate-action-docs.js
           else
             echo "⚠ Action repo not available, using committed docs"
