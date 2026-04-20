@@ -28,6 +28,7 @@ const sidebars: SidebarsConfig = {
       collapsible: true,
       collapsed: false,
       items: [
+        'reference/philosophy',
         'reference/all-functions',
         'reference/changelog',
         'reference/contributing',
