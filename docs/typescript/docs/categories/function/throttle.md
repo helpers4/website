@@ -17,14 +17,14 @@ import { throttle } from '@helpers4/function';
 ## Signature
 
 ```ts
-throttle<T extends function>(func: T, wait: number): function
+throttle<A extends unknown[], R>(func: function, wait: number): function
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `func` | `T` | The function to throttle |
+| `func` | `function` | The function to throttle |
 | `wait` | `number` | The number of milliseconds to throttle invocations to |
 
 ## Returns

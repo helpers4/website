@@ -1,8 +1,8 @@
 ---
-sidebar_label: "deepCompare"
+sidebar_label: "deepEquals"
 ---
 
-# deepCompare
+# deepEquals
 
 Deep comparison of two arrays that only returns true or false.
 Arrays are considered equal if they have the same length and all elements 
@@ -14,13 +14,13 @@ does not go into deep object comparison.
 ## Import
 
 ```ts
-import { deepCompare } from '@helpers4/array';
+import { deepEquals } from '@helpers4/array';
 ```
 
 ## Signature
 
 ```ts
-deepCompare<T>(arrA: T[], arrB: T[]): boolean
+deepEquals<T>(arrA: T[], arrB: T[]): boolean
 ```
 
 ## Parameters
@@ -41,7 +41,7 @@ deepCompare<T>(arrA: T[], arrB: T[]): boolean
 Deeply compares two arrays including nested structures.
 
 ```ts
-deepCompare([[1, 2], [3]], [[1, 2], [3]])
+deepEquals([[1, 2], [3]], [[1, 2], [3]])
 // => true
 ```
 
@@ -50,10 +50,10 @@ deepCompare([[1, 2], [3]], [[1, 2], [3]])
 Returns false when nested arrays differ.
 
 ```ts
-deepCompare([[1, 2]], [[1, 3]])
+deepEquals([[1, 2]], [[1, 3]])
 // => false
 ```
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/deepCompare.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/deepEquals.ts)

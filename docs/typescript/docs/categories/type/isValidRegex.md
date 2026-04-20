@@ -4,7 +4,7 @@ sidebar_label: "isValidRegex"
 
 # isValidRegex
 
-Checks if a string is a valid regex
+Checks if a string is a valid regex pattern.
 
 > Available since v1.9.0
 
@@ -30,6 +30,20 @@ isValidRegex(value: string): boolean
 
 `boolean` — True if the string is a valid regex pattern
 
+## Examples
+
+### isValidRegex
+
+
+
+```ts
+```ts
+isValidRegex('[a-z]+') // => true
+isValidRegex('.*')     // => true
+isValidRegex('[')      // => false
+```
+```
+
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/typeChecks.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/isValidRegex.ts)

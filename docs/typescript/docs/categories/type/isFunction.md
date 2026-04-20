@@ -4,7 +4,7 @@ sidebar_label: "isFunction"
 
 # isFunction
 
-Checks if a value is a function
+Checks if a value is a function.
 
 > Available since v1.9.0
 
@@ -30,6 +30,20 @@ isFunction(value: unknown): value
 
 `value` — True if value is a function
 
+## Examples
+
+### isFunction
+
+
+
+```ts
+```ts
+isFunction(() => {})       // => true
+isFunction(function() {})  // => true
+isFunction('function')     // => false
+```
+```
+
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/typeChecks.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/isFunction.ts)

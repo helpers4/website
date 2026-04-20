@@ -4,7 +4,7 @@ sidebar_label: "returnOrThrowError"
 
 # returnOrThrowError
 
-Return a value or throw an error is null or undefined.
+Return a value or throw an error if null or undefined.
 
 > Available since v1.0.0
 

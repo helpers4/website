@@ -17,18 +17,18 @@ import { memoize } from '@helpers4/function';
 ## Signature
 
 ```ts
-memoize<T extends function>(func: T): T
+memoize<A extends unknown[], R>(func: function): function
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `func` | `T` | The function to memoize |
+| `func` | `function` | The function to memoize |
 
 ## Returns
 
-`T` — The memoized function
+`function` — The memoized function
 
 ## Examples
 

@@ -17,20 +17,20 @@ import { set } from '@helpers4/object';
 ## Signature
 
 ```ts
-set(obj: Record<string, any>, path: string, value: any): Record<string, any>
+set(obj: Record<string, unknown>, path: string, value: unknown): Record<string, unknown>
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `obj` | `Record<string, any>` | The object to set value in |
+| `obj` | `Record<string, unknown>` | The object to set value in |
 | `path` | `string` | The dot-notated path (e.g., 'a.b.c') |
-| `value` | `any` | The value to set |
+| `value` | `unknown` | The value to set |
 
 ## Returns
 
-`Record<string, any>` — The modified object
+`Record<string, unknown>` — The modified object
 
 ## Examples
 

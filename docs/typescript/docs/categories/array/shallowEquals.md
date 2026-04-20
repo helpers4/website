@@ -1,8 +1,8 @@
 ---
-sidebar_label: "quickCompare"
+sidebar_label: "shallowEquals"
 ---
 
-# quickCompare
+# shallowEquals
 
 Quick comparison of two arrays using JSON.stringify.
 This is a fast but simple comparison that may not work for all edge cases.
@@ -12,13 +12,13 @@ This is a fast but simple comparison that may not work for all edge cases.
 ## Import
 
 ```ts
-import { quickCompare } from '@helpers4/array';
+import { shallowEquals } from '@helpers4/array';
 ```
 
 ## Signature
 
 ```ts
-quickCompare<T>(arrA: T[], arrB: T[]): boolean
+shallowEquals<T>(arrA: T[], arrB: T[]): boolean
 ```
 
 ## Parameters
@@ -39,19 +39,19 @@ quickCompare<T>(arrA: T[], arrB: T[]): boolean
 Uses JSON.stringify for a fast shallow comparison.
 
 ```ts
-quickCompare([1, 2, 3], [1, 2, 3])
+shallowEquals([1, 2, 3], [1, 2, 3])
 // => true
 ```
 
 ### Detect order differences
 
-Unlike arrayEquals, quickCompare is order-sensitive.
+Unlike equals, shallowEquals is order-sensitive.
 
 ```ts
-quickCompare([1, 2], [2, 1])
+shallowEquals([1, 2], [2, 1])
 // => false
 ```
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/quickCompare.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/shallowEquals.ts)

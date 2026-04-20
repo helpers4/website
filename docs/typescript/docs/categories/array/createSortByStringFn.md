@@ -17,7 +17,7 @@ import { createSortByStringFn } from '@helpers4/array';
 ## Signature
 
 ```ts
-createSortByStringFn<T extends Record<string, any>>(property?: keyof T, caseInsensitive: boolean): SortFn<T>
+createSortByStringFn<T extends Record<string, unknown>>(property?: keyof T, caseInsensitive: boolean): SortFn<T>
 ```
 
 ## Parameters

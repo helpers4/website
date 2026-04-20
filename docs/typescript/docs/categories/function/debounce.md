@@ -17,14 +17,14 @@ import { debounce } from '@helpers4/function';
 ## Signature
 
 ```ts
-debounce<T extends function>(func: T, delay: number): function
+debounce<A extends unknown[], R>(func: function, delay: number): function
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `func` | `T` | The function to debounce |
+| `func` | `function` | The function to debounce |
 | `delay` | `number` | The number of milliseconds to delay |
 
 ## Returns

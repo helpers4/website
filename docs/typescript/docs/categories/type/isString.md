@@ -4,7 +4,7 @@ sidebar_label: "isString"
 
 # isString
 
-Checks if a value is a string
+Checks if a value is a string.
 
 > Available since v1.9.0
 
@@ -32,48 +32,17 @@ isString(value: unknown): value
 
 ## Examples
 
-### Type guard functions
+### isString
 
-A collection of type guard functions for common types.
+
 
 ```ts
-isString('hello')  // => true
-isNumber(42)       // => true
-isBoolean(false)   // => true
-isArray([1, 2])    // => true
-isObject({ a: 1 }) // => true
-isDate(new Date()) // => true
+```ts
+isString('hello') // => true
+isString(123)     // => false
 ```
-
-### isSet checks for non-null/undefined
-
-Returns true when the value is neither null nor undefined.
-
-```ts
-isSet(0)         // => true
-isSet('')        // => true
-isSet(null)      // => false
-isSet(undefined) // => false
-```
-
-### Validate regex patterns
-
-Checks whether a string is a valid regular expression.
-
-```ts
-isValidRegex('[a-z]+')  // => true
-isValidRegex('[invalid') // => false
-```
-
-### isFunction type guard
-
-Returns true for functions.
-
-```ts
-isFunction(() => {})      // => true
-isFunction('not a fn')    // => false
 ```
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/typeChecks.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/isString.ts)

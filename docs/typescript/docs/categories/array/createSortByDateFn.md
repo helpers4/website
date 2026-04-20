@@ -17,7 +17,7 @@ import { createSortByDateFn } from '@helpers4/array';
 ## Signature
 
 ```ts
-createSortByDateFn<T extends Record<string, any>>(property?: keyof T): SortFn<T>
+createSortByDateFn<T extends Record<string, unknown>>(property?: keyof T): SortFn<T>
 ```
 
 ## Parameters
