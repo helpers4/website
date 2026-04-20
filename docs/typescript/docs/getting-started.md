@@ -75,8 +75,20 @@ const result = deepMerge({ a: 1 }, { b: 2 });
 ## Browser Support
 
 - Modern browsers (ES2022+)
-- Node.js 20+
+- Node.js 24+
 - All major frameworks (React, Vue, Svelte, Angular, etc.)
+
+## Quality Guarantees
+
+Every helper ships with:
+- **100% code coverage** (lines, branches, functions, statements)
+- **Property-based tests** (fast-check) — invariants validated against thousands of random inputs
+- **Contract tests** — formal behavioral guarantees
+- **Boundary tests** — edge values and limit conditions covered explicitly
+- **Security edge case tests** — inputs like prototype pollution or injected keys
+- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main)
+- **Benchmarks** (Vitest Bench) — performance tracked per build
+- **Dependency security audit** — `pnpm audit` on every PR and release
 
 ## Next Steps
 
@@ -89,4 +101,4 @@ Found a bug? Want to add a helper? Check out the [GitHub repository](https://git
 
 ## License
 
-MIT License - See [LICENSE](https://github.com/helpers4/typescript/blob/main/LICENSE) for details.
+LGPL-3.0 — See [LICENSE](https://github.com/helpers4/typescript/blob/main/LICENSE) for details.

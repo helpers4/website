@@ -31,7 +31,16 @@ Strict TypeScript is part of the value we provide. Callers should never need to 
 
 We require 100% coverage on lines, branches, functions, and statements — no exceptions, no `/* istanbul ignore */` shortcuts.
 
-Beyond line coverage, we use **property-based testing** (fast-check) to verify invariants across thousands of random inputs, and **mutation testing** to confirm that tests actually catch regressions rather than just execute code.
+Beyond line coverage, every helper faces a gauntlet:
+
+- **Unit tests** — every branch and edge case, colocated with the implementation
+- **Property-based tests** (fast-check) — invariants verified against thousands of randomly-generated inputs
+- **Contract tests** — formal guarantees: if input satisfies X, output must satisfy Y, regardless of the input
+- **Boundary tests** — explicit coverage of limit values (`[]`, `0`, `Number.MAX_SAFE_INTEGER`, epoch timestamps…)
+- **Security edge cases** — inputs designed to trigger prototype pollution, injection, or unsafe patterns
+- **Mutation testing** (Stryker) — >90% threshold; if a mutant survives, the tests aren't good enough — [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main)
+- **Benchmarks** (Vitest Bench) — performance tracked per build, non-blocking
+- **Dependency security audit** — `pnpm audit` on every PR and release
 
 If a helper can't be fully tested, it doesn't belong here.
 
