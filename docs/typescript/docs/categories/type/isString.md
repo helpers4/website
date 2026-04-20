@@ -17,7 +17,7 @@ import { isString } from '@helpers4/type';
 ## Signature
 
 ```ts
-isString(value: unknown): value
+isString(value: unknown): value is string
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isString(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a string
+`value is string` — True if value is a string
 
 ## Examples
 
