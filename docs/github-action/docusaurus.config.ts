@@ -3,7 +3,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'GitHub Actions | helpers4',
-  tagline: 'GitHub Actions for common development workflows',
+  tagline: 'Reusable GitHub Actions for consistent, automated workflows',
   favicon: 'img/favicon.ico',
   url: 'https://helpers4.dev',
   baseUrl: '/action/',

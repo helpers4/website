@@ -14,7 +14,7 @@ try {
 
 const config: Config = {
   title: 'TypeScript Helpers | helpers4',
-  tagline: 'Tree-shakable TypeScript utility functions',
+  tagline: 'Modular, strictly typed utility functions — battle-tested, zero dependencies',
   favicon: 'img/favicon.ico',
   url: 'https://helpers4.dev',
   baseUrl: '/typescript/',

@@ -4,28 +4,27 @@
  * For details about its CSS, see https://infima.dev/docs/getting-started/introduction
  */
 
-/* Helpers4 Color Scheme */
+/* helpers4 brand — indigo palette */
 :root {
-  --ifm-color-primary: #3b82f6;
-  --ifm-color-primary-dark: #2563eb;
-  --ifm-color-primary-darker: #1d4ed8;
-  --ifm-color-primary-darkest: #1e40af;
-  --ifm-color-primary-light: #60a5fa;
-  --ifm-color-primary-lighter: #93c5fd;
-  --ifm-color-primary-lightest: #dbeafe;
+  --ifm-color-primary: #4f46e5;
+  --ifm-color-primary-dark: #4338ca;
+  --ifm-color-primary-darker: #3730a3;
+  --ifm-color-primary-darkest: #312e81;
+  --ifm-color-primary-light: #6366f1;
+  --ifm-color-primary-lighter: #818cf8;
+  --ifm-color-primary-lightest: #c7d2fe;
   --ifm-code-font-size: 95%;
-  --docusaurus-announced-color: #fbbf24;
   --ifm-link-hover-decoration: underline;
 }
 
 html[data-theme='dark'] {
-  --ifm-color-primary: #60a5fa;
-  --ifm-color-primary-dark: #3b82f6;
-  --ifm-color-primary-darker: #2563eb;
-  --ifm-color-primary-darkest: #1d4ed8;
-  --ifm-color-primary-light: #93c5fd;
-  --ifm-color-primary-lighter: #bfdbfe;
-  --ifm-color-primary-lightest: #dbeafe;
+  --ifm-color-primary: #818cf8;
+  --ifm-color-primary-dark: #6366f1;
+  --ifm-color-primary-darker: #4f46e5;
+  --ifm-color-primary-darkest: #4338ca;
+  --ifm-color-primary-light: #a5b4fc;
+  --ifm-color-primary-lighter: #c7d2fe;
+  --ifm-color-primary-lightest: #e0e7ff;
 }
 
 .docTitle {
