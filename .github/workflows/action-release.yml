@@ -31,9 +31,11 @@ jobs:
           path: _action
 
       - name: Generate Action docs
+        env:
+          GH_WORKSPACE: ${{ github.workspace }}
         run: |
           # The generate script reads from ../action/
-          ln -sfn "${{ github.workspace }}/_action" "${{ github.workspace }}/../action"
+          ln -sfn "${GH_WORKSPACE}/_action" "${GH_WORKSPACE}/../action"
           node scripts/generate-action-docs.js
 
       - name: Build all & deploy

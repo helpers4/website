@@ -31,9 +31,11 @@ jobs:
           path: _devcontainer
 
       - name: Generate DevContainer docs
+        env:
+          GH_WORKSPACE: ${{ github.workspace }}
         run: |
           # The generate script reads from ../devcontainer/src/
-          ln -sfn "${{ github.workspace }}/_devcontainer" "${{ github.workspace }}/../devcontainer"
+          ln -sfn "${GH_WORKSPACE}/_devcontainer" "${GH_WORKSPACE}/../devcontainer"
           node scripts/generate-devcontainer-docs.js
 
       - name: Build all & deploy

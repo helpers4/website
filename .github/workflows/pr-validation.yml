@@ -28,8 +28,10 @@ jobs:
       - name: Set status
         id: status
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
         run: |
-          if [ "${{ job.status }}" == "success" ]; then
+          if [ "$JOB_STATUS" == "success" ]; then
             echo "status=success" >> $GITHUB_OUTPUT
           else
             echo "status=failure" >> $GITHUB_OUTPUT
@@ -64,8 +66,10 @@ jobs:
       - name: Set status
         id: status
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
         run: |
-          if [ "${{ job.status }}" == "success" ]; then
+          if [ "$JOB_STATUS" == "success" ]; then
             echo "status=success" >> $GITHUB_OUTPUT
           else
             echo "status=failure" >> $GITHUB_OUTPUT
@@ -99,8 +103,10 @@ jobs:
       - name: Set status
         id: status
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
         run: |
-          if [ "${{ job.status }}" == "success" ]; then
+          if [ "$JOB_STATUS" == "success" ]; then
             echo "status=success" >> $GITHUB_OUTPUT
           else
             echo "status=failure" >> $GITHUB_OUTPUT
@@ -113,13 +119,17 @@ jobs:
     steps:
       - name: Update PR comment
         uses: actions/github-script@v9
+        env:
+          STATUS_COMMITS: ${{ needs.conventional-commits.outputs.status || 'unknown' }}
+          STATUS_BUILD: ${{ needs.build.outputs.status || 'unknown' }}
+          STATUS_TYPECHECK: ${{ needs.typecheck.outputs.status || 'unknown' }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const jobs = {
-              '🧾 Conventional Commits': "${{ needs.conventional-commits.outputs.status || 'unknown' }}",
-              '🏗️ Build': "${{ needs.build.outputs.status || 'unknown' }}",
-              '📘 TypeCheck': "${{ needs.typecheck.outputs.status || 'unknown' }}",
+              '🧾 Conventional Commits': process.env.STATUS_COMMITS,
+              '🏗️ Build': process.env.STATUS_BUILD,
+              '📘 TypeCheck': process.env.STATUS_TYPECHECK,
             };
 
             const rows = Object.entries(jobs).map(([job, status]) => {
