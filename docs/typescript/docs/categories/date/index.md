@@ -21,6 +21,6 @@ Utility functions for working with date operations.
 | [`normalizeTimestamp`](normalizeTimestamp) | Converts a timestamp to JavaScript milliseconds format |
 | [`safeDate`](safeDate) | Safely creates a Date object from various input types |
 | [`toISO8601`](toISO8601) | Converts a date to ISO 8601 format Format: YYYY-MM-DDTHH:mm:ss.sssZ |
-| [`toRFC2822`](toRFC2822) | Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss +0000 Used in email headers (Date field) and HTTP headers |
-| [`toRFC3339`](toRFC3339) | Converts a date to RFC 3339 format Format: YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss+HH:mm RFC 3339 is a profile of ISO 8601, but without milliseconds by default |
+| [`toRFC2822`](toRFC2822) | Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss +0000 Used in email headers (Date field) and HTT… |
+| [`toRFC3339`](toRFC3339) | Converts a date to RFC 3339 format Format: YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss+HH:mm RFC 3339 is a profile of… |
 
