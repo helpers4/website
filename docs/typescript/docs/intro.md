@@ -3,51 +3,43 @@ sidebar_position: 0
 slug: /
 ---
 
-# Welcome to TypeScript Helpers
+# helpers4 / TypeScript
 
-This is the documentation for the **@helpers4/typescript** library - a collection of tree-shakable, framework-agnostic utility functions organized by category.
+Production-ready TypeScript utility functions — modular, strictly typed, exhaustively tested.
 
 ## Quick Links
 
-- **[GitHub Repository](https://github.com/helpers4/typescript)** - View source code
-- **[npm Package](https://www.npmjs.com/package/@helpers4/all)** - Install from npm
-- **[API Reference](./categories/array/index.md)** - Complete API documentation
-- **[License (LGPL-3.0)](./legal/license)** - What you can and cannot do
-
-## What's new in V2?
-
-V2 is a major milestone for the library:
-
-- **New documentation website** — you're reading it
-- **40+ new helpers** across every category (array, date, promise, type, object…)
-- **New `math` category** — starting with UUID v7 generation
-- **100% test coverage enforced** — lines, branches, functions, statements, no exceptions
-- **Mutation testing** (Stryker) — >90% mutation score; tests verified to catch regressions, not just run code — [view live dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main)
-- **Property-based testing** (fast-check) — invariants verified against thousands of random inputs
-- **Contract tests** — formal behavioral guarantees for each function
-- **Boundary tests** — explicit coverage of edge values and limit conditions
-- **Security edge cases** — security-sensitive inputs tested directly (prototype pollution, injection patterns, etc.)
-- **Dependency security audit** — `pnpm audit` runs on every PR and release
-- **Benchmarks** (Vitest Bench) — performance tracked on every build
-- **Native API tracking** — functions that are now standard JavaScript are documented as such rather than re-implemented
+- **[Get Started](./getting-started)** — Installation and first import
+- **[Browse Categories](./categories/array/index.md)** — All 12 helper categories
+- **[GitHub](https://github.com/helpers4/typescript)** · **[npm](https://www.npmjs.com/package/@helpers4/all)** · **[License (LGPL-3.0)](./legal/license)**
 
 ## What is helpers4?
 
-helpers4 provides modular, production-ready utility functions for TypeScript/JavaScript projects:
+A collection of functional helpers to stop rewriting the same utility code across every project — each function does one thing, does it right, and ships with full type safety and exhaustive tests.
 
-- ✅ **Tree-shakable** — Only import what you use
-- ✅ **Framework-agnostic** — Works with any JS framework (or no framework)
-- ✅ **Well-typed** — Full TypeScript support with strict mode
-- ✅ **Zero runtime dependencies** — Lightweight and self-contained
-- ✅ **Battle-tested** — 100% coverage, >90% mutation score, property-based + contract + boundary + security tests
-- ✅ **Enterprise-grade** — audit-ready security, formal licensing (LGPL-3.0), predictable behavior at scale
-- ✅ **AI-ready** — exhaustive test suite (contract tests, boundary tests, property-based tests) makes each function safe to call from generated or agentic code without surprises
+- ✅ **Tree-shakable** — import one function, pay for one function
+- ✅ **Framework-agnostic** — React, Vue, Svelte, Angular, or no framework at all
+- ✅ **Well-typed** — strict TypeScript, no `any`, full inference
+- ✅ **Zero runtime dependencies** — nothing pulled in at runtime
+- ✅ **Battle-tested** — 100% coverage, >90% mutation score, property-based · contract · boundary · security tests
+- ✅ **Enterprise-grade** — formal LGPL-3.0 license, audit-ready, predictable at scale
+- ✅ **AI-ready** — exhaustive contracts make every function safe to call from generated or agentic code
 
-## helpers4 vs Radashi
+## What's new in V2?
 
-helpers4 and [radashi](https://radashi.js.org) are **complementary** libraries:
+V2 is a major milestone:
 
-- **radashi** is a general-purpose toolkit of low-level data primitives — sorting, grouping, cloning, picking, mapping over objects and arrays.
-- **helpers4** focuses on higher-level, domain-specific utilities — date comparison, URL manipulation, semver parsing, observable combinators, typed promise guards.
+| | |
+|---|---|
+| **40+ new helpers** | Across every category — array, date, promise, type, object… |
+| **New `math` category** | Starting with UUID v7 generation |
+| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main) |
+| **Property-based tests** | Invariants validated against thousands of random inputs (fast-check) |
+| **Contract tests** | Formal behavioral guarantees for each function |
+| **Boundary & security tests** | Edge values and security-sensitive inputs (prototype pollution, injections) |
+| **Native API tracking** | Standard JS equivalents documented, not re-implemented |
+| **New docs site** | You're reading it |
 
-In short, radashi gives you building blocks for data structures; helpers4 gives you ready-made solutions for common domain problems. See the [full comparison](./comparisons/radashi) for details.
+## Comparisons
+
+Wondering how helpers4 stacks up against other utility libraries? See the [comparisons section](./comparisons/alternatives).

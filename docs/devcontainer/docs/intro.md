@@ -3,28 +3,42 @@ sidebar_position: 0
 slug: /
 ---
 
-# DevContainer Features
+# helpers4 / DevContainer Features
 
-This is the documentation for **helpers4 DevContainer Features** - a collection of development container features for modern web development.
+Plug-and-play development container features — consistent environments, zero setup friction.
 
-## Features
+## Quick Links
 
-Each feature provides a complete development environment setup for specific development needs:
+- **[Browse Features](./features/vite-plus)** — All available features
+- **[GitHub](https://github.com/helpers4/devcontainer)** · **[Registry (ghcr.io)](https://github.com/helpers4/devcontainer/pkgs/container/devcontainer)** · **[License (LGPL-3.0)](./legal/license)**
 
-- [vite-plus](./features/vite-plus) - Advanced Vite toolchain configuration
-- [typescript-dev](./features/typescript-dev) - TypeScript development environment
-- [git-absorb](./features/git-absorb) - Git absorb integration
-- [shell-history-per-project](./features/shell-history-per-project) - Per-project shell history
-- [local-mounts](./features/local-mounts) - Local mount configuration
-- [angular-dev](./features/angular-dev) - Angular development environment
-- [package-auto-install](./features/package-auto-install) - Automatic package installation
+## Available Features
+
+| Feature | Description |
+|---------|-------------|
+| [essential-dev](./features/essential-dev) | Git visualization, editor enhancements, Markdown |
+| [typescript-dev](./features/typescript-dev) | TypeScript/JS dev with import management |
+| [angular-dev](./features/angular-dev) | Angular dev, port 4200 forwarding |
+| [vite-plus](./features/vite-plus) | Vite development setup |
+| [package-auto-install](./features/package-auto-install) | Auto-detect and install packages |
+| [git-absorb](./features/git-absorb) | `git absorb` from GitHub releases |
+| [shell-history-per-project](./features/shell-history-per-project) | Persistent shell history per project |
+| [dotfiles-sync](./features/dotfiles-sync) | Sync local Git/SSH/GPG/npm config |
+| [peon-ping](./features/peon-ping) | Health check endpoint |
 
 ## Installation
 
-Features are available from: `ghcr.io/helpers4/devcontainer/<feature-name>`
+Features are published to `ghcr.io/helpers4/devcontainer/<feature-name>`:
 
-Learn more in the [GitHub repository](https://github.com/helpers4/devcontainer).
+```json
+{
+  "features": {
+    "ghcr.io/helpers4/devcontainer/essential-dev:1": {},
+    "ghcr.io/helpers4/devcontainer/typescript-dev:1": {}
+  }
+}
+```
 
 ## License
 
-This project is licensed under LGPL-3.0. See the [human-readable summary](./legal/license) to understand what you can and cannot do.
+LGPL-3.0 — See [LICENSE](./legal/license) for details.

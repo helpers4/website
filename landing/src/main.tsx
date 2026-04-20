@@ -18,12 +18,11 @@ function App() {
 
       <section style={{ marginBottom: '24px' }}>
         <p>
-          Open-source libraries for developers.
+          Open-source developer tools built for real projects.
         </p>
         <p>
-          Free to use under the LGPL-3.0 license, including commercial use.
-          If you distribute modified LGPL-covered code, those modifications must remain under LGPL.
-          Running a network service alone does not trigger AGPL-style source-sharing obligations.
+          Free to use under the LGPL-3.0 license, including in commercial products.
+          Distribute modified source? Share those changes. Run it as a service? No obligations.
         </p>
       </section>
 

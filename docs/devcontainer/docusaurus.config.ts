@@ -3,7 +3,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'DevContainer Features | helpers4',
-  tagline: 'Development container features for modern web development',
+  tagline: 'Plug-and-play dev container features — consistent environments, zero friction',
   favicon: 'img/favicon.ico',
   url: 'https://helpers4.dev',
   baseUrl: '/dev-container/',

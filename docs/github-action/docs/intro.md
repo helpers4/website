@@ -3,20 +3,30 @@ sidebar_position: 0
 slug: /
 ---
 
-# GitHub Actions
+# helpers4 / GitHub Actions
 
-This is the documentation for **helpers4 GitHub Actions** - a collection of GitHub Actions for common development workflows.
+Reusable GitHub Actions for consistent, automated workflows across your repositories.
 
-## Actions
+## Quick Links
 
-- [conventional-commits](./actions/conventional-commits.md) - Validate commit messages against the Conventional Commits specification
+- **[Browse Actions](./actions/conventional-commits)** — All available actions
+- **[GitHub](https://github.com/helpers4/action)** · **[Marketplace](https://github.com/marketplace?type=actions&query=helpers4)** · **[License (LGPL-3.0)](./legal/license)**
 
-## Installation
+## Available Actions
 
-Actions are published to the [GitHub Marketplace](https://github.com/marketplace?type=actions&query=helpers4).
+| Action | Description |
+|--------|-------------|
+| [conventional-commits](./actions/conventional-commits) | Validate commit messages against the Conventional Commits specification |
 
-Learn more in the [GitHub repository](https://github.com/helpers4/action).
+## Usage
+
+```yaml
+- uses: helpers4/action/conventional-commits@v1
+  with:
+    types: 'feat|fix|docs|refactor|test|chore'
+    require-scope: false
+```
 
 ## License
 
-This project is licensed under LGPL-3.0. See the [human-readable summary](./legal/license) to understand what you can and cannot do.
+LGPL-3.0 — See [LICENSE](./legal/license) for details.

@@ -8,7 +8,7 @@ export const PROJECTS: ProjectCard[] = [
   {
     title: 'For JS and TypeScript',
     label: 'TypeScript',
-    description: 'Tree-shakable utility functions with strict typing.',
+    description: 'Modular utility functions — tree-shakable, strictly typed, zero dependencies, battle-tested.',
     docsHref: '/typescript/',
     repoPath: 'helpers4/typescript',
     stars: 0,
@@ -16,7 +16,7 @@ export const PROJECTS: ProjectCard[] = [
   {
     title: 'For Dev Container',
     label: 'Dev Container',
-    description: 'Reusable development container features for consistent environments.',
+    description: 'Plug-and-play devcontainer features for consistent, reproducible development environments.',
     docsHref: '/dev-container/',
     repoPath: 'helpers4/devcontainer',
     stars: 0,
@@ -24,7 +24,7 @@ export const PROJECTS: ProjectCard[] = [
   {
     title: 'For GitHub Action',
     label: 'GitHub Action',
-    description: 'Automation workflows and publishing support for repositories.',
+    description: 'Reusable GitHub Actions for commit validation, CI automation, and release workflows.',
     docsHref: '/action/',
     repoPath: 'helpers4/action',
     stars: 0,
