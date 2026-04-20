@@ -16,4 +16,5 @@ Utility functions for working with number operations.
 | [`randomBetween`](randomBetween) | Generates a random number between min and max (inclusive) |
 | [`randomIntBetween`](randomIntBetween) | Generates a random integer between min and max (inclusive) |
 | [`roundTo`](roundTo) | Rounds a number to specified decimal places |
+| [`sum`](sum) | Calculates the sum of an array of numbers. |
 

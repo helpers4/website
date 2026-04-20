@@ -1,8 +1,8 @@
 ---
-sidebar_label: "quickCompare"
+sidebar_label: "shallowEquals"
 ---
 
-# quickCompare
+# shallowEquals
 
 Quick comparison of two objects using JSON.stringify.
 This is a fast but simple comparison that may not work for all edge cases.
@@ -12,13 +12,13 @@ This is a fast but simple comparison that may not work for all edge cases.
 ## Import
 
 ```ts
-import { quickCompare } from '@helpers4/object';
+import { shallowEquals } from '@helpers4/object';
 ```
 
 ## Signature
 
 ```ts
-quickCompare(objA: unknown, objB: unknown): boolean
+shallowEquals(objA: unknown, objB: unknown): boolean
 ```
 
 ## Parameters
@@ -39,10 +39,10 @@ quickCompare(objA: unknown, objB: unknown): boolean
 Uses JSON.stringify for a fast comparison.
 
 ```ts
-quickCompare({ a: 1, b: 2 }, { a: 1, b: 2 })
+shallowEquals({ a: 1, b: 2 }, { a: 1, b: 2 })
 // => true
 ```
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/object/quickCompare.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/object/shallowEquals.ts)

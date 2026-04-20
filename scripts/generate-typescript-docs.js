@@ -220,6 +220,12 @@ ${ex.code}
   // --- all-functions reference page ---
   generateAllFunctionsPage(categories);
 
+  // --- changelog page (helpers grouped by @since version) ---
+  generateChangelogPage(categories);
+
+  // --- contributing page (synced from typescript repo) ---
+  syncContributingPage();
+
   console.log(`\n✅ Generated documentation for ${categories.length} categories (${totalFunctions} functions)`);
   console.log(`📁 Output: ${docsOutputPath}\n`);
 
@@ -316,4 +322,106 @@ ${rows.sort((a, b) => a.localeCompare(b)).join('\n')}
 
   fs.writeFileSync(path.join(refDir, 'all-functions.md'), content);
   console.log('  ✓ reference/all-functions (auto-generated)');
+}
+
+/**
+ * Compare two semver strings, returning a negative value if a < b (i.e. a is older).
+ * Newest version first (descending). Stable > pre-release of same base.
+ */
+function compareSemverDesc(a, b) {
+  if (a === 'unknown') return 1;
+  if (b === 'unknown') return -1;
+
+  const expand = v => {
+    const m = v.match(/^(\d+)\.(\d+)\.(\d+)(?:-[a-z]+\.(\d+))?$/i);
+    if (!m) return [0, 0, 0, 999];
+    // stable release has no pre-release part → use 999 so it sorts above alphas
+    return [+m[1], +m[2], +m[3], m[4] !== undefined ? +m[4] : 999];
+  };
+
+  const [aA, aB, aC, aD] = expand(a);
+  const [bA, bB, bC, bD] = expand(b);
+  for (const [x, y] of [[bA, aA], [bB, aB], [bC, aC], [bD, aD]]) {
+    if (x !== y) return x - y;
+  }
+  return 0;
+}
+
+/**
+ * Generate reference/changelog.md — helpers grouped by their @since version.
+ */
+function generateChangelogPage(categories) {
+  const refDir = path.join(rootDir, 'docs', 'typescript', 'docs', 'reference');
+  fs.mkdirSync(refDir, { recursive: true });
+
+  // Aggregate functions by @since version
+  const byVersion = {};
+
+  for (const category of categories) {
+    const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
+    if (!api?.functions) continue;
+
+    for (const fn of api.functions) {
+      const version = fn.since || 'unknown';
+      if (!byVersion[version]) byVersion[version] = [];
+      byVersion[version].push({ name: fn.name, category, description: fn.description || '' });
+    }
+  }
+
+  const sortedVersions = Object.keys(byVersion).sort(compareSemverDesc);
+
+  let content = `---
+sidebar_label: "Changelog"
+sidebar_position: 2
+title: "Changelog — Helpers by version"
+description: "All helpers listed by the version in which they were introduced, from newest to oldest."
+---
+
+# Changelog
+
+All helpers listed by the version in which they were introduced, from newest to oldest.
+
+`;
+
+  for (const version of sortedVersions) {
+    const fns = byVersion[version].sort((a, b) => a.name.localeCompare(b.name));
+    const label = version === 'unknown' ? '*(version unknown)*' : `v${version}`;
+    content += `## ${label}\n\n`;
+    content += `| Function | Category | Description |\n`;
+    content += `|----------|----------|-------------|\n`;
+    for (const fn of fns) {
+      content += `| [\`${fn.name}\`](../categories/${fn.category}/${fn.name}) | [${fn.category}](../categories/${fn.category}/) | ${escapeMarkdownTable(fn.description)} |\n`;
+    }
+    content += '\n';
+  }
+
+  fs.writeFileSync(path.join(refDir, 'changelog.md'), content);
+  console.log('  ✓ reference/changelog (auto-generated)');
+}
+
+/**
+ * Sync reference/contributing.md from the typescript repo's CONTRIBUTING.md.
+ */
+function syncContributingPage() {
+  const refDir = path.join(rootDir, 'docs', 'typescript', 'docs', 'reference');
+  fs.mkdirSync(refDir, { recursive: true });
+
+  const contributingSource = path.join(typescriptRepoPath, 'CONTRIBUTING.md');
+
+  if (!fs.existsSync(contributingSource)) {
+    console.warn('  ⚠ CONTRIBUTING.md not found in typescript repo, skipping');
+    return;
+  }
+
+  const sourceContent = fs.readFileSync(contributingSource, 'utf-8');
+
+  const content = `---
+sidebar_label: Contributing
+sidebar_position: 3
+---
+
+${sourceContent}`;
+
+  fs.writeFileSync(path.join(refDir, 'contributing.md'), content);
+  console.log('  ✓ reference/contributing (synced from typescript repo)');
 }

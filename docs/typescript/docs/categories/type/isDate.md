@@ -4,9 +4,12 @@ sidebar_label: "isDate"
 
 # isDate
 
-Checks if a value is a Date
+Checks if a value is a Date instance.
 
-> Available since v1.9.0
+Note: this only checks the type, not whether the Date is valid.
+Use isValidDate to also validate that the Date is not `Invalid Date`.
+
+> Available since v2.0.0
 
 ## Import
 
@@ -28,8 +31,23 @@ isDate(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a Date
+`value` — True if value is a Date instance
+
+## Examples
+
+### isDate
+
+
+
+```ts
+```ts
+isDate(new Date())          // => true
+isDate(new Date('invalid')) // => true (still a Date instance)
+isDate('2023-01-01')       // => false
+isDate(1609459200000)      // => false
+```
+```
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/typeChecks.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/isDate.ts)

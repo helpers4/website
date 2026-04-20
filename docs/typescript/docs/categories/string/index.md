@@ -16,12 +16,8 @@ Utility functions for working with string operations.
 | [`capitalize`](capitalize) | Capitalizes the first letter of a string |
 | [`errorToReadableMessage`](errorToReadableMessage) | Convert an error to a readable message. |
 | [`kebabCase`](kebabCase) | Converts camelCase to kebab-case |
-| [`labelize`](labelize) | Transform string to lowercase with capitalized first letters and with spaces between words |
+| [`pascalCase`](pascalCase) | Converts a string to PascalCase. Handles camelCase, kebab-case, snake_case, spaces, and mixed formats. |
 | [`slugify`](slugify) | Converts a string into a URL-friendly slug. |
-
-## Dependencies
-
-| Package | License |
-|---------|:-------:|
-| [radashi](https://radashi.js.org) | MIT |
+| [`snakeCase`](snakeCase) | Converts a string to snake_case. Handles camelCase, PascalCase, kebab-case, spaces, and mixed formats. |
+| [`titleCase`](titleCase) | Converts a string to Title Case. Handles camelCase, PascalCase, kebab-case, snake_case, spaces, and mixed formats. |
 

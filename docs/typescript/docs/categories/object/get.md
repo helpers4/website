@@ -17,14 +17,14 @@ import { get } from '@helpers4/object';
 ## Signature
 
 ```ts
-get<T = any>(obj: any, path: string, defaultValue?: T): T | undefined
+get<T = unknown>(obj: unknown, path: string, defaultValue?: T): T | undefined
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `obj` | `any` | The object to get value from |
+| `obj` | `unknown` | The object to get value from |
 | `path` | `string` | The dot-notated path (e.g., 'a.b.c') |
 | `defaultValue` | `T` | Default value if path doesn't exist *(optional)* |
 

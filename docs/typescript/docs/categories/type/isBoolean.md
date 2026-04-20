@@ -4,7 +4,7 @@ sidebar_label: "isBoolean"
 
 # isBoolean
 
-Checks if a value is a boolean
+Checks if a value is a boolean.
 
 > Available since v1.9.0
 
@@ -30,6 +30,20 @@ isBoolean(value: unknown): value
 
 `value` — True if value is a boolean
 
+## Examples
+
+### isBoolean
+
+
+
+```ts
+```ts
+isBoolean(true)  // => true
+isBoolean(false) // => true
+isBoolean(1)     // => false
+```
+```
+
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/typeChecks.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/isBoolean.ts)

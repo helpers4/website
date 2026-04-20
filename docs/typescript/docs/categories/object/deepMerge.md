@@ -17,7 +17,7 @@ import { deepMerge } from '@helpers4/object';
 ## Signature
 
 ```ts
-deepMerge<T extends Record<string, any>>(target: T, sources: Record<string, any>[]): T
+deepMerge<T extends Record<string, unknown>>(target: T, sources: Record<string, unknown>[]): T
 ```
 
 ## Parameters
@@ -25,7 +25,7 @@ deepMerge<T extends Record<string, any>>(target: T, sources: Record<string, any>
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `target` | `T` | The target object |
-| `sources` | `Record<string, any>[]` | The source objects to merge |
+| `sources` | `Record<string, unknown>[]` | The source objects to merge |
 
 ## Returns
 
