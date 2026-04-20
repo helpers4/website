@@ -23,5 +23,5 @@ Utility functions for working with promise operations.
 | [`timeout`](timeout) | Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration. |
 | [`truthyPromiseOrThrow`](truthyPromiseOrThrow) | Returns a function that passes through truthy data or throws an error. |
 | [`tryit`](tryit) | Wraps a function so it never throws. |
-| `withResolvers` | Use native: `Promise.withResolvers()` *(ES2024)* |
+| `withResolvers` | <span class="badge badge--secondary">native JS</span> `Promise.withResolvers()` *(ES2024)* |
 

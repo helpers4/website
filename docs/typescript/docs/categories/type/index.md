@@ -14,23 +14,23 @@ Utility functions for working with type operations.
 |----------|-------------|
 | [`Falsy`](Falsy) | Union of all falsy types in JavaScript. |
 | [`isArray`](isArray) | Checks if a value is an array. |
-| `isArrayBuffer / isBlob / isBuffer / isFormData` | Use native: `value instanceof ArrayBuffer / Blob / Buffer / FormData` *(ES2015 / Web API)* |
+| `isArrayBuffer / isBlob / isBuffer / isFormData` | <span class="badge badge--secondary">native JS</span> `value instanceof ArrayBuffer / Blob / Buffer / FormData` *(ES2015 / Web API)* |
 | [`isAsyncFunction`](isAsyncFunction) | Checks if a value is an async function. |
 | [`isBigInt`](isBigInt) | Checks if a value is a bigint. |
 | [`isBoolean`](isBoolean) | Checks if a value is a boolean. |
 | [`isDate`](isDate) | Checks if a value is a Date instance. |
 | [`isDefined`](isDefined) | Checks if a value is defined (not undefined nor null). |
-| `isDirectInstanceOf` | Use native: `value.constructor === Foo` *(ES1)* |
+| `isDirectInstanceOf` | <span class="badge badge--secondary">native JS</span> `value.constructor === Foo` *(ES1)* |
 | [`isEmpty`](isEmpty) | Checks if a value is empty. |
 | [`isError`](isError) | Checks if a value is an Error instance. |
 | [`isFalsy`](isFalsy) | Checks if a value is falsy (`false`, `null`, `undefined`, `0`, `""`, `NaN`). |
-| `isFinite / isFiniteNumber` | Use native: `Number.isFinite(value)` *(ES2015)* |
+| `isFinite / isFiniteNumber` | <span class="badge badge--secondary">native JS</span> `Number.isFinite(value)` *(ES2015)* |
 | [`isFunction`](isFunction) | Checks if a value is a function. |
-| `isHtmlElement / isUrlInstance / isUrlSearchParams` | Use native: `value instanceof HTMLElement / URL / URLSearchParams` *(Web API)* |
-| `isInteger` | Use native: `Number.isInteger(value)` *(ES2015)* |
+| `isHtmlElement / isUrlInstance / isUrlSearchParams` | <span class="badge badge--secondary">native JS</span> `value instanceof HTMLElement / URL / URLSearchParams` *(Web API)* |
+| `isInteger` | <span class="badge badge--secondary">native JS</span> `Number.isInteger(value)` *(ES2015)* |
 | [`isIterable`](isIterable) | Checks if a value is iterable (has a `Symbol.iterator` method). |
 | [`isMap`](isMap) | Checks if a value is a Map instance. |
-| `isNaN` | Use native: `Number.isNaN(value)` *(ES2015)* |
+| `isNaN` | <span class="badge badge--secondary">native JS</span> `Number.isNaN(value)` *(ES2015)* |
 | [`isNegativeNumber`](isNegativeNumber) | Checks if a value is a number less than 0. |
 | [`isNonEmptyArray`](isNonEmptyArray) | Checks if a value is a non-empty array (length > 0). |
 | [`isNonEmptyString`](isNonEmptyString) | Checks if a value is a non-empty string (length > 0). |
@@ -42,8 +42,8 @@ Utility functions for working with type operations.
 | [`isPrimitive`](isPrimitive) | Checks if a value is a JavaScript primitive. |
 | [`isPromise`](isPromise) | Checks if a value is a Promise or a thenable. |
 | [`isRegExp`](isRegExp) | Checks if a value is a RegExp instance. |
-| `isSafeInteger` | Use native: `Number.isSafeInteger(value)` *(ES2015)* |
-| `isSet (Set data structure)` | Use native: `value instanceof Set` *(ES2015)* |
+| `isSafeInteger` | <span class="badge badge--secondary">native JS</span> `Number.isSafeInteger(value)` *(ES2015)* |
+| `isSet (Set data structure)` | <span class="badge badge--secondary">native JS</span> `value instanceof Set` *(ES2015)* |
 | [`isSpecialObject`](isSpecialObject) | Determines if a value is a special object that should not have its properties compared deeply. |
 | [`isString`](isString) | Checks if a value is a string. |
 | [`isSymbol`](isSymbol) | Checks if a value is a symbol. |
@@ -52,8 +52,8 @@ Utility functions for working with type operations.
 | [`isUndefined`](isUndefined) | Checks if a value is `undefined`. |
 | [`isValidDate`](isValidDate) | Checks if a value is a valid Date instance (not `Invalid Date`). |
 | [`isValidRegex`](isValidRegex) | Checks if a string is a valid regex pattern. |
-| `isWeakMap / isWeakSet / isWeakRef` | Use native: `value instanceof WeakMap / WeakSet / WeakRef` *(ES2015 / ES2021)* |
+| `isWeakMap / isWeakSet / isWeakRef` | <span class="badge badge--secondary">native JS</span> `value instanceof WeakMap / WeakSet / WeakRef` *(ES2015 / ES2021)* |
 | [`Maybe`](Maybe) | Type for values that can be T, undefined, or null. |
 | [`Primitive`](Primitive) | Union of all JavaScript primitive types. |
-| `TypedArrays (isInt8Array, isFloat32Array, ...)` | Use native: `value instanceof Int8Array / Float32Array / ...` *(ES2015)* |
+| `TypedArrays (isInt8Array, isFloat32Array, ...)` | <span class="badge badge--secondary">native JS</span> `value instanceof Int8Array / Float32Array / ...` *(ES2015)* |
 

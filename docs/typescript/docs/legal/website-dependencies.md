@@ -7,8 +7,6 @@ sidebar_position: 3
 
 This documentation website is built with [Docusaurus](https://docusaurus.io) and uses the following open-source packages:
 
-## Runtime
-
 | Package | License | Description |
 |---------|:-------:|-------------|
 | [@docusaurus/core](https://docusaurus.io) | MIT | Static site generator |
@@ -18,12 +16,6 @@ This documentation website is built with [Docusaurus](https://docusaurus.io) and
 | [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) | MIT | Syntax highlighting |
 | [react](https://react.dev) | MIT | UI library |
 | [react-dom](https://react.dev) | MIT | React DOM renderer |
-
-## Development only
-
-| Package | License | Description |
-|---------|:-------:|-------------|
-| [typescript](https://www.typescriptlang.org) | Apache-2.0 | TypeScript compiler |
 
 :::info
 These dependencies are used only to build and serve this documentation website. They are **not** bundled with or required by the `@helpers4/*` library packages.

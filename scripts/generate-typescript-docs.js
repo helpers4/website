@@ -137,6 +137,7 @@ try {
       : '';
 
     // Merge implemented helpers and native alternatives, sorted alphabetically by name
+    const NATIVE_BADGE = '<span class="badge badge--secondary">native JS</span>';
     const allEntries = [
       ...functions.map(fn => ({
         sortKey: fn.name.toLowerCase(),
@@ -144,7 +145,7 @@ try {
       })),
       ...(natives?.functions || []).map(n => ({
         sortKey: n.name.toLowerCase(),
-        row: `| \`${escapeMarkdownTable(n.name)}\` | Use native: \`${escapeMarkdownTable(n.native)}\`${n.since ? ` *(${n.since})*` : ''} |`,
+        row: `| \`${escapeMarkdownTable(n.name)}\` | ${NATIVE_BADGE} \`${escapeMarkdownTable(n.native)}\`${n.since ? ` *(${n.since})*` : ''} |`,
       })),
     ].sort((a, b) => a.sortKey.localeCompare(b.sortKey));
 
@@ -299,7 +300,7 @@ function generateLegalDocs(categories) {
   const rows = [...depMap.values()]
     .sort((a, b) => a.dep.name.localeCompare(b.dep.name))
     .map(({ dep, categories: cats }) =>
-      `| [${dep.name}](${dep.homepage || dep.repository || '#'}) | ${dep.license} | ${cats.map(c => `\`${c}\``).join(', ')} |`
+      `| ${cats.map(c => `\`${c}\``).join(', ')} | [${dep.name}](${dep.homepage || dep.repository || '#'}) | ${dep.license} |`
     )
     .join('\n');
 
@@ -312,8 +313,8 @@ sidebar_position: 2
 
 Third-party packages used by \`@helpers4/*\` TypeScript helpers at runtime:
 
-| Package | License | Used by |
-|---------|:-------:|---------|
+| Used by | Package | License |
+|---------|---------|:-------:|
 ${rows}
 `;
 
@@ -323,13 +324,14 @@ ${rows}
 
 /**
  * Generate a single page listing all functions across all categories.
- * Includes native alternatives (no link, tagged "Use native:").
- * Useful for search (Ctrl+F) and SEO indexing.
+ * Lives in categories/ so it appears first in the Categories sidebar section.
+ * Includes native alternatives (no link, "native JS" badge).
  */
 function generateAllFunctionsPage(categories) {
-  const refDir = path.join(rootDir, 'docs', 'typescript', 'docs', 'reference');
-  fs.mkdirSync(refDir, { recursive: true });
+  const catDir = path.join(rootDir, 'docs', 'typescript', 'docs', 'categories');
+  fs.mkdirSync(catDir, { recursive: true });
 
+  const NATIVE_BADGE = '<span class="badge badge--secondary">native JS</span>';
   let rows = [];
   let nativeCount = 0;
 
@@ -338,32 +340,33 @@ function generateAllFunctionsPage(categories) {
     if (!api?.functions) continue;
 
     for (const fn of api.functions) {
-      rows.push(
-        `| [\`${fn.name}\`](../categories/${category}/${fn.name}) | [${category}](../categories/${category}/) | ${escapeMarkdownTable(firstSentence(fn.description))} |`
-      );
+      rows.push({
+        sortKey: fn.name.toLowerCase(),
+        row: `| [\`${fn.name}\`](${category}/${fn.name}) | [${category}](${category}/) | ${escapeMarkdownTable(firstSentence(fn.description))} |`,
+      });
     }
 
     const natives = readJson(path.join(buildPath, category, 'meta', 'native-alternatives.json'));
     for (const n of (natives?.functions || [])) {
-      const tag = `Use native: \`${escapeMarkdownTable(n.native)}\`${n.since ? ` *(${n.since})*` : ''}`;
-      rows.push(
-        `| \`${escapeMarkdownTable(n.name)}\` | [${category}](../categories/${category}/) | ${tag} |`
-      );
+      rows.push({
+        sortKey: n.name.toLowerCase(),
+        row: `| \`${escapeMarkdownTable(n.name)}\` | [${category}](${category}/) | ${NATIVE_BADGE} \`${escapeMarkdownTable(n.native)}\`${n.since ? ` *(${n.since})*` : ''} |`,
+      });
       nativeCount++;
     }
   }
 
-  rows.sort((a, b) => {
-    // Extract the bare name (between first pair of backticks) for sorting
-    const name = r => (r.match(/`([^`]+)`/) || ['', ''])[1].toLowerCase();
-    return name(a).localeCompare(name(b));
-  });
+  rows.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
 
   const implementedCount = rows.length - nativeCount;
 
+  // Delete old location if it exists
+  const oldPath = path.join(rootDir, 'docs', 'typescript', 'docs', 'reference', 'all-functions.md');
+  if (fs.existsSync(oldPath)) fs.rmSync(oldPath);
+
   const content = `---
 sidebar_label: "All Functions"
-sidebar_position: 1
+sidebar_position: 0
 title: "All Functions"
 description: "Complete list of all @helpers4 TypeScript utility functions and native alternatives, by category."
 ---
@@ -374,11 +377,11 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 
 | Function | Category | Description |
 |----------|----------|-------------|
-${rows.join('\n')}
+${rows.map(r => r.row).join('\n')}
 `;
 
-  fs.writeFileSync(path.join(refDir, 'all-functions.md'), content);
-  console.log('  ✓ reference/all-functions (auto-generated)');
+  fs.writeFileSync(path.join(catDir, 'all-functions.md'), content);
+  console.log('  ✓ categories/all-functions (auto-generated)');
 }
 
 /**
