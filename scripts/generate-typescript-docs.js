@@ -81,12 +81,13 @@ function nativeRow(name, native, since, forLink) {
   return `| \`${escapeMarkdownTable(name)}\` | ${tag} |`;
 }
 
-// Read bundle metadata (contains mutationDashboardUrl for the current release)
+// Read bundle metadata (contains mutationDashboardUrl and runtimes for the current release)
 const buildMeta = readJson(path.join(buildPath, 'all', 'meta', 'build.json')) ?? {};
 const FALLBACK_MUTATION_DASHBOARD_URL =
   'https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main';
 const MUTATION_DASHBOARD_URL =
   buildMeta.mutationDashboardUrl ?? FALLBACK_MUTATION_DASHBOARD_URL;
+const RUNTIMES = buildMeta.runtimes ?? { node: '>=24.0.0', deno: 'compatible', bun: 'compatible' };
 
 try {
   // Discover categories from build/ (skip "all" bundle)
@@ -274,6 +275,9 @@ ${ex.code}
 
   // --- patch mutation dashboard URL in manually-written pages ---
   syncMutationDashboardUrl();
+
+  // --- patch runtime compatibility in getting-started ---
+  syncRuntimeCompatibility();
 
   console.log(`\n✅ Generated documentation for ${categories.length} categories (${totalFunctions} functions)`);
   console.log(`📁 Output: ${docsOutputPath}\n`);
@@ -520,5 +524,41 @@ function syncMutationDashboardUrl() {
       fs.writeFileSync(page, patched);
       console.log(`  ✓ patched mutation dashboard URL → ${path.basename(page)}`);
     }
+  }
+}
+
+/**
+ * Patch the "Runtime Compatibility" section in getting-started.md with values
+ * from build/all/meta/build.json (runtimes.node is read from engines.node in
+ * package.json at build time, so it always reflects the declared minimum).
+ */
+function syncRuntimeCompatibility() {
+  const page = path.join(rootDir, 'docs', 'typescript', 'docs', 'getting-started.md');
+  if (!fs.existsSync(page)) return;
+
+  const SECTION_RE = /## Runtime Compatibility\n[\s\S]*?(?=\n##|$)/;
+
+  const browserSupport = typeof RUNTIMES.browser === 'string' ? RUNTIMES.browser : RUNTIMES.browser?.es ?? 'ES2022+';
+  const newSection = `## Runtime Compatibility
+
+| Runtime | Support | Notes |
+|---------|:-------:|-------|
+| Browser | \`${browserSupport}\` | Chrome 93+, Firefox 90+, Safari 15+, Edge 93+ |
+| Frameworks | ✅ | React, Vue, Svelte, Angular, and more |
+| Node.js | \`${RUNTIMES.node}\` | |
+| Deno | ✅ | |
+| Bun | ✅ | |`;
+
+  const original = fs.readFileSync(page, 'utf-8');
+  const patched = SECTION_RE.test(original)
+    ? original.replace(SECTION_RE, newSection)
+    : original.replace(
+      '## Browser Support',
+      newSection + '\n\n## Browser Support'
+    );
+
+  if (patched !== original) {
+    fs.writeFileSync(page, patched);
+    console.log(`  ✓ patched runtime compatibility (Node.js ${RUNTIMES.node}, Browser ${browserSupport}) → getting-started.md`);
   }
 }
