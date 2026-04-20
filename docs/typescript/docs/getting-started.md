@@ -72,11 +72,15 @@ const result = deepMerge({ a: 1 }, { b: 2 });
 // result is { a: number, b: number }
 ```
 
-## Browser Support
+## Runtime Compatibility
 
-- Modern browsers (ES2022+)
-- Node.js 24+
-- All major frameworks (React, Vue, Svelte, Angular, etc.)
+| Runtime | Support | Notes |
+|---------|:-------:|-------|
+| Browser | `ES2022+` | Chrome 93+, Firefox 90+, Safari 15+, Edge 93+ |
+| Frameworks | ✅ | React, Vue, Svelte, Angular, and more |
+| Node.js | `>=24.0.0` | |
+| Deno | ✅ | |
+| Bun | ✅ | |
 
 ## Quality Guarantees
 
