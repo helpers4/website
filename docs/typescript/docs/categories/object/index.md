@@ -18,13 +18,13 @@ Utility functions for working with object operations.
 | [`DeepCompareResult`](DeepCompareResult) | Result type for deep comparison when objects are not identical |
 | [`deepMerge`](deepMerge) | Merges two or more objects deeply |
 | [`get`](get) | Gets a value from an object using a dot-notated path |
-| `has` | Use native: `Object.hasOwn(obj, key)` *(ES2022)* |
-| `keys / values` | Use native: `Object.keys() / Object.values()` *(ES2017)* |
-| `merge (shallow)` | Use native: `{ ...a, ...b } or Object.assign({}, a, b)` *(ES2015)* |
+| `has` | <span class="badge badge--secondary">native JS</span> `Object.hasOwn(obj, key)` *(ES2022)* |
+| `keys / values` | <span class="badge badge--secondary">native JS</span> `Object.keys() / Object.values()` *(ES2017)* |
+| `merge (shallow)` | <span class="badge badge--secondary">native JS</span> `{ ...a, ...b } or Object.assign({}, a, b)` *(ES2015)* |
 | [`omit`](omit) | Creates a new object without the specified keys. |
 | [`pick`](pick) | Creates a new object with only the specified keys. |
 | [`removeUndefinedNull`](removeUndefinedNull) | Remove null and undefined values from an object. |
 | [`set`](set) | Sets a value in an object using a dot-notated path |
 | [`shallowEquals`](shallowEquals) | Quick comparison of two objects using JSON.stringify. |
-| `toPairs / fromPairs` | Use native: `Object.entries() / Object.fromEntries()` *(ES2019)* |
+| `toPairs / fromPairs` | <span class="badge badge--secondary">native JS</span> `Object.entries() / Object.fromEntries()` *(ES2019)* |
 

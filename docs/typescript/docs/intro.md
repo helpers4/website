@@ -16,7 +16,15 @@ This is the documentation for the **@helpers4/typescript** library - a collectio
 
 ## What's new in V2?
 
-V2 introduces **no breaking changes** — existing code continues to work as-is. It brings a new CI pipeline for builds and the website, improved quality (better test and mutation coverage), and new helpers across existing categories.
+V2 is a major milestone for the library:
+
+- **New documentation website** — you're reading it
+- **40+ new helpers** across every category (array, date, promise, type, object…)
+- **New `math` category** — starting with UUID v7 generation
+- **100% test coverage enforced** — lines, branches, functions, statements, no exceptions
+- **Mutation testing** (Stryker) — ensures tests actually catch regressions
+- **Property-based testing** (fast-check) — invariants verified against thousands of random inputs
+- **Native API tracking** — functions that are now standard JavaScript are documented as such rather than re-implemented
 
 ## What is helpers4?
 
