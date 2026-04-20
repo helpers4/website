@@ -81,6 +81,13 @@ function nativeRow(name, native, since, forLink) {
   return `| \`${escapeMarkdownTable(name)}\` | ${tag} |`;
 }
 
+// Read bundle metadata (contains mutationDashboardUrl for the current release)
+const buildMeta = readJson(path.join(buildPath, 'all', 'meta', 'build.json')) ?? {};
+const FALLBACK_MUTATION_DASHBOARD_URL =
+  'https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main';
+const MUTATION_DASHBOARD_URL =
+  buildMeta.mutationDashboardUrl ?? FALLBACK_MUTATION_DASHBOARD_URL;
+
 try {
   // Discover categories from build/ (skip "all" bundle)
   const categories = fs.readdirSync(buildPath).filter(f =>
@@ -264,6 +271,9 @@ ${ex.code}
 
   // --- contributing page (synced from typescript repo) ---
   syncContributingPage();
+
+  // --- patch mutation dashboard URL in manually-written pages ---
+  syncMutationDashboardUrl();
 
   console.log(`\n✅ Generated documentation for ${categories.length} categories (${totalFunctions} functions)`);
   console.log(`📁 Output: ${docsOutputPath}\n`);
@@ -484,4 +494,31 @@ ${sourceContent}`;
 
   fs.writeFileSync(path.join(refDir, 'contributing.md'), content);
   console.log('  ✓ reference/contributing (synced from typescript repo)');
+}
+
+/**
+ * Patch the Stryker mutation dashboard URL in manually-written documentation pages.
+ * Replaces any existing dashboard.stryker-mutator.io URL for this project with
+ * the URL stored in build/all/meta/build.json (version-specific) so that docs
+ * always link to the report for the currently documented release.
+ */
+function syncMutationDashboardUrl() {
+  const STRYKER_URL_RE =
+    /https:\/\/dashboard\.stryker-mutator\.io\/reports\/github\.com\/helpers4\/typescript\/[^\s)\]"]+/g;
+
+  const pages = [
+    path.join(rootDir, 'docs', 'typescript', 'docs', 'intro.md'),
+    path.join(rootDir, 'docs', 'typescript', 'docs', 'getting-started.md'),
+    path.join(rootDir, 'docs', 'typescript', 'docs', 'reference', 'philosophy.md'),
+  ];
+
+  for (const page of pages) {
+    if (!fs.existsSync(page)) continue;
+    const original = fs.readFileSync(page, 'utf-8');
+    const patched = original.replace(STRYKER_URL_RE, MUTATION_DASHBOARD_URL);
+    if (patched !== original) {
+      fs.writeFileSync(page, patched);
+      console.log(`  ✓ patched mutation dashboard URL → ${path.basename(page)}`);
+    }
+  }
 }
