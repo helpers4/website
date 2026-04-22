@@ -12,7 +12,6 @@ Utility functions for working with type operations.
 
 | Function | Description |
 |----------|-------------|
-| [`Falsy`](Falsy) | Union of all falsy types in JavaScript. |
 | [`isArray`](isArray) | Checks if a value is an array. |
 | `isArrayBuffer / isBlob / isBuffer / isFormData` | <span class="badge badge--secondary">native JS</span> `value instanceof ArrayBuffer / Blob / Buffer / FormData` *(ES2015 / Web API)* |
 | [`isAsyncFunction`](isAsyncFunction) | Checks if a value is an async function. |
@@ -59,6 +58,5 @@ Utility functions for working with type operations.
 | [`isValidDate`](isValidDate) | Checks if a value is a valid Date instance (not `Invalid Date`). |
 | [`isValidRegex`](isValidRegex) | Checks if a string is a valid regex pattern. |
 | `isWeakMap / isWeakSet / isWeakRef` | <span class="badge badge--secondary">native JS</span> `value instanceof WeakMap / WeakSet / WeakRef` *(ES2015 / ES2021)* |
-| [`Primitive`](Primitive) | Union of all JavaScript primitive types. |
 | `TypedArrays (isInt8Array, isFloat32Array, ...)` | <span class="badge badge--secondary">native JS</span> `value instanceof Int8Array / Float32Array / ...` *(ES2015)* |
 

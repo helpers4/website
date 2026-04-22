@@ -39,7 +39,6 @@ All helpers listed by the version in which they were introduced, from newest to 
 | [`ensureDate`](../categories/date/ensureDate) | [date](../categories/date/) | Safely converts a date-like value to a valid `Date` object, or returns `null`.  Accepts `Date`, timestamps (seconds or milliseconds, auto-detected), date strings, and objects with an `epochMilliseconds` property (e.g. `Temporal.Instant`, `Temporal.ZonedDateTime`). Returns `null` for `null`, `undefined`, empty strings, `0`, and any value that produces an invalid `Date`.  This is the date equivalent of ensureArray — it normalizes flexible input into a guaranteed type (or a safe fallback). |
 | [`EpochMilliseconds`](../categories/date/EpochMilliseconds) | [date](../categories/date/) | An object that exposes an epoch timestamp in milliseconds.  This structural type is satisfied by `Temporal.Instant` and `Temporal.ZonedDateTime` (and any future object that carries the same property), so callers can pass Temporal values without importing them. |
 | [`equals`](../categories/array/equals) | [array](../categories/array/) | Simple helper that checks if two lists are identical. The order of elements in the list is not important. |
-| [`Falsy`](../categories/type/Falsy) | [type](../categories/type/) | Union of all falsy types in JavaScript. Note: `NaN` cannot be represented as a type in TypeScript. |
 | [`formatDuration`](../categories/date/formatDuration) | [date](../categories/date/) | Formats a duration in milliseconds as a compact human-readable string.  Produces output like `"1h 23m 45s"`. Zero-valued leading units are omitted (e.g. `"23m 45s"` instead of `"0h 23m 45s"`), but trailing zeros are kept up to the minimum unit (`"1h 0m 0s"` when `minUnit` is `'seconds'`).  Negative durations are prefixed with `"-"`. A zero duration returns `"0s"` (or `"0m"` / `"0h"` depending on `minUnit`). |
 | [`FormatDurationOptions`](../categories/date/FormatDurationOptions) | [date](../categories/date/) | Options for formatDuration. |
 | [`formatInTimezone`](../categories/date/formatInTimezone) | [date](../categories/date/) | Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`.  Returns `null` if the date or timezone is invalid. |
@@ -98,7 +97,6 @@ All helpers listed by the version in which they were introduced, from newest to 
 | [`partition`](../categories/array/partition) | [array](../categories/array/) | Splits an array into two groups based on a predicate function. The first group contains elements for which the predicate returns true, the second group contains the rest. |
 | [`pascalCase`](../categories/string/pascalCase) | [string](../categories/string/) | Converts a string to PascalCase. Handles camelCase, kebab-case, snake_case, spaces, and mixed formats. |
 | [`pick`](../categories/object/pick) | [object](../categories/object/) | Creates a new object with only the specified keys. |
-| [`Primitive`](../categories/type/Primitive) | [type](../categories/type/) | Union of all JavaScript primitive types. |
 | [`range`](../categories/array/range) | [array](../categories/array/) | Generates an array of sequential numbers from start to end (exclusive). If only one argument is provided, it generates numbers from 0 to that value. |
 | [`sample`](../categories/array/sample) | [array](../categories/array/) | Picks one or more random elements from an array. When called without a count, returns a single element or `undefined` if the array is empty. When called with a count, returns an array of up to `count` random elements sampled without replacement. |
 | [`shallowEquals`](../categories/array/shallowEquals) | [array](../categories/array/) | Quick comparison of two arrays using JSON.stringify. This is a fast but simple comparison that may not work for all edge cases. |
@@ -192,10 +190,4 @@ All helpers listed by the version in which they were introduced, from newest to 
 | [`withoutLeadingSlash`](../categories/url/withoutLeadingSlash) | [url](../categories/url/) | Removes the leading slash `/` from the given URL if it is present.  This function is useful for ensuring that URLs are properly formatted without a leading slash, which is often required in web development for consistency and to avoid issues with relative paths. |
 | [`withoutTrailingSlash`](../categories/url/withoutTrailingSlash) | [url](../categories/url/) | Removes the trailing slash `/` from the given URL if it is present.  This function is useful for ensuring that URLs are properly formatted without a trailing slash, which is often required in web development for consistency and to avoid issues with relative paths. |
 | [`withTrailingSlash`](../categories/url/withTrailingSlash) | [url](../categories/url/) | Adds a trailing slash `/` to the given URL if it is not already present.  This function is useful for ensuring that URLs are properly formatted with a trailing slash, which is often required in web development for consistency and to avoid issues with relative paths. |
-
-## *(version unknown)*
-
-| Function | Category | Description |
-|----------|----------|-------------|
-| [`Result`](../categories/promise/Result) | [promise](../categories/promise/) | Result tuple representing either a successful value or an error. On success: `[undefined, T]`. On error: `[Error, undefined]`. |
 
