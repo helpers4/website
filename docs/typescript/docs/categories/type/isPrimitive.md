@@ -46,6 +46,16 @@ isPrimitive({})       // => false
 isPrimitive([])       // => false
 ```
 
+## Related Types
+
+### `Primitive`
+
+Union of all JavaScript primitive types.
+
+```ts
+type Primitive = string | number | boolean | bigint | symbol | null | undefined
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/isPrimitive.ts)

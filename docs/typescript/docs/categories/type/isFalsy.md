@@ -43,6 +43,17 @@ isFalsy(null)      // => true
 isFalsy('hello')   // => false
 ```
 
+## Related Types
+
+### `Falsy`
+
+Union of all falsy types in JavaScript.
+Note: `NaN` cannot be represented as a type in TypeScript.
+
+```ts
+type Falsy = false | null | undefined | 0 | ""
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/isFalsy.ts)

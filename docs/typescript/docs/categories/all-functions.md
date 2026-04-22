@@ -7,7 +7,7 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 
 # All Functions
 
-**170** implemented helpers + **41** covered by native JavaScript APIs, sorted alphabetically.
+**167** implemented helpers + **41** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -61,7 +61,6 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | [`equals`](array/equals) | [array](array/) | Simple helper that checks if two lists are identical. |
 | [`errorToReadableMessage`](string/errorToReadableMessage) | [string](string/) | Convert an error to a readable message. |
 | [`extractPureURI`](url/extractPureURI) | [url](url/) | Extracts the pure URI from a URL by removing query parameters and fragments. |
-| [`Falsy`](type/Falsy) | [type](type/) | Union of all falsy types in JavaScript. |
 | [`falsyPromiseOrThrow`](promise/falsyPromiseOrThrow) | [promise](promise/) | Returns a function that passes through falsy data or throws an error. |
 | `find / findIndex` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
 | `flatten / flat` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.flat(depth?)` *(ES2019)* |
@@ -159,14 +158,12 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | [`partition`](array/partition) | [array](array/) | Splits an array into two groups based on a predicate function. |
 | [`pascalCase`](string/pascalCase) | [string](string/) | Converts a string to PascalCase. |
 | [`pick`](object/pick) | [object](object/) | Creates a new object with only the specified keys. |
-| [`Primitive`](type/Primitive) | [type](type/) | Union of all JavaScript primitive types. |
 | [`randomBetween`](number/randomBetween) | [number](number/) | Generates a random number between min and max (inclusive) |
 | [`randomIntBetween`](number/randomIntBetween) | [number](number/) | Generates a random integer between min and max (inclusive) |
 | [`range`](array/range) | [array](array/) | Generates an array of sequential numbers from start to end (exclusive). |
 | [`relativeURLToAbsolute`](url/relativeURLToAbsolute) | [url](url/) | Converts a relative URL to an absolute URL using the current document base URI. |
 | [`removeUndefinedNull`](object/removeUndefinedNull) | [object](object/) | Remove null and undefined values from an object. |
 | `repeat` | [string](string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.repeat()` *(ES2015)* |
-| [`Result`](promise/Result) | [promise](promise/) | Result tuple representing either a successful value or an error. |
 | [`retry`](promise/retry) | [promise](promise/) | Retries a promise-returning function up to maxAttempts times |
 | [`returnOrThrowError`](function/returnOrThrowError) | [function](function/) | Return a value or throw an error if null or undefined. |
 | `reverse` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |

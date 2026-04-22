@@ -250,6 +250,23 @@ ${exCode}
         }
       }
 
+      if (fn.relatedTypes?.length) {
+        content += `
+## Related Types
+`;
+        for (const rt of fn.relatedTypes) {
+          content += `
+### \`${rt.name}\`
+
+${rt.description || ''}
+
+\`\`\`ts
+${rt.typeDefinition}
+\`\`\`
+`;
+        }
+      }
+
       content += `
 ## Source
 

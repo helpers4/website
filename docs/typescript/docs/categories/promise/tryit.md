@@ -53,6 +53,17 @@ const [error, data] = safeParse('invalid');
 // error instanceof SyntaxError, data === undefined
 ```
 
+## Related Types
+
+### `Result`
+
+Result tuple representing either a successful value or an error.
+On success: `[undefined, T]`. On error: `[Error, undefined]`.
+
+```ts
+type Result<T> = [error: undefined, value: T] | [error: Error, value: undefined]
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/promise/tryit.ts)
