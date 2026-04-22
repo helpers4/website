@@ -1,4 +1,4 @@
-name: Release Triggered - TypeScript
+name: On TypeScript Release
 
 on:
   repository_dispatch:

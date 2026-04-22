@@ -1,8 +1,8 @@
-name: Release Triggered - TypeScript
+name: On Action Release
 
 on:
   repository_dispatch:
-    types: [ typescript-release ]
+    types: [ action-release ]
 
 jobs:
   update-and-deploy:
@@ -33,25 +33,18 @@ jobs:
           NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
         run: pnpm install --frozen-lockfile
 
-      - name: Download TypeScript build artifacts
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_VERSION: ${{ github.event.client_payload.version }}
-        run: |
-          echo "📦 Downloading build artifacts for v${RELEASE_VERSION}..."
-          gh release download "v${RELEASE_VERSION}" \
-            --repo helpers4/typescript \
-            --pattern "build-meta.tar.gz" \
-            --dir /tmp
-          mkdir -p /tmp/typescript/build
-          tar -xzf /tmp/build-meta.tar.gz -C /tmp/typescript/build
+      - name: Checkout Action repo
+        uses: actions/checkout@v6
+        with:
+          repository: helpers4/action
+          path: _action
 
-      - name: Generate TypeScript docs from build artifacts
+      - name: Generate Action docs
         env:
           GH_WORKSPACE: ${{ github.workspace }}
         run: |
-          ln -sfn /tmp/typescript "${GH_WORKSPACE}/../typescript"
-          node scripts/generate-typescript-docs.js
+          ln -sfn "${GH_WORKSPACE}/_action" "${GH_WORKSPACE}/../action"
+          node scripts/generate-action-docs.js
 
       - name: Commit and push updated docs
         env:
@@ -59,7 +52,7 @@ jobs:
         run: |
           git config user.name "pushinator[bot]"
           git config user.email "pushinator[bot]@users.noreply.github.com"
-          git add docs/typescript/
+          git add docs/github-action/
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git commit -m "chore(lib-typescript): 🔧 update docs for v${RELEASE_VERSION}"
+          git commit -m "chore(lib-action): 🔧 update docs for v${RELEASE_VERSION}"
           git push origin main
