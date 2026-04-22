@@ -20,7 +20,7 @@ import { isIterable } from '@helpers4/type';
 ## Signature
 
 ```ts
-isIterable(value: unknown): value
+isIterable(value: unknown): value is Iterable<unknown, any, any>
 ```
 
 ## Parameters
@@ -31,7 +31,7 @@ isIterable(value: unknown): value
 
 ## Returns
 
-`value` — True if value is iterable
+`value is Iterable<unknown, any, any>` — True if value is iterable
 
 ## Examples
 
@@ -40,14 +40,12 @@ isIterable(value: unknown): value
 
 
 ```ts
-```ts
 isIterable([1, 2, 3])      // => true
 isIterable('hello')        // => true
 isIterable(new Map())      // => true
 isIterable(new Set())      // => true
 isIterable({})             // => false
 isIterable(42)             // => false
-```
 ```
 
 ## Source

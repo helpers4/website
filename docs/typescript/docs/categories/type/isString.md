@@ -37,10 +37,8 @@ isString(value: unknown): value is string
 
 
 ```ts
-```ts
 isString('hello') // => true
 isString(123)     // => false
-```
 ```
 
 ## Source

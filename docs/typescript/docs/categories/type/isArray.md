@@ -17,7 +17,7 @@ import { isArray } from '@helpers4/type';
 ## Signature
 
 ```ts
-isArray(value: unknown): value
+isArray(value: unknown): value is unknown[]
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isArray(value: unknown): value
 
 ## Returns
 
-`value` — True if value is an array
+`value is unknown[]` — True if value is an array
 
 ## Examples
 
@@ -37,11 +37,9 @@ isArray(value: unknown): value
 
 
 ```ts
-```ts
 isArray([1, 2, 3]) // => true
 isArray('hello')   // => false
 isArray({})        // => false
-```
 ```
 
 ## Source

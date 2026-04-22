@@ -20,7 +20,7 @@ import { isPromise } from '@helpers4/type';
 ## Signature
 
 ```ts
-isPromise(value: unknown): value
+isPromise(value: unknown): value is PromiseLike<unknown>
 ```
 
 ## Parameters
@@ -31,7 +31,7 @@ isPromise(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a Promise-like object
+`value is PromiseLike<unknown>` — True if value is a Promise-like object
 
 ## Examples
 
@@ -40,12 +40,10 @@ isPromise(value: unknown): value
 
 
 ```ts
-```ts
 isPromise(Promise.resolve(42))     // => true
 isPromise(new Promise(() => {}))   // => true
 isPromise({ then: () => {} })      // => false (no .catch)
 isPromise(42)                      // => false
-```
 ```
 
 ## Source

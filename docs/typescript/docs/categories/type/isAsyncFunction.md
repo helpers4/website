@@ -19,7 +19,7 @@ import { isAsyncFunction } from '@helpers4/type';
 ## Signature
 
 ```ts
-isAsyncFunction(value: unknown): value
+isAsyncFunction(value: unknown): value is function
 ```
 
 ## Parameters
@@ -30,7 +30,7 @@ isAsyncFunction(value: unknown): value
 
 ## Returns
 
-`value` — True if value is an async function
+`value is function` — True if value is an async function
 
 ## Examples
 
@@ -39,12 +39,10 @@ isAsyncFunction(value: unknown): value
 
 
 ```ts
-```ts
 isAsyncFunction(async () => {})      // => true
 isAsyncFunction(async function() {}) // => true
 isAsyncFunction(() => {})            // => false
 isAsyncFunction(42)                  // => false
-```
 ```
 
 ## Source

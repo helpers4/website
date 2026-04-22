@@ -19,7 +19,7 @@ import { isNegativeNumber } from '@helpers4/type';
 ## Signature
 
 ```ts
-isNegativeNumber(value: unknown): value
+isNegativeNumber(value: unknown): value is number
 ```
 
 ## Parameters
@@ -30,7 +30,7 @@ isNegativeNumber(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a negative number
+`value is number` — True if value is a negative number
 
 ## Examples
 
@@ -39,13 +39,11 @@ isNegativeNumber(value: unknown): value
 
 
 ```ts
-```ts
 isNegativeNumber(-1)   // => true
 isNegativeNumber(-0.5) // => true
 isNegativeNumber(0)    // => false
 isNegativeNumber(1)    // => false
 isNegativeNumber(NaN)  // => false
-```
 ```
 
 ## Source

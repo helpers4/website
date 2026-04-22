@@ -17,7 +17,7 @@ import { isBigInt } from '@helpers4/type';
 ## Signature
 
 ```ts
-isBigInt(value: unknown): value
+isBigInt(value: unknown): value is bigint
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isBigInt(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a bigint
+`value is bigint` — True if value is a bigint
 
 ## Examples
 
@@ -37,11 +37,9 @@ isBigInt(value: unknown): value
 
 
 ```ts
-```ts
 isBigInt(42n)  // => true
 isBigInt(42)   // => false
 isBigInt('42') // => false
-```
 ```
 
 ## Source

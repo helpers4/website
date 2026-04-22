@@ -24,7 +24,7 @@ import { isTimestamp } from '@helpers4/type';
 ## Signature
 
 ```ts
-isTimestamp(value: unknown): value
+isTimestamp(value: unknown): value is number
 ```
 
 ## Parameters
@@ -35,7 +35,7 @@ isTimestamp(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a number that represents a valid timestamp
+`value is number` — True if value is a number that represents a valid timestamp
 
 ## Examples
 
@@ -44,13 +44,11 @@ isTimestamp(value: unknown): value
 
 
 ```ts
-```ts
 isTimestamp(1609459200000) // => true (JS ms — 2021-01-01)
 isTimestamp(1609459200)    // => true (Unix seconds — 2021-01-01)
 isTimestamp(Date.now())    // => true
 isTimestamp(NaN)           // => false
 isTimestamp('1609459200')  // => false (not a number)
-```
 ```
 
 ## Source

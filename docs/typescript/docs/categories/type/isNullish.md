@@ -17,7 +17,7 @@ import { isNullish } from '@helpers4/type';
 ## Signature
 
 ```ts
-isNullish(value: unknown): value
+isNullish(value: unknown): value is null | undefined
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isNullish(value: unknown): value
 
 ## Returns
 
-`value` — True if value is null or undefined
+`value is null | undefined` — True if value is null or undefined
 
 ## Examples
 

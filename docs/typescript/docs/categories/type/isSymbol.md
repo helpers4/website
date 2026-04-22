@@ -17,7 +17,7 @@ import { isSymbol } from '@helpers4/type';
 ## Signature
 
 ```ts
-isSymbol(value: unknown): value
+isSymbol(value: unknown): value is symbol
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isSymbol(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a symbol
+`value is symbol` — True if value is a symbol
 
 ## Examples
 
@@ -37,11 +37,9 @@ isSymbol(value: unknown): value
 
 
 ```ts
-```ts
 isSymbol(Symbol('test')) // => true
 isSymbol(Symbol.iterator) // => true
 isSymbol('symbol')       // => false
-```
 ```
 
 ## Source

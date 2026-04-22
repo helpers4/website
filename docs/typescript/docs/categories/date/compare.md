@@ -6,6 +6,8 @@ sidebar_label: "compare"
 
 Comparison of two dates.
 
+Accepts any DateLike input (Date, timestamp, or date string).
+
 > Available since v2.0.0
 
 ## Import
@@ -17,15 +19,15 @@ import { compare } from '@helpers4/date';
 ## Signature
 
 ```ts
-compare(dateA: Date, dateB: Date, options: DateCompareOptions): boolean
+compare(dateA: DateLike, dateB: DateLike, options: DateCompareOptions): boolean
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `dateA` | `Date` | First date to compare |
-| `dateB` | `Date` | Second date to compare |
+| `dateA` | `DateLike` | First date to compare |
+| `dateB` | `DateLike` | Second date to compare |
 | `options` | `DateCompareOptions` | Comparison options |
 
 ## Returns

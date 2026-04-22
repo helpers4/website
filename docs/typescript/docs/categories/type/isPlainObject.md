@@ -20,7 +20,7 @@ import { isPlainObject } from '@helpers4/type';
 ## Signature
 
 ```ts
-isPlainObject(value: unknown): value
+isPlainObject(value: unknown): value is Record<string, unknown>
 ```
 
 ## Parameters
@@ -31,7 +31,7 @@ isPlainObject(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a plain object
+`value is Record<string, unknown>` — True if value is a plain object
 
 ## Examples
 
@@ -40,13 +40,11 @@ isPlainObject(value: unknown): value
 
 
 ```ts
-```ts
 isPlainObject({})           // => true
 isPlainObject({ a: 1 })    // => true
 isPlainObject(new Date())  // => false
 isPlainObject([])          // => false
 isPlainObject(null)        // => false
-```
 ```
 
 ## Source

@@ -47,13 +47,18 @@ Utility functions for working with type operations.
 | [`isSpecialObject`](isSpecialObject) | Determines if a value is a special object that should not have its properties compared deeply. |
 | [`isString`](isString) | Checks if a value is a string. |
 | [`isSymbol`](isSymbol) | Checks if a value is a symbol. |
+| [`isTemporalDuration`](isTemporalDuration) | Checks if a value is a `Temporal.Duration`. |
+| [`isTemporalInstant`](isTemporalInstant) | Checks if a value is a `Temporal.Instant`. |
+| [`isTemporalPlainDate`](isTemporalPlainDate) | Checks if a value is a `Temporal.PlainDate`. |
+| [`isTemporalPlainDateTime`](isTemporalPlainDateTime) | Checks if a value is a `Temporal.PlainDateTime`. |
+| [`isTemporalPlainTime`](isTemporalPlainTime) | Checks if a value is a `Temporal.PlainTime`. |
+| [`isTemporalZonedDateTime`](isTemporalZonedDateTime) | Checks if a value is a `Temporal.ZonedDateTime`. |
 | [`isTimestamp`](isTimestamp) | Checks if a value is a valid timestamp (milliseconds or Unix seconds). |
 | [`isTruthy`](isTruthy) | Checks if a value is truthy (not `false`, `null`, `undefined`, `0`, `""`, or `NaN`). |
 | [`isUndefined`](isUndefined) | Checks if a value is `undefined`. |
 | [`isValidDate`](isValidDate) | Checks if a value is a valid Date instance (not `Invalid Date`). |
 | [`isValidRegex`](isValidRegex) | Checks if a string is a valid regex pattern. |
 | `isWeakMap / isWeakSet / isWeakRef` | <span class="badge badge--secondary">native JS</span> `value instanceof WeakMap / WeakSet / WeakRef` *(ES2015 / ES2021)* |
-| [`Maybe`](Maybe) | Type for values that can be T, undefined, or null. |
 | [`Primitive`](Primitive) | Union of all JavaScript primitive types. |
 | `TypedArrays (isInt8Array, isFloat32Array, ...)` | <span class="badge badge--secondary">native JS</span> `value instanceof Int8Array / Float32Array / ...` *(ES2015)* |
 

@@ -4,7 +4,7 @@ sidebar_label: "daysDifference"
 
 # daysDifference
 
-Gets the difference in days between two dates
+Gets the difference in days between two dates.
 
 > Available since v2.0.0
 
@@ -29,7 +29,7 @@ daysDifference(date1: Date, date2: Date): number
 
 ## Returns
 
-`number` — Number of days difference
+`number` — Number of days difference (rounded)
 
 ## Examples
 

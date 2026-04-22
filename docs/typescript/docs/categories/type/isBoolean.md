@@ -17,7 +17,7 @@ import { isBoolean } from '@helpers4/type';
 ## Signature
 
 ```ts
-isBoolean(value: unknown): value
+isBoolean(value: unknown): value is boolean
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isBoolean(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a boolean
+`value is boolean` — True if value is a boolean
 
 ## Examples
 
@@ -37,11 +37,9 @@ isBoolean(value: unknown): value
 
 
 ```ts
-```ts
 isBoolean(true)  // => true
 isBoolean(false) // => true
 isBoolean(1)     // => false
-```
 ```
 
 ## Source

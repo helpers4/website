@@ -17,7 +17,7 @@ import { isRegExp } from '@helpers4/type';
 ## Signature
 
 ```ts
-isRegExp(value: unknown): value
+isRegExp(value: unknown): value is RegExp
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isRegExp(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a RegExp
+`value is RegExp` — True if value is a RegExp
 
 ## Examples
 
@@ -37,11 +37,9 @@ isRegExp(value: unknown): value
 
 
 ```ts
-```ts
 isRegExp(/abc/)          // => true
 isRegExp(new RegExp('a')) // => true
 isRegExp('abc')          // => false
-```
 ```
 
 ## Source

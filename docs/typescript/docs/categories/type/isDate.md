@@ -20,7 +20,7 @@ import { isDate } from '@helpers4/type';
 ## Signature
 
 ```ts
-isDate(value: unknown): value
+isDate(value: unknown): value is Date
 ```
 
 ## Parameters
@@ -31,7 +31,7 @@ isDate(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a Date instance
+`value is Date` — True if value is a Date instance
 
 ## Examples
 
@@ -40,12 +40,10 @@ isDate(value: unknown): value
 
 
 ```ts
-```ts
 isDate(new Date())          // => true
 isDate(new Date('invalid')) // => true (still a Date instance)
 isDate('2023-01-01')       // => false
 isDate(1609459200000)      // => false
-```
 ```
 
 ## Source

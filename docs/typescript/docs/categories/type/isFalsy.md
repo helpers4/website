@@ -17,7 +17,7 @@ import { isFalsy } from '@helpers4/type';
 ## Signature
 
 ```ts
-isFalsy(value: unknown): value
+isFalsy(value: unknown): value is Falsy
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isFalsy(value: unknown): value
 
 ## Returns
 
-`value` — True if the value is falsy
+`value is Falsy` — True if the value is falsy
 
 ## Examples
 

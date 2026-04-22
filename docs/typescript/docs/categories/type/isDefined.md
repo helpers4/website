@@ -20,7 +20,7 @@ import { isDefined } from '@helpers4/type';
 ## Signature
 
 ```ts
-isDefined<T>(value: Maybe<T>): value
+isDefined<T>(value: Maybe<T>): value is T
 ```
 
 ## Parameters
@@ -31,7 +31,7 @@ isDefined<T>(value: Maybe<T>): value
 
 ## Returns
 
-`value` — True if value is not undefined nor null
+`value is T` — True if value is not undefined nor null
 
 ## Examples
 
@@ -40,12 +40,10 @@ isDefined<T>(value: Maybe<T>): value
 
 
 ```ts
-```ts
 isDefined(42)        // => true
 isDefined('')        // => true (empty string is defined)
 isDefined(null)      // => false
 isDefined(undefined) // => false
-```
 ```
 
 ### isDefined
@@ -53,12 +51,10 @@ isDefined(undefined) // => false
 
 
 ```ts
-```ts
 // Type-safe alternative to filter out null/undefined
 const items: (string | null | undefined)[] = ['a', null, 'b', undefined];
 const result = items.filter(isDefined);
 // => ['a', 'b'] with type string[]
-```
 ```
 
 ## Source

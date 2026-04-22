@@ -81,7 +81,6 @@ const result = deepMerge({ a: 1 }, { b: 2 });
 | Node.js | `>=24.0.0` | |
 | Deno | ✅ | |
 | Bun | ✅ | |
-
 ## Quality Guarantees
 
 Every helper ships with:
@@ -90,7 +89,7 @@ Every helper ships with:
 - **Contract tests** — formal behavioral guarantees
 - **Boundary tests** — edge values and limit conditions covered explicitly
 - **Security edge case tests** — inputs like prototype pollution or injected keys
-- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main)
+- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.0-alpha.18)
 - **Benchmarks** (Vitest Bench) — performance tracked per build
 - **Dependency security audit** — `pnpm audit` on every PR and release
 - **OpenSSF Scorecard** — [view report](https://securityscorecards.dev/viewer/?uri=github.com/helpers4/typescript)

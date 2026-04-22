@@ -12,15 +12,62 @@ Utility functions for working with date operations.
 
 | Function | Description |
 |----------|-------------|
+| `add / subtract (date arithmetic)` | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.prototype.add(duration) / .subtract(duration)` *(Temporal (Stage 3))* |
+| [`addDays`](addDays) | Adds days to a date. |
+| [`addMonths`](addMonths) | Adds months to a date. |
+| [`addYears`](addYears) | Adds years to a date. |
+| [`clampDate`](clampDate) | Clamps a date to a [min, max] range. |
 | [`compare`](compare) | Comparison of two dates. |
+| `compare (ordering)` | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.compare(a, b) / Temporal.Instant.compare(a, b)` *(Temporal (Stage 3))* |
 | [`DateCompareOptions`](DateCompareOptions) | Options for date comparison |
-| [`dateToISOString`](dateToISOString) | Formats a date to ISO string or returns null |
-| [`daysDifference`](daysDifference) | Gets the difference in days between two dates |
-| [`isSameDay`](isSameDay) | Checks if two dates are the same day |
+| [`DateDifferenceOptions`](DateDifferenceOptions) | Options for date difference calculation |
+| [`DateLike`](DateLike) | A value that can be converted to a Date. |
+| [`DateRange`](DateRange) | A date range represented as a pair of date-like values. |
+| [`dateToISOString`](dateToISOString) | Formats a date to ISO string or returns null. |
+| [`DateTruncUnit`](DateTruncUnit) | Units supported by startOf and endOf. |
+| [`daysDifference`](daysDifference) | Gets the difference in days between two dates. |
+| [`daysInMonth`](daysInMonth) | Returns the number of days in the given month of the given year. |
+| [`difference`](difference) | Calculates the difference between two dates in the specified unit. |
+| [`DifferenceUnit`](DifferenceUnit) | Unit for date difference calculation |
+| [`eachDay`](eachDay) | Returns an array of `Date` objects for each day from `start` to `end` (inclusive). |
+| [`eachMonth`](eachMonth) | Returns an array of `Date` objects for the first day of each month from `start` to `end` (inclusive). |
+| [`endOf`](endOf) | Returns a new `Date` set to the **end** of the given unit. |
+| [`ensureDate`](ensureDate) | Safely converts a date-like value to a valid `Date` object, or returns `null`. |
+| [`EpochMilliseconds`](EpochMilliseconds) | An object that exposes an epoch timestamp in milliseconds. |
+| [`formatDuration`](formatDuration) | Formats a duration in milliseconds as a compact human-readable string. |
+| [`FormatDurationOptions`](FormatDurationOptions) | Options for formatDuration. |
+| [`formatInTimezone`](formatInTimezone) | Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`. |
+| [`FormatInTimezoneOptions`](FormatInTimezoneOptions) | Options for formatInTimezone. |
+| `from (parse temporal string)` | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.from(str) / Temporal.PlainDate.from(str) / etc.` *(Temporal (Stage 3))* |
+| [`fromMillis`](fromMillis) | Creates a `Date` from a timestamp in **milliseconds**. |
+| [`fromSeconds`](fromSeconds) | Creates a `Date` from a timestamp in **seconds**. |
+| [`getTimezoneOffset`](getTimezoneOffset) | Returns the UTC offset **in minutes** for the given IANA timezone at a specific point in time. |
+| [`isBusinessDay`](isBusinessDay) | Checks whether a date falls on a business day (i.e. |
+| [`isLeapYear`](isLeapYear) | Returns `true` if the given year is a leap year. |
+| [`isSameDay`](isSameDay) | Checks if two dates are the same day. |
+| [`isSameMonth`](isSameMonth) | Checks if two dates are in the same month (and year). |
+| [`isSameYear`](isSameYear) | Checks if two dates are in the same year. |
 | [`isTimestampInSeconds`](isTimestampInSeconds) | Checks if a timestamp is likely in seconds (Java/Unix style) vs milliseconds (JavaScript style) |
+| [`isValidDateString`](isValidDateString) | Checks whether a string can be parsed into a valid `Date`. |
+| [`isWeekend`](isWeekend) | Checks whether a date falls on a weekend day. |
+| [`isWithinRange`](isWithinRange) | Checks whether a date falls within a range (inclusive on both ends). |
+| [`listTimezones`](listTimezones) | Returns the list of IANA timezone identifiers supported by the runtime. |
 | [`normalizeTimestamp`](normalizeTimestamp) | Converts a timestamp to JavaScript milliseconds format |
-| [`safeDate`](safeDate) | Safely creates a Date object from various input types |
+| `now (date/time/instant)` | <span class="badge badge--secondary">native JS</span> `Temporal.Now.instant() / .zonedDateTimeISO() / .plainDateISO() / .plainTimeISO()` *(Temporal (Stage 3))* |
+| [`overlaps`](overlaps) | Checks whether two date ranges overlap. |
+| [`safeDate`](safeDate) | Safely creates a Date object from various input types. |
+| [`startOf`](startOf) | Returns a new `Date` set to the **start** of the given unit. |
+| [`timeAgo`](timeAgo) | Formats a date as a human-readable relative time string. |
+| [`TimeAgoOptions`](TimeAgoOptions) | Options for timeAgo. |
 | [`toISO8601`](toISO8601) | Converts a date to ISO 8601 format Format: YYYY-MM-DDTHH:mm:ss.sssZ |
+| [`toMillis`](toMillis) | Converts a date to a timestamp in **milliseconds** (epoch millis). |
+| `toPlainDate / toPlainDateTime / toPlainTime` | <span class="badge badge--secondary">native JS</span> `Temporal.ZonedDateTime.prototype.toPlainDate() / toPlainDateTime() / toPlainTime()` *(Temporal (Stage 3))* |
 | [`toRFC2822`](toRFC2822) | Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss +0000 Used in email headers (Date field) and HTT… |
 | [`toRFC3339`](toRFC3339) | Converts a date to RFC 3339 format Format: YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss+HH:mm RFC 3339 is a profile of… |
+| [`toSeconds`](toSeconds) | Converts a date to a timestamp in **seconds** (epoch seconds). |
+| `toTemporalInstant` | <span class="badge badge--secondary">native JS</span> `Date.prototype.toTemporalInstant()` *(Temporal (Stage 3))* |
+| `toZonedDateTime` | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.prototype.toZonedDateTimeISO(tz)` *(Temporal (Stage 3))* |
+| `until / since (difference)` | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.prototype.until(other) / .since(other)` *(Temporal (Stage 3))* |
+| [`WeekDay`](WeekDay) | A day-of-week number following the JavaScript `Date.getDay()` convention: 0 = Sunday, 1 = Monday, … 6 = Saturday. |
+| [`WeekDays`](WeekDays) | Named day-of-week constants following the JavaScript `Date.getDay()` convention. |
 
