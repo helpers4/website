@@ -17,7 +17,7 @@ import { isUndefined } from '@helpers4/type';
 ## Signature
 
 ```ts
-isUndefined(value: unknown): value
+isUndefined(value: unknown): value is undefined
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isUndefined(value: unknown): value
 
 ## Returns
 
-`value` — True if value is undefined
+`value is undefined` — True if value is undefined
 
 ## Examples
 
@@ -37,11 +37,9 @@ isUndefined(value: unknown): value
 
 
 ```ts
-```ts
 isUndefined(undefined) // => true
 isUndefined(null)      // => false
 isUndefined(0)         // => false
-```
 ```
 
 ## Source

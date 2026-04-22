@@ -18,14 +18,14 @@ import { toISO8601 } from '@helpers4/date';
 ## Signature
 
 ```ts
-toISO8601(date: string | number | Date): string | null
+toISO8601(date: DateLike): string | null
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `date` | `string \| number \| Date` | Date to convert (Date object, timestamp, or date string) |
+| `date` | `DateLike` | Date to convert (Date object, timestamp, or date string) |
 
 ## Returns
 

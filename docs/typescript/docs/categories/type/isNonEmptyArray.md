@@ -17,7 +17,7 @@ import { isNonEmptyArray } from '@helpers4/type';
 ## Signature
 
 ```ts
-isNonEmptyArray(value: unknown): value
+isNonEmptyArray(value: unknown): value is [unknown, rest]
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isNonEmptyArray(value: unknown): value
 
 ## Returns
 
-`value` — True if value is an array with at least one element
+`value is [unknown, rest]` — True if value is an array with at least one element
 
 ## Examples
 
@@ -37,12 +37,10 @@ isNonEmptyArray(value: unknown): value
 
 
 ```ts
-```ts
 isNonEmptyArray([1, 2]) // => true
 isNonEmptyArray([])     // => false
 isNonEmptyArray('abc')  // => false
 isNonEmptyArray(null)   // => false
-```
 ```
 
 ## Source

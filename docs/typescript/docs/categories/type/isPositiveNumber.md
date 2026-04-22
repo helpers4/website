@@ -19,7 +19,7 @@ import { isPositiveNumber } from '@helpers4/type';
 ## Signature
 
 ```ts
-isPositiveNumber(value: unknown): value
+isPositiveNumber(value: unknown): value is number
 ```
 
 ## Parameters
@@ -30,7 +30,7 @@ isPositiveNumber(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a positive number
+`value is number` — True if value is a positive number
 
 ## Examples
 
@@ -39,13 +39,11 @@ isPositiveNumber(value: unknown): value
 
 
 ```ts
-```ts
 isPositiveNumber(42)   // => true
 isPositiveNumber(0.1)  // => true
 isPositiveNumber(0)    // => false
 isPositiveNumber(-1)   // => false
 isPositiveNumber(NaN)  // => false
-```
 ```
 
 ## Source

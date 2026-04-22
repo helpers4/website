@@ -39,11 +39,9 @@ isValidDate(value: unknown): value is Date
 
 
 ```ts
-```ts
 isValidDate(new Date())          // => true
 isValidDate(new Date('invalid')) // => false
 isValidDate('2023-01-01')       // => false (not a Date instance)
-```
 ```
 
 ## Source

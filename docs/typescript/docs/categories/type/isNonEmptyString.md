@@ -17,7 +17,7 @@ import { isNonEmptyString } from '@helpers4/type';
 ## Signature
 
 ```ts
-isNonEmptyString(value: unknown): value
+isNonEmptyString(value: unknown): value is string
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isNonEmptyString(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a string with at least one character
+`value is string` — True if value is a string with at least one character
 
 ## Examples
 
@@ -37,12 +37,10 @@ isNonEmptyString(value: unknown): value
 
 
 ```ts
-```ts
 isNonEmptyString('hello') // => true
 isNonEmptyString('')      // => false
 isNonEmptyString(42)      // => false
 isNonEmptyString(null)    // => false
-```
 ```
 
 ## Source

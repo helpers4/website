@@ -4,7 +4,9 @@ sidebar_label: "isSameDay"
 
 # isSameDay
 
-Checks if two dates are the same day
+Checks if two dates are the same day.
+
+Accepts any DateLike input (Date, timestamp, or date string).
 
 > Available since v2.0.0
 
@@ -17,19 +19,19 @@ import { isSameDay } from '@helpers4/date';
 ## Signature
 
 ```ts
-isSameDay(date1: Date, date2: Date): boolean
+isSameDay(date1: DateLike, date2: DateLike): boolean
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `date1` | `Date` | First date |
-| `date2` | `Date` | Second date |
+| `date1` | `DateLike` | First date |
+| `date2` | `DateLike` | Second date |
 
 ## Returns
 
-`boolean` — True if same day
+`boolean` — True if same day, false otherwise (including when either date is invalid)
 
 ## Examples
 

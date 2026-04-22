@@ -21,7 +21,7 @@ import { isTruthy } from '@helpers4/type';
 ## Signature
 
 ```ts
-isTruthy<T>(value: Falsy | T): value
+isTruthy<T>(value: Falsy | T): value is T
 ```
 
 ## Parameters
@@ -32,7 +32,7 @@ isTruthy<T>(value: Falsy | T): value
 
 ## Returns
 
-`value` — True if the value is truthy
+`value is T` — True if the value is truthy
 
 ## Examples
 

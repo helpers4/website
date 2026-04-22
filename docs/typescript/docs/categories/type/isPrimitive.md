@@ -19,7 +19,7 @@ import { isPrimitive } from '@helpers4/type';
 ## Signature
 
 ```ts
-isPrimitive(value: unknown): value
+isPrimitive(value: unknown): value is Primitive
 ```
 
 ## Parameters
@@ -30,7 +30,7 @@ isPrimitive(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a primitive
+`value is Primitive` — True if value is a primitive
 
 ## Examples
 
@@ -39,13 +39,11 @@ isPrimitive(value: unknown): value
 
 
 ```ts
-```ts
 isPrimitive('hello')  // => true
 isPrimitive(42)       // => true
 isPrimitive(null)     // => true
 isPrimitive({})       // => false
 isPrimitive([])       // => false
-```
 ```
 
 ## Source

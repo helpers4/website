@@ -17,7 +17,7 @@ import { isFunction } from '@helpers4/type';
 ## Signature
 
 ```ts
-isFunction(value: unknown): value
+isFunction(value: unknown): value is Function
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isFunction(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a function
+`value is Function` — True if value is a function
 
 ## Examples
 
@@ -37,11 +37,9 @@ isFunction(value: unknown): value
 
 
 ```ts
-```ts
 isFunction(() => {})       // => true
 isFunction(function() {})  // => true
 isFunction('function')     // => false
-```
 ```
 
 ## Source

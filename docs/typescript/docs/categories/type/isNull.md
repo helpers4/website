@@ -17,7 +17,7 @@ import { isNull } from '@helpers4/type';
 ## Signature
 
 ```ts
-isNull(value: unknown): value
+isNull(value: unknown): value is null
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isNull(value: unknown): value
 
 ## Returns
 
-`value` — True if value is null
+`value is null` — True if value is null
 
 ## Examples
 
@@ -37,11 +37,9 @@ isNull(value: unknown): value
 
 
 ```ts
-```ts
 isNull(null)      // => true
 isNull(undefined) // => false
 isNull(0)         // => false
-```
 ```
 
 ## Source

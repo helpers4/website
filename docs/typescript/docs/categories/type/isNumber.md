@@ -20,7 +20,7 @@ import { isNumber } from '@helpers4/type';
 ## Signature
 
 ```ts
-isNumber(value: unknown): value
+isNumber(value: unknown): value is number
 ```
 
 ## Parameters
@@ -31,7 +31,7 @@ isNumber(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a number (excludes NaN)
+`value is number` — True if value is a number (excludes NaN)
 
 ## Examples
 
@@ -40,12 +40,10 @@ isNumber(value: unknown): value
 
 
 ```ts
-```ts
 isNumber(42)    // => true
 isNumber(0)     // => true
 isNumber(NaN)   // => false
 isNumber('123') // => false
-```
 ```
 
 ## Source

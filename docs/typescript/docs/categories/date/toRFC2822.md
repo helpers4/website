@@ -19,14 +19,14 @@ import { toRFC2822 } from '@helpers4/date';
 ## Signature
 
 ```ts
-toRFC2822(date: string | number | Date): string | null
+toRFC2822(date: DateLike): string | null
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `date` | `string \| number \| Date` | Date to convert (Date object, timestamp, or date string) |
+| `date` | `DateLike` | Date to convert (Date object, timestamp, or date string) |
 
 ## Returns
 
@@ -39,9 +39,7 @@ toRFC2822(date: string | number | Date): string | null
 
 
 ```ts
-```ts
 toRFC2822(new Date('2025-01-19T12:30:00Z')) // 'Sun, 19 Jan 2025 12:30:00 +0000'
-```
 ```
 
 ## Source

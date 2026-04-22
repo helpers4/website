@@ -19,14 +19,14 @@ import { toRFC3339 } from '@helpers4/date';
 ## Signature
 
 ```ts
-toRFC3339(date: string | number | Date, includeMilliseconds: boolean): string | null
+toRFC3339(date: DateLike, includeMilliseconds: boolean): string | null
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `date` | `string \| number \| Date` | Date to convert (Date object, timestamp, or date string) |
+| `date` | `DateLike` | Date to convert (Date object, timestamp, or date string) |
 | `includeMilliseconds` | `boolean` | Whether to include milliseconds (default: false) |
 
 ## Returns

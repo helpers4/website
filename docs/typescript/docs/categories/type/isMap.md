@@ -17,7 +17,7 @@ import { isMap } from '@helpers4/type';
 ## Signature
 
 ```ts
-isMap(value: unknown): value
+isMap(value: unknown): value is Map<unknown, unknown>
 ```
 
 ## Parameters
@@ -28,7 +28,7 @@ isMap(value: unknown): value
 
 ## Returns
 
-`value` — True if value is a Map
+`value is Map<unknown, unknown>` — True if value is a Map
 
 ## Examples
 
@@ -37,11 +37,9 @@ isMap(value: unknown): value
 
 
 ```ts
-```ts
 isMap(new Map())           // => true
 isMap(new Map([['a', 1]])) // => true
 isMap({})                  // => false
-```
 ```
 
 ## Source
