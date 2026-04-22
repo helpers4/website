@@ -8,8 +8,17 @@ jobs:
   update-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Pushinator token
+        id: app_token
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ vars.PUSHINATOR_ID }}
+          private-key: ${{ secrets.PUSHINATOR_KEY }}
+
       - name: Checkout website repo
         uses: actions/checkout@v6
+        with:
+          token: ${{ steps.app_token.outputs.token }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -34,17 +43,16 @@ jobs:
         env:
           GH_WORKSPACE: ${{ github.workspace }}
         run: |
-          # The generate script reads from ../action/
           ln -sfn "${GH_WORKSPACE}/_action" "${GH_WORKSPACE}/../action"
           node scripts/generate-action-docs.js
 
-      - name: Build all & deploy
+      - name: Commit and push updated docs
+        env:
+          RELEASE_VERSION: ${{ github.event.client_payload.version }}
         run: |
-          pnpm build:all
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=helpers4
+          git config user.name "pushinator[bot]"
+          git config user.email "pushinator[bot]@users.noreply.github.com"
+          git add docs/github-action/
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "chore(lib-action): 🔧 update docs for v${RELEASE_VERSION}"
+          git push origin main
