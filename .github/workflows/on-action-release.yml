@@ -7,6 +7,8 @@ on:
 jobs:
   update-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Get Pushinator token
         id: app_token
@@ -37,6 +39,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: helpers4/action
+          ref: v${{ github.event.client_payload.version }}
           path: _action
 
       - name: Generate Action docs
@@ -55,4 +58,15 @@ jobs:
           git add docs/github-action/
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           git commit -m "chore(lib-action): 🔧 update docs for v${RELEASE_VERSION}"
-          git push origin main
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            if [ "${attempt}" -eq 3 ]; then
+              echo "Failed to push updated docs after ${attempt} attempts"
+              exit 1
+            fi
+            sleep $((attempt * 5))
+          done

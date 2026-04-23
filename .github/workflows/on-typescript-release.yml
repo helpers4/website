@@ -7,6 +7,8 @@ on:
 jobs:
   update-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Get Pushinator token
         id: app_token
@@ -44,7 +46,14 @@ jobs:
             --pattern "build-meta.tar.gz" \
             --dir /tmp
           mkdir -p /tmp/typescript/build
-          tar -xzf /tmp/build-meta.tar.gz -C /tmp/typescript/build
+          if tar -tzf /tmp/build-meta.tar.gz | grep -Eq '(^/|(^|/)\.\.(/|$))'; then
+            echo "Unsafe path detected in build-meta.tar.gz"
+            exit 1
+          fi
+          tar -xzf /tmp/build-meta.tar.gz \
+            -C /tmp/typescript/build \
+            --no-same-owner \
+            --no-same-permissions
 
       - name: Generate TypeScript docs from build artifacts
         env:
@@ -62,4 +71,15 @@ jobs:
           git add docs/typescript/
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           git commit -m "chore(lib-typescript): 🔧 update docs for v${RELEASE_VERSION}"
-          git push origin main
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            if [ "${attempt}" -eq 3 ]; then
+              echo "Failed to push updated docs after ${attempt} attempts"
+              exit 1
+            fi
+            sleep $((attempt * 5))
+          done
