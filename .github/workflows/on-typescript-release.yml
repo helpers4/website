@@ -5,7 +5,7 @@ on:
     types: [ typescript-release ]
 
 jobs:
-  update-and-deploy:
+  update-docs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -48,6 +48,10 @@ jobs:
           mkdir -p /tmp/typescript/build
           if tar -tzf /tmp/build-meta.tar.gz | grep -Eq '(^/|(^|/)\.\.(/|$))'; then
             echo "Unsafe path detected in build-meta.tar.gz"
+            exit 1
+          fi
+          if tar -tvf /tmp/build-meta.tar.gz | awk '{print $1}' | grep -Eq '^[lh]'; then
+            echo "Symlink or hardlink detected in build-meta.tar.gz"
             exit 1
           fi
           tar -xzf /tmp/build-meta.tar.gz \

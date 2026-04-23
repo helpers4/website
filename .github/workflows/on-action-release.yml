@@ -5,7 +5,7 @@ on:
     types: [ action-release ]
 
 jobs:
-  update-and-deploy:
+  update-docs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
