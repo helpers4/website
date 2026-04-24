@@ -67,6 +67,18 @@ function firstSentence(str) {
 }
 
 /**
+ * Formats helper @since values for human-readable docs.
+ * - semver => v<semver>
+ * - next   => next
+ * - unknown/empty => null (hidden)
+ */
+function formatSinceLabel(since) {
+  if (!since || since === 'unknown') return null;
+  if (since === 'next') return 'next';
+  return `v${since}`;
+}
+
+/**
  * Formats a native alternative entry for a Markdown table row.
  * name   — "flatten / flat" style name from native-alternatives.json
  * native — "Array.prototype.flat(depth?)" native API
@@ -192,8 +204,9 @@ sidebar_label: "${fn.name}"
 ${fn.description || ''}
 `;
 
-      if (fn.since && fn.since !== 'unknown') {
-        content += `\n> Available since v${fn.since}\n`;
+      const sinceLabel = formatSinceLabel(fn.since);
+      if (sinceLabel) {
+        content += `\n> Available since ${sinceLabel}\n`;
       }
 
       content += `
@@ -419,8 +432,13 @@ ${rows.map(r => r.row).join('\n')}
 /**
  * Compare two semver strings, returning a negative value if a < b (i.e. a is older).
  * Newest version first (descending). Stable > pre-release of same base.
+ * Special values:
+ * - next: always first (new unreleased/pre-release helpers)
+ * - unknown: always last
  */
 function compareSemverDesc(a, b) {
+  if (a === 'next' && b !== 'next') return -1;
+  if (b === 'next' && a !== 'next') return 1;
   if (a === 'unknown') return 1;
   if (b === 'unknown') return -1;
 
@@ -477,7 +495,11 @@ All helpers listed by the version in which they were introduced, from newest to 
 
   for (const version of sortedVersions) {
     const fns = byVersion[version].sort((a, b) => a.name.localeCompare(b.name));
-    const label = version === 'unknown' ? '*(version unknown)*' : `v${version}`;
+    const label = version === 'unknown'
+      ? '*(version unknown)*'
+      : version === 'next'
+        ? '`next` *(upcoming prerelease)*'
+        : `v${version}`;
     content += `## ${label}\n\n`;
     content += `| Function | Category | Description |\n`;
     content += `|----------|----------|-------------|\n`;
