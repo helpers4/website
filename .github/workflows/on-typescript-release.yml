@@ -3,6 +3,16 @@ name: On TypeScript Release
 on:
   repository_dispatch:
     types: [ typescript-release ]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "TypeScript version to regenerate docs for (e.g. 2.0.0-alpha.20 or v2.0.0-alpha.20)"
+        required: true
+        type: string
+
+concurrency:
+  group: website-typescript-docs-${{ github.event.client_payload.version || inputs.version || github.run_id }}
+  cancel-in-progress: false
 
 jobs:
   update-docs:
@@ -14,7 +24,7 @@ jobs:
         id: app_token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ vars.PUSHINATOR_ID }}
+          client-id: ${{ vars.PUSHINATOR_ID }}
           private-key: ${{ secrets.PUSHINATOR_KEY }}
 
       - name: Checkout website repo
@@ -38,26 +48,99 @@ jobs:
       - name: Download TypeScript build artifacts
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_VERSION: ${{ github.event.client_payload.version }}
+          RELEASE_VERSION: ${{ github.event.client_payload.version || inputs.version }}
         run: |
-          echo "📦 Downloading build artifacts for v${RELEASE_VERSION}..."
-          gh release download "v${RELEASE_VERSION}" \
-            --repo helpers4/typescript \
-            --pattern "build-meta.tar.gz" \
-            --dir /tmp
+          set -euo pipefail
+
+          RELEASE_VERSION="${RELEASE_VERSION#v}"
+
+          if [ -z "${RELEASE_VERSION}" ]; then
+            echo "Missing release version. Provide client_payload.version (repository_dispatch) or inputs.version (workflow_dispatch)."
+            exit 1
+          fi
+
           mkdir -p /tmp/typescript/build
-          if tar -tzf /tmp/build-meta.tar.gz | grep -Eq '(^/|(^|/)\.\.(/|$))'; then
-            echo "Unsafe path detected in build-meta.tar.gz"
-            exit 1
+
+          safe_extract_tarball() {
+            local archive_path="$1"
+            local dest_dir="$2"
+
+            if tar -tzf "${archive_path}" | grep -Eq '(^/|(^|/)\.\.(/|$))'; then
+              echo "Unsafe path detected in ${archive_path}"
+              return 1
+            fi
+            if tar -tvf "${archive_path}" | awk '{print $1}' | grep -Eq '^[lh]'; then
+              echo "Symlink or hardlink detected in ${archive_path}"
+              return 1
+            fi
+
+            tar -xzf "${archive_path}" \
+              -C "${dest_dir}" \
+              --no-same-owner \
+              --no-same-permissions
+          }
+
+          fetch_from_release_artifact() {
+            echo "📦 Downloading release metadata artifact for v${RELEASE_VERSION}..."
+            rm -f /tmp/build-meta.tar.gz
+            gh release download "v${RELEASE_VERSION}" \
+              --repo helpers4/typescript \
+              --pattern "build-meta.tar.gz" \
+              --dir /tmp
+
+            rm -rf /tmp/typescript/build
+            mkdir -p /tmp/typescript/build
+            safe_extract_tarball /tmp/build-meta.tar.gz /tmp/typescript/build
+          }
+
+          fetch_from_npm_packages() {
+            echo "📦 Rebuilding metadata from npm packages for v${RELEASE_VERSION}..."
+
+            local npm_tmp="/tmp/typescript-npm"
+            rm -rf "${npm_tmp}"
+            mkdir -p "${npm_tmp}"
+
+            rm -rf /tmp/typescript/build
+            mkdir -p /tmp/typescript/build
+
+            pushd "${npm_tmp}" > /dev/null
+
+            npm pack "@helpers4/all@${RELEASE_VERSION}" --silent > /dev/null
+            local all_tgz
+            all_tgz="$(ls -1 *.tgz | head -n1)"
+
+            mkdir -p "${npm_tmp}/all"
+            safe_extract_tarball "${npm_tmp}/${all_tgz}" "${npm_tmp}/all"
+            mkdir -p /tmp/typescript/build/all
+            cp -R "${npm_tmp}/all/package/meta" /tmp/typescript/build/all/
+
+            local categories
+            categories="$(node -e "const fs=require('fs'); const p=JSON.parse(fs.readFileSync('${npm_tmp}/all/package/package.json','utf8')); console.log(Object.keys(p.peerDependencies||{}).map(name=>name.split('/').pop()).join(' '));")"
+
+            for category in ${categories}; do
+              rm -f ./*.tgz
+              npm pack "@helpers4/${category}@${RELEASE_VERSION}" --silent > /dev/null
+              local category_tgz
+              category_tgz="$(ls -1 *.tgz | head -n1)"
+
+              mkdir -p "${npm_tmp}/${category}"
+              safe_extract_tarball "${npm_tmp}/${category_tgz}" "${npm_tmp}/${category}"
+              mkdir -p "/tmp/typescript/build/${category}"
+              cp -R "${npm_tmp}/${category}/package/meta" "/tmp/typescript/build/${category}/"
+            done
+
+            popd > /dev/null
+          }
+
+          if fetch_from_release_artifact; then
+            echo "✅ Using release artifact metadata source"
+          else
+            echo "⚠️ Release artifact unavailable, falling back to npm packages"
+            fetch_from_npm_packages
+            echo "✅ Using npm metadata fallback source"
           fi
-          if tar -tvf /tmp/build-meta.tar.gz | awk '{print $1}' | grep -Eq '^[lh]'; then
-            echo "Symlink or hardlink detected in build-meta.tar.gz"
-            exit 1
-          fi
-          tar -xzf /tmp/build-meta.tar.gz \
-            -C /tmp/typescript/build \
-            --no-same-owner \
-            --no-same-permissions
+
+          echo "✅ TypeScript metadata prepared for v${RELEASE_VERSION}"
 
       - name: Generate TypeScript docs from build artifacts
         env:
@@ -68,8 +151,9 @@ jobs:
 
       - name: Commit and push updated docs
         env:
-          RELEASE_VERSION: ${{ github.event.client_payload.version }}
+          RELEASE_VERSION: ${{ github.event.client_payload.version || inputs.version }}
         run: |
+          RELEASE_VERSION="${RELEASE_VERSION#v}"
           git config user.name "pushinator[bot]"
           git config user.email "pushinator[bot]@users.noreply.github.com"
           git add docs/typescript/
