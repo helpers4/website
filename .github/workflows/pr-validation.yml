@@ -19,10 +19,7 @@ jobs:
         uses: helpers4/action/conventional-commits@main
         with:
           checkout: "true"
-          scopes: "landing|docs|lib-typescript|lib-devcontainer|lib-action|build|CI-CD|li\
-            cense|devcontainer|dependabot|deps|CODEOWNERS|deploy|AGENTS|install\
-            ation|typescript|pr-validation|governance|comparisons|url|type|intr\
-            o|reference|getting-started|legal|workflows|auto-assign|README"
+          scopes: "CI-CD|docs|landing|typescript|devcontainer|action|deps|dependabot"
           pr-comment: "error"
 
       - name: Set status
