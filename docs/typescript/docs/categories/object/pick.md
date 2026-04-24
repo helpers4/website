@@ -16,6 +16,7 @@ import { pick } from '@helpers4/object';
 
 ## Signature
 
+
 ```ts
 pick<T extends Record<string, unknown>, K extends string | number | symbol>(obj: T, keys: readonly K[]): Pick<T, K>
 ```

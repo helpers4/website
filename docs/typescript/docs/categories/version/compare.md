@@ -22,6 +22,7 @@ import { compare } from '@helpers4/version';
 
 ## Signature
 
+
 ```ts
 compare(version1: string, version2: string): number
 ```

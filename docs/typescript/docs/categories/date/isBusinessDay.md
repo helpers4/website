@@ -26,6 +26,7 @@ import { isBusinessDay } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 isBusinessDay(date: DateLike, weekendDays: readonly WeekDay[]): boolean
 ```

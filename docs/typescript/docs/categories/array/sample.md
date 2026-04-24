@@ -18,6 +18,7 @@ import { sample } from '@helpers4/array';
 
 ## Signature
 
+
 ```ts
 sample<T>(array: readonly T[]): T | undefined
 ```

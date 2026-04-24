@@ -16,6 +16,7 @@ import { clamp } from '@helpers4/number';
 
 ## Signature
 
+
 ```ts
 clamp(value: number, min: number, max: number): number
 ```

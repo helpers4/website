@@ -16,6 +16,7 @@ import { delay } from '@helpers4/promise';
 
 ## Signature
 
+
 ```ts
 delay<T = void>(ms: number, value?: T): Promise<T>
 ```

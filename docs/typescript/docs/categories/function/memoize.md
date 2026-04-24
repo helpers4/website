@@ -16,6 +16,7 @@ import { memoize } from '@helpers4/function';
 
 ## Signature
 
+
 ```ts
 memoize<A extends unknown[], R>(func: function): function
 ```

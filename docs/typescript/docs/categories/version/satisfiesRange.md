@@ -16,6 +16,7 @@ import { satisfiesRange } from '@helpers4/version';
 
 ## Signature
 
+
 ```ts
 satisfiesRange(version: string, range: string): boolean
 ```

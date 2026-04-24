@@ -18,6 +18,7 @@ import { isSameDay } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 isSameDay(date1: DateLike, date2: DateLike): boolean
 ```

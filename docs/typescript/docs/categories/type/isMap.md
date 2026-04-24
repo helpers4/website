@@ -16,6 +16,7 @@ import { isMap } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isMap(value: unknown): value is Map<unknown, unknown>
 ```

@@ -18,6 +18,7 @@ import { partition } from '@helpers4/array';
 
 ## Signature
 
+
 ```ts
 partition<T>(array: readonly T[], predicate: function): [T[], T[]]
 ```

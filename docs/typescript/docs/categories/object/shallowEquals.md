@@ -17,6 +17,7 @@ import { shallowEquals } from '@helpers4/object';
 
 ## Signature
 
+
 ```ts
 shallowEquals(objA: unknown, objB: unknown): boolean
 ```

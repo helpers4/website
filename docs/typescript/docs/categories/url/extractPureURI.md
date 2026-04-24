@@ -16,6 +16,7 @@ import { extractPureURI } from '@helpers4/url';
 
 ## Signature
 
+
 ```ts
 extractPureURI(url: string): string
 ```

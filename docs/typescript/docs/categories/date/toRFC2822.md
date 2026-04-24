@@ -18,6 +18,7 @@ import { toRFC2822 } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 toRFC2822(date: DateLike): string | null
 ```

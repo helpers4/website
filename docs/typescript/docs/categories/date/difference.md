@@ -18,6 +18,7 @@ import { difference } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 difference(dateA: DateLike, dateB: DateLike, options: DateDifferenceOptions): number
 ```

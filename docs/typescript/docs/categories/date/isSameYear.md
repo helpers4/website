@@ -18,6 +18,7 @@ import { isSameYear } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 isSameYear(date1: DateLike, date2: DateLike): boolean
 ```

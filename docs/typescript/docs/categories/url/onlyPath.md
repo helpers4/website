@@ -22,6 +22,7 @@ import { onlyPath } from '@helpers4/url';
 
 ## Signature
 
+
 ```ts
 onlyPath(url: string): string
 ```

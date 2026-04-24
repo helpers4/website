@@ -17,6 +17,7 @@ import { meaningPromiseOrThrow } from '@helpers4/promise';
 
 ## Signature
 
+
 ```ts
 meaningPromiseOrThrow<T>(error: string): function
 ```

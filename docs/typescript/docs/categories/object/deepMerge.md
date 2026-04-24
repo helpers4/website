@@ -16,6 +16,7 @@ import { deepMerge } from '@helpers4/object';
 
 ## Signature
 
+
 ```ts
 deepMerge<T extends Record<string, unknown>>(target: T, sources: Record<string, unknown>[]): T
 ```

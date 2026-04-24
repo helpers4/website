@@ -19,6 +19,7 @@ import { eachDay } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 eachDay(start: DateLike, end: DateLike): Date[]
 ```

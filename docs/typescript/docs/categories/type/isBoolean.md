@@ -16,6 +16,7 @@ import { isBoolean } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isBoolean(value: unknown): value is boolean
 ```

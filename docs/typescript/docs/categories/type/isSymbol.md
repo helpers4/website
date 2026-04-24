@@ -16,6 +16,7 @@ import { isSymbol } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isSymbol(value: unknown): value is symbol
 ```

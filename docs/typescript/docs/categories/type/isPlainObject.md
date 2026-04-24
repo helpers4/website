@@ -19,6 +19,7 @@ import { isPlainObject } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isPlainObject(value: unknown): value is Record<string, unknown>
 ```

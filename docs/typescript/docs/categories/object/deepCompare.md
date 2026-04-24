@@ -16,6 +16,7 @@ import { deepCompare } from '@helpers4/object';
 
 ## Signature
 
+
 ```ts
 deepCompare(objA: object | null | undefined, objB: object | null | undefined): boolean | DeepCompareResult
 ```

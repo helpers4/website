@@ -16,6 +16,7 @@ import { isNonEmptyArray } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isNonEmptyArray(value: unknown): value is [unknown, rest]
 ```

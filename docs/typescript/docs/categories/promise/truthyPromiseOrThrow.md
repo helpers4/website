@@ -16,6 +16,7 @@ import { truthyPromiseOrThrow } from '@helpers4/promise';
 
 ## Signature
 
+
 ```ts
 truthyPromiseOrThrow<T>(error: string): function
 ```

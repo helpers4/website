@@ -16,6 +16,7 @@ import { isArray } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isArray(value: unknown): value is unknown[]
 ```

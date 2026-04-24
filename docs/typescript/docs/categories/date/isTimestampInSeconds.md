@@ -16,6 +16,7 @@ import { isTimestampInSeconds } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 isTimestampInSeconds(timestamp: number): boolean
 ```

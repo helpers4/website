@@ -18,6 +18,7 @@ import { isAsyncFunction } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isAsyncFunction(value: unknown): value is function
 ```

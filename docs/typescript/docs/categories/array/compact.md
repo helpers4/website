@@ -16,6 +16,7 @@ import { compact } from '@helpers4/array';
 
 ## Signature
 
+
 ```ts
 compact<T>(array: readonly Falsy | T[]): Exclude<T, Falsy>[]
 ```

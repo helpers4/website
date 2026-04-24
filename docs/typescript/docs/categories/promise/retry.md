@@ -16,6 +16,7 @@ import { retry } from '@helpers4/promise';
 
 ## Signature
 
+
 ```ts
 retry<T>(fn: function, maxAttempts: number, delayMs: number): Promise<T>
 ```

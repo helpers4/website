@@ -16,6 +16,7 @@ import { returnOrThrowError } from '@helpers4/function';
 
 ## Signature
 
+
 ```ts
 returnOrThrowError<T>(value: T | null | undefined, error: string): T
 ```

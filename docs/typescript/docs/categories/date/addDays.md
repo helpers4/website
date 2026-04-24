@@ -19,6 +19,7 @@ import { addDays } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 addDays(date: DateLike, amount: number): Date | null
 ```

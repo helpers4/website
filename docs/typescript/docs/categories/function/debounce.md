@@ -16,6 +16,7 @@ import { debounce } from '@helpers4/function';
 
 ## Signature
 
+
 ```ts
 debounce<A extends unknown[], R>(func: function, delay: number): function
 ```

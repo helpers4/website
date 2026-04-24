@@ -16,6 +16,7 @@ import { isString } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isString(value: unknown): value is string
 ```

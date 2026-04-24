@@ -18,6 +18,7 @@ import { uuid7 } from '@helpers4/math';
 
 ## Signature
 
+
 ```ts
 uuid7(): string
 ```

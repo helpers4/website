@@ -22,6 +22,7 @@ import { endOf } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 endOf(date: DateLike, unit: DateTruncUnit): Date | null
 ```

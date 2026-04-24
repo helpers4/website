@@ -19,6 +19,7 @@ import { isTemporalDuration } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isTemporalDuration(value: unknown): value is Duration
 ```

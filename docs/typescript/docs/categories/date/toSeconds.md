@@ -19,6 +19,7 @@ import { toSeconds } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 toSeconds(date: DateLike): number | null
 ```

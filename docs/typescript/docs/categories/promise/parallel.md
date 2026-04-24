@@ -17,6 +17,7 @@ import { parallel } from '@helpers4/promise';
 
 ## Signature
 
+
 ```ts
 parallel<T>(functions: readonly function[], limit: number): Promise<T[]>
 ```

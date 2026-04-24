@@ -19,6 +19,7 @@ import { toMillis } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 toMillis(date: DateLike): number | null
 ```

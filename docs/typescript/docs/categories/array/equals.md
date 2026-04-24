@@ -17,6 +17,7 @@ import { equals } from '@helpers4/array';
 
 ## Signature
 
+
 ```ts
 equals<T>(arr1: T[], arr2: T[]): boolean
 ```

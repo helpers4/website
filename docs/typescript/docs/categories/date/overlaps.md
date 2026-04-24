@@ -20,6 +20,7 @@ import { overlaps } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 overlaps(rangeA: DateRange, rangeB: DateRange): boolean
 ```

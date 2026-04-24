@@ -19,6 +19,7 @@ import { clampDate } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 clampDate(date: DateLike, min: DateLike, max: DateLike): Date | null
 ```

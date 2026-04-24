@@ -19,6 +19,7 @@ import { deepEquals } from '@helpers4/array';
 
 ## Signature
 
+
 ```ts
 deepEquals<T>(arrA: T[], arrB: T[]): boolean
 ```

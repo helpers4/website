@@ -23,6 +23,7 @@ import { isEmpty } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isEmpty(value: unknown): boolean
 ```

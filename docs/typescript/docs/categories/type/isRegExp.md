@@ -16,6 +16,7 @@ import { isRegExp } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isRegExp(value: unknown): value is RegExp
 ```

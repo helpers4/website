@@ -20,6 +20,7 @@ import { fromSeconds } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 fromSeconds(seconds: number): Date | null
 ```

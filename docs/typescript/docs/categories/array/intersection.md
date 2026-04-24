@@ -17,6 +17,7 @@ import { intersection } from '@helpers4/array';
 
 ## Signature
 
+
 ```ts
 intersection<T>(a: readonly T[], b: readonly T[]): T[]
 ```

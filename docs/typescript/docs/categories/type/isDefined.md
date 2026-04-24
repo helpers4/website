@@ -19,6 +19,7 @@ import { isDefined } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isDefined<T>(value: Maybe<T>): value is T
 ```

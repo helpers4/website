@@ -16,6 +16,7 @@ import { isNonEmptyString } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isNonEmptyString(value: unknown): value is string
 ```
