@@ -440,6 +440,7 @@ ${rows.map(r => r.row).join('\n')}
  * - unknown: always last
  */
 function compareSemverDesc(a, b) {
+  if (a === b) return 0;
   if (a === 'next' && b !== 'next') return -1;
   if (b === 'next' && a !== 'next') return 1;
   if (a === 'unknown') return 1;
