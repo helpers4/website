@@ -23,6 +23,7 @@ import { isWeekend } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 isWeekend(date: DateLike, weekendDays: readonly WeekDay[]): boolean
 ```

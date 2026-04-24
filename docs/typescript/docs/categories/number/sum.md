@@ -16,6 +16,7 @@ import { sum } from '@helpers4/number';
 
 ## Signature
 
+
 ```ts
 sum(array: readonly number[]): number
 ```

@@ -18,6 +18,7 @@ import { isNegativeNumber } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isNegativeNumber(value: unknown): value is number
 ```

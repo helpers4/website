@@ -16,6 +16,7 @@ import { errorToReadableMessage } from '@helpers4/string';
 
 ## Signature
 
+
 ```ts
 errorToReadableMessage(error: unknown, stringify: string | true): string
 ```

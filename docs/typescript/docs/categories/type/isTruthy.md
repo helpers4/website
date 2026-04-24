@@ -20,6 +20,7 @@ import { isTruthy } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isTruthy<T>(value: Falsy | T): value is T
 ```

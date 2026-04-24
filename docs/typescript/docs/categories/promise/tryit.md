@@ -17,6 +17,7 @@ import { tryit } from '@helpers4/promise';
 
 ## Signature
 
+
 ```ts
 tryit<TArgs extends readonly unknown[], TReturn>(fn: function): function
 ```

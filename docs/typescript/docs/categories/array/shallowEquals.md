@@ -17,6 +17,7 @@ import { shallowEquals } from '@helpers4/array';
 
 ## Signature
 
+
 ```ts
 shallowEquals<T>(arrA: T[], arrB: T[]): boolean
 ```

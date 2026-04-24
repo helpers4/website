@@ -16,6 +16,7 @@ import { capitalize } from '@helpers4/string';
 
 ## Signature
 
+
 ```ts
 capitalize(str: string): string
 ```

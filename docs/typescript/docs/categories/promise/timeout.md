@@ -16,6 +16,7 @@ import { timeout } from '@helpers4/promise';
 
 ## Signature
 
+
 ```ts
 timeout<T>(promise: Promise<T>, ms: number): Promise<T>
 ```

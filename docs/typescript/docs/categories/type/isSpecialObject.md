@@ -17,6 +17,7 @@ import { isSpecialObject } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isSpecialObject(value: unknown): boolean
 ```

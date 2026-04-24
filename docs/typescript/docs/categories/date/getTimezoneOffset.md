@@ -23,6 +23,7 @@ import { getTimezoneOffset } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 getTimezoneOffset(tz: string, date: DateLike): number | null
 ```

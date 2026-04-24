@@ -16,6 +16,7 @@ import { oneInCommon } from '@helpers4/array';
 
 ## Signature
 
+
 ```ts
 oneInCommon<T>(a: readonly T[], b: readonly T[]): boolean
 ```

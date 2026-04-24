@@ -19,6 +19,7 @@ import { isNumber } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isNumber(value: unknown): value is number
 ```

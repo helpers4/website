@@ -26,6 +26,7 @@ import { combineLatest } from '@helpers4/observable';
 
 ## Signature
 
+
 ```ts
 combineLatest<A extends readonly unknown[]>(sources: readonly [ObservableInputTuple<A>]): Observable<A>
 ```

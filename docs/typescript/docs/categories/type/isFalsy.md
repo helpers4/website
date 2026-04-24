@@ -16,6 +16,7 @@ import { isFalsy } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isFalsy(value: unknown): value is Falsy
 ```

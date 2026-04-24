@@ -16,6 +16,7 @@ import { isUndefined } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isUndefined(value: unknown): value is undefined
 ```

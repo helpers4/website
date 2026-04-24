@@ -16,6 +16,7 @@ import { consoleLogPromise } from '@helpers4/promise';
 
 ## Signature
 
+
 ```ts
 consoleLogPromise<T>(prefix?: string): function
 ```

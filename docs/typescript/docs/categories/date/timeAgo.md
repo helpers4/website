@@ -21,6 +21,7 @@ import { timeAgo } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 timeAgo(date: DateLike, options: TimeAgoOptions): string | null
 ```

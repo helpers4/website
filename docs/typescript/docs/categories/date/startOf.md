@@ -22,6 +22,7 @@ import { startOf } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 startOf(date: DateLike, unit: DateTruncUnit): Date | null
 ```

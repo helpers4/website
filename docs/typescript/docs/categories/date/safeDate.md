@@ -16,6 +16,7 @@ import { safeDate } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 safeDate(input: DateLike | null | undefined): Date | null
 ```

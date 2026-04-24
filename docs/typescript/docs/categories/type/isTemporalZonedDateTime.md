@@ -19,6 +19,7 @@ import { isTemporalZonedDateTime } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isTemporalZonedDateTime(value: unknown): value is ZonedDateTime
 ```

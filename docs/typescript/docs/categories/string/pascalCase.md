@@ -17,6 +17,7 @@ import { pascalCase } from '@helpers4/string';
 
 ## Signature
 
+
 ```ts
 pascalCase(str: string): string
 ```

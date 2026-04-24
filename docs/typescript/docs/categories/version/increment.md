@@ -16,6 +16,7 @@ import { increment } from '@helpers4/version';
 
 ## Signature
 
+
 ```ts
 increment(version: string, type: "major" | "minor" | "patch"): string
 ```

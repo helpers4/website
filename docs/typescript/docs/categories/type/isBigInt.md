@@ -16,6 +16,7 @@ import { isBigInt } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isBigInt(value: unknown): value is bigint
 ```

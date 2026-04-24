@@ -18,6 +18,7 @@ import { isPrimitive } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isPrimitive(value: unknown): value is Primitive
 ```

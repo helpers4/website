@@ -16,6 +16,7 @@ import { daysDifference } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 daysDifference(date1: Date, date2: Date): number
 ```

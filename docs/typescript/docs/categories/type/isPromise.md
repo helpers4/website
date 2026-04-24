@@ -19,6 +19,7 @@ import { isPromise } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isPromise(value: unknown): value is PromiseLike<unknown>
 ```

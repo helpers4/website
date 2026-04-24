@@ -16,6 +16,7 @@ import { chunk } from '@helpers4/array';
 
 ## Signature
 
+
 ```ts
 chunk<T>(array: T[], size: number): T[][]
 ```

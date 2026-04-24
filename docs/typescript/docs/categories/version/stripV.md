@@ -16,6 +16,7 @@ import { stripV } from '@helpers4/version';
 
 ## Signature
 
+
 ```ts
 stripV(version: string): string
 ```

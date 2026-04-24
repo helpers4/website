@@ -16,6 +16,7 @@ import { isValidRegex } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isValidRegex(value: string): boolean
 ```

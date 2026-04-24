@@ -16,6 +16,7 @@ import { throttle } from '@helpers4/function';
 
 ## Signature
 
+
 ```ts
 throttle<A extends unknown[], R>(func: function, wait: number): function
 ```

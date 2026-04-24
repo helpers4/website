@@ -18,6 +18,7 @@ import { compare } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 compare(dateA: DateLike, dateB: DateLike, options: DateCompareOptions): boolean
 ```

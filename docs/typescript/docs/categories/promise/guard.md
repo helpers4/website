@@ -17,6 +17,7 @@ import { guard } from '@helpers4/promise';
 
 ## Signature
 
+
 ```ts
 guard<T>(fn: function, defaultValue: T): Promise<T>
 ```

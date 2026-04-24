@@ -16,6 +16,7 @@ import { falsyPromiseOrThrow } from '@helpers4/promise';
 
 ## Signature
 
+
 ```ts
 falsyPromiseOrThrow<T>(error: string): function
 ```

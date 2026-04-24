@@ -21,6 +21,7 @@ import { eachMonth } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 eachMonth(start: DateLike, end: DateLike): Date[]
 ```

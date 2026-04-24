@@ -143,7 +143,9 @@ try {
       position: index + 1,
       collapsible: true,
       collapsed: true,
-      link: { type: 'generated-index', slug: `/categories/${category}` },
+      // Use the generated Markdown index page (table view) as category landing page.
+      // This avoids a second generated-index card page that diverges from the table content.
+      link: { type: 'doc', id: `categories/${category}/index` },
     };
     fs.writeFileSync(
       path.join(categoryDir, '_category_.json'),
@@ -220,6 +222,7 @@ import { ${fn.name} } from '@helpers4/${category}';
       if (sig) {
         content += `
 ## Signature
+
 
 \`\`\`ts
 ${sig.signature}
@@ -602,3 +605,4 @@ function syncRuntimeCompatibility() {
     console.log(`  ✓ patched runtime compatibility (Node.js ${RUNTIMES.node}, Browser ${browserSupport}) → getting-started.md`);
   }
 }
+

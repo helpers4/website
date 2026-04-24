@@ -20,6 +20,7 @@ import { withoutTrailingSlash } from '@helpers4/url';
 
 ## Signature
 
+
 ```ts
 withoutTrailingSlash(url: string): string
 ```

@@ -18,6 +18,7 @@ import { identity } from '@helpers4/function';
 
 ## Signature
 
+
 ```ts
 identity<T>(value: T): T
 ```

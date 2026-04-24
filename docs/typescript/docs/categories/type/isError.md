@@ -16,6 +16,7 @@ import { isError } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isError(value: unknown): value is Error
 ```

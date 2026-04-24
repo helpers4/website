@@ -18,6 +18,7 @@ import { noop } from '@helpers4/function';
 
 ## Signature
 
+
 ```ts
 noop(): void
 ```

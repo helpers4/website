@@ -16,6 +16,7 @@ import { isFunction } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isFunction(value: unknown): value is Function
 ```

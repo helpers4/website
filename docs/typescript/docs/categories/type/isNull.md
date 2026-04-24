@@ -16,6 +16,7 @@ import { isNull } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isNull(value: unknown): value is null
 ```

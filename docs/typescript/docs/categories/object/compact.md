@@ -16,6 +16,7 @@ import { compact } from '@helpers4/object';
 
 ## Signature
 
+
 ```ts
 compact<T extends Record<string, unknown>>(obj: T): Partial<T>
 ```

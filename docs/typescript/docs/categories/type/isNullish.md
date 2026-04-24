@@ -16,6 +16,7 @@ import { isNullish } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isNullish(value: unknown): value is null | undefined
 ```

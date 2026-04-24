@@ -23,6 +23,7 @@ import { isTimestamp } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isTimestamp(value: unknown): value is number
 ```

@@ -16,6 +16,7 @@ import { get } from '@helpers4/object';
 
 ## Signature
 
+
 ```ts
 get<T = unknown>(obj: unknown, path: string, defaultValue?: T): T | undefined
 ```

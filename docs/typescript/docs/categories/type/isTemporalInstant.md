@@ -19,6 +19,7 @@ import { isTemporalInstant } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isTemporalInstant(value: unknown): value is Instant
 ```

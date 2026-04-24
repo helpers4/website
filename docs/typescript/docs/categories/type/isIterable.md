@@ -19,6 +19,7 @@ import { isIterable } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isIterable(value: unknown): value is Iterable<unknown, any, any>
 ```

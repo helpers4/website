@@ -19,6 +19,7 @@ import { isTemporalPlainTime } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isTemporalPlainTime(value: unknown): value is PlainTime
 ```

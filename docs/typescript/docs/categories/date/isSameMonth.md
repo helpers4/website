@@ -18,6 +18,7 @@ import { isSameMonth } from '@helpers4/date';
 
 ## Signature
 
+
 ```ts
 isSameMonth(date1: DateLike, date2: DateLike): boolean
 ```

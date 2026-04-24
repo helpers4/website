@@ -19,6 +19,7 @@ import { isDate } from '@helpers4/type';
 
 ## Signature
 
+
 ```ts
 isDate(value: unknown): value is Date
 ```
