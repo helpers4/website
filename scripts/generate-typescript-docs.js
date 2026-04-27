@@ -126,7 +126,9 @@ try {
       continue;
     }
 
-    const functions = api.functions || [];
+    const functions = (api.functions || []).filter(
+      fn => fn.kind === 'function' || fn.kind === 'variable'
+    );
     totalFunctions += functions.length;
 
     // Build examples lookup: { functionName: examples[] }
@@ -387,7 +389,7 @@ function generateAllFunctionsPage(categories) {
     const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
     if (!api?.functions) continue;
 
-    for (const fn of api.functions) {
+    for (const fn of (api.functions || []).filter(fn => fn.kind === 'function' || fn.kind === 'variable')) {
       rows.push({
         sortKey: fn.name.toLowerCase(),
         row: `| [\`${fn.name}\`](${category}/${fn.name}) | [${category}](${category}/) | ${escapeMarkdownTable(firstSentence(fn.description))} |`,
@@ -475,7 +477,7 @@ function generateChangelogPage(categories) {
     const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
     if (!api?.functions) continue;
 
-    for (const fn of api.functions) {
+    for (const fn of (api.functions || []).filter(fn => fn.kind === 'function' || fn.kind === 'variable')) {
       const version = fn.since || 'unknown';
       if (!byVersion[version]) byVersion[version] = [];
       byVersion[version].push({ name: fn.name, category, description: fn.description || '' });
