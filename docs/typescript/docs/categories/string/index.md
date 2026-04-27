@@ -14,7 +14,8 @@ Utility functions for working with string operations.
 |----------|-------------|
 | [`camelCase`](camelCase) | Converts kebab-case to camelCase |
 | [`capitalize`](capitalize) | Capitalizes the first letter of a string |
-| [`errorToReadableMessage`](errorToReadableMessage) | Convert an error to a readable message. |
+| [`extractErrorMessage`](extractErrorMessage) | Convert an error to a readable message. |
+| [`injectWordBreaks`](injectWordBreaks) | Adds word-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table… |
 | [`kebabCase`](kebabCase) | Converts camelCase to kebab-case |
 | `padStart / padEnd` | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
 | [`pascalCase`](pascalCase) | Converts a string to PascalCase. |
@@ -24,4 +25,5 @@ Utility functions for working with string operations.
 | `startsWith / endsWith` | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |
 | [`titleCase`](titleCase) | Converts a string to Title Case. |
 | `trim / trimStart / trimEnd` | <span class="badge badge--secondary">native JS</span> `String.prototype.trim() / trimStart() / trimEnd()` *(ES2019)* |
+| [`truncate`](truncate) | Truncates a string to `maxLength` characters, appending an ellipsis when cut. |
 

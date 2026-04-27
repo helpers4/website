@@ -54,6 +54,19 @@ overlaps(
 ) // => false
 ```
 
+## Related Types
+
+### `DateRange`
+
+A date range represented as a pair of date-like values.
+
+```ts
+interface DateRange {
+  end: DateLike;
+  start: DateLike;
+}
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/date/range.ts)

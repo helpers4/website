@@ -31,6 +31,16 @@ createSortByDateFn<T extends Record<string, unknown>>(property?: keyof T): SortF
 
 `SortFn<T>` — Sort function
 
+## Related Types
+
+### `SortFn`
+
+Sort function type for arrays
+
+```ts
+type SortFn<T> = function
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/sort.ts)

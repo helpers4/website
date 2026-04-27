@@ -55,6 +55,19 @@ formatDuration(5025000, { padded: true })       // => "01h 23m 45s"
 formatDuration(-5025000)          // => "-1h 23m 45s"
 ```
 
+## Related Types
+
+### `FormatDurationOptions`
+
+Options for formatDuration.
+
+```ts
+interface FormatDurationOptions {
+  minUnit?: "seconds" | "minutes" | "hours";
+  padded?: boolean;
+}
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/date/formatDuration.ts)

@@ -7,7 +7,7 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 
 # All Functions
 
-**167** implemented helpers + **41** covered by native JavaScript APIs, sorted alphabetically.
+**168** implemented helpers + **40** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -15,6 +15,8 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | [`addDays`](date/addDays) | [date](date/) | Adds days to a date. |
 | [`addMonths`](date/addMonths) | [date](date/) | Adds months to a date. |
 | [`addYears`](date/addYears) | [date](date/) | Adds years to a date. |
+| [`analyzeCommits`](commit/analyzeCommits) | [commit](commit/) | Analyses a list of commits to suggest a semantic version bump. |
+| [`buildConventionalCommitRegex`](commit/buildConventionalCommitRegex) | [commit](commit/) | Builds a regular expression matching the **subject line** of a Conventional Commits message. |
 | [`camelCase`](string/camelCase) | [string](string/) | Converts kebab-case to camelCase |
 | [`capitalize`](string/capitalize) | [string](string/) | Capitalizes the first letter of a string |
 | `ceil / floor` | [number](number/) | <span class="badge badge--secondary">native JS</span> `Math.ceil() / Math.floor()` *(ES1)* |
@@ -33,41 +35,32 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | [`createSortByDateFn`](array/createSortByDateFn) | [array](array/) | Creates a sort function for objects by date property |
 | [`createSortByNumberFn`](array/createSortByNumberFn) | [array](array/) | Creates a sort function for objects by number property |
 | [`createSortByStringFn`](array/createSortByStringFn) | [array](array/) | Creates a sort function for objects by string property |
-| [`DateCompareOptions`](date/DateCompareOptions) | [date](date/) | Options for date comparison |
-| [`DateDifferenceOptions`](date/DateDifferenceOptions) | [date](date/) | Options for date difference calculation |
-| [`DateLike`](date/DateLike) | [date](date/) | A value that can be converted to a Date. |
-| [`DateRange`](date/DateRange) | [date](date/) | A date range represented as a pair of date-like values. |
 | [`dateToISOString`](date/dateToISOString) | [date](date/) | Formats a date to ISO string or returns null. |
-| [`DateTruncUnit`](date/DateTruncUnit) | [date](date/) | Units supported by startOf and endOf. |
 | [`daysDifference`](date/daysDifference) | [date](date/) | Gets the difference in days between two dates. |
 | [`daysInMonth`](date/daysInMonth) | [date](date/) | Returns the number of days in the given month of the given year. |
 | [`debounce`](function/debounce) | [function](function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last tim… |
 | [`deepClone`](object/deepClone) | [object](object/) | Creates a deep copy of an object or array |
 | [`deepCompare`](object/deepCompare) | [object](object/) | Deep comparison of two objects that returns detailed information about differences. |
-| [`DeepCompareResult`](object/DeepCompareResult) | [object](object/) | Result type for deep comparison when objects are not identical |
 | [`deepEquals`](array/deepEquals) | [array](array/) | Deep comparison of two arrays that only returns true or false. |
 | [`deepMerge`](object/deepMerge) | [object](object/) | Merges two or more objects deeply |
 | [`delay`](promise/delay) | [promise](promise/) | Creates a promise that resolves after specified delay |
 | [`difference`](array/difference) | [array](array/) | Returns the difference between two arrays (items in first array but not in second) |
 | [`difference`](date/difference) | [date](date/) | Calculates the difference between two dates in the specified unit. |
-| [`DifferenceUnit`](date/DifferenceUnit) | [date](date/) | Unit for date difference calculation |
 | `drop` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(n)` *(ES3)* |
 | [`eachDay`](date/eachDay) | [date](date/) | Returns an array of `Date` objects for each day from `start` to `end` (inclusive). |
 | [`eachMonth`](date/eachMonth) | [date](date/) | Returns an array of `Date` objects for the first day of each month from `start` to `end` (inclusive). |
 | [`endOf`](date/endOf) | [date](date/) | Returns a new `Date` set to the **end** of the given unit. |
 | [`ensureArray`](array/ensureArray) | [array](array/) | Wraps a value in an array if it is not already one. |
 | [`ensureDate`](date/ensureDate) | [date](date/) | Safely converts a date-like value to a valid `Date` object, or returns `null`. |
-| [`EpochMilliseconds`](date/EpochMilliseconds) | [date](date/) | An object that exposes an epoch timestamp in milliseconds. |
 | [`equals`](array/equals) | [array](array/) | Simple helper that checks if two lists are identical. |
-| [`errorToReadableMessage`](string/errorToReadableMessage) | [string](string/) | Convert an error to a readable message. |
+| [`extractErrorMessage`](string/extractErrorMessage) | [string](string/) | Convert an error to a readable message. |
 | [`extractPureURI`](url/extractPureURI) | [url](url/) | Extracts the pure URI from a URL by removing query parameters and fragments. |
 | [`falsyPromiseOrThrow`](promise/falsyPromiseOrThrow) | [promise](promise/) | Returns a function that passes through falsy data or throws an error. |
 | `find / findIndex` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
 | `flatten / flat` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.flat(depth?)` *(ES2019)* |
 | [`formatDuration`](date/formatDuration) | [date](date/) | Formats a duration in milliseconds as a compact human-readable string. |
-| [`FormatDurationOptions`](date/FormatDurationOptions) | [date](date/) | Options for formatDuration. |
 | [`formatInTimezone`](date/formatInTimezone) | [date](date/) | Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`. |
-| [`FormatInTimezoneOptions`](date/FormatInTimezoneOptions) | [date](date/) | Options for formatInTimezone. |
+| [`formatSize`](number/formatSize) | [number](number/) | Format a byte count into a human-readable string with the appropriate unit. |
 | `from (parse temporal string)` | [date](date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.from(str) / Temporal.PlainDate.from(str) / etc.` *(Temporal (Stage 3))* |
 | [`fromMillis`](date/fromMillis) | [date](date/) | Creates a `Date` from a timestamp in **milliseconds**. |
 | [`fromSeconds`](date/fromSeconds) | [date](date/) | Creates a `Date` from a timestamp in **seconds**. |
@@ -80,13 +73,17 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | [`identity`](function/identity) | [function](function/) | Returns the given value unchanged  Useful as a default transform, in function composition, or as a placeholder mapper. |
 | `includes` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.includes()` *(ES2016)* |
 | [`increment`](version/increment) | [version](version/) | Increments a semantic version |
+| [`injectWordBreaks`](string/injectWordBreaks) | [string](string/) | Adds word-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table… |
 | [`intersection`](array/intersection) | [array](array/) | Compute the intersection of two arrays, meaning the elements that are present in both arrays. |
 | [`isArray`](type/isArray) | [type](type/) | Checks if a value is an array. |
-| `isArrayBuffer / isBlob / isBuffer / isFormData` | [type](type/) | <span class="badge badge--secondary">native JS</span> `value instanceof ArrayBuffer / Blob / Buffer / FormData` *(ES2015 / Web API)* |
+| [`isArrayBuffer`](type/isArrayBuffer) | [type](type/) | Checks if a value is an ArrayBuffer instance. |
 | [`isAsyncFunction`](type/isAsyncFunction) | [type](type/) | Checks if a value is an async function. |
 | [`isBigInt`](type/isBigInt) | [type](type/) | Checks if a value is a bigint. |
+| [`isBlob`](type/isBlob) | [type](type/) | Checks if a value is a Blob instance. |
 | [`isBoolean`](type/isBoolean) | [type](type/) | Checks if a value is a boolean. |
+| [`isBuffer`](type/isBuffer) | [type](type/) | Checks if a value is a Node.js Buffer instance. |
 | [`isBusinessDay`](date/isBusinessDay) | [date](date/) | Checks whether a date falls on a business day (i.e. |
+| [`isConventionalCommit`](commit/isConventionalCommit) | [commit](commit/) | Checks whether a commit message's subject line follows the Conventional Commits format constrained by the given options. |
 | [`isDate`](type/isDate) | [type](type/) | Checks if a value is a Date instance. |
 | [`isDefined`](type/isDefined) | [type](type/) | Checks if a value is defined (not undefined nor null). |
 | `isDirectInstanceOf` | [type](type/) | <span class="badge badge--secondary">native JS</span> `value.constructor === Foo` *(ES1)* |
@@ -94,6 +91,7 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | [`isError`](type/isError) | [type](type/) | Checks if a value is an Error instance. |
 | [`isFalsy`](type/isFalsy) | [type](type/) | Checks if a value is falsy (`false`, `null`, `undefined`, `0`, `""`, `NaN`). |
 | `isFinite / isFiniteNumber` | [type](type/) | <span class="badge badge--secondary">native JS</span> `Number.isFinite(value)` *(ES2015)* |
+| [`isFormData`](type/isFormData) | [type](type/) | Checks if a value is a FormData instance. |
 | [`isFunction`](type/isFunction) | [type](type/) | Checks if a value is a function. |
 | `isHtmlElement / isUrlInstance / isUrlSearchParams` | [type](type/) | <span class="badge badge--secondary">native JS</span> `value instanceof HTMLElement / URL / URLSearchParams` *(Web API)* |
 | `isInteger` | [type](type/) | <span class="badge badge--secondary">native JS</span> `Number.isInteger(value)` *(ES2015)* |
@@ -109,6 +107,7 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | [`isNumber`](type/isNumber) | [type](type/) | Checks if a value is a number. |
 | [`isPlainObject`](type/isPlainObject) | [type](type/) | Checks if a value is a plain object. |
 | [`isPositiveNumber`](type/isPositiveNumber) | [type](type/) | Checks if a value is a number greater than 0. |
+| [`isPrerelease`](version/isPrerelease) | [version](version/) | Returns `true` when the version string has a prerelease suffix (i.e. |
 | [`isPrimitive`](type/isPrimitive) | [type](type/) | Checks if a value is a JavaScript primitive. |
 | [`isPromise`](type/isPromise) | [type](type/) | Checks if a value is a Promise or a thenable. |
 | [`isRegExp`](type/isRegExp) | [type](type/) | Checks if a value is a RegExp instance. |
@@ -154,7 +153,8 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | `padStart / padEnd` | [string](string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
 | [`parallel`](promise/parallel) | [promise](promise/) | Runs an array of async functions with a concurrency limit. |
 | [`parse`](version/parse) | [version](version/) | Parses a semantic version string into its components according to SemVer 2.0.0 specification  Supports: - Core versio… |
-| [`ParsedVersion`](version/ParsedVersion) | [version](version/) | Represents a parsed semantic version according to SemVer 2.0.0 specification |
+| [`parseConventionalCommit`](commit/parseConventionalCommit) | [commit](commit/) | Parses a Conventional Commits message into a structured object. |
+| [`parsePackageRepository`](url/parsePackageRepository) | [url](url/) | Parse the `repository` field from `package.json` into a structured object. |
 | [`partition`](array/partition) | [array](array/) | Splits an array into two groups based on a predicate function. |
 | [`pascalCase`](string/pascalCase) | [string](string/) | Converts a string to PascalCase. |
 | [`pick`](object/pick) | [object](object/) | Creates a new object with only the specified keys. |
@@ -169,6 +169,7 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | `reverse` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
 | [`roundTo`](number/roundTo) | [number](number/) | Rounds a number to specified decimal places |
 | [`safeDate`](date/safeDate) | [date](date/) | Safely creates a Date object from various input types. |
+| [`safeJsonParse`](object/safeJsonParse) | [object](object/) | Parses a JSON string, returning `null` (or a fallback) on any parse failure. |
 | [`sample`](array/sample) | [array](array/) | Picks one or more random elements from an array. |
 | [`satisfiesRange`](version/satisfiesRange) | [version](version/) | Checks if a version satisfies a range (simple implementation) |
 | [`set`](object/set) | [object](object/) | Sets a value in an object using a dot-notated path |
@@ -178,7 +179,6 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | [`slugify`](string/slugify) | [string](string/) | Converts a string into a URL-friendly slug. |
 | [`snakeCase`](string/snakeCase) | [string](string/) | Converts a string to snake_case. |
 | `sortBy / orderBy` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(fn?)` *(ES2023)* |
-| [`SortFn`](array/SortFn) | [array](array/) | Sort function type for arrays |
 | [`sortNumberAscFn`](array/sortNumberAscFn) | [array](array/) | Sort numbers in ascending order |
 | [`sortNumberDescFn`](array/sortNumberDescFn) | [array](array/) | Sort numbers in descending order |
 | [`sortStringAscFn`](array/sortStringAscFn) | [array](array/) | Sort strings in ascending order |
@@ -186,13 +186,13 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | [`sortStringDescFn`](array/sortStringDescFn) | [array](array/) | Sort strings in descending order |
 | [`startOf`](date/startOf) | [date](date/) | Returns a new `Date` set to the **start** of the given unit. |
 | `startsWith / endsWith` | [string](string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |
+| [`stringify`](version/stringify) | [version](version/) | Reconstruct a semantic version string from a ParsedVersion object. |
 | [`stripV`](version/stripV) | [version](version/) | Strip the leading "v" from a version string if it exists. |
 | [`sum`](number/sum) | [number](number/) | Calculates the sum of an array of numbers. |
 | `tail` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | [array](array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
 | [`throttle`](function/throttle) | [function](function/) | Creates a throttled function that only invokes func at most once per every wait milliseconds |
 | [`timeAgo`](date/timeAgo) | [date](date/) | Formats a date as a human-readable relative time string. |
-| [`TimeAgoOptions`](date/TimeAgoOptions) | [date](date/) | Options for timeAgo. |
 | [`timeout`](promise/timeout) | [promise](promise/) | Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration. |
 | [`titleCase`](string/titleCase) | [string](string/) | Converts a string to Title Case. |
 | `toInt / toFloat` | [number](number/) | <span class="badge badge--secondary">native JS</span> `parseInt(str, 10) / parseFloat(str)` *(ES1)* |
@@ -206,13 +206,13 @@ description: "Complete list of all @helpers4 TypeScript utility functions and na
 | `toTemporalInstant` | [date](date/) | <span class="badge badge--secondary">native JS</span> `Date.prototype.toTemporalInstant()` *(Temporal (Stage 3))* |
 | `toZonedDateTime` | [date](date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.prototype.toZonedDateTimeISO(tz)` *(Temporal (Stage 3))* |
 | `trim / trimStart / trimEnd` | [string](string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.trim() / trimStart() / trimEnd()` *(ES2019)* |
+| [`truncate`](string/truncate) | [string](string/) | Truncates a string to `maxLength` characters, appending an ellipsis when cut. |
 | [`truthyPromiseOrThrow`](promise/truthyPromiseOrThrow) | [promise](promise/) | Returns a function that passes through truthy data or throws an error. |
 | [`tryit`](promise/tryit) | [promise](promise/) | Wraps a function so it never throws. |
 | `TypedArrays (isInt8Array, isFloat32Array, ...)` | [type](type/) | <span class="badge badge--secondary">native JS</span> `value instanceof Int8Array / Float32Array / ...` *(ES2015)* |
 | [`unique`](array/unique) | [array](array/) | Removes duplicate values from an array |
 | `until / since (difference)` | [date](date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.prototype.until(other) / .since(other)` *(Temporal (Stage 3))* |
 | [`uuid7`](math/uuid7) | [math](math/) | Generates a UUID v7 string (RFC 9562). |
-| [`WeekDay`](date/WeekDay) | [date](date/) | A day-of-week number following the JavaScript `Date.getDay()` convention: 0 = Sunday, 1 = Monday, … 6 = Saturday. |
 | [`WeekDays`](date/WeekDays) | [date](date/) | Named day-of-week constants following the JavaScript `Date.getDay()` convention. |
 | [`withLeadingSlash`](url/withLeadingSlash) | [url](url/) | Adds a leading slash `/` to the given URL if it is not already present. |
 | [`withoutLeadingSlash`](url/withoutLeadingSlash) | [url](url/) | Removes the leading slash `/` from the given URL if it is present. |

@@ -52,6 +52,16 @@ deepCompare({ a: { b: 1 } }, { a: { b: 2 } })
 // => { a: { b: false } }
 ```
 
+## Related Types
+
+### `DeepCompareResult`
+
+Result type for deep comparison when objects are not identical
+
+```ts
+interface DeepCompareResult {}
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/object/deepCompare.ts)

@@ -38,6 +38,19 @@ listTimezones(): string[]
 listTimezones() // => ['Africa/Abidjan', 'Africa/Accra', …]
 ```
 
+## Related Types
+
+### `FormatInTimezoneOptions`
+
+Options for formatInTimezone.
+
+```ts
+interface FormatInTimezoneOptions {
+  formatOptions?: DateTimeFormatOptions;
+  locale?: string;
+}
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/date/timezone.ts)

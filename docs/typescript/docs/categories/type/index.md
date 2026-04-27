@@ -13,10 +13,12 @@ Utility functions for working with type operations.
 | Function | Description |
 |----------|-------------|
 | [`isArray`](isArray) | Checks if a value is an array. |
-| `isArrayBuffer / isBlob / isBuffer / isFormData` | <span class="badge badge--secondary">native JS</span> `value instanceof ArrayBuffer / Blob / Buffer / FormData` *(ES2015 / Web API)* |
+| [`isArrayBuffer`](isArrayBuffer) | Checks if a value is an ArrayBuffer instance. |
 | [`isAsyncFunction`](isAsyncFunction) | Checks if a value is an async function. |
 | [`isBigInt`](isBigInt) | Checks if a value is a bigint. |
+| [`isBlob`](isBlob) | Checks if a value is a Blob instance. |
 | [`isBoolean`](isBoolean) | Checks if a value is a boolean. |
+| [`isBuffer`](isBuffer) | Checks if a value is a Node.js Buffer instance. |
 | [`isDate`](isDate) | Checks if a value is a Date instance. |
 | [`isDefined`](isDefined) | Checks if a value is defined (not undefined nor null). |
 | `isDirectInstanceOf` | <span class="badge badge--secondary">native JS</span> `value.constructor === Foo` *(ES1)* |
@@ -24,6 +26,7 @@ Utility functions for working with type operations.
 | [`isError`](isError) | Checks if a value is an Error instance. |
 | [`isFalsy`](isFalsy) | Checks if a value is falsy (`false`, `null`, `undefined`, `0`, `""`, `NaN`). |
 | `isFinite / isFiniteNumber` | <span class="badge badge--secondary">native JS</span> `Number.isFinite(value)` *(ES2015)* |
+| [`isFormData`](isFormData) | Checks if a value is a FormData instance. |
 | [`isFunction`](isFunction) | Checks if a value is a function. |
 | `isHtmlElement / isUrlInstance / isUrlSearchParams` | <span class="badge badge--secondary">native JS</span> `value instanceof HTMLElement / URL / URLSearchParams` *(Web API)* |
 | `isInteger` | <span class="badge badge--secondary">native JS</span> `Number.isInteger(value)` *(ES2015)* |

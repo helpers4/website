@@ -43,6 +43,27 @@ daysDifference(new Date('2025-01-01'), new Date('2025-01-10'))
 // => 9
 ```
 
+## Related Types
+
+### `DateDifferenceOptions`
+
+Options for date difference calculation
+
+```ts
+interface DateDifferenceOptions {
+  absolute?: boolean;
+  unit?: DifferenceUnit;
+}
+```
+
+### `DifferenceUnit`
+
+Unit for date difference calculation
+
+```ts
+type DifferenceUnit = "milliseconds" | "seconds" | "minutes" | "hours" | "days"
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/date/difference.ts)

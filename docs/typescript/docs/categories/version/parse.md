@@ -57,6 +57,22 @@ parse('v2.0.0-alpha.1')
 // => { major: 2, minor: 0, patch: 0, prerelease: ['alpha', '1'], build: [] }
 ```
 
+## Related Types
+
+### `ParsedVersion`
+
+Represents a parsed semantic version according to SemVer 2.0.0 specification
+
+```ts
+interface ParsedVersion {
+  build: string[];
+  major: number;
+  minor: number;
+  patch: number;
+  prerelease: string[];
+}
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/version/parse.ts)

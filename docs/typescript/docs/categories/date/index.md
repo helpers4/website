@@ -19,25 +19,16 @@ Utility functions for working with date operations.
 | [`clampDate`](clampDate) | Clamps a date to a [min, max] range. |
 | [`compare`](compare) | Comparison of two dates. |
 | `compare (ordering)` | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.compare(a, b) / Temporal.Instant.compare(a, b)` *(Temporal (Stage 3))* |
-| [`DateCompareOptions`](DateCompareOptions) | Options for date comparison |
-| [`DateDifferenceOptions`](DateDifferenceOptions) | Options for date difference calculation |
-| [`DateLike`](DateLike) | A value that can be converted to a Date. |
-| [`DateRange`](DateRange) | A date range represented as a pair of date-like values. |
 | [`dateToISOString`](dateToISOString) | Formats a date to ISO string or returns null. |
-| [`DateTruncUnit`](DateTruncUnit) | Units supported by startOf and endOf. |
 | [`daysDifference`](daysDifference) | Gets the difference in days between two dates. |
 | [`daysInMonth`](daysInMonth) | Returns the number of days in the given month of the given year. |
 | [`difference`](difference) | Calculates the difference between two dates in the specified unit. |
-| [`DifferenceUnit`](DifferenceUnit) | Unit for date difference calculation |
 | [`eachDay`](eachDay) | Returns an array of `Date` objects for each day from `start` to `end` (inclusive). |
 | [`eachMonth`](eachMonth) | Returns an array of `Date` objects for the first day of each month from `start` to `end` (inclusive). |
 | [`endOf`](endOf) | Returns a new `Date` set to the **end** of the given unit. |
 | [`ensureDate`](ensureDate) | Safely converts a date-like value to a valid `Date` object, or returns `null`. |
-| [`EpochMilliseconds`](EpochMilliseconds) | An object that exposes an epoch timestamp in milliseconds. |
 | [`formatDuration`](formatDuration) | Formats a duration in milliseconds as a compact human-readable string. |
-| [`FormatDurationOptions`](FormatDurationOptions) | Options for formatDuration. |
 | [`formatInTimezone`](formatInTimezone) | Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`. |
-| [`FormatInTimezoneOptions`](FormatInTimezoneOptions) | Options for formatInTimezone. |
 | `from (parse temporal string)` | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.from(str) / Temporal.PlainDate.from(str) / etc.` *(Temporal (Stage 3))* |
 | [`fromMillis`](fromMillis) | Creates a `Date` from a timestamp in **milliseconds**. |
 | [`fromSeconds`](fromSeconds) | Creates a `Date` from a timestamp in **seconds**. |
@@ -58,7 +49,6 @@ Utility functions for working with date operations.
 | [`safeDate`](safeDate) | Safely creates a Date object from various input types. |
 | [`startOf`](startOf) | Returns a new `Date` set to the **start** of the given unit. |
 | [`timeAgo`](timeAgo) | Formats a date as a human-readable relative time string. |
-| [`TimeAgoOptions`](TimeAgoOptions) | Options for timeAgo. |
 | [`toISO8601`](toISO8601) | Converts a date to ISO 8601 format Format: YYYY-MM-DDTHH:mm:ss.sssZ |
 | [`toMillis`](toMillis) | Converts a date to a timestamp in **milliseconds** (epoch millis). |
 | `toPlainDate / toPlainDateTime / toPlainTime` | <span class="badge badge--secondary">native JS</span> `Temporal.ZonedDateTime.prototype.toPlainDate() / toPlainDateTime() / toPlainTime()` *(Temporal (Stage 3))* |
@@ -68,6 +58,5 @@ Utility functions for working with date operations.
 | `toTemporalInstant` | <span class="badge badge--secondary">native JS</span> `Date.prototype.toTemporalInstant()` *(Temporal (Stage 3))* |
 | `toZonedDateTime` | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.prototype.toZonedDateTimeISO(tz)` *(Temporal (Stage 3))* |
 | `until / since (difference)` | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.prototype.until(other) / .since(other)` *(Temporal (Stage 3))* |
-| [`WeekDay`](WeekDay) | A day-of-week number following the JavaScript `Date.getDay()` convention: 0 = Sunday, 1 = Monday, … 6 = Saturday. |
 | [`WeekDays`](WeekDays) | Named day-of-week constants following the JavaScript `Date.getDay()` convention. |
 

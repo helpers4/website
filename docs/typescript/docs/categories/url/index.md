@@ -15,6 +15,7 @@ Utility functions for working with url operations.
 | [`cleanPath`](cleanPath) | Clean an URL by removing duplicate slashes. |
 | [`extractPureURI`](extractPureURI) | Extracts the pure URI from a URL by removing query parameters and fragments. |
 | [`onlyPath`](onlyPath) | Extract only the path from an URI with optional query and fragments. |
+| [`parsePackageRepository`](parsePackageRepository) | Parse the `repository` field from `package.json` into a structured object. |
 | [`relativeURLToAbsolute`](relativeURLToAbsolute) | Converts a relative URL to an absolute URL using the current document base URI. |
 | [`withLeadingSlash`](withLeadingSlash) | Adds a leading slash `/` to the given URL if it is not already present. |
 | [`withoutLeadingSlash`](withoutLeadingSlash) | Removes the leading slash `/` from the given URL if it is present. |

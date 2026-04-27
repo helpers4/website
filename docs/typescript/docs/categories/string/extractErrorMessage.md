@@ -1,8 +1,8 @@
 ---
-sidebar_label: "errorToReadableMessage"
+sidebar_label: "extractErrorMessage"
 ---
 
-# errorToReadableMessage
+# extractErrorMessage
 
 Convert an error to a readable message.
 
@@ -11,14 +11,14 @@ Convert an error to a readable message.
 ## Import
 
 ```ts
-import { errorToReadableMessage } from '@helpers4/string';
+import { extractErrorMessage } from '@helpers4/string';
 ```
 
 ## Signature
 
 
 ```ts
-errorToReadableMessage(error: unknown, stringify: string | true): string
+extractErrorMessage(error: unknown, stringify: string | true): string
 ```
 
 ## Parameters
@@ -39,7 +39,7 @@ errorToReadableMessage(error: unknown, stringify: string | true): string
 Returns the stringified Error, including the class prefix.
 
 ```ts
-errorToReadableMessage(new Error('Something went wrong'))
+extractErrorMessage(new Error('Something went wrong'))
 // => 'Error: Something went wrong'
 ```
 
@@ -48,7 +48,7 @@ errorToReadableMessage(new Error('Something went wrong'))
 Returns the string directly when the error is a plain string.
 
 ```ts
-errorToReadableMessage('plain error')
+extractErrorMessage('plain error')
 // => 'plain error'
 ```
 
@@ -57,10 +57,10 @@ errorToReadableMessage('plain error')
 When stringify is true, falls back to JSON.stringify for unrecognized errors.
 
 ```ts
-errorToReadableMessage(42, true)
+extractErrorMessage(42, true)
 // => '42'
 ```
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/string/errorToReadableMessage.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/string/extractErrorMessage.ts)

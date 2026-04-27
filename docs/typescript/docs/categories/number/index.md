@@ -14,6 +14,7 @@ Utility functions for working with number operations.
 |----------|-------------|
 | `ceil / floor` | <span class="badge badge--secondary">native JS</span> `Math.ceil() / Math.floor()` *(ES1)* |
 | [`clamp`](clamp) | Clamps a number between min and max values |
+| [`formatSize`](formatSize) | Format a byte count into a human-readable string with the appropriate unit. |
 | `min / max` | <span class="badge badge--secondary">native JS</span> `Math.min(...arr) / Math.max(...arr)` *(ES1)* |
 | [`randomBetween`](randomBetween) | Generates a random number between min and max (inclusive) |
 | [`randomIntBetween`](randomIntBetween) | Generates a random integer between min and max (inclusive) |

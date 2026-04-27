@@ -37,7 +37,6 @@ Utility functions for working with array operations.
 | [`shallowEquals`](shallowEquals) | Quick comparison of two arrays using JSON.stringify. |
 | [`shuffle`](shuffle) | Randomly reorders elements of an array using the Fisher-Yates algorithm. |
 | `sortBy / orderBy` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(fn?)` *(ES2023)* |
-| [`SortFn`](SortFn) | Sort function type for arrays |
 | [`sortNumberAscFn`](sortNumberAscFn) | Sort numbers in ascending order |
 | [`sortNumberDescFn`](sortNumberDescFn) | Sort numbers in descending order |
 | [`sortStringAscFn`](sortStringAscFn) | Sort strings in ascending order |
