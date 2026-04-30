@@ -89,7 +89,7 @@ Every helper ships with:
 - **Contract tests** — formal behavioral guarantees
 - **Boundary tests** — edge values and limit conditions covered explicitly
 - **Security edge case tests** — inputs like prototype pollution or injected keys
-- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.0-alpha.24)
+- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.0-beta.0)
 - **Benchmarks** (Vitest Bench) — performance tracked per build
 - **Dependency security audit** — `pnpm audit` on every PR and release
 - **OpenSSF Scorecard** — [view report](https://securityscorecards.dev/viewer/?uri=github.com/helpers4/typescript)
