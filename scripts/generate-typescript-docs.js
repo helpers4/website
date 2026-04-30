@@ -315,6 +315,9 @@ ${rt.typeDefinition}
   // --- patch runtime compatibility in getting-started ---
   syncRuntimeCompatibility();
 
+  // --- patch helper count in intro and comparison pages ---
+  syncHelperCount(totalFunctions, categories.length);
+
   console.log(`\n✅ Generated documentation for ${categories.length} categories (${totalFunctions} functions)`);
   console.log(`📁 Output: ${docsOutputPath}\n`);
 
@@ -606,6 +609,42 @@ function syncRuntimeCompatibility() {
   if (patched !== original) {
     fs.writeFileSync(page, patched);
     console.log(`  ✓ patched runtime compatibility (Node.js ${RUNTIMES.node}, Browser ${browserSupport}) → getting-started.md`);
+  }
+}
+
+/**
+ * Patch the helper count in intro.md (Browse Categories link) and in the
+ * "Overview" comparison table on comparisons/alternatives.md, so both stay
+ * in sync with the actual number of exported functions.
+ */
+function syncHelperCount(totalFunctions, categoryCount) {
+  // intro.md — "Browse Categories" line
+  const introPage = path.join(rootDir, 'docs', 'typescript', 'docs', 'intro.md');
+  if (fs.existsSync(introPage)) {
+    const BROWSE_RE = /(\*\*\[Browse Categories\]\([^)]+\)\*\* — )\d+ helpers across \d+ categories/;
+    const original = fs.readFileSync(introPage, 'utf-8');
+    const patched = original.replace(
+      BROWSE_RE,
+      `$1${totalFunctions} helpers across ${categoryCount} categories`
+    );
+    if (patched !== original) {
+      fs.writeFileSync(introPage, patched);
+      console.log(`  ✓ patched helper count (${totalFunctions} / ${categoryCount} categories) → intro.md`);
+    }
+  }
+
+  // comparisons/alternatives.md — "**helpers4** | <N>" cell in the Overview table
+  const comparisonPage = path.join(
+    rootDir, 'docs', 'typescript', 'docs', 'comparisons', 'alternatives.md'
+  );
+  if (fs.existsSync(comparisonPage)) {
+    const HELPERS4_ROW_RE = /(\|\s*\*\*helpers4\*\*\s*\|\s*)\d+(\s*\|)/;
+    const original = fs.readFileSync(comparisonPage, 'utf-8');
+    const patched = original.replace(HELPERS4_ROW_RE, `$1${totalFunctions}$2`);
+    if (patched !== original) {
+      fs.writeFileSync(comparisonPage, patched);
+      console.log(`  ✓ patched helper count (${totalFunctions}) → comparisons/alternatives.md`);
+    }
   }
 }
 
