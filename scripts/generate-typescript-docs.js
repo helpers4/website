@@ -111,6 +111,7 @@ try {
   console.log(`📁 Found ${categories.length} categories:\n`);
 
   let totalFunctions = 0;
+  let processedCategoryCount = 0;
 
   for (const [index, category] of categories.entries()) {
     const categoryDir = path.join(docsOutputPath, category);
@@ -130,6 +131,7 @@ try {
       fn => fn.kind === 'function' || fn.kind === 'variable'
     );
     totalFunctions += functions.length;
+    processedCategoryCount += 1;
 
     // Build examples lookup: { functionName: examples[] }
     const examplesMap = {};
@@ -316,7 +318,9 @@ ${rt.typeDefinition}
   syncRuntimeCompatibility();
 
   // --- patch helper count in intro and comparison pages ---
-  syncHelperCount(totalFunctions, categories.length);
+  // Use processedCategoryCount (not categories.length) so the patched docs
+  // reflect what was actually generated when an api.json is missing.
+  syncHelperCount(totalFunctions, processedCategoryCount);
 
   console.log(`\n✅ Generated documentation for ${categories.length} categories (${totalFunctions} functions)`);
   console.log(`📁 Output: ${docsOutputPath}\n`);
