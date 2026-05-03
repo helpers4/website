@@ -51,6 +51,17 @@ compact(['hello', null, 'world', undefined, ''])
 // => ['hello', 'world']
 ```
 
+:::caution[Name conflict]
+A helper named `compact` also exists in [`@helpers4/object`](../object/compact). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { compact as compact4array } from '@helpers4/array';
+import { compact as compact4object } from '@helpers4/object';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts) for the full resolution guide.
+:::
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/compact.ts)

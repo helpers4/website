@@ -104,6 +104,17 @@ interface EpochMilliseconds {
 }
 ```
 
+:::caution[Name conflict]
+A helper named `difference` also exists in [`@helpers4/array`](../array/difference). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { difference as difference4date } from '@helpers4/date';
+import { difference as difference4array } from '@helpers4/array';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts) for the full resolution guide.
+:::
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/date/difference.ts)

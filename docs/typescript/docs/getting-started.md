@@ -5,6 +5,10 @@ title: Getting Started
 
 # Getting Started
 
+:::info[Documented version]
+**[v2.0.0-alpha.22](https://github.com/helpers4/typescript/releases/tag/v2.0.0-alpha.22)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/2.0.0-alpha.22) · [Changelog](./reference/changelog)
+:::
+
 ## Installation
 
 Install all helpers at once:
@@ -12,6 +16,9 @@ Install all helpers at once:
 ```bash
 pnpm add @helpers4/all
 # or: npm install @helpers4/all
+
+# Pin to a specific version:
+# pnpm add @helpers4/all@2.0.0-alpha.22
 ```
 
 Or install only the categories you need:
@@ -43,7 +50,21 @@ All imports are tree-shakable — your bundler will only include the functions y
 const { chunk } = require('@helpers4/array');
 ```
 
-## TypeScript Configuration
+## Resolving Name Conflicts
+
+Some helpers share the same name across categories (`compact`, `compare`, `difference`, `shallowEquals`). When you need two of them in the same file, rename at the import site using `as` — suffix with `4{category}`:
+
+```typescript
+import { compact as compact4array } from '@helpers4/array';
+import { compact as compact4object } from '@helpers4/object';
+
+import { compare as compare4date } from '@helpers4/date';
+import { compare as compare4version } from '@helpers4/version';
+```
+
+See the full list and resolution patterns in [Name Conflicts](./reference/naming-conflicts).
+
+
 
 Ensure your `tsconfig.json` targets modern JavaScript:
 
@@ -89,7 +110,7 @@ Every helper ships with:
 - **Contract tests** — formal behavioral guarantees
 - **Boundary tests** — edge values and limit conditions covered explicitly
 - **Security edge case tests** — inputs like prototype pollution or injected keys
-- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.0-beta.0)
+- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.0-alpha.22)
 - **Benchmarks** (Vitest Bench) — performance tracked per build
 - **Dependency security audit** — `pnpm audit` on every PR and release
 - **OpenSSF Scorecard** — [view report](https://securityscorecards.dev/viewer/?uri=github.com/helpers4/typescript)

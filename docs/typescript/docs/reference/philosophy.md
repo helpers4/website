@@ -38,7 +38,7 @@ Beyond line coverage, every helper faces a gauntlet:
 - **Contract tests** — formal guarantees: if input satisfies X, output must satisfy Y, regardless of the input
 - **Boundary tests** — explicit coverage of limit values (`[]`, `0`, `Number.MAX_SAFE_INTEGER`, epoch timestamps…)
 - **Security edge cases** — inputs designed to trigger prototype pollution, injection, or unsafe patterns
-- **Mutation testing** (Stryker) — >90% threshold; if a mutant survives, the tests aren't good enough — [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.0-beta.0)
+- **Mutation testing** (Stryker) — >90% threshold; if a mutant survives, the tests aren't good enough — [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.0-alpha.22)
 - **Benchmarks** (Vitest Bench) — performance tracked per build, non-blocking
 - **Dependency security audit** — `pnpm audit` on every PR and release
 
@@ -55,6 +55,21 @@ Documentation written after the fact is documentation that drifts. We write it a
 We don't wrap what the platform already provides. When a function becomes standard JavaScript — `flat`, `groupBy`, `findIndex` — we remove it from the library rather than keeping it for convenience.
 
 This keeps the library lean and pushes users toward code that doesn't need a dependency at all. A helper that saves you one method call isn't a helper; it's maintenance overhead.
+
+## Category independence {#category-independence}
+
+Each category (`array`, `object`, `date`, …) is its own npm package with its own scope. This is deliberate: you should be able to install only the categories you need without pulling in the rest.
+
+A side effect of this design is that **the same function name can exist in multiple categories** when the operation genuinely applies to different data types. For example, `compact` removes falsy entries — from an array in `@helpers4/array`, and from an object's values in `@helpers4/object`. These are distinct operations with distinct types; collapsing them into one overloaded function would break type inference and tree-shaking.
+
+When you need two helpers with the same name in the same file, use the standard ES module `as` rename:
+
+```ts
+import { compact as compact4array } from '@helpers4/array';
+import { compact as compact4object } from '@helpers4/object';
+```
+
+See [Name Conflicts](./naming-conflicts) for the full list of known conflicts and resolution patterns.
 
 ## Open source, genuinely
 

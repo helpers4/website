@@ -100,6 +100,9 @@ const FALLBACK_MUTATION_DASHBOARD_URL =
 const MUTATION_DASHBOARD_URL =
   buildMeta.mutationDashboardUrl ?? FALLBACK_MUTATION_DASHBOARD_URL;
 const RUNTIMES = buildMeta.runtimes ?? { node: '>=24.0.0', deno: 'compatible', bun: 'compatible' };
+const LIBRARY_VERSION = buildMeta.version
+  ?? readJson(path.join(typescriptRepoPath, 'package.json'))?.version
+  ?? '0.0.0-snapshot';
 
 try {
   // Discover categories from build/ (skip "all" bundle)
@@ -109,6 +112,24 @@ try {
   ).sort();
 
   console.log(`📁 Found ${categories.length} categories:\n`);
+
+  // Build a map of function names that appear in more than one category.
+  // Used to add a "name conflict" callout on individual function pages.
+  // Map: functionName → string[] (sorted list of category names)
+  const nameConflicts = (() => {
+    const nameToCategories = {};
+    for (const cat of categories) {
+      const api = readJson(path.join(buildPath, cat, 'meta', 'api.json'));
+      if (!api?.functions) continue;
+      for (const fn of api.functions) {
+        if (!nameToCategories[fn.name]) nameToCategories[fn.name] = [];
+        nameToCategories[fn.name].push(cat);
+      }
+    }
+    return Object.fromEntries(
+      Object.entries(nameToCategories).filter(([, cats]) => cats.length > 1)
+    );
+  })();
 
   let totalFunctions = 0;
   let processedCategoryCount = 0;
@@ -287,6 +308,27 @@ ${rt.typeDefinition}
         }
       }
 
+      // Name conflict callout — placed just before Source for discoverability
+      const conflictCategories = nameConflicts[fn.name];
+      if (conflictCategories) {
+        const otherCategories = conflictCategories.filter(c => c !== category);
+        const othersFormatted = otherCategories
+          .map(c => `[\`@helpers4/${c}\`](../${c}/${fn.name})`)
+          .join(', ');
+        content += `
+:::caution[Name conflict]
+A helper named \`${fn.name}\` also exists in ${othersFormatted}. If you need both in the same file, rename at import with \`as\`:
+
+\`\`\`ts
+import { ${fn.name} as ${fn.name}4${category} } from '@helpers4/${category}';
+${otherCategories.map(c => `import { ${fn.name} as ${fn.name}4${c} } from '@helpers4/${c}';`).join('\n')}
+\`\`\`
+
+See [Name Conflicts](../../reference/naming-conflicts) for the full resolution guide.
+:::
+`;
+      }
+
       content += `
 ## Source
 
@@ -308,8 +350,14 @@ ${rt.typeDefinition}
   // --- changelog page (helpers grouped by @since version) ---
   generateChangelogPage(categories);
 
+  // --- naming conflicts reference page (generated from nameConflicts map) ---
+  generateNamingConflictsPage(nameConflicts);
+
   // --- contributing page (synced from typescript repo) ---
   syncContributingPage();
+
+  // --- patch version sentinel in manually-written pages ---
+  syncVersion();
 
   // --- patch mutation dashboard URL in manually-written pages ---
   syncMutationDashboardUrl();
@@ -471,6 +519,112 @@ function compareSemverDesc(a, b) {
 }
 
 /**
+ * Generate reference/naming-conflicts.md from the nameConflicts map.
+ * nameConflicts: { [functionName]: string[] } — only names with 2+ categories.
+ */
+function generateNamingConflictsPage(nameConflicts) {
+  const refDir = path.join(rootDir, 'docs', 'typescript', 'docs', 'reference');
+  fs.mkdirSync(refDir, { recursive: true });
+
+  const sortedNames = Object.keys(nameConflicts).sort();
+
+  // Table rows
+  const tableRows = sortedNames.map(name => {
+    const cats = nameConflicts[name].sort();
+    const catLinks = cats.map(c => `[\`${c}\`](../categories/${c}/${name})`).join(', ');
+    return `| \`${name}\` | ${catLinks} |`;
+  }).join('\n');
+
+  // Resolution examples
+  let examples = '';
+  for (const name of sortedNames) {
+    const cats = nameConflicts[name].sort();
+    const imports = cats.map(c => `import { ${name} as ${name}4${c} } from '@helpers4/${c}';`).join('\n');
+    examples += `
+### \`${name}\`
+
+\`\`\`ts
+${imports}
+\`\`\`
+`;
+  }
+
+  const content = `---
+sidebar_label: "Name Conflicts"
+sidebar_position: 3
+title: "Name Conflicts Between Categories"
+description: "Some helpers share the same name across multiple categories. This page explains how to resolve import conflicts."
+---
+
+# Name Conflicts Between Categories
+
+helpers4 is split into independent npm packages — one per category. Each package can be installed and tree-shaken independently. A deliberate consequence of this design is that **the same function name can exist in multiple categories** when the operation makes sense for different data types.
+
+This is not a bug. \`compact\` for arrays and \`compact\` for objects are genuinely different operations, and merging them into a single overloaded function would break tree-shaking and make the types less precise.
+
+## Known Conflicts
+
+*Auto-generated from the current build — always reflects the documented version.*
+
+| Function | Categories |
+|----------|------------|
+${tableRows}
+
+## Resolving Conflicts
+
+When you need **two helpers with the same name** in the same file, rename one (or both) at the import site using the \`as\` keyword.
+
+### Recommended naming convention
+
+Suffix with \`4{category}\` — consistent with the helpers4 naming identity:
+
+\`\`\`ts
+import { compact as compact4array } from '@helpers4/array';
+import { compact as compact4object } from '@helpers4/object';
+
+const numbers = compact4array([0, 1, null, 2, undefined]);
+// => [1, 2]
+
+const user = compact4object({ id: 1, name: null, role: undefined });
+// => { id: 1 }
+\`\`\`
+
+### All conflicts — resolution examples
+${examples}
+### Alternative: namespace import
+
+If you use many helpers from both conflicting categories, a namespace import is more concise — but check that your bundler handles namespace tree-shaking (esbuild, Rollup, and Vite all do):
+
+\`\`\`ts
+import * as A from '@helpers4/array';
+import * as O from '@helpers4/object';
+
+A.compact([0, 1, null]);
+O.compact({ a: 1, b: null });
+\`\`\`
+
+:::note
+Prefer named \`as\` imports for maximum tree-shaking compatibility with all bundlers, including older Webpack 4 configurations.
+:::
+
+## Why not a single unified package?
+
+The \`@helpers4/all\` bundle does export every category. Inside a single module context, the category name is not part of the export, so **the last \`export *\` wins** when two categories export the same name.
+
+This means you cannot safely \`import { compact } from '@helpers4/all'\` if both \`array\` and \`object\` export \`compact\` — the result is undefined behavior depending on module bundler internals.
+
+**Always use per-category packages** (\`@helpers4/array\`, \`@helpers4/object\`, …) when you need conflicting helpers. They are the canonical import source.
+
+## Design rationale
+
+See [Philosophy — Category independence](./philosophy#category-independence) for a deeper explanation of why cross-category deduplication is intentionally avoided.
+`;
+
+  fs.writeFileSync(path.join(refDir, 'naming-conflicts.md'), content);
+  console.log(`  ✓ reference/naming-conflicts (${sortedNames.length} conflicts, auto-generated)`);
+}
+
+/**
  * Generate reference/changelog.md — helpers grouped by their @since version.
  */
 function generateChangelogPage(categories) {
@@ -551,6 +705,29 @@ ${sourceContent}`;
 
   fs.writeFileSync(path.join(refDir, 'contributing.md'), content);
   console.log('  ✓ reference/contributing (synced from typescript repo)');
+}
+
+/**
+ * Patch the version sentinel (0.0.0-snapshot) in manually-written documentation pages.
+ * This keeps install commands, npm links, and GitHub release links in sync with the
+ * actual documented version without duplicating the version in the source files.
+ */
+function syncVersion() {
+  const VERSION_SENTINEL_RE = /0\.0\.0-snapshot/g;
+
+  const pages = [
+    path.join(rootDir, 'docs', 'typescript', 'docs', 'getting-started.md'),
+  ];
+
+  for (const page of pages) {
+    if (!fs.existsSync(page)) continue;
+    const original = fs.readFileSync(page, 'utf-8');
+    const patched = original.replace(VERSION_SENTINEL_RE, LIBRARY_VERSION);
+    if (patched !== original) {
+      fs.writeFileSync(page, patched);
+      console.log(`  ✓ patched version (${LIBRARY_VERSION}) → ${path.basename(page)}`);
+    }
+  }
 }
 
 /**
@@ -651,4 +828,3 @@ function syncHelperCount(totalFunctions, categoryCount) {
     }
   }
 }
-

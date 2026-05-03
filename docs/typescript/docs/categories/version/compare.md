@@ -59,6 +59,17 @@ compare('1.0.0-alpha', '1.0.0')
 // => -1
 ```
 
+:::caution[Name conflict]
+A helper named `compare` also exists in [`@helpers4/date`](../date/compare). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { compare as compare4version } from '@helpers4/version';
+import { compare as compare4date } from '@helpers4/date';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts) for the full resolution guide.
+:::
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/version/compare.ts)

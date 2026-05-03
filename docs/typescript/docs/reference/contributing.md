@@ -33,7 +33,7 @@ helpers/
     config.json                # Category metadata
 ```
 
-Categories: `array`, `date`, `function`, `math`, `number`, `object`, `observable`, `promise`, `string`, `type`, `url`, `version`.
+Categories: `array`, `commit`, `date`, `function`, `id`, `number`, `object`, `observable`, `promise`, `string`, `type`, `url`, `version`.
 
 ## Creating a new helper
 
@@ -74,7 +74,8 @@ export function clamp(value: number, min: number, max: number): number {
 - Use `readonly` arrays in parameters when the function does not mutate
 - 2-space indentation, single quotes
 - Always use `@since next` — the real version is injected automatically at stable release time
-  (prerelease builds keep `next` so the tag retains its semantic meaning)
+  (prerelease builds keep `next` so the tag retains its semantic meaning). **Never hard-code a
+  version number like `@since 2.0.0`** — the tag will be wrong the moment the release number changes.
 
 ### Step 2 — Tests
 
@@ -282,7 +283,10 @@ npx vitest bench helpers/<category>/functionName.bench.ts # Single file
 pnpm bench:watch                                        # Watch mode
 ```
 
-Benchmarks are **non-blocking** — they don't fail the CI, but they help track performance regressions.
+Benchmarks are **non-blocking** and **opt-in** — they don't fail the CI and are not required for every
+helper. Add a bench file when the function is on a hot path (tight loops, string manipulation on
+large inputs, frequent array traversals). Simple one-liners, type guards, and thin wrappers do not
+need benchmarks.
 
 ## Quality checks
 
@@ -295,23 +299,40 @@ pnpm lint          # No lint issues (uses oxlint)
 pnpm coherency     # Bundle/version/category consistency
 ```
 
+## Intentional cross-category duplicates
+
+Some helpers exist in **both `array/` and `object/`** on purpose — do **not** try to deduplicate them:
+
+| Helper | `array/` | `object/` |
+|--------|----------|-----------|
+| `compact` | removes falsy items from an array | removes falsy values from an object |
+| `equalsShallow` | positional `===` comparison | keys + `===` value comparison |
+
+**Why?** Each category is published as its own npm package (`@helpers4/array`, `@helpers4/object`). A user who imports only `@helpers4/array` must not pull in `object/` code — tree-shaking across packages requires the duplication to be explicit.
+
 ## Commit messages
 
 Follow [Conventional Commits](https://www.conventionalcommits.org/) with a gitmoji between the scope and the description.
 
 **Format:** `<type>(<scope>): <emoji> <description>`
 
-**Scopes:** `array`, `date`, `function`, `math`, `number`, `object`, `observable`, `promise`, `string`, `type`, `url`, `version`, `CI-CD`
+**Scopes:** `array`, `commit`, `date`, `function`, `id`, `number`, `object`, `observable`, `promise`, `string`, `type`, `url`, `version`, `CI-CD`
 
-| Emoji | Type | Description |
-|-------|------|-------------|
-| ✨ | feat | New feature |
-| 🐛 | fix | Bug fix |
-| 📝 | docs | Documentation |
-| ♻️ | refactor | Code refactoring |
-| ✅ | test | Tests |
-| 🔧 | chore | Maintenance |
-| 🚀 | perf | Performance |
+| Type | Primary | Alternatives (gitmoji.dev) | When to use |
+|------|---------|---------------------------|-------------|
+| feat | ✨ | 🚸 UX, ♿️ a11y, 🌐 i18n, 💬 text/literals | New feature |
+| fix | 🐛 | 🚑️ hotfix, 🔒️ security, 🩹 trivial, 🥅 errors, 🚨 warnings, ✏️ typo | Bug fix |
+| docs | 📝 | 💡 source comments, 📄 license | Documentation |
+| refactor | ♻️ | 🎨 structure, 🔥 remove code, ⚰️ dead code, 🚚 move/rename | Code refactoring |
+| test | ✅ | 🧪 failing test, 💚 fix CI test | Tests |
+| chore | 🔧 | 🙈 gitignore, 🔖 tag/release, 📌 pin deps, 🩺 healthcheck | Maintenance |
+| perf | ⚡️ | — | Performance |
+| style | 💄 | 🎨 code style | Code style / UI |
+| ci | 👷 | 💚 fix CI | CI/CD |
+| build | 📦️ | ➕ add dep, ➖ remove dep, ⬆️ upgrade dep, ⬇️ downgrade dep | Build system |
+| revert | ⏪️ | — | Revert |
+
+> Pick the **most specific** gitmoji that matches the change. The primary is the safe default; reach for an alternative when it adds real signal. Full list: https://gitmoji.dev
 
 **Examples:**
 
