@@ -16,7 +16,7 @@ export default defineConfig({
       description: 'Open-source developer tools built for real projects.',
       favicon: '/favicon.svg',
       logo: {
-        src: './public/helpers4-logo.png',
+        src: '/helpers4-logo.png',
         alt: 'helpers4',
       },
       plugins: [starlightThemeNova()],
