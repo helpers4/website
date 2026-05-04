@@ -1,27 +1,3 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "strict": true,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "types": [
-      "node"
-    ]
-  },
-  "include": [
-    "landing/src/**/*.ts",
-    "landing/src/**/*.tsx",
-    "landing/vite.config.ts",
-    "docs/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/build/**"
-  ]
+  "extends": "astro/tsconfigs/strict"
 }

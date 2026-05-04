@@ -17,7 +17,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 const devcontainerRepoPath = path.join(rootDir, '..', 'devcontainer');
-const docsOutputPath = path.join(rootDir, 'docs', 'devcontainer', 'docs', 'features');
+const docsOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'devcontainer', 'features');
 const deprecatedOutputPath = path.join(docsOutputPath, 'deprecated');
 const deprecatedSourcePath = path.join(devcontainerRepoPath, 'deprecated');
 
@@ -82,7 +82,8 @@ try {
       content = content.replace(/^<!--[\s\S]*?-->\n\n?/, '');
 
       const frontmatter = `---
-sidebar_position: ${index + 1}
+sidebar:
+  order: ${index + 1}
 ---
 
 `;
@@ -106,7 +107,8 @@ sidebar_position: ${index + 1}
         content = content.replace(/^<!--[\s\S]*?-->\n\n?/, '');
 
         const frontmatter = `---
-sidebar_position: ${index + 1}
+sidebar:
+  order: ${index + 1}
 deprecated: true
 ---
 
