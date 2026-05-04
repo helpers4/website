@@ -3,7 +3,7 @@ title: "Name Conflicts Between Categories"
 description: "Some helpers share the same name across multiple categories. This page explains how to resolve import conflicts."
 sidebar:
   label: "Name Conflicts"
-  order: 3
+  order: 4
 ---
 
 # Name Conflicts Between Categories

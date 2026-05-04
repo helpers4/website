@@ -560,7 +560,7 @@ title: "Name Conflicts Between Categories"
 description: "Some helpers share the same name across multiple categories. This page explains how to resolve import conflicts."
 sidebar:
   label: "Name Conflicts"
-  order: 3
+  order: 4
 ---
 
 # Name Conflicts Between Categories
@@ -704,8 +704,12 @@ function syncContributingPage() {
 
   const sourceContent = fs.readFileSync(contributingSource, 'utf-8');
 
+  // Derive title from first H1 in CONTRIBUTING.md, fallback to default
+  const h1Match = sourceContent.match(/^#\s+(.+)$/m);
+  const derivedTitle = h1Match ? h1Match[1].trim() : 'Contributing to helpers4';
+
   const content = `---
-title: Contributing
+title: "${derivedTitle}"
 sidebar:
   label: Contributing
   order: 3
