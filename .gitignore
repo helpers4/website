@@ -5,8 +5,6 @@
 .copilot/*
 
 # Build and dependencies
-build
-doc
+.astro/
 dist/
-docs/**/.docusaurus/
 node_modules

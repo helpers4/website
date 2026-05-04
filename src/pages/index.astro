@@ -1,0 +1,220 @@
+---
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * Landing page — statically generated, no JS hydration.
+ * GitHub stars are fetched at build time.
+ */
+
+import ProjectCard, { type ProjectCard as ProjectCardType } from '../components/ProjectCard.astro';
+
+const PROJECTS: ProjectCardType[] = [
+  {
+    title: 'For JS and TypeScript',
+    label: 'TypeScript',
+    description: 'Modular utility functions — tree-shakable, strictly typed, zero dependencies, battle-tested.',
+    docsHref: '/typescript/',
+    repoPath: 'helpers4/typescript',
+  },
+  {
+    title: 'For Dev Container',
+    label: 'Dev Container',
+    description: 'Plug-and-play devcontainer features for consistent, reproducible development environments.',
+    docsHref: '/devcontainer/',
+    repoPath: 'helpers4/devcontainer',
+  },
+  {
+    title: 'For GitHub Actions',
+    label: 'GitHub Actions',
+    description: 'Reusable GitHub Actions for commit validation, CI automation, and release workflows.',
+    docsHref: '/action/',
+    repoPath: 'helpers4/action',
+  },
+];
+
+/** Fetch GitHub stars at build time — falls back to null on any error. */
+async function fetchStars(repoPath: string): Promise<number | null> {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repoPath}`, {
+      headers: { Accept: 'application/vnd.github+json' },
+    });
+    if (!res.ok) return null;
+    const data = await res.json() as { stargazers_count?: number };
+    return typeof data.stargazers_count === 'number' ? data.stargazers_count : null;
+  } catch {
+    return null;
+  }
+}
+
+const starsMap = Object.fromEntries(
+  await Promise.all(PROJECTS.map(async (p) => [p.repoPath, await fetchStars(p.repoPath)])),
+);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>helpers4 — Open-source developer tools</title>
+    <meta name="description" content="Open-source developer tools built for real projects: TypeScript utilities, Dev Container features, GitHub Actions." />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="helpers4" />
+    <meta property="og:description" content="Open-source developer tools built for real projects." />
+    <meta property="og:image" content="/helpers4-logo.png" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <img src="/helpers4-logo.png" alt="helpers4" class="logo" width="56" height="56" />
+        <h1>helpers4</h1>
+      </header>
+
+      <section class="intro">
+        <p>
+          Open-source developer tools built for real projects.
+        </p>
+        <p class="license-note">
+          Free to use under the LGPL-3.0 license, including in commercial products.
+          Distribute modified source? Share those changes. Run it as a service? No obligations.
+        </p>
+      </section>
+
+      <section class="cards-grid">
+        {PROJECTS.map((project) => (
+          <ProjectCard card={project} stars={starsMap[project.repoPath] ?? null} />
+        ))}
+      </section>
+
+      <footer class="site-footer">
+        <p>
+          <a href="https://github.com/helpers4" target="_blank" rel="noopener noreferrer">GitHub</a>
+          &nbsp;·&nbsp;
+          <a href="/typescript/legal/license">License (LGPL-3.0)</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --accent: #2d6ef6;
+    --accent-dark: #1d4ed8;
+    --text: #1a1a2e;
+    --text-muted: #64748b;
+    --bg: #ffffff;
+    --border: #e2e8f0;
+    --bg-card: #f8fafc;
+    --radius: 0.75rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --bg: #0f172a;
+      --border: #1e293b;
+      --bg-card: #1e293b;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .site-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .logo {
+    height: 56px;
+    width: auto;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .intro {
+    margin-bottom: 2rem;
+  }
+
+  .intro p {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    color: var(--text);
+  }
+
+  .license-note {
+    font-size: 0.9rem !important;
+    color: var(--text-muted) !important;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  /* Override ProjectCard vars to use landing palette */
+  .cards-grid :global(.project-card) {
+    --sl-color-bg-nav: var(--bg-card);
+    --sl-color-gray-5: var(--border);
+    --sl-color-gray-4: var(--border);
+    --sl-color-gray-2: var(--text-muted);
+    --sl-color-text: var(--text);
+    --sl-color-text-accent: var(--text);
+    --sl-color-accent: var(--accent);
+    --sl-color-accent-high: var(--accent-dark);
+  }
+
+  .site-footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  .site-footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    text-decoration: underline;
+  }
+</style>

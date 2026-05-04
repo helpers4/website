@@ -77,7 +77,7 @@ jobs:
           fi
 
       - name: Build all packages
-        run: pnpm build:all
+        run: pnpm build
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7

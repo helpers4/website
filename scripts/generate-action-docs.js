@@ -14,7 +14,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 const actionRepoPath = path.join(rootDir, '..', 'action');
-const docsOutputPath = path.join(rootDir, 'docs', 'github-action', 'docs', 'actions');
+const docsOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'action', 'actions');
 
 console.log('📚 Generating GitHub Action documentation...\n');
 
@@ -64,7 +64,8 @@ try {
 
       // Convert GitHub markdown to Docusaurus format
       const frontmatter = `---
-sidebar_position: ${index + 1}
+sidebar:
+  order: ${index + 1}
 ---
 
 `;

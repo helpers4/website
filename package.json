@@ -1,36 +1,34 @@
 {
   "name": "@helpers4/website",
   "version": "1.0.0",
-  "description": "helpers4 unified website: landing page + documentation",
+  "description": "helpers4 website: landing page + documentation",
   "license": "LGPL-3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/helpers4/website"
   },
   "private": true,
+  "type": "module",
   "engines": {
     "pnpm": ">=9.0.0",
     "node": ">=20.0.0"
   },
   "scripts": {
-    "install-all": "pnpm install",
-    "build:landing": "pnpm --filter landing build",
-    "build:docs:typescript": "pnpm --filter ./docs/typescript build",
-    "build:docs:devcontainer": "pnpm --filter ./docs/devcontainer build",
-    "build:docs:action": "pnpm --filter ./docs/github-action build",
-    "build:all": "pnpm build:landing && sh ./merge-builds.sh",
-    "merge-builds": "sh ./merge-builds.sh",
-    "build": "pnpm build:all",
-    "dev:landing": "pnpm --filter landing dev",
-    "dev:docs:typescript": "pnpm --filter ./docs/typescript start",
-    "dev:docs:devcontainer": "pnpm --filter ./docs/devcontainer start",
-    "dev:docs:action": "pnpm --filter ./docs/github-action start",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync": "astro sync",
     "generate-docs:typescript": "node scripts/generate-typescript-docs.js",
     "generate-docs:devcontainer": "node scripts/generate-devcontainer-docs.js",
     "generate-docs:action": "node scripts/generate-action-docs.js",
     "sync-from-repos": "node scripts/sync-from-repos.js",
-    "clean": "pnpm --filter landing clean && pnpm --filter ./docs/typescript clean && pnpm --filter ./docs/devcontainer clean && pnpm --filter ./docs/github-action clean && rm -rf dist build coverage",
+    "clean": "rm -rf dist .astro",
     "reset-hard": "git clean -dfx && git reset --hard && pnpm install"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.38.4",
+    "astro": "^6.2.2",
+    "starlight-theme-nova": "^0.11.9"
   },
   "devDependencies": {
     "@types/node": "^20.0.0"

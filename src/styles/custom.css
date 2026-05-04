@@ -1,0 +1,22 @@
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ */
+
+/* =====================================================================
+   Custom styles for helpers4 Starlight site
+   ===================================================================== */
+
+/* Branding: accent color aligned with helpers4 logo */
+:root {
+  --sl-color-accent-low: #1a2a4a;
+  --sl-color-accent: #2d6ef6;
+  --sl-color-accent-high: #8ab4f8;
+}
+
+[data-theme='light'] {
+  --sl-color-accent-low: #dbeafe;
+  --sl-color-accent: #1d4ed8;
+  --sl-color-accent-high: #1e3a8a;
+}
