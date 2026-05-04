@@ -751,7 +751,7 @@ function syncMutationDashboardUrl() {
     /https:\/\/dashboard\.stryker-mutator\.io\/reports\/github\.com\/helpers4\/typescript\/[^\s)\]"]+/g;
 
   const pages = [
-    path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'intro.md'),
+    path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'index.md'),
     path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'getting-started.md'),
     path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'reference', 'philosophy.md'),
   ];
@@ -810,7 +810,7 @@ function syncRuntimeCompatibility() {
  */
 function syncHelperCount(totalFunctions, categoryCount) {
   // intro.md — "Browse Categories" line
-  const introPage = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'intro.md');
+  const introPage = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'index.md');
   if (fs.existsSync(introPage)) {
     const BROWSE_RE = /(\*\*\[Browse Categories\]\([^)]+\)\*\* — )\d+ helpers across \d+ categories/;
     const original = fs.readFileSync(introPage, 'utf-8');

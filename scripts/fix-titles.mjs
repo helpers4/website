@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = '/workspaces/website/src/content/docs';
+const ROOT = new URL('../src/content/docs', import.meta.url).pathname;
 let fixed = 0, skipped = 0;
 
 function processDir(dir) {
