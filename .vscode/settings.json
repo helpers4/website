@@ -6,6 +6,7 @@
     "lib-devcontainer",
     "lib-action",
     "build",
+    "deps",
     "CI-CD"
   ]
 }
