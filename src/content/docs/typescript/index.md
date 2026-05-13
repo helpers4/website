@@ -1,10 +1,10 @@
 C): ---
-title: "helpers4 / TypeScript"
+title: "TypeScript — helpers4"
 sidebar:
   order: 0
 ---
 
-# helpers4 / TypeScript
+# TypeScript — helpers4
 
 Production-ready TypeScript utility functions — modular, strictly typed, exhaustively tested.
 

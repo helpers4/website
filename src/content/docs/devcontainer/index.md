@@ -1,10 +1,10 @@
 ---
-title: "helpers4 / DevContainer Features"
+title: "DevContainer Features — helpers4"
 sidebar:
   order: 0
 ---
 
-# helpers4 / DevContainer Features
+# DevContainer Features — helpers4
 
 Plug-and-play development container features — consistent environments, zero setup friction.
 
