@@ -29,10 +29,10 @@ export default defineConfig({
             items: [
               { slug: 'typescript' },
               { slug: 'typescript/getting-started' },
-              { label: 'Categories', autogenerate: { directory: 'typescript/categories' } },
-              { label: 'Reference', autogenerate: { directory: 'typescript/reference' } },
-              { label: 'Comparisons', autogenerate: { directory: 'typescript/comparisons' } },
-              { label: 'Legal', autogenerate: { directory: 'typescript/legal' } },
+              { label: 'Categories', items: [{ autogenerate: { directory: 'typescript/categories' } }] },
+              { label: 'Reference', items: [{ autogenerate: { directory: 'typescript/reference' } }] },
+              { label: 'Comparisons', items: [{ autogenerate: { directory: 'typescript/comparisons' } }] },
+              { label: 'Legal', items: [{ autogenerate: { directory: 'typescript/legal' } }] },
             ],
           },
           {
@@ -42,9 +42,9 @@ export default defineConfig({
             items: [
               { slug: 'devcontainer' },
               { slug: 'devcontainer/getting-started' },
-              { label: 'Features', autogenerate: { directory: 'devcontainer/features' } },
-              { label: 'Reference', autogenerate: { directory: 'devcontainer/reference' } },
-              { label: 'Legal', autogenerate: { directory: 'devcontainer/legal' } },
+              { label: 'Features', items: [{ autogenerate: { directory: 'devcontainer/features' } }] },
+              { label: 'Reference', items: [{ autogenerate: { directory: 'devcontainer/reference' } }] },
+              { label: 'Legal', items: [{ autogenerate: { directory: 'devcontainer/legal' } }] },
             ],
           },
           {
@@ -54,14 +54,18 @@ export default defineConfig({
             items: [
               { slug: 'action' },
               { slug: 'action/getting-started' },
-              { label: 'Actions', autogenerate: { directory: 'action/actions' } },
-              { label: 'Reference', autogenerate: { directory: 'action/reference' } },
-              { label: 'Legal', autogenerate: { directory: 'action/legal' } },
+              { label: 'Actions', items: [{ autogenerate: { directory: 'action/actions' } }] },
+              { label: 'Reference', items: [{ autogenerate: { directory: 'action/reference' } }] },
+              { label: 'Legal', items: [{ autogenerate: { directory: 'action/legal' } }] },
             ],
           },
         ]),
         starlightThemeNova(),
       ],
+      components: {
+        MarkdownContent: './src/components/MarkdownContent.astro',
+        Search: './src/components/Search.astro',
+      },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/helpers4' },
       ],
