@@ -43,6 +43,7 @@ export default defineConfig({
               { slug: 'devcontainer' },
               { slug: 'devcontainer/getting-started' },
               { label: 'Features', items: [{ autogenerate: { directory: 'devcontainer/features' } }] },
+              { label: 'Deprecated', collapsed: true, items: [{ autogenerate: { directory: 'devcontainer/deprecated' } }] },
               { label: 'Reference', items: [{ autogenerate: { directory: 'devcontainer/reference' } }] },
               { label: 'Legal', items: [{ autogenerate: { directory: 'devcontainer/legal' } }] },
             ],
