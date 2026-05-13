@@ -26,13 +26,14 @@
     "reset-hard": "git clean -dfx && git reset --hard && pnpm install"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.38.4",
-    "astro": "^6.2.2",
+    "@astrojs/starlight": "^0.39.2",
+    "astro": "^6.3.2",
     "starlight-sidebar-topics": "^0.7.1",
     "starlight-theme-nova": "^0.11.9"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0"
+    "@pagefind/default-ui": "1.5.2",
+    "@types/node": "^25.7.0"
   },
   "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
 }
