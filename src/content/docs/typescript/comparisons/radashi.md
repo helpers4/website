@@ -23,11 +23,15 @@ This page details the differences to help you decide whether you need helpers4, 
 
 ### Origin story
 
-helpers4 was born from a recurring problem: **repeatedly recoding the same domain-specific helpers** (URL manipulation, string humanisation, promise guards…) across projects due to licensing constraints. These helpers follow the same lean ethos as general toolkit libraries but are typically considered too niche for inclusion in them.
+helpers4 was born from a recurring problem: **repeatedly recoding the same domain-specific helpers** (URL manipulation, string humanisation, promise guards…) across projects due to licensing constraints. After 10 years of rewriting the same utilities, the question became: should this effort go into an existing library, or into a standalone project?
 
-The question was raised directly to the Radashi community: [_"How Far Should More Helper Functions Be Integrated?"_](https://github.com/orgs/radashi-org/discussions/279). The answer was clear — Radashi core stays focused on the most popular utilities, and niche helpers belong either in a future `radashi-edge` package or in complementary third-party libraries. This confirmed the need for helpers4 as a standalone project.
+The question was raised directly to the Radashi community: [_"How Far Should More Helper Functions Be Integrated?"_](https://github.com/orgs/radashi-org/discussions/279). The answer from the Radashi maintainer was clear and fair: Radashi core stays focused on the most popular utilities, niche helpers belong either in a future `radashi-edge` package or in complementary third-party libraries. This confirmed the need for helpers4 as a standalone project.
 
-A concrete example played out with [PR #328](https://github.com/radashi-org/radashi/pull/328), which proposed 6 URL helpers (from helpers4) to Radashi core. The PR was acknowledged as well-built, but the maintainers felt the functions weren't common enough for inclusion in core — reinforcing the complementary positioning of both libraries.
+A concrete case confirmed this: URL helpers proposed to Radashi core were acknowledged as well-built, but the Radashi maintainer raised a philosophical concern: *"when encountering malformed paths, it's often more maintainable to fix the issue at its source rather than normalising downstream."*
+
+The counter-argument — and helpers4's actual position — is that these utilities are **string manipulations**, no different in nature from `capitalize` or `kebabCase`. When a string arrives from a third-party API, a config file, or a legacy codebase, you cannot always "fix the source". You need a clean, named, typed helper that does one obvious thing. `cleanPath(url)` is not masking a problem; it is the solution.
+
+The two libraries ended up at different answers to the same question, and that's fine. Radashi is a lean general-purpose toolkit; helpers4 is the pragmatic complement for everything that doesn't meet that bar.
 
 ### Key philosophical differences
 
