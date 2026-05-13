@@ -28,6 +28,12 @@ Reusable GitHub Actions for consistent, automated workflows across your reposito
     require-scope: false
 ```
 
+## Contributing
+
+Found a bug or want to suggest a new action? [Open an issue](https://github.com/helpers4/action/issues) on the Actions repository.
+
+Want to improve this documentation? Use the **Edit page** link at the bottom of any page, or [open an issue](https://github.com/helpers4/website/issues) on the website repository.
+
 ## License
 
 LGPL-3.0 — See [LICENSE](./legal/license) for details.
