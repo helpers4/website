@@ -1,4 +1,4 @@
----
+C): ---
 title: "helpers4 / TypeScript"
 sidebar:
   order: 0
@@ -17,6 +17,8 @@ Production-ready TypeScript utility functions — modular, strictly typed, exhau
 ## What is helpers4?
 
 A collection of functional helpers to stop rewriting the same utility code across every project — each function does one thing, does it right, and ships with full type safety and exhaustive tests.
+
+Born from 10 years of recoding the same domain-specific helpers across projects, helpers4 covers the gaps that popular general-purpose toolkits deliberately exclude: dates, URLs, semver, observables, promise guards. The [Philosophy](./reference/philosophy) and the [Radashi comparison](./comparisons/radashi) pages explain the reasoning in detail.
 
 - ✅ **Tree-shakable** — import one function, pay for one function
 - ✅ **Framework-agnostic** — React, Vue, Svelte, Angular, or no framework at all

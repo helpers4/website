@@ -72,6 +72,33 @@ import { compact as compact4object } from '@helpers4/object';
 
 See [Name Conflicts](./naming-conflicts) for the full list of known conflicts and resolution patterns.
 
+## Pragmatism over theoretical purity
+
+The platform APIs exist. `new URL(x).toString()` normalises a path. The `Intl` API formats dates. You could argue that wrapping these is unnecessary.
+
+helpers4 disagrees — politely.
+
+When you need to clean a path in a template, or strip a trailing slash before building a route, or normalise a URL coming from a legacy API, you reach for a one-liner with a name that says exactly what it does:
+
+```ts
+const endpoint = cleanPath(`https://api.example.com/${version}/users/${id}`);
+```
+
+versus:
+
+```ts
+const url = new URL(`https://api.example.com/${version}/users/${id}`);
+const endpoint = url.toString();
+```
+
+Both work. One communicates intent. The other is a workaround that happens to have the right side effect.
+
+A common objection to this kind of helper is that "normalising downstream might mask underlying issues that should be addressed at the source". That is a valid design principle for core library maintainers gatekeeping a general toolkit. It is not a useful principle for a developer who receives a string from a third-party API, a user input, or a config file and just needs a clean path.
+
+helpers4 exists because **real production code is full of strings that need normalisation**, and pretending otherwise is its own form of impurity. A helper that replaces a convoluted workaround with a named, tested, typed function is not masking a problem — it is solving one.
+
+This doesn't mean we accept every helper that "works". We still require the function to be genuinely reusable, have a clear contract, and pass the same exhaustive test gauntlet as everything else. But we do not reject a function because a lower-level API can technically produce the same result with more code.
+
 ## Open source, genuinely
 
 All code is licensed under LGPL-3.0. You can use it in commercial projects. You can fork it. If you improve the helpers themselves, we ask that you share those improvements — that's the deal.
