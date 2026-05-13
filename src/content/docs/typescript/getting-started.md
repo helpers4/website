@@ -7,7 +7,7 @@ sidebar:
 # Getting Started
 
 :::info[Documented version]
-**[v2.0.0-alpha.22](https://github.com/helpers4/typescript/releases/tag/v2.0.0-alpha.22)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/2.0.0-alpha.22) · [Changelog](./reference/changelog)
+**[v2.0.0-alpha.22](https://github.com/helpers4/typescript/releases/tag/v2.0.0-alpha.22)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/2.0.0-alpha.22) · [Changelog](../reference/changelog)
 :::
 
 ## Installation
