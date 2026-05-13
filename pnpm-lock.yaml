@@ -14,6 +14,9 @@ importers:
       astro:
         specifier: ^6.2.2
         version: 6.2.2(@types/node@20.19.33)(jiti@1.21.7)(rollup@4.57.1)(terser@5.46.0)
+      starlight-sidebar-topics:
+        specifier: ^0.7.1
+        version: 0.7.1(@astrojs/starlight@0.38.4(astro@6.2.2(@types/node@20.19.33)(jiti@1.21.7)(rollup@4.57.1)(terser@5.46.0)))
       starlight-theme-nova:
         specifier: ^0.11.9
         version: 0.11.9(@astrojs/starlight@0.38.4(astro@6.2.2(@types/node@20.19.33)(jiti@1.21.7)(rollup@4.57.1)(terser@5.46.0)))(typescript@5.9.3)
@@ -5829,6 +5832,12 @@ packages:
   srcset@4.0.0:
     resolution: {integrity: sha512-wvLeHgcVHKO8Sc/H/5lkGreJQVeYMm9rlmt8PuR1xE31rIuXhuzznUUqAt8MqLhB3MqJdFzlNAfpcWnxiFUcPw==}
     engines: {node: '>=12'}
+
+  starlight-sidebar-topics@0.7.1:
+    resolution: {integrity: sha512-2PBR05ZUvnKNoJtbL2u6GoE1qmQD0tFcd5+inYEJHJkx3LE2P+vlNslofTGHLtzch2XzyNbHUBQQu35bouA6NQ==}
+    engines: {node: '>=22.12.0'}
+    peerDependencies:
+      '@astrojs/starlight': '>=0.38.0'
 
   starlight-theme-nova@0.11.9:
     resolution: {integrity: sha512-ClQbGaqU97vhog89dXQoLDVGx9eWCSOGUkFNjLw68rlQDZ7/2AutM9jFXqzD7NSRbxjO5GYox18Ld/6mzMFlrw==}
@@ -14075,6 +14084,11 @@ snapshots:
 
   srcset@4.0.0: {}
 
+  starlight-sidebar-topics@0.7.1(@astrojs/starlight@0.38.4(astro@6.2.2(@types/node@20.19.33)(jiti@1.21.7)(rollup@4.57.1)(terser@5.46.0))):
+    dependencies:
+      '@astrojs/starlight': 0.38.4(astro@6.2.2(@types/node@20.19.33)(jiti@1.21.7)(rollup@4.57.1)(terser@5.46.0))
+      picomatch: 4.0.4
+
   starlight-theme-nova@0.11.9(@astrojs/starlight@0.38.4(astro@6.2.2(@types/node@20.19.33)(jiti@1.21.7)(rollup@4.57.1)(terser@5.46.0)))(typescript@5.9.3):
     dependencies:
       '@aria-ui/core': 0.2.0
@@ -14212,7 +14226,7 @@ snapshots:
   terser@5.46.0:
     dependencies:
       '@jridgewell/source-map': 0.3.11
-      acorn: 8.15.0
+      acorn: 8.16.0
       commander: 2.20.3
       source-map-support: 0.5.21
 
