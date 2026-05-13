@@ -7,7 +7,7 @@
  * Converts from GitHub markdown to Docusaurus format.
  *
  * Active features   → src/<name>/devcontainer-feature.json present → docs/features/
- * Deprecated features → src/<name>/devcontainer-feature.json absent  → docs/features/deprecated/
+ * Deprecated features → src/<name>/devcontainer-feature.json absent  → docs/deprecated/
  */
 
 import fs from 'fs';
@@ -18,7 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 const devcontainerRepoPath = path.join(rootDir, '..', 'devcontainer');
 const docsOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'devcontainer', 'features');
-const deprecatedOutputPath = path.join(docsOutputPath, 'deprecated');
+const deprecatedOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'devcontainer', 'deprecated');
 const deprecatedSourcePath = path.join(devcontainerRepoPath, 'deprecated');
 
 console.log('📚 Generating DevContainer feature documentation...\n');
