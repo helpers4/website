@@ -1,10 +1,10 @@
 ---
-title: "helpers4 / GitHub Actions"
+title: "GitHub Actions — helpers4"
 sidebar:
   order: 0
 ---
 
-# helpers4 / GitHub Actions
+# GitHub Actions — helpers4
 
 Reusable GitHub Actions for consistent, automated workflows across your repositories.
 
