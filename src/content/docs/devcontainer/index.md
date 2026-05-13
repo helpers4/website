@@ -40,6 +40,12 @@ Features are published to `ghcr.io/helpers4/devcontainer/<feature-name>`:
 }
 ```
 
+## Contributing
+
+Found a bug or want to request a new feature? [Open an issue](https://github.com/helpers4/devcontainer/issues) on the DevContainer repository.
+
+Want to improve this documentation? Use the **Edit page** link at the bottom of any page, or [open an issue](https://github.com/helpers4/website/issues) on the website repository.
+
 ## License
 
 LGPL-3.0 — See [LICENSE](./legal/license) for details.

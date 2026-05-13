@@ -1,4 +1,4 @@
-C): ---
+---
 title: "TypeScript — helpers4"
 sidebar:
   order: 0
@@ -57,3 +57,9 @@ import { compact as compact4object } from '@helpers4/object';
 ```
 
 See the full list in [Name Conflicts](./reference/naming-conflicts).
+
+## Contributing
+
+Found a bug or want to suggest a helper? [Open an issue](https://github.com/helpers4/typescript/issues) on the TypeScript repository.
+
+Want to improve this documentation? Use the **Edit page** link at the bottom of any page, or [open an issue](https://github.com/helpers4/website/issues) on the website repository.

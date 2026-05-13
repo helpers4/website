@@ -67,6 +67,9 @@ export default defineConfig({
         MarkdownContent: './src/components/MarkdownContent.astro',
         Search: './src/components/Search.astro',
       },
+      editLink: {
+        baseUrl: 'https://github.com/helpers4/website/edit/main/',
+      },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/helpers4' },
       ],
