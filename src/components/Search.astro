@@ -147,8 +147,10 @@ if (project.trailingSlash === 'never') dataAttributes['data-strip-trailing-slash
 				const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
 				onIdle(async () => {
 					// Determine current topic to scope search results.
-					const TOPICS = ['typescript', 'devcontainer', 'action'] as const;
-					const pathTopic = window.location.pathname.split('/').filter(Boolean)[0];
+					const { TOPICS } = await import('../lib/topics');
+					const baseUrl = import.meta.env.BASE_URL;
+					const pathWithoutBase = window.location.pathname.slice(baseUrl === '/' ? 0 : baseUrl.length);
+					const pathTopic = pathWithoutBase.split('/').filter(Boolean)[0];
 					const currentTopic = (TOPICS as readonly string[]).includes(pathTopic)
 						? pathTopic
 						: undefined;
@@ -169,8 +171,7 @@ if (project.trailingSlash === 'never') dataAttributes['data-strip-trailing-slash
 							result.sub_results = result.sub_results.map((sub_result) => {
 								sub_result.url = formatURL(sub_result.url);
 								return sub_result;
-							});
-						},
+							});								return result;						},
 					});
 				});
 			});
