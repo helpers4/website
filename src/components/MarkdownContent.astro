@@ -6,8 +6,8 @@
  */
 import Default from '@astrojs/starlight/components/MarkdownContent.astro';
 import type { Props } from '@astrojs/starlight/props';
+import { TOPICS } from '../lib/topics';
 
-const TOPICS = ['typescript', 'devcontainer', 'action'] as const;
 const slug: string = (Astro.props as Props).slug ?? '';
 const topic = TOPICS.find((t) => slug === t || slug.startsWith(t + '/'));
 ---
