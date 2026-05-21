@@ -725,12 +725,13 @@ ${sourceContent}`;
 }
 
 /**
- * Patch the version sentinel (0.0.0-snapshot) in manually-written documentation pages.
- * This keeps install commands, npm links, and GitHub release links in sync with the
- * actual documented version without duplicating the version in the source files.
+ * Patch version references in manually-written documentation pages.
+ * Replaces both the legacy sentinel (0.0.0-snapshot) and any existing version string
+ * in the known URL/link patterns so the page stays in sync across releases without
+ * relying on the sentinel being present in the committed file.
  */
 function syncVersion() {
-  const VERSION_SENTINEL_RE = /0\.0\.0-snapshot/g;
+  const SEM_VER_RE = /[\d]+\.[\d]+\.[\d]+[\w.-]*/;
 
   const pages = [
     path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'getting-started.md'),
@@ -739,7 +740,29 @@ function syncVersion() {
   for (const page of pages) {
     if (!fs.existsSync(page)) continue;
     const original = fs.readFileSync(page, 'utf-8');
-    const patched = original.replace(VERSION_SENTINEL_RE, LIBRARY_VERSION);
+    let patched = original;
+
+    // 1. Legacy sentinel placeholder
+    patched = patched.replace(/0\.0\.0-snapshot/g, LIBRARY_VERSION);
+
+    // 2. Version badge: [vX.Y.Z](…/releases/tag/vX.Y.Z)
+    patched = patched.replace(
+      new RegExp(`\\[v${SEM_VER_RE.source}\\]\\(https://github\\.com/helpers4/typescript/releases/tag/v${SEM_VER_RE.source}\\)`, 'g'),
+      `[v${LIBRARY_VERSION}](https://github.com/helpers4/typescript/releases/tag/v${LIBRARY_VERSION})`
+    );
+
+    // 3. npm link: [npm](…/@helpers4/all/v/X.Y.Z)
+    patched = patched.replace(
+      new RegExp(`\\[npm\\]\\(https://www\\.npmjs\\.com/package/@helpers4/all/v/${SEM_VER_RE.source}\\)`, 'g'),
+      `[npm](https://www.npmjs.com/package/@helpers4/all/v/${LIBRARY_VERSION})`
+    );
+
+    // 4. pnpm version pin comment: # pnpm add @helpers4/all@X.Y.Z
+    patched = patched.replace(
+      new RegExp(`(# pnpm add @helpers4/all@)${SEM_VER_RE.source}`, 'g'),
+      `$1${LIBRARY_VERSION}`
+    );
+
     if (patched !== original) {
       fs.writeFileSync(page, patched);
       console.log(`  ✓ patched version (${LIBRARY_VERSION}) → ${path.basename(page)}`);
