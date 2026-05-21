@@ -136,7 +136,7 @@ The feature detects the package manager in this order:
 
 1. **From `packageManager` field in package.json** (highest priority)
    - Example: `"packageManager": "pnpm@9.0.0"` → uses **pnpm**
-   - This is the most reliable and modern approach
+   - This is the recommended approach (follows the Node.js `packageManager` spec)
 2. **From lockfiles**:
    - `pnpm-lock.yaml` → uses **pnpm**
    - `yarn.lock` → uses **yarn**
