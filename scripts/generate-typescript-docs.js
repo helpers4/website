@@ -365,6 +365,9 @@ See [Name Conflicts](../../reference/naming-conflicts) for the full resolution g
   // --- patch mutation dashboard URL in manually-written pages ---
   syncMutationDashboardUrl();
 
+  // --- fix broken internal links (remove .md extension) ---
+  fixBrokenLinks();
+
   // --- patch runtime compatibility in getting-started ---
   syncRuntimeCompatibility();
 
@@ -668,13 +671,17 @@ All helpers listed by the version in which they were introduced, from newest to 
 
 `;
 
-  for (const version of sortedVersions) {
+  // Skip 'next' section if the current version is a stable release (no prerelease marker)
+  const isStableRelease = !LIBRARY_VERSION.includes('-');
+  const displayVersions = isStableRelease
+    ? sortedVersions.filter(v => v !== 'next')
+    : sortedVersions;
+
+  for (const version of displayVersions) {
     const fns = byVersion[version].sort((a, b) => a.name.localeCompare(b.name));
     const label = version === 'unknown'
       ? '*(version unknown)*'
-      : version === 'next'
-        ? '`next` *(upcoming prerelease)*'
-        : `v${version}`;
+      : `v${version}`;
     content += `## ${label}\n\n`;
     content += `| Function | Category | Description |\n`;
     content += `|----------|----------|-------------|\n`;
@@ -808,10 +815,32 @@ function syncRuntimeCompatibility() {
 }
 
 /**
- * Patch the helper count in intro.md (Browse Categories link) and in the
- * "Overview" comparison table on comparisons/alternatives.md, so both stay
- * in sync with the actual number of exported functions.
+ * Fix internal links by removing .md extensions from Astro doc links.
+ * Astro documentation links should not include .md extension.
  */
+function fixBrokenLinks() {
+  const INTERNAL_MD_LINK_RE = /\]\(([^)]*\/[^)]*\.md)\)/g;
+
+  const pages = [
+    path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'index.md'),
+    path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'getting-started.md'),
+  ];
+
+  for (const page of pages) {
+    if (!fs.existsSync(page)) continue;
+    const original = fs.readFileSync(page, 'utf-8');
+    const patched = original.replace(INTERNAL_MD_LINK_RE, (match, url) => {
+      const fixedUrl = url.replace(/\.md$/, '');
+      return `](${fixedUrl})`;
+    });
+    if (patched !== original) {
+      fs.writeFileSync(page, patched);
+      console.log(`  ✓ fixed broken internal links → ${path.basename(page)}`);
+    }
+  }
+}
+
+
 function syncHelperCount(totalFunctions, categoryCount) {
   // intro.md — "Browse Categories" line
   const introPage = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'index.md');
