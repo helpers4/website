@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::info[Documented version]
-**[v2.0.0-beta.3](https://github.com/helpers4/typescript/releases/tag/v2.0.0-beta.3)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/2.0.0-beta.3) · [Changelog](../reference/changelog)
+**[v2.0.0](https://github.com/helpers4/typescript/releases/tag/v2.0.0)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/2.0.0) · [Changelog](../reference/changelog)
 :::
 
 ## Installation
@@ -17,7 +17,7 @@ pnpm add @helpers4/all
 # or: npm install @helpers4/all
 
 # Pin to a specific version:
-# pnpm add @helpers4/all@2.0.0-beta.3
+# pnpm add @helpers4/all@2.0.0
 ```
 
 Or install only the categories you need:
@@ -101,7 +101,7 @@ const result = deepMerge({ a: 1 }, { b: 2 });
 | Node.js | `>=24.0.0` | |
 | Deno | ✅ | |
 | Bun | ✅ | |
-## Quality Guarantees
+## Quality Standards
 
 Every helper ships with:
 - **100% code coverage** (lines, branches, functions, statements)
@@ -109,7 +109,7 @@ Every helper ships with:
 - **Contract tests** — formal behavioral guarantees
 - **Boundary tests** — edge values and limit conditions covered explicitly
 - **Security edge case tests** — inputs like prototype pollution or injected keys
-- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.0-beta.3)
+- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main)
 - **Benchmarks** (Vitest Bench) — performance tracked per build
 - **Dependency security audit** — `pnpm audit` on every PR and release
 - **OpenSSF Scorecard** — [view report](https://securityscorecards.dev/viewer/?uri=github.com/helpers4/typescript)
