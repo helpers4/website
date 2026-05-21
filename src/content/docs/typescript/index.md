@@ -1,6 +1,7 @@
 ---
-title: "TypeScript — helpers4"
+title: Helpers 4 TypeScript
 sidebar:
+  label: TypeScript
   order: 0
 ---
 

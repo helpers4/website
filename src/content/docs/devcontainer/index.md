@@ -1,6 +1,7 @@
 ---
-title: "DevContainer Features — helpers4"
+title: Helpers 4 DevContainers
 sidebar:
+  label: DevContainers
   order: 0
 ---
 
