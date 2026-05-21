@@ -10,27 +10,7 @@ sidebar:
 
 All helpers listed by the version in which they were introduced, from newest to oldest.
 
-## `next` *(upcoming prerelease)*
-
-| Function | Category | Description |
-|----------|----------|-------------|
-| [`analyzeCommits`](../categories/commit/analyzeCommits) | [commit](../categories/commit/) | Analyses a list of commits to suggest a semantic version bump.  Each commit is parsed via `parseConventionalCommit`. The body is also scanned for `BREAKING CHANGE:` / `BREAKING-CHANGE:` markers. The bump rule is:  - any breaking change → `'major'` - otherwise any `feat` → `'minor'` - otherwise any `fix` → `'patch'` - otherwise (non-empty list of non-conventional commits) → `'patch'` - empty list → `'patch'` with reason "No commits to analyse" |
-| [`buildConventionalCommitRegex`](../categories/commit/buildConventionalCommitRegex) | [commit](../categories/commit/) | Builds a regular expression matching the **subject line** of a Conventional Commits message.  The returned regex exposes four capture groups:  1. type 2. scope (or `undefined` when absent) 3. breaking marker (`'!'` or `undefined`) 4. description |
-| [`formatSize`](../categories/number/formatSize) | [number](../categories/number/) | Format a byte count into a human-readable string with the appropriate unit.  Each unit is 1024 of the previous (binary prefix). The result is formatted with one decimal place. |
-| [`injectWordBreaks`](../categories/string/injectWordBreaks) | [string](../categories/string/) | Adds word-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table cells.  Invisible zero-width spaces (`\\u200B`) are inserted at meaningful boundaries — camelCase splits, path separators, token edges — while protected spans (URLs, emails, HTML) and atomic numeric values (`-0.1%`, `12ms`, `1e-3`) are never broken. The visible text content is unchanged. |
-| [`isArrayBuffer`](../categories/type/isArrayBuffer) | [type](../categories/type/) | Checks if a value is an ArrayBuffer instance.  Useful for filtering or type-narrowing in a functional pipeline: `values.filter(isArrayBuffer)` |
-| [`isBlob`](../categories/type/isBlob) | [type](../categories/type/) | Checks if a value is a Blob instance.  Useful for filtering or type-narrowing in a functional pipeline: `values.filter(isBlob)` |
-| [`isBuffer`](../categories/type/isBuffer) | [type](../categories/type/) | Checks if a value is a Node.js Buffer instance.  `Buffer` extends `Uint8Array` and is specific to Node.js, Bun, and Deno. In browser-only environments where `Buffer` is not defined, this function always returns `false`.  Useful for filtering or type-narrowing in a functional pipeline: `values.filter(isBuffer)` |
-| [`isConventionalCommit`](../categories/commit/isConventionalCommit) | [commit](../categories/commit/) | Checks whether a commit message's subject line follows the Conventional Commits format constrained by the given options.  Only the first line is inspected — body and footer are ignored. |
-| [`isFormData`](../categories/type/isFormData) | [type](../categories/type/) | Checks if a value is a FormData instance.  Useful for filtering or type-narrowing in a functional pipeline: `values.filter(isFormData)` |
-| [`isPrerelease`](../categories/version/isPrerelease) | [version](../categories/version/) | Returns `true` when the version string has a prerelease suffix (i.e. contains a `-` after the core `MAJOR.MINOR.PATCH`). |
-| [`parseConventionalCommit`](../categories/commit/parseConventionalCommit) | [commit](../categories/commit/) | Parses a Conventional Commits message into a structured object.  The first line is matched against the regex produced by `buildConventionalCommitRegex(options)`. The remaining content is split into a `body` and an optional trailing `footer` block (lines matching `Token: value` / `Token #value`, including `BREAKING CHANGE: ...`). |
-| [`parsePackageRepository`](../categories/url/parsePackageRepository) | [url](../categories/url/) | Parse the `repository` field from `package.json` into a structured object.  Supports all npm-specified formats: - **Object form**: `{ "type": "git", "url": "...", "directory": "..." }` - **GitHub shorthand**: `"owner/repo"` or `"github:owner/repo"` - **Platform shorthands**: `"gitlab:owner/repo"`, `"bitbucket:owner/repo"` - **Gist shorthand**: `"gist:<id>"` - **URL forms**: `git+https://`, `https://`, `git://`, `git@` SSH, `git+ssh://`  Returns `undefined` for `null`, `undefined`, arrays, or values that cannot be matched to any recognised format. |
-| [`safeJsonParse`](../categories/object/safeJsonParse) | [object](../categories/object/) | Parses a JSON string, returning `null` (or a fallback) on any parse failure.  Unlike `JSON.parse`, this never throws. Invalid JSON strings and other parsing edge-cases resolve to `null` or the provided `fallback`. |
-| [`stringify`](../categories/version/stringify) | [version](../categories/version/) | Reconstruct a semantic version string from a ParsedVersion object.  This is the inverse of parse: `stringify(parse(v)) === stripV(v)` for any valid SemVer string `v`. |
-| [`truncate`](../categories/string/truncate) | [string](../categories/string/) | Truncates a string to `maxLength` characters, appending an ellipsis when cut.  The ellipsis counts toward `maxLength`, so the result is always at most `maxLength` characters long. If the string is already within the limit, it is returned unchanged (no ellipsis appended). `null` and `undefined` inputs are returned as-is to align with other string helpers. |
-
-## v2.0.0
+## v2.0.0 *(Latest)*
 
 | Function | Category | Description |
 |----------|----------|-------------|

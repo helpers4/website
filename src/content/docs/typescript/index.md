@@ -11,7 +11,7 @@ Production-ready TypeScript utility functions — modular, strictly typed, exhau
 ## Quick Links
 
 - **[Get Started](./getting-started)** — Installation and first import
-- **[Browse Categories](./categories/array/index.md)** — 168 helpers across 13 categories
+- **[Browse Categories](./categories/array)** — 168 helpers across 13 categories
 - **[GitHub](https://github.com/helpers4/typescript)** · **[npm](https://www.npmjs.com/package/@helpers4/all)** · **[License (LGPL-3.0)](./legal/license)**
 
 ## What is helpers4?
@@ -30,18 +30,20 @@ Born from 10 years of recoding the same domain-specific helpers across projects,
 
 ## What's new in V2?
 
-V2 is a major milestone:
+V2 is a major milestone with 40+ new helpers:
 
 | | |
 |---|---|
-| **40+ new helpers** | Across every category — array, date, promise, type, object… |
-| **New `math` category** | Starting with UUID v7 generation |
-| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.0-alpha.22) |
+| **40+ new helpers** | `analyzeCommits`, `buildConventionalCommitRegex`, `formatSize`, `injectWordBreaks`, `isArrayBuffer`, `isBlob`, `isBuffer`, `isConventionalCommit`, `isFormData`, `isPrerelease`, `parseConventionalCommit`, `parsePackageRepository`, `safeJsonParse`, `stringify`, `truncate`, and many more |
+| **New `commit` category** | Parse and analyze Conventional Commits messages with formal structure validation |
+| **New `version` category** | `parse`, `compare`, `increment`, `stringify` — semantic version operations with full SemVer 2.0.0 support |
+| **Expanded `type` category** | Guards for every major type: `isTemporalInstant`, `isTemporalDuration`, `isTemporalPlainDate`, `isTemporalPlainDateTime`, `isPromise`, `isIterable`, and more |
+| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.0-beta.3) |
 | **Property-based tests** | Invariants validated against thousands of random inputs (fast-check) |
 | **Contract tests** | Formal behavioral guarantees for each function |
 | **Boundary & security tests** | Edge values and security-sensitive inputs (prototype pollution, injections) |
 | **Native API tracking** | Standard JS equivalents documented, not re-implemented |
-| **New docs site** | You're reading it |
+| **New docs site** | You're reading it — built with Astro, fully searchable |
 
 ## Comparisons
 
