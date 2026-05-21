@@ -157,4 +157,4 @@ Browse all helpers4 actions on [GitHub Marketplace](https://github.com/marketpla
 
 ## License
 
-MIT License - See [LICENSE](https://github.com/helpers4/action/blob/main/LICENSE) for details.
+LGPL-3.0 — See [LICENSE](https://github.com/helpers4/action/blob/main/LICENSE) for details.
