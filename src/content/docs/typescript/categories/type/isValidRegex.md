@@ -4,8 +4,6 @@ sidebar:
   label: "isValidRegex"
 ---
 
-# isValidRegex
-
 Checks if a string is a valid regex pattern.
 
 > Available since v1.9.0

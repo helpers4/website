@@ -4,8 +4,6 @@ sidebar:
   label: "removeUndefinedNull"
 ---
 
-# removeUndefinedNull
-
 Remove null and undefined values from an object.
 
 > Available since v1.0.0

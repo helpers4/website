@@ -4,8 +4,6 @@ sidebar:
   label: "chunk"
 ---
 
-# chunk
-
 Chunks an array into smaller arrays of specified size
 
 > Available since v1.9.0

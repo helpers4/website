@@ -4,8 +4,6 @@ sidebar:
   label: "guard"
 ---
 
-# guard
-
 Wraps a function so that if it throws, a default value is returned instead of propagating the error.
 Works with both synchronous and asynchronous functions.
 

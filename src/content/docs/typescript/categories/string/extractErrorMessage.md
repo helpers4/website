@@ -4,8 +4,6 @@ sidebar:
   label: "extractErrorMessage"
 ---
 
-# extractErrorMessage
-
 Convert an error to a readable message.
 
 > Available since v1.0.0

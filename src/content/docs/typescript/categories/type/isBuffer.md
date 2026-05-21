@@ -4,8 +4,6 @@ sidebar:
   label: "isBuffer"
 ---
 
-# isBuffer
-
 Checks if a value is a Node.js Buffer instance.
 
 `Buffer` extends `Uint8Array` and is specific to Node.js, Bun, and Deno.

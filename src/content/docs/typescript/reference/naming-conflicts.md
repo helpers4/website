@@ -6,8 +6,6 @@ sidebar:
   order: 4
 ---
 
-# Name Conflicts Between Categories
-
 helpers4 is split into independent npm packages — one per category. Each package can be installed and tree-shaken independently. A deliberate consequence of this design is that **the same function name can exist in multiple categories** when the operation makes sense for different data types.
 
 This is not a bug. `compact` for arrays and `compact` for objects are genuinely different operations, and merging them into a single overloaded function would break tree-shaking and make the types less precise.

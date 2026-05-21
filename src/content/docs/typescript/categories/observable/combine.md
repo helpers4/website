@@ -4,8 +4,6 @@ sidebar:
   label: "combine"
 ---
 
-# combine
-
 Combine two observables with a map function and an optional pre-treatment.
 
 Note: you can use the pre-treatment to add a filter, a distinctUntilChanged,

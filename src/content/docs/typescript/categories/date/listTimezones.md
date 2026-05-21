@@ -4,8 +4,6 @@ sidebar:
   label: "listTimezones"
 ---
 
-# listTimezones
-
 Returns the list of IANA timezone identifiers supported by the runtime.
 
 Wraps `Intl.supportedValuesOf('timeZone')` which is available in

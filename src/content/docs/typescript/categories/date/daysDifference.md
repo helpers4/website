@@ -4,8 +4,6 @@ sidebar:
   label: "daysDifference"
 ---
 
-# daysDifference
-
 Gets the difference in days between two dates.
 
 > Available since v2.0.0

@@ -4,8 +4,6 @@ sidebar:
   label: "clamp"
 ---
 
-# clamp
-
 Clamps a number between min and max values
 
 > Available since v1.9.0

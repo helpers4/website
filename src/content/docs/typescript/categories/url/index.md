@@ -5,8 +5,6 @@ sidebar:
   order: 0
 ---
 
-# Url Helpers
-
 Utility functions for working with url operations.
 
 ## Functions

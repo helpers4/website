@@ -4,8 +4,6 @@ sidebar:
   label: "compare"
 ---
 
-# compare
-
 Comparison of two dates.
 
 Accepts any DateLike input (Date, timestamp, or date string).

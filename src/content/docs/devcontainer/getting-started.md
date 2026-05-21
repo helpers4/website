@@ -4,8 +4,6 @@ sidebar:
   order: 1
 ---
 
-# Getting Started with DevContainer Features
-
 Welcome to the **helpers4 DevContainer Features** collection! Pre-configured development environment containers for modern web development.
 
 ## What is a DevContainer?

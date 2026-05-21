@@ -4,8 +4,6 @@ sidebar:
   label: "getTimezoneOffset"
 ---
 
-# getTimezoneOffset
-
 Returns the UTC offset **in minutes** for the given IANA timezone
 at a specific point in time.
 

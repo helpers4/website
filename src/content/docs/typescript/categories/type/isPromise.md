@@ -4,8 +4,6 @@ sidebar:
   label: "isPromise"
 ---
 
-# isPromise
-
 Checks if a value is a Promise or a thenable.
 
 Returns `true` for any object that has `.then()` and `.catch()` methods,

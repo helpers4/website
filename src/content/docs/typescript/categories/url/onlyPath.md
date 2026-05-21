@@ -4,8 +4,6 @@ sidebar:
   label: "onlyPath"
 ---
 
-# onlyPath
-
 Extract only the path from an URI with optional query and fragments.
 
 For example, all these parameters will return `/path`:

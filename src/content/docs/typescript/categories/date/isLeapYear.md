@@ -4,8 +4,6 @@ sidebar:
   label: "isLeapYear"
 ---
 
-# isLeapYear
-
 Returns `true` if the given year is a leap year.
 
 A year is a leap year when it is divisible by 4, **except** century

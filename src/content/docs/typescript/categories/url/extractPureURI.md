@@ -4,8 +4,6 @@ sidebar:
   label: "extractPureURI"
 ---
 
-# extractPureURI
-
 Extracts the pure URI from a URL by removing query parameters and fragments.
 
 > Available since v1.9.0

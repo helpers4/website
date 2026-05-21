@@ -4,8 +4,6 @@ sidebar:
   label: "parallel"
 ---
 
-# parallel
-
 Runs an array of async functions with a concurrency limit.
 At most `limit` functions will be running at any time.
 

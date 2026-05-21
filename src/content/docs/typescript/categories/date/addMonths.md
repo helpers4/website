@@ -4,8 +4,6 @@ sidebar:
   label: "addMonths"
 ---
 
-# addMonths
-
 Adds months to a date.
 
 Returns a **new** `Date` — the original is never mutated.

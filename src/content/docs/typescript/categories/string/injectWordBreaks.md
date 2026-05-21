@@ -4,8 +4,6 @@ sidebar:
   label: "injectWordBreaks"
 ---
 
-# injectWordBreaks
-
 Adds word-break opportunities to a string so it can wrap cleanly in narrow
 UI containers such as side panels or table cells.
 

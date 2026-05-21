@@ -4,8 +4,6 @@ sidebar:
   label: "toISO8601"
 ---
 
-# toISO8601
-
 Converts a date to ISO 8601 format
 Format: YYYY-MM-DDTHH:mm:ss.sssZ
 

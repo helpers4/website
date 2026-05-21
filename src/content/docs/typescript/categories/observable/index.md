@@ -5,8 +5,6 @@ sidebar:
   order: 0
 ---
 
-# Observable Helpers
-
 Utility functions for working with observable operations.
 
 ## Functions

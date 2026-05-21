@@ -4,8 +4,6 @@ sidebar:
   order: 1
 ---
 
-# Getting Started with helpers4 Actions
-
 Welcome to the **helpers4 GitHub Actions** collection! Reusable actions for common development workflows.
 
 ## What are GitHub Actions?

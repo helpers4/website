@@ -4,8 +4,6 @@ sidebar:
   label: "satisfiesRange"
 ---
 
-# satisfiesRange
-
 Checks if a version satisfies a range (simple implementation)
 
 > Available since v1.9.0

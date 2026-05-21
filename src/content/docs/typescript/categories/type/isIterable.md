@@ -4,8 +4,6 @@ sidebar:
   label: "isIterable"
 ---
 
-# isIterable
-
 Checks if a value is iterable (has a `Symbol.iterator` method).
 
 Returns `true` for strings, arrays, Maps, Sets, generators, and any object

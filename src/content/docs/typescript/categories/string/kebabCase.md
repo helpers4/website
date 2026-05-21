@@ -4,8 +4,6 @@ sidebar:
   label: "kebabCase"
 ---
 
-# kebabCase
-
 Converts camelCase to kebab-case
 
 > Available since v1.9.0

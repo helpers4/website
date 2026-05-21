@@ -6,8 +6,6 @@ sidebar:
   order: 0
 ---
 
-# All Functions
-
 **168** implemented helpers + **40** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |

@@ -4,8 +4,6 @@ sidebar:
   label: "isSameYear"
 ---
 
-# isSameYear
-
 Checks if two dates are in the same year.
 
 Accepts any DateLike input (Date, timestamp, or date string).

@@ -4,8 +4,6 @@ sidebar:
   label: "isTemporalPlainTime"
 ---
 
-# isTemporalPlainTime
-
 Checks if a value is a `Temporal.PlainTime`.
 
 Uses `instanceof` when `Temporal` is available globally, and falls back

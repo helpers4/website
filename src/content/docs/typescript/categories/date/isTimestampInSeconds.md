@@ -4,8 +4,6 @@ sidebar:
   label: "isTimestampInSeconds"
 ---
 
-# isTimestampInSeconds
-
 Checks if a timestamp is likely in seconds (Java/Unix style) vs milliseconds (JavaScript style)
 
 > Available since v1.9.0

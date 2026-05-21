@@ -4,8 +4,6 @@ sidebar:
   label: "isFormData"
 ---
 
-# isFormData
-
 Checks if a value is a FormData instance.
 
 Useful for filtering or type-narrowing in a functional pipeline:

@@ -4,8 +4,6 @@ sidebar:
   label: "get"
 ---
 
-# get
-
 Gets a value from an object using a dot-notated path
 
 > Available since v1.9.0

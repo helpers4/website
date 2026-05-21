@@ -4,8 +4,6 @@ sidebar:
   label: "difference"
 ---
 
-# difference
-
 Calculates the difference between two dates in the specified unit.
 
 Accepts any DateLike input (Date, timestamp, or date string).

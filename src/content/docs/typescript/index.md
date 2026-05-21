@@ -4,8 +4,6 @@ sidebar:
   order: 0
 ---
 
-# TypeScript — helpers4
-
 Production-ready TypeScript utility functions — modular, strictly typed, exhaustively tested.
 
 ## Quick Links

@@ -6,8 +6,6 @@ sidebar:
   order: 2
 ---
 
-# Changelog
-
 All helpers listed by the version in which they were introduced, from newest to oldest.
 
 ## v2.0.0 *(Latest)*

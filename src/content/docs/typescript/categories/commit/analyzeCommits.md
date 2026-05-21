@@ -4,8 +4,6 @@ sidebar:
   label: "analyzeCommits"
 ---
 
-# analyzeCommits
-
 Analyses a list of commits to suggest a semantic version bump.
 
 Each commit is parsed via `parseConventionalCommit`. The body is also

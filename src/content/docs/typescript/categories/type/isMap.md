@@ -4,8 +4,6 @@ sidebar:
   label: "isMap"
 ---
 
-# isMap
-
 Checks if a value is a Map instance.
 
 > Available since v2.0.0

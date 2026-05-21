@@ -4,8 +4,6 @@ sidebar:
   label: "Contributing"
 ---
 
-# Contributing to GitHub Actions
-
 Thank you for your interest in contributing to **helpers4 GitHub Actions**! We want to make the process as easy and transparent as possible.
 
 ## Getting Started

@@ -4,8 +4,6 @@ sidebar:
   label: "isError"
 ---
 
-# isError
-
 Checks if a value is an Error instance.
 
 > Available since v2.0.0

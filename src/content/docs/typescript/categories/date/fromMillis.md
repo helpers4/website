@@ -4,8 +4,6 @@ sidebar:
   label: "fromMillis"
 ---
 
-# fromMillis
-
 Creates a `Date` from a timestamp in **milliseconds**.
 
 Use this when receiving a timestamp from a JS-native source

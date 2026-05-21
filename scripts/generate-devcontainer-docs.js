@@ -81,7 +81,15 @@ try {
       // Strip HTML license comment if present
       content = content.replace(/^<!--[\s\S]*?-->\n\n?/, '');
 
+      // Extract H1 for frontmatter title and remove it from the body
+      const h1Match = content.match(/^# (.+)$/m);
+      const title = h1Match ? h1Match[1].trim() : feature;
+      if (h1Match) {
+        content = content.replace(/^# .+\n?/, '').replace(/^\n/, '');
+      }
+
       const frontmatter = `---
+title: ${JSON.stringify(title)}
 sidebar:
   order: ${index + 1}
 ---
@@ -106,7 +114,15 @@ sidebar:
         // Strip HTML license comment if present
         content = content.replace(/^<!--[\s\S]*?-->\n\n?/, '');
 
+        // Extract H1 for frontmatter title and remove it from the body
+        const h1Match = content.match(/^# (.+)$/m);
+        const title = h1Match ? h1Match[1].trim() : feature;
+        if (h1Match) {
+          content = content.replace(/^# .+\n?/, '').replace(/^\n/, '');
+        }
+
         const frontmatter = `---
+title: ${JSON.stringify(title)}
 sidebar:
   order: ${index + 1}
 deprecated: true

@@ -4,8 +4,6 @@ sidebar:
   label: "equals"
 ---
 
-# equals
-
 Simple helper that checks if two lists are identical.
 The order of elements in the list is not important.
 

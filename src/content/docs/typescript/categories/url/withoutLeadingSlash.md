@@ -4,8 +4,6 @@ sidebar:
   label: "withoutLeadingSlash"
 ---
 
-# withoutLeadingSlash
-
 Removes the leading slash `/` from the given URL if it is present.
 
 This function is useful for ensuring that URLs are properly formatted

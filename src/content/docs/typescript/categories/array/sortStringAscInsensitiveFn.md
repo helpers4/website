@@ -4,8 +4,6 @@ sidebar:
   label: "sortStringAscInsensitiveFn"
 ---
 
-# sortStringAscInsensitiveFn
-
 Sort strings in ascending order (case insensitive)
 
 > Available since v1.9.0

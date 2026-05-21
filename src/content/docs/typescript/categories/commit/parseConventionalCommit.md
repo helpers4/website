@@ -4,8 +4,6 @@ sidebar:
   label: "parseConventionalCommit"
 ---
 
-# parseConventionalCommit
-
 Parses a Conventional Commits message into a structured object.
 
 The first line is matched against the regex produced by

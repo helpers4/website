@@ -6,8 +6,6 @@ sidebar:
   order: 1
 ---
 
-# Philosophy
-
 helpers4 GitHub Actions are reusable workflow components designed to remove boilerplate from CI/CD pipelines. This page explains the principles we follow so you know what to expect from every action we ship.
 
 ## Reusable across projects

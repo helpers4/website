@@ -4,8 +4,6 @@ sidebar:
   label: "withTrailingSlash"
 ---
 
-# withTrailingSlash
-
 Adds a trailing slash `/` to the given URL if it is not already present.
 
 This function is useful for ensuring that URLs are properly formatted

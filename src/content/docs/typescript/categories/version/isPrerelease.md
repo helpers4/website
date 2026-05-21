@@ -4,8 +4,6 @@ sidebar:
   label: "isPrerelease"
 ---
 
-# isPrerelease
-
 Returns `true` when the version string has a prerelease suffix
 (i.e. contains a `-` after the core `MAJOR.MINOR.PATCH`).
 

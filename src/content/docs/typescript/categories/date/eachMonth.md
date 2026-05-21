@@ -4,8 +4,6 @@ sidebar:
   label: "eachMonth"
 ---
 
-# eachMonth
-
 Returns an array of `Date` objects for the first day of each month
 from `start` to `end` (inclusive).
 

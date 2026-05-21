@@ -4,8 +4,6 @@ sidebar:
   order: 2
 ---
 
-# Automatic File Headers
-
 Automatically configures VS Code with customizable file headers based on your project's license, company, and team information.
 
 ## Features

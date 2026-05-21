@@ -4,8 +4,6 @@ sidebar:
   label: "isTemporalInstant"
 ---
 
-# isTemporalInstant
-
 Checks if a value is a `Temporal.Instant`.
 
 Uses `instanceof` when `Temporal` is available globally, and falls back

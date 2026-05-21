@@ -4,8 +4,6 @@ sidebar:
   order: 1
 ---
 
-# Conventional Commits Check
-
 Validate commit messages against the Conventional Commits specification.
 
 ## Requirements

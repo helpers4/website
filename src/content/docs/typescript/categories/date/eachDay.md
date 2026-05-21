@@ -4,8 +4,6 @@ sidebar:
   label: "eachDay"
 ---
 
-# eachDay
-
 Returns an array of `Date` objects for each day from `start` to `end` (inclusive).
 
 Both boundaries are included. If `start > end`, an empty array is returned.

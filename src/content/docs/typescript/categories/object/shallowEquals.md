@@ -4,8 +4,6 @@ sidebar:
   label: "shallowEquals"
 ---
 
-# shallowEquals
-
 Quick comparison of two objects using JSON.stringify.
 This is a fast but simple comparison that may not work for all edge cases.
 

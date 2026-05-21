@@ -4,8 +4,6 @@ sidebar:
   label: "isRegExp"
 ---
 
-# isRegExp
-
 Checks if a value is a RegExp instance.
 
 > Available since v2.0.0

@@ -4,8 +4,6 @@ sidebar:
   label: "isPositiveNumber"
 ---
 
-# isPositiveNumber
-
 Checks if a value is a number greater than 0.
 
 Returns `false` for `NaN`, `0`, negative numbers, and non-number types.

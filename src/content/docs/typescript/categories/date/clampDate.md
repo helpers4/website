@@ -4,8 +4,6 @@ sidebar:
   label: "clampDate"
 ---
 
-# clampDate
-
 Clamps a date to a [min, max] range.
 
 Returns a **new** `Date` — the original is never mutated.

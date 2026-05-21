@@ -4,8 +4,6 @@ sidebar:
   label: "isBusinessDay"
 ---
 
-# isBusinessDay
-
 Checks whether a date falls on a business day (i.e. **not** a weekend day).
 
 This is the logical inverse of isWeekend. By default, business days

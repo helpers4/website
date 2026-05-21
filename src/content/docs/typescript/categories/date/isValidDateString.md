@@ -4,8 +4,6 @@ sidebar:
   label: "isValidDateString"
 ---
 
-# isValidDateString
-
 Checks whether a string can be parsed into a valid `Date`.
 
 Uses the native `Date` constructor. Returns `false` for empty strings

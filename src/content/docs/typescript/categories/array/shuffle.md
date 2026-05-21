@@ -4,8 +4,6 @@ sidebar:
   label: "shuffle"
 ---
 
-# shuffle
-
 Randomly reorders elements of an array using the Fisher-Yates algorithm.
 Returns a new array without mutating the original.
 

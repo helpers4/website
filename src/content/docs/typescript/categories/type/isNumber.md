@@ -4,8 +4,6 @@ sidebar:
   label: "isNumber"
 ---
 
-# isNumber
-
 Checks if a value is a number.
 
 Returns `false` for `NaN`, which intentionally deviates from `typeof` behavior

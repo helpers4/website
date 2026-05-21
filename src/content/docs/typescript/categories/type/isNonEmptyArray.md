@@ -4,8 +4,6 @@ sidebar:
   label: "isNonEmptyArray"
 ---
 
-# isNonEmptyArray
-
 Checks if a value is a non-empty array (length > 0).
 
 > Available since v2.0.0

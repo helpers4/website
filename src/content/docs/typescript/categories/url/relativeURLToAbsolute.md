@@ -4,8 +4,6 @@ sidebar:
   label: "relativeURLToAbsolute"
 ---
 
-# relativeURLToAbsolute
-
 Converts a relative URL to an absolute URL using the current document base URI.
 
 > Available since v1.0.0

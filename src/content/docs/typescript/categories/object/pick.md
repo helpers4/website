@@ -4,8 +4,6 @@ sidebar:
   label: "pick"
 ---
 
-# pick
-
 Creates a new object with only the specified keys.
 
 > Available since v2.0.0

@@ -4,8 +4,6 @@ sidebar:
   order: 1
 ---
 
-# Local Mounts — Deprecated
-
 > ⚠️ **This feature has been removed.** It was renamed and superseded by [`dotfiles-sync`](../src/dotfiles-sync/README.md).
 >
 > Existing images that already pulled `ghcr.io/helpers4/devcontainer/local-mounts:1` keep working from their local cache. New builds referencing this feature will fail to resolve — **you must migrate**.

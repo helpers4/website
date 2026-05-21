@@ -4,8 +4,6 @@ sidebar:
   label: "isWeekend"
 ---
 
-# isWeekend
-
 Checks whether a date falls on a weekend day.
 
 By default, weekend days are **Saturday** and **Sunday** (Western

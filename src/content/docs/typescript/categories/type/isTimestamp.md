@@ -4,8 +4,6 @@ sidebar:
   label: "isTimestamp"
 ---
 
-# isTimestamp
-
 Checks if a value is a valid timestamp (milliseconds or Unix seconds).
 
 Supports:

@@ -5,8 +5,6 @@ sidebar:
   order: 0
 ---
 
-# Type Helpers
-
 Utility functions for working with type operations.
 
 ## Functions

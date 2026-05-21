@@ -4,8 +4,6 @@ sidebar:
   label: "truncate"
 ---
 
-# truncate
-
 Truncates a string to `maxLength` characters, appending an ellipsis when cut.
 
 The ellipsis counts toward `maxLength`, so the result is always at most

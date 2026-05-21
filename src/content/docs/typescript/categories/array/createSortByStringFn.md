@@ -4,8 +4,6 @@ sidebar:
   label: "createSortByStringFn"
 ---
 
-# createSortByStringFn
-
 Creates a sort function for objects by string property
 
 > Available since v1.9.0

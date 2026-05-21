@@ -4,8 +4,6 @@ sidebar:
   label: "Contributing"
 ---
 
-# Contributing to DevContainer Features
-
 Thank you for your interest in contributing to **helpers4 DevContainer Features**! We want to make the process as easy and transparent as possible.
 
 ## Getting Started

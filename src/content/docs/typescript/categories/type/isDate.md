@@ -4,8 +4,6 @@ sidebar:
   label: "isDate"
 ---
 
-# isDate
-
 Checks if a value is a Date instance.
 
 Note: this only checks the type, not whether the Date is valid.

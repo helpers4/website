@@ -6,8 +6,6 @@ sidebar:
   order: 1
 ---
 
-# Philosophy
-
 helpers4 DevContainer Features are built to solve a specific frustration: development environments that work on one machine and break on another. This page explains the principles that guide every feature we ship.
 
 ## Reproducibility above all

@@ -5,8 +5,6 @@ sidebar:
   order: 3
 ---
 
-# Contributing to helpers4
-
 Thank you for your interest in contributing! This guide explains everything you need to know to create high-quality helpers for this project.
 
 ## Prerequisites

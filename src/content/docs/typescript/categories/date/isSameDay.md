@@ -4,8 +4,6 @@ sidebar:
   label: "isSameDay"
 ---
 
-# isSameDay
-
 Checks if two dates are the same day.
 
 Accepts any DateLike input (Date, timestamp, or date string).

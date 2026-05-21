@@ -4,8 +4,6 @@ sidebar:
   label: "formatInTimezone"
 ---
 
-# formatInTimezone
-
 Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`.
 
 Returns `null` if the date or timezone is invalid.

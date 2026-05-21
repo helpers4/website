@@ -4,8 +4,6 @@ sidebar:
   label: "sortStringAscFn"
 ---
 
-# sortStringAscFn
-
 Sort strings in ascending order
 
 > Available since v1.9.0

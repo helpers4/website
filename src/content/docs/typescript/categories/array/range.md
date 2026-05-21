@@ -4,8 +4,6 @@ sidebar:
   label: "range"
 ---
 
-# range
-
 Generates an array of sequential numbers from start to end (exclusive).
 If only one argument is provided, it generates numbers from 0 to that value.
 

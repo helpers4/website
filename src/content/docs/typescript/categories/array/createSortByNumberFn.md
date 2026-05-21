@@ -4,8 +4,6 @@ sidebar:
   label: "createSortByNumberFn"
 ---
 
-# createSortByNumberFn
-
 Creates a sort function for objects by number property
 
 > Available since v1.9.0

@@ -4,8 +4,6 @@ sidebar:
   order: 3
 ---
 
-# Dotfiles Sync (dotfiles-sync)
-
 Syncs local Git, SSH, GPG, npm, gh, cargo, pip, yarn/pnpm config files into the devcontainer. Optionally syncs cloud credentials (AWS, kube, Docker, gh OAuth token) — opt-in only. Works on macOS, Linux, Windows (WSL and native), GitHub Codespaces, Gitpod, and DevPod. Uses a **merge strategy** for established files and a **copy-if-absent** strategy for new ones — never overwrites existing values, safe alongside cloud platform native auth and GPG signing.
 
 ## Usage

@@ -4,8 +4,6 @@ sidebar:
   label: "deepEquals"
 ---
 
-# deepEquals
-
 Deep comparison of two arrays that only returns true or false.
 Arrays are considered equal if they have the same length and all elements 
 at corresponding positions are strictly equal. Only compares arrays,

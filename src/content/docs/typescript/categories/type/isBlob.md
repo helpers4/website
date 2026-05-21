@@ -4,8 +4,6 @@ sidebar:
   label: "isBlob"
 ---
 
-# isBlob
-
 Checks if a value is a Blob instance.
 
 Useful for filtering or type-narrowing in a functional pipeline:

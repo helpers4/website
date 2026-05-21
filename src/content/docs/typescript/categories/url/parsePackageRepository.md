@@ -4,8 +4,6 @@ sidebar:
   label: "parsePackageRepository"
 ---
 
-# parsePackageRepository
-
 Parse the `repository` field from `package.json` into a structured object.
 
 Supports all npm-specified formats:

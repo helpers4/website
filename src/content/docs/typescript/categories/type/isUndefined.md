@@ -4,8 +4,6 @@ sidebar:
   label: "isUndefined"
 ---
 
-# isUndefined
-
 Checks if a value is `undefined`.
 
 > Available since v2.0.0

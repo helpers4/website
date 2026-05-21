@@ -4,8 +4,6 @@ sidebar:
   label: "isBoolean"
 ---
 
-# isBoolean
-
 Checks if a value is a boolean.
 
 > Available since v1.9.0

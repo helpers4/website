@@ -5,8 +5,6 @@ sidebar:
   order: 0
 ---
 
-# String Helpers
-
 Utility functions for working with string operations.
 
 ## Functions

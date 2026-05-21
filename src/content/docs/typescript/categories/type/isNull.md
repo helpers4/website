@@ -4,8 +4,6 @@ sidebar:
   label: "isNull"
 ---
 
-# isNull
-
 Checks if a value is `null`.
 
 > Available since v2.0.0

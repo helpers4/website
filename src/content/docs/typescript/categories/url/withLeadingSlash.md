@@ -4,8 +4,6 @@ sidebar:
   label: "withLeadingSlash"
 ---
 
-# withLeadingSlash
-
 Adds a leading slash `/` to the given URL if it is not already present.
 
 This function is useful for ensuring that URLs are properly formatted

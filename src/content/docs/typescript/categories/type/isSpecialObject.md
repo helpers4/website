@@ -4,8 +4,6 @@ sidebar:
   label: "isSpecialObject"
 ---
 
-# isSpecialObject
-
 Determines if a value is a special object that should not have its properties compared deeply.
 Special objects include: Date, Function, Promise, Observable, RegExp, Error, Map, Set, WeakMap, WeakSet, etc.
 

@@ -4,8 +4,6 @@ sidebar:
   label: "throttle"
 ---
 
-# throttle
-
 Creates a throttled function that only invokes func at most once per every wait milliseconds
 
 > Available since v1.9.0

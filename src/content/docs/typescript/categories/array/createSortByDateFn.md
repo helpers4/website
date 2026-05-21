@@ -4,8 +4,6 @@ sidebar:
   label: "createSortByDateFn"
 ---
 
-# createSortByDateFn
-
 Creates a sort function for objects by date property
 
 > Available since v1.9.0
