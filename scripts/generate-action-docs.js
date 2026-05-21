@@ -66,7 +66,7 @@ try {
       const h1Match = content.match(/^# (.+)$/m);
       const title = h1Match ? h1Match[1].trim() : action.name;
       if (h1Match) {
-        content = content.replace(/^# .+\n?/, '').replace(/^\n/, '');
+        content = content.replace(/^# .+\n?/m, '').replace(/^\n/, '');
       }
 
       const frontmatter = `---\ntitle: ${JSON.stringify(title)}\nsidebar:\n  order: ${index + 1}\n---\n\n`;

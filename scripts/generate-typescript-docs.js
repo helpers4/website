@@ -673,11 +673,16 @@ All helpers listed by the version in which they were introduced, from newest to 
     ? sortedVersions.filter(v => v !== 'next')
     : sortedVersions;
 
-  for (const version of displayVersions) {
+  for (const [idx, version] of displayVersions.entries()) {
     const fns = byVersion[version].sort((a, b) => a.name.localeCompare(b.name));
+    const isLatestStable = idx === 0 && isStableRelease && version !== 'unknown' && version !== 'next';
     const label = version === 'unknown'
       ? '*(version unknown)*'
-      : `v${version}`;
+      : version === 'next'
+        ? '*(coming in next release)*'
+        : isLatestStable
+          ? `v${version} *(Latest)*`
+          : `v${version}`;
     content += `## ${label}\n\n`;
     content += `| Function | Category | Description |\n`;
     content += `|----------|----------|-------------|\n`;
