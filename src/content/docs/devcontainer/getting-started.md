@@ -182,4 +182,4 @@ All features support standard devcontainer.json configuration:
 
 ## License
 
-MIT License - See [LICENSE](https://github.com/helpers4/devcontainer/blob/main/LICENSE) for details.
+LGPL-3.0 — See [LICENSE](https://github.com/helpers4/devcontainer/blob/main/LICENSE) for details.
