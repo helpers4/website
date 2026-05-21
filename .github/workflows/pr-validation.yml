@@ -95,7 +95,7 @@ jobs:
 
       - name: TypeScript check
         run: |
-          pnpm --filter landing exec tsc --noEmit
+          pnpm exec tsc --noEmit
 
       - name: Set status
         id: status

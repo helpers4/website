@@ -661,10 +661,6 @@ sidebar:
   order: 2
 ---
 
-# Changelog
-
-All helpers listed by the version in which they were introduced, from newest to oldest.
-
 `;
 
   // Skip 'next' section if the current version is a stable release (no prerelease marker)
@@ -716,6 +712,9 @@ function syncContributingPage() {
   const h1Match = sourceContent.match(/^#\s+(.+)$/m);
   const derivedTitle = h1Match ? h1Match[1].trim() : 'Contributing to helpers4';
 
+  // Strip the H1 from the body since frontmatter title: already renders it
+  const bodyContent = sourceContent.replace(/^# .+\n+/m, '');
+
   const content = `---
 title: "${derivedTitle}"
 sidebar:
@@ -723,7 +722,7 @@ sidebar:
   order: 3
 ---
 
-${sourceContent}`;
+${bodyContent}`;
 
   fs.writeFileSync(path.join(refDir, 'contributing.md'), content);
   console.log('  ✓ reference/contributing (synced from typescript repo)');

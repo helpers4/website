@@ -11,7 +11,7 @@
   "type": "module",
   "engines": {
     "pnpm": ">=9.0.0",
-    "node": ">=20.0.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "dev": "astro dev",
