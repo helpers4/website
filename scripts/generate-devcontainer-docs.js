@@ -85,7 +85,7 @@ try {
       const h1Match = content.match(/^# (.+)$/m);
       const title = h1Match ? h1Match[1].trim() : feature;
       if (h1Match) {
-        content = content.replace(/^# .+\n?/, '').replace(/^\n/, '');
+        content = content.replace(/^# .+\n?/m, '').replace(/^\n/, '');
       }
 
       const frontmatter = `---
@@ -118,7 +118,7 @@ sidebar:
         const h1Match = content.match(/^# (.+)$/m);
         const title = h1Match ? h1Match[1].trim() : feature;
         if (h1Match) {
-          content = content.replace(/^# .+\n?/, '').replace(/^\n/, '');
+          content = content.replace(/^# .+\n?/m, '').replace(/^\n/, '');
         }
 
         const frontmatter = `---
