@@ -65,8 +65,8 @@ try {
 
   const deprecatedFeatures = fs.existsSync(deprecatedSourcePath)
     ? fs.readdirSync(deprecatedSourcePath).filter(f =>
-        fs.statSync(path.join(deprecatedSourcePath, f)).isDirectory()
-      )
+      fs.statSync(path.join(deprecatedSourcePath, f)).isDirectory()
+    )
     : [];
 
   console.log(`📁 Found ${activeFeatures.length} active features:\n`);
