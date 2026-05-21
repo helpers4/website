@@ -6,7 +6,7 @@
 
 Found a bug? Want to suggest a feature?
 
-1. Check for existing issues: https://github.com/helpers4/helpers4.github.io/issues
+1. Check for existing issues: https://github.com/helpers4/website/issues
 2. Open a new issue with clear description
 
 ## Pull Request Process
@@ -14,13 +14,13 @@ Found a bug? Want to suggest a feature?
 ### 1. Fork & Clone
 
 ```bash
-git clone https://github.com/{your-username}/helpers4.github.io.git
-cd helpers4.github.io
+git clone https://github.com/{your-username}/website.git
+cd website
 ```
 
 ### 2. Create Branch
 
-***For features:***
+**For features:**
 ```bash
 git checkout -b feat/description
 ```
@@ -36,42 +36,43 @@ git checkout -b fix/description
 pnpm install
 # Clone sibling repos if working on doc generation
 cd ..
-git clone https://github.com/helpers4/{typescript|devcontainer|action}.git
-cd helpers4.github.io
+git clone https://github.com/helpers4/typescript.git
+git clone https://github.com/helpers4/devcontainer.git
+git clone https://github.com/helpers4/action.git
+cd website
 ```
 
 ### 4. Make Changes
 
 Edit:
-- Landing page: `landing/src/`
-- TypeScript docs: `docs/typescript/docs/`
-- DevContainer docs: `docs/devcontainer/docs/`
-- Action docs: `docs/github-action/docs/`
+- Astro configuration: `astro.config.mjs`
+- TypeScript docs content: `src/content/docs/typescript/`
+- DevContainer docs content: `src/content/docs/devcontainer/`
+- Action docs content: `src/content/docs/action/`
+- Shared components: `src/components/`
+- Doc generation scripts: `scripts/`
 
 ### 5. Test
 
 ```bash
-# Check TypeScript
-pnpm build:landing
+# Start dev server
+pnpm dev
 
-# Test specific docs
-pnpm build:docs:typescript
-
-# Full build
+# Full build check
 pnpm build
 
-# Preview
-npx serve dist
+# Preview built site
+pnpm preview
 ```
 
 ### 6. Commit
 
-Use conventional commits:
+Use conventional commits with gitmoji — see AGENTS.md for the full type/emoji table.
 
 ```bash
-git commit -m "feat: add new component"
-git commit -m "docs: update TypeScript guide"
-git commit -m "fix: resolve sidebar layout"
+git commit -m "feat(docs): ✨ add new section"
+git commit -m "fix(lib-typescript): 🐛 resolve broken sidebar link"
+git commit -m "chore(CI-CD): 🔧 update workflow"
 ```
 
 ### 7. Push & PR
@@ -81,18 +82,17 @@ git push origin feat/description
 ```
 
 Then open a PR on GitHub with:
-- Clear title
+- Clear title following the conventional commit format
 - Description of changes
 - Screenshots if UI changes
 - Link to related issues
 
 ## Code Style
 
-### TypeScript/JSX
+### TypeScript/Astro
 
 - Use TypeScript strict mode
-- Functional components with hooks
-- CSS modules for styling
+- Follow existing component patterns in `src/components/`
 - Descriptive variable names
 
 ### Markdown

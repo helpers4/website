@@ -1,7 +1,7 @@
 <h1 align="center">helpers4 — Website</h1>
 
 <p align="center">
-  <strong>Unified documentation portal and landing page for all helpers4 projects.</strong>
+  <strong>Unified documentation portal for all helpers4 projects.</strong>
 </p>
 
 <p align="center">
@@ -14,71 +14,61 @@
 
 ## Overview
 
-This repository powers [**helpers4.dev**](https://helpers4.dev) — a unified website that hosts a Qwik landing page and multiple Docusaurus documentation instances for every helpers4 project.
+This repository powers [**helpers4.dev**](https://helpers4.dev) — a unified **Astro + Starlight** documentation site for every helpers4 project.
 
 ## Architecture
 
 ```
 helpers4.dev/
-├── landing/                  # Qwik landing page (/)
-├── docs/
-│   ├── typescript/           # Docusaurus instance (/ts)
-│   ├── devcontainer/         # Docusaurus instance (/dev-container)
-│   └── github-action/        # Docusaurus instance (/action)
-├── scripts/                  # Build & doc generation utilities
-└── dist/                     # Final merged output (Cloudflare Pages)
+├── /typescript/              # TypeScript helpers docs
+├── /devcontainer/            # DevContainer features docs
+└── /action/                  # GitHub Actions docs
 ```
+
+All content lives under `src/content/docs/` and is served by a single Astro + Starlight instance.
 
 ## Prerequisites
 
-- **Node.js** >= 20.0.0
+- **Node.js** >= 24.0.0
 - **pnpm** >= 9.0.0
 
 ## Getting Started
 
 ```bash
+git clone https://github.com/helpers4/website.git
+cd website
 pnpm install
 ```
 
 ### Development
 
-Each package can be started independently for local development:
-
 ```bash
-pnpm dev:landing              # Landing page
-pnpm dev:docs:typescript      # TypeScript docs  (localhost:3001)
-pnpm dev:docs:devcontainer    # DevContainer docs (localhost:3002)
-pnpm dev:docs:action          # Action docs       (localhost:3003)
+pnpm dev          # Start dev server (localhost:4321)
 ```
 
 ### Build
 
-Build everything and merge outputs into a single `dist/` directory:
-
 ```bash
-pnpm build
+pnpm build        # Build static site into dist/
+pnpm preview      # Preview the built site locally
 ```
-
-This will:
-1. Build the landing page (Qwik)
-2. Build all Docusaurus instances in parallel
-3. Merge outputs into `dist/`
-4. Create `.nojekyll` for GitHub Pages compatibility
 
 ### Documentation Generation
 
-Auto-generate documentation from source repositories:
+Docs are auto-generated from the source repositories (must be cloned as siblings):
 
 ```bash
-pnpm generate-docs:typescript      # TypeScript API docs
-pnpm generate-docs:devcontainer    # DevContainer features docs
-pnpm generate-docs:action          # GitHub Action docs
-pnpm sync-from-repos               # Sync all at once
+pnpm generate-docs:typescript      # TypeScript API docs → src/content/docs/typescript/
+pnpm generate-docs:devcontainer    # DevContainer feature docs → src/content/docs/devcontainer/
+pnpm generate-docs:action          # GitHub Action docs → src/content/docs/action/
+pnpm sync-from-repos               # All generators at once
 ```
+
+Source repos are expected at `../typescript`, `../devcontainer`, `../action` relative to this folder.
 
 ## Deployment
 
-The site is deployed to **Cloudflare Pages** on push to `main`.
+The site is deployed to **Cloudflare Pages** on every push to `main`.
 
 | Setting | Value |
 |---------|-------|
@@ -86,31 +76,13 @@ The site is deployed to **Cloudflare Pages** on push to `main`.
 | Publish directory | `dist` |
 | Domain | `helpers4.dev` |
 
-**Output structure:**
-
-```
-dist/
-├── index.html              # Landing page
-├── .nojekyll               # GitHub Pages signal
-├── ts/                     # TypeScript docs
-├── dev-container/          # DevContainer docs
-└── action/                 # Action docs
-```
-
-## Technical Notes
-
-- Each Docusaurus instance has its own configuration with a unified theme
-- TypeScript docs support versioning via `/versioned_docs/`
-- All documentation is statically generated — no runtime dependencies
-- pnpm workspaces enable parallel builds across packages
-
 ## Contributing
 
-See the [Contributing Guide](CONTRIBUTING.md) for details on how to contribute to the website.
+See the [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
-This project is licensed under the [GNU Lesser General Public License v3.0](LICENSE).
+This project is licensed under the [GNU Lesser General Public License v3.0 or later](LICENSE).
 
 ## Contributors
 
