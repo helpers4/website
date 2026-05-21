@@ -4,8 +4,6 @@ sidebar:
   label: "isAsyncFunction"
 ---
 
-# isAsyncFunction
-
 Checks if a value is an async function.
 
 Returns `true` for any function declared with `async`.

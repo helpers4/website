@@ -4,8 +4,6 @@ sidebar:
   label: "roundTo"
 ---
 
-# roundTo
-
 Rounds a number to specified decimal places
 
 > Available since v1.9.0

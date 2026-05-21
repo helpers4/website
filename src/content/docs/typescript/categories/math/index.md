@@ -5,8 +5,6 @@ sidebar:
   order: 0
 ---
 
-# Math Helpers
-
 Utility functions for working with math operations.
 
 ## Functions

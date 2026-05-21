@@ -4,8 +4,6 @@ sidebar:
   label: "deepCompare"
 ---
 
-# deepCompare
-
 Deep comparison of two objects that returns detailed information about differences.
 
 > Available since v2.0.0

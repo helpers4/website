@@ -4,8 +4,6 @@ sidebar:
   label: "timeout"
 ---
 
-# timeout
-
 Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration.
 
 > Available since v2.0.0

@@ -4,8 +4,6 @@ sidebar:
   label: "addDays"
 ---
 
-# addDays
-
 Adds days to a date.
 
 Returns a **new** `Date` — the original is never mutated.

@@ -4,8 +4,6 @@ sidebar:
   label: "WeekDays"
 ---
 
-# WeekDays
-
 Named day-of-week constants following the JavaScript `Date.getDay()`
 convention. Use these instead of raw numbers for readability.
 

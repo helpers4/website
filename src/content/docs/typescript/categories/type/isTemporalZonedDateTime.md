@@ -4,8 +4,6 @@ sidebar:
   label: "isTemporalZonedDateTime"
 ---
 
-# isTemporalZonedDateTime
-
 Checks if a value is a `Temporal.ZonedDateTime`.
 
 Uses `instanceof` when `Temporal` is available globally, and falls back

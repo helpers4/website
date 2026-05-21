@@ -4,8 +4,6 @@ sidebar:
   label: "compact"
 ---
 
-# compact
-
 Removes all entries with falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an object.
 
 > Available since v2.0.0

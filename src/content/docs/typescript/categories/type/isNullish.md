@@ -4,8 +4,6 @@ sidebar:
   label: "isNullish"
 ---
 
-# isNullish
-
 Checks if a value is null or undefined (nullish).
 
 > Available since v2.0.0

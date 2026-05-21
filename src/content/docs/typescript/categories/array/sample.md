@@ -4,8 +4,6 @@ sidebar:
   label: "sample"
 ---
 
-# sample
-
 Picks one or more random elements from an array.
 When called without a count, returns a single element or `undefined` if the array is empty.
 When called with a count, returns an array of up to `count` random elements sampled without replacement.

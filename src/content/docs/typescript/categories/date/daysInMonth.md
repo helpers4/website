@@ -4,8 +4,6 @@ sidebar:
   label: "daysInMonth"
 ---
 
-# daysInMonth
-
 Returns the number of days in the given month of the given year.
 
 Month is **1-based** (1 = January, 12 = December) to match human

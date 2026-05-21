@@ -4,8 +4,6 @@ sidebar:
   label: "debounce"
 ---
 
-# debounce
-
 Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time the debounced function was invoked
 
 > Available since v1.9.0

@@ -4,8 +4,6 @@ sidebar:
   label: "truthyPromiseOrThrow"
 ---
 
-# truthyPromiseOrThrow
-
 Returns a function that passes through truthy data or throws an error.
 
 > Available since v1.0.0

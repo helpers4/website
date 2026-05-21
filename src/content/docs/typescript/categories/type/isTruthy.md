@@ -4,8 +4,6 @@ sidebar:
   label: "isTruthy"
 ---
 
-# isTruthy
-
 Checks if a value is truthy (not `false`, `null`, `undefined`, `0`, `""`, or `NaN`).
 
 This is the type-safe alternative to `Boolean()` as a filter callback.

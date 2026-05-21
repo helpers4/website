@@ -4,8 +4,6 @@ sidebar:
   label: "isBigInt"
 ---
 
-# isBigInt
-
 Checks if a value is a bigint.
 
 > Available since v2.0.0

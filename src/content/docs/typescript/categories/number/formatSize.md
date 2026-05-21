@@ -4,8 +4,6 @@ sidebar:
   label: "formatSize"
 ---
 
-# formatSize
-
 Format a byte count into a human-readable string with the appropriate unit.
 
 Each unit is 1024 of the previous (binary prefix). The result is formatted

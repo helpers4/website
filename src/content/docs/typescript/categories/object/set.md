@@ -4,8 +4,6 @@ sidebar:
   label: "set"
 ---
 
-# set
-
 Sets a value in an object using a dot-notated path
 
 > Available since v1.9.0

@@ -4,8 +4,6 @@ sidebar:
   label: "safeDate"
 ---
 
-# safeDate
-
 Safely creates a Date object from various input types.
 
 > Available since v1.9.0

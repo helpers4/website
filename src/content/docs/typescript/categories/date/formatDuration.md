@@ -4,8 +4,6 @@ sidebar:
   label: "formatDuration"
 ---
 
-# formatDuration
-
 Formats a duration in milliseconds as a compact human-readable string.
 
 Produces output like `"1h 23m 45s"`. Zero-valued leading units are

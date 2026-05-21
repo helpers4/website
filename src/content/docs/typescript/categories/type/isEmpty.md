@@ -4,8 +4,6 @@ sidebar:
   label: "isEmpty"
 ---
 
-# isEmpty
-
 Checks if a value is empty.
 
 Supported types:

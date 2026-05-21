@@ -4,8 +4,6 @@ sidebar:
   label: "Open-Source Libraries"
 ---
 
-# Open-Source Libraries
-
 This documentation website is built with the following open-source libraries.
 
 ## Documentation Framework

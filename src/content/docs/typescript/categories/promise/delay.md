@@ -4,8 +4,6 @@ sidebar:
   label: "delay"
 ---
 
-# delay
-
 Creates a promise that resolves after specified delay
 
 > Available since v1.9.0

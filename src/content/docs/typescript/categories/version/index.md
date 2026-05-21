@@ -5,8 +5,6 @@ sidebar:
   order: 0
 ---
 
-# Version Helpers
-
 Utility functions for working with version operations.
 
 ## Functions

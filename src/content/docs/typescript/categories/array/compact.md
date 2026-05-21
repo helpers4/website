@@ -4,8 +4,6 @@ sidebar:
   label: "compact"
 ---
 
-# compact
-
 Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array.
 
 > Available since v2.0.0

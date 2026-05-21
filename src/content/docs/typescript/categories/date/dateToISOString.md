@@ -4,8 +4,6 @@ sidebar:
   label: "dateToISOString"
 ---
 
-# dateToISOString
-
 Formats a date to ISO string or returns null.
 
 > Available since v1.9.0

@@ -4,8 +4,6 @@ sidebar:
   label: "toMillis"
 ---
 
-# toMillis
-
 Converts a date to a timestamp in **milliseconds** (epoch millis).
 
 Use this when you need a plain number from a `DateLike` value

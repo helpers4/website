@@ -4,8 +4,6 @@ sidebar:
   label: "meaningPromiseOrThrow"
 ---
 
-# meaningPromiseOrThrow
-
 Returns a function that passes through meaningful data or throws an error.
 Data is considered meaningless if it is null, undefined, empty string, empty object, or empty array.
 

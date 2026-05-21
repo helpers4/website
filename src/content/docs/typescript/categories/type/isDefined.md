@@ -4,8 +4,6 @@ sidebar:
   label: "isDefined"
 ---
 
-# isDefined
-
 Checks if a value is defined (not undefined nor null).
 This is the inverse of isNullish.
 

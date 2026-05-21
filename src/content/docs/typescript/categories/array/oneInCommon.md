@@ -4,8 +4,6 @@ sidebar:
   label: "oneInCommon"
 ---
 
-# oneInCommon
-
 Simple helper that check if two lists shared at least an item in common.
 
 > Available since v1.0.0

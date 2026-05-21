@@ -4,8 +4,6 @@ sidebar:
   label: "consoleLogPromise"
 ---
 
-# consoleLogPromise
-
 Returns a function that logs data to the console and passes it through.
 
 > Available since v1.0.0

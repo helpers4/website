@@ -4,8 +4,6 @@ sidebar:
   label: "isPlainObject"
 ---
 
-# isPlainObject
-
 Checks if a value is a plain object.
 
 A plain object is created by `{}`, `new Object()`, or `Object.create(null)`.

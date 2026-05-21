@@ -4,8 +4,6 @@ sidebar:
   label: "unique"
 ---
 
-# unique
-
 Removes duplicate values from an array
 
 > Available since v1.9.0

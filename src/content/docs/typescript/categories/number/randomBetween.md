@@ -4,8 +4,6 @@ sidebar:
   label: "randomBetween"
 ---
 
-# randomBetween
-
 Generates a random number between min and max (inclusive)
 
 > Available since v1.9.0

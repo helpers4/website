@@ -4,8 +4,6 @@ sidebar:
   label: "omit"
 ---
 
-# omit
-
 Creates a new object without the specified keys.
 
 > Available since v2.0.0

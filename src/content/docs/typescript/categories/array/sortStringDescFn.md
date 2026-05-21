@@ -4,8 +4,6 @@ sidebar:
   label: "sortStringDescFn"
 ---
 
-# sortStringDescFn
-
 Sort strings in descending order
 
 > Available since v1.9.0

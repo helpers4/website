@@ -4,8 +4,6 @@ sidebar:
   label: "identity"
 ---
 
-# identity
-
 Returns the given value unchanged
 
 Useful as a default transform, in function composition, or as a placeholder mapper.

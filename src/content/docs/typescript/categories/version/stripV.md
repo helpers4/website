@@ -4,8 +4,6 @@ sidebar:
   label: "stripV"
 ---
 
-# stripV
-
 Strip the leading "v" from a version string if it exists.
 
 > Available since v1.9.0

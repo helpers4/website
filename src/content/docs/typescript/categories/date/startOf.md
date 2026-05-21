@@ -4,8 +4,6 @@ sidebar:
   label: "startOf"
 ---
 
-# startOf
-
 Returns a new `Date` set to the **start** of the given unit.
 
 - `'day'`   — 00:00:00.000

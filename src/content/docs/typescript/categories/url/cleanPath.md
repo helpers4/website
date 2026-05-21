@@ -4,8 +4,6 @@ sidebar:
   label: "cleanPath"
 ---
 
-# cleanPath
-
 Clean an URL by removing duplicate slashes.
 The protocol part of the URL is not modified.
 

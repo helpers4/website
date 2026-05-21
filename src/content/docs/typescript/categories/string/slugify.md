@@ -4,8 +4,6 @@ sidebar:
   label: "slugify"
 ---
 
-# slugify
-
 Converts a string into a URL-friendly slug.
 
 > Available since v2.0.0

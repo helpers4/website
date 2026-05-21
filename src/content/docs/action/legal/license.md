@@ -4,8 +4,6 @@ sidebar:
   label: "License (LGPL-3.0)"
 ---
 
-# Understanding the LGPL-3.0 License
-
 All **helpers4** projects are licensed under the [GNU Lesser General Public License v3.0 (LGPL-3.0)](https://www.gnu.org/licenses/lgpl-3.0.html). Here's a practical summary.
 
 ## What is LGPL-3.0?

@@ -4,8 +4,6 @@ sidebar:
   label: "isSameMonth"
 ---
 
-# isSameMonth
-
 Checks if two dates are in the same month (and year).
 
 Accepts any DateLike input (Date, timestamp, or date string).

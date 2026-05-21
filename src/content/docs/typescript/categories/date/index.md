@@ -5,8 +5,6 @@ sidebar:
   order: 0
 ---
 
-# Date Helpers
-
 Utility functions for working with date operations.
 
 ## Functions

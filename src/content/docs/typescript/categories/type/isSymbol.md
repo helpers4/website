@@ -4,8 +4,6 @@ sidebar:
   label: "isSymbol"
 ---
 
-# isSymbol
-
 Checks if a value is a symbol.
 
 > Available since v2.0.0

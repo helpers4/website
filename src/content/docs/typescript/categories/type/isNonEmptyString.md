@@ -4,8 +4,6 @@ sidebar:
   label: "isNonEmptyString"
 ---
 
-# isNonEmptyString
-
 Checks if a value is a non-empty string (length > 0).
 
 > Available since v2.0.0

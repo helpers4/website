@@ -4,8 +4,6 @@ sidebar:
   order: 7
 ---
 
-# Automatic Package Installation (package-auto-install)
-
 Automatically detects and runs npm/yarn/pnpm install in non-interactive mode after container creation.
 
 ## Features

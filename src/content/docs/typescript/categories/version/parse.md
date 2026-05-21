@@ -4,8 +4,6 @@ sidebar:
   label: "parse"
 ---
 
-# parse
-
 Parses a semantic version string into its components according to SemVer 2.0.0 specification
 
 Supports:

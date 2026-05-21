@@ -4,8 +4,6 @@ sidebar:
   label: "deepMerge"
 ---
 
-# deepMerge
-
 Merges two or more objects deeply
 
 > Available since v1.9.0

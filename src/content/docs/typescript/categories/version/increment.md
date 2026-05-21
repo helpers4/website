@@ -4,8 +4,6 @@ sidebar:
   label: "increment"
 ---
 
-# increment
-
 Increments a semantic version
 
 > Available since v1.9.0

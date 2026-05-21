@@ -5,8 +5,6 @@ sidebar:
   order: 2
 ---
 
-# helpers4 vs Alternative Libraries
-
 A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 ## Overview

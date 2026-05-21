@@ -4,8 +4,6 @@ sidebar:
   label: "titleCase"
 ---
 
-# titleCase
-
 Converts a string to Title Case.
 Handles camelCase, PascalCase, kebab-case, snake_case, spaces, and mixed formats.
 

@@ -4,8 +4,6 @@ sidebar:
   label: "isString"
 ---
 
-# isString
-
 Checks if a value is a string.
 
 > Available since v1.9.0

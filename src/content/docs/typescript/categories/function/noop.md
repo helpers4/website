@@ -4,8 +4,6 @@ sidebar:
   label: "noop"
 ---
 
-# noop
-
 A no-operation function that does nothing and returns `undefined`
 
 Useful as a default callback, placeholder, or to explicitly ignore a value.

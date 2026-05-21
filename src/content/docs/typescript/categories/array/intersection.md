@@ -4,8 +4,6 @@ sidebar:
   label: "intersection"
 ---
 
-# intersection
-
 Compute the intersection of two arrays, meaning the elements that are present
 in both arrays.
 

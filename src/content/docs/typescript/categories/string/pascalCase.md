@@ -4,8 +4,6 @@ sidebar:
   label: "pascalCase"
 ---
 
-# pascalCase
-
 Converts a string to PascalCase.
 Handles camelCase, kebab-case, snake_case, spaces, and mixed formats.
 

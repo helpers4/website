@@ -4,8 +4,6 @@ sidebar:
   label: "deepClone"
 ---
 
-# deepClone
-
 Creates a deep copy of an object or array
 
 > Available since v1.9.0

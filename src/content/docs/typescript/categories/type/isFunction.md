@@ -4,8 +4,6 @@ sidebar:
   label: "isFunction"
 ---
 
-# isFunction
-
 Checks if a value is a function.
 
 > Available since v1.9.0

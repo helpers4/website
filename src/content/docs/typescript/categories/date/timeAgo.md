@@ -4,8 +4,6 @@ sidebar:
   label: "timeAgo"
 ---
 
-# timeAgo
-
 Formats a date as a human-readable relative time string.
 
 Uses `Intl.RelativeTimeFormat` under the hood, making the output

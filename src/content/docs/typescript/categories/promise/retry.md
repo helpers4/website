@@ -4,8 +4,6 @@ sidebar:
   label: "retry"
 ---
 
-# retry
-
 Retries a promise-returning function up to maxAttempts times
 
 > Available since v1.9.0

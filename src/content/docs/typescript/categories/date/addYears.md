@@ -4,8 +4,6 @@ sidebar:
   label: "addYears"
 ---
 
-# addYears
-
 Adds years to a date.
 
 Returns a **new** `Date` — the original is never mutated.

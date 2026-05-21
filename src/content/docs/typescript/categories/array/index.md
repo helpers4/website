@@ -5,8 +5,6 @@ sidebar:
   order: 0
 ---
 
-# Array Helpers
-
 Utility functions for working with array operations.
 
 ## Functions

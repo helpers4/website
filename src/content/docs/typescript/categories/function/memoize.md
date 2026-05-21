@@ -4,8 +4,6 @@ sidebar:
   label: "memoize"
 ---
 
-# memoize
-
 Returns a memoized version of the function that caches results
 
 > Available since v1.9.0

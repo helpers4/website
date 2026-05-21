@@ -4,8 +4,6 @@ sidebar:
   label: "isConventionalCommit"
 ---
 
-# isConventionalCommit
-
 Checks whether a commit message's subject line follows the Conventional
 Commits format constrained by the given options.
 

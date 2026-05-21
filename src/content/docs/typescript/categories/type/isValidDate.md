@@ -4,8 +4,6 @@ sidebar:
   label: "isValidDate"
 ---
 
-# isValidDate
-
 Checks if a value is a valid Date instance (not `Invalid Date`).
 
 Unlike isDate, this also verifies that the internal timestamp is not `NaN`.

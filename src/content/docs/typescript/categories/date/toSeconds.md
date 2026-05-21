@@ -4,8 +4,6 @@ sidebar:
   label: "toSeconds"
 ---
 
-# toSeconds
-
 Converts a date to a timestamp in **seconds** (epoch seconds).
 
 Use this when sending a date to a backend API that expects seconds

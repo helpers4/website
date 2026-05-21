@@ -205,8 +205,6 @@ sidebar:
   order: 0
 ---
 
-# ${capitalize(category)} Helpers
-
 Utility functions for working with ${category} operations.
 
 ## Functions
@@ -228,8 +226,6 @@ title: "${fn.name}"
 sidebar:
   label: "${fn.name}"
 ---
-
-# ${fn.name}
 
 ${fn.description || ''}
 `;

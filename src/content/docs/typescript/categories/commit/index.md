@@ -5,8 +5,6 @@ sidebar:
   order: 0
 ---
 
-# Commit Helpers
-
 Utility functions for working with commit operations.
 
 ## Functions

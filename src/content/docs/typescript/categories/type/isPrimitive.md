@@ -4,8 +4,6 @@ sidebar:
   label: "isPrimitive"
 ---
 
-# isPrimitive
-
 Checks if a value is a JavaScript primitive.
 
 Primitive types: `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, `undefined`.

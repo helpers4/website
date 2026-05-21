@@ -4,8 +4,6 @@ sidebar:
   order: 1
 ---
 
-# Angular Development Environment (angular-dev)
-
 Angular-specific development environment with VS Code extensions and CLI autocompletion.
 
 ## Features

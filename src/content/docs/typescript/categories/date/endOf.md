@@ -4,8 +4,6 @@ sidebar:
   label: "endOf"
 ---
 
-# endOf
-
 Returns a new `Date` set to the **end** of the given unit.
 
 - `'day'`   — 23:59:59.999

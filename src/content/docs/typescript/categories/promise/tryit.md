@@ -4,8 +4,6 @@ sidebar:
   label: "tryit"
 ---
 
-# tryit
-
 Wraps a function so it never throws. Instead, it returns a `[error, result]` tuple.
 Useful for avoiding try/catch blocks and handling errors in a functional style.
 

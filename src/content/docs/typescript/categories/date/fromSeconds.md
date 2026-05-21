@@ -4,8 +4,6 @@ sidebar:
   label: "fromSeconds"
 ---
 
-# fromSeconds
-
 Creates a `Date` from a timestamp in **seconds**.
 
 Use this when receiving a timestamp from a backend that sends seconds

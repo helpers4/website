@@ -4,8 +4,6 @@ sidebar:
   label: "buildConventionalCommitRegex"
 ---
 
-# buildConventionalCommitRegex
-
 Builds a regular expression matching the **subject line** of a Conventional
 Commits message.
 

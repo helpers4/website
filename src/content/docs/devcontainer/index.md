@@ -4,8 +4,6 @@ sidebar:
   order: 0
 ---
 
-# DevContainer Features — helpers4
-
 Plug-and-play development container features — consistent environments, zero setup friction.
 
 ## Quick Links

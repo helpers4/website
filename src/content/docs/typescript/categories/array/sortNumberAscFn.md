@@ -4,8 +4,6 @@ sidebar:
   label: "sortNumberAscFn"
 ---
 
-# sortNumberAscFn
-
 Sort numbers in ascending order
 
 > Available since v1.9.0

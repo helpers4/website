@@ -4,8 +4,6 @@ sidebar:
   label: "ensureArray"
 ---
 
-# ensureArray
-
 Wraps a value in an array if it is not already one.
 If the value is already an array, it is returned as-is.
 If the value is null or undefined, returns an empty array.

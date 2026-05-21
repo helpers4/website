@@ -4,8 +4,6 @@ sidebar:
   label: "normalizeTimestamp"
 ---
 
-# normalizeTimestamp
-
 Converts a timestamp to JavaScript milliseconds format
 
 > Available since v1.9.0

@@ -4,8 +4,6 @@ sidebar:
   label: "stringify"
 ---
 
-# stringify
-
 Reconstruct a semantic version string from a ParsedVersion object.
 
 This is the inverse of parse:

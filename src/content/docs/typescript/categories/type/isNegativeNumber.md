@@ -4,8 +4,6 @@ sidebar:
   label: "isNegativeNumber"
 ---
 
-# isNegativeNumber
-
 Checks if a value is a number less than 0.
 
 Returns `false` for `NaN`, `0`, positive numbers, and non-number types.

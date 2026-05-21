@@ -4,8 +4,6 @@ sidebar:
   order: 6
 ---
 
-# GitHub Development Environment (github-dev)
-
 Installs the **GitHub CLI (`gh`)** and adds the essential GitHub VS Code extensions (Copilot Chat, Pull Requests & Issues, GitHub Actions, RemoteHub). Automatically authenticates `gh` if a token is available in the environment.
 
 ## Usage

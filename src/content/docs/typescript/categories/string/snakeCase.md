@@ -4,8 +4,6 @@ sidebar:
   label: "snakeCase"
 ---
 
-# snakeCase
-
 Converts a string to snake_case.
 Handles camelCase, PascalCase, kebab-case, spaces, and mixed formats.
 

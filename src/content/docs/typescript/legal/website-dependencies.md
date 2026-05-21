@@ -5,8 +5,6 @@ sidebar:
   order: 3
 ---
 
-# Website Dependencies
-
 This documentation website is built with [Docusaurus](https://docusaurus.io) and uses the following open-source packages:
 
 | Package | License | Description |

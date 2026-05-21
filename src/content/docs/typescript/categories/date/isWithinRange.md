@@ -4,8 +4,6 @@ sidebar:
   label: "isWithinRange"
 ---
 
-# isWithinRange
-
 Checks whether a date falls within a range (inclusive on both ends).
 
 Returns `false` if any of the inputs is invalid.

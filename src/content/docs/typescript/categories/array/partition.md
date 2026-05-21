@@ -4,8 +4,6 @@ sidebar:
   label: "partition"
 ---
 
-# partition
-
 Splits an array into two groups based on a predicate function.
 The first group contains elements for which the predicate returns true,
 the second group contains the rest.

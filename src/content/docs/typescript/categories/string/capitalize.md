@@ -4,8 +4,6 @@ sidebar:
   label: "capitalize"
 ---
 
-# capitalize
-
 Capitalizes the first letter of a string
 
 > Available since v1.9.0

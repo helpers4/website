@@ -4,8 +4,6 @@ sidebar:
   label: "overlaps"
 ---
 
-# overlaps
-
 Checks whether two date ranges overlap.
 
 Two ranges overlap when `rangeA.start <= rangeB.end` AND

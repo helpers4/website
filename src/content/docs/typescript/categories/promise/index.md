@@ -5,8 +5,6 @@ sidebar:
   order: 0
 ---
 
-# Promise Helpers
-
 Utility functions for working with promise operations.
 
 ## Functions

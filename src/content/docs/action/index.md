@@ -4,8 +4,6 @@ sidebar:
   order: 0
 ---
 
-# GitHub Actions — helpers4
-
 Reusable GitHub Actions for consistent, automated workflows across your repositories.
 
 ## Quick Links

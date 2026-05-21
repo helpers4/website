@@ -4,8 +4,6 @@ sidebar:
   label: "isArray"
 ---
 
-# isArray
-
 Checks if a value is an array.
 
 > Available since v1.9.0

@@ -4,8 +4,6 @@ sidebar:
   label: "isFalsy"
 ---
 
-# isFalsy
-
 Checks if a value is falsy (`false`, `null`, `undefined`, `0`, `""`, `NaN`).
 
 > Available since v2.0.0

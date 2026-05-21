@@ -4,8 +4,6 @@ sidebar:
   label: "toRFC3339"
 ---
 
-# toRFC3339
-
 Converts a date to RFC 3339 format
 Format: YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss+HH:mm
 RFC 3339 is a profile of ISO 8601, but without milliseconds by default

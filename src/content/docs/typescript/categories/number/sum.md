@@ -4,8 +4,6 @@ sidebar:
   label: "sum"
 ---
 
-# sum
-
 Calculates the sum of an array of numbers.
 
 > Available since v2.0.0

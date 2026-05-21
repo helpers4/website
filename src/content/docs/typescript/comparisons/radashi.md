@@ -5,8 +5,6 @@ sidebar:
   order: 1
 ---
 
-# helpers4 vs Radashi
-
 [Radashi](https://radashi.js.org) is a general-purpose TypeScript utility toolkit (~130 functions), and the actively maintained fork of Radash. The two libraries are **complementary, not competing**.
 
 This page details the differences to help you decide whether you need helpers4, radashi, or both.

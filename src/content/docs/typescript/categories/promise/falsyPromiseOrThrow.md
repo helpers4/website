@@ -4,8 +4,6 @@ sidebar:
   label: "falsyPromiseOrThrow"
 ---
 
-# falsyPromiseOrThrow
-
 Returns a function that passes through falsy data or throws an error.
 
 > Available since v1.0.0

@@ -62,13 +62,14 @@ try {
     if (fs.existsSync(action.readme)) {
       let content = fs.readFileSync(action.readme, 'utf-8');
 
-      // Convert GitHub markdown to Docusaurus format
-      const frontmatter = `---
-sidebar:
-  order: ${index + 1}
----
+      // Extract H1 for frontmatter title and remove it from the body
+      const h1Match = content.match(/^# (.+)$/m);
+      const title = h1Match ? h1Match[1].trim() : action.name;
+      if (h1Match) {
+        content = content.replace(/^# .+\n?/, '').replace(/^\n/, '');
+      }
 
-`;
+      const frontmatter = `---\ntitle: ${JSON.stringify(title)}\nsidebar:\n  order: ${index + 1}\n---\n\n`;
 
       content = frontmatter + content;
 
