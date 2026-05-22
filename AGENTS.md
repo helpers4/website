@@ -16,7 +16,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/) with a gitmo
 
 **Format:** `<type>(<scope>): <emoji> <description>`
 
-**Scopes:** docs, lib-typescript, lib-devcontainer, lib-action, build, deps, deps-dev, CI-CD
+**Scopes:** defined in `.vscode/settings.json` (`conventionalCommits.scopes`)
 
 | Type | Primary | Alternatives (gitmoji.dev) | When to use |
 |------|---------|---------------------------|-------------|
