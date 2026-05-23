@@ -74,7 +74,7 @@ import { compact as compact4array } from '@helpers4/array';
 import { compact as compact4object } from '@helpers4/object';
 ```
 
-See [Name Conflicts](./naming-conflicts) for the full list of known conflicts and resolution patterns.
+See [Name Conflicts](./naming-conflicts/) for the full list of known conflicts and resolution patterns.
 
 ## Pragmatism over theoretical purity
 

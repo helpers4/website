@@ -16,10 +16,10 @@ This is not a bug. `compact` for arrays and `compact` for objects are genuinely 
 
 | Function | Categories |
 |----------|------------|
-| `compact` | [`array`](../categories/array/compact), [`object`](../categories/object/compact) |
-| `compare` | [`date`](../categories/date/compare), [`version`](../categories/version/compare) |
-| `difference` | [`array`](../categories/array/difference), [`date`](../categories/date/difference) |
-| `shallowEquals` | [`array`](../categories/array/shallowEquals), [`object`](../categories/object/shallowEquals) |
+| `compact` | [`array`](../categories/array/compact/), [`object`](../categories/object/compact/) |
+| `compare` | [`date`](../categories/date/compare/), [`version`](../categories/version/compare/) |
+| `difference` | [`array`](../categories/array/difference/), [`date`](../categories/date/difference/) |
+| `shallowEquals` | [`array`](../categories/array/shallowequals/), [`object`](../categories/object/shallowequals/) |
 
 ## Resolving Conflicts
 
@@ -96,4 +96,4 @@ This means you cannot safely `import { compact } from '@helpers4/all'` if both `
 
 ## Design rationale
 
-See [Philosophy — Category independence](./philosophy#category-independence) for a deeper explanation of why cross-category deduplication is intentionally avoided.
+See [Philosophy — Category independence](./philosophy/#category-independence) for a deeper explanation of why cross-category deduplication is intentionally avoided.

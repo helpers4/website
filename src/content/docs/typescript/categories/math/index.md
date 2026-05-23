@@ -11,5 +11,5 @@ Utility functions for working with math operations.
 
 | Function | Description |
 |----------|-------------|
-| [`uuid7`](uuid7) | Generates a UUID v7 string (RFC 9562). |
+| [`uuid7`](./uuid7/) | Generates a UUID v7 string (RFC 9562). |
 

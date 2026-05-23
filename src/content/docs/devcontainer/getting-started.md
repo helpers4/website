@@ -53,7 +53,7 @@ Complete Vite+ development environment with optimized tooling.
 - Oxc (linter/formatter)
 - VS Code extensions (Oxc, Vitest)
 
-[Full Documentation →](./features/vite-plus)
+[Full Documentation →](./features/vite-plus/)
 
 ### typescript-dev
 
@@ -65,7 +65,7 @@ TypeScript development environment with strict mode best practices.
 }
 ```
 
-[Full Documentation →](./features/typescript-dev)
+[Full Documentation →](./features/typescript-dev/)
 
 ### git-absorb
 
@@ -79,7 +79,7 @@ Git absorb integration for interactive rebase workflows.
 }
 ```
 
-[Full Documentation →](./features/git-absorb)
+[Full Documentation →](./features/git-absorb/)
 
 ### shell-history-per-project
 
@@ -93,7 +93,7 @@ Separate shell history per project for better organization.
 }
 ```
 
-[Full Documentation →](./features/shell-history-per-project)
+[Full Documentation →](./features/shell-history-per-project/)
 
 ### local-mounts
 
@@ -107,7 +107,7 @@ Configure local mount points for development.
 }
 ```
 
-[Full Documentation →](./features/local-mounts)
+[Full Documentation →](./deprecated/local-mounts/)
 
 ### angular-dev
 
@@ -119,7 +119,7 @@ Pre-configured Angular development environment.
 }
 ```
 
-[Full Documentation →](./features/angular-dev)
+[Full Documentation →](./features/angular-dev/)
 
 ### package-auto-install
 
@@ -133,7 +133,7 @@ Automatically install npm/pnpm packages on container start.
 }
 ```
 
-[Full Documentation →](./features/package-auto-install)
+[Full Documentation →](./features/package-auto-install/)
 
 ## Combining Features
 
@@ -172,7 +172,7 @@ All features support standard devcontainer.json configuration:
 
 ## Next Steps
 
-- Explore individual [Features](./features/vite-plus)
+- Explore individual [Features](./features/vite-plus/)
 - Check the [GitHub Repository](https://github.com/helpers4/devcontainer)
 
 ## Support

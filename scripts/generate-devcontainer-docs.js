@@ -88,6 +88,11 @@ try {
         content = content.replace(/^# .+\n?/m, '').replace(/^\n/, '');
       }
 
+      // Fix cross-feature relative links for the website:
+      // ../featureName/README.md → ../featureName/
+      // ../local-mounts → ../../deprecated/local-mounts/
+      content = fixActiveFeatureLinks(content);
+
       const frontmatter = `---
 title: ${JSON.stringify(title)}
 sidebar:
@@ -121,6 +126,11 @@ sidebar:
           content = content.replace(/^# .+\n?/m, '').replace(/^\n/, '');
         }
 
+        // Fix links for deprecated pages on the website:
+        // ../src/featureName/README.md → ../../features/featureName/
+        // helpers4.dev/dev-container/... → helpers4.dev/devcontainer/...
+        content = fixDeprecatedFeatureLinks(content);
+
         const frontmatter = `---
 title: ${JSON.stringify(title)}
 sidebar:
@@ -142,4 +152,42 @@ deprecated: true
 } catch (error) {
   console.error('❌ Error generating documentation:', error.message);
   process.exit(1);
+}
+
+/**
+ * Fix relative cross-feature links in active feature pages for the website.
+ * - ../featureName/README.md → ../featureName/
+ * - ../local-mounts           → ../../deprecated/local-mounts/
+ */
+function fixActiveFeatureLinks(content) {
+  // Cross-feature README.md links: (../featureName/README.md) → (../featureName/)
+  content = content.replace(
+    /\]\(\.\.\/([\w-]+)\/README\.md\)/g,
+    '](../$1/)'
+  );
+  // Deprecated local-mounts: (../local-mounts) → (../../deprecated/local-mounts/)
+  content = content.replace(
+    /\]\(\.\.\/local-mounts\)/g,
+    '](../../deprecated/local-mounts/)'
+  );
+  return content;
+}
+
+/**
+ * Fix relative links in deprecated feature pages for the website.
+ * - ../src/featureName/README.md → ../../features/featureName/
+ * - helpers4.dev/dev-container/  → helpers4.dev/devcontainer/ (URL typo fix)
+ */
+function fixDeprecatedFeatureLinks(content) {
+  // Links to active features via repo path: (../src/featureName/README.md) → (../../features/featureName/)
+  content = content.replace(
+    /\]\(\.\.\/src\/([\w-]+)\/README\.md\)/g,
+    '](../../features/$1/)'
+  );
+  // URL typo: dev-container → devcontainer
+  content = content.replace(
+    /https:\/\/helpers4\.dev\/dev-container\//g,
+    'https://helpers4.dev/devcontainer/'
+  );
+  return content;
 }

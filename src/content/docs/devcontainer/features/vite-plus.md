@@ -89,8 +89,8 @@ If you prefer standalone tools instead of or alongside `vp`:
 ## VS Code Extensions Included
 
 ### Oxc (oxc.oxc-vscode)
-- Ultra-fast linting with Oxlint (~50× to ~100× faster than ESLint, [per Oxc benchmarks](https://oxc.rs/docs/guide/usage/linter))
-- Prettier-compatible formatting with Oxfmt (up to 30× faster than Prettier, [per Oxc benchmarks](https://oxc.rs))
+- Ultra-fast linting with Oxlint (~50× to ~100× faster than ESLint)
+- Prettier-compatible formatting with Oxfmt (up to 30× faster than Prettier)
 - ESLint rule compatibility (600+ rules)
 - Type-aware linting support
 
@@ -216,9 +216,9 @@ Vite+ works with all Vite-compatible frameworks:
 
 ## Performance Benefits
 
-- **~1.6× to ~7.7× faster production builds** than Vite 7 ([Rolldown benchmarks](https://rolldown.rs))
-- **~50× to ~100× faster linting** than ESLint ([Oxlint benchmarks](https://oxc.rs/docs/guide/usage/linter))
-- **Up to 30× faster formatting** than Prettier ([Oxfmt benchmarks](https://oxc.rs))
+- **~1.6× to ~7.7× faster production builds** than Vite 7 (Rolldown)
+- **~50× to ~100× faster linting** than ESLint (Oxlint)
+- **Up to 30× faster formatting** than Prettier (Oxfmt)
 - **Instant HMR** for all file types
 - **Automated caching** with Vite Task for monorepo scripts
 

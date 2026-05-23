@@ -12,12 +12,12 @@ Utility functions for working with number operations.
 | Function | Description |
 |----------|-------------|
 | `ceil / floor` | <span class="badge badge--secondary">native JS</span> `Math.ceil() / Math.floor()` *(ES1)* |
-| [`clamp`](clamp) | Clamps a number between min and max values |
-| [`formatSize`](formatSize) | Format a byte count into a human-readable string with the appropriate unit. |
+| [`clamp`](./clamp/) | Clamps a number between min and max values |
+| [`formatSize`](./formatsize/) | Format a byte count into a human-readable string with the appropriate unit. |
 | `min / max` | <span class="badge badge--secondary">native JS</span> `Math.min(...arr) / Math.max(...arr)` *(ES1)* |
-| [`randomBetween`](randomBetween) | Generates a random number between min and max (inclusive) |
-| [`randomIntBetween`](randomIntBetween) | Generates a random integer between min and max (inclusive) |
-| [`roundTo`](roundTo) | Rounds a number to specified decimal places |
-| [`sum`](sum) | Calculates the sum of an array of numbers. |
+| [`randomBetween`](./randombetween/) | Generates a random number between min and max (inclusive) |
+| [`randomIntBetween`](./randomintbetween/) | Generates a random integer between min and max (inclusive) |
+| [`roundTo`](./roundto/) | Rounds a number to specified decimal places |
+| [`sum`](./sum/) | Calculates the sum of an array of numbers. |
 | `toInt / toFloat` | <span class="badge badge--secondary">native JS</span> `parseInt(str, 10) / parseFloat(str)` *(ES1)* |
 

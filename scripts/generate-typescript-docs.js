@@ -188,7 +188,7 @@ try {
     const allEntries = [
       ...functions.map(fn => ({
         sortKey: fn.name.toLowerCase(),
-        row: `| [\`${fn.name}\`](${fn.name}) | ${escapeMarkdownTable(firstSentence(fn.description))} |`,
+        row: `| [\`${fn.name}\`](./${fn.name.toLowerCase()}/) | ${escapeMarkdownTable(firstSentence(fn.description))} |`,`
       })),
       ...(natives?.functions || []).map(n => ({
         sortKey: n.name.toLowerCase(),
@@ -196,9 +196,9 @@ try {
       })),
     ].sort((a, b) => a.sortKey.localeCompare(b.sortKey));
 
-    const allFunctionRows = allEntries.map(e => e.row).join('\n');
+  const allFunctionRows = allEntries.map(e => e.row).join('\n');
 
-    const indexMd = `---
+  const indexMd = `---
 title: "${capitalize(category)} Helpers"
 sidebar:
   label: "${capitalize(category)}"
@@ -214,14 +214,14 @@ Utility functions for working with ${category} operations.
 ${allFunctionRows}
 ${depsList}
 `;
-    fs.writeFileSync(path.join(categoryDir, 'index.md'), indexMd);
+  fs.writeFileSync(path.join(categoryDir, 'index.md'), indexMd);
 
-    // --- individual function docs ---
-    for (const fn of functions) {
-      const fnExamples = examplesMap[fn.name] || fn.examples || [];
-      const sig = fn.signatures?.[0];
+  // --- individual function docs ---
+  for (const fn of functions) {
+    const fnExamples = examplesMap[fn.name] || fn.examples || [];
+    const sig = fn.signatures?.[0];
 
-      let content = `---
+    let content = `---
 title: "${fn.name}"
 sidebar:
   label: "${fn.name}"
@@ -230,12 +230,12 @@ sidebar:
 ${fn.description || ''}
 `;
 
-      const sinceLabel = formatSinceLabel(fn.since);
-      if (sinceLabel) {
-        content += `\n> Available since ${sinceLabel}\n`;
-      }
+    const sinceLabel = formatSinceLabel(fn.since);
+    if (sinceLabel) {
+      content += `\n> Available since ${sinceLabel}\n`;
+    }
 
-      content += `
+    content += `
 ## Import
 
 \`\`\`ts
@@ -243,8 +243,8 @@ import { ${fn.name} } from '@helpers4/${category}';
 \`\`\`
 `;
 
-      if (sig) {
-        content += `
+    if (sig) {
+      content += `
 ## Signature
 
 
@@ -253,32 +253,32 @@ ${sig.signature}
 \`\`\`
 `;
 
-        if (sig.params?.length) {
-          content += `
+      if (sig.params?.length) {
+        content += `
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
 ${sig.params.map(p => `| \`${p.name}\` | \`${escapeMarkdownTable(p.type)}\` | ${escapeMarkdownTable(p.description)}${p.optional ? ' *(optional)*' : ''} |`).join('\n')}
 `;
-        }
+      }
 
-        if (sig.returns) {
-          content += `
+      if (sig.returns) {
+        content += `
 ## Returns
 
 \`${sig.returns.type}\` — ${sig.returns.description || ''}
 `;
-        }
       }
+    }
 
-      if (fnExamples.length) {
-        content += `
+    if (fnExamples.length) {
+      content += `
 ## Examples
 `;
-        for (const ex of fnExamples) {
-          const exCode = (ex.code || '').replace(/^```\w*\n?/, '').replace(/\n?```$/, '').trim();
-          content += `
+      for (const ex of fnExamples) {
+        const exCode = (ex.code || '').replace(/^```\w*\n?/, '').replace(/\n?```$/, '').trim();
+        content += `
 ### ${ex.title}
 
 ${ex.description || ''}
@@ -287,15 +287,15 @@ ${ex.description || ''}
 ${exCode}
 \`\`\`
 `;
-        }
       }
+    }
 
-      if (fn.relatedTypes?.length) {
-        content += `
+    if (fn.relatedTypes?.length) {
+      content += `
 ## Related Types
 `;
-        for (const rt of fn.relatedTypes) {
-          content += `
+      for (const rt of fn.relatedTypes) {
+        content += `
 ### \`${rt.name}\`
 
 ${rt.description || ''}
@@ -304,17 +304,17 @@ ${rt.description || ''}
 ${rt.typeDefinition}
 \`\`\`
 `;
-        }
       }
+    }
 
-      // Name conflict callout — placed just before Source for discoverability
-      const conflictCategories = nameConflicts[fn.name];
-      if (conflictCategories) {
-        const otherCategories = conflictCategories.filter(c => c !== category);
-        const othersFormatted = otherCategories
-          .map(c => `[\`@helpers4/${c}\`](../${c}/${fn.name})`)
-          .join(', ');
-        content += `
+    // Name conflict callout — placed just before Source for discoverability
+    const conflictCategories = nameConflicts[fn.name];
+    if (conflictCategories) {
+      const otherCategories = conflictCategories.filter(c => c !== category);
+      const othersFormatted = otherCategories
+        .map(c => `[\`@helpers4/${c}\`](../${c}/${fn.name.toLowerCase()}/)`)
+        .join(', ');
+      content += `
 :::caution[Name conflict]
 A helper named \`${fn.name}\` also exists in ${othersFormatted}. If you need both in the same file, rename at import with \`as\`:
 
@@ -323,57 +323,57 @@ import { ${fn.name} as ${fn.name}4${category} } from '@helpers4/${category}';
 ${otherCategories.map(c => `import { ${fn.name} as ${fn.name}4${c} } from '@helpers4/${c}';`).join('\n')}
 \`\`\`
 
-See [Name Conflicts](../../reference/naming-conflicts) for the full resolution guide.
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
 :::
 `;
-      }
+    }
 
-      content += `
+    content += `
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/${category}/${fn.sourceFile || fn.name + '.ts'})
 `;
 
-      fs.writeFileSync(path.join(categoryDir, `${fn.name}.md`), content);
-    }
-
-    console.log(`  ✓ ${category} (${functions.length} functions)`);
+    fs.writeFileSync(path.join(categoryDir, `${fn.name}.md`), content);
   }
+
+  console.log(`  ✓ ${category} (${functions.length} functions)`);
+}
 
   // --- legal docs from licenses ---
   generateLegalDocs(categories);
 
-  // --- all-functions reference page ---
-  generateAllFunctionsPage(categories);
+// --- all-functions reference page ---
+generateAllFunctionsPage(categories);
 
-  // --- changelog page (helpers grouped by @since version) ---
-  generateChangelogPage(categories);
+// --- changelog page (helpers grouped by @since version) ---
+generateChangelogPage(categories);
 
-  // --- naming conflicts reference page (generated from nameConflicts map) ---
-  generateNamingConflictsPage(nameConflicts);
+// --- naming conflicts reference page (generated from nameConflicts map) ---
+generateNamingConflictsPage(nameConflicts);
 
-  // --- contributing page (synced from typescript repo) ---
-  syncContributingPage();
+// --- contributing page (synced from typescript repo) ---
+syncContributingPage();
 
-  // --- patch version sentinel in manually-written pages ---
-  syncVersion();
+// --- patch version sentinel in manually-written pages ---
+syncVersion();
 
-  // --- patch mutation dashboard URL in manually-written pages ---
-  syncMutationDashboardUrl();
+// --- patch mutation dashboard URL in manually-written pages ---
+syncMutationDashboardUrl();
 
-  // --- fix broken internal links (remove .md extension) ---
-  fixBrokenLinks();
+// --- fix broken internal links (remove .md extension) ---
+fixBrokenLinks();
 
-  // --- patch runtime compatibility in getting-started ---
-  syncRuntimeCompatibility();
+// --- patch runtime compatibility in getting-started ---
+syncRuntimeCompatibility();
 
-  // --- patch helper count in intro and comparison pages ---
-  // Use processedCategoryCount (not categories.length) so the patched docs
-  // reflect what was actually generated when an api.json is missing.
-  syncHelperCount(totalFunctions, processedCategoryCount);
+// --- patch helper count in intro and comparison pages ---
+// Use processedCategoryCount (not categories.length) so the patched docs
+// reflect what was actually generated when an api.json is missing.
+syncHelperCount(totalFunctions, processedCategoryCount);
 
-  console.log(`\n✅ Generated documentation for ${categories.length} categories (${totalFunctions} functions)`);
-  console.log(`📁 Output: ${docsOutputPath}\n`);
+console.log(`\n✅ Generated documentation for ${categories.length} categories (${totalFunctions} functions)`);
+console.log(`📁 Output: ${docsOutputPath}\n`);
 
 } catch (error) {
   console.error('❌ Error generating documentation:', error.message);
@@ -451,7 +451,7 @@ function generateAllFunctionsPage(categories) {
     for (const fn of (api.functions || []).filter(fn => fn.kind === 'function' || fn.kind === 'variable')) {
       rows.push({
         sortKey: fn.name.toLowerCase(),
-        row: `| [\`${fn.name}\`](${category}/${fn.name}) | [${category}](${category}/) | ${escapeMarkdownTable(firstSentence(fn.description))} |`,
+        row: `| [\`${fn.name}\`](../${category}/${fn.name.toLowerCase()}/) | [${category}](../${category}/) | ${escapeMarkdownTable(firstSentence(fn.description))} |`,
       });
     }
 
@@ -459,7 +459,7 @@ function generateAllFunctionsPage(categories) {
     for (const n of (natives?.functions || [])) {
       rows.push({
         sortKey: n.name.toLowerCase(),
-        row: `| \`${escapeMarkdownTable(n.name)}\` | [${category}](${category}/) | ${NATIVE_BADGE} \`${escapeMarkdownTable(n.native)}\`${n.since ? ` *(${n.since})*` : ''} |`,
+        row: `| \`${escapeMarkdownTable(n.name)}\` | [${category}](../${category}/) | ${NATIVE_BADGE} \`${escapeMarkdownTable(n.native)}\`${n.since ? ` *(${n.since})*` : ''} |`,
       });
       nativeCount++;
     }
@@ -536,7 +536,7 @@ function generateNamingConflictsPage(nameConflicts) {
   // Table rows
   const tableRows = sortedNames.map(name => {
     const cats = nameConflicts[name].sort();
-    const catLinks = cats.map(c => `[\`${c}\`](../categories/${c}/${name})`).join(', ');
+    const catLinks = cats.map(c => `[\`${c}\`](../categories/${c}/${name.toLowerCase()}/)`).join(', ');
     return `| \`${name}\` | ${catLinks} |`;
   }).join('\n');
 
@@ -683,7 +683,7 @@ sidebar:
     content += `| Function | Category | Description |\n`;
     content += `|----------|----------|-------------|\n`;
     for (const fn of fns) {
-      content += `| [\`${fn.name}\`](../categories/${fn.category}/${fn.name}) | [${fn.category}](../categories/${fn.category}/) | ${escapeMarkdownTable(fn.description)} |\n`;
+      content += `| [\`${fn.name}\`](../categories/${fn.category}/${fn.name.toLowerCase()}/) | [${fn.category}](../categories/${fn.category}/) | ${escapeMarkdownTable(fn.description)} |\n`;
     }
     content += '\n';
   }

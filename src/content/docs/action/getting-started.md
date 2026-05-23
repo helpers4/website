@@ -22,7 +22,7 @@ Validate commit messages against the [Conventional Commits](https://www.conventi
 - ✅ Scope validation
 - ✅ Type enforcement
 
-[Full Documentation →](./actions/conventional-commits)
+[Full Documentation →](./actions/conventional-commits/)
 
 ## Quick Start
 

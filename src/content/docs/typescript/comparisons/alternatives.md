@@ -28,7 +28,7 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 | **Architecture** | Independent `@helpers4/*` packages per category | Single `radashi` package |
 | **Dependencies** | Zero runtime dependencies | Zero dependencies |
 
-**Key difference**: Radashi provides building blocks for data structures; helpers4 provides ready-made solutions for common domain problems. They're complementary — see the [detailed comparison](./radashi).
+**Key difference**: Radashi provides building blocks for data structures; helpers4 provides ready-made solutions for common domain problems. They're complementary — see the [detailed comparison](./radashi/).
 
 ## helpers4 vs Radash
 
