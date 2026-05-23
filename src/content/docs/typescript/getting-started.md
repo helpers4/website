@@ -61,7 +61,7 @@ import { compare as compare4date } from '@helpers4/date';
 import { compare as compare4version } from '@helpers4/version';
 ```
 
-See the full list and resolution patterns in [Name Conflicts](./reference/naming-conflicts).
+See the full list and resolution patterns in [Name Conflicts](./reference/naming-conflicts/).
 
 
 
@@ -116,7 +116,7 @@ Every helper ships with:
 
 ## Next Steps
 
-- Browse the [Categories](./categories/array)
+- Browse the [Categories](./categories/array/)
 - View the [GitHub Repository](https://github.com/helpers4/typescript)
 
 ## Contributing

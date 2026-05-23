@@ -52,14 +52,14 @@ compact({ name: 'Alice', email: '', age: 0, role: 'admin' })
 ```
 
 :::caution[Name conflict]
-A helper named `compact` also exists in [`@helpers4/array`](../array/compact). If you need both in the same file, rename at import with `as`:
+A helper named `compact` also exists in [`@helpers4/array`](../array/compact/). If you need both in the same file, rename at import with `as`:
 
 ```ts
 import { compact as compact4object } from '@helpers4/object';
 import { compact as compact4array } from '@helpers4/array';
 ```
 
-See [Name Conflicts](../../reference/naming-conflicts) for the full resolution guide.
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
 :::
 
 ## Source

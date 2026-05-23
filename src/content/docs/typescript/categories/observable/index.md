@@ -11,8 +11,8 @@ Utility functions for working with observable operations.
 
 | Function | Description |
 |----------|-------------|
-| [`combine`](combine) | Combine two observables with a map function and an optional pre-treatment. |
-| [`combineLatest`](combineLatest) | Combines multiple Observables to create an Observable whose values are calculated from the latest values of each of i… |
+| [`combine`](./combine/) | Combine two observables with a map function and an optional pre-treatment. |
+| [`combineLatest`](./combinelatest/) | Combines multiple Observables to create an Observable whose values are calculated from the latest values of each of i… |
 
 ## Dependencies
 

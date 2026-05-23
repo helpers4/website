@@ -1,0 +1,7 @@
+{
+  "label": "Deprecated",
+  "position": 99,
+  "collapsed": true,
+  "collapsible": true,
+  "description": "Features that have been removed. Pages are kept for reference and migration guidance."
+}

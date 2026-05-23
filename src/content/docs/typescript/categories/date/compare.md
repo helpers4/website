@@ -106,14 +106,14 @@ interface EpochMilliseconds {
 ```
 
 :::caution[Name conflict]
-A helper named `compare` also exists in [`@helpers4/version`](../version/compare). If you need both in the same file, rename at import with `as`:
+A helper named `compare` also exists in [`@helpers4/version`](../version/compare/). If you need both in the same file, rename at import with `as`:
 
 ```ts
 import { compare as compare4date } from '@helpers4/date';
 import { compare as compare4version } from '@helpers4/version';
 ```
 
-See [Name Conflicts](../../reference/naming-conflicts) for the full resolution guide.
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
 :::
 
 ## Source

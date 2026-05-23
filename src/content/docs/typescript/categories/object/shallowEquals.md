@@ -45,14 +45,14 @@ shallowEquals({ a: 1, b: 2 }, { a: 1, b: 2 })
 ```
 
 :::caution[Name conflict]
-A helper named `shallowEquals` also exists in [`@helpers4/array`](../array/shallowEquals). If you need both in the same file, rename at import with `as`:
+A helper named `shallowEquals` also exists in [`@helpers4/array`](../array/shallowequals/). If you need both in the same file, rename at import with `as`:
 
 ```ts
 import { shallowEquals as shallowEquals4object } from '@helpers4/object';
 import { shallowEquals as shallowEquals4array } from '@helpers4/array';
 ```
 
-See [Name Conflicts](../../reference/naming-conflicts) for the full resolution guide.
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
 :::
 
 ## Source
