@@ -20,6 +20,8 @@ Every function lives in its own file. There are no side effects at the module le
 
 This is not a nice-to-have: bundle size matters. We check that the build output stays lean, and we reject patterns that would force bundlers to pull in dead code.
 
+There is no single `@helpers4/everything` mega-bundle that includes every category at once. This is intentional: it forces you to be explicit about what you need, keeps imports lean as the library grows, and avoids the "I imported one thing but bundled the whole library" failure mode that plagues monolithic utility packages.
+
 ## `any` is a bug waiting to happen
 
 `any` is banned. Not discouraged — banned. Use `unknown`, use generics, use a union. If a type is genuinely dynamic, model it explicitly.
@@ -39,7 +41,11 @@ Beyond line coverage, every helper faces a gauntlet:
 - **Security edge cases** — inputs designed to trigger prototype pollution, injection, or unsafe patterns
 - **Mutation testing** (Stryker) — >90% threshold; if a mutant survives, the tests aren't good enough — [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main)
 - **Benchmarks** (Vitest Bench) — performance tracked per build, non-blocking
-- **Dependency security audit** — `pnpm audit` on every PR and release
+- **Dependency security audit** — `pnpm audit` runs on every PR and release, blocking merges on any known vulnerability. [Dependabot](https://docs.github.com/en/code-security/dependabot) watches all dependencies and automatically opens PRs for security updates — nothing silently falls out of date.
+- **[OpenSSF Scorecard](https://securityscorecards.dev/viewer/?uri=github.com/helpers4/typescript)** — runs weekly, evaluating branch protection, pinned actions, artifact integrity, and other security practices. Results are published publicly and uploaded as SARIF to GitHub Code Scanning.
+- **[OpenHub (Black Duck)](https://openhub.net/p/helpers4typescript)** — independent third-party activity and security assessment, publicly visible.
+
+Zero runtime dependencies means zero transitive vulnerabilities — but dev dependencies are part of the supply chain too, so we audit them just as rigorously.
 
 If a helper can't be fully tested, it doesn't belong here.
 
