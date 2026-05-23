@@ -6,15 +6,14 @@ Commit messages for the **website** repository must use Conventional Commits + g
 `<type>(<scope>): <emoji> <description>`
 
 **Allowed scopes** (pick one, or omit the scope entirely):
+- `action`
 - `blog`
-- `docs`
-- `lib-typescript`
-- `lib-devcontainer`
-- `lib-action`
-- `build`
-- `deps`
-- `deps-dev`
 - `CI-CD`
+- `deps-dev`
+- `deps`
+- `devcontainer`
+- `docs`
+- `typescript`
 
 Never invent a scope that is not in the list above.
 

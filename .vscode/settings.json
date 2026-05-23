@@ -1,14 +1,13 @@
 {
   "conventionalCommits.scopes": [
+    "action",
     "blog",
-    "docs",
-    "lib-typescript",
-    "lib-devcontainer",
-    "lib-action",
-    "build",
-    "deps",
+    "CI-CD",
     "deps-dev",
-    "CI-CD"
+    "deps",
+    "devcontainer",
+    "docs",
+    "typescript",
   ],
   "github.copilot.chat.commitMessageGeneration.instructions": [
     {
