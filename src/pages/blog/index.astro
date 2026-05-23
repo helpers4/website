@@ -1,0 +1,254 @@
+---
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * Blog index — lists all published articles, newest first.
+ */
+
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog — helpers4</title>
+    <meta name="description" content="The helpers4 blog — updates, releases, and thoughts on open-source developer tooling." />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Blog — helpers4" />
+    <meta property="og:description" content="The helpers4 blog — updates, releases, and thoughts on open-source developer tooling." />
+    <meta property="og:image" content="/helpers4-logo.png" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <a href="/" class="home-link">
+          <img src="/helpers4-logo.png" alt="helpers4" width="28" height="28" />
+          <span>helpers4</span>
+        </a>
+        <h1>Blog</h1>
+        <p class="subtitle">Updates, releases, and thoughts on open-source developer tooling.</p>
+      </header>
+
+      <main>
+        {posts.length === 0 && (
+          <p class="empty">No posts yet. Check back soon!</p>
+        )}
+        {posts.map((post) => (
+          <article class="post-card">
+            <h2 class="post-title">
+              <a href={`/blog/${post.id}`}>{post.data.title}</a>
+            </h2>
+            <div class="post-meta">
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              <span class="meta-sep">·</span>
+              <span class="author">{post.data.author}</span>
+              {post.data.tags.length > 0 && (
+                <span class="tags">
+                  {post.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+                </span>
+              )}
+            </div>
+            <p class="excerpt">{post.data.excerpt}</p>
+            <a href={`/blog/${post.id}`} class="read-more">Read more →</a>
+          </article>
+        ))}
+      </main>
+
+      <footer class="site-footer">
+        <a href="/">← helpers4.dev</a>
+        &nbsp;·&nbsp;
+        <a href="https://github.com/helpers4" target="_blank" rel="noopener noreferrer">GitHub</a>
+        &nbsp;·&nbsp;
+        <a href="/typescript/legal/license">License (LGPL-3.0)</a>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --accent: #2d6ef6;
+    --accent-dark: #1d4ed8;
+    --text: #1a1a2e;
+    --text-muted: #64748b;
+    --bg: #ffffff;
+    --border: #e2e8f0;
+    --bg-card: #f8fafc;
+    --radius: 0.75rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --bg: #0f172a;
+      --border: #1e293b;
+      --bg-card: #1e293b;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .site-header {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .home-link:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin: 0 0 0.4rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .subtitle {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+
+  .post-card {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-card:last-child {
+    border-bottom: none;
+  }
+
+  .post-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .post-title a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .post-title a:hover {
+    color: var(--accent);
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .meta-sep {
+    color: var(--border);
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .excerpt {
+    margin: 0 0 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-size: 0.975rem;
+  }
+
+  .read-more {
+    font-size: 0.875rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .read-more:hover {
+    text-decoration: underline;
+  }
+
+  .empty {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 4rem 0;
+  }
+
+  .site-footer {
+    margin-top: 3rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  .site-footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    text-decoration: underline;
+  }
+</style>
