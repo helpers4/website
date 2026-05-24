@@ -36,11 +36,11 @@ And beyond just covering more ground, helpers4 is designed to be **enterprise-gr
 
 For most of my career, "shared utilities" meant a `helpers.ts` file somewhere in the project, grown organically by whoever happened to need something. A `formatDate` here, a `debounce` there, copy-pasted from the last project, slightly adapted, occasionally broken.
 
-**2016 — Appvizer.** Working at a French SaaS company, I built the first thing I'd actually call a *proto-library*: a well-scoped, internally consistent collection of TypeScript utilities, designed with clear boundaries and a coherent API. It was decent. It was internal. It never left the company's private npm registry — but it taught me what a proper helper library could look like.
+**2016 — A French SaaS company.** I built the first thing I'd actually call a *proto-library*: a well-scoped, internally consistent collection of TypeScript utilities, designed with clear boundaries and a coherent API. It was decent. It was internal. It never left the company's private npm registry — but it taught me what a proper helper library could look like.
 
-**2022 — Data Terrae.** I co-founded a startup with an open-source-by-default culture. We published a small utility library called **Talafsa** — first real public release! Except... we shipped it under AGPL-3.0. Which is, uh, famously the "do not put this anywhere near commercial software" license. Adoption was predictably minimal. Lesson learned.
+**2022 — A startup.** I co-founded one with an open-source-by-default culture. We published a small utility library called **Talafsa** ([@data-cafe/helpers](https://www.npmjs.com/package/@data-cafe/helpers)) — first real public release! Except... we shipped it under AGPL-3.0. Which is, uh, famously the "do not put this anywhere near commercial software" license. Adoption was predictably minimal. Lesson learned.
 
-**2024 — A fresh start.** After leaving Data Terrae, Talafsa was abandoned. I did a proper state-of-the-art review, concluded that nothing quite fit what I wanted to build, and started over from scratch. New library. Better architecture. **LGPL-3.0** this time — use it freely in commercial or open-source projects, and you only need to share changes to the library itself.
+**2024 — A fresh start.** Talafsa was eventually abandoned. I did a proper state-of-the-art review, concluded that nothing quite fit what I wanted to build, and started over from scratch. New library. Better architecture. **LGPL-3.0** this time — use it freely in commercial or open-source projects, and you only need to share changes to the library itself.
 
 ---
 
