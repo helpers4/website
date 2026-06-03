@@ -13,12 +13,12 @@ always returns `false`.
 Useful for filtering or type-narrowing in a functional pipeline:
 `values.filter(isBuffer)`
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 
 ```ts
-import { isBuffer } from '@helpers4/type';
+import { isBuffer } from '@helpers4/node';
 ```
 
 ## Signature
@@ -62,4 +62,4 @@ values.filter(isBuffer)
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/isBuffer.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/node/isBuffer.ts)

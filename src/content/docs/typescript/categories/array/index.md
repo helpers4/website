@@ -11,29 +11,32 @@ Utility functions for working with array operations.
 
 | Function | Description |
 |----------|-------------|
+| [`cartesianProduct`](./cartesianproduct/) | Computes the Cartesian product of the provided arrays. |
 | [`chunk`](./chunk/) | Chunks an array into smaller arrays of specified size |
 | [`compact`](./compact/) | Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array. |
+| [`countBy`](./countby/) | Groups the elements of an array by the key returned by `keyFn` and returns a record mapping each key to the number of… |
 | [`createSortByDateFn`](./createsortbydatefn/) | Creates a sort function for objects by date property |
 | [`createSortByNumberFn`](./createsortbynumberfn/) | Creates a sort function for objects by number property |
 | [`createSortByStringFn`](./createsortbystringfn/) | Creates a sort function for objects by string property |
-| [`deepEquals`](./deepequals/) | Deep comparison of two arrays that only returns true or false. |
 | [`difference`](./difference/) | Returns the difference between two arrays (items in first array but not in second) |
 | `drop` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(n)` *(ES3)* |
 | [`ensureArray`](./ensurearray/) | Wraps a value in an array if it is not already one. |
-| [`equals`](./equals/) | Simple helper that checks if two lists are identical. |
+| [`equalsDeep`](./equalsdeep/) | Recursive structural array equality. |
+| [`equalsShallow`](./equalsshallow/) | Positional, one-level (shallow) array equality. |
+| [`equalsUnordered`](./equalsunordered/) | Order-independent (set-style) array equality. |
 | `find / findIndex` | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
 | `flatten / flat` | <span class="badge badge--secondary">native JS</span> `Array.prototype.flat(depth?)` *(ES2019)* |
 | `groupBy / group` | <span class="badge badge--secondary">native JS</span> `Object.groupBy(arr, fn)` *(ES2024)* |
 | `head / first` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(0)` *(ES2022)* |
 | `includes` | <span class="badge badge--secondary">native JS</span> `Array.prototype.includes()` *(ES2016)* |
 | [`intersection`](./intersection/) | Compute the intersection of two arrays, meaning the elements that are present in both arrays. |
+| [`intersects`](./intersects/) | Simple helper that check if two lists shared at least an item in common. |
 | `last` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
-| [`oneInCommon`](./oneincommon/) | Simple helper that check if two lists shared at least an item in common. |
 | [`partition`](./partition/) | Splits an array into two groups based on a predicate function. |
 | [`range`](./range/) | Generates an array of sequential numbers from start to end (exclusive). |
 | `reverse` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
 | [`sample`](./sample/) | Picks one or more random elements from an array. |
-| [`shallowEquals`](./shallowequals/) | Quick comparison of two arrays using JSON.stringify. |
+| `select / filterMap` | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
 | [`shuffle`](./shuffle/) | Randomly reorders elements of an array using the Fisher-Yates algorithm. |
 | `sortBy / orderBy` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(fn?)` *(ES2023)* |
 | [`sortNumberAscFn`](./sortnumberascfn/) | Sort numbers in ascending order |
@@ -43,5 +46,9 @@ Utility functions for working with array operations.
 | [`sortStringDescFn`](./sortstringdescfn/) | Sort strings in descending order |
 | `tail` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
+| `union` | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |
 | [`unique`](./unique/) | Removes duplicate values from an array |
+| [`unzip`](./unzip/) | Splits an array of tuples into separate arrays, one per position. |
+| [`without`](./without/) | Returns a new array with all occurrences of the given values removed. |
+| [`zip`](./zip/) | Combines multiple arrays element-by-element into an array of tuples. |
 

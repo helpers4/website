@@ -14,7 +14,7 @@ The returned regex exposes four capture groups:
 3. breaking marker (`'!'` or `undefined`)
 4. description
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

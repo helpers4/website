@@ -16,7 +16,7 @@ is:
 - otherwise (non-empty list of non-conventional commits) → `'patch'`
 - empty list → `'patch'` with reason "No commits to analyse"
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

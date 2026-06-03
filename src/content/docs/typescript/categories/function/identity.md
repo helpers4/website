@@ -35,13 +35,21 @@ identity<T>(value: T): T
 
 ## Examples
 
-### identity
+### Return a primitive unchanged
 
-
+The value is returned as-is with its type preserved.
 
 ```ts
 identity(42);       // 42
 identity('hello');  // 'hello'
+identity(true);     // true
+```
+
+### Use as a default mapper
+
+Pass identity where a transform function is required but no transformation is needed.
+
+```ts
 [1, 2, 3].map(identity); // [1, 2, 3]
 ```
 

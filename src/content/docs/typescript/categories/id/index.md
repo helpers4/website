@@ -1,11 +1,11 @@
 ---
-title: "Math Helpers"
+title: "Id Helpers"
 sidebar:
-  label: "Math"
+  label: "Id"
   order: 0
 ---
 
-Utility functions for working with math operations.
+Utility functions for working with id operations.
 
 ## Functions
 

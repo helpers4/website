@@ -6,6 +6,8 @@ sidebar:
   order: 4
 ---
 
+# Name Conflicts Between Categories
+
 helpers4 is split into independent npm packages — one per category. Each package can be installed and tree-shaken independently. A deliberate consequence of this design is that **the same function name can exist in multiple categories** when the operation makes sense for different data types.
 
 This is not a bug. `compact` for arrays and `compact` for objects are genuinely different operations, and merging them into a single overloaded function would break tree-shaking and make the types less precise.
@@ -19,7 +21,8 @@ This is not a bug. `compact` for arrays and `compact` for objects are genuinely 
 | `compact` | [`array`](../categories/array/compact/), [`object`](../categories/object/compact/) |
 | `compare` | [`date`](../categories/date/compare/), [`version`](../categories/version/compare/) |
 | `difference` | [`array`](../categories/array/difference/), [`date`](../categories/date/difference/) |
-| `shallowEquals` | [`array`](../categories/array/shallowequals/), [`object`](../categories/object/shallowequals/) |
+| `equalsDeep` | [`array`](../categories/array/equalsdeep/), [`object`](../categories/object/equalsdeep/) |
+| `equalsShallow` | [`array`](../categories/array/equalsshallow/), [`object`](../categories/object/equalsshallow/) |
 
 ## Resolving Conflicts
 
@@ -63,11 +66,18 @@ import { difference as difference4array } from '@helpers4/array';
 import { difference as difference4date } from '@helpers4/date';
 ```
 
-### `shallowEquals`
+### `equalsDeep`
 
 ```ts
-import { shallowEquals as shallowEquals4array } from '@helpers4/array';
-import { shallowEquals as shallowEquals4object } from '@helpers4/object';
+import { equalsDeep as equalsDeep4array } from '@helpers4/array';
+import { equalsDeep as equalsDeep4object } from '@helpers4/object';
+```
+
+### `equalsShallow`
+
+```ts
+import { equalsShallow as equalsShallow4array } from '@helpers4/array';
+import { equalsShallow as equalsShallow4object } from '@helpers4/object';
 ```
 
 ### Alternative: namespace import
@@ -96,4 +106,4 @@ This means you cannot safely `import { compact } from '@helpers4/all'` if both `
 
 ## Design rationale
 
-See [Philosophy — Category independence](./philosophy/#category-independence) for a deeper explanation of why cross-category deduplication is intentionally avoided.
+See [Philosophy — Category independence](./philosophy#category-independence) for a deeper explanation of why cross-category deduplication is intentionally avoided.

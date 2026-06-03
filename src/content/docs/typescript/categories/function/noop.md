@@ -29,13 +29,21 @@ noop(): void
 
 ## Examples
 
-### noop
+### Use as a default callback
 
-
+Replace an optional callback with noop to avoid null checks.
 
 ```ts
 const onComplete = options.callback ?? noop;
-onComplete();
+onComplete(); // does nothing
+```
+
+### Silence an event handler
+
+Pass noop wherever a function is required but no action is needed.
+
+```ts
+element.addEventListener('click', noop);
 ```
 
 ## Source

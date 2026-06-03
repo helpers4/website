@@ -16,7 +16,7 @@ Supports all npm-specified formats:
 Returns `undefined` for `null`, `undefined`, arrays, or values that cannot
 be matched to any recognised format.
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

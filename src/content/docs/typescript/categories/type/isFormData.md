@@ -9,7 +9,7 @@ Checks if a value is a FormData instance.
 Useful for filtering or type-narrowing in a functional pipeline:
 `values.filter(isFormData)`
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

@@ -11,7 +11,7 @@ The first line is matched against the regex produced by
 a `body` and an optional trailing `footer` block (lines matching
 `Token: value` / `Token #value`, including `BREAKING CHANGE: ...`).
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

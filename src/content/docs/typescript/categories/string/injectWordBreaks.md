@@ -12,7 +12,7 @@ boundaries — camelCase splits, path separators, token edges — while
 protected spans (URLs, emails, HTML) and atomic numeric values (`-0.1%`,
 `12ms`, `1e-3`) are never broken. The visible text content is unchanged.
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 
@@ -45,8 +45,8 @@ boundaries.
 Inserts ZWS at each camelCase boundary so a long identifier can wrap in a narrow column.
 
 ```ts
-injectWordBreaks('yieldExplorerValue')
-// => 'yield\u200BExplorer\u200BValue'
+injectWordBreaks('getUserProfileData')
+// => 'get\u200BUser\u200BProfile\u200BData'
 ```
 
 ### Comma-separated tokens

@@ -7,7 +7,7 @@ sidebar:
 Returns `true` when the version string has a prerelease suffix
 (i.e. contains a `-` after the core `MAJOR.MINOR.PATCH`).
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

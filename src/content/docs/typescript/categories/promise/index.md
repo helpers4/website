@@ -12,12 +12,15 @@ Utility functions for working with promise operations.
 | Function | Description |
 |----------|-------------|
 | [`consoleLogPromise`](./consolelogpromise/) | Returns a function that logs data to the console and passes it through. |
+| [`defer`](./defer/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last regist… |
 | [`delay`](./delay/) | Creates a promise that resolves after specified delay |
 | [`falsyPromiseOrThrow`](./falsypromiseorthrow/) | Returns a function that passes through falsy data or throws an error. |
 | [`guard`](./guard/) | Wraps a function so that if it throws, a default value is returned instead of propagating the error. |
 | [`meaningPromiseOrThrow`](./meaningpromiseorthrow/) | Returns a function that passes through meaningful data or throws an error. |
 | [`parallel`](./parallel/) | Runs an array of async functions with a concurrency limit. |
+| [`resolveRecord`](./resolverecord/) | Resolves an array of keys into a record by calling an async mapper for each key. |
 | [`retry`](./retry/) | Retries a promise-returning function up to maxAttempts times |
+| [`safeFetch`](./safefetch/) | Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, non-OK status, or p… |
 | [`timeout`](./timeout/) | Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration. |
 | [`truthyPromiseOrThrow`](./truthypromiseorthrow/) | Returns a function that passes through truthy data or throws an error. |
 | [`tryit`](./tryit/) | Wraps a function so it never throws. |

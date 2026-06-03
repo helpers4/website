@@ -1,7 +1,7 @@
 ---
-title: "oneInCommon"
+title: "intersects"
 sidebar:
-  label: "oneInCommon"
+  label: "intersects"
 ---
 
 Simple helper that check if two lists shared at least an item in common.
@@ -11,14 +11,14 @@ Simple helper that check if two lists shared at least an item in common.
 ## Import
 
 ```ts
-import { oneInCommon } from '@helpers4/array';
+import { intersects } from '@helpers4/array';
 ```
 
 ## Signature
 
 
 ```ts
-oneInCommon<T>(a: readonly T[], b: readonly T[]): boolean
+intersects<T>(a: readonly T[], b: readonly T[]): boolean
 ```
 
 ## Parameters
@@ -39,7 +39,7 @@ oneInCommon<T>(a: readonly T[], b: readonly T[]): boolean
 Returns true when at least one element is shared between both arrays.
 
 ```ts
-oneInCommon([1, 2, 3], [3, 4, 5])
+intersects([1, 2, 3], [3, 4, 5])
 // => true
 ```
 
@@ -48,10 +48,10 @@ oneInCommon([1, 2, 3], [3, 4, 5])
 Returns false when no elements are shared.
 
 ```ts
-oneInCommon([1, 2], [3, 4])
+intersects([1, 2], [3, 4])
 // => false
 ```
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/oneInCommon.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/intersects.ts)

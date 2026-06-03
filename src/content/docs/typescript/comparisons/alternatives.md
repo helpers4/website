@@ -11,7 +11,7 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 | Library | Functions | Size (min+gz) | Tree-shakable | TypeScript | Dependencies | License | Maintained |
 |---------|:---------:|:-------------:|:-------------:|:----------:|:------------:|:-------:|:----------:|
-| **helpers4** | 168 | ~2 KB per pkg | per-package | native | 0 | LGPL-3.0 | Yes |
+| **helpers4** | 199 | ~2 KB per pkg | per-package | native | 0 | LGPL-3.0 | Yes |
 | **radashi** | ~130 | ~15 KB | ESM | native | 0 | MIT | Yes |
 | **radash** | ~90 | ~12 KB | ESM | native | 0 | MIT | No (archived) |
 | **lodash** | ~300 | ~70 KB | via lodash-es | `@types/lodash` | 0 | MIT | Low |

@@ -17,7 +17,6 @@ Utility functions for working with type operations.
 | [`isBigInt`](./isbigint/) | Checks if a value is a bigint. |
 | [`isBlob`](./isblob/) | Checks if a value is a Blob instance. |
 | [`isBoolean`](./isboolean/) | Checks if a value is a boolean. |
-| [`isBuffer`](./isbuffer/) | Checks if a value is a Node.js Buffer instance. |
 | [`isDate`](./isdate/) | Checks if a value is a Date instance. |
 | [`isDefined`](./isdefined/) | Checks if a value is defined (not undefined nor null). |
 | `isDirectInstanceOf` | <span class="badge badge--secondary">native JS</span> `value.constructor === Foo` *(ES1)* |

@@ -25,7 +25,7 @@ import { isEmpty } from '@helpers4/type';
 
 
 ```ts
-isEmpty(value: unknown): boolean
+isEmpty(value: unknown): value is "" | never[] | ReadonlyMap<never, never> | ReadonlySet<never> | null | undefined
 ```
 
 ## Parameters
@@ -36,7 +36,11 @@ isEmpty(value: unknown): boolean
 
 ## Returns
 
-`boolean` — `true` if the value is considered empty, `false` otherwise
+`value is "" | never[] | ReadonlyMap<never, never> | ReadonlySet<never> | null | undefined` — `true` if the value is considered empty, `false` otherwise.
+Acts as a type guard: the `else` branch narrows away `null`, `undefined`,
+empty strings, empty arrays, and empty Map/Set.
+Plain empty objects (`{}`) are not representable as a distinct type in
+TypeScript and are therefore not part of the predicate.
 
 ## Examples
 

@@ -11,7 +11,7 @@ The ellipsis counts toward `maxLength`, so the result is always at most
 is returned unchanged (no ellipsis appended). `null` and `undefined` inputs
 are returned as-is to align with other string helpers.
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

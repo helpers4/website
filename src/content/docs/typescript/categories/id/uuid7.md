@@ -13,7 +13,7 @@ chronologically sortable while retaining randomness.
 ## Import
 
 ```ts
-import { uuid7 } from '@helpers4/math';
+import { uuid7 } from '@helpers4/id';
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ uuid7() !== uuid7() // => true
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/math/uuid7.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/id/uuid7.ts)

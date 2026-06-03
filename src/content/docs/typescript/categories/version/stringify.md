@@ -9,7 +9,7 @@ Reconstruct a semantic version string from a ParsedVersion object.
 This is the inverse of parse:
 `stringify(parse(v)) === stripV(v)` for any valid SemVer string `v`.
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

@@ -9,7 +9,7 @@ Commits format constrained by the given options.
 
 Only the first line is inspected — body and footer are ignored.
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

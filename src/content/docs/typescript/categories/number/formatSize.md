@@ -9,7 +9,7 @@ Format a byte count into a human-readable string with the appropriate unit.
 Each unit is 1024 of the previous (binary prefix). The result is formatted
 with one decimal place.
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

@@ -58,6 +58,16 @@ const result = items.filter(isDefined);
 // => ['a', 'b'] with type string[]
 ```
 
+## Related Types
+
+### `Maybe`
+
+Type for values that can be T, undefined, or null.
+
+```ts
+type Maybe<T> = T | undefined | null
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/type/isDefined.ts)

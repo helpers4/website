@@ -9,7 +9,7 @@ Parses a JSON string, returning `null` (or a fallback) on any parse failure.
 Unlike `JSON.parse`, this never throws. Invalid JSON strings and other
 parsing edge-cases resolve to `null` or the provided `fallback`.
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 

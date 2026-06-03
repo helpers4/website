@@ -9,7 +9,7 @@ Checks if a value is a Blob instance.
 Useful for filtering or type-narrowing in a functional pipeline:
 `values.filter(isBlob)`
 
-> Available since next
+> Available since v2.0.0
 
 ## Import
 
