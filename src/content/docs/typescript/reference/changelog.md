@@ -6,7 +6,23 @@ sidebar:
   order: 2
 ---
 
-## v2.0.0 *(Latest)*
+## v2.0.2 *(Latest)*
+
+| Function | Category | Description |
+|----------|----------|-------------|
+| [`correctFloat`](../categories/number/correctfloat/) | [number](../categories/number/) | Corrects floating-point arithmetic errors by rounding to a given number of significant digits. Useful after calculations that accumulate binary floating-point drift (e.g. `0.1 + 0.2 === 0.30000000000000004`).  The default precision of 14 significant digits eliminates typical rounding noise for values in the range used by most applications. Note: for values whose integer part already consumes 14 or more digits (i.e. \|value\| ≥ 1e13), toPrecision(14) has no room left for decimal digits and will silently truncate them. Increase `precision` if you need to correct drift in very large numbers. |
+| [`createSortByDateFn`](../categories/array/createsortbydatefn/) | [array](../categories/array/) | Creates a sort function for objects by date property. |
+| [`createSortByNumberFn`](../categories/array/createsortbynumberfn/) | [array](../categories/array/) | Creates a sort function for objects by number property. |
+| [`createSortByStringFn`](../categories/array/createsortbystringfn/) | [array](../categories/array/) | Creates a sort function for objects by one or more string properties. When multiple properties are given the array is sorted by the first key; ties are broken by the second key, then the third, and so on. |
+| [`DEFAULT_SORT_STRING_PROPS`](../categories/array/default_sort_string_props/) | [array](../categories/array/) | Default property names checked (in order) by auto-detecting sort helpers when no explicit property key is provided. |
+| [`max`](../categories/array/max/) | [array](../categories/array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with `Math.max(...array)` for very large arrays (> ~65 000 elements). |
+| [`min`](../categories/array/min/) | [array](../categories/array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with `Math.min(...array)` for very large arrays (> ~65 000 elements). |
+| [`sortStringNaturalAscFn`](../categories/array/sortstringnaturalascfn/) | [array](../categories/array/) | Sort strings in ascending order using natural (human-friendly) ordering. Numbers embedded in strings are compared numerically: "W2" < "W11" < "W20". |
+| [`sortStringNaturalAscInsensitiveFn`](../categories/array/sortstringnaturalascinsensitivefn/) | [array](../categories/array/) | Sort strings in ascending natural order (case insensitive). |
+| [`sortStringNaturalDescFn`](../categories/array/sortstringnaturaldescfn/) | [array](../categories/array/) | Sort strings in descending order using natural (human-friendly) ordering. Numbers embedded in strings are compared numerically: "W20" > "W11" > "W2". |
+| [`sortStringNaturalDescInsensitiveFn`](../categories/array/sortstringnaturaldescinsensitivefn/) | [array](../categories/array/) | Sort strings in descending natural order (case insensitive). Numbers embedded in strings are compared numerically: "W20" > "W11" > "W2". |
+
+## v2.0.0
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -159,9 +175,6 @@ sidebar:
 | [`chunk`](../categories/array/chunk/) | [array](../categories/array/) | Chunks an array into smaller arrays of specified size |
 | [`clamp`](../categories/number/clamp/) | [number](../categories/number/) | Clamps a number between min and max values |
 | [`compare`](../categories/version/compare/) | [version](../categories/version/) | Compares two semantic version strings according to SemVer 2.0.0 specification  Supports: - Core version: MAJOR.MINOR.PATCH - Pre-release: -alpha, -beta.1, -rc.1, etc. - Build metadata: +build, +sha.abc123 (ignored in comparison per spec) - Optional 'v' prefix |
-| [`createSortByDateFn`](../categories/array/createsortbydatefn/) | [array](../categories/array/) | Creates a sort function for objects by date property |
-| [`createSortByNumberFn`](../categories/array/createsortbynumberfn/) | [array](../categories/array/) | Creates a sort function for objects by number property |
-| [`createSortByStringFn`](../categories/array/createsortbystringfn/) | [array](../categories/array/) | Creates a sort function for objects by string property |
 | [`dateToISOString`](../categories/date/datetoisostring/) | [date](../categories/date/) | Formats a date to ISO string or returns null. |
 | [`debounce`](../categories/function/debounce/) | [function](../categories/function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time the debounced function was invoked |
 | [`deepClone`](../categories/object/deepclone/) | [object](../categories/object/) | Creates a deep copy of an object or array |
@@ -219,4 +232,10 @@ sidebar:
 | [`withoutLeadingSlash`](../categories/url/withoutleadingslash/) | [url](../categories/url/) | Removes the leading slash `/` from the given URL if it is present.  This function is useful for ensuring that URLs are properly formatted without a leading slash, which is often required in web development for consistency and to avoid issues with relative paths. |
 | [`withoutTrailingSlash`](../categories/url/withouttrailingslash/) | [url](../categories/url/) | Removes the trailing slash `/` from the given URL if it is present.  This function is useful for ensuring that URLs are properly formatted without a trailing slash, which is often required in web development for consistency and to avoid issues with relative paths. |
 | [`withTrailingSlash`](../categories/url/withtrailingslash/) | [url](../categories/url/) | Adds a trailing slash `/` to the given URL if it is not already present.  This function is useful for ensuring that URLs are properly formatted with a trailing slash, which is often required in web development for consistency and to avoid issues with relative paths. |
+
+## *(version unknown)*
+
+| Function | Category | Description |
+|----------|----------|-------------|
+| [`createSortByNaturalFn`](../categories/array/createsortbynaturalfn/) | [array](../categories/array/) |  |
 

@@ -4,9 +4,9 @@ sidebar:
   label: "createSortByNumberFn"
 ---
 
-Creates a sort function for objects by number property
+Creates a sort function for objects by number property.
 
-> Available since v1.9.0
+> Available since v2.0.2
 
 ## Import
 
@@ -43,4 +43,4 @@ type SortFn<T> = function
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/sort.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/sortBy.ts)

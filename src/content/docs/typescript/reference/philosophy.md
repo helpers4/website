@@ -39,7 +39,7 @@ Beyond line coverage, every helper faces a gauntlet:
 - **Contract tests** — formal guarantees: if input satisfies X, output must satisfy Y, regardless of the input
 - **Boundary tests** — explicit coverage of limit values (`[]`, `0`, `Number.MAX_SAFE_INTEGER`, epoch timestamps…)
 - **Security edge cases** — inputs designed to trigger prototype pollution, injection, or unsafe patterns
-- **Mutation testing** (Stryker) — >90% threshold; if a mutant survives, the tests aren't good enough — [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.1)
+- **Mutation testing** (Stryker) — >90% threshold; if a mutant survives, the tests aren't good enough — [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.2)
 - **Benchmarks** (Vitest Bench) — performance tracked per build, non-blocking
 - **Dependency security audit** — `pnpm audit` runs on every PR and release, blocking merges on any known vulnerability. [Dependabot](https://docs.github.com/en/code-security/dependabot) watches all dependencies and automatically opens PRs for security updates — nothing silently falls out of date.
 - **[OpenSSF Scorecard](https://securityscorecards.dev/viewer/?uri=github.com/helpers4/typescript)** — runs weekly, evaluating branch protection, pinned actions, artifact integrity, and other security practices. Results are published publicly and uploaded as SARIF to GitHub Code Scanning.

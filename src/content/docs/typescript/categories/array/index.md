@@ -15,9 +15,11 @@ Utility functions for working with array operations.
 | [`chunk`](./chunk/) | Chunks an array into smaller arrays of specified size |
 | [`compact`](./compact/) | Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array. |
 | [`countBy`](./countby/) | Groups the elements of an array by the key returned by `keyFn` and returns a record mapping each key to the number of… |
-| [`createSortByDateFn`](./createsortbydatefn/) | Creates a sort function for objects by date property |
-| [`createSortByNumberFn`](./createsortbynumberfn/) | Creates a sort function for objects by number property |
-| [`createSortByStringFn`](./createsortbystringfn/) | Creates a sort function for objects by string property |
+| [`createSortByDateFn`](./createsortbydatefn/) | Creates a sort function for objects by date property. |
+| [`createSortByNaturalFn`](./createsortbynaturalfn/) |  |
+| [`createSortByNumberFn`](./createsortbynumberfn/) | Creates a sort function for objects by number property. |
+| [`createSortByStringFn`](./createsortbystringfn/) | Creates a sort function for objects by one or more string properties. |
+| [`DEFAULT_SORT_STRING_PROPS`](./default_sort_string_props/) | Default property names checked (in order) by auto-detecting sort helpers when no explicit property key is provided. |
 | [`difference`](./difference/) | Returns the difference between two arrays (items in first array but not in second) |
 | `drop` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(n)` *(ES3)* |
 | [`ensureArray`](./ensurearray/) | Wraps a value in an array if it is not already one. |
@@ -32,18 +34,25 @@ Utility functions for working with array operations.
 | [`intersection`](./intersection/) | Compute the intersection of two arrays, meaning the elements that are present in both arrays. |
 | [`intersects`](./intersects/) | Simple helper that check if two lists shared at least an item in common. |
 | `last` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
+| [`max`](./max/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
+| [`min`](./min/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | [`partition`](./partition/) | Splits an array into two groups based on a predicate function. |
 | [`range`](./range/) | Generates an array of sequential numbers from start to end (exclusive). |
 | `reverse` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
 | [`sample`](./sample/) | Picks one or more random elements from an array. |
 | `select / filterMap` | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
 | [`shuffle`](./shuffle/) | Randomly reorders elements of an array using the Fisher-Yates algorithm. |
+| `sort (basic comparator)` | <span class="badge badge--secondary">native JS</span> `(a, b) => a - b  /  a.localeCompare(b)` *(ES1)* |
 | `sortBy / orderBy` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(fn?)` *(ES2023)* |
 | [`sortNumberAscFn`](./sortnumberascfn/) | Sort numbers in ascending order |
 | [`sortNumberDescFn`](./sortnumberdescfn/) | Sort numbers in descending order |
 | [`sortStringAscFn`](./sortstringascfn/) | Sort strings in ascending order |
 | [`sortStringAscInsensitiveFn`](./sortstringascinsensitivefn/) | Sort strings in ascending order (case insensitive) |
 | [`sortStringDescFn`](./sortstringdescfn/) | Sort strings in descending order |
+| [`sortStringNaturalAscFn`](./sortstringnaturalascfn/) | Sort strings in ascending order using natural (human-friendly) ordering. |
+| [`sortStringNaturalAscInsensitiveFn`](./sortstringnaturalascinsensitivefn/) | Sort strings in ascending natural order (case insensitive). |
+| [`sortStringNaturalDescFn`](./sortstringnaturaldescfn/) | Sort strings in descending order using natural (human-friendly) ordering. |
+| [`sortStringNaturalDescInsensitiveFn`](./sortstringnaturaldescinsensitivefn/) | Sort strings in descending natural order (case insensitive). |
 | `tail` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
 | `union` | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |

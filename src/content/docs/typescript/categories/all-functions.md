@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**199** implemented helpers + **42** covered by native JavaScript APIs, sorted alphabetically.
+**208** implemented helpers + **43** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -36,10 +36,12 @@ sidebar:
 | `compare (ordering)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.compare(a, b) / Temporal.Instant.compare(a, b)` *(Temporal (Stage 3))* |
 | [`compose`](../function/compose/) | [function](../function/) | Composes functions right-to-left: `compose(f, g)(x)` is equivalent to `f(g(x))`. |
 | [`consoleLogPromise`](../promise/consolelogpromise/) | [promise](../promise/) | Returns a function that logs data to the console and passes it through. |
+| [`correctFloat`](../number/correctfloat/) | [number](../number/) | Corrects floating-point arithmetic errors by rounding to a given number of significant digits. |
 | [`countBy`](../array/countby/) | [array](../array/) | Groups the elements of an array by the key returned by `keyFn` and returns a record mapping each key to the number of… |
-| [`createSortByDateFn`](../array/createsortbydatefn/) | [array](../array/) | Creates a sort function for objects by date property |
-| [`createSortByNumberFn`](../array/createsortbynumberfn/) | [array](../array/) | Creates a sort function for objects by number property |
-| [`createSortByStringFn`](../array/createsortbystringfn/) | [array](../array/) | Creates a sort function for objects by string property |
+| [`createSortByDateFn`](../array/createsortbydatefn/) | [array](../array/) | Creates a sort function for objects by date property. |
+| [`createSortByNaturalFn`](../array/createsortbynaturalfn/) | [array](../array/) |  |
+| [`createSortByNumberFn`](../array/createsortbynumberfn/) | [array](../array/) | Creates a sort function for objects by number property. |
+| [`createSortByStringFn`](../array/createsortbystringfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties. |
 | [`curry`](../function/curry/) | [function](../function/) | Transforms a multi-argument function into a chain of single-argument functions (Haskell-style currying). |
 | [`dateToISOString`](../date/datetoisostring/) | [date](../date/) | Formats a date to ISO string or returns null. |
 | [`daysDifference`](../date/daysdifference/) | [date](../date/) | Gets the difference in days between two dates. |
@@ -47,6 +49,7 @@ sidebar:
 | [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last tim… |
 | [`deepClone`](../object/deepclone/) | [object](../object/) | Creates a deep copy of an object or array |
 | [`deepMerge`](../object/deepmerge/) | [object](../object/) | Merges two or more objects deeply |
+| [`DEFAULT_SORT_STRING_PROPS`](../array/default_sort_string_props/) | [array](../array/) | Default property names checked (in order) by auto-detecting sort helpers when no explicit property key is provided. |
 | [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last regist… |
 | [`delay`](../promise/delay/) | [promise](../promise/) | Creates a promise that resolves after specified delay |
 | [`diff`](../object/diff/) | [object](../object/) | Structural object diff. |
@@ -160,10 +163,12 @@ sidebar:
 | [`lerp`](../number/lerp/) | [number](../number/) | Linearly interpolates between `start` and `end` by the factor `t`. |
 | [`listTimezones`](../date/listtimezones/) | [date](../date/) | Returns the list of IANA timezone identifiers supported by the runtime. |
 | [`map`](../object/map/) | [object](../object/) | Transforms the values and/or keys of a plain object in a single pass. |
+| [`max`](../array/max/) | [array](../array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | [`mean`](../number/mean/) | [number](../number/) | Calculates the arithmetic mean (average) of an array of numbers. |
 | [`meaningPromiseOrThrow`](../promise/meaningpromiseorthrow/) | [promise](../promise/) | Returns a function that passes through meaningful data or throws an error. |
 | [`memoize`](../function/memoize/) | [function](../function/) | Returns a memoized version of the function that caches results |
 | `merge (shallow)` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `{ ...a, ...b } or Object.assign({}, a, b)` *(ES2015)* |
+| [`min`](../array/min/) | [array](../array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | `min / max` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `Math.min(...arr) / Math.max(...arr)` *(ES1)* |
 | [`negate`](../function/negate/) | [function](../function/) | Creates a function that negates the result of `predicate`. |
 | [`noop`](../function/noop/) | [function](../function/) | A no-operation function that does nothing and returns `undefined`  Useful as a default callback, placeholder, or to e… |
@@ -204,12 +209,17 @@ sidebar:
 | [`shuffle`](../array/shuffle/) | [array](../array/) | Randomly reorders elements of an array using the Fisher-Yates algorithm. |
 | [`slugify`](../string/slugify/) | [string](../string/) | Converts a string into a URL-friendly slug. |
 | [`snakeCase`](../string/snakecase/) | [string](../string/) | Converts a string to snake_case. |
+| `sort (basic comparator)` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `(a, b) => a - b  /  a.localeCompare(b)` *(ES1)* |
 | `sortBy / orderBy` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(fn?)` *(ES2023)* |
 | [`sortNumberAscFn`](../array/sortnumberascfn/) | [array](../array/) | Sort numbers in ascending order |
 | [`sortNumberDescFn`](../array/sortnumberdescfn/) | [array](../array/) | Sort numbers in descending order |
 | [`sortStringAscFn`](../array/sortstringascfn/) | [array](../array/) | Sort strings in ascending order |
 | [`sortStringAscInsensitiveFn`](../array/sortstringascinsensitivefn/) | [array](../array/) | Sort strings in ascending order (case insensitive) |
 | [`sortStringDescFn`](../array/sortstringdescfn/) | [array](../array/) | Sort strings in descending order |
+| [`sortStringNaturalAscFn`](../array/sortstringnaturalascfn/) | [array](../array/) | Sort strings in ascending order using natural (human-friendly) ordering. |
+| [`sortStringNaturalAscInsensitiveFn`](../array/sortstringnaturalascinsensitivefn/) | [array](../array/) | Sort strings in ascending natural order (case insensitive). |
+| [`sortStringNaturalDescFn`](../array/sortstringnaturaldescfn/) | [array](../array/) | Sort strings in descending order using natural (human-friendly) ordering. |
+| [`sortStringNaturalDescInsensitiveFn`](../array/sortstringnaturaldescinsensitivefn/) | [array](../array/) | Sort strings in descending natural order (case insensitive). |
 | [`startOf`](../date/startof/) | [date](../date/) | Returns a new `Date` set to the **start** of the given unit. |
 | `startsWith / endsWith` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |
 | [`statusToBadge`](../ci/statustobadge/) | [ci](../ci/) | Maps a CI/CD job status to an inline code badge string. |

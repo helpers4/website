@@ -13,6 +13,7 @@ Utility functions for working with number operations.
 |----------|-------------|
 | `ceil / floor` | <span class="badge badge--secondary">native JS</span> `Math.ceil() / Math.floor()` *(ES1)* |
 | [`clamp`](./clamp/) | Clamps a number between min and max values |
+| [`correctFloat`](./correctfloat/) | Corrects floating-point arithmetic errors by rounding to a given number of significant digits. |
 | [`formatCompact`](./formatcompact/) | Formats a number using compact notation (e.g. |
 | [`formatSize`](./formatsize/) | Format a byte count into a human-readable string with the appropriate unit. |
 | [`inRange`](./inrange/) | Checks whether a number falls within `[min, max]` (both inclusive by default). |

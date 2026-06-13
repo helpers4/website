@@ -34,16 +34,6 @@ Use sortStringAscFn for locale-aware string sorting.
 // => ['apple', 'banana', 'cherry']
 ```
 
-### Sort objects by property
-
-Use createSortByStringFn to sort objects by a specific string property.
-
-```ts
-const items = [{ name: 'Charlie' }, { name: 'Alice' }, { name: 'Bob' }];
-items.sort(createSortByStringFn('name'))
-// => [{ name: 'Alice' }, { name: 'Bob' }, { name: 'Charlie' }]
-```
-
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/sort.ts)
