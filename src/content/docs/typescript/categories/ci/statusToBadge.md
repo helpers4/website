@@ -60,7 +60,7 @@ The `string & {}` intersection allows any custom status string while
 still enabling IDE auto-completion for the known values.
 
 ```ts
-type CiStatus = "success" | "failure" | "skipped" | "unknown" | string & object
+type CiStatus = 'success' | 'failure' | 'skipped' | 'unknown' | (string & {})
 ```
 
 ## Source

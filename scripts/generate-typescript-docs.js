@@ -149,7 +149,7 @@ try {
     }
 
     const functions = (api.functions || []).filter(
-      fn => fn.kind === 'function' || fn.kind === 'variable'
+      fn => fn.kind === 'function' || fn.kind === 'variable' || fn.kind === 'type' || fn.kind === 'interface'
     );
     totalFunctions += functions.length;
     processedCategoryCount += 1;
@@ -235,15 +235,25 @@ ${fn.description || ''}
         content += `\n> Available since ${sinceLabel}\n`;
       }
 
+      const isType = fn.kind === 'type' || fn.kind === 'interface';
+
       content += `
 ## Import
 
 \`\`\`ts
-import { ${fn.name} } from '@helpers4/${category}';
+import ${isType ? 'type ' : ''}{ ${fn.name} } from '@helpers4/${category}';
 \`\`\`
 `;
 
-      if (sig) {
+      if (isType && fn.typeDefinition) {
+        content += `
+## Type Definition
+
+\`\`\`ts
+${fn.typeDefinition}
+\`\`\`
+`;
+      } else if (sig) {
         content += `
 ## Signature
 
@@ -448,7 +458,7 @@ function generateAllFunctionsPage(categories) {
     const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
     if (!api?.functions) continue;
 
-    for (const fn of (api.functions || []).filter(fn => fn.kind === 'function' || fn.kind === 'variable')) {
+    for (const fn of (api.functions || []).filter(fn => fn.kind === 'function' || fn.kind === 'variable' || fn.kind === 'type' || fn.kind === 'interface')) {
       rows.push({
         sortKey: fn.name.toLowerCase(),
         row: `| [\`${fn.name}\`](../${category}/${fn.name.toLowerCase()}/) | [${category}](../${category}/) | ${escapeMarkdownTable(firstSentence(fn.description))} |`,
@@ -644,7 +654,7 @@ function generateChangelogPage(categories) {
     const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
     if (!api?.functions) continue;
 
-    for (const fn of (api.functions || []).filter(fn => fn.kind === 'function' || fn.kind === 'variable')) {
+    for (const fn of (api.functions || []).filter(fn => fn.kind === 'function' || fn.kind === 'variable' || fn.kind === 'type' || fn.kind === 'interface')) {
       const version = fn.since || 'unknown';
       if (!byVersion[version]) byVersion[version] = [];
       byVersion[version].push({ name: fn.name, category, description: fn.description || '' });
