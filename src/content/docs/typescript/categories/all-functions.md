@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**208** implemented helpers + **43** covered by native JavaScript APIs, sorted alphabetically.
+**210** implemented helpers + **43** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -49,6 +49,8 @@ sidebar:
 | [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last tim… |
 | [`deepClone`](../object/deepclone/) | [object](../object/) | Creates a deep copy of an object or array |
 | [`deepMerge`](../object/deepmerge/) | [object](../object/) | Merges two or more objects deeply |
+| [`DeepPartial`](../type/deeppartial/) | [type](../type/) | Recursively makes all properties of T optional, including nested objects and array elements. |
+| [`DeepWritable`](../type/deepwritable/) | [type](../type/) | Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions. |
 | [`DEFAULT_SORT_STRING_PROPS`](../array/default_sort_string_props/) | [array](../array/) | Default property names checked (in order) by auto-detecting sort helpers when no explicit property key is provided. |
 | [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last regist… |
 | [`delay`](../promise/delay/) | [promise](../promise/) | Creates a promise that resolves after specified delay |

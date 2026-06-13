@@ -11,6 +11,8 @@ Utility functions for working with type operations.
 
 | Function | Description |
 |----------|-------------|
+| [`DeepPartial`](./deeppartial/) | Recursively makes all properties of T optional, including nested objects and array elements. |
+| [`DeepWritable`](./deepwritable/) | Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions. |
 | [`isArray`](./isarray/) | Checks if a value is an array. |
 | [`isArrayBuffer`](./isarraybuffer/) | Checks if a value is an ArrayBuffer instance. |
 | [`isAsyncFunction`](./isasyncfunction/) | Checks if a value is an async function. |

@@ -14,6 +14,8 @@ sidebar:
 | [`createSortByDateFn`](../categories/array/createsortbydatefn/) | [array](../categories/array/) | Creates a sort function for objects by date property. |
 | [`createSortByNumberFn`](../categories/array/createsortbynumberfn/) | [array](../categories/array/) | Creates a sort function for objects by number property. |
 | [`createSortByStringFn`](../categories/array/createsortbystringfn/) | [array](../categories/array/) | Creates a sort function for objects by one or more string properties. When multiple properties are given the array is sorted by the first key; ties are broken by the second key, then the third, and so on. |
+| [`DeepPartial`](../categories/type/deeppartial/) | [type](../categories/type/) | Recursively makes all properties of T optional, including nested objects and array elements. |
+| [`DeepWritable`](../categories/type/deepwritable/) | [type](../categories/type/) | Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions. |
 | [`DEFAULT_SORT_STRING_PROPS`](../categories/array/default_sort_string_props/) | [array](../categories/array/) | Default property names checked (in order) by auto-detecting sort helpers when no explicit property key is provided. |
 | [`max`](../categories/array/max/) | [array](../categories/array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with `Math.max(...array)` for very large arrays (> ~65 000 elements). |
 | [`min`](../categories/array/min/) | [array](../categories/array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with `Math.min(...array)` for very large arrays (> ~65 000 elements). |
