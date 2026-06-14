@@ -16,10 +16,9 @@ Utility functions for working with array operations.
 | [`compact`](./compact/) | Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array. |
 | [`countBy`](./countby/) | Groups the elements of an array by the key returned by `keyFn` and returns a record mapping each key to the number of… |
 | [`createSortByDateFn`](./createsortbydatefn/) | Creates a sort function for objects by date property. |
-| [`createSortByNaturalFn`](./createsortbynaturalfn/) |  |
+| [`createSortByNaturalFn`](./createsortbynaturalfn/) | Creates a sort function for objects by one or more string properties using natural ordering. |
 | [`createSortByNumberFn`](./createsortbynumberfn/) | Creates a sort function for objects by number property. |
 | [`createSortByStringFn`](./createsortbystringfn/) | Creates a sort function for objects by one or more string properties. |
-| [`DEFAULT_SORT_STRING_PROPS`](./default_sort_string_props/) | Default property names checked (in order) by auto-detecting sort helpers when no explicit property key is provided. |
 | [`difference`](./difference/) | Returns the difference between two arrays (items in first array but not in second) |
 | `drop` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(n)` *(ES3)* |
 | [`ensureArray`](./ensurearray/) | Wraps a value in an array if it is not already one. |

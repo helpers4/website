@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**210** implemented helpers + **43** covered by native JavaScript APIs, sorted alphabetically.
+**209** implemented helpers + **43** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -39,7 +39,7 @@ sidebar:
 | [`correctFloat`](../number/correctfloat/) | [number](../number/) | Corrects floating-point arithmetic errors by rounding to a given number of significant digits. |
 | [`countBy`](../array/countby/) | [array](../array/) | Groups the elements of an array by the key returned by `keyFn` and returns a record mapping each key to the number of… |
 | [`createSortByDateFn`](../array/createsortbydatefn/) | [array](../array/) | Creates a sort function for objects by date property. |
-| [`createSortByNaturalFn`](../array/createsortbynaturalfn/) | [array](../array/) |  |
+| [`createSortByNaturalFn`](../array/createsortbynaturalfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties using natural ordering. |
 | [`createSortByNumberFn`](../array/createsortbynumberfn/) | [array](../array/) | Creates a sort function for objects by number property. |
 | [`createSortByStringFn`](../array/createsortbystringfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties. |
 | [`curry`](../function/curry/) | [function](../function/) | Transforms a multi-argument function into a chain of single-argument functions (Haskell-style currying). |
@@ -51,7 +51,6 @@ sidebar:
 | [`deepMerge`](../object/deepmerge/) | [object](../object/) | Merges two or more objects deeply |
 | [`DeepPartial`](../type/deeppartial/) | [type](../type/) | Recursively makes all properties of T optional, including nested objects and array elements. |
 | [`DeepWritable`](../type/deepwritable/) | [type](../type/) | Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions. |
-| [`DEFAULT_SORT_STRING_PROPS`](../array/default_sort_string_props/) | [array](../array/) | Default property names checked (in order) by auto-detecting sort helpers when no explicit property key is provided. |
 | [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last regist… |
 | [`delay`](../promise/delay/) | [promise](../promise/) | Creates a promise that resolves after specified delay |
 | [`diff`](../object/diff/) | [object](../object/) | Structural object diff. |
