@@ -57,18 +57,6 @@ inRange(1, 1, 10, { inclusive: 'none' })  // => false
 inRange(10, 1, 10, { inclusive: 'none' }) // => false
 ```
 
-## Related Types
-
-### `InRangeOptions`
-
-Options for inRange.
-
-```ts
-interface InRangeOptions {
-  inclusive?: "min" | "max" | "both" | "none";
-}
-```
-
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/number/inRange.ts)

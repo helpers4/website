@@ -97,25 +97,7 @@ interface CommitAnalysis {
 Bumping suggestion produced by `analyzeCommits`.
 
 ```ts
-type CommitVersionBump = 'major' | 'minor' | 'patch';
-
-/**
- * Aggregated result of `analyzeCommits`.
- *
- * @since 2.0.0
- */
-export interface CommitAnalysis {
-  /** Suggested semantic version bump for the supplied commits. */
-  readonly suggestedBump: CommitVersionBump;
-  /** Human-readable explanation behind `suggestedBump`. */
-  readonly reason: string;
-  /** `true` when at least one commit declares a breaking change. */
-  readonly hasBreakingChanges: boolean;
-  /** `true` when at least one commit is a `feat`. */
-  readonly hasFeatures: boolean;
-  /** `true` when at least one commit is a `fix`. */
-  readonly hasFixes: boolean;
-}
+type CommitVersionBump = 'major' | 'minor' | 'patch'
 ```
 
 ## Source

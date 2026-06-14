@@ -63,18 +63,6 @@ capitalize('hELLO', { lowercaseRest: false })
 // => 'HELLO'
 ```
 
-## Related Types
-
-### `CapitalizeOptions`
-
-Options for capitalize.
-
-```ts
-interface CapitalizeOptions {
-  lowercaseRest?: boolean;
-}
-```
-
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/string/capitalize.ts)

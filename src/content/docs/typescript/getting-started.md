@@ -98,7 +98,7 @@ const result = deepMerge({ a: 1 }, { b: 2 });
 |---------|:-------:|-------|
 | Browser | `ES2022+` | Chrome 93+, Firefox 90+, Safari 15+, Edge 93+ |
 | Frameworks | ✅ | React, Vue, Svelte, Angular, and more |
-| Node.js | `>=24.0.0` | |
+| Node.js | `>=20.0.0` | |
 | Deno | ✅ | |
 | Bun | ✅ | |
 ## Quality Standards

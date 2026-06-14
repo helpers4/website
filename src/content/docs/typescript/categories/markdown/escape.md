@@ -59,18 +59,6 @@ const safe = escape(userInput);
 // => '\\(C\\) \\[helpers4\\]'
 ```
 
-## Related Types
-
-### `EscapeOptions`
-
-Options for escape.
-
-```ts
-interface EscapeOptions {
-  cell?: boolean;
-}
-```
-
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/markdown/escape.ts)
