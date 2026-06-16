@@ -38,6 +38,7 @@ Utility functions for working with date operations.
 | [`isSameMonth`](./issamemonth/) | Checks if two dates are in the same month (and year). |
 | [`isSameYear`](./issameyear/) | Checks if two dates are in the same year. |
 | [`isTimestampInSeconds`](./istimestampinseconds/) | Checks if a timestamp is likely in seconds (Java/Unix style) vs milliseconds (JavaScript style) |
+| [`isValid`](./isvalid/) | Checks if a value is a valid Date instance (not `Invalid Date`). |
 | [`isValidDateString`](./isvaliddatestring/) | Checks whether a string can be parsed into a valid `Date`. |
 | [`isWeekend`](./isweekend/) | Checks whether a date falls on a weekend day. |
 | [`isWithinRange`](./iswithinrange/) | Checks whether a date falls within a range (inclusive on both ends). |

@@ -15,7 +15,11 @@ Utility functions for working with type operations.
 | [`DeepWritable`](./deepwritable/) | Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions. |
 | [`isArray`](./isarray/) | Checks if a value is an array. |
 | [`isArrayBuffer`](./isarraybuffer/) | Checks if a value is an ArrayBuffer instance. |
+| [`isArrayLike`](./isarraylike/) | Checks if a value is array-like: has a non-negative integer `length` property. |
 | [`isAsyncFunction`](./isasyncfunction/) | Checks if a value is an async function. |
+| [`isAsyncGenerator`](./isasyncgenerator/) | Checks if a value is an async generator object (the result of calling an `async function*`). |
+| [`isAsyncGeneratorFunction`](./isasyncgeneratorfunction/) | Checks if a value is an async generator function (an `async function*` declaration or expression). |
+| [`isAsyncIterable`](./isasynciterable/) | Checks if a value implements the async iterable protocol. |
 | [`isBigInt`](./isbigint/) | Checks if a value is a bigint. |
 | [`isBlob`](./isblob/) | Checks if a value is a Blob instance. |
 | [`isBoolean`](./isboolean/) | Checks if a value is a boolean. |
@@ -28,21 +32,22 @@ Utility functions for working with type operations.
 | `isFinite / isFiniteNumber` | <span class="badge badge--secondary">native JS</span> `Number.isFinite(value)` *(ES2015)* |
 | [`isFormData`](./isformdata/) | Checks if a value is a FormData instance. |
 | [`isFunction`](./isfunction/) | Checks if a value is a function. |
+| [`isGenerator`](./isgenerator/) | Checks if a value is a generator object (the result of calling a `function*`). |
+| [`isGeneratorFunction`](./isgeneratorfunction/) | Checks if a value is a generator function (a `function*` declaration or expression). |
 | `isHtmlElement / isUrlInstance / isUrlSearchParams` | <span class="badge badge--secondary">native JS</span> `value instanceof HTMLElement / URL / URLSearchParams` *(Web API)* |
+| `isInfinite` | <span class="badge badge--secondary">native JS</span> `value === Infinity \|\| value === -Infinity  /  !Number.isFinite(value) && !Number.isNaN(value)` *(ES2015)* |
 | `isInteger` | <span class="badge badge--secondary">native JS</span> `Number.isInteger(value)` *(ES2015)* |
 | [`isIterable`](./isiterable/) | Checks if a value is iterable (has a `Symbol.iterator` method). |
 | [`isMap`](./ismap/) | Checks if a value is a Map instance. |
 | `isNaN` | <span class="badge badge--secondary">native JS</span> `Number.isNaN(value)` *(ES2015)* |
-| [`isNegativeNumber`](./isnegativenumber/) | Checks if a value is a number less than 0. |
-| [`isNonEmptyArray`](./isnonemptyarray/) | Checks if a value is a non-empty array (length > 0). |
-| [`isNonEmptyString`](./isnonemptystring/) | Checks if a value is a non-empty string (length > 0). |
 | [`isNull`](./isnull/) | Checks if a value is `null`. |
 | [`isNullish`](./isnullish/) | Checks if a value is null or undefined (nullish). |
 | [`isNumber`](./isnumber/) | Checks if a value is a number. |
 | [`isPlainObject`](./isplainobject/) | Checks if a value is a plain object. |
-| [`isPositiveNumber`](./ispositivenumber/) | Checks if a value is a number greater than 0. |
 | [`isPrimitive`](./isprimitive/) | Checks if a value is a JavaScript primitive. |
 | [`isPromise`](./ispromise/) | Checks if a value is a Promise or a thenable. |
+| [`isPromiseLike`](./ispromiselike/) | Checks if a value is a thenable (has a `.then()` method). |
+| [`isPropertyKey`](./ispropertykey/) | Checks if a value is a valid property key: `string`, `number`, or `symbol`. |
 | [`isRegExp`](./isregexp/) | Checks if a value is a RegExp instance. |
 | `isSafeInteger` | <span class="badge badge--secondary">native JS</span> `Number.isSafeInteger(value)` *(ES2015)* |
 | `isSet (Set data structure)` | <span class="badge badge--secondary">native JS</span> `value instanceof Set` *(ES2015)* |
@@ -58,7 +63,6 @@ Utility functions for working with type operations.
 | [`isTimestamp`](./istimestamp/) | Checks if a value is a valid timestamp (milliseconds or Unix seconds). |
 | [`isTruthy`](./istruthy/) | Checks if a value is truthy (not `false`, `null`, `undefined`, `0`, `""`, or `NaN`). |
 | [`isUndefined`](./isundefined/) | Checks if a value is `undefined`. |
-| [`isValidDate`](./isvaliddate/) | Checks if a value is a valid Date instance (not `Invalid Date`). |
 | [`isValidRegex`](./isvalidregex/) | Checks if a string is a valid regex pattern. |
 | `isWeakMap / isWeakSet / isWeakRef` | <span class="badge badge--secondary">native JS</span> `value instanceof WeakMap / WeakSet / WeakRef` *(ES2015 / ES2021)* |
 | `TypedArrays (isInt8Array, isFloat32Array, ...)` | <span class="badge badge--secondary">native JS</span> `value instanceof Int8Array / Float32Array / ...` *(ES2015)* |

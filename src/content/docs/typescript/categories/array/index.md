@@ -32,6 +32,8 @@ Utility functions for working with array operations.
 | `includes` | <span class="badge badge--secondary">native JS</span> `Array.prototype.includes()` *(ES2016)* |
 | [`intersection`](./intersection/) | Compute the intersection of two arrays, meaning the elements that are present in both arrays. |
 | [`intersects`](./intersects/) | Simple helper that check if two lists shared at least an item in common. |
+| [`isEmpty`](./isempty/) | Checks if an array is empty (has no elements). |
+| [`isNonEmpty`](./isnonempty/) | Checks if an array is non-empty (has at least one element). |
 | `last` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
 | [`max`](./max/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | [`min`](./min/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
@@ -39,6 +41,7 @@ Utility functions for working with array operations.
 | [`range`](./range/) | Generates an array of sequential numbers from start to end (exclusive). |
 | `reverse` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
 | [`sample`](./sample/) | Picks one or more random elements from an array. |
+| [`select`](./select/) | Filters and transforms an array in a single pass. |
 | `select / filterMap` | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
 | [`shuffle`](./shuffle/) | Randomly reorders elements of an array using the Fisher-Yates algorithm. |
 | `sort (basic comparator)` | <span class="badge badge--secondary">native JS</span> `(a, b) => a - b  /  a.localeCompare(b)` *(ES1)* |

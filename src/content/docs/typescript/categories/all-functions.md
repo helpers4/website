@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**209** implemented helpers + **43** covered by native JavaScript APIs, sorted alphabetically.
+**230** implemented helpers + **44** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -70,6 +70,7 @@ sidebar:
 | [`escape`](../markdown/escape/) | [markdown](../markdown/) | Escapes all Markdown special characters in a string so they render as literal text rather than formatting syntax. |
 | [`escapeHtml`](../string/escapehtml/) | [string](../string/) | Escapes the HTML special characters `&`, `<`, `>`, `"`, and `'` in a string. |
 | [`extractErrorMessage`](../string/extracterrormessage/) | [string](../string/) | Convert an error to a readable message. |
+| [`extractNumber`](../number/extractnumber/) | [number](../number/) | Extracts the first number embedded anywhere in a string, or passes through a `number`. |
 | [`extractPureURI`](../url/extractpureuri/) | [url](../url/) | Extracts the pure URI from a URL by removing query parameters and fragments. |
 | [`falsyPromiseOrThrow`](../promise/falsypromiseorthrow/) | [promise](../promise/) | Returns a function that passes through falsy data or throws an error. |
 | `find / findIndex` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
@@ -99,8 +100,13 @@ sidebar:
 | [`invert`](../object/invert/) | [object](../object/) | Returns a new object with keys and values swapped. |
 | [`isArray`](../type/isarray/) | [type](../type/) | Checks if a value is an array. |
 | [`isArrayBuffer`](../type/isarraybuffer/) | [type](../type/) | Checks if a value is an ArrayBuffer instance. |
+| [`isArrayLike`](../type/isarraylike/) | [type](../type/) | Checks if a value is array-like: has a non-negative integer `length` property. |
 | [`isAsyncFunction`](../type/isasyncfunction/) | [type](../type/) | Checks if a value is an async function. |
+| [`isAsyncGenerator`](../type/isasyncgenerator/) | [type](../type/) | Checks if a value is an async generator object (the result of calling an `async function*`). |
+| [`isAsyncGeneratorFunction`](../type/isasyncgeneratorfunction/) | [type](../type/) | Checks if a value is an async generator function (an `async function*` declaration or expression). |
+| [`isAsyncIterable`](../type/isasynciterable/) | [type](../type/) | Checks if a value implements the async iterable protocol. |
 | [`isBigInt`](../type/isbigint/) | [type](../type/) | Checks if a value is a bigint. |
+| [`isBlank`](../string/isblank/) | [string](../string/) | Checks if a string is blank — empty or contains only whitespace characters. |
 | [`isBlob`](../type/isblob/) | [type](../type/) | Checks if a value is a Blob instance. |
 | [`isBoolean`](../type/isboolean/) | [type](../type/) | Checks if a value is a boolean. |
 | [`isBuffer`](../node/isbuffer/) | [node](../node/) | Checks if a value is a Node.js Buffer instance. |
@@ -109,35 +115,50 @@ sidebar:
 | [`isDate`](../type/isdate/) | [type](../type/) | Checks if a value is a Date instance. |
 | [`isDefined`](../type/isdefined/) | [type](../type/) | Checks if a value is defined (not undefined nor null). |
 | `isDirectInstanceOf` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value.constructor === Foo` *(ES1)* |
+| [`isEmpty`](../array/isempty/) | [array](../array/) | Checks if an array is empty (has no elements). |
+| [`isEmpty`](../object/isempty/) | [object](../object/) | Checks if a plain object has no own enumerable string-keyed properties. |
+| [`isEmpty`](../string/isempty/) | [string](../string/) | Checks if a string is empty (`""`). |
 | [`isEmpty`](../type/isempty/) | [type](../type/) | Checks if a value is empty. |
 | [`isError`](../type/iserror/) | [type](../type/) | Checks if a value is an Error instance. |
+| [`isEven`](../number/iseven/) | [number](../number/) | Checks if a value is an even integer. |
 | [`isFalsy`](../type/isfalsy/) | [type](../type/) | Checks if a value is falsy (`false`, `null`, `undefined`, `0`, `""`, `NaN`). |
 | `isFinite / isFiniteNumber` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isFinite(value)` *(ES2015)* |
 | [`isFormData`](../type/isformdata/) | [type](../type/) | Checks if a value is a FormData instance. |
 | [`isFunction`](../type/isfunction/) | [type](../type/) | Checks if a value is a function. |
+| [`isGenerator`](../type/isgenerator/) | [type](../type/) | Checks if a value is a generator object (the result of calling a `function*`). |
+| [`isGeneratorFunction`](../type/isgeneratorfunction/) | [type](../type/) | Checks if a value is a generator function (a `function*` declaration or expression). |
 | `isHtmlElement / isUrlInstance / isUrlSearchParams` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof HTMLElement / URL / URLSearchParams` *(Web API)* |
+| `isInfinite` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value === Infinity \|\| value === -Infinity  /  !Number.isFinite(value) && !Number.isNaN(value)` *(ES2015)* |
 | `isInteger` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isInteger(value)` *(ES2015)* |
 | [`isIterable`](../type/isiterable/) | [type](../type/) | Checks if a value is iterable (has a `Symbol.iterator` method). |
 | [`isLeapYear`](../date/isleapyear/) | [date](../date/) | Returns `true` if the given year is a leap year. |
 | [`isMap`](../type/ismap/) | [type](../type/) | Checks if a value is a Map instance. |
 | `isNaN` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isNaN(value)` *(ES2015)* |
-| [`isNegativeNumber`](../type/isnegativenumber/) | [type](../type/) | Checks if a value is a number less than 0. |
-| [`isNonEmptyArray`](../type/isnonemptyarray/) | [type](../type/) | Checks if a value is a non-empty array (length > 0). |
-| [`isNonEmptyString`](../type/isnonemptystring/) | [type](../type/) | Checks if a value is a non-empty string (length > 0). |
+| [`isNegative`](../number/isnegative/) | [number](../number/) | Checks if a value is a number less than 0. |
+| [`isNodeStream`](../node/isnodestream/) | [node](../node/) | Checks if a value is a Node.js stream (has a `.pipe()` method). |
+| [`isNonEmpty`](../array/isnonempty/) | [array](../array/) | Checks if an array is non-empty (has at least one element). |
+| [`isNonEmpty`](../object/isnonempty/) | [object](../object/) | Checks if a plain object has at least one own enumerable string-keyed property. |
+| [`isNonEmpty`](../string/isnonempty/) | [string](../string/) | Checks if a string is non-empty (has at least one character). |
+| [`isNotBlank`](../string/isnotblank/) | [string](../string/) | Checks if a string is not blank — non-empty and contains at least one non-whitespace character. |
 | [`isNull`](../type/isnull/) | [type](../type/) | Checks if a value is `null`. |
 | [`isNullish`](../type/isnullish/) | [type](../type/) | Checks if a value is null or undefined (nullish). |
 | [`isNumber`](../type/isnumber/) | [type](../type/) | Checks if a value is a number. |
+| [`isObservable`](../observable/isobservable/) | [observable](../observable/) | Checks if a value is an RxJS Observable or any compatible observable. |
+| [`isOdd`](../number/isodd/) | [number](../number/) | Checks if a value is an odd integer. |
 | [`isPlainObject`](../type/isplainobject/) | [type](../type/) | Checks if a value is a plain object. |
-| [`isPositiveNumber`](../type/ispositivenumber/) | [type](../type/) | Checks if a value is a number greater than 0. |
+| [`isPositive`](../number/ispositive/) | [number](../number/) | Checks if a value is a number greater than 0. |
 | [`isPrerelease`](../version/isprerelease/) | [version](../version/) | Returns `true` when the version string has a prerelease suffix (i.e. |
 | [`isPrimitive`](../type/isprimitive/) | [type](../type/) | Checks if a value is a JavaScript primitive. |
 | [`isPromise`](../type/ispromise/) | [type](../type/) | Checks if a value is a Promise or a thenable. |
+| [`isPromiseLike`](../type/ispromiselike/) | [type](../type/) | Checks if a value is a thenable (has a `.then()` method). |
+| [`isPropertyKey`](../type/ispropertykey/) | [type](../type/) | Checks if a value is a valid property key: `string`, `number`, or `symbol`. |
 | [`isRegExp`](../type/isregexp/) | [type](../type/) | Checks if a value is a RegExp instance. |
 | `isSafeInteger` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isSafeInteger(value)` *(ES2015)* |
 | [`isSameDay`](../date/issameday/) | [date](../date/) | Checks if two dates are the same day. |
 | [`isSameMonth`](../date/issamemonth/) | [date](../date/) | Checks if two dates are in the same month (and year). |
 | [`isSameYear`](../date/issameyear/) | [date](../date/) | Checks if two dates are in the same year. |
 | `isSet (Set data structure)` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof Set` *(ES2015)* |
+| [`isSharedArrayBuffer`](../node/issharedarraybuffer/) | [node](../node/) | Checks if a value is a `SharedArrayBuffer` instance. |
 | [`isSpecialObject`](../type/isspecialobject/) | [type](../type/) | Determines if a value is a special object that should not have its properties compared deeply. |
 | [`isString`](../type/isstring/) | [type](../type/) | Checks if a value is a string. |
 | [`isSymbol`](../type/issymbol/) | [type](../type/) | Checks if a value is a symbol. |
@@ -151,7 +172,7 @@ sidebar:
 | [`isTimestampInSeconds`](../date/istimestampinseconds/) | [date](../date/) | Checks if a timestamp is likely in seconds (Java/Unix style) vs milliseconds (JavaScript style) |
 | [`isTruthy`](../type/istruthy/) | [type](../type/) | Checks if a value is truthy (not `false`, `null`, `undefined`, `0`, `""`, or `NaN`). |
 | [`isUndefined`](../type/isundefined/) | [type](../type/) | Checks if a value is `undefined`. |
-| [`isValidDate`](../type/isvaliddate/) | [type](../type/) | Checks if a value is a valid Date instance (not `Invalid Date`). |
+| [`isValid`](../date/isvalid/) | [date](../date/) | Checks if a value is a valid Date instance (not `Invalid Date`). |
 | [`isValidDateString`](../date/isvaliddatestring/) | [date](../date/) | Checks whether a string can be parsed into a valid `Date`. |
 | [`isValidRegex`](../type/isvalidregex/) | [type](../type/) | Checks if a string is a valid regex pattern. |
 | `isWeakMap / isWeakSet / isWeakRef` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof WeakMap / WeakSet / WeakRef` *(ES2015 / ES2021)* |
@@ -205,6 +226,7 @@ sidebar:
 | [`safeJsonParse`](../object/safejsonparse/) | [object](../object/) | Parses a JSON string, returning `null` (or a fallback) on any parse failure. |
 | [`sample`](../array/sample/) | [array](../array/) | Picks one or more random elements from an array. |
 | [`satisfiesRange`](../version/satisfiesrange/) | [version](../version/) | Checks if a version satisfies a range (simple implementation) |
+| [`select`](../array/select/) | [array](../array/) | Filters and transforms an array in a single pass. |
 | `select / filterMap` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
 | [`set`](../object/set/) | [object](../object/) | Sets a value in an object using a dot-notated path |
 | [`shuffle`](../array/shuffle/) | [array](../array/) | Randomly reorders elements of an array using the Fisher-Yates algorithm. |

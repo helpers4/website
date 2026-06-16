@@ -16,6 +16,10 @@ Utility functions for working with string operations.
 | [`escapeHtml`](./escapehtml/) | Escapes the HTML special characters `&`, `<`, `>`, `"`, and `'` in a string. |
 | [`extractErrorMessage`](./extracterrormessage/) | Convert an error to a readable message. |
 | [`injectWordBreaks`](./injectwordbreaks/) | Adds word-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table… |
+| [`isBlank`](./isblank/) | Checks if a string is blank — empty or contains only whitespace characters. |
+| [`isEmpty`](./isempty/) | Checks if a string is empty (`""`). |
+| [`isNonEmpty`](./isnonempty/) | Checks if a string is non-empty (has at least one character). |
+| [`isNotBlank`](./isnotblank/) | Checks if a string is not blank — non-empty and contains at least one non-whitespace character. |
 | [`kebabCase`](./kebabcase/) | Converts camelCase to kebab-case |
 | [`leadingSentence`](./leadingsentence/) | Extracts the leading sentence from a string. |
 | `padStart / padEnd` | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |

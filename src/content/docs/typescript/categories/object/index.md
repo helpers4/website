@@ -21,6 +21,8 @@ Utility functions for working with object operations.
 | [`groupBy`](./groupby/) | Groups an array of items by a key derived from each item. |
 | `has` | <span class="badge badge--secondary">native JS</span> `Object.hasOwn(obj, key)` *(ES2022)* |
 | [`invert`](./invert/) | Returns a new object with keys and values swapped. |
+| [`isEmpty`](./isempty/) | Checks if a plain object has no own enumerable string-keyed properties. |
+| [`isNonEmpty`](./isnonempty/) | Checks if a plain object has at least one own enumerable string-keyed property. |
 | `keys / values` | <span class="badge badge--secondary">native JS</span> `Object.keys() / Object.values()` *(ES2017)* |
 | [`map`](./map/) | Transforms the values and/or keys of a plain object in a single pass. |
 | `merge (shallow)` | <span class="badge badge--secondary">native JS</span> `{ ...a, ...b } or Object.assign({}, a, b)` *(ES2015)* |

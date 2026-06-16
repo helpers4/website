@@ -7,7 +7,7 @@ sidebar:
 Checks if a value is a Date instance.
 
 Note: this only checks the type, not whether the Date is valid.
-Use isValidDate to also validate that the Date is not `Invalid Date`.
+Use `date/isValid` to also validate that the Date is not `Invalid Date`.
 
 > Available since v2.0.0
 
