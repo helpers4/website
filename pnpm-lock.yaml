@@ -4,22 +4,27 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@astrojs/starlight@0.40.0':
+    hash: 7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45
+    path: patches/@astrojs__starlight@0.40.0.patch
+
 importers:
 
   .:
     dependencies:
       '@astrojs/starlight':
         specifier: ^0.40.0
-        version: 0.40.0(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
+        version: 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
       astro:
         specifier: ^6.4.8
         version: 6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
       starlight-sidebar-topics:
         specifier: ^0.8.0
-        version: 0.8.0(@astrojs/starlight@0.40.0(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))
+        version: 0.8.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))
       starlight-theme-nova:
         specifier: ^0.11.11
-        version: 0.11.11(@astrojs/starlight@0.40.0(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))(typescript@5.9.3)
+        version: 0.11.11(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))(typescript@5.9.3)
     devDependencies:
       '@pagefind/default-ui':
         specifier: 1.5.2
@@ -2027,7 +2032,7 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.4.3
 
-  '@astrojs/starlight@0.40.0(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)':
+  '@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)':
     dependencies:
       '@astrojs/markdown-remark': 7.2.0
       '@astrojs/mdx': 6.0.3(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))
@@ -4153,12 +4158,12 @@ snapshots:
 
   space-separated-tokens@2.0.2: {}
 
-  starlight-sidebar-topics@0.8.0(@astrojs/starlight@0.40.0(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)):
+  starlight-sidebar-topics@0.8.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)):
     dependencies:
-      '@astrojs/starlight': 0.40.0(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
+      '@astrojs/starlight': 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
       picomatch: 4.0.4
 
-  starlight-theme-nova@0.11.11(@astrojs/starlight@0.40.0(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))(typescript@5.9.3):
+  starlight-theme-nova@0.11.11(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
       '@aria-ui/core': 0.2.1
       '@aria-ui/utils': 0.1.6
@@ -4173,7 +4178,7 @@ snapshots:
       remark-custom-header-id: 1.0.0
       shiki-twoslash-renderer: 0.3.5(typescript@5.9.3)
     optionalDependencies:
-      '@astrojs/starlight': 0.40.0(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
+      '@astrojs/starlight': 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@25.9.3)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
     transitivePeerDependencies:
       - supports-color
       - typescript
