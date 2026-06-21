@@ -15,6 +15,10 @@ Note: for values whose integer part already consumes 14 or more digits
 digits and will silently truncate them. Increase `precision` if you
 need to correct drift in very large numbers.
 
+Note: IEEE-754 doubles carry at most ~17 significant decimal digits.
+Precision values above 17 pad with digits that reflect the underlying
+binary representation rather than correcting drift.
+
 > Available since v2.0.2
 
 ## Import
@@ -35,7 +39,7 @@ correctFloat(value: number, precision: number): number
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `value` | `number` | The floating-point value to correct |
-| `precision` | `number` | Integer number of significant digits (default: 14) |
+| `precision` | `number` | Integer number of significant digits between 1 and 100   (default: 14). Values above 17 are valid but expose binary noise beyond   IEEE-754's meaningful range. |
 
 ## Returns
 

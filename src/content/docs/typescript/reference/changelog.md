@@ -6,11 +6,16 @@ sidebar:
   order: 2
 ---
 
-## v2.0.3 *(Latest)*
+## v2.0.4 *(Latest)*
 
 | Function | Category | Description |
 |----------|----------|-------------|
 | [`extractNumber`](../categories/number/extractnumber/) | [number](../categories/number/) | Extracts the first number embedded anywhere in a string, or passes through a `number`.  Unlike a plain `parseFloat`/`parseInt`, the number does not need to be at the start of the string: digits are searched for anywhere, so leading/trailing text (units, labels, ...) is ignored. A `-` before the digits and a scientific-notation suffix (`e`/`E`) are disambiguated with ExtractNumberOptions.sign and ExtractNumberOptions.exponent.  Returns `undefined` if no number can be found. |
+
+## v2.0.3
+
+| Function | Category | Description |
+|----------|----------|-------------|
 | [`isArrayLike`](../categories/type/isarraylike/) | [type](../categories/type/) | Checks if a value is array-like: has a non-negative integer `length` property.  Returns `true` for arrays, strings, `arguments` objects, `NodeList`, typed arrays, and any object with a valid `length`. Functions are excluded even though they have a `length` (arity), as they are not considered array-like in practice. |
 | [`isAsyncGenerator`](../categories/type/isasyncgenerator/) | [type](../categories/type/) | Checks if a value is an async generator object (the result of calling an `async function*`).  Distinct from isAsyncGeneratorFunction: this predicate targets the *instance* produced by calling an async generator function, not the function itself. |
 | [`isAsyncGeneratorFunction`](../categories/type/isasyncgeneratorfunction/) | [type](../categories/type/) | Checks if a value is an async generator function (an `async function*` declaration or expression).  Distinct from isAsyncGenerator: this predicate targets the *function* itself, not the async iterator it produces when called. |
@@ -38,19 +43,16 @@ sidebar:
 
 | Function | Category | Description |
 |----------|----------|-------------|
-| [`correctFloat`](../categories/number/correctfloat/) | [number](../categories/number/) | Corrects floating-point arithmetic errors by rounding to a given number of significant digits. Useful after calculations that accumulate binary floating-point drift (e.g. `0.1 + 0.2 === 0.30000000000000004`).  The default precision of 14 significant digits eliminates typical rounding noise for values in the range used by most applications. Note: for values whose integer part already consumes 14 or more digits (i.e. \|value\| ≥ 1e13), toPrecision(14) has no room left for decimal digits and will silently truncate them. Increase `precision` if you need to correct drift in very large numbers. |
-| [`createSortByDateFn`](../categories/array/createsortbydatefn/) | [array](../categories/array/) | Creates a sort function for objects by date property. |
+| [`correctFloat`](../categories/number/correctfloat/) | [number](../categories/number/) | Corrects floating-point arithmetic errors by rounding to a given number of significant digits. Useful after calculations that accumulate binary floating-point drift (e.g. `0.1 + 0.2 === 0.30000000000000004`).  The default precision of 14 significant digits eliminates typical rounding noise for values in the range used by most applications. Note: for values whose integer part already consumes 14 or more digits (i.e. \|value\| ≥ 1e13), toPrecision(14) has no room left for decimal digits and will silently truncate them. Increase `precision` if you need to correct drift in very large numbers.  Note: IEEE-754 doubles carry at most ~17 significant decimal digits. Precision values above 17 pad with digits that reflect the underlying binary representation rather than correcting drift. |
 | [`createSortByNaturalFn`](../categories/array/createsortbynaturalfn/) | [array](../categories/array/) | Creates a sort function for objects by one or more string properties using natural ordering. Numbers embedded in values are compared numerically: "W2" < "W11" < "W20". When multiple properties are given, ties on the first key are broken by the second key, then the third, and so on. |
-| [`createSortByNumberFn`](../categories/array/createsortbynumberfn/) | [array](../categories/array/) | Creates a sort function for objects by number property. |
-| [`createSortByStringFn`](../categories/array/createsortbystringfn/) | [array](../categories/array/) | Creates a sort function for objects by one or more string properties. When multiple properties are given the array is sorted by the first key; ties are broken by the second key, then the third, and so on. |
 | [`DeepPartial`](../categories/type/deeppartial/) | [type](../categories/type/) | Recursively makes all properties of T optional, including nested objects and array elements. |
 | [`DeepWritable`](../categories/type/deepwritable/) | [type](../categories/type/) | Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions. |
 | [`max`](../categories/array/max/) | [array](../categories/array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with `Math.max(...array)` for very large arrays (> ~65 000 elements). |
 | [`min`](../categories/array/min/) | [array](../categories/array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with `Math.min(...array)` for very large arrays (> ~65 000 elements). |
 | [`sortStringNaturalAscFn`](../categories/array/sortstringnaturalascfn/) | [array](../categories/array/) | Sort strings in ascending order using natural (human-friendly) ordering. Numbers embedded in strings are compared numerically: "W2" < "W11" < "W20". |
-| [`sortStringNaturalAscInsensitiveFn`](../categories/array/sortstringnaturalascinsensitivefn/) | [array](../categories/array/) | Sort strings in ascending natural order (case insensitive). |
+| [`sortStringNaturalAscInsensitiveFn`](../categories/array/sortstringnaturalascinsensitivefn/) | [array](../categories/array/) | Sort strings in ascending natural order, ignoring case **and diacritics** (`Intl.Collator { sensitivity: 'base' }` — treats é, E, and e as equal). Numbers embedded in strings are compared numerically: "W2" < "W11" < "W20". |
 | [`sortStringNaturalDescFn`](../categories/array/sortstringnaturaldescfn/) | [array](../categories/array/) | Sort strings in descending order using natural (human-friendly) ordering. Numbers embedded in strings are compared numerically: "W20" > "W11" > "W2". |
-| [`sortStringNaturalDescInsensitiveFn`](../categories/array/sortstringnaturaldescinsensitivefn/) | [array](../categories/array/) | Sort strings in descending natural order (case insensitive). Numbers embedded in strings are compared numerically: "W20" > "W11" > "W2". |
+| [`sortStringNaturalDescInsensitiveFn`](../categories/array/sortstringnaturaldescinsensitivefn/) | [array](../categories/array/) | Sort strings in descending natural order, ignoring case **and diacritics** (`Intl.Collator { sensitivity: 'base' }` — treats é, E, and e as equal). Numbers embedded in strings are compared numerically: "W20" > "W11" > "W2". |
 
 ## v2.0.0
 
@@ -148,7 +150,7 @@ sidebar:
 | [`lerp`](../categories/number/lerp/) | [number](../categories/number/) | Linearly interpolates between `start` and `end` by the factor `t`.  - `t = 0` returns `start`. - `t = 1` returns `end`. - Values of `t` outside `[0, 1]` extrapolate beyond the range. |
 | [`listTimezones`](../categories/date/listtimezones/) | [date](../categories/date/) | Returns the list of IANA timezone identifiers supported by the runtime.  Wraps `Intl.supportedValuesOf('timeZone')` which is available in Node 18+, Chrome 93+, Firefox 93+, Safari 15.4+. |
 | [`map`](../categories/object/map/) | [object](../categories/object/) | Transforms the values and/or keys of a plain object in a single pass.  Both callbacks are optional and default to identity (no transformation). When `mapValue` is omitted the original values are preserved; when `mapKey` is omitted the original keys are preserved.  Note: if two different keys map to the same output key the last one wins (insertion order). |
-| [`mean`](../categories/number/mean/) | [number](../categories/number/) | Calculates the arithmetic mean (average) of an array of numbers. Returns `NaN` for an empty array.  Pairs with sum for aggregate operations. |
+| [`mean`](../categories/array/mean/) | [array](../categories/array/) | Calculates the arithmetic mean (average) of an array of numbers. Returns `NaN` for an empty array.  Pairs with sum for aggregate operations. |
 | [`negate`](../categories/function/negate/) | [function](../categories/function/) | Creates a function that negates the result of `predicate`. |
 | [`noop`](../categories/function/noop/) | [function](../categories/function/) | A no-operation function that does nothing and returns `undefined`  Useful as a default callback, placeholder, or to explicitly ignore a value. |
 | [`omit`](../categories/object/omit/) | [object](../categories/object/) | Creates a new object without the specified keys. |
@@ -175,7 +177,7 @@ sidebar:
 | [`statusToBadge`](../categories/ci/statustobadge/) | [ci](../categories/ci/) | Maps a CI/CD job status to an inline code badge string.  \| Status \| Badge \| \|--------\|-------\| \| `success` \| `` `passing` `` \| \| `failure` \| `` `failing` `` \| \| `skipped` \| `` `skipped` `` \| \| *(other)* \| `` `unknown` `` \| |
 | [`statusToIcon`](../categories/ci/statustoicon/) | [ci](../categories/ci/) | Maps a CI/CD job status to an emoji icon.  \| Status \| Icon \| \|--------\|------\| \| `success` \| ✅ \| \| `failure` \| ❌ \| \| `skipped` \| ⏭️ \| \| *(other)* \| ⚠️ \| |
 | [`stringify`](../categories/version/stringify/) | [version](../categories/version/) | Reconstruct a semantic version string from a ParsedVersion object.  This is the inverse of parse: `stringify(parse(v)) === stripV(v)` for any valid SemVer string `v`. |
-| [`sum`](../categories/number/sum/) | [number](../categories/number/) | Calculates the sum of an array of numbers. |
+| [`sum`](../categories/array/sum/) | [array](../categories/array/) | Calculates the sum of an array of numbers. |
 | [`template`](../categories/string/template/) | [string](../categories/string/) | Interpolates `{{key}}` placeholders in a template string with values from a data record. Unknown keys are replaced with an empty string.  No `eval` or `Function` constructor is used — substitution is purely regex-based. Nested expressions and logic are intentionally out of scope. |
 | [`timeAgo`](../categories/date/timeago/) | [date](../categories/date/) | Formats a date as a human-readable relative time string.  Uses `Intl.RelativeTimeFormat` under the hood, making the output locale-aware (e.g. "il y a 3 jours" in French).  Returns `null` if the input date is invalid. |
 | [`timeout`](../categories/promise/timeout/) | [promise](../categories/promise/) | Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration. |
@@ -203,14 +205,17 @@ sidebar:
 | [`chunk`](../categories/array/chunk/) | [array](../categories/array/) | Chunks an array into smaller arrays of specified size |
 | [`clamp`](../categories/number/clamp/) | [number](../categories/number/) | Clamps a number between min and max values |
 | [`compare`](../categories/version/compare/) | [version](../categories/version/) | Compares two semantic version strings according to SemVer 2.0.0 specification  Supports: - Core version: MAJOR.MINOR.PATCH - Pre-release: -alpha, -beta.1, -rc.1, etc. - Build metadata: +build, +sha.abc123 (ignored in comparison per spec) - Optional 'v' prefix |
+| [`createSortByDateFn`](../categories/array/createsortbydatefn/) | [array](../categories/array/) | Creates a sort function for objects by date property. |
+| [`createSortByNumberFn`](../categories/array/createsortbynumberfn/) | [array](../categories/array/) | Creates a sort function for objects by number property. |
+| [`createSortByStringFn`](../categories/array/createsortbystringfn/) | [array](../categories/array/) | Creates a sort function for objects by one or more string properties. When multiple properties are given the array is sorted by the first key; ties are broken by the second key, then the third, and so on.  Property values are coerced to strings via `String()` before comparison: numbers sort as `'0'`, `'1'`, `'42'`, etc. (lexicographic, not numeric); use `createSortByNumberFn` for numeric properties. |
 | [`dateToISOString`](../categories/date/datetoisostring/) | [date](../categories/date/) | Formats a date to ISO string or returns null. |
 | [`debounce`](../categories/function/debounce/) | [function](../categories/function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time the debounced function was invoked |
 | [`deepClone`](../categories/object/deepclone/) | [object](../categories/object/) | Creates a deep copy of an object or array |
-| [`deepMerge`](../categories/object/deepmerge/) | [object](../categories/object/) | Merges two or more objects deeply |
+| [`deepMerge`](../categories/object/deepmerge/) | [object](../categories/object/) | Merges two or more objects deeply.  Recursively merges own enumerable properties — both string and symbol keys. Plain objects are merged recursively; all other values (arrays, class instances, primitives, etc.) are replaced by the source value. `undefined` source values do not overwrite existing target values. |
 | [`delay`](../categories/promise/delay/) | [promise](../categories/promise/) | Creates a promise that resolves after specified delay |
 | [`difference`](../categories/array/difference/) | [array](../categories/array/) | Returns the difference between two arrays (items in first array but not in second) |
 | [`extractPureURI`](../categories/url/extractpureuri/) | [url](../categories/url/) | Extracts the pure URI from a URL by removing query parameters and fragments. |
-| [`get`](../categories/object/get/) | [object](../categories/object/) | Gets a value from an object using a dot-notated path |
+| [`get`](../categories/object/get/) | [object](../categories/object/) | Gets a value from an object using a dot/bracket-notated path or explicit key array.  **Two path forms are supported:**  1. **String path** — dot notation (`'a.b.c'`) and bracket notation (`'layers[1].name'`)    are both accepted and mixed freely. Segments are traversed as string keys; `[n]`    indices become numeric keys.  2. **Key array** (`PropertyKey[]`) — explicit array of `string \| number \| symbol` keys,    no parsing performed. Enables symbol-keyed traversal and compile-time type inference:    `get(obj, ['a', 'b'] as const)` infers the return type from the path. |
 | [`increment`](../categories/version/increment/) | [version](../categories/version/) | Increments a semantic version |
 | [`isArray`](../categories/type/isarray/) | [type](../categories/type/) | Checks if a value is an array. |
 | [`isBoolean`](../categories/type/isboolean/) | [type](../categories/type/) | Checks if a value is a boolean. |
@@ -220,7 +225,7 @@ sidebar:
 | [`isTimestampInSeconds`](../categories/date/istimestampinseconds/) | [date](../categories/date/) | Checks if a timestamp is likely in seconds (Java/Unix style) vs milliseconds (JavaScript style) |
 | [`isValidRegex`](../categories/type/isvalidregex/) | [type](../categories/type/) | Checks if a string is a valid regex pattern. |
 | [`kebabCase`](../categories/string/kebabcase/) | [string](../categories/string/) | Converts camelCase to kebab-case |
-| [`memoize`](../categories/function/memoize/) | [function](../categories/function/) | Returns a memoized version of the function that caches results |
+| [`memoize`](../categories/function/memoize/) | [function](../categories/function/) | Returns a memoized version of the function that caches results.  Cache keys are derived via `JSON.stringify`; `undefined` arguments are correctly distinguished from `null`. Arguments that are not JSON-serializable (functions, symbols, class instances, circular references) produce a `null`-equivalent key and are not supported. |
 | [`normalizeTimestamp`](../categories/date/normalizetimestamp/) | [date](../categories/date/) | Converts a timestamp to JavaScript milliseconds format |
 | [`randomBetween`](../categories/number/randombetween/) | [number](../categories/number/) | Generates a random number between min and max (inclusive) |
 | [`randomIntBetween`](../categories/number/randomintbetween/) | [number](../categories/number/) | Generates a random integer between min and max (inclusive) |
@@ -228,7 +233,7 @@ sidebar:
 | [`roundTo`](../categories/number/roundto/) | [number](../categories/number/) | Rounds a number to specified decimal places |
 | [`safeDate`](../categories/date/safedate/) | [date](../categories/date/) | Safely creates a Date object from various input types. |
 | [`satisfiesRange`](../categories/version/satisfiesrange/) | [version](../categories/version/) | Checks if a version satisfies a range (simple implementation) |
-| [`set`](../categories/object/set/) | [object](../categories/object/) | Sets a value in an object using a dot-notated path |
+| [`set`](../categories/object/set/) | [object](../categories/object/) | Sets a value in an object at the given path, creating intermediate objects as needed.  **Three path forms are supported:**  1. **Dot notation** (`string`) — segments split on `.` are kept as-is string keys.    `"layers.1.name"` → keys `["layers", "1", "name"]` (all strings, including `"1"`).  2. **Bracket notation** (`string`) — `[n]` segments are parsed as numeric keys.    `"layers[1].name"` → keys `["layers", 1, "name"]` (index `1` becomes a number).    Dot and bracket can be mixed freely: `"a[0].b[2].c"`.  3. **Key array** (`PropertyKey[]`) — explicit array of `string \| number \| symbol` keys,    no parsing performed. Enables full key-type control, including symbols:    `["layers", 1, Symbol('id')]`.  Intermediate nodes that are absent, `null`, or not an object are replaced with `{}`. Any path containing a string segment equal to `__proto__`, `constructor`, or `prototype` is rejected and the original object is returned unchanged (prototype-pollution guard). |
 | [`sortNumberAscFn`](../categories/array/sortnumberascfn/) | [array](../categories/array/) | Sort numbers in ascending order |
 | [`sortNumberDescFn`](../categories/array/sortnumberdescfn/) | [array](../categories/array/) | Sort numbers in descending order |
 | [`sortStringAscFn`](../categories/array/sortstringascfn/) | [array](../categories/array/) | Sort strings in ascending order |

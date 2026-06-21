@@ -15,6 +15,16 @@ Numbers embedded in strings are compared numerically: "W20" > "W11" > "W2".
 import { sortStringNaturalDescFn } from '@helpers4/array';
 ```
 
+## Examples
+
+### sortStringNaturalDescFn
+
+
+
+```ts
+['W11', 'W2', 'W20'].sort(sortStringNaturalDescFn) // => ['W20', 'W11', 'W2']
+```
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/sortNatural.ts)

@@ -8,7 +8,11 @@ Creates a sort function for objects by one or more string properties.
 When multiple properties are given the array is sorted by the first key;
 ties are broken by the second key, then the third, and so on.
 
-> Available since v2.0.2
+Property values are coerced to strings via `String()` before comparison:
+numbers sort as `'0'`, `'1'`, `'42'`, etc. (lexicographic, not numeric);
+use `createSortByNumberFn` for numeric properties.
+
+> Available since v1.9.0
 
 ## Import
 
@@ -27,8 +31,8 @@ createSortByStringFn<T extends Record<string, unknown>>(property?: keyof T | rea
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `property` | `keyof T \| readonly keyof T[]` | The property (or ordered list of properties) to sort by.   Defaults to trying 'value', 'label', 'title', 'description' in that order. *(optional)* |
-| `caseInsensitive` | `boolean` | Whether to ignore case (default: false) |
+| `property` | `keyof T \| readonly keyof T[]` | The property (or ordered list of properties) to sort by.   Defaults to trying 'value', 'label', 'title', 'description' in that order.   Pass `undefined` explicitly to use auto-detect; an empty array `[]` produces a   stable no-op comparator (does **not** fall back to auto-detect). *(optional)* |
+| `caseInsensitive` | `boolean` | Whether to ignore case (default: false).   Uses `Intl.Collator { sensitivity: 'accent' }`, which folds case but still   distinguishes accented characters (é ≠ e). This differs from   `createSortByNaturalFn(key, true)`, which also collapses diacritics. |
 
 ## Returns
 

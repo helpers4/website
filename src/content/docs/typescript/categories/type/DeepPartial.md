@@ -19,6 +19,8 @@ import type { DeepPartial } from '@helpers4/type';
 
 ```ts
 type DeepPartial<T> =
+  // Mutable array branch must come first: string[] satisfies both (infer U)[] and
+  // readonly (infer U)[]. Without this order, mutable arrays would resolve to readonly.
   T extends (infer U)[]
     ? number extends T['length'] ? DeepPartial<U>[] : { [K in keyof T]?: DeepPartial<T[K]> }
     : T extends readonly (infer U)[]

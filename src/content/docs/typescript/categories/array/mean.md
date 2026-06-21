@@ -14,7 +14,7 @@ Pairs with sum for aggregate operations.
 ## Import
 
 ```ts
-import { mean } from '@helpers4/number';
+import { mean } from '@helpers4/array';
 ```
 
 ## Signature
@@ -48,4 +48,4 @@ mean([])            // => NaN
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/number/mean.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/mean.ts)

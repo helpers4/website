@@ -13,7 +13,7 @@ disambiguated with ExtractNumberOptions.sign and ExtractNumberOptions.exponent.
 
 Returns `undefined` if no number can be found.
 
-> Available since v2.0.3
+> Available since v2.0.4
 
 ## Import
 
@@ -47,9 +47,12 @@ extractNumber(value: unknown, options: ExtractNumberOptions): number | undefined
 
 ```ts
 extractNumber('16.5px')        // => 16.5
+extractNumber('.5rem')         // => 0.5   (leading-dot decimal)
+extractNumber('-.5')           // => -0.5  (leading-dot with sign)
 extractNumber('Wafer 10')      // => 10
 extractNumber('xxx-111')       // => 111   ('-' glued to text → separator)
 extractNumber('xxx -111')      // => -111  ('-' preceded by a space → sign)
+extractNumber('x-.5')          // => 0.5   ('-' glued to 'x' → separator; leading-dot decimal follows)
 extractNumber('-111')          // => -111  ('-' at the start of the string → sign)
 extractNumber('1e5 mol')       // => 100000
 extractNumber('1e5kg')         // => 1     ('e5' glued to text → mantissa only)

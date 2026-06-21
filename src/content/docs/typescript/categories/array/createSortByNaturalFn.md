@@ -29,11 +29,23 @@ createSortByNaturalFn<T extends Record<string, unknown>>(property?: keyof T | re
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `property` | `keyof T \| readonly keyof T[]` | The property (or ordered list of properties) to sort by.   Defaults to trying 'value', 'label', 'title', 'description' in that order. *(optional)* |
-| `caseInsensitive` | `boolean` | Whether to ignore case **and diacritics** (default: false).   Uses `Intl.Collator { sensitivity: 'base' }`, which treats é, E, and e as equal.   This differs from `createSortByStringFn(key, true)`, which only folds case via   `toLowerCase` and still distinguishes accented characters. |
+| `caseInsensitive` | `boolean` | Whether to ignore case **and diacritics** (default: false).   Uses `Intl.Collator { sensitivity: 'base' }`, which treats é, E, and e as equal.   This differs from `createSortByStringFn(key, true)`, which only folds case and   still distinguishes accented characters (é ≠ e). |
 
 ## Returns
 
 `SortFn<T>` — Sort function
+
+## Examples
+
+### createSortByNaturalFn
+
+
+
+```ts
+const items = [{ label: 'W11' }, { label: 'W2' }, { label: 'W20' }];
+items.sort(createSortByNaturalFn('label'))
+// => [{ label: 'W2' }, { label: 'W11' }, { label: 'W20' }]
+```
 
 ## Related Types
 

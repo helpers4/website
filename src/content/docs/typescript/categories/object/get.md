@@ -4,7 +4,17 @@ sidebar:
   label: "get"
 ---
 
-Gets a value from an object using a dot-notated path
+Gets a value from an object using a dot/bracket-notated path or explicit key array.
+
+**Two path forms are supported:**
+
+1. **String path** — dot notation (`'a.b.c'`) and bracket notation (`'layers[1].name'`)
+   are both accepted and mixed freely. Segments are traversed as string keys; `[n]`
+   indices become numeric keys.
+
+2. **Key array** (`PropertyKey[]`) — explicit array of `string | number | symbol` keys,
+   no parsing performed. Enables symbol-keyed traversal and compile-time type inference:
+   `get(obj, ['a', 'b'] as const)` infers the return type from the path.
 
 > Available since v1.9.0
 
@@ -25,13 +35,13 @@ get<T = unknown>(obj: unknown, path: string, defaultValue?: T): T | undefined
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `obj` | `unknown` | The object to get value from |
-| `path` | `string` | The dot-notated path (e.g., 'a.b.c') |
-| `defaultValue` | `T` | Default value if path doesn't exist *(optional)* |
+| `obj` | `unknown` | The object to read from |
+| `path` | `string` | Dot/bracket-notation string or explicit `PropertyKey[]` |
+| `defaultValue` | `T` | Returned when the path is absent or resolves to `undefined` *(optional)* |
 
 ## Returns
 
-`T | undefined` — The value at the path or default value
+`T | undefined` — The value at the path, or `defaultValue`
 
 ## Examples
 
@@ -51,6 +61,16 @@ Returns the default value when the path does not exist.
 ```ts
 get({ a: 1 }, 'b.c', 'default')
 // => 'default'
+```
+
+### Get via key array (supports symbols)
+
+Pass an explicit PropertyKey[] to bypass parsing. Supports string, number, and symbol keys.
+
+```ts
+const id = Symbol('id')
+get({ [id]: 'alice' }, [id])
+// => 'alice'
 ```
 
 ## Source

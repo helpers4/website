@@ -4,7 +4,8 @@ sidebar:
   label: "sortStringNaturalDescInsensitiveFn"
 ---
 
-Sort strings in descending natural order (case insensitive).
+Sort strings in descending natural order, ignoring case **and diacritics**
+(`Intl.Collator { sensitivity: 'base' }` — treats é, E, and e as equal).
 Numbers embedded in strings are compared numerically: "W20" > "W11" > "W2".
 
 > Available since v2.0.2
@@ -13,6 +14,16 @@ Numbers embedded in strings are compared numerically: "W20" > "W11" > "W2".
 
 ```ts
 import { sortStringNaturalDescInsensitiveFn } from '@helpers4/array';
+```
+
+## Examples
+
+### sortStringNaturalDescInsensitiveFn
+
+
+
+```ts
+['W11', 'W2', 'W20'].sort(sortStringNaturalDescInsensitiveFn) // => ['W20', 'W11', 'W2']
 ```
 
 ## Source

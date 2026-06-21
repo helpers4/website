@@ -48,7 +48,7 @@ sidebar:
 | [`daysInMonth`](../date/daysinmonth/) | [date](../date/) | Returns the number of days in the given month of the given year. |
 | [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last tim… |
 | [`deepClone`](../object/deepclone/) | [object](../object/) | Creates a deep copy of an object or array |
-| [`deepMerge`](../object/deepmerge/) | [object](../object/) | Merges two or more objects deeply |
+| [`deepMerge`](../object/deepmerge/) | [object](../object/) | Merges two or more objects deeply. |
 | [`DeepPartial`](../type/deeppartial/) | [type](../type/) | Recursively makes all properties of T optional, including nested objects and array elements. |
 | [`DeepWritable`](../type/deepwritable/) | [type](../type/) | Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions. |
 | [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last regist… |
@@ -83,7 +83,7 @@ sidebar:
 | `from (parse temporal string)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.from(str) / Temporal.PlainDate.from(str) / etc.` *(Temporal (Stage 3))* |
 | [`fromMillis`](../date/frommillis/) | [date](../date/) | Creates a `Date` from a timestamp in **milliseconds**. |
 | [`fromSeconds`](../date/fromseconds/) | [date](../date/) | Creates a `Date` from a timestamp in **seconds**. |
-| [`get`](../object/get/) | [object](../object/) | Gets a value from an object using a dot-notated path |
+| [`get`](../object/get/) | [object](../object/) | Gets a value from an object using a dot/bracket-notated path or explicit key array. |
 | [`getTimezoneOffset`](../date/gettimezoneoffset/) | [date](../date/) | Returns the UTC offset **in minutes** for the given IANA timezone at a specific point in time. |
 | [`groupBy`](../object/groupby/) | [object](../object/) | Groups an array of items by a key derived from each item. |
 | `groupBy / group` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Object.groupBy(arr, fn)` *(ES2024)* |
@@ -186,9 +186,9 @@ sidebar:
 | [`listTimezones`](../date/listtimezones/) | [date](../date/) | Returns the list of IANA timezone identifiers supported by the runtime. |
 | [`map`](../object/map/) | [object](../object/) | Transforms the values and/or keys of a plain object in a single pass. |
 | [`max`](../array/max/) | [array](../array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
-| [`mean`](../number/mean/) | [number](../number/) | Calculates the arithmetic mean (average) of an array of numbers. |
+| [`mean`](../array/mean/) | [array](../array/) | Calculates the arithmetic mean (average) of an array of numbers. |
 | [`meaningPromiseOrThrow`](../promise/meaningpromiseorthrow/) | [promise](../promise/) | Returns a function that passes through meaningful data or throws an error. |
-| [`memoize`](../function/memoize/) | [function](../function/) | Returns a memoized version of the function that caches results |
+| [`memoize`](../function/memoize/) | [function](../function/) | Returns a memoized version of the function that caches results. |
 | `merge (shallow)` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `{ ...a, ...b } or Object.assign({}, a, b)` *(ES2015)* |
 | [`min`](../array/min/) | [array](../array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | `min / max` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `Math.min(...arr) / Math.max(...arr)` *(ES1)* |
@@ -228,7 +228,7 @@ sidebar:
 | [`satisfiesRange`](../version/satisfiesrange/) | [version](../version/) | Checks if a version satisfies a range (simple implementation) |
 | [`select`](../array/select/) | [array](../array/) | Filters and transforms an array in a single pass. |
 | `select / filterMap` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
-| [`set`](../object/set/) | [object](../object/) | Sets a value in an object using a dot-notated path |
+| [`set`](../object/set/) | [object](../object/) | Sets a value in an object at the given path, creating intermediate objects as needed. |
 | [`shuffle`](../array/shuffle/) | [array](../array/) | Randomly reorders elements of an array using the Fisher-Yates algorithm. |
 | [`slugify`](../string/slugify/) | [string](../string/) | Converts a string into a URL-friendly slug. |
 | [`snakeCase`](../string/snakecase/) | [string](../string/) | Converts a string to snake_case. |
@@ -240,16 +240,16 @@ sidebar:
 | [`sortStringAscInsensitiveFn`](../array/sortstringascinsensitivefn/) | [array](../array/) | Sort strings in ascending order (case insensitive) |
 | [`sortStringDescFn`](../array/sortstringdescfn/) | [array](../array/) | Sort strings in descending order |
 | [`sortStringNaturalAscFn`](../array/sortstringnaturalascfn/) | [array](../array/) | Sort strings in ascending order using natural (human-friendly) ordering. |
-| [`sortStringNaturalAscInsensitiveFn`](../array/sortstringnaturalascinsensitivefn/) | [array](../array/) | Sort strings in ascending natural order (case insensitive). |
+| [`sortStringNaturalAscInsensitiveFn`](../array/sortstringnaturalascinsensitivefn/) | [array](../array/) | Sort strings in ascending natural order, ignoring case **and diacritics** (`Intl.Collator { sensitivity: 'base' }` — … |
 | [`sortStringNaturalDescFn`](../array/sortstringnaturaldescfn/) | [array](../array/) | Sort strings in descending order using natural (human-friendly) ordering. |
-| [`sortStringNaturalDescInsensitiveFn`](../array/sortstringnaturaldescinsensitivefn/) | [array](../array/) | Sort strings in descending natural order (case insensitive). |
+| [`sortStringNaturalDescInsensitiveFn`](../array/sortstringnaturaldescinsensitivefn/) | [array](../array/) | Sort strings in descending natural order, ignoring case **and diacritics** (`Intl.Collator { sensitivity: 'base' }` —… |
 | [`startOf`](../date/startof/) | [date](../date/) | Returns a new `Date` set to the **start** of the given unit. |
 | `startsWith / endsWith` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |
 | [`statusToBadge`](../ci/statustobadge/) | [ci](../ci/) | Maps a CI/CD job status to an inline code badge string. |
 | [`statusToIcon`](../ci/statustoicon/) | [ci](../ci/) | Maps a CI/CD job status to an emoji icon. |
 | [`stringify`](../version/stringify/) | [version](../version/) | Reconstruct a semantic version string from a ParsedVersion object. |
 | [`stripV`](../version/stripv/) | [version](../version/) | Strip the leading "v" from a version string if it exists. |
-| [`sum`](../number/sum/) | [number](../number/) | Calculates the sum of an array of numbers. |
+| [`sum`](../array/sum/) | [array](../array/) | Calculates the sum of an array of numbers. |
 | `tail` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
 | [`template`](../string/template/) | [string](../string/) | Interpolates `{{key}}` placeholders in a template string with values from a data record. |

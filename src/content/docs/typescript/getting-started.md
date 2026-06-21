@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::info[Documented version]
-**[v2.0.3](https://github.com/helpers4/typescript/releases/tag/v2.0.3)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/2.0.3) · [Changelog](../reference/changelog)
+**[v2.0.4](https://github.com/helpers4/typescript/releases/tag/v2.0.4)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/2.0.4) · [Changelog](../reference/changelog)
 :::
 
 ## Installation
@@ -17,7 +17,7 @@ pnpm add @helpers4/all
 # or: npm install @helpers4/all
 
 # Pin to a specific version:
-# pnpm add @helpers4/all@2.0.3
+# pnpm add @helpers4/all@2.0.4
 ```
 
 Or install only the categories you need:
@@ -109,7 +109,7 @@ Every helper ships with:
 - **Contract tests** — formal behavioral guarantees
 - **Boundary tests** — edge values and limit conditions covered explicitly
 - **Security edge case tests** — inputs like prototype pollution or injected keys
-- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.3)
+- **Mutation testing** (Stryker) — >90% score; [view dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.0.4)
 - **Benchmarks** (Vitest Bench) — performance tracked per build
 - **Dependency security audit** — `pnpm audit` on every PR and release
 - **OpenSSF Scorecard** — [view report](https://securityscorecards.dev/viewer/?uri=github.com/helpers4/typescript)

@@ -50,6 +50,10 @@ type MutableConfig = DeepWritable<Config>;
 type Point = readonly [x: number, y: number];
 type MutablePoint = DeepWritable<Point>;
 // => [x: number, y: number]
+
+Note: `Date`, `Map`, `Set`, `Promise`, and `RegExp` are treated as opaque and passed
+through unchanged. In particular, `DeepWritable<Map<K, V>>` does **not** strip `readonly`
+from the value type `V` — use a manual mapped type if you need that.
 ```
 
 ## Source

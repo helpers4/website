@@ -36,6 +36,7 @@ Utility functions for working with array operations.
 | [`isNonEmpty`](./isnonempty/) | Checks if an array is non-empty (has at least one element). |
 | `last` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
 | [`max`](./max/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
+| [`mean`](./mean/) | Calculates the arithmetic mean (average) of an array of numbers. |
 | [`min`](./min/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | [`partition`](./partition/) | Splits an array into two groups based on a predicate function. |
 | [`range`](./range/) | Generates an array of sequential numbers from start to end (exclusive). |
@@ -52,9 +53,10 @@ Utility functions for working with array operations.
 | [`sortStringAscInsensitiveFn`](./sortstringascinsensitivefn/) | Sort strings in ascending order (case insensitive) |
 | [`sortStringDescFn`](./sortstringdescfn/) | Sort strings in descending order |
 | [`sortStringNaturalAscFn`](./sortstringnaturalascfn/) | Sort strings in ascending order using natural (human-friendly) ordering. |
-| [`sortStringNaturalAscInsensitiveFn`](./sortstringnaturalascinsensitivefn/) | Sort strings in ascending natural order (case insensitive). |
+| [`sortStringNaturalAscInsensitiveFn`](./sortstringnaturalascinsensitivefn/) | Sort strings in ascending natural order, ignoring case **and diacritics** (`Intl.Collator { sensitivity: 'base' }` — … |
 | [`sortStringNaturalDescFn`](./sortstringnaturaldescfn/) | Sort strings in descending order using natural (human-friendly) ordering. |
-| [`sortStringNaturalDescInsensitiveFn`](./sortstringnaturaldescinsensitivefn/) | Sort strings in descending natural order (case insensitive). |
+| [`sortStringNaturalDescInsensitiveFn`](./sortstringnaturaldescinsensitivefn/) | Sort strings in descending natural order, ignoring case **and diacritics** (`Intl.Collator { sensitivity: 'base' }` —… |
+| [`sum`](./sum/) | Calculates the sum of an array of numbers. |
 | `tail` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
 | `union` | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |

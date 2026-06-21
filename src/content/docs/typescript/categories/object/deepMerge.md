@@ -4,7 +4,12 @@ sidebar:
   label: "deepMerge"
 ---
 
-Merges two or more objects deeply
+Merges two or more objects deeply.
+
+Recursively merges own enumerable properties — both string and symbol keys.
+Plain objects are merged recursively; all other values (arrays, class instances,
+primitives, etc.) are replaced by the source value.
+`undefined` source values do not overwrite existing target values.
 
 > Available since v1.9.0
 
@@ -18,19 +23,19 @@ import { deepMerge } from '@helpers4/object';
 
 
 ```ts
-deepMerge<T extends Record<string, unknown>>(target: T, sources: Record<string, unknown>[]): T
+deepMerge<T extends Record<PropertyKey, unknown>>(target: T, sources: Record<PropertyKey, unknown>[]): T
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `target` | `T` | The target object |
-| `sources` | `Record<string, unknown>[]` | The source objects to merge |
+| `target` | `T` | The target object (mutated in place) |
+| `sources` | `Record<PropertyKey, unknown>[]` | One or more source objects to merge into the target |
 
 ## Returns
 
-`T` — The merged object
+`T` — The mutated target
 
 ## Examples
 

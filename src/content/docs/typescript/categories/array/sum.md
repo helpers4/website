@@ -11,7 +11,7 @@ Calculates the sum of an array of numbers.
 ## Import
 
 ```ts
-import { sum } from '@helpers4/number';
+import { sum } from '@helpers4/array';
 ```
 
 ## Signature
@@ -29,7 +29,7 @@ sum(array: readonly number[]): number
 
 ## Returns
 
-`number` — The sum of all values
+`number` — The sum of all values, or `0` for an empty array
 
 ## Examples
 
@@ -53,4 +53,4 @@ sum([10, -3, 5, -2])
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/number/sum.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/sum.ts)

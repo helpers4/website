@@ -16,7 +16,7 @@ Utility functions for working with function operations.
 | [`debounce`](./debounce/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last tim… |
 | [`flip`](./flip/) | Creates a function that invokes `fn` with the first two arguments swapped. |
 | [`identity`](./identity/) | Returns the given value unchanged  Useful as a default transform, in function composition, or as a placeholder mapper. |
-| [`memoize`](./memoize/) | Returns a memoized version of the function that caches results |
+| [`memoize`](./memoize/) | Returns a memoized version of the function that caches results. |
 | [`negate`](./negate/) | Creates a function that negates the result of `predicate`. |
 | [`noop`](./noop/) | A no-operation function that does nothing and returns `undefined`  Useful as a default callback, placeholder, or to e… |
 | [`once`](./once/) | Creates a function that is restricted to be called only once. |

@@ -23,11 +23,9 @@ Utility functions for working with number operations.
 | [`isOdd`](./isodd/) | Checks if a value is an odd integer. |
 | [`isPositive`](./ispositive/) | Checks if a value is a number greater than 0. |
 | [`lerp`](./lerp/) | Linearly interpolates between `start` and `end` by the factor `t`. |
-| [`mean`](./mean/) | Calculates the arithmetic mean (average) of an array of numbers. |
 | `min / max` | <span class="badge badge--secondary">native JS</span> `Math.min(...arr) / Math.max(...arr)` *(ES1)* |
 | [`randomBetween`](./randombetween/) | Generates a random number between min and max (inclusive) |
 | [`randomIntBetween`](./randomintbetween/) | Generates a random integer between min and max (inclusive) |
 | [`roundTo`](./roundto/) | Rounds a number to specified decimal places |
-| [`sum`](./sum/) | Calculates the sum of an array of numbers. |
 | `toInt / toFloat` | <span class="badge badge--secondary">native JS</span> `parseInt(str, 10) / parseFloat(str)` *(ES1)* |
 
