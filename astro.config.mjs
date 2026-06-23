@@ -26,6 +26,7 @@ export default defineConfig({
             label: 'TypeScript',
             link: '/typescript/',
             icon: 'seti:typescript',
+            badge: { text: 'v2', variant: 'default' },
             items: [
               { slug: 'typescript' },
               { slug: 'typescript/getting-started' },
@@ -33,6 +34,17 @@ export default defineConfig({
               { label: 'Reference', items: [{ autogenerate: { directory: 'typescript/reference' } }] },
               { label: 'Comparisons', items: [{ autogenerate: { directory: 'typescript/comparisons' } }] },
               { label: 'Legal', items: [{ autogenerate: { directory: 'typescript/legal' } }] },
+            ],
+          },
+          {
+            label: 'TypeScript',
+            link: '/typescript-next/',
+            icon: 'seti:typescript',
+            badge: { text: 'v3 alpha', variant: 'tip' },
+            items: [
+              { slug: 'typescript-next' },
+              { slug: 'typescript-next/getting-started' },
+              { label: 'Legal', items: [{ autogenerate: { directory: 'typescript-next/legal' } }] },
             ],
           },
           {
