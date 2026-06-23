@@ -18,7 +18,7 @@ jobs:
           private-key: ${{ secrets.PUSHINATOR_KEY }}
 
       - name: Checkout website repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           token: ${{ steps.app_token.outputs.token }}
 
@@ -36,7 +36,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Checkout Action repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: helpers4/action
           ref: v${{ github.event.client_payload.version }}
