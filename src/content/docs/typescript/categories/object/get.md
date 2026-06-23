@@ -9,12 +9,18 @@ Gets a value from an object using a dot/bracket-notated path or explicit key arr
 **Two path forms are supported:**
 
 1. **String path** — dot notation (`'a.b.c'`) and bracket notation (`'layers[1].name'`)
-   are both accepted and mixed freely. Segments are traversed as string keys; `[n]`
-   indices become numeric keys.
+   are both accepted and mixed freely.
+   - Dot segments are always string keys: `'a.1'` → key `'1'` (string).
+   - Bracket segments are always number keys: `'a[1]'` → key `1` (number).
+   - String literal paths give **full compile-time type inference** on the return type.
+   - Dynamic (non-literal) strings return `unknown`.
 
 2. **Key array** (`PropertyKey[]`) — explicit array of `string | number | symbol` keys,
    no parsing performed. Enables symbol-keyed traversal and compile-time type inference:
    `get(obj, ['a', 'b'] as const)` infers the return type from the path.
+
+Both forms support **all objects** (plain objects, arrays, class instances).
+Symbol keys are only reachable via the key-array form.
 
 > Available since v1.9.0
 
@@ -28,20 +34,20 @@ import { get } from '@helpers4/object';
 
 
 ```ts
-get<T = unknown>(obj: unknown, path: string, defaultValue?: T): T | undefined
+get<D>(obj: null | undefined, path: string | readonly PropertyKey[], defaultValue: D): D
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `obj` | `unknown` | The object to read from |
-| `path` | `string` | Dot/bracket-notation string or explicit `PropertyKey[]` |
-| `defaultValue` | `T` | Returned when the path is absent or resolves to `undefined` *(optional)* |
+| `obj` | `null \| undefined` | The object to read from |
+| `path` | `string \| readonly PropertyKey[]` | Dot/bracket-notation string literal or explicit `PropertyKey[]` |
+| `defaultValue` | `D` | Returned when the path is absent or resolves to `undefined` |
 
 ## Returns
 
-`T | undefined` — The value at the path, or `defaultValue`
+`D` — The value at the path, or `defaultValue`
 
 ## Examples
 

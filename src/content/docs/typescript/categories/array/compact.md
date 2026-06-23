@@ -5,6 +5,7 @@ sidebar:
 ---
 
 Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array.
+`null` and `undefined` are treated as empty arrays and return `[]`.
 
 > Available since v2.0.0
 
@@ -18,14 +19,14 @@ import { compact } from '@helpers4/array';
 
 
 ```ts
-compact<T>(array: readonly Falsy | T[]): Exclude<T, Falsy>[]
+compact<T>(array: readonly Falsy | T[] | null | undefined): Exclude<T, Falsy>[]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly Falsy \| T[]` | The array to compact |
+| `array` | `readonly Falsy \| T[] \| null \| undefined` | The array to compact |
 
 ## Returns
 

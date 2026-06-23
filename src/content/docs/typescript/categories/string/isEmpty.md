@@ -4,10 +4,10 @@ sidebar:
   label: "isEmpty"
 ---
 
-Checks if a string is empty (`""`).
+Checks if a string is empty (`""`), `null`, or `undefined`.
 
 This is a strict emptiness check — whitespace-only strings are **not** considered
-empty. Use `isEmpty(value.trim())` if you need to treat blank strings as empty.
+empty. Use `isEmpty(value?.trim())` if you need to treat blank strings as empty.
 
 > Available since v2.0.3
 
@@ -21,18 +21,18 @@ import { isEmpty } from '@helpers4/string';
 
 
 ```ts
-isEmpty(value: string): value is ""
+isEmpty(value: string | null | undefined): value is "" | null | undefined
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `string` | The string to check |
+| `value` | `string \| null \| undefined` | The string to check |
 
 ## Returns
 
-`value is ""` — `true` if the string is `""`
+`value is "" | null | undefined` — `true` if the string is `""`, `null`, or `undefined`
 
 ## Examples
 

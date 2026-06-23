@@ -4,7 +4,9 @@ sidebar:
   label: "difference"
 ---
 
-Returns the difference between two arrays (items in first array but not in second)
+Returns the difference between two arrays (items in first array but not in second).
+`null` and `undefined` are treated as empty arrays:
+`difference(null, b)` → `[]`; `difference(a, null)` → copy of `a`.
 
 > Available since v1.9.0
 
@@ -18,15 +20,15 @@ import { difference } from '@helpers4/array';
 
 
 ```ts
-difference<T>(array1: T[], array2: T[]): T[]
+difference<T>(array1: readonly T[] | null | undefined, array2: readonly T[] | null | undefined): T[]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array1` | `T[]` | First array |
-| `array2` | `T[]` | Second array |
+| `array1` | `readonly T[] \| null \| undefined` | First array |
+| `array2` | `readonly T[] \| null \| undefined` | Second array |
 
 ## Returns
 

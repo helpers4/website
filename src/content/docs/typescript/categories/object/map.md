@@ -11,7 +11,8 @@ When `mapValue` is omitted the original values are preserved;
 when `mapKey` is omitted the original keys are preserved.
 
 Note: if two different keys map to the same output key the last one wins
-(insertion order).
+(insertion order). Entries whose mapped key is a prototype-polluting string
+(`__proto__`, `constructor`, `prototype`) are silently skipped.
 
 > Available since v2.0.0
 
@@ -25,14 +26,14 @@ import { map } from '@helpers4/object';
 
 
 ```ts
-map<TObj extends Record<string, unknown>, TVal = indexedAccess, TKey extends PropertyKey = keyof TObj>(obj: TObj, mapValue?: function, mapKey?: function): Record<TKey, TVal>
+map<TObj extends Record<string, unknown>, TVal = indexedAccess, TKey extends PropertyKey = keyof TObj>(obj: TObj | null | undefined, mapValue?: function, mapKey?: function): Record<TKey, TVal>
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `obj` | `TObj` | The source object |
+| `obj` | `TObj \| null \| undefined` | The source object |
 | `mapValue` | `function` | Callback called with `(value, key)` for each entry.   Defaults to identity. *(optional)* |
 | `mapKey` | `function` | Callback called with `(key, value)` for each entry.   Defaults to identity. *(optional)* |
 

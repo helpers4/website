@@ -5,6 +5,7 @@ sidebar:
 ---
 
 Checks if a string is blank — empty or contains only whitespace characters.
+`null` and `undefined` are considered blank and return `true`.
 
 Uses `String.prototype.trim()` internally, which covers all ECMAScript
 whitespace: standard ASCII whitespace (`\t`, `\n`, `\r`, `\f`, `\v`),
@@ -28,18 +29,18 @@ import { isBlank } from '@helpers4/string';
 
 
 ```ts
-isBlank(value: string): boolean
+isBlank(value: string | null | undefined): boolean
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `string` | The string to check |
+| `value` | `string \| null \| undefined` | The string to check |
 
 ## Returns
 
-`boolean` — `true` if the string is empty or contains only whitespace
+`boolean` — `true` if the string is empty, contains only whitespace, or is `null`/`undefined`
 
 ## Examples
 

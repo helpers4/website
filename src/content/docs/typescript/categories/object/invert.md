@@ -6,6 +6,9 @@ sidebar:
 
 Returns a new object with keys and values swapped.
 If multiple keys share the same value, the last one wins.
+`null` and `undefined` are treated as empty objects and return `{}`.
+Entries whose source key **or** value is a prototype-polluting string
+(`__proto__`, `constructor`, `prototype`) are silently skipped.
 
 > Available since v2.0.0
 
@@ -19,14 +22,14 @@ import { invert } from '@helpers4/object';
 
 
 ```ts
-invert<K extends string, V extends PropertyKey>(obj: Record<K, V>): Record<V, K>
+invert<K extends string, V extends PropertyKey>(obj: Record<K, V> | null | undefined): Record<V, K>
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `obj` | `Record<K, V>` | The object whose keys and values are to be swapped |
+| `obj` | `Record<K, V> \| null \| undefined` | The object whose keys and values are to be swapped |
 
 ## Returns
 

@@ -20,14 +20,14 @@ import { sample } from '@helpers4/array';
 
 
 ```ts
-sample<T>(array: readonly T[]): T | undefined
+sample<T>(array: readonly T[] | null | undefined): T | undefined
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly T[]` | The source array to pick from |
+| `array` | `readonly T[] \| null \| undefined` | The source array to pick from |
 
 ## Returns
 

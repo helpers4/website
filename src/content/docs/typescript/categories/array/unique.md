@@ -4,7 +4,8 @@ sidebar:
   label: "unique"
 ---
 
-Removes duplicate values from an array
+Removes duplicate values from an array.
+`null` and `undefined` are treated as empty arrays and return `[]`.
 
 > Available since v1.9.0
 
@@ -18,14 +19,14 @@ import { unique } from '@helpers4/array';
 
 
 ```ts
-unique<T>(array: T[]): T[]
+unique<T>(array: readonly T[] | null | undefined): T[]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `T[]` | The array to remove duplicates from |
+| `array` | `readonly T[] \| null \| undefined` | The array to remove duplicates from |
 
 ## Returns
 

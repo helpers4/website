@@ -12,14 +12,14 @@ Utility functions for working with array operations.
 | Function | Description |
 |----------|-------------|
 | [`cartesianProduct`](./cartesianproduct/) | Computes the Cartesian product of the provided arrays. |
-| [`chunk`](./chunk/) | Chunks an array into smaller arrays of specified size |
+| [`chunk`](./chunk/) | Chunks an array into smaller arrays of specified size. |
 | [`compact`](./compact/) | Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array. |
 | [`countBy`](./countby/) | Groups the elements of an array by the key returned by `keyFn` and returns a record mapping each key to the number of… |
 | [`createSortByDateFn`](./createsortbydatefn/) | Creates a sort function for objects by date property. |
 | [`createSortByNaturalFn`](./createsortbynaturalfn/) | Creates a sort function for objects by one or more string properties using natural ordering. |
 | [`createSortByNumberFn`](./createsortbynumberfn/) | Creates a sort function for objects by number property. |
 | [`createSortByStringFn`](./createsortbystringfn/) | Creates a sort function for objects by one or more string properties. |
-| [`difference`](./difference/) | Returns the difference between two arrays (items in first array but not in second) |
+| [`difference`](./difference/) | Returns the difference between two arrays (items in first array but not in second). |
 | `drop` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(n)` *(ES3)* |
 | [`ensureArray`](./ensurearray/) | Wraps a value in an array if it is not already one. |
 | [`equalsDeep`](./equalsdeep/) | Recursive structural array equality. |
@@ -45,7 +45,7 @@ Utility functions for working with array operations.
 | [`select`](./select/) | Filters and transforms an array in a single pass. |
 | `select / filterMap` | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
 | [`shuffle`](./shuffle/) | Randomly reorders elements of an array using the Fisher-Yates algorithm. |
-| `sort (basic comparator)` | <span class="badge badge--secondary">native JS</span> `(a, b) => a - b  /  a.localeCompare(b)` *(ES1)* |
+| `sort (immutable)` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(compareFn?)` *(ES2023)* |
 | `sortBy / orderBy` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(fn?)` *(ES2023)* |
 | [`sortNumberAscFn`](./sortnumberascfn/) | Sort numbers in ascending order |
 | [`sortNumberDescFn`](./sortnumberdescfn/) | Sort numbers in descending order |
@@ -60,7 +60,7 @@ Utility functions for working with array operations.
 | `tail` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
 | `union` | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |
-| [`unique`](./unique/) | Removes duplicate values from an array |
+| [`unique`](./unique/) | Removes duplicate values from an array. |
 | [`unzip`](./unzip/) | Splits an array of tuples into separate arrays, one per position. |
 | [`without`](./without/) | Returns a new array with all occurrences of the given values removed. |
 | [`zip`](./zip/) | Combines multiple arrays element-by-element into an array of tuples. |

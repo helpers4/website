@@ -5,6 +5,7 @@ sidebar:
 ---
 
 Calculates the sum of an array of numbers.
+`null` and `undefined` are treated as empty arrays and return `0`.
 
 > Available since v2.0.0
 
@@ -18,18 +19,18 @@ import { sum } from '@helpers4/array';
 
 
 ```ts
-sum(array: readonly number[]): number
+sum(array: readonly number[] | null | undefined): number
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly number[]` | The array of numbers to sum |
+| `array` | `readonly number[] \| null \| undefined` | The array of numbers to sum |
 
 ## Returns
 
-`number` — The sum of all values, or `0` for an empty array
+`number` — The sum of all values, or `0` for an empty array, `null`, or `undefined`
 
 ## Examples
 

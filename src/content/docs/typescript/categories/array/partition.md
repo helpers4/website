@@ -7,6 +7,7 @@ sidebar:
 Splits an array into two groups based on a predicate function.
 The first group contains elements for which the predicate returns true,
 the second group contains the rest.
+`null` and `undefined` are treated as empty arrays and return `[[], []]`.
 
 > Available since v2.0.0
 
@@ -20,14 +21,14 @@ import { partition } from '@helpers4/array';
 
 
 ```ts
-partition<T>(array: readonly T[], predicate: function): [T[], T[]]
+partition<T>(array: readonly T[] | null | undefined, predicate: function): [T[], T[]]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly T[]` | The array to partition |
+| `array` | `readonly T[] \| null \| undefined` | The array to partition |
 | `predicate` | `function` | Function that returns true for elements in the first group |
 
 ## Returns

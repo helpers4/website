@@ -23,10 +23,11 @@ sidebar:
 | [`capitalize`](../string/capitalize/) | [string](../string/) | Capitalizes the first letter of a string. |
 | [`cartesianProduct`](../array/cartesianproduct/) | [array](../array/) | Computes the Cartesian product of the provided arrays. |
 | `ceil / floor` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `Math.ceil() / Math.floor()` *(ES1)* |
-| [`chunk`](../array/chunk/) | [array](../array/) | Chunks an array into smaller arrays of specified size |
+| [`chunk`](../array/chunk/) | [array](../array/) | Chunks an array into smaller arrays of specified size. |
 | [`clamp`](../number/clamp/) | [number](../number/) | Clamps a number between min and max values |
 | [`clampDate`](../date/clampdate/) | [date](../date/) | Clamps a date to a [min, max] range. |
 | [`cleanPath`](../url/cleanpath/) | [url](../url/) | Clean an URL by removing duplicate slashes. |
+| [`cloneDeep`](../object/clonedeep/) | [object](../object/) | Creates a deep copy of an object or array. |
 | [`combine`](../observable/combine/) | [observable](../observable/) | Combine two observables with a map function and an optional pre-treatment. |
 | [`combineLatest`](../observable/combinelatest/) | [observable](../observable/) | Combines multiple Observables to create an Observable whose values are calculated from the latest values of each of i… |
 | [`compact`](../array/compact/) | [array](../array/) | Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array. |
@@ -47,14 +48,12 @@ sidebar:
 | [`daysDifference`](../date/daysdifference/) | [date](../date/) | Gets the difference in days between two dates. |
 | [`daysInMonth`](../date/daysinmonth/) | [date](../date/) | Returns the number of days in the given month of the given year. |
 | [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last tim… |
-| [`deepClone`](../object/deepclone/) | [object](../object/) | Creates a deep copy of an object or array |
-| [`deepMerge`](../object/deepmerge/) | [object](../object/) | Merges two or more objects deeply. |
 | [`DeepPartial`](../type/deeppartial/) | [type](../type/) | Recursively makes all properties of T optional, including nested objects and array elements. |
 | [`DeepWritable`](../type/deepwritable/) | [type](../type/) | Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions. |
 | [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last regist… |
 | [`delay`](../promise/delay/) | [promise](../promise/) | Creates a promise that resolves after specified delay |
 | [`diff`](../object/diff/) | [object](../object/) | Structural object diff. |
-| [`difference`](../array/difference/) | [array](../array/) | Returns the difference between two arrays (items in first array but not in second) |
+| [`difference`](../array/difference/) | [array](../array/) | Returns the difference between two arrays (items in first array but not in second). |
 | [`difference`](../date/difference/) | [date](../date/) | Calculates the difference between two dates in the specified unit. |
 | `drop` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(n)` *(ES3)* |
 | [`eachDay`](../date/eachday/) | [date](../date/) | Returns an array of `Date` objects for each day from `start` to `end` (inclusive). |
@@ -117,7 +116,7 @@ sidebar:
 | `isDirectInstanceOf` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value.constructor === Foo` *(ES1)* |
 | [`isEmpty`](../array/isempty/) | [array](../array/) | Checks if an array is empty (has no elements). |
 | [`isEmpty`](../object/isempty/) | [object](../object/) | Checks if a plain object has no own enumerable string-keyed properties. |
-| [`isEmpty`](../string/isempty/) | [string](../string/) | Checks if a string is empty (`""`). |
+| [`isEmpty`](../string/isempty/) | [string](../string/) | Checks if a string is empty (`""`), `null`, or `undefined`. |
 | [`isEmpty`](../type/isempty/) | [type](../type/) | Checks if a value is empty. |
 | [`isError`](../type/iserror/) | [type](../type/) | Checks if a value is an Error instance. |
 | [`isEven`](../number/iseven/) | [number](../number/) | Checks if a value is an even integer. |
@@ -190,6 +189,7 @@ sidebar:
 | [`meaningPromiseOrThrow`](../promise/meaningpromiseorthrow/) | [promise](../promise/) | Returns a function that passes through meaningful data or throws an error. |
 | [`memoize`](../function/memoize/) | [function](../function/) | Returns a memoized version of the function that caches results. |
 | `merge (shallow)` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `{ ...a, ...b } or Object.assign({}, a, b)` *(ES2015)* |
+| [`mergeDeep`](../object/mergedeep/) | [object](../object/) | Merges two or more objects deeply, returning a **new** object without mutating any input. |
 | [`min`](../array/min/) | [array](../array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | `min / max` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `Math.min(...arr) / Math.max(...arr)` *(ES1)* |
 | [`negate`](../function/negate/) | [function](../function/) | Creates a function that negates the result of `predicate`. |
@@ -232,7 +232,7 @@ sidebar:
 | [`shuffle`](../array/shuffle/) | [array](../array/) | Randomly reorders elements of an array using the Fisher-Yates algorithm. |
 | [`slugify`](../string/slugify/) | [string](../string/) | Converts a string into a URL-friendly slug. |
 | [`snakeCase`](../string/snakecase/) | [string](../string/) | Converts a string to snake_case. |
-| `sort (basic comparator)` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `(a, b) => a - b  /  a.localeCompare(b)` *(ES1)* |
+| `sort (immutable)` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(compareFn?)` *(ES2023)* |
 | `sortBy / orderBy` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(fn?)` *(ES2023)* |
 | [`sortNumberAscFn`](../array/sortnumberascfn/) | [array](../array/) | Sort numbers in ascending order |
 | [`sortNumberDescFn`](../array/sortnumberdescfn/) | [array](../array/) | Sort numbers in descending order |
@@ -273,7 +273,7 @@ sidebar:
 | [`tryit`](../promise/tryit/) | [promise](../promise/) | Wraps a function so it never throws. |
 | `TypedArrays (isInt8Array, isFloat32Array, ...)` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof Int8Array / Float32Array / ...` *(ES2015)* |
 | `union` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |
-| [`unique`](../array/unique/) | [array](../array/) | Removes duplicate values from an array |
+| [`unique`](../array/unique/) | [array](../array/) | Removes duplicate values from an array. |
 | `until / since (difference)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.prototype.until(other) / .since(other)` *(Temporal (Stage 3))* |
 | [`unzip`](../array/unzip/) | [array](../array/) | Splits an array of tuples into separate arrays, one per position. |
 | [`uuid7`](../id/uuid7/) | [id](../id/) | Generates a UUID v7 string (RFC 9562). |

@@ -5,6 +5,7 @@ sidebar:
 ---
 
 Checks if a plain object has no own enumerable string-keyed properties.
+`null` and `undefined` are treated as empty objects and return `true`.
 
 Symbol-keyed properties are not counted. Use `Object.getOwnPropertySymbols`
 separately if symbol keys matter for your use case.
@@ -21,18 +22,18 @@ import { isEmpty } from '@helpers4/object';
 
 
 ```ts
-isEmpty(value: Record<PropertyKey, unknown>): boolean
+isEmpty(value: Record<PropertyKey, unknown> | null | undefined): boolean
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `Record<PropertyKey, unknown>` | The object to check |
+| `value` | `Record<PropertyKey, unknown> \| null \| undefined` | The object to check |
 
 ## Returns
 
-`boolean` — `true` if the object has no own enumerable string-keyed properties
+`boolean` — `true` if the object has no own enumerable string-keyed properties, or if `value` is `null`/`undefined`
 
 ## Examples
 

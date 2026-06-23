@@ -9,6 +9,7 @@ Returns a new array with all occurrences of the given values removed.
 Unlike `difference`, which operates on two arrays as set operands, `without`
 uses a variadic API suited for removing known sentinel values inline.
 Uses `SameValueZero` equality (same as `Array.prototype.includes`).
+`null` and `undefined` are treated as empty arrays and return `[]`.
 
 > Available since v2.0.0
 
@@ -22,14 +23,14 @@ import { without } from '@helpers4/array';
 
 
 ```ts
-without<T>(array: readonly T[], values: T[]): T[]
+without<T>(array: readonly T[] | null | undefined, values: T[]): T[]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly T[]` | The source array. |
+| `array` | `readonly T[] \| null \| undefined` | The source array. |
 | `values` | `T[]` | One or more values to exclude from the result. |
 
 ## Returns

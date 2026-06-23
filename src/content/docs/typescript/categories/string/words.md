@@ -5,6 +5,7 @@ sidebar:
 ---
 
 Splits a string into an array of words.
+`null` and `undefined` return `[]`.
 
 Handles camelCase, PascalCase, SCREAMING_SNAKE_CASE, kebab-case,
 snake_case, and regular whitespace-separated text. Numbers are
@@ -22,14 +23,14 @@ import { words } from '@helpers4/string';
 
 
 ```ts
-words(str: string): string[]
+words(str: string | null | undefined): string[]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `str` | `string` | The string to split into words. |
+| `str` | `string \| null \| undefined` | The string to split into words. |
 
 ## Returns
 

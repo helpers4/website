@@ -5,6 +5,7 @@ sidebar:
 ---
 
 Checks if an array is non-empty (has at least one element).
+`null` and `undefined` are treated as empty arrays and return `false`.
 
 > Available since v2.0.3
 
@@ -18,18 +19,18 @@ import { isNonEmpty } from '@helpers4/array';
 
 
 ```ts
-isNonEmpty<T>(value: readonly T[]): value is readonly [T, T]
+isNonEmpty<T>(value: readonly T[] | null | undefined): value is readonly [T, T]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `readonly T[]` | The array to check |
+| `value` | `readonly T[] \| null \| undefined` | The array to check |
 
 ## Returns
 
-`value is readonly [T, T]` — `true` if the array has at least one element
+`value is readonly [T, T]` — `true` if the array has at least one element; `false` for empty, `null`, or `undefined`
 
 ## Examples
 

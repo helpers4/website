@@ -5,6 +5,7 @@ sidebar:
 ---
 
 Checks if an array is empty (has no elements).
+`null` and `undefined` are treated as empty arrays and return `true`.
 
 > Available since v2.0.3
 
@@ -18,18 +19,18 @@ import { isEmpty } from '@helpers4/array';
 
 
 ```ts
-isEmpty(value: readonly unknown[]): value is readonly never[]
+isEmpty(value: readonly unknown[] | null | undefined): value is readonly never[] | null | undefined
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `readonly unknown[]` | The array to check |
+| `value` | `readonly unknown[] \| null \| undefined` | The array to check |
 
 ## Returns
 
-`value is readonly never[]` — `true` if the array has no elements
+`value is readonly never[] | null | undefined` — `true` if the array has no elements, or if `value` is `null`/`undefined`
 
 ## Examples
 
@@ -43,17 +44,18 @@ isEmpty([1, 2, 3]) // => false
 isEmpty([null])    // => false  (null is still an element)
 ```
 
-### Branch on empty array with type narrowing
+### Guard before accessing first element
 
-In the true branch, the type narrows to never[], ensuring no element access.
+Use isEmpty as an early-return guard for arrays, null, and undefined; the false branch is safely non-empty.
 
 ```ts
-function first<T>(arr: T[]): T | undefined {
+function first<T>(arr: T[] | null | undefined): T | undefined {
   if (isEmpty(arr)) return undefined;
-  return arr[0]; // TypeScript knows arr is non-empty here
+  return arr[0];
 }
-first([])      // => undefined
-first([1, 2])  // => 1
+first([])        // => undefined
+first(null)      // => undefined
+first([1, 2])    // => 1
 ```
 
 :::caution[Name conflict]

@@ -6,6 +6,9 @@ sidebar:
 
 Groups the elements of an array by the key returned by `keyFn` and returns a
 record mapping each key to the number of matching elements.
+`null` and `undefined` are treated as empty arrays and return `{}`.
+Items whose computed key is a prototype-polluting string (`__proto__`,
+`constructor`, `prototype`) are silently skipped.
 
 > Available since v2.0.0
 
@@ -19,19 +22,20 @@ import { countBy } from '@helpers4/array';
 
 
 ```ts
-countBy<T, K extends PropertyKey>(array: readonly T[], keyFn: function): Partial<Record<K, number>>
+countBy<T, K extends PropertyKey>(array: readonly T[] | null | undefined, keyFn: function): Partial<Record<Exclude<K, UnsafeKey>, number>>
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly T[]` | The array to count. |
+| `array` | `readonly T[] \| null \| undefined` | The array to count. |
 | `keyFn` | `function` | A function that returns the grouping key for each element. |
 
 ## Returns
 
-`Partial<Record<K, number>>` — A `Partial<Record<K, number>>` where each key maps to its element count.
+`Partial<Record<Exclude<K, UnsafeKey>, number>>` — A `Partial<Record<K, number>>` where each key maps to its element count.
+  Prototype-polluting keys (`__proto__`, `constructor`, `prototype`) are never present.
 
 ## Examples
 

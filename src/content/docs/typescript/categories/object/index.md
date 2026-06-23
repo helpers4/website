@@ -11,9 +11,8 @@ Utility functions for working with object operations.
 
 | Function | Description |
 |----------|-------------|
+| [`cloneDeep`](./clonedeep/) | Creates a deep copy of an object or array. |
 | [`compact`](./compact/) | Removes all entries with falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an object. |
-| [`deepClone`](./deepclone/) | Creates a deep copy of an object or array |
-| [`deepMerge`](./deepmerge/) | Merges two or more objects deeply. |
 | [`diff`](./diff/) | Structural object diff. |
 | [`equalsDeep`](./equalsdeep/) | Recursive structural object equality. |
 | [`equalsShallow`](./equalsshallow/) | One-level (shallow) object equality. |
@@ -26,6 +25,7 @@ Utility functions for working with object operations.
 | `keys / values` | <span class="badge badge--secondary">native JS</span> `Object.keys() / Object.values()` *(ES2017)* |
 | [`map`](./map/) | Transforms the values and/or keys of a plain object in a single pass. |
 | `merge (shallow)` | <span class="badge badge--secondary">native JS</span> `{ ...a, ...b } or Object.assign({}, a, b)` *(ES2015)* |
+| [`mergeDeep`](./mergedeep/) | Merges two or more objects deeply, returning a **new** object without mutating any input. |
 | [`omit`](./omit/) | Creates a new object without the specified keys. |
 | [`pick`](./pick/) | Creates a new object with only the specified keys. |
 | [`removeUndefinedNull`](./removeundefinednull/) | Remove null and undefined values from an object. |

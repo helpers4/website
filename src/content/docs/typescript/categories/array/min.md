@@ -7,6 +7,7 @@ sidebar:
 Returns the minimum value in an array using a loop instead of spread,
 avoiding the call stack overflow that occurs with `Math.min(...array)`
 for very large arrays (> ~65 000 elements).
+`null` and `undefined` are treated as empty arrays and return `undefined`.
 
 > Available since v2.0.2
 
@@ -20,18 +21,18 @@ import { min } from '@helpers4/array';
 
 
 ```ts
-min(array: readonly number[]): number | undefined
+min(array: readonly number[] | null | undefined): number | undefined
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly number[]` | Array of numbers |
+| `array` | `readonly number[] \| null \| undefined` | Array of numbers |
 
 ## Returns
 
-`number | undefined` — Minimum value, `undefined` for empty arrays, or `NaN` if any element is `NaN`
+`number | undefined` — Minimum value, `undefined` for empty arrays, `null`, `undefined`, or `NaN` if any element is `NaN`
 
 ## Examples
 

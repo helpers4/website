@@ -4,7 +4,8 @@ sidebar:
   label: "chunk"
 ---
 
-Chunks an array into smaller arrays of specified size
+Chunks an array into smaller arrays of specified size.
+`null` and `undefined` are treated as empty arrays and return `[]`.
 
 > Available since v1.9.0
 
@@ -18,14 +19,14 @@ import { chunk } from '@helpers4/array';
 
 
 ```ts
-chunk<T>(array: T[], size: number): T[][]
+chunk<T>(array: readonly T[] | null | undefined, size: number): T[][]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `T[]` | The array to chunk |
+| `array` | `readonly T[] \| null \| undefined` | The array to chunk |
 | `size` | `number` | The size of each chunk |
 
 ## Returns

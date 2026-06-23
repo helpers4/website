@@ -8,6 +8,9 @@ Groups an array of items by a key derived from each item.
 
 A thin, typed wrapper around `Object.groupBy` (ES2024) that works on
 older targets and provides stricter return-type inference.
+`null` and `undefined` are treated as empty arrays and return `{}`.
+Items whose computed key is a prototype-polluting string (`__proto__`,
+`constructor`, `prototype`) are silently skipped.
 
 > Available since v2.0.0
 
@@ -21,14 +24,14 @@ import { groupBy } from '@helpers4/object';
 
 
 ```ts
-groupBy<T, K extends PropertyKey>(items: readonly T[], keyFn: function): Partial<Record<K, T[]>>
+groupBy<T, K extends PropertyKey>(items: readonly T[] | null | undefined, keyFn: function): Partial<Record<K, T[]>>
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `items` | `readonly T[]` | The array to group |
+| `items` | `readonly T[] \| null \| undefined` | The array to group |
 | `keyFn` | `function` | Function that returns the group key for each item |
 
 ## Returns

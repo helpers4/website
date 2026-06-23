@@ -5,6 +5,7 @@ sidebar:
 ---
 
 Simple helper that check if two lists shared at least an item in common.
+`null` and `undefined` are treated as empty arrays and return `false`.
 
 > Available since v1.0.0
 
@@ -18,15 +19,15 @@ import { intersects } from '@helpers4/array';
 
 
 ```ts
-intersects<T>(a: readonly T[], b: readonly T[]): boolean
+intersects<T>(a: readonly T[] | null | undefined, b: readonly T[] | null | undefined): boolean
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `a` | `readonly T[]` | One list |
-| `b` | `readonly T[]` | Another list |
+| `a` | `readonly T[] \| null \| undefined` | One list |
+| `b` | `readonly T[] \| null \| undefined` | Another list |
 
 ## Returns
 

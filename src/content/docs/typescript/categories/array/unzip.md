@@ -20,14 +20,14 @@ import { unzip } from '@helpers4/array';
 
 
 ```ts
-unzip<A, B>(pairs: readonly [A, B][]): [A[], B[]]
+unzip<A, B>(pairs: readonly [A, B][] | null | undefined): [A[], B[]]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `pairs` | `readonly [A, B][]` | Array of 2-tuples to unzip |
+| `pairs` | `readonly [A, B][] \| null \| undefined` | Array of 2-tuples to unzip |
 
 ## Returns
 

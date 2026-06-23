@@ -6,18 +6,19 @@ sidebar:
 
 Sets a value in an object at the given path, creating intermediate objects as needed.
 
-**Three path forms are supported:**
+**Two path forms are supported:**
 
-1. **Dot notation** (`string`) — segments split on `.` are kept as-is string keys.
-   `"layers.1.name"` → keys `["layers", "1", "name"]` (all strings, including `"1"`).
+1. **String path** — dot notation and bracket notation, mixed freely.
+   - Dot segments are always string keys: `'layers.1.name'` → keys `['layers', '1', 'name']`.
+   - Bracket segments are always number keys: `'layers[1].name'` → keys `['layers', 1, 'name']`.
+   - String literal paths give **full compile-time type inference** on the return type.
+   - Dynamic (non-literal) strings return `T` (same object type).
 
-2. **Bracket notation** (`string`) — `[n]` segments are parsed as numeric keys.
-   `"layers[1].name"` → keys `["layers", 1, "name"]` (index `1` becomes a number).
-   Dot and bracket can be mixed freely: `"a[0].b[2].c"`.
+2. **Key array** (`PropertyKey[]`) — explicit array of `string | number | symbol` keys,
+   no parsing performed. Enables symbol-keyed access and precise return-type inference.
 
-3. **Key array** (`PropertyKey[]`) — explicit array of `string | number | symbol` keys,
-   no parsing performed. Enables full key-type control, including symbols:
-   `["layers", 1, Symbol('id')]`.
+Both forms support **all objects** (plain objects, arrays, class instances).
+Symbol keys are only reachable via the key-array form.
 
 Intermediate nodes that are absent, `null`, or not an object are replaced with `{}`.
 Any path containing a string segment equal to `__proto__`, `constructor`, or `prototype`
@@ -35,20 +36,20 @@ import { set } from '@helpers4/object';
 
 
 ```ts
-set(obj: Record<string, unknown>, path: string, value: unknown): Record<string, unknown>
+set<T extends object, P extends string | readonly PropertyKey[], V extends unknown>(obj: T, path: P, value: V): conditional
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `obj` | `Record<string, unknown>` | The object to mutate |
-| `path` | `string` | Dot/bracket-notation string or explicit `PropertyKey[]` |
-| `value` | `unknown` | Value to assign at the path |
+| `obj` | `T` | The object to mutate |
+| `path` | `P` | Dot/bracket-notation string literal or explicit `PropertyKey[]` |
+| `value` | `V` | Value to assign at the path |
 
 ## Returns
 
-`Record<string, unknown>` — The mutated object (same reference)
+`conditional` — The mutated object (same reference, narrowed type)
 
 ## Examples
 

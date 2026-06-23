@@ -6,6 +6,7 @@ sidebar:
 
 Compute the intersection of two arrays, meaning the elements that are present
 in both arrays.
+`null` and `undefined` are treated as empty arrays and return `[]`.
 
 > Available since v1.0.0
 
@@ -19,15 +20,15 @@ import { intersection } from '@helpers4/array';
 
 
 ```ts
-intersection<T>(a: readonly T[], b: readonly T[]): T[]
+intersection<T>(a: readonly T[] | null | undefined, b: readonly T[] | null | undefined): T[]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `a` | `readonly T[]` | First array |
-| `b` | `readonly T[]` | Second array |
+| `a` | `readonly T[] \| null \| undefined` | First array |
+| `b` | `readonly T[] \| null \| undefined` | Second array |
 
 ## Returns
 

@@ -6,6 +6,7 @@ sidebar:
 
 Randomly reorders elements of an array using the Fisher-Yates algorithm.
 Returns a new array without mutating the original.
+`null` and `undefined` are treated as empty arrays and return `[]`.
 
 > Available since v2.0.0
 
@@ -19,14 +20,14 @@ import { shuffle } from '@helpers4/array';
 
 
 ```ts
-shuffle<T>(array: readonly T[]): T[]
+shuffle<T>(array: readonly T[] | null | undefined): T[]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly T[]` | The array to shuffle |
+| `array` | `readonly T[] \| null \| undefined` | The array to shuffle |
 
 ## Returns
 

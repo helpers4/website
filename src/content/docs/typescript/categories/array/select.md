@@ -24,14 +24,14 @@ import { select } from '@helpers4/array';
 
 
 ```ts
-select<T, U>(array: readonly T[], mapper: function, condition: function): U[]
+select<T, U>(array: readonly T[] | null | undefined, mapper: function, condition: function): U[]
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly T[]` | The array to process |
+| `array` | `readonly T[] \| null \| undefined` | The array to process |
 | `mapper` | `function` | Transforms each item that passes the condition |
 | `condition` | `function` | Determines which items to include; defaults to keeping all items |
 

@@ -5,9 +5,10 @@ sidebar:
 ---
 
 Checks if a string is non-empty (has at least one character).
+`null` and `undefined` are considered empty and return `false`.
 
 Whitespace-only strings are considered non-empty.
-Use `isNonEmpty(value.trim())` if you need to exclude blank strings.
+Use `isNonEmpty(value?.trim())` if you need to exclude blank strings.
 
 > Available since v2.0.3
 
@@ -21,18 +22,19 @@ import { isNonEmpty } from '@helpers4/string';
 
 
 ```ts
-isNonEmpty(value: string): boolean
+isNonEmpty(value: string | null | undefined): value is string
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `string` | The string to check |
+| `value` | `string \| null \| undefined` | The string to check |
 
 ## Returns
 
-`boolean` — `true` if the string has at least one character
+`value is string` — `true` if the string has at least one character; `false` for `""`, `null`, or `undefined`.
+Acts as a type guard: the `if` branch narrows `string | null | undefined` to `string`.
 
 ## Examples
 

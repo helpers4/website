@@ -6,6 +6,7 @@ sidebar:
 
 Checks if a string is not blank — non-empty and contains at least one
 non-whitespace character.
+`null` and `undefined` are considered blank and return `false`.
 
 Uses `String.prototype.trim()` internally. See `isBlank` for the full list
 of characters considered whitespace (includes non-breaking space, en/em space,
@@ -23,18 +24,18 @@ import { isNotBlank } from '@helpers4/string';
 
 
 ```ts
-isNotBlank(value: string): boolean
+isNotBlank(value: string | null | undefined): boolean
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `string` | The string to check |
+| `value` | `string \| null \| undefined` | The string to check |
 
 ## Returns
 
-`boolean` — `true` if the string has at least one non-whitespace character
+`boolean` — `true` if the string has at least one non-whitespace character; `false` for blank, `null`, or `undefined`
 
 ## Examples
 

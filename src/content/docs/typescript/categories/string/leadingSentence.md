@@ -5,6 +5,7 @@ sidebar:
 ---
 
 Extracts the leading sentence from a string.
+`null` and `undefined` are passed through unchanged.
 
 A sentence boundary is detected at the first occurrence of `.`, `?`, `!`,
 `…`, or `;` followed by whitespace or end of string. Newlines are collapsed
@@ -40,7 +41,7 @@ leadingSentence(input: string): string
 
 ## Returns
 
-`string` — The first sentence, including its terminal character
+`string` — The first sentence, including its terminal character; or `null`/`undefined` if input is nullish
 
 ## Examples
 
