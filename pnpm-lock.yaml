@@ -15,23 +15,23 @@ importers:
     dependencies:
       '@astrojs/starlight':
         specifier: ^0.40.0
-        version: 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
+        version: 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
       astro:
         specifier: ^6.4.8
-        version: 6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
+        version: 6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
       starlight-sidebar-topics:
         specifier: ^0.8.0
-        version: 0.8.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))
+        version: 0.8.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))
       starlight-theme-nova:
         specifier: ^0.12.0
-        version: 0.12.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))(satteri@0.9.3)(typescript@5.9.3)
+        version: 0.12.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))(satteri@0.9.3)(typescript@5.9.3)
     devDependencies:
       '@pagefind/default-ui':
         specifier: 1.5.2
         version: 1.5.2
       '@types/node':
-        specifier: ^26.0.0
-        version: 26.0.0
+        specifier: ^26.1.0
+        version: 26.1.0
 
 packages:
 
@@ -812,8 +812,8 @@ packages:
   '@types/node@24.13.2':
     resolution: {integrity: sha512-fRa09kZTgu8o71KFcDjUFuc7F+dEbZYZmkI0mg5YBTRs0yMKjYHsq/c0urDKeDb+D5qVgXOdFcuu+DZPKOITwA==}
 
-  '@types/node@26.0.0':
-    resolution: {integrity: sha512-vf2YFi1iY9lHGwNJMs01biZFbKJkrZR1T6/MlzjhJLPdntOHLhTrDSnSVcdtvjihi4VQNlrFRIxLsDBlQpAipA==}
+  '@types/node@26.1.0':
+    resolution: {integrity: sha512-O0A1G3xPGy4w7AgQdAQYUlQ+BKk2Oovw8eRpofyp5KdBZULnbe+WqaOVNrm705SHphCiG4XHsACrSmPu1f+Kgw==}
 
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
@@ -2083,13 +2083,13 @@ snapshots:
       github-slugger: 2.0.0
       satteri: 0.9.3
 
-  '@astrojs/mdx@6.0.3(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))':
+  '@astrojs/mdx@6.0.3(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))':
     dependencies:
       '@astrojs/internal-helpers': 0.10.0
       '@astrojs/markdown-remark': 7.2.0
       '@mdx-js/mdx': 3.1.1
       acorn: 8.17.0
-      astro: 6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
+      astro: 6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
       es-module-lexer: 2.1.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -2113,17 +2113,17 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.4.3
 
-  '@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)':
+  '@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)':
     dependencies:
       '@astrojs/markdown-remark': 7.2.0
-      '@astrojs/mdx': 6.0.3(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))
+      '@astrojs/mdx': 6.0.3(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))
       '@astrojs/sitemap': 3.7.3
       '@pagefind/default-ui': 1.5.2
       '@types/hast': 3.0.4
       '@types/js-yaml': 4.0.9
       '@types/mdast': 4.0.4
-      astro: 6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
-      astro-expressive-code: 0.43.1(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))
+      astro: 6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
+      astro-expressive-code: 0.43.1(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.3
       hast-util-select: 6.0.4
@@ -2727,13 +2727,13 @@ snapshots:
     dependencies:
       undici-types: 7.18.2
 
-  '@types/node@26.0.0':
+  '@types/node@26.1.0':
     dependencies:
       undici-types: 8.3.0
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 26.0.0
+      '@types/node': 26.1.0
 
   '@types/unist@2.0.11': {}
 
@@ -2792,14 +2792,14 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-expressive-code@0.43.1(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)):
+  astro-expressive-code@0.43.1(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)):
     dependencies:
-      astro: 6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
+      astro: 6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
       rehype-expressive-code: 0.43.1
 
   astro-theme-toggle@0.8.1: {}
 
-  astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0):
+  astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0):
     dependencies:
       '@astrojs/compiler': 4.0.0
       '@astrojs/internal-helpers': 0.10.0
@@ -2851,8 +2851,8 @@ snapshots:
       unist-util-visit: 5.1.0
       unstorage: 1.17.5
       vfile: 6.0.3
-      vite: 7.3.5(@types/node@26.0.0)(jiti@1.21.7)(terser@5.46.0)
-      vitefu: 1.1.3(vite@7.3.5(@types/node@26.0.0)(jiti@1.21.7)(terser@5.46.0))
+      vite: 7.3.5(@types/node@26.1.0)(jiti@1.21.7)(terser@5.46.0)
+      vitefu: 1.1.3(vite@7.3.5(@types/node@26.1.0)(jiti@1.21.7)(terser@5.46.0))
       xxhash-wasm: 1.1.0
       yargs-parser: 22.0.0
       zod: 4.4.3
@@ -4309,12 +4309,12 @@ snapshots:
 
   space-separated-tokens@2.0.2: {}
 
-  starlight-sidebar-topics@0.8.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)):
+  starlight-sidebar-topics@0.8.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)):
     dependencies:
-      '@astrojs/starlight': 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
+      '@astrojs/starlight': 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
       picomatch: 4.0.4
 
-  starlight-theme-nova@0.12.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))(satteri@0.9.3)(typescript@5.9.3):
+  starlight-theme-nova@0.12.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3))(satteri@0.9.3)(typescript@5.9.3):
     dependencies:
       '@aria-ui/core': 0.2.1
       '@aria-ui/utils': 0.1.6
@@ -4330,7 +4330,7 @@ snapshots:
       satteri-custom-header-id: 0.1.0(satteri@0.9.3)
       shiki-twoslash-renderer: 0.3.5(typescript@5.9.3)
     optionalDependencies:
-      '@astrojs/starlight': 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.0.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
+      '@astrojs/starlight': 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.1.0)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
     transitivePeerDependencies:
       - satteri
       - supports-color
@@ -4499,7 +4499,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite@7.3.5(@types/node@26.0.0)(jiti@1.21.7)(terser@5.46.0):
+  vite@7.3.5(@types/node@26.1.0)(jiti@1.21.7)(terser@5.46.0):
     dependencies:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.4)
@@ -4508,14 +4508,14 @@ snapshots:
       rollup: 4.62.0
       tinyglobby: 0.2.17
     optionalDependencies:
-      '@types/node': 26.0.0
+      '@types/node': 26.1.0
       fsevents: 2.3.3
       jiti: 1.21.7
       terser: 5.46.0
 
-  vitefu@1.1.3(vite@7.3.5(@types/node@26.0.0)(jiti@1.21.7)(terser@5.46.0)):
+  vitefu@1.1.3(vite@7.3.5(@types/node@26.1.0)(jiti@1.21.7)(terser@5.46.0)):
     optionalDependencies:
-      vite: 7.3.5(@types/node@26.0.0)(jiti@1.21.7)(terser@5.46.0)
+      vite: 7.3.5(@types/node@26.1.0)(jiti@1.21.7)(terser@5.46.0)
 
   web-namespaces@2.0.1: {}
 
