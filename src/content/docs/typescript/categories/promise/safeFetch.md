@@ -20,14 +20,14 @@ import { safeFetch } from '@helpers4/promise';
 
 
 ```ts
-safeFetch<T>(input: URL | RequestInfo, init?: RequestInit, options: SafeFetchOptions): Promise<T | null>
+safeFetch<T>(input: RequestInfo | URL, init?: RequestInit, options: SafeFetchOptions): Promise<T | null>
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `input` | `URL \| RequestInfo` | URL or `Request` object passed to `fetch` |
+| `input` | `RequestInfo \| URL` | URL or `Request` object passed to `fetch` |
 | `init` | `RequestInit` | Optional `RequestInit` options passed to `fetch` *(optional)* |
 | `options` | `SafeFetchOptions` | Parsing options (default: `{ parse: 'json' }`) |
 

@@ -5,8 +5,6 @@ sidebar:
 ---
 
 Creates a new object with only the specified keys.
-Keys that are prototype-polluting strings (`__proto__`, `constructor`, `prototype`) are
-silently skipped.
 
 > Available since v2.0.0
 
