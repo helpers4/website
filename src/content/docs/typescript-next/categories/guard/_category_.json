@@ -1,0 +1,10 @@
+{
+  "label": "Guard",
+  "position": 6,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "doc",
+    "id": "categories/guard/index"
+  }
+}
