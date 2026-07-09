@@ -44,6 +44,9 @@ export default defineConfig({
             items: [
               { slug: 'typescript-next' },
               { slug: 'typescript-next/getting-started' },
+              { label: 'Categories', items: [{ autogenerate: { directory: 'typescript-next/categories' } }] },
+              { label: 'Reference', items: [{ autogenerate: { directory: 'typescript-next/reference' } }] },
+              { label: 'Comparisons', items: [{ autogenerate: { directory: 'typescript-next/comparisons' } }] },
               { label: 'Legal', items: [{ autogenerate: { directory: 'typescript-next/legal' } }] },
             ],
           },

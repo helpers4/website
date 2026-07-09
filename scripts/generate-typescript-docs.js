@@ -16,11 +16,18 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
-const typescriptRepoPath = path.join(rootDir, '..', 'typescript');
-const buildPath = path.join(typescriptRepoPath, 'build');
-const docsOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'categories');
 
-console.log('📚 Generating TypeScript API documentation...\n');
+// DOCS_TARGET selects which content/docs/<slug> tree to (re)generate — one slot per
+// concurrently documented version line (e.g. "typescript" for the current stable line,
+// "typescript-next" for the next major line). SOURCE_BRANCH controls which typescript
+// repo branch "View source on GitHub" links point to.
+const DOCS_TARGET = process.env.DOCS_TARGET || 'typescript';
+const SOURCE_BRANCH = process.env.SOURCE_BRANCH || 'main';
+const typescriptRepoPath = process.env.TYPESCRIPT_REPO_PATH || path.join(rootDir, '..', 'typescript');
+const buildPath = path.join(typescriptRepoPath, 'build');
+const docsOutputPath = path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'categories');
+
+console.log(`📚 Generating TypeScript API documentation → ${DOCS_TARGET}/ (source: ${SOURCE_BRANCH})...\n`);
 
 if (!fs.existsSync(typescriptRepoPath)) {
   console.error('❌ TypeScript repo not found at:', typescriptRepoPath);
@@ -96,7 +103,7 @@ function nativeRow(name, native, since, forLink) {
 // Read bundle metadata (contains mutationDashboardUrl and runtimes for the current release)
 const buildMeta = readJson(path.join(buildPath, 'all', 'meta', 'build.json')) ?? {};
 const FALLBACK_MUTATION_DASHBOARD_URL =
-  'https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/main';
+  `https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/${SOURCE_BRANCH}`;
 const MUTATION_DASHBOARD_URL =
   buildMeta.mutationDashboardUrl ?? FALLBACK_MUTATION_DASHBOARD_URL;
 const RUNTIMES = buildMeta.runtimes ?? { node: '>=24.0.0', deno: 'compatible', bun: 'compatible' };
@@ -341,7 +348,7 @@ See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution 
       content += `
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/${category}/${fn.sourceFile || fn.name + '.ts'})
+[View source on GitHub](https://github.com/helpers4/typescript/blob/${SOURCE_BRANCH}/helpers/${category}/${fn.sourceFile || fn.name + '.ts'})
 `;
 
       fs.writeFileSync(path.join(categoryDir, `${fn.name}.md`), content);
@@ -394,7 +401,7 @@ See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution 
  * Generate the open-source-libraries legal page from all categories' licenses.json
  */
 function generateLegalDocs(categories) {
-  const legalDir = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'legal');
+  const legalDir = path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'legal');
 
   // Collect deps with their categories
   const depMap = new Map(); // name → { dep, categories: string[] }
@@ -447,7 +454,7 @@ ${rows}
  * Includes native alternatives (no link, "native JS" badge).
  */
 function generateAllFunctionsPage(categories) {
-  const catDir = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'categories');
+  const catDir = path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'categories');
   fs.mkdirSync(catDir, { recursive: true });
 
   const NATIVE_BADGE = '<span class="badge badge--secondary">native JS</span>';
@@ -480,7 +487,7 @@ function generateAllFunctionsPage(categories) {
   const implementedCount = rows.length - nativeCount;
 
   // Delete old location if it exists
-  const oldPath = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'reference', 'all-functions.md');
+  const oldPath = path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'reference', 'all-functions.md');
   if (fs.existsSync(oldPath)) fs.rmSync(oldPath);
 
   const content = `---
@@ -538,7 +545,7 @@ function compareSemverDesc(a, b) {
  * nameConflicts: { [functionName]: string[] } — only names with 2+ categories.
  */
 function generateNamingConflictsPage(nameConflicts) {
-  const refDir = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'reference');
+  const refDir = path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'reference');
   fs.mkdirSync(refDir, { recursive: true });
 
   const sortedNames = Object.keys(nameConflicts).sort();
@@ -644,7 +651,7 @@ See [Philosophy — Category independence](./philosophy#category-independence) f
  * Generate reference/changelog.md — helpers grouped by their @since version.
  */
 function generateChangelogPage(categories) {
-  const refDir = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'reference');
+  const refDir = path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'reference');
   fs.mkdirSync(refDir, { recursive: true });
 
   // Aggregate functions by @since version
@@ -706,7 +713,7 @@ sidebar:
  * Sync reference/contributing.md from the typescript repo's CONTRIBUTING.md.
  */
 function syncContributingPage() {
-  const refDir = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'reference');
+  const refDir = path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'reference');
   fs.mkdirSync(refDir, { recursive: true });
 
   const contributingSource = path.join(typescriptRepoPath, 'CONTRIBUTING.md');
@@ -748,7 +755,7 @@ function syncVersion() {
   const SEM_VER_RE = /[\d]+\.[\d]+\.[\d]+[\w.-]*/;
 
   const pages = [
-    path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'getting-started.md'),
+    path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'getting-started.md'),
   ];
 
   for (const page of pages) {
@@ -795,9 +802,9 @@ function syncMutationDashboardUrl() {
     /https:\/\/dashboard\.stryker-mutator\.io\/reports\/github\.com\/helpers4\/typescript\/[^\s)\]"]+/g;
 
   const pages = [
-    path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'index.md'),
-    path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'getting-started.md'),
-    path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'reference', 'philosophy.md'),
+    path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'index.md'),
+    path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'getting-started.md'),
+    path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'reference', 'philosophy.md'),
   ];
 
   for (const page of pages) {
@@ -817,7 +824,7 @@ function syncMutationDashboardUrl() {
  * package.json at build time, so it always reflects the declared minimum).
  */
 function syncRuntimeCompatibility() {
-  const page = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'getting-started.md');
+  const page = path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'getting-started.md');
   if (!fs.existsSync(page)) return;
 
   const SECTION_RE = /## Runtime Compatibility\n[\s\S]*?(?=\n##|$)/;
@@ -855,8 +862,8 @@ function fixBrokenLinks() {
   const INTERNAL_MD_LINK_RE = /\]\(([^)]*\/[^)]*\.md)\)/g;
 
   const pages = [
-    path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'index.md'),
-    path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'getting-started.md'),
+    path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'index.md'),
+    path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'getting-started.md'),
   ];
 
   for (const page of pages) {
@@ -876,7 +883,7 @@ function fixBrokenLinks() {
 
 function syncHelperCount(totalFunctions, categoryCount) {
   // intro.md — "Browse Categories" line
-  const introPage = path.join(rootDir, 'src', 'content', 'docs', 'typescript', 'index.md');
+  const introPage = path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'index.md');
   if (fs.existsSync(introPage)) {
     const BROWSE_RE = /(\*\*\[Browse Categories\]\([^)]+\)\*\* — )\d+ helpers across \d+ categories/;
     const original = fs.readFileSync(introPage, 'utf-8');
@@ -892,7 +899,7 @@ function syncHelperCount(totalFunctions, categoryCount) {
 
   // comparisons/alternatives.md — "**helpers4** | <N>" cell in the Overview table
   const comparisonPage = path.join(
-    rootDir, 'src', 'content', 'docs', 'typescript', 'comparisons', 'alternatives.md'
+    rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'comparisons', 'alternatives.md'
   );
   if (fs.existsSync(comparisonPage)) {
     const HELPERS4_ROW_RE = /(\|\s*\*\*helpers4\*\*\s*\|\s*)\d+(\s*\|)/;

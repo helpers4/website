@@ -145,9 +145,36 @@ jobs:
 
           echo "✅ TypeScript metadata prepared for v${RELEASE_VERSION}"
 
+      - name: Determine docs target
+        id: docs-target
+        env:
+          RELEASE_VERSION: ${{ github.event.client_payload.version || inputs.version }}
+        run: |
+          set -euo pipefail
+          RELEASE_VERSION="${RELEASE_VERSION#v}"
+
+          # The website owns the mapping from released version to doc slot — the
+          # typescript repo only ever tells us a version string. Any prerelease
+          # (alpha/beta/rc) is the line under development and goes to
+          # typescript-next/; a stable version updates the current typescript/ line.
+          # "View source on GitHub" links follow the matching vN branch, or main
+          # for the stable line.
+          if [[ "${RELEASE_VERSION}" == *-alpha.* || "${RELEASE_VERSION}" == *-beta.* || "${RELEASE_VERSION}" == *-rc.* ]]; then
+            DOCS_TARGET="typescript-next"
+            SOURCE_BRANCH="v${RELEASE_VERSION%%.*}"
+          else
+            DOCS_TARGET="typescript"
+            SOURCE_BRANCH="main"
+          fi
+
+          echo "docs-target=${DOCS_TARGET}" >> "$GITHUB_OUTPUT"
+          echo "source-branch=${SOURCE_BRANCH}" >> "$GITHUB_OUTPUT"
+
       - name: Generate TypeScript docs from build artifacts
         env:
           GH_WORKSPACE: ${{ github.workspace }}
+          DOCS_TARGET: ${{ steps.docs-target.outputs.docs-target }}
+          SOURCE_BRANCH: ${{ steps.docs-target.outputs.source-branch }}
         run: |
           ln -sfn /tmp/typescript "${GH_WORKSPACE}/../typescript"
           node scripts/generate-typescript-docs.js
@@ -155,13 +182,14 @@ jobs:
       - name: Commit and push updated docs
         env:
           RELEASE_VERSION: ${{ github.event.client_payload.version || inputs.version }}
+          DOCS_TARGET: ${{ steps.docs-target.outputs.docs-target }}
         run: |
           RELEASE_VERSION="${RELEASE_VERSION#v}"
           git config user.name "pushinator[bot]"
           git config user.email "pushinator[bot]@users.noreply.github.com"
-          git add src/content/docs/typescript/
+          git add "src/content/docs/${DOCS_TARGET}/"
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git commit -m "chore(lib-typescript): 🔧 update docs for v${RELEASE_VERSION}"
+          git commit -m "chore(lib-typescript): 🔧 update ${DOCS_TARGET} docs for v${RELEASE_VERSION}"
           for attempt in 1 2 3; do
             git fetch origin main
             if git rebase origin/main && git push origin HEAD:main; then
