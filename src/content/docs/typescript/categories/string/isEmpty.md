@@ -57,13 +57,12 @@ isEmpty('hi'.trim())  // => false
 ```
 
 :::caution[Name conflict]
-A helper named `isEmpty` also exists in [`@helpers4/array`](../array/isempty/), [`@helpers4/object`](../object/isempty/), [`@helpers4/type`](../type/isempty/). If you need both in the same file, rename at import with `as`:
+A helper named `isEmpty` also exists in [`@helpers4/array`](../array/isempty/), [`@helpers4/object`](../object/isempty/). If you need both in the same file, rename at import with `as`:
 
 ```ts
 import { isEmpty as isEmpty4string } from '@helpers4/string';
 import { isEmpty as isEmpty4array } from '@helpers4/array';
 import { isEmpty as isEmpty4object } from '@helpers4/object';
-import { isEmpty as isEmpty4type } from '@helpers4/type';
 ```
 
 See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.

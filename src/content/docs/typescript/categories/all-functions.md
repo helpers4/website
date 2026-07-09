@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**230** implemented helpers + **44** covered by native JavaScript APIs, sorted alphabetically.
+**241** implemented helpers + **44** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -17,6 +17,7 @@ sidebar:
 | [`addMonths`](../date/addmonths/) | [date](../date/) | Adds months to a date. |
 | [`addYears`](../date/addyears/) | [date](../date/) | Adds years to a date. |
 | [`analyzeCommits`](../commit/analyzecommits/) | [commit](../commit/) | Analyses a list of commits to suggest a semantic version bump. |
+| [`Brand`](../type/brand/) | [type](../type/) | Brands a base type `T` with a phantom tag `B` to create a nominal type. |
 | [`buildConventionalCommitRegex`](../commit/buildconventionalcommitregex/) | [commit](../commit/) | Builds a regular expression matching the **subject line** of a Conventional Commits message. |
 | [`buildStatusTable`](../ci/buildstatustable/) | [ci](../ci/) | Builds a Markdown table body from a map of job names to CI/CD statuses. |
 | [`camelCase`](../string/camelcase/) | [string](../string/) | Converts kebab-case to camelCase |
@@ -44,11 +45,11 @@ sidebar:
 | [`createSortByNumberFn`](../array/createsortbynumberfn/) | [array](../array/) | Creates a sort function for objects by number property. |
 | [`createSortByStringFn`](../array/createsortbystringfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties. |
 | [`curry`](../function/curry/) | [function](../function/) | Transforms a multi-argument function into a chain of single-argument functions (Haskell-style currying). |
-| [`dateToISOString`](../date/datetoisostring/) | [date](../date/) | Formats a date to ISO string or returns null. |
-| [`daysDifference`](../date/daysdifference/) | [date](../date/) | Gets the difference in days between two dates. |
 | [`daysInMonth`](../date/daysinmonth/) | [date](../date/) | Returns the number of days in the given month of the given year. |
 | [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last tim… |
+| [`DeepGet`](../type/deepget/) | [type](../type/) | Resolves the value type at a given `Path` within `T`. |
 | [`DeepPartial`](../type/deeppartial/) | [type](../type/) | Recursively makes all properties of T optional, including nested objects and array elements. |
+| [`DeepSet`](../type/deepset/) | [type](../type/) | Produces the type of `T` after replacing the value at `Path` with `V`. |
 | [`DeepWritable`](../type/deepwritable/) | [type](../type/) | Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions. |
 | [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last regist… |
 | [`delay`](../promise/delay/) | [promise](../promise/) | Creates a promise that resolves after specified delay |
@@ -97,41 +98,40 @@ sidebar:
 | [`intersection`](../array/intersection/) | [array](../array/) | Compute the intersection of two arrays, meaning the elements that are present in both arrays. |
 | [`intersects`](../array/intersects/) | [array](../array/) | Simple helper that check if two lists shared at least an item in common. |
 | [`invert`](../object/invert/) | [object](../object/) | Returns a new object with keys and values swapped. |
-| [`isArray`](../type/isarray/) | [type](../type/) | Checks if a value is an array. |
-| [`isArrayBuffer`](../type/isarraybuffer/) | [type](../type/) | Checks if a value is an ArrayBuffer instance. |
-| [`isArrayLike`](../type/isarraylike/) | [type](../type/) | Checks if a value is array-like: has a non-negative integer `length` property. |
-| [`isAsyncFunction`](../type/isasyncfunction/) | [type](../type/) | Checks if a value is an async function. |
-| [`isAsyncGenerator`](../type/isasyncgenerator/) | [type](../type/) | Checks if a value is an async generator object (the result of calling an `async function*`). |
-| [`isAsyncGeneratorFunction`](../type/isasyncgeneratorfunction/) | [type](../type/) | Checks if a value is an async generator function (an `async function*` declaration or expression). |
-| [`isAsyncIterable`](../type/isasynciterable/) | [type](../type/) | Checks if a value implements the async iterable protocol. |
-| [`isBigInt`](../type/isbigint/) | [type](../type/) | Checks if a value is a bigint. |
+| [`isArray`](../guard/isarray/) | [guard](../guard/) | Checks if a value is an array. |
+| [`isArrayBuffer`](../guard/isarraybuffer/) | [guard](../guard/) | Checks if a value is an ArrayBuffer instance. |
+| [`isArrayLike`](../guard/isarraylike/) | [guard](../guard/) | Checks if a value is array-like: has a non-negative integer `length` property. |
+| [`isAsyncFunction`](../guard/isasyncfunction/) | [guard](../guard/) | Checks if a value is an async function. |
+| [`isAsyncGenerator`](../guard/isasyncgenerator/) | [guard](../guard/) | Checks if a value is an async generator object (the result of calling an `async function*`). |
+| [`isAsyncGeneratorFunction`](../guard/isasyncgeneratorfunction/) | [guard](../guard/) | Checks if a value is an async generator function (an `async function*` declaration or expression). |
+| [`isAsyncIterable`](../guard/isasynciterable/) | [guard](../guard/) | Checks if a value implements the async iterable protocol. |
+| [`isBigInt`](../guard/isbigint/) | [guard](../guard/) | Checks if a value is a bigint. |
 | [`isBlank`](../string/isblank/) | [string](../string/) | Checks if a string is blank — empty or contains only whitespace characters. |
-| [`isBlob`](../type/isblob/) | [type](../type/) | Checks if a value is a Blob instance. |
-| [`isBoolean`](../type/isboolean/) | [type](../type/) | Checks if a value is a boolean. |
+| [`isBlob`](../guard/isblob/) | [guard](../guard/) | Checks if a value is a Blob instance. |
+| [`isBoolean`](../guard/isboolean/) | [guard](../guard/) | Checks if a value is a boolean. |
 | [`isBuffer`](../node/isbuffer/) | [node](../node/) | Checks if a value is a Node.js Buffer instance. |
 | [`isBusinessDay`](../date/isbusinessday/) | [date](../date/) | Checks whether a date falls on a business day (i.e. |
 | [`isConventionalCommit`](../commit/isconventionalcommit/) | [commit](../commit/) | Checks whether a commit message's subject line follows the Conventional Commits format constrained by the given options. |
-| [`isDate`](../type/isdate/) | [type](../type/) | Checks if a value is a Date instance. |
-| [`isDefined`](../type/isdefined/) | [type](../type/) | Checks if a value is defined (not undefined nor null). |
+| [`isDate`](../guard/isdate/) | [guard](../guard/) | Checks if a value is a Date instance. |
+| [`isDefined`](../guard/isdefined/) | [guard](../guard/) | Checks if a value is defined (not undefined nor null). |
 | `isDirectInstanceOf` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value.constructor === Foo` *(ES1)* |
 | [`isEmpty`](../array/isempty/) | [array](../array/) | Checks if an array is empty (has no elements). |
 | [`isEmpty`](../object/isempty/) | [object](../object/) | Checks if a plain object has no own enumerable string-keyed properties. |
 | [`isEmpty`](../string/isempty/) | [string](../string/) | Checks if a string is empty (`""`), `null`, or `undefined`. |
-| [`isEmpty`](../type/isempty/) | [type](../type/) | Checks if a value is empty. |
-| [`isError`](../type/iserror/) | [type](../type/) | Checks if a value is an Error instance. |
+| [`isError`](../guard/iserror/) | [guard](../guard/) | Checks if a value is an Error instance. |
 | [`isEven`](../number/iseven/) | [number](../number/) | Checks if a value is an even integer. |
-| [`isFalsy`](../type/isfalsy/) | [type](../type/) | Checks if a value is falsy (`false`, `null`, `undefined`, `0`, `""`, `NaN`). |
+| [`isFalsy`](../guard/isfalsy/) | [guard](../guard/) | Checks if a value is falsy (`false`, `null`, `undefined`, `0`, `""`, `NaN`). |
 | `isFinite / isFiniteNumber` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isFinite(value)` *(ES2015)* |
-| [`isFormData`](../type/isformdata/) | [type](../type/) | Checks if a value is a FormData instance. |
-| [`isFunction`](../type/isfunction/) | [type](../type/) | Checks if a value is a function. |
-| [`isGenerator`](../type/isgenerator/) | [type](../type/) | Checks if a value is a generator object (the result of calling a `function*`). |
-| [`isGeneratorFunction`](../type/isgeneratorfunction/) | [type](../type/) | Checks if a value is a generator function (a `function*` declaration or expression). |
+| [`isFormData`](../guard/isformdata/) | [guard](../guard/) | Checks if a value is a FormData instance. |
+| [`isFunction`](../guard/isfunction/) | [guard](../guard/) | Checks if a value is a function. |
+| [`isGenerator`](../guard/isgenerator/) | [guard](../guard/) | Checks if a value is a generator object (the result of calling a `function*`). |
+| [`isGeneratorFunction`](../guard/isgeneratorfunction/) | [guard](../guard/) | Checks if a value is a generator function (a `function*` declaration or expression). |
 | `isHtmlElement / isUrlInstance / isUrlSearchParams` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof HTMLElement / URL / URLSearchParams` *(Web API)* |
 | `isInfinite` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value === Infinity \|\| value === -Infinity  /  !Number.isFinite(value) && !Number.isNaN(value)` *(ES2015)* |
 | `isInteger` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isInteger(value)` *(ES2015)* |
-| [`isIterable`](../type/isiterable/) | [type](../type/) | Checks if a value is iterable (has a `Symbol.iterator` method). |
+| [`isIterable`](../guard/isiterable/) | [guard](../guard/) | Checks if a value is iterable (has a `Symbol.iterator` method). |
 | [`isLeapYear`](../date/isleapyear/) | [date](../date/) | Returns `true` if the given year is a leap year. |
-| [`isMap`](../type/ismap/) | [type](../type/) | Checks if a value is a Map instance. |
+| [`isMap`](../guard/ismap/) | [guard](../guard/) | Checks if a value is a Map instance. |
 | `isNaN` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isNaN(value)` *(ES2015)* |
 | [`isNegative`](../number/isnegative/) | [number](../number/) | Checks if a value is a number less than 0. |
 | [`isNodeStream`](../node/isnodestream/) | [node](../node/) | Checks if a value is a Node.js stream (has a `.pipe()` method). |
@@ -139,52 +139,54 @@ sidebar:
 | [`isNonEmpty`](../object/isnonempty/) | [object](../object/) | Checks if a plain object has at least one own enumerable string-keyed property. |
 | [`isNonEmpty`](../string/isnonempty/) | [string](../string/) | Checks if a string is non-empty (has at least one character). |
 | [`isNotBlank`](../string/isnotblank/) | [string](../string/) | Checks if a string is not blank — non-empty and contains at least one non-whitespace character. |
-| [`isNull`](../type/isnull/) | [type](../type/) | Checks if a value is `null`. |
-| [`isNullish`](../type/isnullish/) | [type](../type/) | Checks if a value is null or undefined (nullish). |
-| [`isNumber`](../type/isnumber/) | [type](../type/) | Checks if a value is a number. |
+| [`isNull`](../guard/isnull/) | [guard](../guard/) | Checks if a value is `null`. |
+| [`isNullish`](../guard/isnullish/) | [guard](../guard/) | Checks if a value is null or undefined (nullish). |
+| [`isNumber`](../guard/isnumber/) | [guard](../guard/) | Checks if a value is a number. |
 | [`isObservable`](../observable/isobservable/) | [observable](../observable/) | Checks if a value is an RxJS Observable or any compatible observable. |
 | [`isOdd`](../number/isodd/) | [number](../number/) | Checks if a value is an odd integer. |
-| [`isPlainObject`](../type/isplainobject/) | [type](../type/) | Checks if a value is a plain object. |
+| [`isPlainObject`](../guard/isplainobject/) | [guard](../guard/) | Checks if a value is a plain object. |
 | [`isPositive`](../number/ispositive/) | [number](../number/) | Checks if a value is a number greater than 0. |
 | [`isPrerelease`](../version/isprerelease/) | [version](../version/) | Returns `true` when the version string has a prerelease suffix (i.e. |
-| [`isPrimitive`](../type/isprimitive/) | [type](../type/) | Checks if a value is a JavaScript primitive. |
-| [`isPromise`](../type/ispromise/) | [type](../type/) | Checks if a value is a Promise or a thenable. |
-| [`isPromiseLike`](../type/ispromiselike/) | [type](../type/) | Checks if a value is a thenable (has a `.then()` method). |
-| [`isPropertyKey`](../type/ispropertykey/) | [type](../type/) | Checks if a value is a valid property key: `string`, `number`, or `symbol`. |
-| [`isRegExp`](../type/isregexp/) | [type](../type/) | Checks if a value is a RegExp instance. |
+| [`isPrimitive`](../guard/isprimitive/) | [guard](../guard/) | Checks if a value is a JavaScript primitive. |
+| [`isPromise`](../guard/ispromise/) | [guard](../guard/) | Checks if a value is a Promise or a thenable. |
+| [`isPromiseLike`](../guard/ispromiselike/) | [guard](../guard/) | Checks if a value is a thenable (has a `.then()` method). |
+| [`isPropertyKey`](../guard/ispropertykey/) | [guard](../guard/) | Checks if a value is a valid property key: `string`, `number`, or `symbol`. |
+| [`isRegExp`](../guard/isregexp/) | [guard](../guard/) | Checks if a value is a RegExp instance. |
 | `isSafeInteger` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isSafeInteger(value)` *(ES2015)* |
 | [`isSameDay`](../date/issameday/) | [date](../date/) | Checks if two dates are the same day. |
 | [`isSameMonth`](../date/issamemonth/) | [date](../date/) | Checks if two dates are in the same month (and year). |
 | [`isSameYear`](../date/issameyear/) | [date](../date/) | Checks if two dates are in the same year. |
 | `isSet (Set data structure)` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof Set` *(ES2015)* |
 | [`isSharedArrayBuffer`](../node/issharedarraybuffer/) | [node](../node/) | Checks if a value is a `SharedArrayBuffer` instance. |
-| [`isSpecialObject`](../type/isspecialobject/) | [type](../type/) | Determines if a value is a special object that should not have its properties compared deeply. |
-| [`isString`](../type/isstring/) | [type](../type/) | Checks if a value is a string. |
-| [`isSymbol`](../type/issymbol/) | [type](../type/) | Checks if a value is a symbol. |
-| [`isTemporalDuration`](../type/istemporalduration/) | [type](../type/) | Checks if a value is a `Temporal.Duration`. |
-| [`isTemporalInstant`](../type/istemporalinstant/) | [type](../type/) | Checks if a value is a `Temporal.Instant`. |
-| [`isTemporalPlainDate`](../type/istemporalplaindate/) | [type](../type/) | Checks if a value is a `Temporal.PlainDate`. |
-| [`isTemporalPlainDateTime`](../type/istemporalplaindatetime/) | [type](../type/) | Checks if a value is a `Temporal.PlainDateTime`. |
-| [`isTemporalPlainTime`](../type/istemporalplaintime/) | [type](../type/) | Checks if a value is a `Temporal.PlainTime`. |
-| [`isTemporalZonedDateTime`](../type/istemporalzoneddatetime/) | [type](../type/) | Checks if a value is a `Temporal.ZonedDateTime`. |
-| [`isTimestamp`](../type/istimestamp/) | [type](../type/) | Checks if a value is a valid timestamp (milliseconds or Unix seconds). |
+| [`isSpecialObject`](../guard/isspecialobject/) | [guard](../guard/) | Determines if a value is a special object that should not have its properties compared deeply. |
+| [`isString`](../guard/isstring/) | [guard](../guard/) | Checks if a value is a string. |
+| [`isSymbol`](../guard/issymbol/) | [guard](../guard/) | Checks if a value is a symbol. |
+| [`isTemporalDuration`](../guard/istemporalduration/) | [guard](../guard/) | Checks if a value is a `Temporal.Duration`. |
+| [`isTemporalInstant`](../guard/istemporalinstant/) | [guard](../guard/) | Checks if a value is a `Temporal.Instant`. |
+| [`isTemporalPlainDate`](../guard/istemporalplaindate/) | [guard](../guard/) | Checks if a value is a `Temporal.PlainDate`. |
+| [`isTemporalPlainDateTime`](../guard/istemporalplaindatetime/) | [guard](../guard/) | Checks if a value is a `Temporal.PlainDateTime`. |
+| [`isTemporalPlainTime`](../guard/istemporalplaintime/) | [guard](../guard/) | Checks if a value is a `Temporal.PlainTime`. |
+| [`isTemporalZonedDateTime`](../guard/istemporalzoneddatetime/) | [guard](../guard/) | Checks if a value is a `Temporal.ZonedDateTime`. |
+| [`isTimestamp`](../guard/istimestamp/) | [guard](../guard/) | Checks if a value is a valid timestamp (milliseconds or Unix seconds). |
 | [`isTimestampInSeconds`](../date/istimestampinseconds/) | [date](../date/) | Checks if a timestamp is likely in seconds (Java/Unix style) vs milliseconds (JavaScript style) |
-| [`isTruthy`](../type/istruthy/) | [type](../type/) | Checks if a value is truthy (not `false`, `null`, `undefined`, `0`, `""`, or `NaN`). |
-| [`isUndefined`](../type/isundefined/) | [type](../type/) | Checks if a value is `undefined`. |
+| [`isTruthy`](../guard/istruthy/) | [guard](../guard/) | Checks if a value is truthy (not `false`, `null`, `undefined`, `0`, `""`, or `NaN`). |
+| [`isUndefined`](../guard/isundefined/) | [guard](../guard/) | Checks if a value is `undefined`. |
 | [`isValid`](../date/isvalid/) | [date](../date/) | Checks if a value is a valid Date instance (not `Invalid Date`). |
 | [`isValidDateString`](../date/isvaliddatestring/) | [date](../date/) | Checks whether a string can be parsed into a valid `Date`. |
-| [`isValidRegex`](../type/isvalidregex/) | [type](../type/) | Checks if a string is a valid regex pattern. |
+| [`isValidRegex`](../guard/isvalidregex/) | [guard](../guard/) | Checks if a string is a valid regex pattern. |
 | `isWeakMap / isWeakSet / isWeakRef` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof WeakMap / WeakSet / WeakRef` *(ES2015 / ES2021)* |
 | [`isWeekend`](../date/isweekend/) | [date](../date/) | Checks whether a date falls on a weekend day. |
 | [`isWithinRange`](../date/iswithinrange/) | [date](../date/) | Checks whether a date falls within a range (inclusive on both ends). |
 | [`kebabCase`](../string/kebabcase/) | [string](../string/) | Converts camelCase to kebab-case |
 | `keys / values` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `Object.keys() / Object.values()` *(ES2017)* |
+| [`KeysOfType`](../type/keysoftype/) | [type](../type/) | Extracts the keys of `T` whose values extend `V`. |
 | `last` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
 | [`leadingSentence`](../string/leadingsentence/) | [string](../string/) | Extracts the leading sentence from a string. |
 | [`lerp`](../number/lerp/) | [number](../number/) | Linearly interpolates between `start` and `end` by the factor `t`. |
 | [`listTimezones`](../date/listtimezones/) | [date](../date/) | Returns the list of IANA timezone identifiers supported by the runtime. |
 | [`map`](../object/map/) | [object](../object/) | Transforms the values and/or keys of a plain object in a single pass. |
 | [`max`](../array/max/) | [array](../array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
+| [`Maybe`](../type/maybe/) | [type](../type/) | Type for values that can be T, undefined, or null. |
 | [`mean`](../array/mean/) | [array](../array/) | Calculates the arithmetic mean (average) of an array of numbers. |
 | [`meaningPromiseOrThrow`](../promise/meaningpromiseorthrow/) | [promise](../promise/) | Returns a function that passes through meaningful data or throws an error. |
 | [`memoize`](../function/memoize/) | [function](../function/) | Returns a memoized version of the function that caches results. |
@@ -196,9 +198,13 @@ sidebar:
 | [`noop`](../function/noop/) | [function](../function/) | A no-operation function that does nothing and returns `undefined`  Useful as a default callback, placeholder, or to e… |
 | [`normalizeTimestamp`](../date/normalizetimestamp/) | [date](../date/) | Converts a timestamp to JavaScript milliseconds format |
 | `now (date/time/instant)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Now.instant() / .zonedDateTimeISO() / .plainDateISO() / .plainTimeISO()` *(Temporal (Stage 3))* |
+| [`Nullable`](../type/nullable/) | [type](../type/) | Adds `null` to a type (`T \| null`). |
+| [`Nullish`](../type/nullish/) | [type](../type/) | Adds `null` and `undefined` to a type (`T \| null \| undefined`). |
 | [`omit`](../object/omit/) | [object](../object/) | Creates a new object without the specified keys. |
+| [`OmitByValue`](../type/omitbyvalue/) | [type](../type/) | Constructs a type by omitting all entries of `T` whose values extend `V`. |
 | [`once`](../function/once/) | [function](../function/) | Creates a function that is restricted to be called only once. |
 | [`onlyPath`](../url/onlypath/) | [url](../url/) | Extract only the path from an URI with optional query and fragments. |
+| [`OptionalKeys`](../type/optionalkeys/) | [type](../type/) | Extracts the optional keys of an object type `T`. |
 | [`overlaps`](../date/overlaps/) | [date](../date/) | Checks whether two date ranges overlap. |
 | `padStart / padEnd` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
 | [`parallel`](../promise/parallel/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit. |
@@ -209,19 +215,21 @@ sidebar:
 | [`partition`](../array/partition/) | [array](../array/) | Splits an array into two groups based on a predicate function. |
 | [`pascalCase`](../string/pascalcase/) | [string](../string/) | Converts a string to PascalCase. |
 | [`pick`](../object/pick/) | [object](../object/) | Creates a new object with only the specified keys. |
+| [`PickByValue`](../type/pickbyvalue/) | [type](../type/) | Constructs a type by picking all entries of `T` whose values extend `V`. |
 | [`pipe`](../function/pipe/) | [function](../function/) | Composes functions left-to-right: the output of each function is passed as input to the next. |
+| [`Prettify`](../type/prettify/) | [type](../type/) | Flattens an intersection type into a single readable object type. |
 | [`randomBetween`](../number/randombetween/) | [number](../number/) | Generates a random number between min and max (inclusive) |
 | [`randomIntBetween`](../number/randomintbetween/) | [number](../number/) | Generates a random integer between min and max (inclusive) |
 | [`range`](../array/range/) | [array](../array/) | Generates an array of sequential numbers from start to end (exclusive). |
 | [`relativeURLToAbsolute`](../url/relativeurltoabsolute/) | [url](../url/) | Converts a relative URL to an absolute URL using the current document base URI. |
 | [`removeUndefinedNull`](../object/removeundefinednull/) | [object](../object/) | Remove null and undefined values from an object. |
 | `repeat` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.repeat()` *(ES2015)* |
+| [`RequiredKeys`](../type/requiredkeys/) | [type](../type/) | Extracts the required (non-optional) keys of an object type `T`. |
 | [`resolveRecord`](../promise/resolverecord/) | [promise](../promise/) | Resolves an array of keys into a record by calling an async mapper for each key. |
 | [`retry`](../promise/retry/) | [promise](../promise/) | Retries a promise-returning function up to maxAttempts times |
 | [`returnOrThrowError`](../function/returnorthrowerror/) | [function](../function/) | Return a value or throw an error if null or undefined. |
 | `reverse` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
 | [`roundTo`](../number/roundto/) | [number](../number/) | Rounds a number to specified decimal places |
-| [`safeDate`](../date/safedate/) | [date](../date/) | Safely creates a Date object from various input types. |
 | [`safeFetch`](../promise/safefetch/) | [promise](../promise/) | Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, non-OK status, or p… |
 | [`safeJsonParse`](../object/safejsonparse/) | [object](../object/) | Parses a JSON string, returning `null` (or a fallback) on any parse failure. |
 | [`sample`](../array/sample/) | [array](../array/) | Picks one or more random elements from an array. |
@@ -229,6 +237,7 @@ sidebar:
 | [`select`](../array/select/) | [array](../array/) | Filters and transforms an array in a single pass. |
 | `select / filterMap` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
 | [`set`](../object/set/) | [object](../object/) | Sets a value in an object at the given path, creating intermediate objects as needed. |
+| [`settle`](../promise/settle/) | [promise](../promise/) | Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first failure, unlike … |
 | [`shuffle`](../array/shuffle/) | [array](../array/) | Randomly reorders elements of an array using the Fisher-Yates algorithm. |
 | [`slugify`](../string/slugify/) | [string](../string/) | Converts a string into a URL-friendly slug. |
 | [`snakeCase`](../string/snakecase/) | [string](../string/) | Converts a string to snake_case. |
@@ -273,10 +282,12 @@ sidebar:
 | [`tryit`](../promise/tryit/) | [promise](../promise/) | Wraps a function so it never throws. |
 | `TypedArrays (isInt8Array, isFloat32Array, ...)` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof Int8Array / Float32Array / ...` *(ES2015)* |
 | `union` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |
+| [`UnionToIntersection`](../type/uniontointersection/) | [type](../type/) | Converts a union type to an intersection type: `A \| B \| C` → `A & B & C`. |
 | [`unique`](../array/unique/) | [array](../array/) | Removes duplicate values from an array. |
 | `until / since (difference)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.prototype.until(other) / .since(other)` *(Temporal (Stage 3))* |
 | [`unzip`](../array/unzip/) | [array](../array/) | Splits an array of tuples into separate arrays, one per position. |
 | [`uuid7`](../id/uuid7/) | [id](../id/) | Generates a UUID v7 string (RFC 9562). |
+| [`ValueOf`](../type/valueof/) | [type](../type/) | Produces a union of all value types of an object type `T`. |
 | [`WeekDays`](../date/weekdays/) | [date](../date/) | Named day-of-week constants following the JavaScript `Date.getDay()` convention. |
 | [`withLeadingSlash`](../url/withleadingslash/) | [url](../url/) | Adds a leading slash `/` to the given URL if it is not already present. |
 | [`without`](../array/without/) | [array](../array/) | Returns a new array with all occurrences of the given values removed. |
