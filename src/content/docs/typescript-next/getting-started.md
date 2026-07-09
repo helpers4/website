@@ -16,26 +16,19 @@ import { Badge, Aside } from '@astrojs/starlight/components';
 For production use, see **[TypeScript v2 → Getting Started](/typescript/getting-started/)**.
 </Aside>
 
-## What changed at the import level
+## Packages
 
-The `@helpers4/type` package (runtime type guards in v2) is renamed to `@helpers4/guard`. A new `@helpers4/type` package now holds compile-time-only utility types.
+Type-related helpers are split into two focused packages:
 
-```diff
-- import { isString, isNull } from '@helpers4/type';
-+ import { isString, isNull } from '@helpers4/guard';
-+ import type { DeepPartial, Brand, Prettify } from '@helpers4/type';
+- **`@helpers4/guard`** — runtime type guards (`isString`, `isNull`, `isDefined`, …)
+- **`@helpers4/type`** — compile-time-only utility types, `import type` only, zero runtime footprint
+
+```ts
+import { isString, isNull } from '@helpers4/guard';
+import type { DeepPartial, Brand, Prettify } from '@helpers4/type';
 ```
 
-### Removed exports
-
-| Removed | Replacement | Package |
-|---|---|---|
-| `isEmpty` (old signature) | `isEmpty` | `@helpers4/array`, `@helpers4/string`, or `@helpers4/object` |
-| `safeDate` | `ensureDate` | `@helpers4/date` |
-| `dateToISOString` | `toISO8601` | `@helpers4/date` |
-| `daysDifference` | `difference` | `@helpers4/date` |
-| `deepClone` | `cloneDeep` | `@helpers4/object` |
-| `deepMerge` | `mergeDeep` | `@helpers4/object` |
+`object/compact` and `object/pick` silently skip `__proto__`, `constructor`, and `prototype` keys to prevent prototype pollution.
 
 ## Installation
 
@@ -114,10 +107,10 @@ Ensure your `tsconfig.json` targets modern JavaScript:
 All helpers are fully typed with TypeScript and support strict mode:
 
 ```typescript
-import { deepMerge } from '@helpers4/object';
+import { mergeDeep } from '@helpers4/object';
 
 // Full type inference
-const result = deepMerge({ a: 1 }, { b: 2 });
+const result = mergeDeep({ a: 1 }, { b: 2 });
 // result is { a: number, b: number }
 ```
 
@@ -127,7 +120,7 @@ const result = deepMerge({ a: 1 }, { b: 2 });
 |---------|:-------:|-------|
 | Browser | `ES2022+` | Chrome 93+, Firefox 90+, Safari 15+, Edge 93+ |
 | Frameworks | ✅ | React, Vue, Svelte, Angular, and more |
-| Node.js | `>=20.0.0` | |
+| Node.js | `>=26.0.0` | Or Node 24 with `--harmony-temporal` — required for native `Temporal` support |
 | Deno | ✅ | |
 | Bun | ✅ | |
 ## Quality Standards

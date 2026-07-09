@@ -44,13 +44,12 @@ The two libraries ended up at different answers to the same question, and that's
 | Function | Description |
 |----------|-------------|
 | `compare` | Compare two dates with configurable precision |
-| `daysDifference` | Number of days between two dates |
+| `difference` | Exact (unrounded) difference between two dates |
 | `isSameDay` | Check if two dates are the same calendar day |
-| `safeDate` | Parse dates safely (handles timestamps in seconds) |
+| `ensureDate` | Parse dates safely (handles timestamps in seconds) |
 | `toISO8601` / `toRFC2822` / `toRFC3339` | Format dates to standard formats |
 | `isTimestampInSeconds` | Detect if a timestamp is in seconds vs milliseconds |
 | `normalizeTimestamp` | Normalize any timestamp to milliseconds |
-| `dateToISOString` | Safe ISO string conversion |
 
 radashi has **no date utilities**.
 
@@ -120,8 +119,8 @@ For functions that exist in both libraries, here's how they compare:
 
 | helpers4 | radashi | Notes |
 |----------|---------|-------|
-| `deepClone` | `cloneDeep` | Same concept |
-| `deepMerge` | `assign` | radashi's `assign` does recursive merge |
+| `cloneDeep` | `cloneDeep` | Same concept |
+| `mergeDeep` | `assign` | radashi's `assign` does recursive merge |
 | `get` | `get` | Same concept |
 | `set` | `set` | Same concept |
 | `deepCompare` | `isEqual` | Same concept (deep equality) |
