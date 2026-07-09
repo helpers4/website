@@ -8,10 +8,6 @@ Calculates the difference between two dates in the specified unit.
 
 Accepts any DateLike input (Date, timestamp, or date string).
 
-Unlike the removed `daysDifference`, the default `'days'` unit is **not** rounded —
-it returns the exact fractional number of days. Wrap the result in `Math.round`
-if you need a whole-number day count.
-
 > Available since v2.0.0
 
 ## Import
@@ -48,8 +44,6 @@ difference(dateA: DateLike, dateB: DateLike, options: DateDifferenceOptions): nu
 ```ts
 difference('2025-01-01', '2025-01-10')
 // => 9
-difference('2025-01-01T00:00:00Z', '2025-01-01T12:00:00Z')
-// => 0.5 (fractional — use Math.round(difference(a, b)) for a whole-day count)
 difference('2025-01-01T00:00:00Z', '2025-01-01T02:30:00Z', { unit: 'hours' })
 // => 2.5
 difference('2025-01-10', '2025-01-01', { absolute: false })

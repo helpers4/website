@@ -21,7 +21,6 @@ Utility functions for working with promise operations.
 | [`resolveRecord`](./resolverecord/) | Resolves an array of keys into a record by calling an async mapper for each key. |
 | [`retry`](./retry/) | Retries a promise-returning function up to maxAttempts times |
 | [`safeFetch`](./safefetch/) | Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, non-OK status, or p… |
-| [`settle`](./settle/) | Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first failure, unlike … |
 | [`timeout`](./timeout/) | Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration. |
 | [`truthyPromiseOrThrow`](./truthypromiseorthrow/) | Returns a function that passes through truthy data or throws an error. |
 | [`tryit`](./tryit/) | Wraps a function so it never throws. |

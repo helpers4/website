@@ -18,6 +18,8 @@ Utility functions for working with date operations.
 | [`clampDate`](./clampdate/) | Clamps a date to a [min, max] range. |
 | [`compare`](./compare/) | Comparison of two dates. |
 | `compare (ordering)` | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.compare(a, b) / Temporal.Instant.compare(a, b)` *(Temporal (Stage 3))* |
+| [`dateToISOString`](./datetoisostring/) | Formats a date to ISO string or returns null. |
+| [`daysDifference`](./daysdifference/) | Gets the difference in days between two dates. |
 | [`daysInMonth`](./daysinmonth/) | Returns the number of days in the given month of the given year. |
 | [`difference`](./difference/) | Calculates the difference between two dates in the specified unit. |
 | [`eachDay`](./eachday/) | Returns an array of `Date` objects for each day from `start` to `end` (inclusive). |
@@ -44,6 +46,7 @@ Utility functions for working with date operations.
 | [`normalizeTimestamp`](./normalizetimestamp/) | Converts a timestamp to JavaScript milliseconds format |
 | `now (date/time/instant)` | <span class="badge badge--secondary">native JS</span> `Temporal.Now.instant() / .zonedDateTimeISO() / .plainDateISO() / .plainTimeISO()` *(Temporal (Stage 3))* |
 | [`overlaps`](./overlaps/) | Checks whether two date ranges overlap. |
+| [`safeDate`](./safedate/) | Safely creates a Date object from various input types. |
 | [`startOf`](./startof/) | Returns a new `Date` set to the **start** of the given unit. |
 | [`timeAgo`](./timeago/) | Formats a date as a human-readable relative time string. |
 | [`toISO8601`](./toiso8601/) | Converts a date to ISO 8601 format Format: YYYY-MM-DDTHH:mm:ss.sssZ |

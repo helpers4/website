@@ -23,7 +23,7 @@ This is not a bug. `compact` for arrays and `compact` for objects are genuinely 
 | `difference` | [`array`](../categories/array/difference/), [`date`](../categories/date/difference/) |
 | `equalsDeep` | [`array`](../categories/array/equalsdeep/), [`object`](../categories/object/equalsdeep/) |
 | `equalsShallow` | [`array`](../categories/array/equalsshallow/), [`object`](../categories/object/equalsshallow/) |
-| `isEmpty` | [`array`](../categories/array/isempty/), [`object`](../categories/object/isempty/), [`string`](../categories/string/isempty/) |
+| `isEmpty` | [`array`](../categories/array/isempty/), [`object`](../categories/object/isempty/), [`string`](../categories/string/isempty/), [`type`](../categories/type/isempty/) |
 | `isNonEmpty` | [`array`](../categories/array/isnonempty/), [`object`](../categories/object/isnonempty/), [`string`](../categories/string/isnonempty/) |
 
 ## Resolving Conflicts
@@ -88,6 +88,7 @@ import { equalsShallow as equalsShallow4object } from '@helpers4/object';
 import { isEmpty as isEmpty4array } from '@helpers4/array';
 import { isEmpty as isEmpty4object } from '@helpers4/object';
 import { isEmpty as isEmpty4string } from '@helpers4/string';
+import { isEmpty as isEmpty4type } from '@helpers4/type';
 ```
 
 ### `isNonEmpty`
