@@ -33,18 +33,16 @@ Born from 10 years of recoding the same domain-specific helpers across projects,
 - ✅ **Enterprise-grade** — formal LGPL-3.0 license, audit-ready, predictable at scale
 - ✅ **AI-ready** — exhaustive contracts make every function safe to call from generated or agentic code
 
-## Breaking changes vs v2
+## What's in v3
 
-v3 focuses exclusively on breaking changes that could not land in a v2 minor release:
-
-| Change | Details |
+| | |
 |---|---|
-| **Remove deprecated symbols** | `isEmpty`, `safeDate`, `dateToISOString`, `daysDifference`, `deepClone`, `deepMerge` are all removed — use their replacements |
-| **Category rename: `type` → `guard`** | `@helpers4/type` becomes `@helpers4/guard` — content is runtime type guards (`isString`, `isNull`, …) |
-| **New `type` category** | Pure compile-time utility types (`DeepPartial`, `Brand`, `Prettify`, `UnionToIntersection`, `DeepGet`, `DeepSet`, `ParsePath`, …) |
-| **Promise helpers** | `truthyPromiseOrThrow`, `falsyPromiseOrThrow`, `meaningPromiseOrThrow` — unsound `as T` casts reviewed |
+| **`@helpers4/guard`** | Runtime type guards (`isString`, `isNull`, `isDefined`, …) |
+| **`@helpers4/type`** | Compile-time-only utility types, zero runtime footprint (`DeepPartial`, `DeepWritable`, `Brand`, `Prettify`, `UnionToIntersection`, `DeepGet`, `DeepSet`, `Nullable`/`Nullish`, `RequiredKeys`/`OptionalKeys`, `PickByValue`/`OmitByValue`, `KeysOfType`, `Maybe`, `ValueOf`) |
+| **Prototype pollution hardening** | `object/compact` and `object/pick` silently skip `__proto__`, `constructor`, `prototype` keys |
+| **Node.js 26 minimum** | Required for native `Temporal` support — Node 24 works with the `--harmony-temporal` flag |
 
-A full migration guide from v2 → v3 will be published alongside the first stable v3 release. Follow progress in the [GitHub repository](https://github.com/helpers4/typescript).
+Follow progress in the [GitHub repository](https://github.com/helpers4/typescript).
 
 ## Comparisons
 
