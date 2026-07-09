@@ -1,0 +1,10 @@
+{
+  "label": "Date",
+  "position": 4,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "doc",
+    "id": "categories/date/index"
+  }
+}
