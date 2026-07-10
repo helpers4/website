@@ -6,6 +6,9 @@ sidebar:
 
 Extracts the keys of `T` whose values extend `V`.
 
+Optional properties are matched by their non-nullable value type, so an
+optional `string` property still counts as a `string` key.
+
 > Available since v3.0.0
 
 ## Import
@@ -18,7 +21,7 @@ import type { KeysOfType } from '@helpers4/type';
 
 ```ts
 type KeysOfType<T, V> = {
-  [K in keyof T]-?: T[K] extends V ? K : never;
+  [K in keyof T]-?: NonNullable<T[K]> extends V ? K : never;
 }[keyof T]
 ```
 

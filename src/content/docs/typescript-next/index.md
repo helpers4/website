@@ -16,7 +16,7 @@ Production-ready TypeScript utility functions — modular, strictly typed, exhau
 ## Quick Links
 
 - **[Get Started](./getting-started)** — Installation and first import
-- **[Browse Categories](./categories/array)** — 241 helpers across 17 categories
+- **[Browse Categories](./categories/array)** — 249 helpers across 18 categories
 - **[GitHub](https://github.com/helpers4/typescript)** · **[npm](https://www.npmjs.com/package/@helpers4/all)** · **[License (LGPL-3.0)](./legal/license)**
 
 ## What is helpers4?

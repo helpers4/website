@@ -1,10 +1,10 @@
 {
-  "label": "Commit",
-  "position": 4,
+  "label": "Color",
+  "position": 3,
   "collapsible": true,
   "collapsed": true,
   "link": {
     "type": "doc",
-    "id": "categories/commit/index"
+    "id": "categories/color/index"
   }
 }

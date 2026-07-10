@@ -17,9 +17,7 @@ import type { OptionalKeys } from '@helpers4/type';
 ## Type Definition
 
 ```ts
-type OptionalKeys<T> = {
-  [K in keyof T]-?: {} extends Pick<T, K> ? K : never;
-}[keyof T]
+type OptionalKeys<T> = Exclude<keyof T, RequiredKeys<T>>
 ```
 
 ## Examples

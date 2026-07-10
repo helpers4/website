@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**241** implemented helpers + **44** covered by native JavaScript APIs, sorted alphabetically.
+**249** implemented helpers + **47** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -17,6 +17,7 @@ sidebar:
 | [`addMonths`](../date/addmonths/) | [date](../date/) | Adds months to a date. |
 | [`addYears`](../date/addyears/) | [date](../date/) | Adds years to a date. |
 | [`analyzeCommits`](../commit/analyzecommits/) | [commit](../commit/) | Analyses a list of commits to suggest a semantic version bump. |
+| [`argbToRgb`](../color/argbtorgb/) | [color](../color/) | Converts a 32-bit packed ARGB integer (as used by e.g. |
 | [`Brand`](../type/brand/) | [type](../type/) | Brands a base type `T` with a phantom tag `B` to create a nominal type. |
 | [`buildConventionalCommitRegex`](../commit/buildconventionalcommitregex/) | [commit](../commit/) | Builds a regular expression matching the **subject line** of a Conventional Commits message. |
 | [`buildStatusTable`](../ci/buildstatustable/) | [ci](../ci/) | Builds a Markdown table body from a map of job names to CI/CD statuses. |
@@ -31,6 +32,7 @@ sidebar:
 | [`cloneDeep`](../object/clonedeep/) | [object](../object/) | Creates a deep copy of an object or array. |
 | [`combine`](../observable/combine/) | [observable](../observable/) | Combine two observables with a map function and an optional pre-treatment. |
 | [`combineLatest`](../observable/combinelatest/) | [observable](../observable/) | Combines multiple Observables to create an Observable whose values are calculated from the latest values of each of i… |
+| [`combineSortFns`](../array/combinesortfns/) | [array](../array/) | Chains multiple sort functions into a single comparator: the first function decides the order unless it reports a tie… |
 | [`compact`](../array/compact/) | [array](../array/) | Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array. |
 | [`compact`](../object/compact/) | [object](../object/) | Removes all entries with falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an object. |
 | [`compare`](../date/compare/) | [date](../date/) | Comparison of two dates. |
@@ -40,6 +42,7 @@ sidebar:
 | [`consoleLogPromise`](../promise/consolelogpromise/) | [promise](../promise/) | Returns a function that logs data to the console and passes it through. |
 | [`correctFloat`](../number/correctfloat/) | [number](../number/) | Corrects floating-point arithmetic errors by rounding to a given number of significant digits. |
 | [`countBy`](../array/countby/) | [array](../array/) | Groups the elements of an array by the key returned by `keyFn` and returns a record mapping each key to the number of… |
+| [`createSortByBooleanFn`](../array/createsortbybooleanfn/) | [array](../array/) | Creates a sort function for objects by a boolean property. |
 | [`createSortByDateFn`](../array/createsortbydatefn/) | [array](../array/) | Creates a sort function for objects by date property. |
 | [`createSortByNaturalFn`](../array/createsortbynaturalfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties using natural ordering. |
 | [`createSortByNumberFn`](../array/createsortbynumberfn/) | [array](../array/) | Creates a sort function for objects by number property. |
@@ -90,6 +93,8 @@ sidebar:
 | [`guard`](../promise/guard/) | [promise](../promise/) | Wraps a function so that if it throws, a default value is returned instead of propagating the error. |
 | `has` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `Object.hasOwn(obj, key)` *(ES2022)* |
 | `head / first` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(0)` *(ES2022)* |
+| [`hexToRgb`](../color/hextorgb/) | [color](../color/) | Parses a hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa` — the leading `#` is optional) into its RGB(A) cha… |
+| [`hslToRgb`](../color/hsltorgb/) | [color](../color/) | Converts an HSL(A) color into RGB(A). |
 | [`identity`](../function/identity/) | [function](../function/) | Returns the given value unchanged  Useful as a default transform, in function composition, or as a placeholder mapper. |
 | `includes` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.includes()` *(ES2016)* |
 | [`increment`](../version/increment/) | [version](../version/) | Increments a semantic version |
@@ -112,6 +117,7 @@ sidebar:
 | [`isBuffer`](../node/isbuffer/) | [node](../node/) | Checks if a value is a Node.js Buffer instance. |
 | [`isBusinessDay`](../date/isbusinessday/) | [date](../date/) | Checks whether a date falls on a business day (i.e. |
 | [`isConventionalCommit`](../commit/isconventionalcommit/) | [commit](../commit/) | Checks whether a commit message's subject line follows the Conventional Commits format constrained by the given options. |
+| [`isCssColor`](../guard/iscsscolor/) | [guard](../guard/) | Checks whether a value is a syntactically-safe, plain CSS color: a hex color (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`… |
 | [`isDate`](../guard/isdate/) | [guard](../guard/) | Checks if a value is a Date instance. |
 | [`isDefined`](../guard/isdefined/) | [guard](../guard/) | Checks if a value is defined (not undefined nor null). |
 | `isDirectInstanceOf` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value.constructor === Foo` *(ES1)* |
@@ -131,6 +137,7 @@ sidebar:
 | `isInteger` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isInteger(value)` *(ES2015)* |
 | [`isIterable`](../guard/isiterable/) | [guard](../guard/) | Checks if a value is iterable (has a `Symbol.iterator` method). |
 | [`isLeapYear`](../date/isleapyear/) | [date](../date/) | Returns `true` if the given year is a leap year. |
+| `isLight / isDark (pick a readable text color)` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `contrast-color(<color>)` *(CSS Color 6 (Baseline newly available since April 2026 — Chrome 147, Firefox 146, Safari 26.0))* |
 | [`isMap`](../guard/ismap/) | [guard](../guard/) | Checks if a value is a Map instance. |
 | `isNaN` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isNaN(value)` *(ES2015)* |
 | [`isNegative`](../number/isnegative/) | [number](../number/) | Checks if a value is a number less than 0. |
@@ -183,6 +190,7 @@ sidebar:
 | `last` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
 | [`leadingSentence`](../string/leadingsentence/) | [string](../string/) | Extracts the leading sentence from a string. |
 | [`lerp`](../number/lerp/) | [number](../number/) | Linearly interpolates between `start` and `end` by the factor `t`. |
+| `lighten / darken` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `color-mix(in oklch, <color> <percent>, white\|black)` *(CSS Color 5 (Baseline widely available since 2023 — Chrome 111, Firefox 113, Safari 16.2))* |
 | [`listTimezones`](../date/listtimezones/) | [date](../date/) | Returns the list of IANA timezone identifiers supported by the runtime. |
 | [`map`](../object/map/) | [object](../object/) | Transforms the values and/or keys of a plain object in a single pass. |
 | [`max`](../array/max/) | [array](../array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
@@ -229,6 +237,8 @@ sidebar:
 | [`retry`](../promise/retry/) | [promise](../promise/) | Retries a promise-returning function up to maxAttempts times |
 | [`returnOrThrowError`](../function/returnorthrowerror/) | [function](../function/) | Return a value or throw an error if null or undefined. |
 | `reverse` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
+| [`rgbToHex`](../color/rgbtohex/) | [color](../color/) | Converts an RGB(A) color into a hex color string. |
+| [`rgbToHsl`](../color/rgbtohsl/) | [color](../color/) | Converts an RGB(A) color into HSL(A). |
 | [`roundTo`](../number/roundto/) | [number](../number/) | Rounds a number to specified decimal places |
 | [`safeFetch`](../promise/safefetch/) | [promise](../promise/) | Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, non-OK status, or p… |
 | [`safeJsonParse`](../object/safejsonparse/) | [object](../object/) | Parses a JSON string, returning `null` (or a fallback) on any parse failure. |
@@ -289,6 +299,7 @@ sidebar:
 | [`uuid7`](../id/uuid7/) | [id](../id/) | Generates a UUID v7 string (RFC 9562). |
 | [`ValueOf`](../type/valueof/) | [type](../type/) | Produces a union of all value types of an object type `T`. |
 | [`WeekDays`](../date/weekdays/) | [date](../date/) | Named day-of-week constants following the JavaScript `Date.getDay()` convention. |
+| `withAlpha (change the alpha channel of an existing color)` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `rgb(from <color> r g b / <alpha>)` *(CSS Color 5 relative color syntax (Baseline widely available since September 2024 — Chrome 119+))* |
 | [`withLeadingSlash`](../url/withleadingslash/) | [url](../url/) | Adds a leading slash `/` to the given URL if it is not already present. |
 | [`without`](../array/without/) | [array](../array/) | Returns a new array with all occurrences of the given values removed. |
 | [`withoutLeadingSlash`](../url/withoutleadingslash/) | [url](../url/) | Removes the leading slash `/` from the given URL if it is present. |

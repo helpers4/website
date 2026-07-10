@@ -21,6 +21,7 @@ Utility functions for working with guard operations.
 | [`isBigInt`](./isbigint/) | Checks if a value is a bigint. |
 | [`isBlob`](./isblob/) | Checks if a value is a Blob instance. |
 | [`isBoolean`](./isboolean/) | Checks if a value is a boolean. |
+| [`isCssColor`](./iscsscolor/) | Checks whether a value is a syntactically-safe, plain CSS color: a hex color (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`… |
 | [`isDate`](./isdate/) | Checks if a value is a Date instance. |
 | [`isDefined`](./isdefined/) | Checks if a value is defined (not undefined nor null). |
 | [`isError`](./iserror/) | Checks if a value is an Error instance. |

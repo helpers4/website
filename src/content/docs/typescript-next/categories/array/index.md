@@ -13,8 +13,10 @@ Utility functions for working with array operations.
 |----------|-------------|
 | [`cartesianProduct`](./cartesianproduct/) | Computes the Cartesian product of the provided arrays. |
 | [`chunk`](./chunk/) | Chunks an array into smaller arrays of specified size. |
+| [`combineSortFns`](./combinesortfns/) | Chains multiple sort functions into a single comparator: the first function decides the order unless it reports a tie… |
 | [`compact`](./compact/) | Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array. |
 | [`countBy`](./countby/) | Groups the elements of an array by the key returned by `keyFn` and returns a record mapping each key to the number of… |
+| [`createSortByBooleanFn`](./createsortbybooleanfn/) | Creates a sort function for objects by a boolean property. |
 | [`createSortByDateFn`](./createsortbydatefn/) | Creates a sort function for objects by date property. |
 | [`createSortByNaturalFn`](./createsortbynaturalfn/) | Creates a sort function for objects by one or more string properties using natural ordering. |
 | [`createSortByNumberFn`](./createsortbynumberfn/) | Creates a sort function for objects by number property. |
