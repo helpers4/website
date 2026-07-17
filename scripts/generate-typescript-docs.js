@@ -19,8 +19,9 @@ const rootDir = path.join(__dirname, '..');
 
 // DOCS_TARGET selects which content/docs/<slug> tree to (re)generate — one slot per
 // concurrently documented version line (e.g. "typescript" for the current stable line,
-// "typescript-next" for the next major line). SOURCE_BRANCH controls which typescript
-// repo branch "View source on GitHub" links point to.
+// "typescript/next" for the next major line, under the same topic — see
+// src/data/versions.json and src/components/VersionSelect.astro). SOURCE_BRANCH
+// controls which typescript repo branch "View source on GitHub" links point to.
 const DOCS_TARGET = process.env.DOCS_TARGET || 'typescript';
 const SOURCE_BRANCH = process.env.SOURCE_BRANCH || 'main';
 const typescriptRepoPath = process.env.TYPESCRIPT_REPO_PATH || path.join(rootDir, '..', 'typescript');
@@ -38,6 +39,24 @@ if (!fs.existsSync(buildPath)) {
   console.error('❌ Build directory not found. Run the typescript build first.');
   process.exit(1);
 }
+
+// Read bundle metadata (contains mutationDashboardUrl and runtimes for the current release).
+// Read before the wipe below — archiveStableIfMajorBump() needs LIBRARY_VERSION to decide
+// whether the outgoing docs/<product>/ content needs to be archived first.
+const buildMeta = readJson(path.join(buildPath, 'all', 'meta', 'build.json')) ?? {};
+const FALLBACK_MUTATION_DASHBOARD_URL =
+  `https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/${SOURCE_BRANCH}`;
+const MUTATION_DASHBOARD_URL =
+  buildMeta.mutationDashboardUrl ?? FALLBACK_MUTATION_DASHBOARD_URL;
+const RUNTIMES = buildMeta.runtimes ?? { node: '>=24.0.0', deno: 'compatible', bun: 'compatible' };
+const LIBRARY_VERSION = buildMeta.version
+  ?? readJson(path.join(typescriptRepoPath, 'package.json'))?.version
+  ?? '0.0.0-snapshot';
+
+// If DOCS_TARGET is the stable root slot (e.g. "typescript", not "typescript/next") and this
+// run bumps the major version, freeze the outgoing content under its own vN/ slot before it
+// gets overwritten in place — see src/data/versions.json and src/components/VersionSelect.astro.
+archiveStableIfMajorBump(DOCS_TARGET, LIBRARY_VERSION);
 
 // Clean and recreate output
 if (fs.existsSync(docsOutputPath)) {
@@ -99,17 +118,6 @@ function nativeRow(name, native, since, forLink) {
   }
   return `| \`${escapeMarkdownTable(name)}\` | ${tag} |`;
 }
-
-// Read bundle metadata (contains mutationDashboardUrl and runtimes for the current release)
-const buildMeta = readJson(path.join(buildPath, 'all', 'meta', 'build.json')) ?? {};
-const FALLBACK_MUTATION_DASHBOARD_URL =
-  `https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/${SOURCE_BRANCH}`;
-const MUTATION_DASHBOARD_URL =
-  buildMeta.mutationDashboardUrl ?? FALLBACK_MUTATION_DASHBOARD_URL;
-const RUNTIMES = buildMeta.runtimes ?? { node: '>=24.0.0', deno: 'compatible', bun: 'compatible' };
-const LIBRARY_VERSION = buildMeta.version
-  ?? readJson(path.join(typescriptRepoPath, 'package.json'))?.version
-  ?? '0.0.0-snapshot';
 
 try {
   // Discover categories from build/ (skip "all" bundle)
@@ -388,6 +396,9 @@ See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution 
   // Use processedCategoryCount (not categories.length) so the patched docs
   // reflect what was actually generated when an api.json is missing.
   syncHelperCount(totalFunctions, processedCategoryCount);
+
+  // --- record this run's version in the per-product version manifest ---
+  syncVersionsManifest(DOCS_TARGET, LIBRARY_VERSION);
 
   console.log(`\n✅ Generated documentation for ${categories.length} categories (${totalFunctions} functions)`);
   console.log(`📁 Output: ${docsOutputPath}\n`);
@@ -910,4 +921,80 @@ function syncHelperCount(totalFunctions, categoryCount) {
       console.log(`  ✓ patched helper count (${totalFunctions}) → comparisons/alternatives.md`);
     }
   }
+}
+
+const VERSIONS_MANIFEST_PATH = path.join(rootDir, 'src', 'data', 'versions.json');
+// Content entries copied into a frozen vN/ slot when archiving a stable release.
+// Deliberately a whitelist (not "everything except next/vN") so a future addition to
+// the generated tree can't accidentally get swept into an archive by default.
+const ARCHIVABLE_ENTRIES = ['categories', 'comparisons', 'legal', 'reference', 'getting-started.md', 'index.md'];
+
+function readVersionsManifest() {
+  return readJson(VERSIONS_MANIFEST_PATH) ?? {};
+}
+
+function writeVersionsManifest(manifest) {
+  fs.writeFileSync(VERSIONS_MANIFEST_PATH, JSON.stringify(manifest, null, 2) + '\n');
+}
+
+/**
+ * Freezes the outgoing content of a product's stable root (e.g. src/content/docs/typescript/)
+ * into its own vN/ slot before it gets overwritten in place, but only when this run's version
+ * is a new major relative to the currently recorded "latest" — a minor/patch release just
+ * updates the root, it doesn't get its own archive. No-ops for non-root targets (e.g.
+ * "typescript/next") and when the target archive slot already exists.
+ */
+function archiveStableIfMajorBump(docsTarget, libraryVersion) {
+  const [product, ...rest] = docsTarget.split('/');
+  if (rest.length > 0) return;
+
+  const manifest = readVersionsManifest();
+  const latest = manifest[product]?.find((v) => v.role === 'latest');
+  const previousMajor = latest?.version?.split('.')[0];
+  const newMajor = libraryVersion.split('.')[0];
+  if (!previousMajor || previousMajor === newMajor) return;
+
+  const productDir = path.join(rootDir, 'src', 'content', 'docs', product);
+  const archiveDir = path.join(productDir, `v${previousMajor}`);
+  if (fs.existsSync(archiveDir)) return;
+
+  console.log(`📦 Archiving ${product} v${previousMajor} before promoting v${newMajor}...`);
+  fs.mkdirSync(archiveDir, { recursive: true });
+  for (const entry of ARCHIVABLE_ENTRIES) {
+    const source = path.join(productDir, entry);
+    if (fs.existsSync(source)) {
+      fs.cpSync(source, path.join(archiveDir, entry), { recursive: true });
+    }
+  }
+
+  manifest[product] = [
+    ...manifest[product].filter((v) => v.role !== 'archive' && v.slug !== `${product}/v${previousMajor}`),
+    { slug: `${product}/v${previousMajor}`, label: latest.label, role: 'archive', version: latest.version },
+    ...manifest[product].filter((v) => v.role === 'archive' && v.slug !== `${product}/v${previousMajor}`),
+  ];
+  writeVersionsManifest(manifest);
+  console.log(`  ✓ recorded ${product}/v${previousMajor} in versions.json`);
+}
+
+/**
+ * Updates this product's "latest" (docsTarget === product root) or "next"
+ * (docsTarget === "<product>/next") entry in the version manifest with the version this run
+ * just generated. Archived (role: "archive") entries are frozen once written and never
+ * touched again here — see archiveStableIfMajorBump().
+ */
+function syncVersionsManifest(docsTarget, libraryVersion) {
+  const [product, ...rest] = docsTarget.split('/');
+  const role = rest.length === 0 ? 'latest' : rest[0] === 'next' ? 'next' : undefined;
+  if (!role) return;
+
+  const manifest = readVersionsManifest();
+  const entries = manifest[product] ?? [];
+  const entry = entries.find((v) => v.role === role);
+  if (!entry) return;
+
+  entry.label = role === 'next' ? 'Next (unreleased)' : `v${libraryVersion}`;
+  if (role === 'latest') entry.version = libraryVersion;
+
+  writeVersionsManifest(manifest);
+  console.log(`  ✓ recorded ${docsTarget} → v${libraryVersion} in versions.json`);
 }
