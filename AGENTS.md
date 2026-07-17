@@ -10,7 +10,9 @@
 ```text
 website/
 ├── src/content/docs/
-│   ├── typescript/    # ⚠ GENERATED — do not edit by hand
+│   ├── typescript/    # ⚠ GENERATED — do not edit by hand (except typescript/v1/, a frozen
+│   │                  #   pre-monorepo archive with no generator source — hand-authored on
+│   │                  #   purpose, see src/data/versions.json)
 │   ├── devcontainer/  # ⚠ GENERATED — do not edit by hand
 │   └── action/        # ⚠ GENERATED — do not edit by hand
 ├── scripts/
