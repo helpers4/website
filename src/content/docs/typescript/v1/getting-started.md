@@ -9,6 +9,19 @@ v1 is the original 2022 release, kept for reference. It has 9 helpers across 4 c
 looking for the current library? → **[TypeScript (latest)](/typescript/getting-started/)**
 :::
 
+:::info[Documented version]
+v1 predates the unified `@helpers4/all` version line — each package released independently:
+
+| Package | Version |
+|---------|:-------:|
+| [`@helpers4/observable`](https://www.npmjs.com/package/@helpers4/observable/v/1.0.1) | 1.0.1 |
+| [`@helpers4/promise`](https://www.npmjs.com/package/@helpers4/promise/v/1.1.0) | 1.1.0 |
+| [`@helpers4/string`](https://www.npmjs.com/package/@helpers4/string/v/1.0.1) | 1.0.1 |
+| [`@helpers4/url`](https://www.npmjs.com/package/@helpers4/url/v/1.0.1) | 1.0.1 |
+
+[Changelog](../reference/changelog)
+:::
+
 ## Installation
 
 v1 predates the `@helpers4/all` bundle — install each category you need directly:
