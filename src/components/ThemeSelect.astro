@@ -1,0 +1,22 @@
+---
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * Renders VersionSelect right before the theme toggle, in the header — same override point
+ * starlight-versions itself uses (see its overrides/ThemeSelect.astro), so the picker sits
+ * in always-visible header real estate instead of a collapsible sidebar section.
+ *
+ * Imports the toggle from starlight-theme-nova directly (not the plain @astrojs/starlight
+ * default, not the virtual:starlight/... module, which would resolve back to this same file
+ * and recurse) — starlight-theme-nova registers its own themed ThemeSelect the same way we
+ * register this override (user config wins, see its index.ts), so skipping this would silently
+ * drop back to the unstyled default toggle.
+ */
+import Default from 'starlight-theme-nova/components/ThemeSelect.astro';
+import VersionSelect from './VersionSelect.astro';
+---
+
+<VersionSelect />
+<Default><slot /></Default>
