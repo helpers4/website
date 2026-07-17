@@ -4,10 +4,67 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightThemeNova from 'starlight-theme-nova';
 import starlightSidebarTopics from 'starlight-sidebar-topics';
+
+const rootDir = path.dirname(fileURLToPath(import.meta.url));
+const docsDir = path.join(rootDir, 'src', 'content', 'docs');
+const versions = JSON.parse(fs.readFileSync(path.join(rootDir, 'src', 'data', 'versions.json'), 'utf-8'));
+
+/**
+ * Builds one typescript topic's `items` for a given version slot (root/next/vN), reading the
+ * real content directory to decide whether to include the Comparisons group — older archives
+ * (e.g. v1) don't have one, and this way nothing has to remember to omit it by hand.
+ */
+function typescriptTopicItems(slug) {
+  const items = [
+    { slug },
+    { slug: `${slug}/getting-started` },
+    { label: 'Categories', items: [{ autogenerate: { directory: `${slug}/categories` } }] },
+    { label: 'Reference', items: [{ autogenerate: { directory: `${slug}/reference` } }] },
+  ];
+  if (fs.existsSync(path.join(docsDir, slug, 'comparisons'))) {
+    items.push({ label: 'Comparisons', items: [{ autogenerate: { directory: `${slug}/comparisons` } }] });
+  }
+  items.push({ label: 'Legal', items: [{ autogenerate: { directory: `${slug}/legal` } }] });
+  return items;
+}
+
+function typescriptTopic(id, slug) {
+  return {
+    id,
+    label: 'TypeScript',
+    link: `/${slug}/`,
+    icon: 'seti:typescript',
+    items: typescriptTopicItems(slug),
+  };
+}
+
+// One real, independently-`autogenerate`d Starlight topic per typescript version — driven by
+// src/data/versions.json instead of hand-listed, so a future archiveStableIfMajorBump() run
+// (see scripts/generate-typescript-docs.js) that adds a new "archive" entry is picked up here
+// automatically on the next build, with no manual edit to this file. They'd normally show up as
+// separate "TypeScript" entries in the topic switcher; TopicsSwitcher.astro (registered as the
+// Sidebar override, see src/components/Sidebar.astro) collapses same-label topics into one
+// visible row instead — topic *resolution* is independent of what the switcher *displays*.
+const ROLE_ORDER = { latest: 0, next: 1, archive: 2 };
+
+function typescriptTopicId(entry) {
+  if (entry.role === 'latest') return 'typescript';
+  if (entry.role === 'next') return 'typescript-next';
+  // archive: derive from the slug's own vN segment, e.g. "typescript/v1" -> "typescript-v1"
+  return `typescript-${entry.slug.split('/').pop()}`;
+}
+
+const typescriptTopics = versions.typescript
+  .filter((v) => v.role in ROLE_ORDER)
+  .sort((a, b) => ROLE_ORDER[a.role] - ROLE_ORDER[b.role])
+  .map((v) => typescriptTopic(typescriptTopicId(v), v.slug));
 
 export default defineConfig({
   site: 'https://helpers4.dev',
@@ -22,56 +79,7 @@ export default defineConfig({
       },
       plugins: [
         starlightSidebarTopics([
-          // One topic per typescript version, each independently `autogenerate`d from its own
-          // directory — this is what makes every version's sidebar correct by construction
-          // (v1 really only has 4 categories, no Comparisons section; next has full parity with
-          // root). They'd normally all show up as separate "TypeScript" entries in the topic
-          // switcher; TopicsSwitcher.astro (registered as the Sidebar override, see
-          // src/components/Sidebar.astro) collapses same-label topics into one visible row
-          // instead — topic *resolution* is independent of what the switcher *displays*.
-          // Order matters: TopicsSwitcher keeps the first same-label topic as the visible
-          // link/icon, so the latest stable stays listed first.
-          {
-            id: 'typescript',
-            label: 'TypeScript',
-            link: '/typescript/',
-            icon: 'seti:typescript',
-            items: [
-              { slug: 'typescript' },
-              { slug: 'typescript/getting-started' },
-              { label: 'Categories', items: [{ autogenerate: { directory: 'typescript/categories' } }] },
-              { label: 'Reference', items: [{ autogenerate: { directory: 'typescript/reference' } }] },
-              { label: 'Comparisons', items: [{ autogenerate: { directory: 'typescript/comparisons' } }] },
-              { label: 'Legal', items: [{ autogenerate: { directory: 'typescript/legal' } }] },
-            ],
-          },
-          {
-            id: 'typescript-next',
-            label: 'TypeScript',
-            link: '/typescript/next/',
-            icon: 'seti:typescript',
-            items: [
-              { slug: 'typescript/next' },
-              { slug: 'typescript/next/getting-started' },
-              { label: 'Categories', items: [{ autogenerate: { directory: 'typescript/next/categories' } }] },
-              { label: 'Reference', items: [{ autogenerate: { directory: 'typescript/next/reference' } }] },
-              { label: 'Comparisons', items: [{ autogenerate: { directory: 'typescript/next/comparisons' } }] },
-              { label: 'Legal', items: [{ autogenerate: { directory: 'typescript/next/legal' } }] },
-            ],
-          },
-          {
-            id: 'typescript-v1',
-            label: 'TypeScript',
-            link: '/typescript/v1/',
-            icon: 'seti:typescript',
-            items: [
-              { slug: 'typescript/v1' },
-              { slug: 'typescript/v1/getting-started' },
-              { label: 'Categories', items: [{ autogenerate: { directory: 'typescript/v1/categories' } }] },
-              { label: 'Reference', items: [{ autogenerate: { directory: 'typescript/v1/reference' } }] },
-              { label: 'Legal', items: [{ autogenerate: { directory: 'typescript/v1/legal' } }] },
-            ],
-          },
+          ...typescriptTopics,
           {
             label: 'Dev Container',
             link: '/devcontainer/',
