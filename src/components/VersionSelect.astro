@@ -1,0 +1,89 @@
+---
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * Per-product version switcher, inspired by starlight-versions' VersionSelect
+ * (https://github.com/HiDeoo/starlight-versions, MIT) but scoped to a single
+ * product/topic and driven by ../data/versions.json instead of a global,
+ * whole-site version collection — starlight-versions archives the entire
+ * src/content/docs/ tree on every cut, which doesn't fit three independently
+ * released products sharing one site (see helpers4/website#version-handling).
+ */
+import versions from '../data/versions.json';
+
+type VersionEntry = { slug: string; label: string; role: 'next' | 'latest' | 'archive' };
+
+const segments = Astro.url.pathname.replace(/^\/|\/$/g, '').split('/');
+const product = segments[0] as keyof typeof versions;
+const entries = (versions[product] ?? []) as VersionEntry[];
+
+// Longest-prefix match so `typescript/v2/...` resolves before the bare `typescript` root.
+const currentSlug = [...entries]
+	.sort((a, b) => b.slug.length - a.slug.length)
+	.find((v) => Astro.url.pathname === `/${v.slug}/` || Astro.url.pathname.startsWith(`/${v.slug}/`))?.slug;
+---
+
+{
+	entries.length > 1 && (
+		<starlight-version-select>
+			<label>
+				<span class="sr-only">Choose a version</span>
+				<select autocomplete="off">
+					{entries.map((v) => (
+						<option value={`/${v.slug}/`} selected={v.slug === currentSlug}>
+							{v.label}
+						</option>
+					))}
+				</select>
+			</label>
+		</starlight-version-select>
+	)
+}
+
+<style>
+	label {
+		align-items: center;
+		color: var(--sl-color-gray-1);
+		display: flex;
+		gap: 0.25rem;
+		padding-inline: 0.25rem;
+	}
+
+	label:hover {
+		color: var(--sl-color-gray-2);
+	}
+
+	select {
+		appearance: none;
+		background-color: transparent;
+		border: 0;
+		color: inherit;
+		cursor: pointer;
+		padding-block: 0.5rem;
+		width: 100%;
+	}
+
+	option {
+		background-color: var(--sl-color-bg-nav);
+		color: var(--sl-color-gray-1);
+	}
+</style>
+
+<script>
+	customElements.define(
+		'starlight-version-select',
+		class StarlightVersionSelect extends HTMLElement {
+			constructor() {
+				super();
+				const select = this.querySelector('select');
+				select?.addEventListener('change', (event) => {
+					if (event.currentTarget instanceof HTMLSelectElement) {
+						globalThis.location.pathname = event.currentTarget.value;
+					}
+				});
+			}
+		},
+	);
+</script>
