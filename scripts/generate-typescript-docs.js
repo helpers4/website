@@ -738,9 +738,17 @@ function findPreviousMajorChangelogLink(docsTarget, currentMajor) {
   const previousMajor = Number(currentMajor) - 1;
   if (previousMajor < 1) return undefined;
 
-  const [product] = docsTarget.split('/');
+  const { product } = parseDocsTarget(docsTarget);
   const manifest = readVersionsManifest();
-  const match = (manifest[product] ?? []).find((v) => v.version?.split('.')[0] === String(previousMajor));
+  const matches = (manifest[product] ?? []).filter((v) => v.version?.split('.')[0] === String(previousMajor));
+  // On the exact run that promotes a new major, archiveStableIfMajorBump() has already added
+  // the "archive" entry for the outgoing major, but syncVersionsManifest() hasn't yet updated
+  // "latest"'s version away from it — so both a fresh archive entry and a stale latest/next
+  // entry can match the same major here. Prefer the archive entry: it's the frozen, authoritative
+  // answer; a latest/next match only means "not archived yet", which is what falling back to it
+  // is for outside of a bump run (e.g. typescript/next still linking to typescript/ before v2
+  // has ever been archived).
+  const match = matches.find((v) => v.role === 'archive') ?? matches[0];
   return match ? `/${match.slug}/reference/changelog/` : undefined;
 }
 
@@ -961,6 +969,23 @@ function writeVersionsManifest(manifest) {
   fs.writeFileSync(VERSIONS_MANIFEST_PATH, JSON.stringify(manifest, null, 2) + '\n');
 }
 
+function findManifestEntry(manifest, product, role) {
+  return (manifest[product] ?? []).find((v) => v.role === role);
+}
+
+/**
+ * Parses a DOCS_TARGET value ("typescript" or "typescript/next") into its product and version
+ * slot role. Throws on anything else instead of letting callers silently no-op on a malformed
+ * value — a bad DOCS_TARGET should fail the release loudly, not skip archiving/manifest updates
+ * with no diagnostic.
+ */
+function parseDocsTarget(docsTarget) {
+  const [product, ...rest] = docsTarget.split('/');
+  if (rest.length === 0) return { product, role: 'latest' };
+  if (rest.length === 1 && rest[0] === 'next') return { product, role: 'next' };
+  throw new Error(`Unrecognized DOCS_TARGET "${docsTarget}" (expected "<product>" or "<product>/next")`);
+}
+
 /**
  * Freezes the outgoing content of a product's stable root (e.g. src/content/docs/typescript/)
  * into its own vN/ slot before it gets overwritten in place, but only when this run's version
@@ -969,18 +994,26 @@ function writeVersionsManifest(manifest) {
  * "typescript/next") and when the target archive slot already exists.
  */
 function archiveStableIfMajorBump(docsTarget, libraryVersion) {
-  const [product, ...rest] = docsTarget.split('/');
-  if (rest.length > 0) return;
+  const { product, role } = parseDocsTarget(docsTarget);
+  if (role !== 'latest') return;
 
   const manifest = readVersionsManifest();
-  const latest = manifest[product]?.find((v) => v.role === 'latest');
+  const latest = findManifestEntry(manifest, product, 'latest');
   const previousMajor = latest?.version?.split('.')[0];
   const newMajor = libraryVersion.split('.')[0];
   if (!previousMajor || previousMajor === newMajor) return;
 
+  const archiveSlug = `${product}/v${previousMajor}`;
+  // versions.json (not the directory) is the source of truth for "already archived" — the
+  // directory alone isn't a safe idempotency check: if a prior run died after copying files but
+  // before writing the manifest, checking the directory would skip forever and leave the
+  // archive permanently unrecorded. Re-running with the directory already present is safe
+  // (cpSync overwrites, the manifest rebuild below dedupes by slug), so this only skips once
+  // the manifest actually confirms the archive was recorded.
+  if (manifest[product]?.some((v) => v.slug === archiveSlug)) return;
+
   const productDir = path.join(rootDir, 'src', 'content', 'docs', product);
   const archiveDir = path.join(productDir, `v${previousMajor}`);
-  if (fs.existsSync(archiveDir)) return;
 
   console.log(`📦 Archiving ${product} v${previousMajor} before promoting v${newMajor}...`);
   fs.mkdirSync(archiveDir, { recursive: true });
@@ -990,14 +1023,33 @@ function archiveStableIfMajorBump(docsTarget, libraryVersion) {
       fs.cpSync(source, path.join(archiveDir, entry), { recursive: true });
     }
   }
+  rewriteArchivedSourceLinks(archiveDir, previousMajor);
 
   manifest[product] = [
-    ...manifest[product].filter((v) => v.role !== 'archive' && v.slug !== `${product}/v${previousMajor}`),
-    { slug: `${product}/v${previousMajor}`, label: `v${previousMajor}`, role: 'archive', version: latest.version },
-    ...manifest[product].filter((v) => v.role === 'archive' && v.slug !== `${product}/v${previousMajor}`),
+    ...manifest[product].filter((v) => v.role !== 'archive' && v.slug !== archiveSlug),
+    { slug: archiveSlug, label: `v${previousMajor}`, role: 'archive', version: latest.version },
+    ...manifest[product].filter((v) => v.role === 'archive' && v.slug !== archiveSlug),
   ];
   writeVersionsManifest(manifest);
-  console.log(`  ✓ recorded ${product}/v${previousMajor} in versions.json`);
+  console.log(`  ✓ recorded ${archiveSlug} in versions.json`);
+}
+
+/**
+ * Archived pages were generated with SOURCE_BRANCH="main" (the stable root always is — see
+ * on-typescript-release.yml), so their "View source on GitHub" links point at main forever even
+ * after main moves past this version. Rewrite them to the frozen vN branch once, at archive time.
+ */
+function rewriteArchivedSourceLinks(archiveDir, previousMajor) {
+  const oldBlobPrefix = 'https://github.com/helpers4/typescript/blob/main/';
+  const newBlobPrefix = `https://github.com/helpers4/typescript/blob/v${previousMajor}/`;
+
+  for (const entry of fs.readdirSync(archiveDir, { withFileTypes: true, recursive: true })) {
+    if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
+    const filePath = path.join(entry.parentPath ?? entry.path, entry.name);
+    const original = fs.readFileSync(filePath, 'utf-8');
+    const patched = original.split(oldBlobPrefix).join(newBlobPrefix);
+    if (patched !== original) fs.writeFileSync(filePath, patched);
+  }
 }
 
 /**
@@ -1007,13 +1059,10 @@ function archiveStableIfMajorBump(docsTarget, libraryVersion) {
  * touched again here — see archiveStableIfMajorBump().
  */
 function syncVersionsManifest(docsTarget, libraryVersion) {
-  const [product, ...rest] = docsTarget.split('/');
-  const role = rest.length === 0 ? 'latest' : rest[0] === 'next' ? 'next' : undefined;
-  if (!role) return;
+  const { product, role } = parseDocsTarget(docsTarget);
 
   const manifest = readVersionsManifest();
-  const entries = manifest[product] ?? [];
-  const entry = entries.find((v) => v.role === role);
+  const entry = findManifestEntry(manifest, product, role);
   if (!entry) return;
 
   const majorVersion = libraryVersion.split('.')[0];
