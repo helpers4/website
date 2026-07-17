@@ -4,18 +4,15 @@
  * Copyright (C) 2025 baxyz
  * SPDX-License-Identifier: LGPL-3.0-or-later
  *
- * Re-renders starlight-sidebar-topics' own sidebar explicitly. starlight-sidebar-topics
- * registers this same override itself, but defers to a user-provided `components.Sidebar`
- * — see its `config:setup` hook, which spreads `starlightConfig.components` after its own
- * default — so this file replaces it wholesale.
- *
- * VersionSelect lives in the header (see ThemeSelect.astro), not here — matching where
- * starlight-versions itself puts it, next to the theme toggle, always visible instead of
- * buried in a collapsible sidebar section.
+ * Re-renders the topics switcher explicitly instead of using starlight-sidebar-topics' own
+ * Sidebar override — see TopicsSwitcher.astro for why (dedup topics sharing a label). Registered
+ * as the Starlight `Sidebar` override in astro.config.mjs; the plugin defers to a user-provided
+ * `components.Sidebar` (spreads `starlightConfig.components` after its own default in its
+ * `config:setup` hook), so this file replaces it wholesale.
  */
 import Default from '@astrojs/starlight/components/Sidebar.astro';
-import TopicsSidebar from 'starlight-sidebar-topics/components/Sidebar.astro';
+import TopicsSwitcher from './TopicsSwitcher.astro';
 ---
 
-<TopicsSidebar />
+<TopicsSwitcher />
 <Default><slot /></Default>
