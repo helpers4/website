@@ -693,9 +693,13 @@ sidebar:
 
   // Skip 'next' section if the current version is a stable release (no prerelease marker)
   const isStableRelease = !LIBRARY_VERSION.includes('-');
-  const displayVersions = isStableRelease
-    ? sortedVersions.filter(v => v !== 'next')
-    : sortedVersions;
+  const currentMajor = LIBRARY_VERSION.split('.')[0];
+  // Each version's changelog only covers its own major line — older majors get their own
+  // frozen archive (see typescript/v1/reference/changelog.md), linked below instead of
+  // repeated here. 'next' and 'unknown' are since-tag placeholders, not real majors.
+  const displayVersions = sortedVersions.filter(
+    (v) => (!isStableRelease || v !== 'next') && (v === 'next' || v === 'unknown' || v.split('.')[0] === currentMajor)
+  );
 
   for (const [idx, version] of displayVersions.entries()) {
     const fns = byVersion[version].sort((a, b) => a.name.localeCompare(b.name));
@@ -716,8 +720,28 @@ sidebar:
     content += '\n';
   }
 
+  const previousMajorLink = findPreviousMajorChangelogLink(DOCS_TARGET, currentMajor);
+  if (previousMajorLink) {
+    content += `---\n\nLooking for older releases? See the [v${Number(currentMajor) - 1} changelog](${previousMajorLink}).\n`;
+  }
+
   fs.writeFileSync(path.join(refDir, 'changelog.md'), content);
   console.log('  ✓ reference/changelog (auto-generated)');
+}
+
+/**
+ * Resolves the link to the previous major version's own changelog page, by looking up
+ * versions.json for an entry (archived or, before it's archived, still "latest") whose
+ * recorded version starts with the previous major — wherever that version currently lives.
+ */
+function findPreviousMajorChangelogLink(docsTarget, currentMajor) {
+  const previousMajor = Number(currentMajor) - 1;
+  if (previousMajor < 1) return undefined;
+
+  const [product] = docsTarget.split('/');
+  const manifest = readVersionsManifest();
+  const match = (manifest[product] ?? []).find((v) => v.version?.split('.')[0] === String(previousMajor));
+  return match ? `/${match.slug}/reference/changelog/` : undefined;
 }
 
 /**
