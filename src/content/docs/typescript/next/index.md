@@ -5,11 +5,9 @@ sidebar:
   order: 0
 ---
 
-import { Badge } from '@astrojs/starlight/components';
-
-<Badge text="v3 alpha — API may still change" variant="tip" />
-
+:::caution[v3 alpha — API may still change]
 Looking for the stable release? → **[TypeScript v2](/typescript/)**
+:::
 
 Production-ready TypeScript utility functions — modular, strictly typed, exhaustively tested.
 

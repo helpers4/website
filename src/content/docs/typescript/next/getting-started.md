@@ -4,17 +4,13 @@ sidebar:
   order: 1
 ---
 
-import { Badge, Aside } from '@astrojs/starlight/components';
-
-<Badge text="v3 alpha — API may still change" variant="tip" />
-
 :::info[Documented version]
 **[v3.0.0-alpha.2](https://github.com/helpers4/typescript/releases/tag/v3.0.0-alpha.2)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/3.0.0-alpha.2) · [Changelog](../reference/changelog)
 :::
 
-<Aside type="caution">
+:::caution[v3 alpha — API may still change]
 For production use, see **[TypeScript v2 → Getting Started](/typescript/getting-started/)**.
-</Aside>
+:::
 
 ## Packages
 
