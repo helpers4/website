@@ -33,13 +33,23 @@ function rewriteHref(href: string, product: string, versionSlug: string): string
 	return `/${versionSlug}/${href.slice(rootPrefix.length)}`;
 }
 
-function rewriteEntries(entries: SidebarEntry[], product: string, versionSlug: string): SidebarEntry[] {
+function stripTrailingSlash(pathname: string): string {
+	return pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+}
+
+// entry.isCurrent was computed by Starlight core against the *original* href, before this
+// middleware rewrites it to the current version's own slot — recompute it against the
+// rewritten href, or the "you are here" sidebar highlighting (aria-current, bold/accent style,
+// see @astrojs/starlight/components/SidebarSublist.astro) silently disappears on every
+// versioned page even though the link is otherwise now correct.
+function rewriteEntries(entries: SidebarEntry[], product: string, versionSlug: string, currentPathname: string): SidebarEntry[] {
 	return entries.map((entry) => {
 		if (entry.type === 'link') {
-			return { ...entry, href: rewriteHref(entry.href, product, versionSlug) };
+			const href = rewriteHref(entry.href, product, versionSlug);
+			return { ...entry, href, isCurrent: stripTrailingSlash(href) === stripTrailingSlash(currentPathname) };
 		}
 		if (entry.type === 'group') {
-			return { ...entry, entries: rewriteEntries(entry.entries, product, versionSlug) };
+			return { ...entry, entries: rewriteEntries(entry.entries, product, versionSlug, currentPathname) };
 		}
 		return entry;
 	});
@@ -53,5 +63,5 @@ export const onRequest = defineRouteMiddleware((context) => {
 	const versionSlug = versionSlugFor(product, starlightRoute.entry.id);
 	if (!versionSlug) return;
 
-	starlightRoute.sidebar = rewriteEntries(starlightRoute.sidebar, product, versionSlug);
+	starlightRoute.sidebar = rewriteEntries(starlightRoute.sidebar, product, versionSlug, context.url.pathname);
 });
