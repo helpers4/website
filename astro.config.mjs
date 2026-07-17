@@ -76,10 +76,23 @@ export default defineConfig({
           },
         }),
         starlightThemeNova(),
+        {
+          // Registered after starlightSidebarTopics so its middleware runs after topics'
+          // (which sets `starlightRoute.sidebar` to the topic's static tree) — this one
+          // then rewrites that tree's hrefs to the current page's own version slot. See
+          // src/route-middleware.ts.
+          name: 'helpers4-route-middleware',
+          hooks: {
+            'config:setup'({ addRouteMiddleware }) {
+              addRouteMiddleware({ entrypoint: './src/route-middleware.ts' });
+            },
+          },
+        },
       ],
       components: {
         MarkdownContent: './src/components/MarkdownContent.astro',
         Search: './src/components/Search.astro',
+        Sidebar: './src/components/Sidebar.astro',
       },
       editLink: {
         baseUrl: 'https://github.com/helpers4/website/edit/main/',

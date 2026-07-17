@@ -1,0 +1,21 @@
+---
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * Composes starlight-sidebar-topics' own sidebar (product switcher) with our
+ * VersionSelect (per-product version switcher). starlight-sidebar-topics
+ * registers this same override itself, but defers to a user-provided
+ * `components.Sidebar` — see its `config:setup` hook, which spreads
+ * `starlightConfig.components` after its own default — so this file replaces
+ * it wholesale and re-renders its topics component explicitly.
+ */
+import Default from '@astrojs/starlight/components/Sidebar.astro';
+import TopicsSidebar from 'starlight-sidebar-topics/components/Sidebar.astro';
+import VersionSelect from './VersionSelect.astro';
+---
+
+<TopicsSidebar />
+<VersionSelect />
+<Default><slot /></Default>

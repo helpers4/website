@@ -1,0 +1,8 @@
+{
+  "typescript": [
+    { "slug": "typescript/next", "label": "Next (unreleased)", "role": "next" },
+    { "slug": "typescript", "label": "v2.1.0", "role": "latest", "version": "2.1.0" }
+  ],
+  "devcontainer": [{ "slug": "devcontainer", "label": "latest", "role": "latest" }],
+  "action": [{ "slug": "action", "label": "latest", "role": "latest" }]
+}
