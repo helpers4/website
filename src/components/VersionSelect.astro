@@ -11,18 +11,13 @@
  * src/content/docs/ tree on every cut, which doesn't fit three independently
  * released products sharing one site (see helpers4/website#version-handling).
  */
-import versions from '../data/versions.json';
-
-type VersionEntry = { slug: string; label: string; role: 'next' | 'latest' | 'archive' };
+import { TOPICS } from '../lib/topics';
+import { VERSIONS_BY_PRODUCT, findVersionForPathname } from '../lib/versions';
 
 const segments = Astro.url.pathname.replace(/^\/|\/$/g, '').split('/');
-const product = segments[0] as keyof typeof versions;
-const entries = (versions[product] ?? []) as VersionEntry[];
-
-// Longest-prefix match so `typescript/v2/...` resolves before the bare `typescript` root.
-const currentSlug = [...entries]
-	.sort((a, b) => b.slug.length - a.slug.length)
-	.find((v) => Astro.url.pathname === `/${v.slug}/` || Astro.url.pathname.startsWith(`/${v.slug}/`))?.slug;
+const product = TOPICS.find((topic) => topic === segments[0]);
+const entries = product ? (VERSIONS_BY_PRODUCT[product] ?? []) : [];
+const currentSlug = findVersionForPathname(entries, Astro.url.pathname)?.slug;
 ---
 
 {
@@ -102,6 +97,17 @@ const currentSlug = [...entries]
 				select?.addEventListener('change', (event) => {
 					if (event.currentTarget instanceof HTMLSelectElement) {
 						globalThis.location.pathname = event.currentTarget.value;
+					}
+				});
+
+				// Same fix as @astrojs/starlight's LanguageSelect: a page restored from the
+				// browser's back/forward cache can leave `select`'s live selection out of sync
+				// with the `option[selected]` the server actually rendered for this page.
+				globalThis.addEventListener('pageshow', (event) => {
+					if (!event.persisted || !select) return;
+					const markupSelectedIndex = select.querySelector<HTMLOptionElement>('option[selected]')?.index;
+					if (markupSelectedIndex !== undefined && markupSelectedIndex !== select.selectedIndex) {
+						select.selectedIndex = markupSelectedIndex;
 					}
 				});
 			}
