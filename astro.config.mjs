@@ -93,6 +93,7 @@ export default defineConfig({
         MarkdownContent: './src/components/MarkdownContent.astro',
         Search: './src/components/Search.astro',
         Sidebar: './src/components/Sidebar.astro',
+        ThemeSelect: './src/components/ThemeSelect.astro',
       },
       editLink: {
         baseUrl: 'https://github.com/helpers4/website/edit/main/',
