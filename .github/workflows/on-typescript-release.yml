@@ -156,11 +156,14 @@ jobs:
           # The website owns the mapping from released version to doc slot — the
           # typescript repo only ever tells us a version string. Any prerelease
           # (alpha/beta/rc) is the line under development and goes to
-          # typescript-next/; a stable version updates the current typescript/ line.
-          # "View source on GitHub" links follow the matching vN branch, or main
-          # for the stable line.
+          # typescript/next/ (a version slot nested under the same topic, not a
+          # separate one — see src/data/versions.json); a stable version updates
+          # the current typescript/ root, archiving it first under typescript/vN/
+          # if this is a major bump (see archiveStableIfMajorBump() in
+          # generate-typescript-docs.js). "View source on GitHub" links follow the
+          # matching vN branch, or main for the stable line.
           if [[ "${RELEASE_VERSION}" == *-alpha.* || "${RELEASE_VERSION}" == *-beta.* || "${RELEASE_VERSION}" == *-rc.* ]]; then
-            DOCS_TARGET="typescript-next"
+            DOCS_TARGET="typescript/next"
             SOURCE_BRANCH="v${RELEASE_VERSION%%.*}"
           else
             DOCS_TARGET="typescript"
@@ -187,7 +190,7 @@ jobs:
           RELEASE_VERSION="${RELEASE_VERSION#v}"
           git config user.name "pushinator[bot]"
           git config user.email "pushinator[bot]@users.noreply.github.com"
-          git add "src/content/docs/${DOCS_TARGET}/"
+          git add "src/content/docs/${DOCS_TARGET}/" src/data/versions.json
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           git commit -m "chore(lib-typescript): 🔧 update ${DOCS_TARGET} docs for v${RELEASE_VERSION}"
           for attempt in 1 2 3; do
