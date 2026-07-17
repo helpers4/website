@@ -23,10 +23,16 @@ export default defineConfig({
       plugins: [
         starlightSidebarTopics([
           {
+            // Single entry: always mirrors the latest stable release (v2 today, v3 once
+            // released). Older releases (typescript/v2/...) and the unreleased preview
+            // (typescript/next/...) are reached via the VersionSelect in the sidebar,
+            // not via a duplicate topic — see src/components/VersionSelect.astro. They're
+            // associated with this topic via the `topics` option below, since they aren't
+            // listed in `items` (their own sidebar comes from the route middleware instead).
+            id: 'typescript',
             label: 'TypeScript',
             link: '/typescript/',
             icon: 'seti:typescript',
-            badge: { text: 'v2', variant: 'default' },
             items: [
               { slug: 'typescript' },
               { slug: 'typescript/getting-started' },
@@ -34,20 +40,6 @@ export default defineConfig({
               { label: 'Reference', items: [{ autogenerate: { directory: 'typescript/reference' } }] },
               { label: 'Comparisons', items: [{ autogenerate: { directory: 'typescript/comparisons' } }] },
               { label: 'Legal', items: [{ autogenerate: { directory: 'typescript/legal' } }] },
-            ],
-          },
-          {
-            label: 'TypeScript',
-            link: '/typescript-next/',
-            icon: 'seti:typescript',
-            badge: { text: 'v3 alpha', variant: 'tip' },
-            items: [
-              { slug: 'typescript-next' },
-              { slug: 'typescript-next/getting-started' },
-              { label: 'Categories', items: [{ autogenerate: { directory: 'typescript-next/categories' } }] },
-              { label: 'Reference', items: [{ autogenerate: { directory: 'typescript-next/reference' } }] },
-              { label: 'Comparisons', items: [{ autogenerate: { directory: 'typescript-next/comparisons' } }] },
-              { label: 'Legal', items: [{ autogenerate: { directory: 'typescript-next/legal' } }] },
             ],
           },
           {
@@ -75,7 +67,14 @@ export default defineConfig({
               { label: 'Legal', items: [{ autogenerate: { directory: 'action/legal' } }] },
             ],
           },
-        ]),
+        ], {
+          // typescript/next/** (and future typescript/v*/** archives) aren't listed in the
+          // 'typescript' topic's `items`, so associate them explicitly — otherwise the plugin
+          // fails the build with "Failed to find the topic for the `typescript/next` page."
+          topics: {
+            typescript: ['/typescript/next', '/typescript/next/**/*', '/typescript/v*', '/typescript/v*/**/*'],
+          },
+        }),
         starlightThemeNova(),
       ],
       components: {
