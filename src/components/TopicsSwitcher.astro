@@ -53,7 +53,9 @@ for (const topic of topics) {
 							)}
 							<div>
 								{topic.label}
-								{topic.badge && <Badge variant={topic.badge.variant} text={topic.badge.text} />}
+								{topic.badge && (
+									<Badge class="starlight-sidebar-topics-badge" variant={topic.badge.variant} text={topic.badge.text} />
+								)}
 							</div>
 						</a>
 					</li>
@@ -118,5 +120,9 @@ for (const topic of topics) {
 		background-color: var(--sl-color-text-accent);
 		border-color: var(--sl-color-text-accent);
 		color: var(--sl-color-text-invert);
+	}
+
+	.starlight-sidebar-topics-badge {
+		margin-inline-start: 0.25em;
 	}
 </style>
