@@ -969,7 +969,7 @@ function archiveStableIfMajorBump(docsTarget, libraryVersion) {
 
   manifest[product] = [
     ...manifest[product].filter((v) => v.role !== 'archive' && v.slug !== `${product}/v${previousMajor}`),
-    { slug: `${product}/v${previousMajor}`, label: latest.label, role: 'archive', version: latest.version },
+    { slug: `${product}/v${previousMajor}`, label: `v${previousMajor}`, role: 'archive', version: latest.version },
     ...manifest[product].filter((v) => v.role === 'archive' && v.slug !== `${product}/v${previousMajor}`),
   ];
   writeVersionsManifest(manifest);
@@ -992,7 +992,8 @@ function syncVersionsManifest(docsTarget, libraryVersion) {
   const entry = entries.find((v) => v.role === role);
   if (!entry) return;
 
-  entry.label = role === 'next' ? 'Next (unreleased)' : `v${libraryVersion}`;
+  const majorVersion = libraryVersion.split('.')[0];
+  entry.label = role === 'next' ? `Next (v${majorVersion})` : `Latest (v${majorVersion})`;
   if (role === 'latest') entry.version = libraryVersion;
 
   writeVersionsManifest(manifest);
