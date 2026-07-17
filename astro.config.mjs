@@ -22,13 +22,16 @@ export default defineConfig({
       },
       plugins: [
         starlightSidebarTopics([
+          // One topic per typescript version, each independently `autogenerate`d from its own
+          // directory — this is what makes every version's sidebar correct by construction
+          // (v1 really only has 4 categories, no Comparisons section; next has full parity with
+          // root). They'd normally all show up as separate "TypeScript" entries in the topic
+          // switcher; TopicsSwitcher.astro (registered as the Sidebar override, see
+          // src/components/Sidebar.astro) collapses same-label topics into one visible row
+          // instead — topic *resolution* is independent of what the switcher *displays*.
+          // Order matters: TopicsSwitcher keeps the first same-label topic as the visible
+          // link/icon, so the latest stable stays listed first.
           {
-            // Single entry: always mirrors the latest stable release (v2 today, v3 once
-            // released). Older releases (typescript/v2/...) and the unreleased preview
-            // (typescript/next/...) are reached via the VersionSelect in the sidebar,
-            // not via a duplicate topic — see src/components/VersionSelect.astro. They're
-            // associated with this topic via the `topics` option below, since they aren't
-            // listed in `items` (their own sidebar comes from the route middleware instead).
             id: 'typescript',
             label: 'TypeScript',
             link: '/typescript/',
@@ -40,6 +43,33 @@ export default defineConfig({
               { label: 'Reference', items: [{ autogenerate: { directory: 'typescript/reference' } }] },
               { label: 'Comparisons', items: [{ autogenerate: { directory: 'typescript/comparisons' } }] },
               { label: 'Legal', items: [{ autogenerate: { directory: 'typescript/legal' } }] },
+            ],
+          },
+          {
+            id: 'typescript-next',
+            label: 'TypeScript',
+            link: '/typescript/next/',
+            icon: 'seti:typescript',
+            items: [
+              { slug: 'typescript/next' },
+              { slug: 'typescript/next/getting-started' },
+              { label: 'Categories', items: [{ autogenerate: { directory: 'typescript/next/categories' } }] },
+              { label: 'Reference', items: [{ autogenerate: { directory: 'typescript/next/reference' } }] },
+              { label: 'Comparisons', items: [{ autogenerate: { directory: 'typescript/next/comparisons' } }] },
+              { label: 'Legal', items: [{ autogenerate: { directory: 'typescript/next/legal' } }] },
+            ],
+          },
+          {
+            id: 'typescript-v1',
+            label: 'TypeScript',
+            link: '/typescript/v1/',
+            icon: 'seti:typescript',
+            items: [
+              { slug: 'typescript/v1' },
+              { slug: 'typescript/v1/getting-started' },
+              { label: 'Categories', items: [{ autogenerate: { directory: 'typescript/v1/categories' } }] },
+              { label: 'Reference', items: [{ autogenerate: { directory: 'typescript/v1/reference' } }] },
+              { label: 'Legal', items: [{ autogenerate: { directory: 'typescript/v1/legal' } }] },
             ],
           },
           {
@@ -67,27 +97,8 @@ export default defineConfig({
               { label: 'Legal', items: [{ autogenerate: { directory: 'action/legal' } }] },
             ],
           },
-        ], {
-          // typescript/next/** (and future typescript/v*/** archives) aren't listed in the
-          // 'typescript' topic's `items`, so associate them explicitly — otherwise the plugin
-          // fails the build with "Failed to find the topic for the `typescript/next` page."
-          topics: {
-            typescript: ['/typescript/next', '/typescript/next/**/*', '/typescript/v*', '/typescript/v*/**/*'],
-          },
-        }),
+        ]),
         starlightThemeNova(),
-        {
-          // Registered after starlightSidebarTopics so its middleware runs after topics'
-          // (which sets `starlightRoute.sidebar` to the topic's static tree) — this one
-          // then rewrites that tree's hrefs to the current page's own version slot. See
-          // src/route-middleware.ts.
-          name: 'helpers4-route-middleware',
-          hooks: {
-            'config:setup'({ addRouteMiddleware }) {
-              addRouteMiddleware({ entrypoint: './src/route-middleware.ts' });
-            },
-          },
-        },
       ],
       components: {
         MarkdownContent: './src/components/MarkdownContent.astro',
