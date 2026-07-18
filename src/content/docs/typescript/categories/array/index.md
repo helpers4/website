@@ -13,8 +13,10 @@ Utility functions for working with array operations.
 |----------|-------------|
 | [`cartesianProduct`](./cartesianproduct/) | Computes the Cartesian product of the provided arrays. |
 | [`chunk`](./chunk/) | Chunks an array into smaller arrays of specified size. |
+| [`combineSortFns`](./combinesortfns/) | Chains multiple sort functions into a single comparator: the first function decides the order unless it reports a tie… |
 | [`compact`](./compact/) | Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array. |
 | [`countBy`](./countby/) | Groups the elements of an array by the key returned by `keyFn` and returns a record mapping each key to the number of… |
+| [`createSortByBooleanFn`](./createsortbybooleanfn/) | Creates a sort function for objects by a boolean property. |
 | [`createSortByDateFn`](./createsortbydatefn/) | Creates a sort function for objects by date property. |
 | [`createSortByNaturalFn`](./createsortbynaturalfn/) | Creates a sort function for objects by one or more string properties using natural ordering. |
 | [`createSortByNumberFn`](./createsortbynumberfn/) | Creates a sort function for objects by number property. |
@@ -40,6 +42,7 @@ Utility functions for working with array operations.
 | [`min`](./min/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | [`partition`](./partition/) | Splits an array into two groups based on a predicate function. |
 | [`range`](./range/) | Generates an array of sequential numbers from start to end (exclusive). |
+| [`replaceOrAppend`](./replaceorappend/) | Returns a new array with the first item matching `predicate` replaced by `item` — or `item` appended at the end if no… |
 | `reverse` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
 | [`sample`](./sample/) | Picks one or more random elements from an array. |
 | [`select`](./select/) | Filters and transforms an array in a single pass. |
@@ -57,8 +60,10 @@ Utility functions for working with array operations.
 | [`sortStringNaturalDescFn`](./sortstringnaturaldescfn/) | Sort strings in descending order using natural (human-friendly) ordering. |
 | [`sortStringNaturalDescInsensitiveFn`](./sortstringnaturaldescinsensitivefn/) | Sort strings in descending natural order, ignoring case **and diacritics** (`Intl.Collator { sensitivity: 'base' }` —… |
 | [`sum`](./sum/) | Calculates the sum of an array of numbers. |
+| [`symmetricDifference`](./symmetricdifference/) | Returns the symmetric difference between two arrays: items present in exactly one of the two arrays (in either, but n… |
 | `tail` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
+| [`toggle`](./toggle/) | Returns a new array with `item` removed if present, or appended if absent — the common "toggle a selection" pattern. |
 | `union` | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |
 | [`unique`](./unique/) | Removes duplicate values from an array. |
 | [`unzip`](./unzip/) | Splits an array of tuples into separate arrays, one per position. |

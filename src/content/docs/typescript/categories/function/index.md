@@ -24,4 +24,5 @@ Utility functions for working with function operations.
 | [`pipe`](./pipe/) | Composes functions left-to-right: the output of each function is passed as input to the next. |
 | [`returnOrThrowError`](./returnorthrowerror/) | Return a value or throw an error if null or undefined. |
 | [`throttle`](./throttle/) | Creates a throttled function that only invokes func at most once per every wait milliseconds |
+| [`unary`](./unary/) | Creates a function that calls `fn` with only its first argument, discarding any others. |
 

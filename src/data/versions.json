@@ -1,9 +1,41 @@
 {
   "typescript": [
-    { "slug": "typescript/next", "label": "Next (v3)", "role": "next" },
-    { "slug": "typescript", "label": "Latest (v2)", "role": "latest", "version": "2.1.0" },
-    { "slug": "typescript/v1", "label": "v1 (2022)", "role": "archive", "version": "1.1.0" }
+    {
+      "slug": "typescript/next",
+      "label": "Next (v3)",
+      "role": "next"
+    },
+    {
+      "slug": "typescript",
+      "label": "Latest (v3)",
+      "role": "latest",
+      "version": "3.0.0"
+    },
+    {
+      "slug": "typescript/v2",
+      "label": "v2",
+      "role": "archive",
+      "version": "2.1.0"
+    },
+    {
+      "slug": "typescript/v1",
+      "label": "v1 (2022)",
+      "role": "archive",
+      "version": "1.1.0"
+    }
   ],
-  "devcontainer": [{ "slug": "devcontainer", "label": "latest", "role": "latest" }],
-  "action": [{ "slug": "action", "label": "latest", "role": "latest" }]
+  "devcontainer": [
+    {
+      "slug": "devcontainer",
+      "label": "latest",
+      "role": "latest"
+    }
+  ],
+  "action": [
+    {
+      "slug": "action",
+      "label": "latest",
+      "role": "latest"
+    }
+  ]
 }

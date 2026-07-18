@@ -10,7 +10,7 @@ Production-ready TypeScript utility functions — modular, strictly typed, exhau
 ## Quick Links
 
 - **[Get Started](./getting-started)** — Installation and first import
-- **[Browse Categories](./categories/array)** — 230 helpers across 16 categories
+- **[Browse Categories](./categories/array)** — 269 helpers across 18 categories
 - **[GitHub](https://github.com/helpers4/typescript)** · **[npm](https://www.npmjs.com/package/@helpers4/all)** · **[License (LGPL-3.0)](./legal/license)**
 
 ## What is helpers4?
@@ -37,7 +37,7 @@ V2 is a major milestone with 40+ new helpers:
 | **New `commit` category** | Parse and analyze Conventional Commits messages with formal structure validation |
 | **New `version` category** | `parse`, `compare`, `increment`, `stringify` — semantic version operations with full SemVer 2.0.0 support |
 | **Expanded `type` category** | Guards for every major type: `isTemporalInstant`, `isTemporalDuration`, `isTemporalPlainDate`, `isTemporalPlainDateTime`, `isPromise`, `isIterable`, and more |
-| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v2.1.0) |
+| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v3.0.0) |
 | **Property-based tests** | Invariants validated against thousands of random inputs (fast-check) |
 | **Contract tests** | Formal behavioral guarantees for each function |
 | **Boundary & security tests** | Edge values and security-sensitive inputs (prototype pollution, injections) |
