@@ -1,5 +1,5 @@
 ---
-title: Getting Started — v3 (alpha)
+title: Getting Started
 sidebar:
   order: 1
 ---
@@ -8,8 +8,10 @@ sidebar:
 **[v3.0.0-alpha.2](https://github.com/helpers4/typescript/releases/tag/v3.0.0-alpha.2)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/3.0.0-alpha.2) · [Changelog](../reference/changelog)
 :::
 
-:::caution[v3 alpha — API may still change]
-For production use, see **[TypeScript v2 → Getting Started](/typescript/getting-started/)**.
+:::caution[Preview — may be stale]
+This reflects the last alpha build before that line shipped as stable — no newer prerelease has
+been published yet. For production use, see
+**[TypeScript (latest) → Getting Started](/typescript/getting-started/)**.
 :::
 
 ## Packages

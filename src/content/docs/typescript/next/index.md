@@ -1,12 +1,13 @@
 ---
-title: Helpers 4 TypeScript — v3 (alpha)
+title: Helpers 4 TypeScript
 sidebar:
-  label: TypeScript v3
+  label: TypeScript (next)
   order: 0
 ---
 
-:::caution[v3 alpha — API may still change]
-Looking for the stable release? → **[TypeScript v2](/typescript/)**
+:::caution[Preview — may be stale]
+This reflects the last alpha build before that line shipped as stable — no newer prerelease has
+been published yet. Looking for the current library? → **[TypeScript (latest)](/typescript/)**
 :::
 
 Production-ready TypeScript utility functions — modular, strictly typed, exhaustively tested.
