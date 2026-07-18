@@ -1,5 +1,5 @@
 ---
-title: Getting Started — v1 (archived)
+title: Getting Started
 sidebar:
   order: 1
 ---

@@ -1,5 +1,5 @@
 ---
-title: Helpers 4 TypeScript — v1 (archived)
+title: Helpers 4 TypeScript
 sidebar:
   label: TypeScript v1
   order: 0
