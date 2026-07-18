@@ -17,6 +17,7 @@ Utility functions for working with string operations.
 | [`escapeHtml`](./escapehtml/) | Escapes the HTML special characters `&`, `<`, `>`, `"`, and `'` in a string. |
 | [`escapeRegExp`](./escaperegexp/) | Escapes regular expression metacharacters (`. |
 | [`extractErrorMessage`](./extracterrormessage/) | Convert an error to a readable message. |
+| [`formatProgressBar`](./formatprogressbar/) | Formats a value as a text progress bar, repeating `filledChar`/`emptyChar` across `width` cells proportional to `valu… |
 | [`injectWordBreaks`](./injectwordbreaks/) | Adds word-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table… |
 | [`isBlank`](./isblank/) | Checks if a string is blank — empty or contains only whitespace characters. |
 | [`isEmpty`](./isempty/) | Checks if a string is empty (`""`), `null`, or `undefined`. |

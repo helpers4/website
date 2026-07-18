@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**269** implemented helpers + **47** covered by native JavaScript APIs, sorted alphabetically.
+**273** implemented helpers + **47** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -56,6 +56,7 @@ sidebar:
 | [`DeepPartial`](../type/deeppartial/) | [type](../type/) | Recursively makes all properties of T optional, including nested objects and array elements. |
 | [`DeepSet`](../type/deepset/) | [type](../type/) | Produces the type of `T` after replacing the value at `Path` with `V`. |
 | [`DeepWritable`](../type/deepwritable/) | [type](../type/) | Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions. |
+| [`DEFAULT_PERCENTAGE_TIERS`](../ci/default_percentage_tiers/) | [ci](../ci/) | Default tiers, geared towards coverage/quality-gate style percentages. |
 | [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last regist… |
 | [`delay`](../promise/delay/) | [promise](../promise/) | Creates a promise that resolves after specified delay |
 | [`diff`](../object/diff/) | [object](../object/) | Structural object diff. |
@@ -86,6 +87,7 @@ sidebar:
 | [`formatCompact`](../number/formatcompact/) | [number](../number/) | Formats a number using compact notation (e.g. |
 | [`formatDuration`](../date/formatduration/) | [date](../date/) | Formats a duration in milliseconds as a compact human-readable string. |
 | [`formatInTimezone`](../date/formatintimezone/) | [date](../date/) | Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`. |
+| [`formatProgressBar`](../string/formatprogressbar/) | [string](../string/) | Formats a value as a text progress bar, repeating `filledChar`/`emptyChar` across `width` cells proportional to `valu… |
 | [`formatSize`](../number/formatsize/) | [number](../number/) | Format a byte count into a human-readable string with the appropriate unit. |
 | `from (parse temporal string)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.from(str) / Temporal.PlainDate.from(str) / etc.` *(Temporal (Stage 3))* |
 | [`fromMillis`](../date/frommillis/) | [date](../date/) | Creates a `Date` from a timestamp in **milliseconds**. |
@@ -102,6 +104,7 @@ sidebar:
 | [`identity`](../function/identity/) | [function](../function/) | Returns the given value unchanged  Useful as a default transform, in function composition, or as a placeholder mapper. |
 | `includes` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.includes()` *(ES2016)* |
 | [`increment`](../version/increment/) | [version](../version/) | Increments a semantic version |
+| [`incrementPrerelease`](../version/incrementprerelease/) | [version](../version/) | Increments the prerelease portion of a semantic version — the semantics `npm version prerelease --preid <id>` uses, n… |
 | [`injectWordBreaks`](../string/injectwordbreaks/) | [string](../string/) | Adds word-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table… |
 | [`inRange`](../number/inrange/) | [number](../number/) | Checks whether a number falls within `[min, max]` (both inclusive by default). |
 | [`intersection`](../array/intersection/) | [array](../array/) | Compute the intersection of two arrays, meaning the elements that are present in both arrays. |
@@ -232,6 +235,7 @@ sidebar:
 | [`partial`](../function/partial/) | [function](../function/) | Partially applies arguments to a function, returning a new function that accepts the remaining arguments. |
 | [`partition`](../array/partition/) | [array](../array/) | Splits an array into two groups based on a predicate function. |
 | [`pascalCase`](../string/pascalcase/) | [string](../string/) | Converts a string to PascalCase. |
+| [`percentageToTier`](../ci/percentagetotier/) | [ci](../ci/) | Maps a numeric percentage to a tier (icon, color, label) using configurable thresholds. |
 | [`pick`](../object/pick/) | [object](../object/) | Creates a new object with only the specified keys. |
 | [`pickBy`](../object/pickby/) | [object](../object/) | Creates a new object with only the own enumerable entries for which `predicate` returns `true`. |
 | [`PickByValue`](../type/pickbyvalue/) | [type](../type/) | Constructs a type by picking all entries of `T` whose values extend `V`. |

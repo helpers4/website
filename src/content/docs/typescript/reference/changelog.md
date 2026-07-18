@@ -6,7 +6,16 @@ sidebar:
   order: 2
 ---
 
-## v3.0.0 *(Latest)*
+## v3.0.1 *(Latest)*
+
+| Function | Category | Description |
+|----------|----------|-------------|
+| [`DEFAULT_PERCENTAGE_TIERS`](../categories/ci/default_percentage_tiers/) | [ci](../categories/ci/) | Default tiers, geared towards coverage/quality-gate style percentages. Follows shields.io color conventions: brightgreen >= 100, green >= 90, yellow >= 80, orange >= 60. |
+| [`formatProgressBar`](../categories/string/formatprogressbar/) | [string](../categories/string/) | Formats a value as a text progress bar, repeating `filledChar`/`emptyChar` across `width` cells proportional to `value / max`.  `value` is clamped to `[0, max]` before computing the ratio — out-of-range values (negative, above `max`) produce an empty or fully-filled bar instead of throwing. Non-finite `max` (`NaN`, `Infinity`) is treated as `0`, yielding an empty bar. |
+| [`incrementPrerelease`](../categories/version/incrementprerelease/) | [version](../categories/version/) | Increments the prerelease portion of a semantic version — the semantics `npm version prerelease --preid <id>` uses, not covered by increment (which only handles `'major' \| 'minor' \| 'patch'`).  - No current prerelease (a release version) → bumps `patch` and starts a new prerelease line   at `<prereleaseId>.0` (a prerelease of the version itself, e.g. `1.2.3`, would already be   released). - Same prerelease type as the current version → increments its counter. - Different prerelease type (e.g. `alpha` → `beta`) → resets the counter to `0`.  Input prerelease can be any shape, but only the first two parts are considered; output is always normalized to `<prereleaseId>.<number>`. Build metadata, if any, is dropped — it's tied to the specific build that produced the input version, not the new one. A leading `v` is preserved if present, matching increment's behavior (`parse`/ `stringify` alone would strip it — see their docs). |
+| [`percentageToTier`](../categories/ci/percentagetotier/) | [ci](../categories/ci/) | Maps a numeric percentage to a tier (icon, color, label) using configurable thresholds.  Tiers are matched by their highest `min` that is `<= value`; a `value` below every tier's `min` (e.g. a negative percentage, or custom tiers that don't cover down to 0) falls back to the tier with the lowest `min` — there's always a match as long as `tiers` is non-empty. |
+
+## v3.0.0
 
 | Function | Category | Description |
 |----------|----------|-------------|
