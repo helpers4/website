@@ -192,7 +192,7 @@ jobs:
           git config user.email "pushinator[bot]@users.noreply.github.com"
           git add "src/content/docs/${DOCS_TARGET}/" src/data/versions.json
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git commit -m "chore(lib-typescript): 🔧 update ${DOCS_TARGET} docs for v${RELEASE_VERSION}"
+          git commit -m "chore(typescript): 🔧 update ${DOCS_TARGET} docs for v${RELEASE_VERSION}"
           for attempt in 1 2 3; do
             git fetch origin main
             if git rebase origin/main && git push origin HEAD:main; then
