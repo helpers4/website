@@ -5,7 +5,7 @@ sidebar:
 ---
 
 :::info[Documented version]
-**[v3.0.0](https://github.com/helpers4/typescript/releases/tag/v3.0.0)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/3.0.0) · [Changelog](../reference/changelog)
+**[v3.0.0](https://github.com/helpers4/typescript/releases/tag/v3.0.0)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/3.0.0) · [Changelog](../reference/changelog) · Upgrading from v2? See the [migration guide](../reference/migration/)
 :::
 
 ## Installation
