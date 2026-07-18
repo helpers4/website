@@ -5,6 +5,8 @@ sidebar:
 ---
 
 Removes all entries with falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an object.
+Own keys that are prototype-polluting strings (`__proto__`, `constructor`, `prototype`) are
+silently skipped.
 
 > Available since v2.0.0
 

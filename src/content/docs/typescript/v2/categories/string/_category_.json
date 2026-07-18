@@ -1,0 +1,10 @@
+{
+  "label": "String",
+  "position": 13,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "doc",
+    "id": "categories/string/index"
+  }
+}

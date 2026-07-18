@@ -1,0 +1,10 @@
+{
+  "label": "Observable",
+  "position": 11,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "doc",
+    "id": "categories/observable/index"
+  }
+}
