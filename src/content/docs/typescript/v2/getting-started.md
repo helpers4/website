@@ -4,6 +4,10 @@ sidebar:
   order: 1
 ---
 
+:::caution[Archived version]
+This is the v2 release, kept for reference. Looking for the current library? → **[TypeScript (latest)](/typescript/)** · [Migration guide (v2 → v3)](/typescript/reference/migration/)
+:::
+
 :::info[Documented version]
 **[v2.1.0](https://github.com/helpers4/typescript/releases/tag/v2.1.0)** — [npm](https://www.npmjs.com/package/@helpers4/all/v/2.1.0) · [Changelog](../reference/changelog)
 :::

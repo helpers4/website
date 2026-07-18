@@ -1,9 +1,13 @@
 ---
 title: Helpers 4 TypeScript
 sidebar:
-  label: TypeScript
+  label: TypeScript v2
   order: 0
 ---
+
+:::caution[Archived version]
+This is the v2 release, kept for reference. Looking for the current library? → **[TypeScript (latest)](/typescript/)** · [Migration guide (v2 → v3)](/typescript/reference/migration/)
+:::
 
 Production-ready TypeScript utility functions — modular, strictly typed, exhaustively tested.
 
