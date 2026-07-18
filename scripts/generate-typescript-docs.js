@@ -1033,7 +1033,7 @@ function archiveStableIfMajorBump(docsTarget, libraryVersion) {
 
   manifest[product] = [
     ...manifest[product].filter((v) => v.role !== 'archive' && v.slug !== archiveSlug),
-    { slug: archiveSlug, label: `v${previousMajor}`, role: 'archive', version: latest.version },
+    { slug: archiveSlug, label: `v${previousMajor} (${new Date().getFullYear()})`, role: 'archive', version: latest.version },
     ...manifest[product].filter((v) => v.role === 'archive' && v.slug !== archiveSlug),
   ];
   writeVersionsManifest(manifest);
