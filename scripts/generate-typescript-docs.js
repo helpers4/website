@@ -1029,6 +1029,7 @@ function archiveStableIfMajorBump(docsTarget, libraryVersion) {
     }
   }
   rewriteArchivedSourceLinks(archiveDir, previousMajor);
+  markArchivedPages(archiveDir, product, previousMajor);
 
   manifest[product] = [
     ...manifest[product].filter((v) => v.role !== 'archive' && v.slug !== archiveSlug),
@@ -1058,6 +1059,32 @@ function rewriteArchivedSourceLinks(archiveDir, previousMajor) {
 }
 
 /**
+ * Freshly-copied archive pages are otherwise byte-identical to what "latest" looked like the
+ * moment before it was promoted — nothing in the content itself says "this is an old, frozen
+ * version". Adds a caution banner to index.md/getting-started.md pointing back to latest, and
+ * suffixes the sidebar label with "vN" so the nav tree itself shows which archived line you're
+ * in (consistent with how the version selector labels it — see src/data/versions.json).
+ */
+function markArchivedPages(archiveDir, product, previousMajor) {
+  const banner = `\n:::caution[Archived version]\nThis is the v${previousMajor} release, kept for reference. Looking for the current library? → **[TypeScript (latest)](/${product}/)**\n:::\n`;
+
+  for (const filename of ['index.md', 'getting-started.md']) {
+    const filePath = path.join(archiveDir, filename);
+    if (!fs.existsSync(filePath)) continue;
+    const original = fs.readFileSync(filePath, 'utf-8');
+    const patched = original.replace(/^(---\n[\s\S]*?\n---\n)/, `$1${banner}`);
+    if (patched !== original) fs.writeFileSync(filePath, patched);
+  }
+
+  const indexPath = path.join(archiveDir, 'index.md');
+  if (fs.existsSync(indexPath)) {
+    const original = fs.readFileSync(indexPath, 'utf-8');
+    const patched = original.replace(/^(\s*label:\s*)TypeScript\s*$/m, `$1TypeScript v${previousMajor}`);
+    if (patched !== original) fs.writeFileSync(indexPath, patched);
+  }
+}
+
+/**
  * Updates this product's "latest" (docsTarget === product root) or "next"
  * (docsTarget === "<product>/next") entry in the version manifest with the version this run
  * just generated. Archived (role: "archive") entries are frozen once written and never
@@ -1071,7 +1098,12 @@ function syncVersionsManifest(docsTarget, libraryVersion) {
   if (!entry) return;
 
   const majorVersion = libraryVersion.split('.')[0];
-  entry.label = role === 'next' ? `Next (v${majorVersion})` : `Latest (v${majorVersion})`;
+  // "next"'s label deliberately doesn't include a version number: unlike "latest", it can't
+  // reliably know whether its content is still actually upcoming or has since shipped stable
+  // (this script only re-runs "next" when a new prerelease fires — there's no signal here that
+  // e.g. v3 has since become "latest") — a version-numbered label previously went stale and sat
+  // right next to an identically-numbered "Latest (v3)" the moment v3 shipped.
+  entry.label = role === 'next' ? 'Next (unreleased)' : `Latest (v${majorVersion})`;
   if (role === 'latest') entry.version = libraryVersion;
 
   writeVersionsManifest(manifest);
