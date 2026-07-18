@@ -17,6 +17,17 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 
+const VERSIONS_MANIFEST_PATH = path.join(rootDir, 'src', 'data', 'versions.json');
+// Content entries copied into a frozen vN/ slot when archiving a stable release.
+// Deliberately a whitelist (not "everything except next/vN") so a future addition to
+// the generated tree can't accidentally get swept into an archive by default. Declared here,
+// at the top, rather than near the functions that use them — archiveStableIfMajorBump() is
+// called near the top of the script's top-level execution (see below), and referencing a
+// `const` before its declaration line actually executes throws (temporal dead zone), even
+// though the *function* itself is hoisted. Learned this the hard way: it silently broke every
+// major-version release archiving from the moment this file was written until now.
+const ARCHIVABLE_ENTRIES = ['categories', 'comparisons', 'legal', 'reference', 'getting-started.md', 'index.md'];
+
 // DOCS_TARGET selects which content/docs/<slug> tree to (re)generate — one slot per
 // concurrently documented version line (e.g. "typescript" for the current stable line,
 // "typescript/next" for the next major line, under the same topic — see
@@ -954,12 +965,6 @@ function syncHelperCount(totalFunctions, categoryCount) {
     }
   }
 }
-
-const VERSIONS_MANIFEST_PATH = path.join(rootDir, 'src', 'data', 'versions.json');
-// Content entries copied into a frozen vN/ slot when archiving a stable release.
-// Deliberately a whitelist (not "everything except next/vN") so a future addition to
-// the generated tree can't accidentally get swept into an archive by default.
-const ARCHIVABLE_ENTRIES = ['categories', 'comparisons', 'legal', 'reference', 'getting-started.md', 'index.md'];
 
 function readVersionsManifest() {
   return readJson(VERSIONS_MANIFEST_PATH) ?? {};
