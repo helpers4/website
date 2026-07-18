@@ -2,7 +2,7 @@
 title: "helpers4 vs Alternative Libraries"
 sidebar:
   label: "Alternative Libraries"
-  order: 2
+  order: 3
 ---
 
 A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
@@ -64,11 +64,11 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 | | helpers4 | remeda |
 |---|---|---|
 | **Paradigm** | Standard functional | Data-first **and** data-last (dual API) |
-| **Pipe support** | No built-in pipe | `pipe()` with type narrowing |
+| **Pipe support** | `pipe()`/`compose()`/`curry()` (eager, since v2.0.0) | `pipe()` with lazy evaluation on tagged functions + type narrowing |
 | **TypeScript** | Strict types | Advanced type inference with pipe |
-| **Unique to helpers4** | dates, URLs, semver, observables, promise guards | Pipe/compose, advanced type narrowing |
+| **Unique to helpers4** | dates, URLs, semver, observables, promise guards, `compose`/`curry` | Lazy pipe evaluation, dual data-first/data-last API |
 
-**Key difference**: Remeda excels at piped data transformations with excellent type inference. helpers4 focuses on domain-specific utilities. They serve different purposes and can be combined.
+**Key difference**: Both ship a pipe — remeda's is the more sophisticated one (lazy evaluation, dual API), while helpers4 additionally offers right-to-left `compose` and generic `curry`, which remeda doesn't expose. Otherwise, remeda excels at piped data transformations with excellent type inference, and helpers4 focuses on domain-specific utilities. They serve different purposes and can be combined — see the [detailed comparison](./remeda/).
 
 ## helpers4 vs Ramda
 
