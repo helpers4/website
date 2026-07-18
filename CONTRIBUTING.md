@@ -119,8 +119,8 @@ Then open a PR on GitHub with:
 
 ## Questions?
 
-- Open a discussion: https://github.com/helpers4/helpers4.github.io/discussions
-- Check documentation: [SETUP.md](./SETUP.md)
+- Open a discussion: [github.com/helpers4/website/discussions](https://github.com/helpers4/website/discussions)
+- Check documentation: [AGENTS.md](./AGENTS.md)
 
 ---
 
