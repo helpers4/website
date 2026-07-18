@@ -2,7 +2,7 @@
   "typescript": [
     {
       "slug": "typescript/next",
-      "label": "Next (unreleased)",
+      "label": "Next",
       "role": "next"
     },
     {
