@@ -34,11 +34,11 @@ zero logic changes for anyone using the replacements below.
 
 | | |
 |---|---|
-| **⚠️ Breaking: `type` → `guard`** | Runtime type guards (`isString`, `isArray`, `isDefined`, …) moved to a new `@helpers4/guard` package; `@helpers4/type` now only holds compile-time-only utility types. See the [migration guide](https://github.com/helpers4/typescript/blob/main/MIGRATION) |
-| **⚠️ Breaking: 6 removed aliases** | `deepMerge`/`deepClone`/`daysDifference`/`safeDate`/`dateToISOString`/`type.isEmpty` — all had a direct replacement since v1.9.0/v2.0.0, see the [migration guide](https://github.com/helpers4/typescript/blob/main/MIGRATION) for the full table |
+| **⚠️ Breaking: `type` → `guard`** | Runtime type guards (`isString`, `isArray`, `isDefined`, …) moved to a new `@helpers4/guard` package; `@helpers4/type` now only holds compile-time-only utility types. See the [migration guide](https://github.com/helpers4/typescript/blob/main/MIGRATION.md) |
+| **⚠️ Breaking: 6 removed aliases** | `deepMerge`/`deepClone`/`daysDifference`/`safeDate`/`dateToISOString`/`type.isEmpty` — all had a direct replacement since v1.9.0/v2.0.0, see the [migration guide](https://github.com/helpers4/typescript/blob/main/MIGRATION.md) for the full table |
 | **New `color` category** | `hexToRgb`, `rgbToHex`, `hslToRgb`, `rgbToHsl`, `argbToRgb`, plus `isCssColor` in `guard` |
 | **25+ new helpers** | `clone`, `flatten`/`unflatten`, `pickBy`/`omitBy`/`unset`/`update`, `parsePropertyPath`, `replaceOrAppend`, `toggle`, `symmetricDifference`, `dedent`, `removeDiacritics`, `unescapeHtml`, `escapeRegExp`, `parseDuration`, `unary`, `isWeakMap`/`isWeakSet`/`isSet`, and more |
-| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v3.0.2) |
+| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v3.0.1) |
 | **Property-based tests** | Invariants validated against thousands of random inputs (fast-check) |
 | **Contract tests** | Formal behavioral guarantees for each function |
 | **Boundary & security tests** | Edge values and security-sensitive inputs (prototype pollution, injections) |

@@ -922,7 +922,10 @@ function syncRuntimeCompatibility() {
  * Astro documentation links should not include .md extension.
  */
 function fixBrokenLinks() {
-  const INTERNAL_MD_LINK_RE = /\]\(([^)]*\/[^)]*\.md)\)/g;
+  // Negative lookahead excludes absolute http(s) URLs (e.g. a GitHub blob link to
+  // MIGRATION.md) — those need to *keep* their .md extension to resolve; only Astro's own
+  // internal relative doc links need it stripped.
+  const INTERNAL_MD_LINK_RE = /\]\((?!https?:\/\/)([^)]*\/[^)]*\.md)\)/g;
 
   const pages = [
     path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'index.md'),
