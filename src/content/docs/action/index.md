@@ -10,7 +10,7 @@ Reusable GitHub Actions for consistent, automated workflows across your reposito
 ## Quick Links
 
 - **[Browse Actions](./actions/conventional-commits)** — All available actions
-- **[Ask AI (DeepWiki)](https://deepwiki.com/helpers4/action)** — free AI-powered Q&A over this repo
+- **<a href="https://deepwiki.com/helpers4/action" target="_blank" rel="noopener">Ask AI (DeepWiki) ↗</a>** — free AI-powered Q&A over this repo
 - **[GitHub](https://github.com/helpers4/action)** · **[Marketplace](https://github.com/marketplace?type=actions&query=helpers4)** · **[License (LGPL-3.0)](./legal/license)**
 
 ## Available Actions

@@ -30,7 +30,7 @@ function typescriptTopicItems(slug, role) {
   const referenceItems = [{ autogenerate: { directory: `${slug}/reference` } }];
   if (role === 'latest') {
     referenceItems.push({
-      label: 'Ask DeepWiki',
+      label: 'Ask AI (DeepWiki) ↗',
       link: 'https://deepwiki.com/helpers4/typescript',
       attrs: { target: '_blank', rel: 'noopener' },
     });
@@ -108,7 +108,7 @@ export default defineConfig({
                 items: [
                   { autogenerate: { directory: 'devcontainer/reference' } },
                   {
-                    label: 'Ask DeepWiki',
+                    label: 'Ask AI (DeepWiki) ↗',
                     link: 'https://deepwiki.com/helpers4/devcontainer',
                     attrs: { target: '_blank', rel: 'noopener' },
                   },
@@ -130,7 +130,7 @@ export default defineConfig({
                 items: [
                   { autogenerate: { directory: 'action/reference' } },
                   {
-                    label: 'Ask DeepWiki',
+                    label: 'Ask AI (DeepWiki) ↗',
                     link: 'https://deepwiki.com/helpers4/action',
                     attrs: { target: '_blank', rel: 'noopener' },
                   },
