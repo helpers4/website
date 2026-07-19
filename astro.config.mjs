@@ -32,6 +32,7 @@ function typescriptTopicItems(slug) {
     items.push({ label: 'Comparisons', items: [{ autogenerate: { directory: `${slug}/comparisons` } }] });
   }
   items.push({ label: 'Legal', items: [{ autogenerate: { directory: `${slug}/legal` } }] });
+  items.push({ label: 'Ask DeepWiki', link: 'https://deepwiki.com/helpers4/typescript' });
   return items;
 }
 
@@ -73,6 +74,7 @@ export default defineConfig({
       title: 'helpers4',
       description: 'Open-source developer tools built for real projects.',
       favicon: '/favicon.svg',
+      lastUpdated: true,
       logo: {
         src: './src/assets/helpers4-logo.png',
         alt: 'helpers4',
@@ -91,6 +93,7 @@ export default defineConfig({
               { label: 'Deprecated', collapsed: true, items: [{ autogenerate: { directory: 'devcontainer/deprecated' } }] },
               { label: 'Reference', items: [{ autogenerate: { directory: 'devcontainer/reference' } }] },
               { label: 'Legal', items: [{ autogenerate: { directory: 'devcontainer/legal' } }] },
+              { label: 'Ask DeepWiki', link: 'https://deepwiki.com/helpers4/devcontainer' },
             ],
           },
           {
@@ -103,6 +106,7 @@ export default defineConfig({
               { label: 'Actions', items: [{ autogenerate: { directory: 'action/actions' } }] },
               { label: 'Reference', items: [{ autogenerate: { directory: 'action/reference' } }] },
               { label: 'Legal', items: [{ autogenerate: { directory: 'action/legal' } }] },
+              { label: 'Ask DeepWiki', link: 'https://deepwiki.com/helpers4/action' },
             ],
           },
         ]),
