@@ -3,7 +3,8 @@
     {
       "slug": "typescript/next",
       "label": "Next",
-      "role": "next"
+      "role": "next",
+      "hidden": true
     },
     {
       "slug": "typescript",
