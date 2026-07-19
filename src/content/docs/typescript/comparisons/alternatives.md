@@ -11,15 +11,21 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 | Library | Functions | API Style | Architecture | Tree-shakable | TypeScript | License | Maintained |
 |---------|:---------:|:-------------:|:-------------:|:-------------:|:----------:|:-------:|:----------:|
-| **helpers4** | 274 | Direct calls | Modular | ESM | native | LGPL-3.0 | Yes |
-| **radashi** | ~130 | Direct calls | Monolith | ESM | native | MIT | Yes |
-| **radash** | ~90 | Direct calls | Monolith | ESM | native | MIT | No |
+| **helpers4** | 274 | Direct | Modular | ESM | native | LGPL-3.0 | Yes |
+| **radashi** | ~130 | Direct | Monolith | ESM | native | MIT | Yes |
+| **radash** | ~90 | Direct | Monolith | ESM | native | MIT | No |
 | **lodash** | ~300 | Chainable | Monolith | external | external | MIT | Low |
-| **es-toolkit** | ~300 | Direct calls | Monolith | ESM | native | MIT | Highly |
-| **remeda** | ~100 | Dual pipe | Monolith | ESM | native | MIT | Yes |
-| **ramda** | ~200 | Curried, point-free | Monolith | limited | external | MIT | Low |
-| **rambda** | ~190 | Curried, point-free | Monolith | ESM | native | MIT | Yes |
-| **moderndash** | ~50 | Direct calls | Monolith | ESM | native | MIT | Yes |
+| **es-toolkit** | ~300 | Direct | Monolith | ESM | native | MIT | Highly |
+| **remeda** | ~100 | Pipe | Monolith | ESM | native | MIT | Yes |
+| **ramda** | ~200 | Curried | Monolith | limited | external | MIT | Low |
+| **rambda** | ~190 | Curried | Monolith | ESM | native | MIT | Yes |
+| **moderndash** | ~50 | Direct | Monolith | ESM | native | MIT | Yes |
+
+**Glossary** — *Direct*: call the function directly, `fn(x)`. *Chainable*: wrap the value in a
+chain object, `_(x).map(f).value()`. *Pipe*: compose functions left-to-right,
+`pipe(x, fn1, fn2)`. *Curried*: functions take one argument at a time, `fn(a)(b)`, point-free
+style. *Modular*: split into independent packages, install only what you use. *Monolith*: one
+package containing everything.
 
 ## helpers4 vs Radashi
 
