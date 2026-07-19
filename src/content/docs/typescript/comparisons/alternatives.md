@@ -9,20 +9,17 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 ## Overview
 
-| Library | Functions | Test Coverage | Architecture | Tree-shakable | TypeScript | License | Maintained |
+| Library | Functions | API Style | Architecture | Tree-shakable | TypeScript | License | Maintained |
 |---------|:---------:|:-------------:|:-------------:|:-------------:|:----------:|:-------:|:----------:|
-| **helpers4** | 274 | 100% | Modular | ESM | native | LGPL-3.0 | Yes |
-| **radashi** | ~130 | 100% | Monolith | ESM | native | MIT | Yes |
-| **radash** | ~90 | ? | Monolith | ESM | native | MIT | No |
-| **lodash** | ~300 | ? | Monolith | external | external | MIT | Low |
-| **es-toolkit** | ~300 | 100% | Monolith | ESM | native | MIT | Highly |
-| **remeda** | ~100 | 100% | Monolith | ESM | native | MIT | Yes |
-| **ramda** | ~200 | ? | Monolith | limited | external | MIT | Low |
-| **rambda** | ~190 | 99% | Monolith | ESM | native | MIT | Yes |
-| **moderndash** | ~50 | ? | Monolith | ESM | native | MIT | Yes |
-
-Test coverage sourced from each project's live Codecov badge (`?` = no Codecov integration found,
-not necessarily untested — some projects track coverage differently or not publicly).
+| **helpers4** | 274 | Direct calls | Modular | ESM | native | LGPL-3.0 | Yes |
+| **radashi** | ~130 | Direct calls | Monolith | ESM | native | MIT | Yes |
+| **radash** | ~90 | Direct calls | Monolith | ESM | native | MIT | No |
+| **lodash** | ~300 | Chainable | Monolith | external | external | MIT | Low |
+| **es-toolkit** | ~300 | Direct calls | Monolith | ESM | native | MIT | Highly |
+| **remeda** | ~100 | Dual pipe | Monolith | ESM | native | MIT | Yes |
+| **ramda** | ~200 | Curried, point-free | Monolith | limited | external | MIT | Low |
+| **rambda** | ~190 | Curried, point-free | Monolith | ESM | native | MIT | Yes |
+| **moderndash** | ~50 | Direct calls | Monolith | ESM | native | MIT | Yes |
 
 ## helpers4 vs Radashi
 
