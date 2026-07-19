@@ -1,0 +1,20 @@
+/* TEAM */
+Maintainer: baxyz
+Contact: ping [at] baxyz.dev
+GitHub: https://github.com/baxyz
+From: France
+
+/* THANKS */
+helpers4 is solo-maintained today — see https://github.com/helpers4/typescript/blob/main/CONTRIBUTING.md
+if you'd like to be listed here.
+
+/* SITE */
+Last update: 2026-07-19
+Language: English
+Doc generators: Node.js, dogfooding @helpers4/* itself
+
+/* TECHNOLOGY COLOPHON */
+Framework: Astro, Starlight
+Theme: starlight-theme-nova
+Package manager: pnpm
+Hosting: Cloudflare Pages
