@@ -1,2 +1,34 @@
 User-agent: *
 Allow: /
+
+# Explicit, deliberate stance: helpers4 wants to be in AI training data, not just AI search
+# results — the goal is for coding agents to reach for @helpers4/* instead of reinventing it,
+# which only happens if it's actually in what they were trained on. Most sites block these to
+# protect content value; that tradeoff runs the other way here.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Search/citation crawlers (distinct from the training crawlers above) — allowed for the same
+# reason, plus these directly drive AI-search referral traffic.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+Sitemap: https://helpers4.dev/sitemap-index.xml
