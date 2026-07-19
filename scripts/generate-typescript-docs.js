@@ -13,6 +13,9 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createSortByStringFn } from '@helpers4/array';
+import { escape } from '@helpers4/markdown';
+import { compare } from '@helpers4/version';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
@@ -87,8 +90,17 @@ function readJson(filePath) {
   }
 }
 
-function escapeMarkdownTable(str) {
-  return (str || '').replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/\n/g, ' ');
+// For plain-text table cells (prose: descriptions, param docs) — full Markdown escaping
+// so stray `_`/`*`/etc. in a sentence don't get misinterpreted as formatting.
+function escapeMarkdownProse(str) {
+  return escape(str || '', { cell: true });
+}
+
+// For table cells wrapped in `backticks` (code spans: function/type names) — CommonMark
+// code spans are verbatim, so backslash-escapes inside them render as literal backslashes.
+// Only pipes (breaks the table) and newlines (breaks the row) need neutralizing here.
+function escapeMarkdownCodeCell(str) {
+  return (str || '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
 }
 
 /**
@@ -127,7 +139,7 @@ function nativeRow(name, native, since, forLink) {
     // all-functions page: include category link column
     return { name, tag };
   }
-  return `| \`${escapeMarkdownTable(name)}\` | ${tag} |`;
+  return `| \`${escapeMarkdownCodeCell(name)}\` | ${tag} |`;
 }
 
 try {
@@ -214,13 +226,13 @@ try {
     const allEntries = [
       ...functions.map(fn => ({
         sortKey: fn.name.toLowerCase(),
-        row: `| [\`${fn.name}\`](./${fn.name.toLowerCase()}/) | ${escapeMarkdownTable(firstSentence(fn.description))} |`,
+        row: `| [\`${fn.name}\`](./${fn.name.toLowerCase()}/) | ${escapeMarkdownProse(firstSentence(fn.description))} |`,
       })),
       ...(natives?.functions || []).map(n => ({
         sortKey: n.name.toLowerCase(),
-        row: `| \`${escapeMarkdownTable(n.name)}\` | ${NATIVE_BADGE} \`${escapeMarkdownTable(n.native)}\`${n.since ? ` *(${n.since})*` : ''} |`,
+        row: `| \`${escapeMarkdownCodeCell(n.name)}\` | ${NATIVE_BADGE} \`${escapeMarkdownCodeCell(n.native)}\`${n.since ? ` *(${n.since})*` : ''} |`,
       })),
-    ].sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+    ].sort(createSortByStringFn('sortKey'));
 
     const allFunctionRows = allEntries.map(e => e.row).join('\n');
 
@@ -295,7 +307,7 @@ ${sig.signature}
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-${sig.params.map(p => `| \`${p.name}\` | \`${escapeMarkdownTable(p.type)}\` | ${escapeMarkdownTable(p.description)}${p.optional ? ' *(optional)*' : ''} |`).join('\n')}
+${sig.params.map(p => `| \`${p.name}\` | \`${escapeMarkdownCodeCell(p.type)}\` | ${escapeMarkdownProse(p.description)}${p.optional ? ' *(optional)*' : ''} |`).join('\n')}
 `;
         }
 
@@ -490,7 +502,7 @@ function generateAllFunctionsPage(categories) {
     for (const fn of (api.functions || []).filter(fn => fn.kind === 'function' || fn.kind === 'variable' || fn.kind === 'type' || fn.kind === 'interface')) {
       rows.push({
         sortKey: fn.name.toLowerCase(),
-        row: `| [\`${fn.name}\`](../${category}/${fn.name.toLowerCase()}/) | [${category}](../${category}/) | ${escapeMarkdownTable(firstSentence(fn.description))} |`,
+        row: `| [\`${fn.name}\`](../${category}/${fn.name.toLowerCase()}/) | [${category}](../${category}/) | ${escapeMarkdownProse(firstSentence(fn.description))} |`,
       });
     }
 
@@ -498,13 +510,13 @@ function generateAllFunctionsPage(categories) {
     for (const n of (natives?.functions || [])) {
       rows.push({
         sortKey: n.name.toLowerCase(),
-        row: `| \`${escapeMarkdownTable(n.name)}\` | [${category}](../${category}/) | ${NATIVE_BADGE} \`${escapeMarkdownTable(n.native)}\`${n.since ? ` *(${n.since})*` : ''} |`,
+        row: `| \`${escapeMarkdownCodeCell(n.name)}\` | [${category}](../${category}/) | ${NATIVE_BADGE} \`${escapeMarkdownCodeCell(n.native)}\`${n.since ? ` *(${n.since})*` : ''} |`,
       });
       nativeCount++;
     }
   }
 
-  rows.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+  rows.sort(createSortByStringFn('sortKey'));
 
   const implementedCount = rows.length - nativeCount;
 
@@ -547,19 +559,9 @@ function compareSemverDesc(a, b) {
   if (a === 'unknown') return 1;
   if (b === 'unknown') return -1;
 
-  const expand = v => {
-    const m = v.match(/^(\d+)\.(\d+)\.(\d+)(?:-[a-z]+\.(\d+))?$/i);
-    if (!m) return [0, 0, 0, 999];
-    // stable release has no pre-release part → use 999 so it sorts above alphas
-    return [+m[1], +m[2], +m[3], m[4] !== undefined ? +m[4] : 999];
-  };
-
-  const [aA, aB, aC, aD] = expand(a);
-  const [bA, bB, bC, bD] = expand(b);
-  for (const [x, y] of [[bA, aA], [bB, aB], [bC, aC], [bD, aD]]) {
-    if (x !== y) return x - y;
-  }
-  return 0;
+  // Both are real semver strings at this point ('next'/'unknown' handled above) —
+  // delegate to the library's own spec-compliant comparator (b vs a for descending order).
+  return compare(b, a);
 }
 
 /**
@@ -713,7 +715,7 @@ sidebar:
   );
 
   for (const [idx, version] of displayVersions.entries()) {
-    const fns = byVersion[version].sort((a, b) => a.name.localeCompare(b.name));
+    const fns = byVersion[version].sort(createSortByStringFn('name'));
     const isLatestStable = idx === 0 && isStableRelease && version !== 'unknown' && version !== 'next';
     const label = version === 'unknown'
       ? '*(version unknown)*'
@@ -726,7 +728,7 @@ sidebar:
     content += `| Function | Category | Description |\n`;
     content += `|----------|----------|-------------|\n`;
     for (const fn of fns) {
-      content += `| [\`${fn.name}\`](../categories/${fn.category}/${fn.name.toLowerCase()}/) | [${fn.category}](../categories/${fn.category}/) | ${escapeMarkdownTable(fn.description)} |\n`;
+      content += `| [\`${fn.name}\`](../categories/${fn.category}/${fn.name.toLowerCase()}/) | [${fn.category}](../categories/${fn.category}/) | ${escapeMarkdownProse(fn.description)} |\n`;
     }
     content += '\n';
   }
