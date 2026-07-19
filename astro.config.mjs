@@ -21,13 +21,14 @@ const versions = JSON.parse(fs.readFileSync(path.join(rootDir, 'src', 'data', 'v
  * real content directory to decide whether to include the Comparisons group — older archives
  * (e.g. v1) don't have one, and this way nothing has to remember to omit it by hand.
  *
- * The "Ask DeepWiki" link is only added for `latest`/`next` (not `archive`) — DeepWiki indexes
- * the repo's default branch, not old tags, so linking it from a frozen vN archive would point
- * a reader at docs for code that page isn't actually describing.
+ * The "Ask DeepWiki" link is only added for `latest` — DeepWiki only indexes `main`, and both
+ * `next` (unreleased preview) and archived `vN` slots describe something other than what's
+ * currently on `main`, so linking DeepWiki from either would point readers at answers about
+ * the wrong code.
  */
 function typescriptTopicItems(slug, role) {
   const referenceItems = [{ autogenerate: { directory: `${slug}/reference` } }];
-  if (role !== 'archive') {
+  if (role === 'latest') {
     referenceItems.push({
       label: 'Ask DeepWiki',
       link: 'https://deepwiki.com/helpers4/typescript',
