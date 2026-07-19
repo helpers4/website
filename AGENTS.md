@@ -15,8 +15,15 @@ website/
 │   │                  #   purpose, see src/data/versions.json)
 │   ├── devcontainer/  # ⚠ GENERATED — do not edit by hand
 │   └── action/        # ⚠ GENERATED — do not edit by hand
+├── public/
+│   ├── llms.txt                # hand-authored site index (llmstxt.org spec) — 3 products,
+│   │                            # H2 per product, edit by hand when a product is added/removed
+│   └── typescript/<slug>/llms-full.txt  # ⚠ GENERATED — copy of typescript's own
+│                                # build/all/llms.txt (full signatures/params/examples), one per
+│                                # version slot (typescript/, typescript/next/, typescript/vN/ —
+│                                # same DOCS_TARGET as the doc tree it sits next to)
 ├── scripts/
-│   ├── generate-typescript-docs.js    # JSDoc → Markdown
+│   ├── generate-typescript-docs.js    # JSDoc → Markdown + publishes llms-full.txt
 │   ├── generate-devcontainer-docs.js  # feature READMEs → Markdown
 │   ├── generate-action-docs.js        # action README → Markdown
 │   ├── fix-titles.mjs                 # strip duplicate H1 (Starlight renders title: as h1)
