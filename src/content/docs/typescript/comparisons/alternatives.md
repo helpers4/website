@@ -9,21 +9,20 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 ## Overview
 
-| Library | Functions | Size (min+gz) | Architecture | Tree-shakable | TypeScript | License | Maintained |
+| Library | Functions | Test Coverage | Architecture | Tree-shakable | TypeScript | License | Maintained |
 |---------|:---------:|:-------------:|:-------------:|:-------------:|:----------:|:-------:|:----------:|
-| **helpers4** | 274 | tiny/fn | Modular | ESM | native | LGPL-3.0 | Yes |
-| **radashi** | ~130 | ~15 KB | Monolith | ESM | native | MIT | Yes |
-| **radash** | ~90 | ~12 KB | Monolith | ESM | native | MIT | No |
-| **lodash** | ~300 | ~70 KB | Monolith | external | external | MIT | Low |
-| **es-toolkit** | ~300 | tiny/fn | Monolith | ESM | native | MIT | Highly |
-| **remeda** | ~100 | ~10 KB | Monolith | ESM | native | MIT | Yes |
-| **ramda** | ~200 | ~45 KB | Monolith | limited | external | MIT | Low |
-| **rambda** | ~190 | ~15 KB | Monolith | ESM | native | MIT | Yes |
-| **moderndash** | ~50 | ~5 KB | Monolith | ESM | native | MIT | Yes |
+| **helpers4** | 274 | 100% | Modular | ESM | native | LGPL-3.0 | Yes |
+| **radashi** | ~130 | 100% | Monolith | ESM | native | MIT | Yes |
+| **radash** | ~90 | ? | Monolith | ESM | native | MIT | No |
+| **lodash** | ~300 | ? | Monolith | external | external | MIT | Low |
+| **es-toolkit** | ~300 | 100% | Monolith | ESM | native | MIT | Highly |
+| **remeda** | ~100 | 100% | Monolith | ESM | native | MIT | Yes |
+| **ramda** | ~200 | ? | Monolith | limited | external | MIT | Low |
+| **rambda** | ~190 | 99% | Monolith | ESM | native | MIT | Yes |
+| **moderndash** | ~50 | ? | Monolith | ESM | native | MIT | Yes |
 
-helpers4 and es-toolkit ship per-function sizes (via [Bundlephobia](https://bundlephobia.com):
-helpers4 ~200 B/fn, es-toolkit ~200 B–1.2 KB/fn) rather than a single whole-library figure — both
-are granular enough that "size" only means something per import, not for the package as a whole.
+Test coverage sourced from each project's live Codecov badge (`?` = no Codecov integration found,
+not necessarily untested — some projects track coverage differently or not publicly).
 
 ## helpers4 vs Radashi
 
