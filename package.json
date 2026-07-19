@@ -32,7 +32,7 @@
     "@helpers4/version": "^3.0.1",
     "astro": "^6.4.8",
     "starlight-sidebar-topics": "^0.8.0",
-    "starlight-theme-nova": "^0.12.0"
+    "starlight-theme-nova": "^0.12.1"
   },
   "devDependencies": {
     "@pagefind/default-ui": "1.5.2",
