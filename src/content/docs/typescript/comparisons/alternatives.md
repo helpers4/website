@@ -111,8 +111,6 @@ What each library covers — and what helpers4 uniquely provides:
 
 Rows in **bold** are gaps on the helpers4 side worth tracking — see `typescript/TODO.md` for the prioritized list.
 
-> **Not in this comparison**: [Effect-TS](https://effect.website) (the actively-developed successor to fp-ts, 9k+ stars) is a full functional-programming *platform* — structured concurrency, dependency injection, typed error handling, an app runtime — not a utility function library in the same sense as the others here. It's not a fair apples-to-apples competitor to helpers4; if you're evaluating it, you're solving a different problem than "I need a `debounce`/`chunk`/`isEmpty`."
-
 ## Choosing the right library
 
 | You need... | Best choice |
