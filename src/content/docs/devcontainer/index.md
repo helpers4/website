@@ -10,8 +10,7 @@ Plug-and-play development container features — consistent environments, zero s
 ## Quick Links
 
 - **[Browse Features](./features/vite-plus)** — All available features
-- **<a href="https://deepwiki.com/helpers4/devcontainer" target="_blank" rel="noopener">Ask AI (DeepWiki) ↗</a>** — free AI-powered Q&A over this repo
-- **[GitHub](https://github.com/helpers4/devcontainer)** · **[Registry (ghcr.io)](https://github.com/helpers4/devcontainer/pkgs/container/devcontainer)** · **[License (LGPL-3.0)](./legal/license)**
+- **[GitHub](https://github.com/helpers4/devcontainer)** · **[Registry (ghcr.io)](https://github.com/helpers4/devcontainer/pkgs/container/devcontainer)** · **[License (LGPL-3.0)](./legal/license)** · <a href="https://deepwiki.com/helpers4/devcontainer" target="_blank" rel="noopener">Ask AI (DeepWiki) ↗</a>**
 
 ## Available Features
 
