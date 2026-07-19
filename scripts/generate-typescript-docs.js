@@ -98,9 +98,13 @@ function escapeMarkdownProse(str) {
 
 // For table cells wrapped in `backticks` (code spans: function/type names) — CommonMark
 // code spans are verbatim, so backslash-escapes inside them render as literal backslashes.
-// Only pipes (breaks the table) and newlines (breaks the row) need neutralizing here.
+// Still escape backslashes first: table cell-splitting recognizes `\|` as an escaped pipe
+// regardless of code-span context, so a raw `\` already in the input sitting next to a pipe
+// we then escape would leave an ambiguous `\\|` — read as an escaped backslash followed by an
+// unescaped, cell-breaking pipe. Doubling pre-existing backslashes up front avoids that; pipes
+// and newlines (breaks the row) still need neutralizing after.
 function escapeMarkdownCodeCell(str) {
-  return (str || '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
+  return (str || '').replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/\n/g, ' ');
 }
 
 /**
