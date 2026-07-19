@@ -11,13 +11,13 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 | Library | Functions | API Style | Architecture | Tree-shakable | TypeScript | License | Maintained |
 |---------|:---------:|:-------------:|:-------------:|:-------------:|:----------:|:-------:|:----------:|
-| **helpers4** | 274 | Direct | Modular | ESM | native | LGPL-3.0 | Yes |
+| **helpers4** | 274 | Direct | Modular | ESM | native | LGPL | Yes |
 | **radashi** | ~130 | Direct | Monolith | ESM | native | MIT | Yes |
 | **radash** | ~90 | Direct | Monolith | ESM | native | MIT | No |
-| **lodash** | ~300 | Chainable | Monolith | external | external | MIT | Low |
+| **lodash** | ~300 | Chainable | Monolith | opt-in | unofficial | MIT | Low |
 | **es-toolkit** | ~300 | Direct | Monolith | ESM | native | MIT | Highly |
 | **remeda** | ~100 | Pipe | Monolith | ESM | native | MIT | Yes |
-| **ramda** | ~200 | Curried | Monolith | limited | external | MIT | Low |
+| **ramda** | ~200 | Curried | Monolith | limited | unofficial | MIT | Low |
 | **rambda** | ~190 | Curried | Monolith | ESM | native | MIT | Yes |
 | **moderndash** | ~50 | Direct | Monolith | ESM | native | MIT | Yes |
 
