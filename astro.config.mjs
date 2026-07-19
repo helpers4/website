@@ -20,29 +20,40 @@ const versions = JSON.parse(fs.readFileSync(path.join(rootDir, 'src', 'data', 'v
  * Builds one typescript topic's `items` for a given version slot (root/next/vN), reading the
  * real content directory to decide whether to include the Comparisons group — older archives
  * (e.g. v1) don't have one, and this way nothing has to remember to omit it by hand.
+ *
+ * The "Ask DeepWiki" link is only added for `latest`/`next` (not `archive`) — DeepWiki indexes
+ * the repo's default branch, not old tags, so linking it from a frozen vN archive would point
+ * a reader at docs for code that page isn't actually describing.
  */
-function typescriptTopicItems(slug) {
+function typescriptTopicItems(slug, role) {
+  const referenceItems = [{ autogenerate: { directory: `${slug}/reference` } }];
+  if (role !== 'archive') {
+    referenceItems.push({
+      label: 'Ask DeepWiki',
+      link: 'https://deepwiki.com/helpers4/typescript',
+      attrs: { target: '_blank', rel: 'noopener' },
+    });
+  }
   const items = [
     { slug },
     { slug: `${slug}/getting-started` },
     { label: 'Categories', items: [{ autogenerate: { directory: `${slug}/categories` } }] },
-    { label: 'Reference', items: [{ autogenerate: { directory: `${slug}/reference` } }] },
+    { label: 'Reference', items: referenceItems },
   ];
   if (fs.existsSync(path.join(docsDir, slug, 'comparisons'))) {
     items.push({ label: 'Comparisons', items: [{ autogenerate: { directory: `${slug}/comparisons` } }] });
   }
   items.push({ label: 'Legal', items: [{ autogenerate: { directory: `${slug}/legal` } }] });
-  items.push({ label: 'Ask DeepWiki', link: 'https://deepwiki.com/helpers4/typescript' });
   return items;
 }
 
-function typescriptTopic(id, slug) {
+function typescriptTopic(id, slug, role) {
   return {
     id,
     label: 'TypeScript',
     link: `/${slug}/`,
     icon: 'seti:typescript',
-    items: typescriptTopicItems(slug),
+    items: typescriptTopicItems(slug, role),
   };
 }
 
@@ -65,7 +76,7 @@ function typescriptTopicId(entry) {
 const typescriptTopics = versions.typescript
   .filter((v) => v.role in ROLE_ORDER)
   .sort((a, b) => ROLE_ORDER[a.role] - ROLE_ORDER[b.role])
-  .map((v) => typescriptTopic(typescriptTopicId(v), v.slug));
+  .map((v) => typescriptTopic(typescriptTopicId(v), v.slug, v.role));
 
 export default defineConfig({
   site: 'https://helpers4.dev',
@@ -91,9 +102,18 @@ export default defineConfig({
               { slug: 'devcontainer/getting-started' },
               { label: 'Features', items: [{ autogenerate: { directory: 'devcontainer/features' } }] },
               { label: 'Deprecated', collapsed: true, items: [{ autogenerate: { directory: 'devcontainer/deprecated' } }] },
-              { label: 'Reference', items: [{ autogenerate: { directory: 'devcontainer/reference' } }] },
+              {
+                label: 'Reference',
+                items: [
+                  { autogenerate: { directory: 'devcontainer/reference' } },
+                  {
+                    label: 'Ask DeepWiki',
+                    link: 'https://deepwiki.com/helpers4/devcontainer',
+                    attrs: { target: '_blank', rel: 'noopener' },
+                  },
+                ],
+              },
               { label: 'Legal', items: [{ autogenerate: { directory: 'devcontainer/legal' } }] },
-              { label: 'Ask DeepWiki', link: 'https://deepwiki.com/helpers4/devcontainer' },
             ],
           },
           {
@@ -104,9 +124,18 @@ export default defineConfig({
               { slug: 'action' },
               { slug: 'action/getting-started' },
               { label: 'Actions', items: [{ autogenerate: { directory: 'action/actions' } }] },
-              { label: 'Reference', items: [{ autogenerate: { directory: 'action/reference' } }] },
+              {
+                label: 'Reference',
+                items: [
+                  { autogenerate: { directory: 'action/reference' } },
+                  {
+                    label: 'Ask DeepWiki',
+                    link: 'https://deepwiki.com/helpers4/action',
+                    attrs: { target: '_blank', rel: 'noopener' },
+                  },
+                ],
+              },
               { label: 'Legal', items: [{ autogenerate: { directory: 'action/legal' } }] },
-              { label: 'Ask DeepWiki', link: 'https://deepwiki.com/helpers4/action' },
             ],
           },
         ]),
