@@ -27,22 +27,22 @@ Born from 10 years of recoding the same domain-specific helpers across projects,
 - ✅ **Enterprise-grade** — formal LGPL-3.0 license, audit-ready, predictable at scale
 - ✅ **AI-ready** — exhaustive contracts make every function safe to call from generated or agentic code
 
-## What's new in V2?
+## What's new in V3?
 
-V2 is a major milestone with 40+ new helpers:
+V3 is a cleanup-and-growth release: two categories reorganized for clarity, 25+ new helpers,
+zero logic changes for anyone using the replacements below.
 
 | | |
 |---|---|
-| **40+ new helpers** | `analyzeCommits`, `buildConventionalCommitRegex`, `formatSize`, `injectWordBreaks`, `isArrayBuffer`, `isBlob`, `isBuffer`, `isConventionalCommit`, `isFormData`, `isPrerelease`, `parseConventionalCommit`, `parsePackageRepository`, `safeJsonParse`, `stringify`, `truncate`, and many more |
-| **New `commit` category** | Parse and analyze Conventional Commits messages with formal structure validation |
-| **New `version` category** | `parse`, `compare`, `increment`, `stringify` — semantic version operations with full SemVer 2.0.0 support |
-| **Expanded `type` category** | Guards for every major type: `isTemporalInstant`, `isTemporalDuration`, `isTemporalPlainDate`, `isTemporalPlainDateTime`, `isPromise`, `isIterable`, and more |
+| **⚠️ Breaking: `type` → `guard`** | Runtime type guards (`isString`, `isArray`, `isDefined`, …) moved to a new `@helpers4/guard` package; `@helpers4/type` now only holds compile-time-only utility types. See the [migration guide](https://github.com/helpers4/typescript/blob/main/MIGRATION.md) |
+| **⚠️ Breaking: 6 removed aliases** | `deepMerge`/`deepClone`/`daysDifference`/`safeDate`/`dateToISOString`/`type.isEmpty` — all had a direct replacement since v1.9.0/v2.0.0, see the [migration guide](https://github.com/helpers4/typescript/blob/main/MIGRATION.md) for the full table |
+| **New `color` category** | `hexToRgb`, `rgbToHex`, `hslToRgb`, `rgbToHsl`, `argbToRgb`, plus `isCssColor` in `guard` |
+| **25+ new helpers** | `clone`, `flatten`/`unflatten`, `pickBy`/`omitBy`/`unset`/`update`, `parsePropertyPath`, `replaceOrAppend`, `toggle`, `symmetricDifference`, `dedent`, `removeDiacritics`, `unescapeHtml`, `escapeRegExp`, `parseDuration`, `unary`, `isWeakMap`/`isWeakSet`/`isSet`, and more |
 | **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v3.0.1) |
 | **Property-based tests** | Invariants validated against thousands of random inputs (fast-check) |
 | **Contract tests** | Formal behavioral guarantees for each function |
 | **Boundary & security tests** | Edge values and security-sensitive inputs (prototype pollution, injections) |
 | **Native API tracking** | Standard JS equivalents documented, not re-implemented |
-| **New docs site** | You're reading it — built with Astro, fully searchable |
 
 ## Comparisons
 
