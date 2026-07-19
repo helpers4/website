@@ -29,7 +29,7 @@ rgbToHex(color: RgbColor): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `color` | `RgbColor` | The color to convert. `a` defaults to 1 (opaque) when omitted. |
+| `color` | `RgbColor` | The color to convert\. \`a\` defaults to 1 \(opaque\) when omitted\. |
 
 ## Returns
 

@@ -30,8 +30,8 @@ without<T>(array: readonly T[] | null | undefined, values: T[]): T[]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly T[] \| null \| undefined` | The source array. |
-| `values` | `T[]` | One or more values to exclude from the result. |
+| `array` | `readonly T[] \| null \| undefined` | The source array\. |
+| `values` | `T[]` | One or more values to exclude from the result\. |
 
 ## Returns
 

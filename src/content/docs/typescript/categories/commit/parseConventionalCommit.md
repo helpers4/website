@@ -30,8 +30,8 @@ parseConventionalCommit(message: string, options?: ConventionalCommitOptions): P
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `message` | `string` | Full commit message (subject + optional body/footer). |
-| `options` | `ConventionalCommitOptions` | Optional constraints forwarded to the regex builder. *(optional)* |
+| `message` | `string` | Full commit message \(subject \+ optional body/footer\)\. |
+| `options` | `ConventionalCommitOptions` | Optional constraints forwarded to the regex builder\. *(optional)* |
 
 ## Returns
 

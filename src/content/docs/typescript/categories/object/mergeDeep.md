@@ -57,7 +57,7 @@ mergeDeep<T extends [object, rest]>(sources: [rest]): MergeResult<T>
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `sources` | `[rest]` | Two or more objects to merge (none are mutated) |
+| `sources` | `[rest]` | Two or more objects to merge \(none are mutated\) |
 
 ## Returns
 

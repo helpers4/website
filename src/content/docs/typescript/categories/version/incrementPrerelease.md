@@ -40,7 +40,7 @@ incrementPrerelease(version: string, prereleaseId: string): string
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `version` | `string` | The version to increment |
-| `prereleaseId` | `string` | The prerelease type/identifier (e.g. `'alpha'`, `'beta'`, `'rc'`) |
+| `prereleaseId` | `string` | The prerelease type/identifier \(e\.g\. \`'alpha'\`, \`'beta'\`, \`'rc'\`\) |
 
 ## Returns
 

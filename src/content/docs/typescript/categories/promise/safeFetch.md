@@ -27,9 +27,9 @@ safeFetch<T>(input: URL | RequestInfo, init?: RequestInit, options: SafeFetchOpt
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `input` | `URL \| RequestInfo` | URL or `Request` object passed to `fetch` |
-| `init` | `RequestInit` | Optional `RequestInit` options passed to `fetch` *(optional)* |
-| `options` | `SafeFetchOptions` | Parsing options (default: `{ parse: 'json' }`) |
+| `input` | `URL \| RequestInfo` | URL or \`Request\` object passed to \`fetch\` |
+| `init` | `RequestInit` | Optional \`RequestInit\` options passed to \`fetch\` *(optional)* |
+| `options` | `SafeFetchOptions` | Parsing options \(default: \`\{ parse: 'json' \}\`\) |
 
 ## Returns
 

@@ -32,7 +32,7 @@ combineSortFns<T>(fns: readonly SortFn<T>[]): SortFn<T>
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `fns` | `readonly SortFn<T>[]` | Sort functions to try, in priority order. An empty list produces   a stable no-op comparator (all elements compare equal). |
+| `fns` | `readonly SortFn<T>[]` | Sort functions to try, in priority order\. An empty list produces   a stable no\-op comparator \(all elements compare equal\)\. |
 
 ## Returns
 

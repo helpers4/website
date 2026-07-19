@@ -28,7 +28,7 @@ safeJsonParse<T>(input: string): T | null
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `input` | `string` | The JSON string to parse. |
+| `input` | `string` | The JSON string to parse\. |
 
 ## Returns
 

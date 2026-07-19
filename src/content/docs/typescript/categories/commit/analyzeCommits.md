@@ -35,7 +35,7 @@ analyzeCommits(commits: readonly AnalyzableCommit[]): CommitAnalysis
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `commits` | `readonly AnalyzableCommit[]` | Iterable of commits to analyse. Only `subject` is required. |
+| `commits` | `readonly AnalyzableCommit[]` | Iterable of commits to analyse\. Only \`subject\` is required\. |
 
 ## Returns
 

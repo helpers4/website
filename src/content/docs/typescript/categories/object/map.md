@@ -34,8 +34,8 @@ map<TObj extends Record<string, unknown>, TVal = indexedAccess, TKey extends Pro
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `obj` | `TObj \| null \| undefined` | The source object |
-| `mapValue` | `function` | Callback called with `(value, key)` for each entry.   Defaults to identity. *(optional)* |
-| `mapKey` | `function` | Callback called with `(key, value)` for each entry.   Defaults to identity. *(optional)* |
+| `mapValue` | `function` | Callback called with \`\(value, key\)\` for each entry\.   Defaults to identity\. *(optional)* |
+| `mapKey` | `function` | Callback called with \`\(key, value\)\` for each entry\.   Defaults to identity\. *(optional)* |
 
 ## Returns
 

@@ -27,7 +27,7 @@ rgbToHsl(color: RgbColor): HslColor
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `color` | `RgbColor` | The color to convert. `r`/`g`/`b` are expected in 0-255,   `a` defaults to 1 (opaque) when omitted. |
+| `color` | `RgbColor` | The color to convert\. \`r\`/\`g\`/\`b\` are expected in 0\-255,   \`a\` defaults to 1 \(opaque\) when omitted\. |
 
 ## Returns
 

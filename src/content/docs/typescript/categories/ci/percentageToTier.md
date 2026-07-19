@@ -29,8 +29,8 @@ percentageToTier(value: number, tiers: readonly PercentageTier[]): PercentageTie
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `number` | The percentage to classify (typically 0-100, but not clamped) |
-| `tiers` | `readonly PercentageTier[]` | Threshold tiers to match against, in any order (defaults to DEFAULT_PERCENTAGE_TIERS) |
+| `value` | `number` | The percentage to classify \(typically 0\-100, but not clamped\) |
+| `tiers` | `readonly PercentageTier[]` | Threshold tiers to match against, in any order \(defaults to DEFAULT\_PERCENTAGE\_TIERS\) |
 
 ## Returns
 

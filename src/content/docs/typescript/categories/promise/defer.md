@@ -30,7 +30,7 @@ defer<T>(fn: function): Promise<T>
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `fn` | `function` | An async function that receives a `defer` registration function. |
+| `fn` | `function` | An async function that receives a \`defer\` registration function\. |
 
 ## Returns
 

@@ -30,8 +30,8 @@ eachMonth(start: DateLike, end: DateLike): Date[]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `start` | `DateLike` | Start date (inclusive — the month containing this date is included) |
-| `end` | `DateLike` | End date (inclusive — the month containing this date is included) |
+| `start` | `DateLike` | Start date \(inclusive — the month containing this date is included\) |
+| `end` | `DateLike` | End date \(inclusive — the month containing this date is included\) |
 
 ## Returns
 

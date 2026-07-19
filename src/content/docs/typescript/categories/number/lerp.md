@@ -29,9 +29,9 @@ lerp(start: number, end: number, t: number): number
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `start` | `number` | The start value. |
-| `end` | `number` | The end value. |
-| `t` | `number` | The interpolation factor. |
+| `start` | `number` | The start value\. |
+| `end` | `number` | The end value\. |
+| `t` | `number` | The interpolation factor\. |
 
 ## Returns
 

@@ -30,7 +30,7 @@ toggle<T>(array: readonly T[] | null | undefined, item: T, key?: function): T[]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly T[] \| null \| undefined` | The source array. `null`/`undefined` are treated as empty. |
+| `array` | `readonly T[] \| null \| undefined` | The source array\. \`null\`/\`undefined\` are treated as empty\. |
 | `item` | `T` | The item to add or remove |
 | `key` | `function` | Optional function deriving the identity to compare by *(optional)* |
 

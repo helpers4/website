@@ -32,8 +32,8 @@ equalsDeep(objA: object | null | undefined, objB: object | null | undefined): bo
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `objA` | `object \| null \| undefined` | First value (object, `null`, or `undefined`). |
-| `objB` | `object \| null \| undefined` | Second value (object, `null`, or `undefined`). |
+| `objA` | `object \| null \| undefined` | First value \(object, \`null\`, or \`undefined\`\)\. |
+| `objB` | `object \| null \| undefined` | Second value \(object, \`null\`, or \`undefined\`\)\. |
 
 ## Returns
 

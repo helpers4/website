@@ -28,8 +28,8 @@ formatCompact(value: number, locale?: string): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `number` | The number to format. |
-| `locale` | `string` | BCP 47 locale tag. Defaults to the runtime locale. *(optional)* |
+| `value` | `number` | The number to format\. |
+| `locale` | `string` | BCP 47 locale tag\. Defaults to the runtime locale\. *(optional)* |
 
 ## Returns
 

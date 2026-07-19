@@ -26,7 +26,7 @@ tryit<TArgs extends readonly unknown[], TReturn>(fn: function): function
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `fn` | `function` | The function to wrap (sync or async) |
+| `fn` | `function` | The function to wrap \(sync or async\) |
 
 ## Returns
 

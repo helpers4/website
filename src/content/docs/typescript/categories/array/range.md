@@ -26,9 +26,9 @@ range(startOrEnd: number, end?: number, step?: number): number[]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `startOrEnd` | `number` | The start value (if end is provided) or end value (if end is omitted) |
-| `end` | `number` | The end value (exclusive) *(optional)* |
-| `step` | `number` | The increment between values (default: 1 or -1 depending on direction) *(optional)* |
+| `startOrEnd` | `number` | The start value \(if end is provided\) or end value \(if end is omitted\) |
+| `end` | `number` | The end value \(exclusive\) *(optional)* |
+| `step` | `number` | The increment between values \(default: 1 or \-1 depending on direction\) *(optional)* |
 
 ## Returns
 

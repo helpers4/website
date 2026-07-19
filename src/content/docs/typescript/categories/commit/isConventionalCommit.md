@@ -28,8 +28,8 @@ isConventionalCommit(message: string, options?: ConventionalCommitOptions): bool
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `message` | `string` | Full commit message or just its subject line. |
-| `options` | `ConventionalCommitOptions` | Optional constraints (allowed types/scopes, scope requirement). *(optional)* |
+| `message` | `string` | Full commit message or just its subject line\. |
+| `options` | `ConventionalCommitOptions` | Optional constraints \(allowed types/scopes, scope requirement\)\. *(optional)* |
 
 ## Returns
 

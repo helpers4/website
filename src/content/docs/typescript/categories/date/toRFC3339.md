@@ -27,8 +27,8 @@ toRFC3339(date: DateLike, includeMilliseconds: boolean): string | null
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `date` | `DateLike` | Date to convert (Date object, timestamp, or date string) |
-| `includeMilliseconds` | `boolean` | Whether to include milliseconds (default: false) |
+| `date` | `DateLike` | Date to convert \(Date object, timestamp, or date string\) |
+| `includeMilliseconds` | `boolean` | Whether to include milliseconds \(default: false\) |
 
 ## Returns
 

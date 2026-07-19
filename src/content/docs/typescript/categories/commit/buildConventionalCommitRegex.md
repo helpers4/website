@@ -33,7 +33,7 @@ buildConventionalCommitRegex(options: ConventionalCommitOptions): RegExp
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `options` | `ConventionalCommitOptions` | Constrain accepted types/scopes and toggle scope requirement. |
+| `options` | `ConventionalCommitOptions` | Constrain accepted types/scopes and toggle scope requirement\. |
 
 ## Returns
 

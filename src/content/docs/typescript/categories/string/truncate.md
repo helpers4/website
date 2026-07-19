@@ -30,9 +30,9 @@ truncate(input: undefined, maxLength: number, ellipsis?: string): undefined
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `input` | `undefined` | The string to truncate. |
-| `maxLength` | `number` | Maximum number of characters in the output (including ellipsis). |
-| `ellipsis` | `string` | Appended when the string is cut. Defaults to `'…'`. *(optional)* |
+| `input` | `undefined` | The string to truncate\. |
+| `maxLength` | `number` | Maximum number of characters in the output \(including ellipsis\)\. |
+| `ellipsis` | `string` | Appended when the string is cut\. Defaults to \`'…'\`\. *(optional)* |
 
 ## Returns
 

@@ -33,7 +33,7 @@ isWeekend(date: DateLike, weekendDays: readonly WeekDay[]): boolean
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `date` | `DateLike` | The date to check |
-| `weekendDays` | `readonly WeekDay[]` | Override which days count as weekend (default: `[0, 6]`) |
+| `weekendDays` | `readonly WeekDay[]` | Override which days count as weekend \(default: \`\[0, 6\]\`\) |
 
 ## Returns
 

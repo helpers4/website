@@ -26,7 +26,7 @@ isPrerelease(version: string): boolean
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `version` | `string` | A semantic version string (e.g. `'2.0.0-alpha.1'`, `'1.0.0'`). |
+| `version` | `string` | A semantic version string \(e\.g\. \`'2\.0\.0\-alpha\.1'\`, \`'1\.0\.0'\`\)\. |
 
 ## Returns
 

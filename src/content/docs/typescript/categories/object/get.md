@@ -42,8 +42,8 @@ get<D>(obj: null | undefined, path: string | readonly PropertyKey[], defaultValu
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `obj` | `null \| undefined` | The object to read from |
-| `path` | `string \| readonly PropertyKey[]` | Dot/bracket-notation string literal or explicit `PropertyKey[]` |
-| `defaultValue` | `D` | Returned when the path is absent or resolves to `undefined` |
+| `path` | `string \| readonly PropertyKey[]` | Dot/bracket\-notation string literal or explicit \`PropertyKey\[\]\` |
+| `defaultValue` | `D` | Returned when the path is absent or resolves to \`undefined\` |
 
 ## Returns
 

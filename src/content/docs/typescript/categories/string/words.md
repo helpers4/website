@@ -30,7 +30,7 @@ words(str: string | null | undefined): string[]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `str` | `string \| null \| undefined` | The string to split into words. |
+| `str` | `string \| null \| undefined` | The string to split into words\. |
 
 ## Returns
 

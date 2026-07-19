@@ -29,8 +29,8 @@ template(str: string, data: Record<string, unknown>): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `str` | `string` | The template string containing `{{key}}` placeholders. |
-| `data` | `Record<string, unknown>` | A record mapping placeholder names to replacement values. |
+| `str` | `string` | The template string containing \`\{\{key\}\}\` placeholders\. |
+| `data` | `Record<string, unknown>` | A record mapping placeholder names to replacement values\. |
 
 ## Returns
 

@@ -27,8 +27,8 @@ replaceOrAppend<T>(array: readonly T[] | null | undefined, item: T, predicate: f
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly T[] \| null \| undefined` | The source array. `null`/`undefined` are treated as empty. |
-| `item` | `T` | The replacement (or new) item |
+| `array` | `readonly T[] \| null \| undefined` | The source array\. \`null\`/\`undefined\` are treated as empty\. |
+| `item` | `T` | The replacement \(or new\) item |
 | `predicate` | `function` | Called with each existing item to find what to replace |
 
 ## Returns

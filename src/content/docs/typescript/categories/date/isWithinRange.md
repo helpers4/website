@@ -28,8 +28,8 @@ isWithinRange(date: DateLike, start: DateLike, end: DateLike): boolean
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `date` | `DateLike` | The date to check |
-| `start` | `DateLike` | Start of the range (inclusive) |
-| `end` | `DateLike` | End of the range (inclusive) |
+| `start` | `DateLike` | Start of the range \(inclusive\) |
+| `end` | `DateLike` | End of the range \(inclusive\) |
 
 ## Returns
 

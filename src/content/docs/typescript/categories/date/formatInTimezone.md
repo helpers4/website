@@ -28,7 +28,7 @@ formatInTimezone(date: DateLike, tz: string, options: FormatInTimezoneOptions): 
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `date` | `DateLike` | The date to format |
-| `tz` | `string` | IANA timezone identifier (e.g. `'Asia/Tokyo'`) |
+| `tz` | `string` | IANA timezone identifier \(e\.g\. \`'Asia/Tokyo'\`\) |
 | `options` | `FormatInTimezoneOptions` | Optional locale and format configuration |
 
 ## Returns

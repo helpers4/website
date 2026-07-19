@@ -34,7 +34,7 @@ ensureDate(input: DateLike | null | undefined): Date | null
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `input` | `DateLike \| null \| undefined` | A date-like value to convert |
+| `input` | `DateLike \| null \| undefined` | A date\-like value to convert |
 
 ## Returns
 

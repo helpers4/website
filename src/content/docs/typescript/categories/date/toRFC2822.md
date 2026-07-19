@@ -27,7 +27,7 @@ toRFC2822(date: DateLike): string | null
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `date` | `DateLike` | Date to convert (Date object, timestamp, or date string) |
+| `date` | `DateLike` | Date to convert \(Date object, timestamp, or date string\) |
 
 ## Returns
 

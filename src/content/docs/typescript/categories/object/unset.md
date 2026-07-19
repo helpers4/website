@@ -34,7 +34,7 @@ unset<T extends object>(obj: T, path: string | readonly PropertyKey[]): T
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `obj` | `T` | The object to mutate |
-| `path` | `string \| readonly PropertyKey[]` | Dot/bracket-notation string, or explicit `PropertyKey[]` |
+| `path` | `string \| readonly PropertyKey[]` | Dot/bracket\-notation string, or explicit \`PropertyKey\[\]\` |
 
 ## Returns
 

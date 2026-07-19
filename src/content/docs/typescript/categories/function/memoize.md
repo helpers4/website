@@ -31,7 +31,7 @@ memoize<A extends unknown[], R>(func: function, options?: MemoizeOptions): funct
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `func` | `function` | The function to memoize |
-| `options` | `MemoizeOptions` | Optional settings (e.g. `maxSize` to cap memory usage) *(optional)* |
+| `options` | `MemoizeOptions` | Optional settings \(e\.g\. \`maxSize\` to cap memory usage\) *(optional)* |
 
 ## Returns
 

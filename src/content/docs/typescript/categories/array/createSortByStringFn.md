@@ -31,8 +31,8 @@ createSortByStringFn<T extends Record<string, unknown>>(property?: keyof T | rea
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `property` | `keyof T \| readonly keyof T[]` | The property (or ordered list of properties) to sort by.   Defaults to trying 'value', 'label', 'title', 'description' in that order.   Pass `undefined` explicitly to use auto-detect; an empty array `[]` produces a   stable no-op comparator (does **not** fall back to auto-detect). *(optional)* |
-| `caseInsensitive` | `boolean` | Whether to ignore case (default: false).   Uses `Intl.Collator { sensitivity: 'accent' }`, which folds case but still   distinguishes accented characters (é ≠ e). This differs from   `createSortByNaturalFn(key, true)`, which also collapses diacritics. |
+| `property` | `keyof T \| readonly keyof T[]` | The property \(or ordered list of properties\) to sort by\.   Defaults to trying 'value', 'label', 'title', 'description' in that order\.   Pass \`undefined\` explicitly to use auto\-detect; an empty array \`\[\]\` produces a   stable no\-op comparator \(does \*\*not\*\* fall back to auto\-detect\)\. *(optional)* |
+| `caseInsensitive` | `boolean` | Whether to ignore case \(default: false\)\.   Uses \`Intl\.Collator \{ sensitivity: 'accent' \}\`, which folds case but still   distinguishes accented characters \(é ≠ e\)\. This differs from   \`createSortByNaturalFn\(key, true\)\`, which also collapses diacritics\. |
 
 ## Returns
 

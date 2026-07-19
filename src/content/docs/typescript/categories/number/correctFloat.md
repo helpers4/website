@@ -38,8 +38,8 @@ correctFloat(value: number, precision: number): number
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `number` | The floating-point value to correct |
-| `precision` | `number` | Integer number of significant digits between 1 and 100   (default: 14). Values above 17 are valid but expose binary noise beyond   IEEE-754's meaningful range. |
+| `value` | `number` | The floating\-point value to correct |
+| `precision` | `number` | Integer number of significant digits between 1 and 100   \(default: 14\)\. Values above 17 are valid but expose binary noise beyond   IEEE\-754's meaningful range\. |
 
 ## Returns
 

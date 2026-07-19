@@ -29,8 +29,8 @@ pickBy<T extends Record<string, unknown>>(obj: T | null | undefined, predicate: 
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `obj` | `T \| null \| undefined` | The source object. `null`/`undefined` pass through unchanged. |
-| `predicate` | `function` | Called with `(value, key)` for each own enumerable entry |
+| `obj` | `T \| null \| undefined` | The source object\. \`null\`/\`undefined\` pass through unchanged\. |
+| `predicate` | `function` | Called with \`\(value, key\)\` for each own enumerable entry |
 
 ## Returns
 

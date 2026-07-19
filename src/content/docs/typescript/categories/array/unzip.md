@@ -27,7 +27,7 @@ unzip<A, B>(pairs: readonly [A, B][] | null | undefined): [A[], B[]]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `pairs` | `readonly [A, B][] \| null \| undefined` | Array of 2-tuples to unzip |
+| `pairs` | `readonly [A, B][] \| null \| undefined` | Array of 2\-tuples to unzip |
 
 ## Returns
 

@@ -32,8 +32,8 @@ update<T extends object, P extends string | readonly PropertyKey[], V extends un
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `obj` | `T` | The object to mutate |
-| `path` | `P` | Dot/bracket-notation string literal or explicit `PropertyKey[]` |
-| `updater` | `function` | Called with the current value (`undefined` if the path is   absent); its return value is written back at the path |
+| `path` | `P` | Dot/bracket\-notation string literal or explicit \`PropertyKey\[\]\` |
+| `updater` | `function` | Called with the current value \(\`undefined\` if the path is   absent\); its return value is written back at the path |
 
 ## Returns
 

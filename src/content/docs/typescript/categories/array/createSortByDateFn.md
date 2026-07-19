@@ -25,7 +25,7 @@ createSortByDateFn<T extends Record<string, unknown>>(property?: keyof T): SortF
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `property` | `keyof T` | The property to sort by (defaults to `'date'`).   Accepted value types: `Date` (including cross-realm instances), `string`, or   `number` (Unix milliseconds). Any object with a `getTime(): number` method is   also accepted (duck-typed, so cross-realm `Date` objects work correctly).   `null`, `undefined`, and unparseable strings produce `NaN` and sort last,   distinct from a genuine Unix-epoch date (`new Date(0)`). *(optional)* |
+| `property` | `keyof T` | The property to sort by \(defaults to \`'date'\`\)\.   Accepted value types: \`Date\` \(including cross\-realm instances\), \`string\`, or   \`number\` \(Unix milliseconds\)\. Any object with a \`getTime\(\): number\` method is   also accepted \(duck\-typed, so cross\-realm \`Date\` objects work correctly\)\.   \`null\`, \`undefined\`, and unparseable strings produce \`NaN\` and sort last,   distinct from a genuine Unix\-epoch date \(\`new Date\(0\)\`\)\. *(optional)* |
 
 ## Returns
 

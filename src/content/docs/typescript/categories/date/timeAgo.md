@@ -30,8 +30,8 @@ timeAgo(date: DateLike, options: TimeAgoOptions): string | null
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `date` | `DateLike` | The date to describe relative to `now` |
-| `options` | `TimeAgoOptions` | Optional configuration (reference date, locale, numeric style) |
+| `date` | `DateLike` | The date to describe relative to \`now\` |
+| `options` | `TimeAgoOptions` | Optional configuration \(reference date, locale, numeric style\) |
 
 ## Returns
 

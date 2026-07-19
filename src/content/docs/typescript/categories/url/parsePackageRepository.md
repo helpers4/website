@@ -35,7 +35,7 @@ parsePackageRepository(repository: unknown): PackageRepository | undefined
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `repository` | `unknown` | The `repository` field value from `package.json`. |
+| `repository` | `unknown` | The \`repository\` field value from \`package\.json\`\. |
 
 ## Returns
 

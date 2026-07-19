@@ -27,7 +27,7 @@ argbToRgb(argb: number): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `argb` | `number` | A 32-bit integer where bits 24-31 are alpha, 16-23 are red,   8-15 are green, and 0-7 are blue |
+| `argb` | `number` | A 32\-bit integer where bits 24\-31 are alpha, 16\-23 are red,   8\-15 are green, and 0\-7 are blue |
 
 ## Returns
 

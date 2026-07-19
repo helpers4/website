@@ -28,8 +28,8 @@ eachDay(start: DateLike, end: DateLike): Date[]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `start` | `DateLike` | Start date (inclusive) |
-| `end` | `DateLike` | End date (inclusive) |
+| `start` | `DateLike` | Start date \(inclusive\) |
+| `end` | `DateLike` | End date \(inclusive\) |
 
 ## Returns
 

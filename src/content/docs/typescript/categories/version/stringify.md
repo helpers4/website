@@ -28,7 +28,7 @@ stringify(parsed: ParsedVersion): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `parsed` | `ParsedVersion` | A parsed semantic version object. |
+| `parsed` | `ParsedVersion` | A parsed semantic version object\. |
 
 ## Returns
 

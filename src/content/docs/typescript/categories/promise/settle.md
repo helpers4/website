@@ -9,6 +9,13 @@ rejecting on the first failure, unlike `Promise.all`.
 Built on top of `Promise.allSettled`, but returns fulfilled values and rejection
 reasons already split apart so callers don't need to inspect `status` themselves.
 
+No concurrency limit, and none is possible here: `promises` are already-constructed
+`Promise` objects, and a promise starts running the moment it's created — by the time
+`settle` receives the array, every promise in it is already in flight. There is
+nothing left to throttle. If you need to cap how many run at once (e.g. many file
+reads or requests), use parallelSettle instead, which takes functions
+(`() => Promise<T>`) so it controls *when* each one starts.
+
 > Available since v3.0.0
 
 ## Import

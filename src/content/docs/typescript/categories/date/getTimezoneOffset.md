@@ -32,8 +32,8 @@ getTimezoneOffset(tz: string, date: DateLike): number | null
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `tz` | `string` | IANA timezone identifier (e.g. `'America/New_York'`) |
-| `date` | `DateLike` | Reference date (defaults to now) |
+| `tz` | `string` | IANA timezone identifier \(e\.g\. \`'America/New\_York'\`\) |
+| `date` | `DateLike` | Reference date \(defaults to now\) |
 
 ## Returns
 

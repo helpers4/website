@@ -32,7 +32,7 @@ clone<T>(value: T): T
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `T` | The value to shallow-clone |
+| `value` | `T` | The value to shallow\-clone |
 
 ## Returns
 

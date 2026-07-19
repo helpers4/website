@@ -25,8 +25,8 @@ returnOrThrowError<T>(value: T | null | undefined, error: string): T
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `value` | `T \| null \| undefined` | A possible non-defined value. |
-| `error` | `string` | The error message to throw. |
+| `value` | `T \| null \| undefined` | A possible non\-defined value\. |
+| `error` | `string` | The error message to throw\. |
 
 ## Returns
 

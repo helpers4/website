@@ -26,7 +26,7 @@ satisfiesRange(version: string, range: string): boolean
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `version` | `string` | Version to check |
-| `range` | `string` | Range pattern (e.g., ">=1.0.0", "~1.2.0", "^1.0.0") |
+| `range` | `string` | Range pattern \(e\.g\., ">=1\.0\.0", "~1\.2\.0", "^1\.0\.0"\) |
 
 ## Returns
 

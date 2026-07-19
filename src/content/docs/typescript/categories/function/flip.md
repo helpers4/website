@@ -28,7 +28,7 @@ flip<A, B, Rest extends unknown[], R>(fn: function): function
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `fn` | `function` | The function to wrap. |
+| `fn` | `function` | The function to wrap\. |
 
 ## Returns
 

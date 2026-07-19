@@ -28,8 +28,8 @@ createSortByBooleanFn<T extends Record<string, unknown>>(property: keyof T, true
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `property` | `keyof T` | The property to sort by. |
-| `trueFirst` | `boolean` | Whether `true` values sort before `false` values (default: `true`). |
+| `property` | `keyof T` | The property to sort by\. |
+| `trueFirst` | `boolean` | Whether \`true\` values sort before \`false\` values \(default: \`true\`\)\. |
 
 ## Returns
 

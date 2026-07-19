@@ -11,5 +11,5 @@ Utility functions for working with markdown operations.
 
 | Function | Description |
 |----------|-------------|
-| [`escape`](./escape/) | Escapes all Markdown special characters in a string so they render as literal text rather than formatting syntax. |
+| [`escape`](./escape/) | Escapes all Markdown special characters in a string so they render as literal text rather than formatting syntax\. |
 

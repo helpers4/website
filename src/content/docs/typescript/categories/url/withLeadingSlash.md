@@ -29,7 +29,7 @@ withLeadingSlash(url: string): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `url` | `string` | The URL string to be processed. Can be `string`, `undefined`, or `null`. |
+| `url` | `string` | The URL string to be processed\. Can be \`string\`, \`undefined\`, or \`null\`\. |
 
 ## Returns
 

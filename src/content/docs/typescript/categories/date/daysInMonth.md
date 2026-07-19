@@ -30,8 +30,8 @@ daysInMonth(year: number, month: number): number
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `year` | `number` | A full year number (e.g. 2025) |
-| `month` | `number` | 1-based month number (1–12) |
+| `year` | `number` | A full year number \(e\.g\. 2025\) |
+| `month` | `number` | 1\-based month number \(1–12\) |
 
 ## Returns
 

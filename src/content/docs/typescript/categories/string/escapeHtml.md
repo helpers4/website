@@ -28,7 +28,7 @@ escapeHtml(str: string): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `str` | `string` | The string to escape. |
+| `str` | `string` | The string to escape\. |
 
 ## Returns
 

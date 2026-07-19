@@ -44,7 +44,7 @@ set<T extends object, P extends string | readonly PropertyKey[], V extends unkno
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `obj` | `T` | The object to mutate |
-| `path` | `P` | Dot/bracket-notation string literal or explicit `PropertyKey[]` |
+| `path` | `P` | Dot/bracket\-notation string literal or explicit \`PropertyKey\[\]\` |
 | `value` | `V` | Value to assign at the path |
 
 ## Returns

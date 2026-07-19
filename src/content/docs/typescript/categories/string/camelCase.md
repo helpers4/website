@@ -25,7 +25,7 @@ camelCase(str: string): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `str` | `string` | The kebab-case string to convert |
+| `str` | `string` | The kebab\-case string to convert |
 
 ## Returns
 

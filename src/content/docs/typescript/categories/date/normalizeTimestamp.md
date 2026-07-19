@@ -25,7 +25,7 @@ normalizeTimestamp(timestamp: number): number
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `timestamp` | `number` | The timestamp (in seconds or milliseconds) |
+| `timestamp` | `number` | The timestamp \(in seconds or milliseconds\) |
 
 ## Returns
 

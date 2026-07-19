@@ -31,7 +31,7 @@ unflatten(obj: Record<string, unknown>): Record<string, unknown>
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `obj` | `Record<string, unknown>` | A single-level object with dot-notation keys |
+| `obj` | `Record<string, unknown>` | A single\-level object with dot\-notation keys |
 
 ## Returns
 

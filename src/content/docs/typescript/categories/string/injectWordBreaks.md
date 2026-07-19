@@ -31,7 +31,7 @@ injectWordBreaks(str: string): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `str` | `string` | The string to process. |
+| `str` | `string` | The string to process\. |
 
 ## Returns
 

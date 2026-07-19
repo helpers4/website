@@ -25,7 +25,7 @@ negate<T extends unknown[]>(predicate: function): function
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `predicate` | `function` | A predicate function returning a boolean. |
+| `predicate` | `function` | A predicate function returning a boolean\. |
 
 ## Returns
 

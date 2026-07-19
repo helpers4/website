@@ -28,7 +28,7 @@ cartesianProduct<T extends readonly readonly unknown[][]>(arrays: T): mapped[]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `arrays` | `T` | Two or more arrays to combine. |
+| `arrays` | `T` | Two or more arrays to combine\. |
 
 ## Returns
 

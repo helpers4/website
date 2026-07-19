@@ -11,7 +11,7 @@ Utility functions for working with node operations.
 
 | Function | Description |
 |----------|-------------|
-| [`isBuffer`](./isbuffer/) | Checks if a value is a Node.js Buffer instance. |
-| [`isNodeStream`](./isnodestream/) | Checks if a value is a Node.js stream (has a `.pipe()` method). |
-| [`isSharedArrayBuffer`](./issharedarraybuffer/) | Checks if a value is a `SharedArrayBuffer` instance. |
+| [`isBuffer`](./isbuffer/) | Checks if a value is a Node\.js Buffer instance\. |
+| [`isNodeStream`](./isnodestream/) | Checks if a value is a Node\.js stream \(has a \`\.pipe\(\)\` method\)\. |
+| [`isSharedArrayBuffer`](./issharedarraybuffer/) | Checks if a value is a \`SharedArrayBuffer\` instance\. |
 

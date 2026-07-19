@@ -25,7 +25,7 @@ slugify(str: string): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `str` | `string` | The string to convert into a slug. |
+| `str` | `string` | The string to convert into a slug\. |
 
 ## Returns
 

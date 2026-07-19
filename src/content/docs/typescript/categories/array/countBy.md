@@ -29,8 +29,8 @@ countBy<T, K extends PropertyKey>(array: readonly T[] | null | undefined, keyFn:
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `array` | `readonly T[] \| null \| undefined` | The array to count. |
-| `keyFn` | `function` | A function that returns the grouping key for each element. |
+| `array` | `readonly T[] \| null \| undefined` | The array to count\. |
+| `keyFn` | `function` | A function that returns the grouping key for each element\. |
 
 ## Returns
 

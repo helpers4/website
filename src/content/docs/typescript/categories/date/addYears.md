@@ -29,7 +29,7 @@ addYears(date: DateLike, amount: number): Date | null
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `date` | `DateLike` | The base date |
-| `amount` | `number` | Number of years to add (negative to subtract) |
+| `amount` | `number` | Number of years to add \(negative to subtract\) |
 
 ## Returns
 

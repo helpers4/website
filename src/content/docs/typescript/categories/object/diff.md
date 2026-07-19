@@ -40,9 +40,9 @@ diff(objA: object | null | undefined, objB: object | null | undefined, options: 
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `objA` | `object \| null \| undefined` | First value (object, `null`, or `undefined`). |
-| `objB` | `object \| null \| undefined` | Second value (object, `null`, or `undefined`). |
-| `options` | `DiffOptions` | See DiffOptions. |
+| `objA` | `object \| null \| undefined` | First value \(object, \`null\`, or \`undefined\`\)\. |
+| `objB` | `object \| null \| undefined` | Second value \(object, \`null\`, or \`undefined\`\)\. |
+| `options` | `DiffOptions` | See DiffOptions\. |
 
 ## Returns
 

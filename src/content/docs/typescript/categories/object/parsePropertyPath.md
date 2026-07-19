@@ -36,7 +36,7 @@ parsePropertyPath(path: string): readonly string | number[]
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `path` | `string` | The dot/bracket-notation path string to parse |
+| `path` | `string` | The dot/bracket\-notation path string to parse |
 
 ## Returns
 

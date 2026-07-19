@@ -28,7 +28,7 @@ inRange(value: number, min: number, max: number, options: InRangeOptions): boole
 | `value` | `number` | The number to test |
 | `min` | `number` | Lower bound |
 | `max` | `number` | Upper bound |
-| `options` | `InRangeOptions` | Boundary inclusion mode (default: `'both'`) |
+| `options` | `InRangeOptions` | Boundary inclusion mode \(default: \`'both'\`\) |
 
 ## Returns
 

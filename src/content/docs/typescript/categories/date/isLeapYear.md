@@ -28,7 +28,7 @@ isLeapYear(year: number): boolean
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `year` | `number` | A full year number (e.g. 2024) |
+| `year` | `number` | A full year number \(e\.g\. 2024\) |
 
 ## Returns
 

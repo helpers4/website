@@ -25,7 +25,7 @@ hslToRgb(color: HslColor): RgbColor
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `color` | `HslColor` | The color to convert. `h` is normalized modulo 360 (negative   values wrap around), `s`/`l` are expected in 0-100, `a` defaults to 1   (opaque) when omitted. |
+| `color` | `HslColor` | The color to convert\. \`h\` is normalized modulo 360 \(negative   values wrap around\), \`s\`/\`l\` are expected in 0\-100, \`a\` defaults to 1   \(opaque\) when omitted\. |
 
 ## Returns
 

@@ -26,7 +26,7 @@ increment(version: string, type: "major" | "minor" | "patch"): string
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `version` | `string` | The version to increment |
-| `type` | `"major" \| "minor" \| "patch"` | The increment type ('major', 'minor', 'patch') |
+| `type` | `"major" \| "minor" \| "patch"` | The increment type \('major', 'minor', 'patch'\) |
 
 ## Returns
 

@@ -26,7 +26,7 @@ cleanPath(url: string | null | undefined): string | null | undefined
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `url` | `string \| null \| undefined` | The URL string to be processed. Can be `string`, `undefined`, or `null`. |
+| `url` | `string \| null \| undefined` | The URL string to be processed\. Can be \`string\`, \`undefined\`, or \`null\`\. |
 
 ## Returns
 

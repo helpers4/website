@@ -28,7 +28,7 @@ formatSize(bytes: number): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `bytes` | `number` | A non-negative integer representing a byte count. |
+| `bytes` | `number` | A non\-negative integer representing a byte count\. |
 
 ## Returns
 
