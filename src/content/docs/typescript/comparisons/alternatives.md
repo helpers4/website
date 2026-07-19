@@ -102,8 +102,8 @@ What each library covers — and what helpers4 uniquely provides:
 | **Observable utilities** | ✅ | — | — | — | — |
 | **Promise guards** | ✅ | — | — | — | — |
 | Async/parallel | ✅ | ✅ | — | — | — |
-| Pipe/compose | — | — | `_.chain` | ✅ | ✅ |
-| FP (curry, lenses) | — | — | `_.curry` | — | ✅ |
+| Pipe/compose | ✅ | — | `_.chain` | ✅ | ✅ |
+| FP (curry, lenses) | ✅ (curry only) | — | `_.curry` | — | ✅ |
 | Random/shuffle | — | ✅ | ✅ | — | — |
 | Collection chaining | — | — | ✅ | ✅ | ✅ |
 
