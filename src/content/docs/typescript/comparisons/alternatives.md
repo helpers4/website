@@ -27,97 +27,61 @@ per import, not for the package as a whole.
 
 ## helpers4 vs Radashi
 
-[Radashi](https://radashi.js.org) is a general-purpose TypeScript toolkit (~130 functions) and the maintained fork of Radash. The two libraries are **complementary**.
-
-| | helpers4 | radashi |
-|---|---|---|
-| **Focus** | Domain-specific (dates, URLs, semver, observables, promise guards) | Low-level data primitives (sort, group, clone, pick, map) |
-| **Architecture** | Independent `@helpers4/*` packages per category | Single `radashi` package |
-| **Dependencies** | Zero runtime dependencies | Zero dependencies |
-
-**Key difference**: Radashi provides building blocks for data structures; helpers4 provides ready-made solutions for common domain problems. They're complementary — see the [detailed comparison](./radashi/).
+[Radashi](https://radashi.js.org) (~130 functions, the maintained fork of Radash) provides
+low-level data primitives (sort, group, clone, pick, map); helpers4 provides ready-made solutions
+for domain problems radashi deliberately excludes (dates, URLs, semver, observables). They're
+**complementary** — see the [detailed comparison](./radashi/).
 
 ## helpers4 vs Radash
 
-[Radash](https://github.com/rayepps/radash) is the predecessor of radashi. It is **archived** and no longer maintained.
-
-| | helpers4 | radash |
-|---|---|---|
-| **Status** | Actively maintained | Archived (no updates) |
-| **TypeScript** | Strict mode, native types | Native types |
-| **Architecture** | Independent packages | Single package |
-| **Unique to helpers4** | dates, URLs, semver, observables, promise guards | — |
-
-**Recommendation**: If you're on radash, migrate to radashi (its maintained fork). If you also need date/URL/version/observable helpers, add helpers4.
+[Radash](https://github.com/rayepps/radash) is the predecessor of radashi and is **archived, no
+longer maintained**. If you're on radash, migrate to [radashi](./radashi/) (its maintained fork);
+add helpers4 alongside it if you also need date/URL/version/observable helpers.
 
 ## helpers4 vs Lodash
 
-[Lodash](https://lodash.com/) is the most popular JS utility library with ~300 functions.
-
-| | helpers4 | lodash |
-|---|---|---|
-| **Size** | ~2 KB per category | ~70 KB (full), or install per-function |
-| **TypeScript** | Native strict types | Requires `@types/lodash` |
-| **Tree-shaking** | Built-in (separate packages) | Requires `lodash-es` |
-| **Modern JS** | ES2024+ | ES5 compatible |
-| **Unique to helpers4** | dates, URLs, semver, observables | Deep utilities (`_.get` with defaults), collection chaining |
-
-**Key difference**: Lodash is a legacy-compatible, maximalist toolkit. helpers4 is modern, minimal, and focused on gaps that lodash doesn't cover well (dates, URLs, semver, observables, typed promise guards).
+[Lodash](https://lodash.com/) is the most popular JS utility library (~300 functions), built for
+a pre-ES2015 world and still ES5-compatible. helpers4 is modern (ES2024+), minimal, and focused
+on gaps lodash doesn't cover (dates, URLs, semver, observables, typed promise guards) rather than
+competing on raw function count — see the [detailed comparison](./lodash/).
 
 ## helpers4 vs es-toolkit
 
-[es-toolkit](https://es-toolkit.dev) is a modern, TypeScript-native lodash replacement (~300 functions) maintained by Toss (Viva Republica) — 2-3x faster than lodash, up to 97% smaller per function, with a drop-in `es-toolkit/compat` layer for lodash migrations. It's the most actively developed library in this whole comparison (last published 2026-07-18).
-
-| | helpers4 | es-toolkit |
-|---|---|---|
-| **Focus** | Domain-specific (dates, URLs, semver, observables, promise guards) | Fast, modern, tree-shakable lodash replacement |
-| **Scope** | Independent `@helpers4/*` packages per category | Single package — **also covers `Map`/`Set` utilities and concurrency primitives (`Mutex`, `Semaphore`)**, categories helpers4 doesn't touch at all |
-| **Dependencies** | Zero runtime dependencies | Zero dependencies |
-
-**Key difference**: es-toolkit is a genuinely strong general-purpose competitor — it reaches into `Map`/`Set` utilities, `Mutex`/`Semaphore`/`withTimeout` concurrency primitives, and `median`/`percentile` stats that helpers4 doesn't have. helpers4 still covers its own domain-specific ground (dates, URLs, semver, observables, Temporal guards) that es-toolkit's lodash-replacement scope never aimed for. See the [detailed comparison](./es-toolkit/).
+[es-toolkit](https://es-toolkit.dev) (~300 functions, maintained by Toss/Viva Republica) is a
+fast, modern, fully tree-shakable lodash replacement — the most actively developed library in
+this comparison — that also reaches into `Map`/`Set` utilities and concurrency primitives
+(`Mutex`, `Semaphore`) helpers4 doesn't touch. helpers4 still covers its own domain-specific
+ground (dates, URLs, semver, observables, Temporal guards) that es-toolkit's scope never aimed
+for. See the [detailed comparison](./es-toolkit/).
 
 ## helpers4 vs Remeda
 
-[Remeda](https://remedajs.com/) is a TypeScript-first utility library with a focus on data transformation.
-
-| | helpers4 | remeda |
-|---|---|---|
-| **Paradigm** | Standard functional | Data-first **and** data-last (dual API) |
-| **Pipe support** | `pipe()`/`compose()`/`curry()` (eager, since v2.0.0) | `pipe()` with lazy evaluation on tagged functions + type narrowing |
-| **TypeScript** | Strict types | Advanced type inference with pipe |
-| **Unique to helpers4** | dates, URLs, semver, observables, promise guards, `compose`/`curry` | Lazy pipe evaluation, dual data-first/data-last API |
-
-**Key difference**: Both ship a pipe — remeda's is the more sophisticated one (lazy evaluation, dual API), while helpers4 additionally offers right-to-left `compose` and generic `curry`, which remeda doesn't expose. Otherwise, remeda excels at piped data transformations with excellent type inference, and helpers4 focuses on domain-specific utilities. They serve different purposes and can be combined — see the [detailed comparison](./remeda/).
+[Remeda](https://remedajs.com/) is a TypeScript-first library built around a dual
+data-first/data-last `pipe()` with lazy evaluation and strong type inference. helpers4 also ships
+a pipe (`pipe()`/`compose()`/`curry()`, eager) plus its own domain-specific utilities. They serve
+different purposes and can be combined — see the [detailed comparison](./remeda/).
 
 ## helpers4 vs Ramda
 
-[Ramda](https://ramdajs.com/) is a functional programming library focused on currying and composition.
-
-| | helpers4 | ramda |
-|---|---|---|
-| **Paradigm** | Pragmatic utility | Purely functional, auto-curried |
-| **TypeScript** | Native strict types | Requires `@types/ramda` (incomplete) |
-| **API style** | Direct function calls | Auto-curried, point-free |
-| **Bundle size** | ~2 KB per category | ~45 KB |
-| **Unique to helpers4** | dates, URLs, semver, observables | Lenses, transducers, full FP toolkit |
-
-**Key difference**: Ramda is for functional programming purists who want auto-currying, lenses, and point-free style. helpers4 is pragmatic and focused on real-world domain utilities.
+[Ramda](https://ramdajs.com/) is a purely functional, auto-curried library (lenses, transducers,
+point-free style) for FP purists — low maintenance activity these days. helpers4 is pragmatic
+utility-first, not point-free. If you want the same FP style actively maintained and
+TypeScript-native, see [Rambda](#helpers4-vs-rambda) below instead.
 
 ## helpers4 vs Rambda
 
-[Rambda](https://selfrefactor.github.io/rambda/) is the actively-maintained, TypeScript-native alternative in the same curried/point-free space as Ramda above (last published 2026-05-15, v11.2.0) — worth calling out specifically since Ramda itself is flagged as low-maintenance in this table. As of v10, Rambda stopped aiming to be a drop-in Ramda replacement (it deliberately omits `curry`/`assoc`, which don't express well in TypeScript's type system).
-
-| | helpers4 | rambda |
-|---|---|---|
-| **Paradigm** | Direct function calls | Curried, point-free (`R.filter(fn)(list)`) |
-| **Scope** | Domain-specific (dates, URLs, semver, observables, promise guards) | Core FP data transforms (array/object/string/predicates) |
-| **Unique to helpers4** | dates, URLs, semver, observables, promise guards, concurrency | Composable point-free chains |
-
-**Key difference**: Rambda doesn't reach into any of helpers4's domain-specific categories — it's a pure data-transformation library, synchronous only, no date/URL/semver/observable/promise coverage at all. See the [detailed comparison](./rambda/).
+[Rambda](https://selfrefactor.github.io/rambda/) is the actively-maintained, TypeScript-native
+alternative in Ramda's curried/point-free space (last published 2026-05-15). It doesn't reach
+into any of helpers4's domain-specific categories — synchronous data transforms only, no
+date/URL/semver/observable/promise coverage. See the [detailed comparison](./rambda/).
 
 ## helpers4 vs Moderndash
 
-[Moderndash](https://moderndash.io) is a smaller (~50 functions), newer TypeScript-first lodash-inspired library (last published 2026-03-17). Its npm-listed dependencies (`hotscript`, `type-fest`) are type-only, consistent with its "zero runtime dependencies" claim. It covers array/object/string/number basics plus a few things helpers4 doesn't have standalone (`sleep`, `timeout`, `retry`, `Queue` in its Promise category — conceptually similar to the concurrency gaps also found in es-toolkit) — but at roughly a sixth of helpers4's function count and with a much smaller adoption footprint than the other libraries here. No domain-specific coverage (dates, URLs, semver, observables) either.
+[Moderndash](https://moderndash.io) is a smaller (~50 functions), newer TypeScript-first
+lodash-inspired library covering array/object/string/number basics, plus a small Promise category
+(`sleep`, `timeout`, `retry`, `Queue`) — conceptually similar to the concurrency gaps also found
+in es-toolkit. Roughly a sixth of helpers4's function count, no domain-specific coverage
+(dates, URLs, semver, observables).
 
 ## Feature matrix
 
