@@ -124,6 +124,6 @@ Rows in **bold** are gaps on the helpers4 side worth tracking — see `typescrip
 | Fastest/smallest lodash replacement, migrating from lodash | **es-toolkit** |
 | `Map`/`Set` utilities, `Mutex`/`Semaphore`, `median`/`percentile` | **es-toolkit** |
 | Pipe-based data transformations | **remeda** |
-| Functional programming (currying, lenses) | **ramda** or **rambda** (TS-native, actively maintained) |
+| Functional programming (currying, lenses) | **ramda** or **rambda** |
 | Maximum function coverage, legacy support | **lodash** |
 | Multiple needs | **helpers4 + radashi** or **helpers4 + es-toolkit** (they're complementary) |
