@@ -16,6 +16,15 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.40.0
         version: 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.1.1)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
+      '@helpers4/array':
+        specifier: ^3.0.1
+        version: 3.0.1
+      '@helpers4/markdown':
+        specifier: ^3.0.1
+        version: 3.0.1
+      '@helpers4/version':
+        specifier: ^3.0.1
+        version: 3.0.1
       astro:
         specifier: ^6.4.8
         version: 6.4.8(@types/node@26.1.1)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
@@ -353,6 +362,18 @@ packages:
 
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
+
+  '@helpers4/array@3.0.1':
+    resolution: {integrity: sha512-WuxspeSi663jvjGTWCCr1ShCZW5CYsOPWgOYjzdU7yGTBAAwusQPLeZeKjnHLJmBl1X88Yaj//OD+Ub7+7sf9Q==}
+    engines: {node: '>=26.0.0'}
+
+  '@helpers4/markdown@3.0.1':
+    resolution: {integrity: sha512-QSM3NwlLP6YWsCWH0F6AmTTbZLLmMqzWRGWgDY0g/sI0fC7HQAVNQgRnZgYnRXgCZhQcwBP+Z0NBLIjy5Sk1mg==}
+    engines: {node: '>=26.0.0'}
+
+  '@helpers4/version@3.0.1':
+    resolution: {integrity: sha512-CsU8itslUQcKLayd1ZKMeFLJKyyNpOGFsIDceRnBVSVasvdGh/0hfJ217m8KYDIIhrU5Zcproz/MIktTm563DQ==}
+    engines: {node: '>=26.0.0'}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -2347,6 +2368,12 @@ snapshots:
       '@floating-ui/utils': 0.2.11
 
   '@floating-ui/utils@0.2.11': {}
+
+  '@helpers4/array@3.0.1': {}
+
+  '@helpers4/markdown@3.0.1': {}
+
+  '@helpers4/version@3.0.1': {}
 
   '@img/colour@1.1.0':
     optional: true
