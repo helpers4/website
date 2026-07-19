@@ -2,7 +2,7 @@
 title: "helpers4 vs Remeda — Detailed Comparison"
 sidebar:
   label: "helpers4 vs Remeda"
-  order: 2
+  order: 3
 ---
 
 [Remeda](https://remedajs.com) is a TypeScript-first utility library (~150 functions) built around a typed `pipe()` and a dual data-first/data-last API. Like [radashi](./radashi/), it is **complementary, not competing** — the overlap is real but the two libraries optimize for different things.

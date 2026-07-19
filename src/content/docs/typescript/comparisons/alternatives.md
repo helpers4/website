@@ -2,7 +2,7 @@
 title: "helpers4 vs Alternative Libraries"
 sidebar:
   label: "Alternative Libraries"
-  order: 3
+  order: 0
 ---
 
 A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
