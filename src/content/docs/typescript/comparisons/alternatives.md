@@ -9,17 +9,17 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 ## Overview
 
-| Library | Functions | Size (min+gz) | Tree-shakable | TypeScript | Dependencies | License | Maintained |
-|---------|:---------:|:-------------:|:-------------:|:----------:|:------------:|:-------:|:----------:|
-| **helpers4** | 274 | few B/fn | ESM (per-function + per-package) | native | 0 | LGPL-3.0 | Yes |
-| **radashi** | ~130 | ~15 KB | ESM | native | 0 | MIT | Yes |
-| **radash** | ~90 | ~12 KB | ESM | native | 0 | MIT | No (archived) |
-| **lodash** | ~300 | ~70 KB | via lodash-es | `@types/lodash` | 0 | MIT | Low |
-| **es-toolkit** | ~300 | few B/fn | ESM (per-function) | native | 0 | MIT | Yes (very active) |
-| **remeda** | ~100 | ~10 KB | ESM | native | 0 | MIT | Yes |
-| **ramda** | ~200 | ~45 KB | limited | `@types/ramda` | 0 | MIT | Low |
-| **rambda** | ~190 | ~15 KB | ESM | native | 0 | MIT | Yes |
-| **moderndash** | ~50 | ~5 KB | ESM | native | 2 (type-only) | MIT | Yes |
+| Library | Functions | Size (min+gz) | Granularity | Tree-shakable | TypeScript | Dependencies | License | Maintained |
+|---------|:---------:|:-------------:|:-------------:|:-------------:|:----------:|:------------:|:-------:|:----------:|
+| **helpers4** | 274 | tiny/fn | Per-function & Per-package | ESM | native | 0 | LGPL-3.0 | Yes |
+| **radashi** | ~130 | ~15 KB | — | ESM | native | 0 | MIT | Yes |
+| **radash** | ~90 | ~12 KB | — | ESM | native | 0 | MIT | No |
+| **lodash** | ~300 | ~70 KB | — | external | external | 0 | MIT | Low |
+| **es-toolkit** | ~300 | tiny/fn | Per-function | ESM | native | 0 | MIT | Highly |
+| **remeda** | ~100 | ~10 KB | — | ESM | native | 0 | MIT | Yes |
+| **ramda** | ~200 | ~45 KB | — | limited | external | 0 | MIT | Low |
+| **rambda** | ~190 | ~15 KB | — | ESM | native | 0 | MIT | Yes |
+| **moderndash** | ~50 | ~5 KB | — | ESM | native | 2 | MIT | Yes |
 
 helpers4 and es-toolkit ship per-function sizes (via [Bundlephobia](https://bundlephobia.com):
 helpers4 ~200 B/fn, es-toolkit ~200 B–1.2 KB/fn) rather than a single whole-library figure — both
