@@ -1,7 +1,7 @@
 ---
 title: "Essential Development Environment (essential-dev)"
 sidebar:
-  order: 4
+  order: 6
 ---
 
 Core development environment with Git integration, GitHub Copilot, Markdown support, and essential editor enhancements. Perfect base for all development projects.
@@ -20,8 +20,6 @@ Core development environment with Git integration, GitHub Copilot, Markdown supp
 ### Git & Version Control
 - `donjayamanne.githistory` - View and search git log
 - `the0807.git-graph-plus` - Git graph visualization
-- `github.vscode-pull-request-github` - GitHub PR and issue management
-- `github.vscode-github-actions` - GitHub Actions support
 - `vivaxy.vscode-conventional-commits` - Conventional commits helper
 
 ### AI Assistant

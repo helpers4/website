@@ -1,7 +1,7 @@
 ---
 title: "git-absorb"
 sidebar:
-  order: 5
+  order: 7
 ---
 
 This DevContainer feature installs [git-absorb](https://github.com/tummychow/git-absorb), a tool that automatically absorbs staged changes into their logical commits. It's like `git commit --fixup` but automatic.

@@ -1,7 +1,7 @@
 ---
 title: "TypeScript Development Environment (typescript-dev)"
 sidebar:
-  order: 10
+  order: 15
 ---
 
 TypeScript/JavaScript development setup with indexing, import management, HTML/CSS intelligence, and web tools. Built on top of `essential-dev` for Git, Copilot, and editor enhancements.

@@ -1,7 +1,7 @@
 ---
 title: "Shell History Per Project"
 sidebar:
-  order: 9
+  order: 14
 ---
 
 This DevContainer feature provides shell history persistence per project by mounting a shell directory and creating symbolic links internally. This ensures that your shell history is preserved across container rebuilds and is isolated per project.
