@@ -4,7 +4,8 @@ sidebar:
   label: "kebabCase"
 ---
 
-Converts camelCase to kebab-case
+Converts a string to kebab-case.
+Handles camelCase, PascalCase, snake_case, spaces, and mixed formats.
 
 > Available since v1.9.0
 
@@ -25,7 +26,7 @@ kebabCase(str: string): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `str` | `string` | The camelCase string to convert |
+| `str` | `string` | The string to convert |
 
 ## Returns
 

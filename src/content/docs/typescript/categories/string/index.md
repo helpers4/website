@@ -11,7 +11,7 @@ Utility functions for working with string operations.
 
 | Function | Description |
 |----------|-------------|
-| [`camelCase`](./camelcase/) | Converts kebab\-case to camelCase |
+| [`camelCase`](./camelcase/) | Converts a string to camelCase\. |
 | [`capitalize`](./capitalize/) | Capitalizes the first letter of a string\. |
 | [`dedent`](./dedent/) | Strips the common leading whitespace from every line of a multi\-line string, and trims a single leading/trailing blan… |
 | [`escapeHtml`](./escapehtml/) | Escapes the HTML special characters \`&\`, \`<\`, \`>\`, \`"\`, and \`'\` in a string\. |
@@ -23,7 +23,7 @@ Utility functions for working with string operations.
 | [`isEmpty`](./isempty/) | Checks if a string is empty \(\`""\`\), \`null\`, or \`undefined\`\. |
 | [`isNonEmpty`](./isnonempty/) | Checks if a string is non\-empty \(has at least one character\)\. |
 | [`isNotBlank`](./isnotblank/) | Checks if a string is not blank — non\-empty and contains at least one non\-whitespace character\. |
-| [`kebabCase`](./kebabcase/) | Converts camelCase to kebab\-case |
+| [`kebabCase`](./kebabcase/) | Converts a string to kebab\-case\. |
 | [`leadingSentence`](./leadingsentence/) | Extracts the leading sentence from a string\. |
 | `padStart / padEnd` | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
 | [`pascalCase`](./pascalcase/) | Converts a string to PascalCase\. |

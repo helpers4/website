@@ -39,8 +39,11 @@ Utility functions for working with array operations.
 | `last` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
 | [`max`](./max/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | [`mean`](./mean/) | Calculates the arithmetic mean \(average\) of an array of numbers\. |
+| [`meanBy`](./meanby/) | Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee\. |
+| [`median`](./median/) | Calculates the median \(middle value\) of an array of numbers\. |
 | [`min`](./min/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | [`partition`](./partition/) | Splits an array into two groups based on a predicate function\. |
+| [`percentile`](./percentile/) | Calculates the p\-th percentile of an array of numbers using linear interpolation between the closest ranks\. |
 | [`range`](./range/) | Generates an array of sequential numbers from start to end \(exclusive\)\. |
 | [`replaceOrAppend`](./replaceorappend/) | Returns a new array with the first item matching \`predicate\` replaced by \`item\` — or \`item\` appended at the end if no… |
 | `reverse` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
@@ -60,6 +63,7 @@ Utility functions for working with array operations.
 | [`sortStringNaturalDescFn`](./sortstringnaturaldescfn/) | Sort strings in descending order using natural \(human\-friendly\) ordering\. |
 | [`sortStringNaturalDescInsensitiveFn`](./sortstringnaturaldescinsensitivefn/) | Sort strings in descending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` —… |
 | [`sum`](./sum/) | Calculates the sum of an array of numbers\. |
+| [`sumBy`](./sumby/) | Calculates the sum of numbers derived from each item of an array via an iteratee\. |
 | [`symmetricDifference`](./symmetricdifference/) | Returns the symmetric difference between two arrays: items present in exactly one of the two arrays \(in either, but n… |
 | `tail` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |

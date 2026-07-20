@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**274** implemented helpers + **47** covered by native JavaScript APIs, sorted alphabetically.
+**307** implemented helpers + **57** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -21,7 +21,8 @@ sidebar:
 | [`Brand`](../type/brand/) | [type](../type/) | Brands a base type \`T\` with a phantom tag \`B\` to create a nominal type\. |
 | [`buildConventionalCommitRegex`](../commit/buildconventionalcommitregex/) | [commit](../commit/) | Builds a regular expression matching the \*\*subject line\*\* of a Conventional Commits message\. |
 | [`buildStatusTable`](../ci/buildstatustable/) | [ci](../ci/) | Builds a Markdown table body from a map of job names to CI/CD statuses\. |
-| [`camelCase`](../string/camelcase/) | [string](../string/) | Converts kebab\-case to camelCase |
+| [`camelCase`](../string/camelcase/) | [string](../string/) | Converts a string to camelCase\. |
+| [`camelCaseKeys`](../object/camelcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to camelC… |
 | [`capitalize`](../string/capitalize/) | [string](../string/) | Capitalizes the first letter of a string\. |
 | [`cartesianProduct`](../array/cartesianproduct/) | [array](../array/) | Computes the Cartesian product of the provided arrays\. |
 | `ceil / floor` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `Math.ceil() / Math.floor()` *(ES1)* |
@@ -43,6 +44,10 @@ sidebar:
 | [`consoleLogPromise`](../promise/consolelogpromise/) | [promise](../promise/) | Returns a function that logs data to the console and passes it through\. |
 | [`correctFloat`](../number/correctfloat/) | [number](../number/) | Corrects floating\-point arithmetic errors by rounding to a given number of significant digits\. |
 | [`countBy`](../array/countby/) | [array](../array/) | Groups the elements of an array by the key returned by \`keyFn\` and returns a record mapping each key to the number of… |
+| [`countBy`](../map/countby/) | [map](../map/) | Groups the entries of a Map by a derived key and counts how many fall into each group\. |
+| [`countBy`](../set/countby/) | [set](../set/) | Groups the values of a Set by a derived key and counts how many fall into each group\. |
+| `countBy / keyBy` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `Map.groupBy(map.entries(), ([k, v]) => groupFn(v, k))` *(ES2024)* |
+| `countBy / keyBy` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Map.groupBy(set.values(), fn)` *(ES2024)* |
 | [`createSortByBooleanFn`](../array/createsortbybooleanfn/) | [array](../array/) | Creates a sort function for objects by a boolean property\. |
 | [`createSortByDateFn`](../array/createsortbydatefn/) | [array](../array/) | Creates a sort function for objects by date property\. |
 | [`createSortByNaturalFn`](../array/createsortbynaturalfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties using natural ordering\. |
@@ -76,14 +81,22 @@ sidebar:
 | [`escape`](../markdown/escape/) | [markdown](../markdown/) | Escapes all Markdown special characters in a string so they render as literal text rather than formatting syntax\. |
 | [`escapeHtml`](../string/escapehtml/) | [string](../string/) | Escapes the HTML special characters \`&\`, \`<\`, \`>\`, \`"\`, and \`'\` in a string\. |
 | [`escapeRegExp`](../string/escaperegexp/) | [string](../string/) | Escapes regular expression metacharacters \(\`\. |
+| [`every`](../map/every/) | [map](../map/) | Checks if every entry of a Map satisfies the predicate\. |
 | [`extractErrorMessage`](../string/extracterrormessage/) | [string](../string/) | Convert an error to a readable message\. |
 | [`extractNumber`](../number/extractnumber/) | [number](../number/) | Extracts the first number embedded anywhere in a string, or passes through a \`number\`\. |
 | [`extractPureURI`](../url/extractpureuri/) | [url](../url/) | Extracts the pure URI from a URL by removing query parameters and fragments\. |
 | [`falsyPromiseOrThrow`](../promise/falsypromiseorthrow/) | [promise](../promise/) | Returns a function that passes through falsy data or throws an error\. |
+| [`filter`](../map/filter/) | [map](../map/) | Creates a new Map containing only the entries for which the predicate returns true\. |
+| [`filter`](../set/filter/) | [set](../set/) | Creates a new Set containing only the values for which the predicate returns true\. |
 | `find / findIndex` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
+| [`findKey`](../map/findkey/) | [map](../map/) | Returns the first key of a Map whose entry satisfies the predicate, in insertion order\. |
+| `findKey / findValue` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.entries().find(([k, v]) => pred(v, k))?.[0 or 1]` *(ES2025 (Iterator Helpers))* |
+| [`findValue`](../map/findvalue/) | [map](../map/) | Returns the first value of a Map whose entry satisfies the predicate, in insertion order\. |
 | [`flatten`](../object/flatten/) | [object](../object/) | Flattens a nested object into a single\-level object whose keys are the dot\-notation path to each leaf value\. |
 | `flatten / flat` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.flat(depth?)` *(ES2019)* |
 | [`flip`](../function/flip/) | [function](../function/) | Creates a function that invokes \`fn\` with the first two arguments swapped\. |
+| `forEach` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `Map.prototype.forEach((value, key, map) => ...)` *(ES2015)* |
+| `forEach` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.forEach((value, value2, set) => ...)` *(ES2015)* |
 | [`formatCompact`](../number/formatcompact/) | [number](../number/) | Formats a number using compact notation \(e\.g\. |
 | [`formatDuration`](../date/formatduration/) | [date](../date/) | Formats a duration in milliseconds as a compact human\-readable string\. |
 | [`formatInTimezone`](../date/formatintimezone/) | [date](../date/) | Formats a date in a specific IANA timezone using \`Intl\.DateTimeFormat\`\. |
@@ -98,6 +111,8 @@ sidebar:
 | `groupBy / group` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Object.groupBy(arr, fn)` *(ES2024)* |
 | [`guard`](../promise/guard/) | [promise](../promise/) | Wraps a function so that if it throws, a default value is returned instead of propagating the error\. |
 | `has` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `Object.hasOwn(obj, key)` *(ES2022)* |
+| [`hasValue`](../map/hasvalue/) | [map](../map/) | Checks whether a value exists anywhere in a Map \(\`Map\.prototype\.has\` checks keys, not values\)\. |
+| `hasValue` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.values().some(v => Object.is(v, value))` *(ES2025 (Iterator Helpers))* |
 | `head / first` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(0)` *(ES2022)* |
 | [`hexToRgb`](../color/hextorgb/) | [color](../color/) | Parses a hex color string \(\`\#rgb\`, \`\#rgba\`, \`\#rrggbb\`, \`\#rrggbbaa\` — the leading \`\#\` is optional\) into its RGB\(A\) cha… |
 | [`hslToRgb`](../color/hsltorgb/) | [color](../color/) | Converts an HSL\(A\) color into RGB\(A\)\. |
@@ -121,6 +136,7 @@ sidebar:
 | [`isBlank`](../string/isblank/) | [string](../string/) | Checks if a string is blank — empty or contains only whitespace characters\. |
 | [`isBlob`](../guard/isblob/) | [guard](../guard/) | Checks if a value is a Blob instance\. |
 | [`isBoolean`](../guard/isboolean/) | [guard](../guard/) | Checks if a value is a boolean\. |
+| [`isBrowser`](../guard/isbrowser/) | [guard](../guard/) | Checks whether the code is currently running in a browser\-like environment \(\`window\` and \`window\.document\` both defin… |
 | [`isBuffer`](../node/isbuffer/) | [node](../node/) | Checks if a value is a Node\.js Buffer instance\. |
 | [`isBusinessDay`](../date/isbusinessday/) | [date](../date/) | Checks whether a date falls on a business day \(i\.e\. |
 | [`isConventionalCommit`](../commit/isconventionalcommit/) | [commit](../commit/) | Checks whether a commit message's subject line follows the Conventional Commits format constrained by the given options\. |
@@ -143,11 +159,17 @@ sidebar:
 | `isInfinite` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value === Infinity \|\| value === -Infinity  /  !Number.isFinite(value) && !Number.isNaN(value)` *(ES2015)* |
 | `isInteger` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isInteger(value)` *(ES2015)* |
 | [`isIterable`](../guard/isiterable/) | [guard](../guard/) | Checks if a value is iterable \(has a \`Symbol\.iterator\` method\)\. |
+| [`isJSON`](../guard/isjson/) | [guard](../guard/) | Checks whether a value is a string containing valid, parseable JSON text\. |
+| [`isJSONArray`](../guard/isjsonarray/) | [guard](../guard/) | Checks whether a value is an array whose every element is a valid JSON value \(see isJSONValue\)\. |
+| [`isJSONObject`](../guard/isjsonobject/) | [guard](../guard/) | Checks whether a value is a plain object whose every own value is a valid JSON value \(see isJSONValue\)\. |
+| [`isJSONValue`](../guard/isjsonvalue/) | [guard](../guard/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`… |
 | [`isLeapYear`](../date/isleapyear/) | [date](../date/) | Returns \`true\` if the given year is a leap year\. |
+| [`isLength`](../guard/islength/) | [guard](../guard/) | Checks whether a value is a valid array\-like \`length\`: a non\-negative safe integer \(\`0 <= value <= Number\.MAX\_SAFE\_IN… |
 | `isLight / isDark (pick a readable text color)` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `contrast-color(<color>)` *(CSS Color 6 (Baseline newly available since April 2026 — Chrome 147, Firefox 146, Safari 26.0))* |
 | [`isMap`](../guard/ismap/) | [guard](../guard/) | Checks if a value is a Map instance\. |
 | `isNaN` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isNaN(value)` *(ES2015)* |
 | [`isNegative`](../number/isnegative/) | [number](../number/) | Checks if a value is a number less than 0\. |
+| [`isNode`](../guard/isnode/) | [guard](../guard/) | Checks whether the code is currently running in a Node\.js\-like environment \(\`process\.versions\.node\` is defined — also… |
 | [`isNodeStream`](../node/isnodestream/) | [node](../node/) | Checks if a value is a Node\.js stream \(has a \`\.pipe\(\)\` method\)\. |
 | [`isNonEmpty`](../array/isnonempty/) | [array](../array/) | Checks if an array is non\-empty \(has at least one element\)\. |
 | [`isNonEmpty`](../object/isnonempty/) | [object](../object/) | Checks if a plain object has at least one own enumerable string\-keyed property\. |
@@ -194,7 +216,8 @@ sidebar:
 | [`isWeakSet`](../guard/isweakset/) | [guard](../guard/) | Checks if a value is a WeakSet instance\. |
 | [`isWeekend`](../date/isweekend/) | [date](../date/) | Checks whether a date falls on a weekend day\. |
 | [`isWithinRange`](../date/iswithinrange/) | [date](../date/) | Checks whether a date falls within a range \(inclusive on both ends\)\. |
-| [`kebabCase`](../string/kebabcase/) | [string](../string/) | Converts camelCase to kebab\-case |
+| [`kebabCase`](../string/kebabcase/) | [string](../string/) | Converts a string to kebab\-case\. |
+| [`kebabCaseKeys`](../object/kebabcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to kebab\-… |
 | `keys / values` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `Object.keys() / Object.values()` *(ES2017)* |
 | [`KeysOfType`](../type/keysoftype/) | [type](../type/) | Extracts the keys of \`T\` whose values extend \`V\`\. |
 | `last` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
@@ -203,10 +226,17 @@ sidebar:
 | `lighten / darken` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `color-mix(in oklch, <color> <percent>, white\|black)` *(CSS Color 5 (Baseline widely available since 2023 — Chrome 111, Firefox 113, Safari 16.2))* |
 | [`listTimezones`](../date/listtimezones/) | [date](../date/) | Returns the list of IANA timezone identifiers supported by the runtime\. |
 | [`map`](../object/map/) | [object](../object/) | Transforms the values and/or keys of a plain object in a single pass\. |
+| [`map`](../set/map/) | [set](../set/) | Creates a new Set with each value transformed by a function\. |
+| `map / filter` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `new Set(set.values().map(fn)) / new Set(set.values().filter(fn))` *(ES2025 (Iterator Helpers))* |
+| [`mapDeep`](../object/mapdeep/) | [object](../object/) | Recursively transforms the keys and/or values of a plain object — the deep counterpart to map, which only transforms … |
+| [`mapKeys`](../map/mapkeys/) | [map](../map/) | Creates a new Map with the same values but with each key transformed by a function\. |
+| [`mapValues`](../map/mapvalues/) | [map](../map/) | Creates a new Map with the same keys but with each value transformed by a function\. |
 | [`max`](../array/max/) | [array](../array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | [`Maybe`](../type/maybe/) | [type](../type/) | Type for values that can be T, undefined, or null\. |
 | [`mean`](../array/mean/) | [array](../array/) | Calculates the arithmetic mean \(average\) of an array of numbers\. |
+| [`meanBy`](../array/meanby/) | [array](../array/) | Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee\. |
 | [`meaningPromiseOrThrow`](../promise/meaningpromiseorthrow/) | [promise](../promise/) | Returns a function that passes through meaningful data or throws an error\. |
+| [`median`](../array/median/) | [array](../array/) | Calculates the median \(middle value\) of an array of numbers\. |
 | [`memoize`](../function/memoize/) | [function](../function/) | Returns a memoized version of the function that caches results\. |
 | `merge (shallow)` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `{ ...a, ...b } or Object.assign({}, a, b)` *(ES2015)* |
 | [`mergeDeep`](../object/mergedeep/) | [object](../object/) | Merges two or more objects deeply, returning a \*\*new\*\* object without mutating any input\. |
@@ -236,7 +266,9 @@ sidebar:
 | [`partial`](../function/partial/) | [function](../function/) | Partially applies arguments to a function, returning a new function that accepts the remaining arguments\. |
 | [`partition`](../array/partition/) | [array](../array/) | Splits an array into two groups based on a predicate function\. |
 | [`pascalCase`](../string/pascalcase/) | [string](../string/) | Converts a string to PascalCase\. |
+| [`pascalCaseKeys`](../object/pascalcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to Pascal… |
 | [`percentageToTier`](../ci/percentagetotier/) | [ci](../ci/) | Maps a numeric percentage to a tier \(icon, color, label\) using configurable thresholds\. |
+| [`percentile`](../array/percentile/) | [array](../array/) | Calculates the p\-th percentile of an array of numbers using linear interpolation between the closest ranks\. |
 | [`pick`](../object/pick/) | [object](../object/) | Creates a new object with only the specified keys\. |
 | [`pickBy`](../object/pickby/) | [object](../object/) | Creates a new object with only the own enumerable entries for which \`predicate\` returns \`true\`\. |
 | [`PickByValue`](../type/pickbyvalue/) | [type](../type/) | Constructs a type by picking all entries of \`T\` whose values extend \`V\`\. |
@@ -245,6 +277,9 @@ sidebar:
 | [`randomBetween`](../number/randombetween/) | [number](../number/) | Generates a random number between min and max \(inclusive\) |
 | [`randomIntBetween`](../number/randomintbetween/) | [number](../number/) | Generates a random integer between min and max \(inclusive\) |
 | [`range`](../array/range/) | [array](../array/) | Generates an array of sequential numbers from start to end \(exclusive\)\. |
+| [`reduce`](../map/reduce/) | [map](../map/) | Reduces a Map to a single value by applying a function to each entry, in insertion order\. |
+| `reduce / some / every` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.entries().reduce(fn, init) / .some(fn) / .every(fn)` *(ES2025 (Iterator Helpers))* |
+| `reduce / some / every / find` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `set.values().reduce(fn, init) / .some(fn) / .every(fn) / .find(fn)` *(ES2025 (Iterator Helpers))* |
 | [`relativeURLToAbsolute`](../url/relativeurltoabsolute/) | [url](../url/) | Converts a relative URL to an absolute URL using the current document base URI\. |
 | [`removeDiacritics`](../string/removediacritics/) | [string](../string/) | Removes diacritical marks \(accents\) from a string, e\.g\. |
 | [`removeUndefinedNull`](../object/removeundefinednull/) | [object](../object/) | Remove null and undefined values from an object\. |
@@ -269,8 +304,11 @@ sidebar:
 | [`shuffle`](../array/shuffle/) | [array](../array/) | Randomly reorders elements of an array using the Fisher\-Yates algorithm\. |
 | [`slugify`](../string/slugify/) | [string](../string/) | Converts a string into a URL\-friendly slug\. |
 | [`snakeCase`](../string/snakecase/) | [string](../string/) | Converts a string to snake\_case\. |
+| [`snakeCaseKeys`](../object/snakecasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to snake\_… |
+| [`some`](../map/some/) | [map](../map/) | Checks if at least one entry of a Map satisfies the predicate\. |
 | `sort (immutable)` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(compareFn?)` *(ES2023)* |
 | `sortBy / orderBy` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(fn?)` *(ES2023)* |
+| [`sortKeys`](../object/sortkeys/) | [object](../object/) | Creates a new object with the same entries as the input, but with its own keys sorted\. |
 | [`sortNumberAscFn`](../array/sortnumberascfn/) | [array](../array/) | Sort numbers in ascending order |
 | [`sortNumberDescFn`](../array/sortnumberdescfn/) | [array](../array/) | Sort numbers in descending order |
 | [`sortStringAscFn`](../array/sortstringascfn/) | [array](../array/) | Sort strings in ascending order |
@@ -287,6 +325,7 @@ sidebar:
 | [`stringify`](../version/stringify/) | [version](../version/) | Reconstruct a semantic version string from a ParsedVersion object\. |
 | [`stripV`](../version/stripv/) | [version](../version/) | Strip the leading "v" from a version string if it exists\. |
 | [`sum`](../array/sum/) | [array](../array/) | Calculates the sum of an array of numbers\. |
+| [`sumBy`](../array/sumby/) | [array](../array/) | Calculates the sum of numbers derived from each item of an array via an iteratee\. |
 | [`symmetricDifference`](../array/symmetricdifference/) | [array](../array/) | Returns the symmetric difference between two arrays: items present in exactly one of the two arrays \(in either, but n… |
 | `tail` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
@@ -295,9 +334,12 @@ sidebar:
 | [`timeAgo`](../date/timeago/) | [date](../date/) | Formats a date as a human\-readable relative time string\. |
 | [`timeout`](../promise/timeout/) | [promise](../promise/) | Wraps a promise to reject with a \`TimeoutError\` if it does not resolve within the specified duration\. |
 | [`titleCase`](../string/titlecase/) | [string](../string/) | Converts a string to Title Case\. |
+| [`titleCaseKeys`](../object/titlecasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to Title … |
 | [`toggle`](../array/toggle/) | [array](../array/) | Returns a new array with \`item\` removed if present, or appended if absent — the common "toggle a selection" pattern\. |
 | `toInt / toFloat` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `parseInt(str, 10) / parseFloat(str)` *(ES1)* |
 | [`toISO8601`](../date/toiso8601/) | [date](../date/) | Converts a date to ISO 8601 format Format: YYYY\-MM\-DDTHH:mm:ss\.sssZ |
+| [`toMapByKey`](../map/tomapbykey/) | [map](../map/) | Builds a Map from an iterable of items, keyed by a derived key\. |
+| [`toMapByKey`](../set/tomapbykey/) | [set](../set/) | Builds a Map from a Set, keyed by a derived key\. |
 | [`toMillis`](../date/tomillis/) | [date](../date/) | Converts a date to a timestamp in \*\*milliseconds\*\* \(epoch millis\)\. |
 | `toPairs / fromPairs` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `Object.entries() / Object.fromEntries()` *(ES2019)* |
 | `toPlainDate / toPlainDateTime / toPlainTime` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.ZonedDateTime.prototype.toPlainDate() / toPlainDateTime() / toPlainTime()` *(Temporal (Stage 3))* |
@@ -315,6 +357,7 @@ sidebar:
 | [`unescapeHtml`](../string/unescapehtml/) | [string](../string/) | Unescapes the HTML entities \`&amp;\`, \`&lt;\`, \`&gt;\`, \`&quot;\`, and \`&\#39;\` back to \`&\`, \`<\`, \`>\`, \`"\`, and \`'\`\. |
 | [`unflatten`](../object/unflatten/) | [object](../object/) | Rebuilds a nested object from a single\-level object whose keys are dot\-notation paths\. |
 | `union` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |
+| `union / intersection / difference / symmetricDifference` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.union() / .intersection() / .difference() / .symmetricDifference()` *(ES2025 (Set methods))* |
 | [`UnionToIntersection`](../type/uniontointersection/) | [type](../type/) | Converts a union type to an intersection type: \`A \| B \| C\` → \`A & B & C\`\. |
 | [`unique`](../array/unique/) | [array](../array/) | Removes duplicate values from an array\. |
 | [`unset`](../object/unset/) | [object](../object/) | Removes the value at a dot/bracket\-notation path or explicit key array, mutating the object in place\. |

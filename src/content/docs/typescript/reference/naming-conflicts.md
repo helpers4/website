@@ -20,11 +20,15 @@ This is not a bug. `compact` for arrays and `compact` for objects are genuinely 
 |----------|------------|
 | `compact` | [`array`](../categories/array/compact/), [`object`](../categories/object/compact/) |
 | `compare` | [`date`](../categories/date/compare/), [`version`](../categories/version/compare/) |
+| `countBy` | [`array`](../categories/array/countby/), [`map`](../categories/map/countby/), [`set`](../categories/set/countby/) |
 | `difference` | [`array`](../categories/array/difference/), [`date`](../categories/date/difference/) |
 | `equalsDeep` | [`array`](../categories/array/equalsdeep/), [`object`](../categories/object/equalsdeep/) |
 | `equalsShallow` | [`array`](../categories/array/equalsshallow/), [`object`](../categories/object/equalsshallow/) |
+| `filter` | [`map`](../categories/map/filter/), [`set`](../categories/set/filter/) |
 | `isEmpty` | [`array`](../categories/array/isempty/), [`object`](../categories/object/isempty/), [`string`](../categories/string/isempty/) |
 | `isNonEmpty` | [`array`](../categories/array/isnonempty/), [`object`](../categories/object/isnonempty/), [`string`](../categories/string/isnonempty/) |
+| `map` | [`object`](../categories/object/map/), [`set`](../categories/set/map/) |
+| `toMapByKey` | [`map`](../categories/map/tomapbykey/), [`set`](../categories/set/tomapbykey/) |
 
 ## Resolving Conflicts
 
@@ -61,6 +65,14 @@ import { compare as compare4date } from '@helpers4/date';
 import { compare as compare4version } from '@helpers4/version';
 ```
 
+### `countBy`
+
+```ts
+import { countBy as countBy4array } from '@helpers4/array';
+import { countBy as countBy4map } from '@helpers4/map';
+import { countBy as countBy4set } from '@helpers4/set';
+```
+
 ### `difference`
 
 ```ts
@@ -82,6 +94,13 @@ import { equalsShallow as equalsShallow4array } from '@helpers4/array';
 import { equalsShallow as equalsShallow4object } from '@helpers4/object';
 ```
 
+### `filter`
+
+```ts
+import { filter as filter4map } from '@helpers4/map';
+import { filter as filter4set } from '@helpers4/set';
+```
+
 ### `isEmpty`
 
 ```ts
@@ -96,6 +115,20 @@ import { isEmpty as isEmpty4string } from '@helpers4/string';
 import { isNonEmpty as isNonEmpty4array } from '@helpers4/array';
 import { isNonEmpty as isNonEmpty4object } from '@helpers4/object';
 import { isNonEmpty as isNonEmpty4string } from '@helpers4/string';
+```
+
+### `map`
+
+```ts
+import { map as map4object } from '@helpers4/object';
+import { map as map4set } from '@helpers4/set';
+```
+
+### `toMapByKey`
+
+```ts
+import { toMapByKey as toMapByKey4map } from '@helpers4/map';
+import { toMapByKey as toMapByKey4set } from '@helpers4/set';
 ```
 
 ### Alternative: namespace import

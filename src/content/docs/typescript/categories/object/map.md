@@ -74,6 +74,17 @@ map(
 // => { priceRatio: 1, discountRatio: 0.2 }
 ```
 
+:::caution[Name conflict]
+A helper named `map` also exists in [`@helpers4/set`](../set/map/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { map as map4object } from '@helpers4/object';
+import { map as map4set } from '@helpers4/set';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/object/map.ts)

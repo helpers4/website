@@ -10,7 +10,7 @@ Production-ready TypeScript utility functions — modular, strictly typed, exhau
 ## Quick Links
 
 - **[Get Started](./getting-started)** — Installation and first import
-- **[Browse Categories](./categories/array)** — 274 helpers across 18 categories
+- **[Browse Categories](./categories/array)** — 307 helpers across 20 categories
 - **[AI & LLM Support](./reference/ai-support)** — DeepWiki Q&A, `llms.txt`, full machine-readable reference
 - **[GitHub](https://github.com/helpers4/typescript)** · **[npm](https://www.npmjs.com/package/@helpers4/all)** · **[License (LGPL-3.0)](./legal/license)**
 
@@ -39,7 +39,7 @@ zero logic changes for anyone using the replacements below.
 | **⚠️ Breaking: 6 removed aliases** | `deepMerge`/`deepClone`/`daysDifference`/`safeDate`/`dateToISOString`/`type.isEmpty` — all had a direct replacement since v1.9.0/v2.0.0, see the [migration guide](https://github.com/helpers4/typescript/blob/main/MIGRATION.md) for the full table |
 | **New `color` category** | `hexToRgb`, `rgbToHex`, `hslToRgb`, `rgbToHsl`, `argbToRgb`, plus `isCssColor` in `guard` |
 | **25+ new helpers** | `clone`, `flatten`/`unflatten`, `pickBy`/`omitBy`/`unset`/`update`, `parsePropertyPath`, `replaceOrAppend`, `toggle`, `symmetricDifference`, `dedent`, `removeDiacritics`, `unescapeHtml`, `escapeRegExp`, `parseDuration`, `unary`, `isWeakMap`/`isWeakSet`/`isSet`, and more |
-| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v3.0.1) |
+| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v3.0.3) |
 | **Property-based tests** | Invariants validated against thousands of random inputs (fast-check) |
 | **Contract tests** | Formal behavioral guarantees for each function |
 | **Boundary & security tests** | Edge values and security-sensitive inputs (prototype pollution, injections) |

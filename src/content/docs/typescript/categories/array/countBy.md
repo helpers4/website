@@ -58,6 +58,18 @@ countBy(commits, msg => msg.split(':')[0])
 // => { feat: 2, fix: 1 }
 ```
 
+:::caution[Name conflict]
+A helper named `countBy` also exists in [`@helpers4/map`](../map/countby/), [`@helpers4/set`](../set/countby/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { countBy as countBy4array } from '@helpers4/array';
+import { countBy as countBy4map } from '@helpers4/map';
+import { countBy as countBy4set } from '@helpers4/set';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
+
 ## Source
 
 [View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/array/countBy.ts)

@@ -4,7 +4,12 @@ sidebar:
   label: "camelCase"
 ---
 
-Converts kebab-case to camelCase
+Converts a string to camelCase.
+Handles PascalCase, kebab-case, snake_case, spaces, and mixed formats.
+
+An embedded run of capitals is treated as an acronym boundary: only its last letter starts
+the next word, the rest are lowercased (matching lodash's `camelCase` convention) — so an
+already-camelCase identifier containing an acronym is not left untouched.
 
 > Available since v1.9.0
 
@@ -25,7 +30,7 @@ camelCase(str: string): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `str` | `string` | The kebab\-case string to convert |
+| `str` | `string` | The string to convert |
 
 ## Returns
 
