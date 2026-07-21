@@ -116,6 +116,10 @@ jobs:
             safe_extract_tarball "${npm_tmp}/${all_tgz}" "${npm_tmp}/all"
             mkdir -p /tmp/typescript/build/all
             cp -R "${npm_tmp}/all/package/meta" /tmp/typescript/build/all/
+            # llms.txt ships at the package root, not under meta/ — copy it separately so
+            # generate-typescript-docs.js's llms-full.txt regeneration (which reads
+            # build/all/llms.txt) doesn't silently skip when this fallback path is used.
+            [ -f "${npm_tmp}/all/package/llms.txt" ] && cp "${npm_tmp}/all/package/llms.txt" /tmp/typescript/build/all/
 
             local categories
             categories="$(node -e "const fs=require('fs'); const p=JSON.parse(fs.readFileSync('${npm_tmp}/all/package/package.json','utf8')); console.log(Object.keys(p.peerDependencies||{}).map(name=>name.split('/').pop()).join(' '));")"
@@ -130,6 +134,7 @@ jobs:
               safe_extract_tarball "${npm_tmp}/${category_tgz}" "${npm_tmp}/${category}"
               mkdir -p "/tmp/typescript/build/${category}"
               cp -R "${npm_tmp}/${category}/package/meta" "/tmp/typescript/build/${category}/"
+              [ -f "${npm_tmp}/${category}/package/llms.txt" ] && cp "${npm_tmp}/${category}/package/llms.txt" "/tmp/typescript/build/${category}/"
             done
 
             popd > /dev/null
