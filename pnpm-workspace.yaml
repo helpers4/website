@@ -1,0 +1,26 @@
+packages:
+  - .
+
+# pnpm >=10 no longer reads the "pnpm" field in package.json — both of these were silently
+# ignored there (patchedDependencies never actually applied; see git history for when it moved).
+patchedDependencies:
+  '@astrojs/starlight@0.40.0': patches/@astrojs__starlight@0.40.0.patch
+
+# starlight-theme-nova pulls in its own @shikijs/* set (via @shikijs/transformers and
+# @shikijs/twoslash) at a different version than the one @astrojs/starlight pins transitively
+# through shiki itself — pnpm installs both side by side, and TypeScript then fails on a real
+# structural difference in ShikiTransformerContextCommon between the two (a newer "tokenType"
+# member on includeExplanation that the older version doesn't know about). The `@shikijs/*` glob
+# alone doesn't reliably catch every one of these subpackages, so they're listed explicitly.
+# Force one version across the tree until @astrojs/starlight and starlight-theme-nova converge.
+overrides:
+  shiki: 4.3.1
+  '@shikijs/core': 4.3.1
+  '@shikijs/engine-javascript': 4.3.1
+  '@shikijs/engine-oniguruma': 4.3.1
+  '@shikijs/langs': 4.3.1
+  '@shikijs/primitive': 4.3.1
+  '@shikijs/themes': 4.3.1
+  '@shikijs/transformers': 4.3.1
+  '@shikijs/twoslash': 4.3.1
+  '@shikijs/types': 4.3.1
