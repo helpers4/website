@@ -27,8 +27,10 @@ Utility functions for working with array operations.
 | [`equalsDeep`](./equalsdeep/) | Recursive structural array equality\. |
 | [`equalsShallow`](./equalsshallow/) | Positional, one\-level \(shallow\) array equality\. |
 | [`equalsUnordered`](./equalsunordered/) | Order\-independent \(set\-style\) array equality\. |
+| [`filterAsync`](./filterasync/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose pr… |
 | `find / findIndex` | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
 | `flatten / flat` | <span class="badge badge--secondary">native JS</span> `Array.prototype.flat(depth?)` *(ES2019)* |
+| [`forEachAsync`](./foreachasync/) | The async counterpart to \`Array\.prototype\.forEach\`: runs \`fn\` for every item for its side effects, discarding any ret… |
 | `groupBy / group` | <span class="badge badge--secondary">native JS</span> `Object.groupBy(arr, fn)` *(ES2024)* |
 | `head / first` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(0)` *(ES2022)* |
 | `includes` | <span class="badge badge--secondary">native JS</span> `Array.prototype.includes()` *(ES2016)* |
@@ -37,6 +39,7 @@ Utility functions for working with array operations.
 | [`isEmpty`](./isempty/) | Checks if an array is empty \(has no elements\)\. |
 | [`isNonEmpty`](./isnonempty/) | Checks if an array is non\-empty \(has at least one element\)\. |
 | `last` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
+| [`mapAsync`](./mapasync/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, i… |
 | [`max`](./max/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
 | [`mean`](./mean/) | Calculates the arithmetic mean \(average\) of an array of numbers\. |
 | [`meanBy`](./meanby/) | Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee\. |

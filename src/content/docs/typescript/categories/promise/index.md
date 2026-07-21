@@ -12,6 +12,8 @@ Utility functions for working with promise operations.
 | Function | Description |
 |----------|-------------|
 | [`consoleLogPromise`](./consolelogpromise/) | Returns a function that logs data to the console and passes it through\. |
+| [`createMutex`](./createmutex/) | Creates a mutex: a lock allowing at most one holder at a time, queueing excess \`acquire\(\)\` callers in FIFO order\. |
+| [`createSemaphore`](./createsemaphore/) | Creates a semaphore limiting concurrent access to \`permits\` holders at a time, queueing excess \`acquire\(\)\` callers in… |
 | [`defer`](./defer/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order \(last regist… |
 | [`delay`](./delay/) | Creates a promise that resolves after specified delay |
 | [`falsyPromiseOrThrow`](./falsypromiseorthrow/) | Returns a function that passes through falsy data or throws an error\. |

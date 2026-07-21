@@ -5,7 +5,9 @@ sidebar:
 ---
 
 Runs an array of async functions with a concurrency limit.
-At most `limit` functions will be running at any time.
+At most `limit` functions will be running at any time. `Infinity` means no cap (every
+function starts immediately); any other non-finite or non-positive value (`NaN`, `0`,
+negative) is clamped to `1` (fully sequential) rather than rejected.
 
 > Available since v2.0.0
 

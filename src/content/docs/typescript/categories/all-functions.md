@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**307** implemented helpers + **57** covered by native JavaScript APIs, sorted alphabetically.
+**312** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -46,8 +46,8 @@ sidebar:
 | [`countBy`](../array/countby/) | [array](../array/) | Groups the elements of an array by the key returned by \`keyFn\` and returns a record mapping each key to the number of… |
 | [`countBy`](../map/countby/) | [map](../map/) | Groups the entries of a Map by a derived key and counts how many fall into each group\. |
 | [`countBy`](../set/countby/) | [set](../set/) | Groups the values of a Set by a derived key and counts how many fall into each group\. |
-| `countBy / keyBy` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `Map.groupBy(map.entries(), ([k, v]) => groupFn(v, k))` *(ES2024)* |
-| `countBy / keyBy` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Map.groupBy(set.values(), fn)` *(ES2024)* |
+| [`createMutex`](../promise/createmutex/) | [promise](../promise/) | Creates a mutex: a lock allowing at most one holder at a time, queueing excess \`acquire\(\)\` callers in FIFO order\. |
+| [`createSemaphore`](../promise/createsemaphore/) | [promise](../promise/) | Creates a semaphore limiting concurrent access to \`permits\` holders at a time, queueing excess \`acquire\(\)\` callers in… |
 | [`createSortByBooleanFn`](../array/createsortbybooleanfn/) | [array](../array/) | Creates a sort function for objects by a boolean property\. |
 | [`createSortByDateFn`](../array/createsortbydatefn/) | [array](../array/) | Creates a sort function for objects by date property\. |
 | [`createSortByNaturalFn`](../array/createsortbynaturalfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties using natural ordering\. |
@@ -67,6 +67,7 @@ sidebar:
 | [`diff`](../object/diff/) | [object](../object/) | Structural object diff\. |
 | [`difference`](../array/difference/) | [array](../array/) | Returns the difference between two arrays \(items in first array but not in second\)\. |
 | [`difference`](../date/difference/) | [date](../date/) | Calculates the difference between two dates in the specified unit\. |
+| `difference` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.difference()` *(ES2025 (Set methods))* |
 | `drop` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(n)` *(ES3)* |
 | [`eachDay`](../date/eachday/) | [date](../date/) | Returns an array of \`Date\` objects for each day from \`start\` to \`end\` \(inclusive\)\. |
 | [`eachMonth`](../date/eachmonth/) | [date](../date/) | Returns an array of \`Date\` objects for the first day of each month from \`start\` to \`end\` \(inclusive\)\. |
@@ -88,6 +89,7 @@ sidebar:
 | [`falsyPromiseOrThrow`](../promise/falsypromiseorthrow/) | [promise](../promise/) | Returns a function that passes through falsy data or throws an error\. |
 | [`filter`](../map/filter/) | [map](../map/) | Creates a new Map containing only the entries for which the predicate returns true\. |
 | [`filter`](../set/filter/) | [set](../set/) | Creates a new Set containing only the values for which the predicate returns true\. |
+| [`filterAsync`](../array/filterasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose pr… |
 | `find / findIndex` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
 | [`findKey`](../map/findkey/) | [map](../map/) | Returns the first key of a Map whose entry satisfies the predicate, in insertion order\. |
 | `findKey / findValue` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.entries().find(([k, v]) => pred(v, k))?.[0 or 1]` *(ES2025 (Iterator Helpers))* |
@@ -97,6 +99,7 @@ sidebar:
 | [`flip`](../function/flip/) | [function](../function/) | Creates a function that invokes \`fn\` with the first two arguments swapped\. |
 | `forEach` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `Map.prototype.forEach((value, key, map) => ...)` *(ES2015)* |
 | `forEach` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.forEach((value, value2, set) => ...)` *(ES2015)* |
+| [`forEachAsync`](../array/foreachasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.forEach\`: runs \`fn\` for every item for its side effects, discarding any ret… |
 | [`formatCompact`](../number/formatcompact/) | [number](../number/) | Formats a number using compact notation \(e\.g\. |
 | [`formatDuration`](../date/formatduration/) | [date](../date/) | Formats a duration in milliseconds as a compact human\-readable string\. |
 | [`formatInTimezone`](../date/formatintimezone/) | [date](../date/) | Formats a date in a specific IANA timezone using \`Intl\.DateTimeFormat\`\. |
@@ -107,7 +110,9 @@ sidebar:
 | [`fromSeconds`](../date/fromseconds/) | [date](../date/) | Creates a \`Date\` from a timestamp in \*\*seconds\*\*\. |
 | [`get`](../object/get/) | [object](../object/) | Gets a value from an object using a dot/bracket\-notated path or explicit key array\. |
 | [`getTimezoneOffset`](../date/gettimezoneoffset/) | [date](../date/) | Returns the UTC offset \*\*in minutes\*\* for the given IANA timezone at a specific point in time\. |
+| `groupBy` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `Map.groupBy(map.entries(), ([k, v]) => groupFn(v, k))` *(ES2024)* |
 | [`groupBy`](../object/groupby/) | [object](../object/) | Groups an array of items by a key derived from each item\. |
+| `groupBy` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Map.groupBy(set.values(), fn)` *(ES2024)* |
 | `groupBy / group` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Object.groupBy(arr, fn)` *(ES2024)* |
 | [`guard`](../promise/guard/) | [promise](../promise/) | Wraps a function so that if it throws, a default value is returned instead of propagating the error\. |
 | `has` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `Object.hasOwn(obj, key)` *(ES2022)* |
@@ -123,6 +128,7 @@ sidebar:
 | [`injectWordBreaks`](../string/injectwordbreaks/) | [string](../string/) | Adds word\-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table… |
 | [`inRange`](../number/inrange/) | [number](../number/) | Checks whether a number falls within \`\[min, max\]\` \(both inclusive by default\)\. |
 | [`intersection`](../array/intersection/) | [array](../array/) | Compute the intersection of two arrays, meaning the elements that are present in both arrays\. |
+| `intersection` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.intersection()` *(ES2025 (Set methods))* |
 | [`intersects`](../array/intersects/) | [array](../array/) | Simple helper that check if two lists shared at least an item in common\. |
 | [`invert`](../object/invert/) | [object](../object/) | Returns a new object with keys and values swapped\. |
 | [`isArray`](../guard/isarray/) | [guard](../guard/) | Checks if a value is an array\. |
@@ -228,6 +234,7 @@ sidebar:
 | [`map`](../object/map/) | [object](../object/) | Transforms the values and/or keys of a plain object in a single pass\. |
 | [`map`](../set/map/) | [set](../set/) | Creates a new Set with each value transformed by a function\. |
 | `map / filter` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `new Set(set.values().map(fn)) / new Set(set.values().filter(fn))` *(ES2025 (Iterator Helpers))* |
+| [`mapAsync`](../array/mapasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, i… |
 | [`mapDeep`](../object/mapdeep/) | [object](../object/) | Recursively transforms the keys and/or values of a plain object — the deep counterpart to map, which only transforms … |
 | [`mapKeys`](../map/mapkeys/) | [map](../map/) | Creates a new Map with the same values but with each key transformed by a function\. |
 | [`mapValues`](../map/mapvalues/) | [map](../map/) | Creates a new Map with the same keys but with each value transformed by a function\. |
@@ -327,6 +334,7 @@ sidebar:
 | [`sum`](../array/sum/) | [array](../array/) | Calculates the sum of an array of numbers\. |
 | [`sumBy`](../array/sumby/) | [array](../array/) | Calculates the sum of numbers derived from each item of an array via an iteratee\. |
 | [`symmetricDifference`](../array/symmetricdifference/) | [array](../array/) | Returns the symmetric difference between two arrays: items present in exactly one of the two arrays \(in either, but n… |
+| `symmetricDifference` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.symmetricDifference()` *(ES2025 (Set methods))* |
 | `tail` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
 | [`template`](../string/template/) | [string](../string/) | Interpolates \`\{\{key\}\}\` placeholders in a template string with values from a data record\. |
@@ -357,7 +365,7 @@ sidebar:
 | [`unescapeHtml`](../string/unescapehtml/) | [string](../string/) | Unescapes the HTML entities \`&amp;\`, \`&lt;\`, \`&gt;\`, \`&quot;\`, and \`&\#39;\` back to \`&\`, \`<\`, \`>\`, \`"\`, and \`'\`\. |
 | [`unflatten`](../object/unflatten/) | [object](../object/) | Rebuilds a nested object from a single\-level object whose keys are dot\-notation paths\. |
 | `union` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |
-| `union / intersection / difference / symmetricDifference` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.union() / .intersection() / .difference() / .symmetricDifference()` *(ES2025 (Set methods))* |
+| `union` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.union()` *(ES2025 (Set methods))* |
 | [`UnionToIntersection`](../type/uniontointersection/) | [type](../type/) | Converts a union type to an intersection type: \`A \| B \| C\` → \`A & B & C\`\. |
 | [`unique`](../array/unique/) | [array](../array/) | Removes duplicate values from an array\. |
 | [`unset`](../object/unset/) | [object](../object/) | Removes the value at a dot/bracket\-notation path or explicit key array, mutating the object in place\. |

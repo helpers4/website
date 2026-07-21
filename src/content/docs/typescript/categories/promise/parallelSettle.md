@@ -33,7 +33,7 @@ parallelSettle<T>(functions: readonly function[], concurrency: number): Promise<
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `functions` | `readonly function[]` | Array of functions that return promises |
-| `concurrency` | `number` | Maximum number of concurrent executions |
+| `concurrency` | `number` | Maximum number of concurrent executions\. \`Infinity\` means no cap; any   other non\-finite or non\-positive value \(\`NaN\`, \`0\`, negative\) is clamped to \`1\` \(fully   sequential\) rather than rejected\. |
 
 ## Returns
 

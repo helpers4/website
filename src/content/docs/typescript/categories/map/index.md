@@ -12,13 +12,13 @@ Utility functions for working with map operations.
 | Function | Description |
 |----------|-------------|
 | [`countBy`](./countby/) | Groups the entries of a Map by a derived key and counts how many fall into each group\. |
-| `countBy / keyBy` | <span class="badge badge--secondary">native JS</span> `Map.groupBy(map.entries(), ([k, v]) => groupFn(v, k))` *(ES2024)* |
 | [`every`](./every/) | Checks if every entry of a Map satisfies the predicate\. |
 | [`filter`](./filter/) | Creates a new Map containing only the entries for which the predicate returns true\. |
 | [`findKey`](./findkey/) | Returns the first key of a Map whose entry satisfies the predicate, in insertion order\. |
 | `findKey / findValue` | <span class="badge badge--secondary">native JS</span> `map.entries().find(([k, v]) => pred(v, k))?.[0 or 1]` *(ES2025 (Iterator Helpers))* |
 | [`findValue`](./findvalue/) | Returns the first value of a Map whose entry satisfies the predicate, in insertion order\. |
 | `forEach` | <span class="badge badge--secondary">native JS</span> `Map.prototype.forEach((value, key, map) => ...)` *(ES2015)* |
+| `groupBy` | <span class="badge badge--secondary">native JS</span> `Map.groupBy(map.entries(), ([k, v]) => groupFn(v, k))` *(ES2024)* |
 | [`hasValue`](./hasvalue/) | Checks whether a value exists anywhere in a Map \(\`Map\.prototype\.has\` checks keys, not values\)\. |
 | `hasValue` | <span class="badge badge--secondary">native JS</span> `map.values().some(v => Object.is(v, value))` *(ES2025 (Iterator Helpers))* |
 | [`mapKeys`](./mapkeys/) | Creates a new Map with the same values but with each key transformed by a function\. |

@@ -6,7 +6,17 @@ sidebar:
   order: 2
 ---
 
-## v3.0.3 *(Latest)*
+## v3.0.4 *(Latest)*
+
+| Function | Category | Description |
+|----------|----------|-------------|
+| [`createMutex`](../categories/promise/createmutex/) | [promise](../categories/promise/) | Creates a mutex: a lock allowing at most one holder at a time, queueing excess \`acquire\(\)\` callers in FIFO order\. A createSemaphore with a single permit\.  A factory function rather than a class, matching this package's other stateful helpers \(\`debounce\`, \`throttle\`\): the returned object closes over an internal semaphore\.  Typical use: deduplicating concurrent callers of a non\-reentrant operation, e\.g\. making sure only one in\-flight token\-refresh call happens at a time while others wait for it\. |
+| [`createSemaphore`](../categories/promise/createsemaphore/) | [promise](../categories/promise/) | Creates a semaphore limiting concurrent access to \`permits\` holders at a time, queueing excess \`acquire\(\)\` callers in FIFO order \(first to call \`acquire\` is first granted a permit when one frees up\)\.  A factory function rather than a class, matching this package's other stateful helpers \(\`debounce\`, \`throttle\`\): the returned object closes over its internal queue/counter\.  Use for concurrency limiting, e\.g\. rate\-limiting calls to an external API\. For mutual\-exclusion \(at most one holder\), see createMutex, which is a semaphore with one permit\. |
+| [`filterAsync`](../categories/array/filterasync/) | [array](../categories/array/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose predicate was truthy, in their original relative order\.  \`predicate\` runs for every item up front \(respecting \`concurrency\`\) before any filtering happens — unlike the sync \`\.filter\(\)\`, there's no short\-circuiting, since every predicate call may already be in flight by the time an earlier one resolves\. |
+| [`forEachAsync`](../categories/array/foreachasync/) | [array](../categories/array/) | The async counterpart to \`Array\.prototype\.forEach\`: runs \`fn\` for every item for its side effects, discarding any return value\. Prefer mapAsync when you need the results — this only exists to signal that intent clearly, same as the sync \`forEach\`/\`map\` pair\. |
+| [`mapAsync`](../categories/array/mapasync/) | [array](../categories/array/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, in input order — regardless of which call finishes first\.  \`Array\.prototype\.map\(asyncFn\)\` alone doesn't do this: it returns an array of \*unresolved\* promises \(\`Promise<R>\[\]\`\), not \`Promise<R\[\]>\` — you'd still need to wrap it in \`Promise\.all\(\.\.\.\)\` yourself, and there'd be no way to cap concurrency\. This does both\.  With no \`concurrency\` given, every call starts immediately \(like \`Promise\.all\(array\.map\(fn\)\)\`\)\. Pass \`concurrency\` to cap how many run at once — e\.g\. to avoid overwhelming an API\. Rejects with the first error thrown by \`fn\`, same as \`Promise\.all\`; other already\-started calls keep running in the background but their outcome is ignored\. |
+
+## v3.0.3
 
 | Function | Category | Description |
 |----------|----------|-------------|

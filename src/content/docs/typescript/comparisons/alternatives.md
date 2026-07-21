@@ -11,7 +11,7 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 | Library | Functions | API Style | Architecture | Tree-shakable | TypeScript | License | Maintained |
 |---------|:---------:|:-------------:|:-------------:|:-------------:|:----------:|:-------:|:----------:|
-| **helpers4** | 307 | Direct | Modular | ESM | native | LGPL | Yes |
+| **helpers4** | 312 | Direct | Modular | ESM | native | LGPL | Yes |
 | **radashi** | ~130 | Direct | Monolith | ESM | native | MIT | Yes |
 | **radash** | ~90 | Direct | Monolith | ESM | native | MIT | No |
 | **lodash** | ~300 | Chainable | Monolith | opt-in | unofficial | MIT | Low |
