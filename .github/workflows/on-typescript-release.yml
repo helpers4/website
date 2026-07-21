@@ -195,11 +195,11 @@ jobs:
           RELEASE_VERSION="${RELEASE_VERSION#v}"
           git config user.name "pushinator[bot]"
           git config user.email "pushinator[bot]@users.noreply.github.com"
-          # public/typescript/ covers llms-full.txt (and its archived vN/ snapshots) — the
-          # generator writes there too (see publishLlmsFullTxt / archiveStableIfMajorBump in
-          # generate-typescript-docs.js), but it was never staged: llms-full.txt could be
-          # correctly regenerated on disk and still silently never get committed.
-          git add "src/content/docs/${DOCS_TARGET}/" src/data/versions.json "public/typescript/"
+          # public/typescript/ covers llms-full.txt (and its archived vN/ snapshots); public/llms.txt
+          # is the hand-authored root file whose TypeScript counts syncRootLlmsTxtCounts() now
+          # patches too (generate-typescript-docs.js) — neither was staged before, so either
+          # could be correctly regenerated on disk and still silently never get committed.
+          git add "src/content/docs/${DOCS_TARGET}/" src/data/versions.json "public/typescript/" public/llms.txt
           git diff --staged --quiet && echo "No changes to commit" && exit 0
           git commit -m "chore(typescript): 🔧 update ${DOCS_TARGET} docs for v${RELEASE_VERSION}"
           for attempt in 1 2 3; do

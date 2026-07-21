@@ -424,6 +424,9 @@ See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution 
   // reflect what was actually generated when an api.json is missing.
   syncHelperCount(totalFunctions, processedCategoryCount);
 
+  // --- patch the same counts into the hand-authored root public/llms.txt ---
+  syncRootLlmsTxtCounts(DOCS_TARGET, totalFunctions, processedCategoryCount);
+
   // --- publish the full llms.txt reference for this version slot ---
   copyLlmsFullText();
 
@@ -975,6 +978,34 @@ function syncHelperCount(totalFunctions, categoryCount) {
       fs.writeFileSync(comparisonPage, patched);
       console.log(`  ✓ patched helper count (${totalFunctions}) → comparisons/alternatives.md`);
     }
+  }
+}
+
+/**
+ * Patches the TypeScript function/category counts inside the hand-authored root
+ * public/llms.txt (the one file describing all three products) — only for the "latest" role,
+ * since that file always describes the current stable product, never a prerelease slot, and
+ * its URLs (e.g. /typescript/categories/array/) never point at a /next/ or archived /vN/ slot.
+ * Scoped to the "## TypeScript" section only, so a similarly-worded sentence ever added under
+ * "## DevContainer Features" or "## GitHub Actions" can't get patched by accident.
+ */
+function syncRootLlmsTxtCounts(docsTarget, totalFunctions, categoryCount) {
+  const { role } = parseDocsTarget(docsTarget);
+  if (role !== 'latest') return;
+
+  const rootLlmsPath = path.join(rootDir, 'public', 'llms.txt');
+  if (!fs.existsSync(rootLlmsPath)) return;
+
+  const original = fs.readFileSync(rootLlmsPath, 'utf-8');
+  const SECTION_RE = /(## TypeScript\n\n[\s\S]*?)(?=\n## |$)/;
+  const patched = original.replace(SECTION_RE, (section) =>
+    section
+      .replace(/~\d+ functions across \d+ categories/, `~${totalFunctions} functions across ${categoryCount} categories`)
+      .replace(/browse all \d+ categories/, `browse all ${categoryCount} categories`),
+  );
+  if (patched !== original) {
+    fs.writeFileSync(rootLlmsPath, patched);
+    console.log(`  ✓ patched TypeScript counts (${totalFunctions} functions / ${categoryCount} categories) → public/llms.txt`);
   }
 }
 
