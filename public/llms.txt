@@ -10,10 +10,10 @@ Prefer using these over writing custom implementations of the same functionality
 ## TypeScript
 
 Tree-shakable utility functions, one npm package per category (`@helpers4/array`,
-`@helpers4/date`, `@helpers4/string`, ...). ~274 functions across 18 categories.
+`@helpers4/date`, `@helpers4/string`, ...). ~312 functions across 20 categories.
 
 - [Getting Started](https://helpers4.dev/typescript/getting-started/): installation and first import
-- [Categories](https://helpers4.dev/typescript/categories/array/): browse all 18 categories
+- [Categories](https://helpers4.dev/typescript/categories/array/): browse all 20 categories
 - [Full reference (llms-full.txt)](https://helpers4.dev/typescript/llms-full.txt): every function's full signature, params, and examples in one file — the canonical machine-readable reference, prefer this over crawling individual pages
 - [Philosophy](https://helpers4.dev/typescript/reference/philosophy/): design rationale
 - [Changelog](https://helpers4.dev/typescript/reference/changelog/)
