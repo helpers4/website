@@ -30,15 +30,15 @@ function formatStars(value: number | null): string {
 
 // OpenSSF's own badge thresholds (score is 0–10).
 function scorecardColor(score: number): string {
-  if (score >= 7) return '#2da44e';
-  if (score >= 4) return '#d4a72c';
-  return '#cf222e';
+  if (score >= 7) return 'var(--sl-color-green)';
+  if (score >= 4) return 'var(--sl-color-orange)';
+  return 'var(--sl-color-red)';
 }
 
 function coverageColor(pct: number): string {
-  if (pct >= 90) return '#2da44e';
-  if (pct >= 70) return '#d4a72c';
-  return '#cf222e';
+  if (pct >= 90) return 'var(--sl-color-green)';
+  if (pct >= 70) return 'var(--sl-color-orange)';
+  return 'var(--sl-color-red)';
 }
 ---
 
