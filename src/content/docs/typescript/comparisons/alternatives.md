@@ -120,7 +120,7 @@ What each library covers — and what helpers4 uniquely provides:
 | Concurrency primitives | ✅ | — | — | ✅ | — | — | — |
 | Pipe/compose | ✅ | — | `_.chain` | ✅ (`flow`) | ✅ | ✅ | ✅ |
 | FP (curry, lenses) | ✅ (curry only) | — | `_.curry` | ✅ (curry only) | — | ✅ | ✅ (no curry) |
-| Random/shuffle | — | ✅ | ✅ | ✅ | — | — | — |
+| Random/shuffle | ✅ | ✅ | ✅ | ✅ | — | — | — |
 | Collection chaining | — | — | ✅ | — | ✅ | ✅ | ✅ |
 | Statistics (median/percentile) | ✅ | — | — | ✅ | — | — | — |
 | **Async-aware array iteration** | ✅ (partial) | — | — | ✅ (full) | — | — | — |
