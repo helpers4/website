@@ -86,13 +86,19 @@
 
 - [x] 🟢 Add a DeepWiki badge for each of the 3 source repos (2026-07-19) — went to each repo's
   own `README.md` (typescript, devcontainer, action).
-- [x] 🟢 **Reference DeepWiki on the site itself** (2026-07-19) — turns out the "no non-generated
-  page exists" blocker only applied to *content* pages; Starlight sidebar items accept plain
-  external links independent of generated content. Added an "Ask DeepWiki" sidebar entry to all
-  three product topics in `astro.config.mjs` (`typescriptTopicItems()` — shared across
-  latest/next/every archived vN — plus the Dev Container and GitHub Actions topics directly).
-  Verified in a real `pnpm build`: all three links render correctly. Doesn't require touching
-  generated content or the generator scripts at all, so it can't be clobbered by a regen.
+- [x] 🟢 **Reference DeepWiki on the site itself** (2026-07-19, revised 2026-07-26) — turns out the
+  "no non-generated page exists" blocker only applied to *content* pages; Starlight sidebar items
+  accept plain external links independent of generated content.
+  **DevContainer/GitHub Actions**: direct "Ask AI (DeepWiki) ↗" sidebar entry in `astro.config.mjs`
+  (each product's topic definition), `target="_blank"`. Same link duplicated in each product's
+  Quick Links.
+  **TypeScript (latest only)**: consolidated onto a dedicated
+  `typescript/reference/ai-support.md` page instead — explains DeepWiki alongside `llms.txt`/
+  `llms-full.txt` rather than a bare link. Sidebar/Quick Links now point at that page (which the
+  Reference group autogenerates into place), not at deepwiki.com directly. Deliberately **not**
+  added to `typescript/next` or archived `typescript/vN` — DeepWiki only indexes `main`, so linking
+  it from a preview or a frozen archive would point readers at answers about the wrong code.
+  Verified in a real `pnpm build` across all slots.
 - Note: reportedly DeepWiki's own crawler re-generates on repo updates independent of whether a
   badge is present — the badge is just a discoverability affordance, not a trigger. Worth
   confirming directly on deepwiki.com before stating this as fact anywhere public-facing.
@@ -143,24 +149,32 @@
 > `https://api.securityscorecards.dev/projects/github.com/{owner}/{repo}` — returns full JSON
 > (score + per-check breakdown), not just the badge image.
 >
-> **Blocked on something other than the decision above** (found 2026-07-19, attempting the
+> **Blocker resolved (corrected 2026-07-26)**: the "no root index/about page" premise below was
+> checked against current `main` and is no longer true — `src/pages/index.astro` exists (the
+> landing page, hand-authored, not generated) and already renders a `ProjectCard` per product
+> that fetches a live stat (GitHub stars) at build time. That's the exact pattern a Scorecard
+> stat needs — same fetch-at-build-time-and-render approach, different API. Original note kept
+> below for context on how this was scoped originally.
+>
+> ~~Blocked on something other than the decision above~~ (found 2026-07-19, attempting the
 > "quick win" pass): `src/content/docs/{typescript,devcontainer,action}/` are 100% generated —
 > there's no root `index`/`about` page for `helpers4.dev` itself, only the three per-product
 > trees. Neither display option has anywhere to live without one of: (a) a new hand-authored
 > page (real content decision, not a quick add), (b) wiring it into the generator scripts so it
 > survives regeneration, or (c) a custom Starlight `social` icon (its bundled icon set doesn't
 > include DeepWiki/OpenSSF, so this needs actual icon/asset work too). Punted rather than forcing
-> a rushed placement — same root cause blocked the DeepWiki-on-site option in §4.
+> a rushed placement — same root cause blocked the DeepWiki-on-site option in §4 (also since
+> resolved differently, see §4).
 
 - [ ] 🟡 Decide the display approach — two real options:
   - Static badge embed (same shields.io image as the README) — 5-minute job, no design work.
   - Live component fetching the REST API at build time, rendered as a real stat tile matching
     the site's design system — more work, but gives per-check breakdown (not just the single
     number) and matches the site's own visual language instead of an embedded third-party image.
+    `src/pages/index.astro` + `ProjectCard.astro` already establish this exact pattern for GitHub
+    stars — extending it is the lower-effort path if this option is chosen.
 - [ ] 🟢 If going live-component: same treatment for `devcontainer` and `action` repos, not just
   `typescript` — all three have their own Scorecard results.
-- [ ] 🟡 **Prerequisite, not previously listed**: decide whether this needs a real `About`/
-  `Security` page on the site (and build one) before either display option above is actionable.
 
 ---
 
