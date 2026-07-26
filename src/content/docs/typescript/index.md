@@ -18,7 +18,7 @@ Production-ready TypeScript utility functions — modular, strictly typed, exhau
 
 A collection of functional helpers to stop rewriting the same utility code across every project — each function does one thing, does it right, and ships with full type safety and exhaustive tests.
 
-Born from 10 years of recoding the same domain-specific helpers across projects, helpers4 covers the gaps that popular general-purpose toolkits deliberately exclude: dates, URLs, semver, observables, promise guards. The [Philosophy](./reference/philosophy) and the [Radashi comparison](./comparisons/radashi) pages explain the reasoning in detail.
+helpers4 covers both the general-purpose ground shared with libraries like radashi or es-toolkit (array, object, string, number, function, guard — 190+ functions) and the domain-specific gaps they deliberately exclude: dates, URLs, semver, observables, promise guards. It grew out of 10 years of recoding the same domain-specific helpers across projects — see the [Philosophy](./reference/philosophy) and [Radashi comparison](./comparisons/radashi) pages for the full reasoning.
 
 - ✅ **Tree-shakable** — import one function, pay for one function
 - ✅ **Framework-agnostic** — React, Vue, Svelte, Angular, or no framework at all
