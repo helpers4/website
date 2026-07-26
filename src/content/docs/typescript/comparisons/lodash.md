@@ -15,7 +15,7 @@ This page details the differences to help you decide whether you need helpers4, 
 
 | | helpers4 | lodash |
 |---|---|---|
-| **Goal** | Domain-specific helpers not found in general toolkits | Maximalist, legacy-compatible utility belt |
+| **Goal** | General-purpose utilities plus domain-specific helpers other toolkits don't cover | Maximalist, legacy-compatible utility belt |
 | **TypeScript** | Native strict types, no `any` | Requires `@types/lodash` (community-maintained, can lag) |
 | **Tree-shaking** | Built-in — separate `@helpers4/*` packages per category | Requires the `lodash-es` variant; the default `lodash` package is not tree-shakable |
 | **Target runtime** | Modern JS (ES2024+) | ES5-compatible |
@@ -26,9 +26,10 @@ This page details the differences to help you decide whether you need helpers4, 
 
 Lodash was built for a JavaScript ecosystem that no longer exists in the same form — no native
 `Array.prototype.flat`, no optional chaining, no `Promise`. Much of its surface area now
-duplicates what's built into the language. helpers4 assumes a modern runtime and only exists to
-fill gaps native JS and lodash both leave open: dates, URLs, semver, observables, typed promise
-guards.
+duplicates what's built into the language. helpers4 assumes a modern runtime, covers the same
+general-purpose ground (array, object, string, number, function) with a fully tree-shakable,
+strictly-typed API, and adds what lodash never had: dates, URLs, semver, observables, typed
+promise guards.
 
 ## What helpers4 adds that lodash doesn't have
 
@@ -160,8 +161,8 @@ For functions that exist in both libraries, here's how they compare:
 
 Lodash's collection-chaining API (`_(arr).map(...).filter(...).value()`) and its more exhaustive
 "deep get with default" (`_.get(obj, path, defaultValue)`) semantics have no direct helpers4
-equivalent — helpers4 deliberately doesn't attempt to replace lodash's full surface, only to
-cover what it and native JS leave out.
+equivalent yet — outside those two idioms, helpers4's general-purpose categories cover comparable
+ground to lodash's core.
 
 ## When to use which
 
@@ -174,11 +175,12 @@ cover what it and native JS leave out.
 | You need typed promise guards/retry | **helpers4** (`@helpers4/promise`) |
 | You need ES5 compatibility, or `_.get` with defaults / chaining | **lodash** |
 | Maximum function coverage, legacy codebase already on lodash | **lodash** |
-| Modern app, want to shed lodash's dead weight | **helpers4 + [es-toolkit](./es-toolkit/)** for the general-purpose parts |
+| Modern app, want to shed lodash's dead weight | **helpers4** (general + domain-specific in one), or **+ [es-toolkit](./es-toolkit/)** if you specifically need its `compat` drop-in layer for migrating existing lodash call sites |
 
 ## Summary
 
 Lodash is the maximalist, battle-tested option for legacy compatibility and sheer function
-coverage. helpers4 is modern, minimal, and focused specifically on the domain gaps (dates, URLs,
-semver, observables, promise guards) that lodash — built for a pre-ES2015 world — never aimed to
-cover.
+coverage, plus idioms (chaining, `_.get` with defaults) helpers4 doesn't replicate. helpers4 is a
+modern (ES2024+), fully tree-shakable alternative with comparable coverage (312 functions vs
+lodash's ~300), plus the domain-specific ground (dates, URLs, semver, observables, promise guards)
+that lodash — built for a pre-ES2015 world — never aimed to cover.

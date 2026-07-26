@@ -13,14 +13,14 @@ This page details the differences to help you decide whether you need helpers4, 
 
 | | helpers4 | es-toolkit |
 |---|---|---|
-| **Goal** | Domain-specific helpers not found in general toolkits | Modern, fast, tree-shakable replacement for lodash |
-| **Scope** | Narrow, curated categories — now including `Map`/`Set` and concurrency primitives too | Broad — array, object, string, math, function, predicates, Map, Set, and Promise utilities |
+| **Goal** | General-purpose utilities plus domain-specific helpers other toolkits don't cover | Modern, fast, tree-shakable replacement for lodash |
+| **Scope** | Broad — general-purpose (array, object, string, number, function, guard) plus domain-specific categories (dates, URLs, semver, observables) and `Map`/`Set`/concurrency primitives | Broad — array, object, string, math, function, predicates, Map, Set, and Promise utilities |
 | **Package strategy** | Independent `@helpers4/*` packages per category | Single `es-toolkit` package (tree-shaken per-function at bundle time, not per-package) |
 | **Dependencies** | Zero runtime dependencies | Zero dependencies |
 | **License** | LGPL-3.0 | MIT |
 | **Backing** | Solo-maintained | Toss (Viva Republica) — corporate-backed, hundreds of contributors |
 
-**Key difference**: es-toolkit's pitch is being a faster, smaller, TypeScript-native lodash — it competes on performance and migration ease for existing lodash codebases. helpers4's pitch is covering domains general toolkits skip entirely (dates, URLs, semver, observables). They overlap heavily on the "general utility" surface (array/object/string/predicates, and as of helpers4 v3.0.5, Map/Set and concurrency primitives too) — see below for exactly where real gaps remain on either side.
+**Key difference**: es-toolkit's pitch is being a faster, smaller, TypeScript-native lodash — it competes on performance and migration ease for existing lodash codebases. helpers4's pitch is covering that same general-purpose ground *and* the domains general toolkits skip entirely (dates, URLs, semver, observables). They overlap heavily on the "general utility" surface (array/object/string/predicates, and as of helpers4 v3.0.5, Map/Set and concurrency primitives too) — see below for exactly where real gaps remain on either side.
 
 ## What es-toolkit still has that helpers4 doesn't
 

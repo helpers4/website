@@ -13,7 +13,7 @@ Note: as of v10, Rambda **stopped aiming to be a drop-in replacement for Ramda**
 
 | | helpers4 | rambda |
 |---|---|---|
-| **Goal** | Domain-specific helpers not found in general toolkits | Lighter, TypeScript-native alternative to Ramda |
+| **Goal** | General-purpose utilities plus domain-specific helpers other toolkits don't cover | Lighter, TypeScript-native alternative to Ramda |
 | **Paradigm** | Standard functional, direct calls | Curried, point-free — most functions are used inside `pipe()` |
 | **Package strategy** | Independent `@helpers4/*` packages per category | Single `rambda` package |
 | **Dependencies** | Zero runtime dependencies | Zero dependencies |
@@ -47,4 +47,4 @@ Both cover the standard array/object/string transform surface (`map`, `filter`, 
 
 ## Summary
 
-Rambda is the living, TypeScript-native alternative in the space Ramda (already covered in the [overview](./alternatives/)) originated — worth knowing about specifically because Ramda itself is flagged there as low-maintenance, and Rambda is the actively-developed option if that FP/curried style is what you're after. It doesn't compete with helpers4's actual reason to exist (the domain-specific categories); the two are addressing different problems entirely.
+Rambda is the living, TypeScript-native alternative in the space Ramda (already covered in the [overview](./alternatives/)) originated — worth knowing about specifically because Ramda itself is flagged there as low-maintenance, and Rambda is the actively-developed option if that FP/curried style is what you're after. Its curried, point-free API covers the same core data-transform space as helpers4's direct-call style, just shaped differently — and it doesn't reach into helpers4's domain-specific categories (dates, URLs, semver, observables, promise guards/concurrency) at all, so the two solve different problems there too.

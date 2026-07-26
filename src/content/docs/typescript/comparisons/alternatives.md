@@ -31,23 +31,27 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 ## helpers4 vs Radashi
 
-[Radashi](https://radashi.js.org) (~130 functions, the maintained fork of Radash) provides
-low-level data primitives (sort, group, clone, pick, map); helpers4 provides ready-made solutions
-for domain problems radashi deliberately excludes (dates, URLs, semver, observables). They're
-**complementary** — see the [detailed comparison](./radashi/).
+[Radashi](https://radashi.js.org) (~130 functions, the maintained fork of Radash) is a lean,
+single-package set of general-purpose data primitives (sort, group, clone, pick, map). helpers4
+covers that same general-purpose ground — its array/object/string/number/function/type/guard
+categories alone already outnumber radashi's entire function count — and adds what radashi
+deliberately excludes (dates, URLs, semver, observables). Pick radashi for the smallest possible
+single-package toolkit with no domain extras; pick helpers4 for that same ground plus the gaps
+covered too — see the [detailed comparison](./radashi/).
 
 ## helpers4 vs Radash
 
 [Radash](https://github.com/rayepps/radash) is the predecessor of radashi and is **archived, no
-longer maintained**. If you're on radash, migrate to [radashi](./radashi/) (its maintained fork);
-add helpers4 alongside it if you also need date/URL/version/observable helpers.
+longer maintained**. If you're on radash, migrate to [radashi](./radashi/) (its maintained fork) —
+or straight to helpers4, which covers the same general-purpose ground plus date/URL/version/
+observable helpers neither radash nor radashi has.
 
 ## helpers4 vs Lodash
 
 [Lodash](https://lodash.com/) is the most popular JS utility library (~300 functions), built for
-a pre-ES2015 world and still ES5-compatible. helpers4 is modern (ES2024+), minimal, and focused
-on gaps lodash doesn't cover (dates, URLs, semver, observables, typed promise guards) rather than
-competing on raw function count — see the [detailed comparison](./lodash/).
+a pre-ES2015 world and still ES5-compatible. helpers4 is a modern (ES2024+), fully tree-shakable
+alternative with comparable raw coverage (312 functions) plus what lodash never had — dates, URLs,
+semver, observables, typed promise guards — see the [detailed comparison](./lodash/).
 
 ## helpers4 vs es-toolkit
 
@@ -63,9 +67,10 @@ for. See the [detailed comparison](./es-toolkit/).
 ## helpers4 vs Remeda
 
 [Remeda](https://remedajs.com/) is a TypeScript-first library built around a dual
-data-first/data-last `pipe()` with lazy evaluation and strong type inference. helpers4 also ships
-a pipe (`pipe()`/`compose()`/`curry()`, eager) plus its own domain-specific utilities. They serve
-different purposes and can be combined — see the [detailed comparison](./remeda/).
+data-first/data-last `pipe()` with lazy evaluation and strong type inference. helpers4 ships its
+own pipe (`pipe()`/`compose()`/`curry()`, eager) plus general-purpose and domain-specific
+utilities across 20 categories. They optimize for different things and can be combined — see the
+[detailed comparison](./remeda/).
 
 ## helpers4 vs Ramda
 
@@ -131,6 +136,7 @@ and `median`/`percentile`/`meanBy`/`sumBy`, closing what used to be es-toolkit-o
 | Semver parsing and comparison | **helpers4** |
 | RxJS observable utilities | **helpers4** |
 | Typed promise assertions | **helpers4** |
+| General-purpose utilities *and* domain-specific gaps, in one modular toolkit | **helpers4** |
 | Single all-in-one package, no specific domain need | **radashi** |
 | Fastest/smallest lodash replacement, migrating from lodash | **es-toolkit** |
 | Full async array iteration (`flatMapAsync`, `reduceAsync`, concurrency-limited `limitAsync`) | **es-toolkit** |

@@ -5,7 +5,7 @@ sidebar:
   order: 2
 ---
 
-[Radashi](https://radashi.js.org) is a general-purpose TypeScript utility toolkit (~130 functions), and the actively maintained fork of Radash. The two libraries are **complementary, not competing**.
+[Radashi](https://radashi.js.org) is a general-purpose TypeScript utility toolkit (~130 functions), and the actively maintained fork of Radash. helpers4 covers that same general-purpose ground (and then some — see below) plus the domain-specific categories radashi's core deliberately excludes.
 
 This page details the differences to help you decide whether you need helpers4, radashi, or both.
 
@@ -13,8 +13,8 @@ This page details the differences to help you decide whether you need helpers4, 
 
 | | helpers4 | radashi |
 |---|---|---|
-| **Goal** | Domain-specific helpers not found in general toolkits | General-purpose utility belt |
-| **Scope** | Welcomes domain-specific categories (URL, date, semver…) | Core limited to the most popular/common utilities |
+| **Goal** | General-purpose utilities plus domain-specific helpers other toolkits don't cover | General-purpose utility belt |
+| **Scope** | General core (array, object, string, number, function, guard) plus domain-specific categories (URL, date, semver…) | Core limited to the most popular/common utilities |
 | **Package strategy** | Independent `@helpers4/*` packages per category | Single `radashi` package |
 | **Dependencies** | Zero runtime dependencies | Zero dependencies |
 | **License** | LGPL-3.0 | MIT |
@@ -29,13 +29,13 @@ A concrete case confirmed this: URL helpers proposed to Radashi core were acknow
 
 The counter-argument — and helpers4's actual position — is that these utilities are **string manipulations**, no different in nature from `capitalize` or `kebabCase`. When a string arrives from a third-party API, a config file, or a legacy codebase, you cannot always "fix the source". You need a clean, named, typed helper that does one obvious thing. `cleanPath(url)` is not masking a problem; it is the solution.
 
-The two libraries ended up at different answers to the same question, and that's fine. Radashi is a lean general-purpose toolkit; helpers4 is the pragmatic complement for everything that doesn't meet that bar.
+The two libraries ended up at different answers to the same question, and that's fine. Radashi stayed a lean, single-package core; helpers4 grew into a broader, modular toolkit that covers that same general-purpose ground and everything radashi's popularity threshold excludes.
 
 ### Key philosophical differences
 
-- **Breadth vs focus**: helpers4 embraces categories that radashi deliberately excludes — dates, URLs, semver, observables — because they don't meet radashi's popularity threshold for core.
+- **Breadth**: helpers4 covers the same general-purpose surface as radashi (array, object, string, number, function, guard) plus categories radashi deliberately excludes — dates, URLs, semver, observables — because they don't meet radashi's popularity threshold for core.
 - **Tree-shaking makes breadth viable**: With modern bundlers, having many functions in independent packages adds zero overhead. helpers4 leans into this.
-- **Complementary, not competing**: helpers4 and radashi target different use cases and are designed to work together.
+- **Two valid answers to the same question**: radashi optimizes for a minimal, single-package core; helpers4 optimizes for one modular ecosystem that covers both the general and the domain-specific. Both can be used standalone or together.
 
 ## What helpers4 adds that radashi doesn't have
 
@@ -178,9 +178,15 @@ For functions that exist in both libraries, here's how they compare:
 | You need semver parsing/comparison | **helpers4** (`@helpers4/version`) |
 | You need RxJS observable combinators | **helpers4** (`@helpers4/observable`) |
 | You need typed promise guards | **helpers4** (`@helpers4/promise`) |
-| You need a general-purpose utility belt | **radashi** |
-| You need both domain-specific and general utils | **both** — they work together |
+| You need general-purpose utilities and domain-specific helpers in one toolkit | **helpers4** |
+| You want the smallest possible single-package core, no domain extras | **radashi** |
+| You need both, from separate minimal packages | **both** — they work together |
 
 ## Summary
 
-helpers4 and radashi are **complementary**. helpers4 focuses on domain-specific helpers (dates, URLs, semver, observables, promise guards) that general toolkit libraries like radashi don't provide. Where their features overlap (arrays, objects, strings, functions), helpers4 provides its own implementation with zero runtime dependencies.
+helpers4 and radashi both cover the same general-purpose ground (arrays, objects, strings,
+functions) — helpers4 provides its own implementation with zero runtime dependencies. Where they
+differ is scope: radashi stays a lean, single-package core; helpers4 additionally covers what
+radashi's popularity threshold excludes (dates, URLs, semver, observables, promise guards).
+Pick radashi for the smallest possible general-purpose package, helpers4 for that same ground plus
+the domain-specific gaps, or use both together.
