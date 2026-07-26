@@ -1,7 +1,7 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.0.4 — License: LGPL-3.0-or-later
+> Version: 3.0.5 — License: LGPL-3.0-or-later
 
 ## About
 
