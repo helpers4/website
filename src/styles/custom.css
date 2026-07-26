@@ -35,6 +35,8 @@
 
 .cell-regular {
   display: inline-block;
+  background-color: var(--sl-color-bg-inline-code);
+  color: var(--sl-color-text);
   border-radius: 0.25rem;
   padding: 0.1em 0.5em;
   font-weight: 600;
