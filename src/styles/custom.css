@@ -32,3 +32,10 @@
   padding: 0.1em 0.5em;
   font-weight: 600;
 }
+
+.cell-regular {
+  display: inline-block;
+  border-radius: 0.25rem;
+  padding: 0.1em 0.5em;
+  font-weight: 600;
+}
