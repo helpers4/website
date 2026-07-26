@@ -21,11 +21,13 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 | **rambda** | ~190 | Curried | Monolith | <span class="cell-highlight">ESM</span> | <span class="cell-highlight">native</span> | MIT | Yes |
 | **moderndash** | ~50 | <span class="cell-highlight">Direct</span> | Monolith | <span class="cell-highlight">ESM</span> | <span class="cell-highlight">native</span> | MIT | Yes |
 
-**Glossary** — *Direct*: call the function directly, `fn(x)`. *Chainable*: wrap the value in a
-chain object, `_(x).map(f).value()`. *Pipe*: compose functions left-to-right,
-`pipe(x, fn1, fn2)`. *Curried*: functions take one argument at a time, `fn(a)(b)`, point-free
-style. *Modular*: split into independent packages, install only what you use. *Monolith*: one
-package containing everything.
+**Glossary**
+* <span class="cell-highlight">Direct</span>: call the function directly, `fn(x)`
+* <span class="cell-regular">Chainable</span>: wrap the value in a chain object, `_(x).map(f).value()`
+* <span class="cell-regular">Pipe</span>: compose functions left-to-right, `pipe(x, fn1, fn2)`
+* <span class="cell-regular">Curried</span>: functions take one argument at a time, `fn(a)(b)`, point-free style
+* <span class="cell-highlight">Modular</span>: split into independent packages, install only what you use.
+* <span class="cell-regular">Monolith</span>: one package containing everything.
 
 ## helpers4 vs Radashi
 
