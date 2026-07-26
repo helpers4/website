@@ -100,7 +100,7 @@ in es-toolkit. Roughly a sixth of helpers4's function count, no domain-specific 
 
 ## Feature matrix
 
-What each library covers — and what helpers4 uniquely provides:
+What each library covers — and what helpers4 uniquely provides (✅ full · 🟡 partial · — none):
 
 | Category | helpers4 | radashi | lodash | es-toolkit | remeda | ramda | rambda |
 |----------|:--------:|:-------:|:------:|:----------:|:------:|:-----:|:------:|
@@ -122,8 +122,8 @@ What each library covers — and what helpers4 uniquely provides:
 | FP (curry, lenses) | ✅ (curry only) | — | `_.curry` | ✅ (curry only) | — | ✅ | ✅ (no curry) |
 | Random/shuffle | ✅ | ✅ | ✅ | ✅ | — | — | — |
 | Collection chaining | — | — | ✅ | — | ✅ | ✅ | ✅ |
-| Statistics (median/percentile) | ✅ | — | — | ✅ | — | — | — |
-| **Async-aware array iteration** | ✅ (partial) | — | — | ✅ (full) | — | — | — |
+| Statistics | ✅ | — | — | ✅ | — | — | — |
+| **Async array iteration** | 🟡 | — | — | ✅ | — | — | — |
 
 Rows in **bold** are gaps on the helpers4 side worth tracking — see `typescript/TODO.md` for the
 prioritized list. `Map`/`Set` utilities, concurrency primitives, and statistics moved out of bold
