@@ -51,8 +51,10 @@ competing on raw function count — see the [detailed comparison](./lodash/).
 
 [es-toolkit](https://es-toolkit.dev) (~300 functions, maintained by Toss/Viva Republica) is a
 fast, modern, fully tree-shakable lodash replacement — the most actively developed library in
-this comparison — that also reaches into `Map`/`Set` utilities and concurrency primitives
-(`Mutex`, `Semaphore`) helpers4 doesn't touch. helpers4 still covers its own domain-specific
+this comparison. It used to be the only one here with `Map`/`Set` utilities and concurrency
+primitives (`Mutex`, `Semaphore`); as of helpers4 v3.0.5 both now cover that ground, so the real
+remaining gap is narrower — es-toolkit's async-aware array iteration (`flatMapAsync`,
+`reduceAsync`, `limitAsync`) is still more complete. helpers4 still covers its own domain-specific
 ground (dates, URLs, semver, observables, Temporal guards) that es-toolkit's scope never aimed
 for. See the [detailed comparison](./es-toolkit/).
 
@@ -103,15 +105,20 @@ What each library covers — and what helpers4 uniquely provides:
 | **Observable utilities** | ✅ | — | — | — | — | — | — |
 | **Promise guards** | ✅ | — | — | — | — | — | — |
 | Async/parallel | ✅ | ✅ | — | ✅ | — | — | — |
-| **`Map`/`Set` utilities** | — | — | — | ✅ | — | — | — |
-| **Concurrency primitives** (Mutex/Semaphore/timeout) | — | — | — | ✅ | — | — | — |
+| `Map`/`Set` utilities | ✅ | — | — | ✅ | — | — | — |
+| Concurrency primitives | ✅ | — | — | ✅ | — | — | — |
 | Pipe/compose | ✅ | — | `_.chain` | ✅ (`flow`) | ✅ | ✅ | ✅ |
 | FP (curry, lenses) | ✅ (curry only) | — | `_.curry` | ✅ (curry only) | — | ✅ | ✅ (no curry) |
 | Random/shuffle | — | ✅ | ✅ | ✅ | — | — | — |
 | Collection chaining | — | — | ✅ | — | ✅ | ✅ | ✅ |
-| Statistics (median/percentile) | — | — | — | ✅ | — | — | — |
+| Statistics (median/percentile) | ✅ | — | — | ✅ | — | — | — |
+| **Async-aware array iteration** (`filterAsync`/`mapAsync`/`forEachAsync`) | ✅ (partial) | — | — | ✅ (full) | — | — | — |
 
-Rows in **bold** are gaps on the helpers4 side worth tracking — see `typescript/TODO.md` for the prioritized list.
+Rows in **bold** are gaps on the helpers4 side worth tracking — see `typescript/TODO.md` for the
+prioritized list. `Map`/`Set` utilities, concurrency primitives, and statistics moved out of bold
+as of v3.0.5 — helpers4 added `@helpers4/map`, `@helpers4/set`, `createMutex`/`createSemaphore`,
+and `median`/`percentile`/`meanBy`/`sumBy`, closing what used to be es-toolkit-only ground. See the
+[detailed comparison](./es-toolkit/) for exactly how close the parity is on each.
 
 ## Choosing the right library
 
@@ -124,7 +131,7 @@ Rows in **bold** are gaps on the helpers4 side worth tracking — see `typescrip
 | Typed promise assertions | **helpers4** |
 | General-purpose modern toolkit | **radashi** |
 | Fastest/smallest lodash replacement, migrating from lodash | **es-toolkit** |
-| `Map`/`Set` utilities, `Mutex`/`Semaphore`, `median`/`percentile` | **es-toolkit** |
+| Full async array iteration (`flatMapAsync`, `reduceAsync`, concurrency-limited `limitAsync`) | **es-toolkit** |
 | Pipe-based data transformations | **remeda** |
 | Functional programming (currying, lenses) | **ramda** or **rambda** |
 | Maximum function coverage, legacy support | **lodash** |
