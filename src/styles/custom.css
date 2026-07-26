@@ -20,3 +20,15 @@
   --sl-color-accent: #1d4ed8;
   --sl-color-accent-high: #1e3a8a;
 }
+
+/* Light emphasis for a single table cell's value — comparison tables use this to call out
+   helpers4's answer for a column without a full colored row (e.g. alternatives.md's Overview
+   table). Uses Starlight's green tokens so it stays readable in both themes automatically. */
+.cell-highlight {
+  display: inline-block;
+  background-color: var(--sl-color-green-low);
+  color: var(--sl-color-green-high);
+  border-radius: 0.25rem;
+  padding: 0.1em 0.5em;
+  font-weight: 600;
+}
