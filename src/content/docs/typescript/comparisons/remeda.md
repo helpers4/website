@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-[Remeda](https://remedajs.com) is a TypeScript-first utility library (~150 functions) built around a typed `pipe()` and a dual data-first/data-last API. Like [radashi](./radashi/), it is **complementary, not competing** — the overlap is real but the two libraries optimize for different things.
+[Remeda](https://remedajs.com) is a TypeScript-first utility library (~150 functions) built around a typed `pipe()` and a dual data-first/data-last API. The overlap on general data transforms is real, but the two libraries optimize for different things: remeda for lazily-evaluated piped transformations, helpers4 for broad general-purpose *and* domain-specific coverage in one modular toolkit.
 
 This page details the differences to help you decide whether you need helpers4, remeda, or both.
 
@@ -13,7 +13,7 @@ This page details the differences to help you decide whether you need helpers4, 
 
 | | helpers4 | remeda |
 |---|---|---|
-| **Goal** | Domain-specific helpers not found in general toolkits | Type-safe functional data transformation |
+| **Goal** | General-purpose utilities plus domain-specific helpers other toolkits don't cover | Type-safe functional data transformation |
 | **API style** | Direct function calls | Dual data-first **and** data-last, designed for `pipe()` |
 | **Composition** | `pipe`/`compose`/`curry` (plain, eager — since v2.0.0) | `pipe`/`piped` with **lazy evaluation** on chained tagged functions (`map`, `filter`, `take`…) |
 | **Package strategy** | Independent `@helpers4/*` packages per category | Single `remeda` package |
@@ -200,4 +200,10 @@ This category is where the two libraries converge the most — both ended up wit
 
 ## Summary
 
-helpers4 and remeda are **complementary**. remeda's strength is typed, composable, lazily-evaluated data transformation via `pipe()` — a paradigm helpers4 deliberately keeps simple (eager `pipe`/`compose`/`curry`, no tagged-function magic). helpers4's strength is domain-specific helpers (dates, URLs, semver, observables) and modern runtime guards (Temporal, FormData, Blob) that remeda's scope doesn't include. Where they overlap (arrays, objects, strings, basic type guards), both converge on very similar coverage — pick whichever API style fits your codebase, or use both together.
+remeda's strength is typed, composable, lazily-evaluated data transformation via `pipe()` — a
+paradigm helpers4 deliberately keeps simple (eager `pipe`/`compose`/`curry`, no tagged-function
+magic). helpers4's strength is covering that same general-purpose ground *plus* domain-specific
+helpers (dates, URLs, semver, observables) and modern runtime guards (Temporal, FormData, Blob)
+that remeda's scope doesn't include. Where they overlap (arrays, objects, strings, basic type
+guards), both converge on very similar coverage — pick whichever API style fits your codebase, or
+use both together.
