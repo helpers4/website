@@ -123,7 +123,7 @@ What each library covers — and what helpers4 uniquely provides:
 | Random/shuffle | — | ✅ | ✅ | ✅ | — | — | — |
 | Collection chaining | — | — | ✅ | — | ✅ | ✅ | ✅ |
 | Statistics (median/percentile) | ✅ | — | — | ✅ | — | — | — |
-| **Async-aware array iteration** (`filterAsync`/`mapAsync`/`forEachAsync`) | ✅ (partial) | — | — | ✅ (full) | — | — | — |
+| **Async-aware array iteration** | ✅ (partial) | — | — | ✅ (full) | — | — | — |
 
 Rows in **bold** are gaps on the helpers4 side worth tracking — see `typescript/TODO.md` for the
 prioritized list. `Map`/`Set` utilities, concurrency primitives, and statistics moved out of bold
