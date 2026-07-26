@@ -119,7 +119,7 @@ What each library covers — and what helpers4 uniquely provides (✅ full · �
 | `Map`/`Set` utilities | ✅ | — | — | ✅ | — | — | — |
 | Concurrency primitives | ✅ | — | — | ✅ | — | — | — |
 | Pipe/compose | ✅ | — | `_.chain` | ✅ (`flow`) | ✅ | ✅ | ✅ |
-| FP (curry, lenses) | ✅ (curry only) | — | `_.curry` | ✅ (curry only) | — | ✅ | ✅ (no curry) |
+| FP (curry, lenses) | 🟡 (curry) | — | 🟡 (`_.curry`) | 🟡 (curry) | — | ✅ | — |
 | Random/shuffle | ✅ | ✅ | ✅ | ✅ | — | — | — |
 | Collection chaining | — | — | ✅ | — | ✅ | ✅ | ✅ |
 | Statistics | ✅ | — | — | ✅ | — | — | — |
