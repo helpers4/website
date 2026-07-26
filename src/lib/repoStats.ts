@@ -12,6 +12,7 @@
 export interface RepoStats {
   stars: number | null;
   scorecard: number | null;
+  coverage: number | null;
 }
 
 async function fetchStars(repoPath: string): Promise<number | null> {
@@ -43,6 +44,22 @@ async function fetchScorecard(repoPath: string): Promise<number | null> {
   }
 }
 
+/**
+ * Falls back to null on any error, including a repo with no Codecov integration at all
+ * (devcontainer/action, as of 2026-07-26, unlike typescript) — the badge just doesn't render.
+ */
+async function fetchCoverage(repoPath: string): Promise<number | null> {
+  try {
+    const res = await fetch(`https://img.shields.io/codecov/c/github/${repoPath}.json`);
+    if (!res.ok) return null;
+    const data = (await res.json()) as { message?: string };
+    const value = data.message ? parseFloat(data.message) : NaN;
+    return Number.isFinite(value) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
 const cache = new Map<string, Promise<RepoStats>>();
 
 export function getRepoStats(repoPath: string): Promise<RepoStats> {
@@ -51,6 +68,7 @@ export function getRepoStats(repoPath: string): Promise<RepoStats> {
     entry = (async () => ({
       stars: await fetchStars(repoPath),
       scorecard: await fetchScorecard(repoPath),
+      coverage: await fetchCoverage(repoPath),
     }))();
     cache.set(repoPath, entry);
   }

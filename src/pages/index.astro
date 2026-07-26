@@ -40,6 +40,7 @@ const statsEntries = await Promise.all(
 );
 const starsMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => [repoPath, stats.stars]));
 const scorecardMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => [repoPath, stats.scorecard]));
+const coverageMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => [repoPath, stats.coverage]));
 ---
 
 <!doctype html>
@@ -85,6 +86,7 @@ const scorecardMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => 
             card={project}
             stars={starsMap[project.repoPath] ?? null}
             scorecard={scorecardMap[project.repoPath] ?? null}
+            coverage={coverageMap[project.repoPath] ?? null}
           />
         ))}
       </section>
