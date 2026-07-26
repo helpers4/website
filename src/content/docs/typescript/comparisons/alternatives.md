@@ -11,15 +11,15 @@ A comparison of helpers4 with popular TypeScript/JavaScript utility libraries.
 
 | Library | Functions | API Style | Architecture | Tree-shakable | TypeScript | License | Maintained |
 |---------|:---------:|:-------------:|:-------------:|:-------------:|:----------:|:-------:|:----------:|
-| **helpers4** | 312 | Direct | Modular | ESM | native | LGPL | Yes |
-| **radashi** | ~130 | Direct | Monolith | ESM | native | MIT | Yes |
-| **radash** | ~90 | Direct | Monolith | ESM | native | MIT | No |
+| **helpers4** | 312 | <span class="cell-highlight">Direct</span> | <span class="cell-highlight">Modular</span> | <span class="cell-highlight">ESM</span> | <span class="cell-highlight">native</span> | LGPL | Yes |
+| **radashi** | ~130 | <span class="cell-highlight">Direct</span> | Monolith | <span class="cell-highlight">ESM</span> | <span class="cell-highlight">native</span> | MIT | Yes |
+| **radash** | ~90 | <span class="cell-highlight">Direct</span> | Monolith | <span class="cell-highlight">ESM</span> | <span class="cell-highlight">native</span> | MIT | No |
 | **lodash** | ~300 | Chainable | Monolith | opt-in | unofficial | MIT | Low |
-| **es-toolkit** | ~300 | Direct | Monolith | ESM | native | MIT | Highly |
-| **remeda** | ~100 | Pipe | Monolith | ESM | native | MIT | Yes |
+| **es-toolkit** | ~300 | <span class="cell-highlight">Direct</span> | Monolith | <span class="cell-highlight">ESM</span> | <span class="cell-highlight">native</span> | MIT | Highly |
+| **remeda** | ~100 | Pipe | Monolith | <span class="cell-highlight">ESM</span> | <span class="cell-highlight">native</span> | MIT | Yes |
 | **ramda** | ~200 | Curried | Monolith | limited | unofficial | MIT | Low |
-| **rambda** | ~190 | Curried | Monolith | ESM | native | MIT | Yes |
-| **moderndash** | ~50 | Direct | Monolith | ESM | native | MIT | Yes |
+| **rambda** | ~190 | Curried | Monolith | <span class="cell-highlight">ESM</span> | <span class="cell-highlight">native</span> | MIT | Yes |
+| **moderndash** | ~50 | <span class="cell-highlight">Direct</span> | Monolith | <span class="cell-highlight">ESM</span> | <span class="cell-highlight">native</span> | MIT | Yes |
 
 **Glossary** — *Direct*: call the function directly, `fn(x)`. *Chainable*: wrap the value in a
 chain object, `_(x).map(f).value()`. *Pipe*: compose functions left-to-right,
@@ -129,7 +129,7 @@ and `median`/`percentile`/`meanBy`/`sumBy`, closing what used to be es-toolkit-o
 | Semver parsing and comparison | **helpers4** |
 | RxJS observable utilities | **helpers4** |
 | Typed promise assertions | **helpers4** |
-| General-purpose modern toolkit | **radashi** |
+| Single all-in-one package, no specific domain need | **radashi** |
 | Fastest/smallest lodash replacement, migrating from lodash | **es-toolkit** |
 | Full async array iteration (`flatMapAsync`, `reduceAsync`, concurrency-limited `limitAsync`) | **es-toolkit** |
 | Pipe-based data transformations | **remeda** |
