@@ -24,18 +24,14 @@
   output (2026-07-18). Only remaining step:
 - [x] 🔴 Reference the sitemap in `robots.txt` (2026-07-19) — added
   `Sitemap: https://helpers4.dev/sitemap-index.xml` to `public/robots.txt`.
-- [ ] 🔴 **Canonical URLs on versioned typescript docs** — the real risk here isn't generic
-  "SEO", it's this site's specific structure: `typescript/`, `typescript/next/`, and each
-  `typescript/vN/` archive slot (driven by `src/data/versions.json`) are near-duplicate content
-  once a category page hasn't changed across versions. Decide the canonicalization policy before
-  building it — two real options, not obviously equivalent:
-  - Self-canonicalize every version (each vN is legitimately different content for different
-    consumers, like Vue/Angular docs) — keeps old versions indexable and findable.
-  - Canonicalize archived vN pages to the `latest` equivalent when content is byte-identical —
-    consolidates ranking signal onto current docs, at the cost of old-version pages effectively
-    disappearing from search.
-  Needs a decision, not just an implementation — pick based on whether old-version search
-  traffic is wanted.
+- [x] 🔴 **Canonical URLs on versioned typescript docs** (decided + verified 2026-07-26) —
+  decision: self-canonicalize every version (each vN is legitimately different content for
+  different consumers, like Vue/Angular docs) — keeps old versions indexable and findable, rather
+  than consolidating ranking signal onto `latest` at the cost of old-version pages disappearing
+  from search. Turns out this needed no implementation: checked the real build output and
+  Astro/Starlight already emit a self-referential `<link rel="canonical">` per page by default
+  (confirmed on `typescript/`, `typescript/next/`, and `typescript/v2/`, each pointing at its own
+  URL) — the policy this repo wanted was already the shipped behavior.
 - [ ] 🟡 **OG images + meta descriptions per generated page** — currently relies entirely on
   Starlight's defaults (title + site description). The doc generators
   (`generate-typescript-docs.js` etc.) already have per-page frontmatter data (category,
@@ -166,15 +162,18 @@
 > a rushed placement — same root cause blocked the DeepWiki-on-site option in §4 (also since
 > resolved differently, see §4).
 
-- [ ] 🟡 Decide the display approach — two real options:
-  - Static badge embed (same shields.io image as the README) — 5-minute job, no design work.
-  - Live component fetching the REST API at build time, rendered as a real stat tile matching
-    the site's design system — more work, but gives per-check breakdown (not just the single
-    number) and matches the site's own visual language instead of an embedded third-party image.
-    `src/pages/index.astro` + `ProjectCard.astro` already establish this exact pattern for GitHub
-    stars — extending it is the lower-effort path if this option is chosen.
-- [ ] 🟢 If going live-component: same treatment for `devcontainer` and `action` repos, not just
-  `typescript` — all three have their own Scorecard results.
+- [x] 🟡 Decide the display approach (2026-07-26) — went with the live component: fetches
+  `api.securityscorecards.dev` at build time in `index.astro` (same `fetch → fall back to null`
+  shape as the existing `fetchStars`), rendered as a color-coded badge in `ProjectCard.astro`
+  (OpenSSF's own thresholds: ≥7 green, ≥4 yellow, else red) linking to the public
+  `scorecard.dev/viewer` for the full per-check breakdown rather than reimplementing it inline.
+- [x] 🟢 Same treatment for `devcontainer` and `action`, not just `typescript` (2026-07-26) — the
+  fetch runs for all three `PROJECTS` entries already. **New finding**: only `typescript` actually
+  has data — `devcontainer`/`action` return a real `404` from the Scorecard API (verified via
+  direct `curl`), meaning OpenSSF has never scanned them because neither repo has the Scorecard
+  GitHub Action set up yet. Not a website bug: the badge correctly renders `null` → nothing shown
+  for those two. **Follow-up, not a website task**: add `scorecard.yml` to `devcontainer` and
+  `action` (mirroring `typescript`'s) if their scores should show up here too.
 
 ---
 
