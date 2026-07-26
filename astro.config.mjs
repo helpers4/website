@@ -146,6 +146,7 @@ export default defineConfig({
         MarkdownContent: './src/components/MarkdownContent.astro',
         Search: './src/components/Search.astro',
         Sidebar: './src/components/Sidebar.astro',
+        SocialIcons: './src/components/SocialIcons.astro',
         ThemeSelect: './src/components/ThemeSelect.astro',
       },
       editLink: {

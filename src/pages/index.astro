@@ -9,6 +9,7 @@
  */
 
 import ProjectCard, { type ProjectCard as ProjectCardType } from '../components/ProjectCard.astro';
+import { getRepoStats } from '../lib/repoStats';
 
 const PROJECTS: ProjectCardType[] = [
   {
@@ -34,42 +35,11 @@ const PROJECTS: ProjectCardType[] = [
   },
 ];
 
-/** Fetch GitHub stars at build time — falls back to null on any error. */
-async function fetchStars(repoPath: string): Promise<number | null> {
-  try {
-    const res = await fetch(`https://api.github.com/repos/${repoPath}`, {
-      headers: { Accept: 'application/vnd.github+json' },
-    });
-    if (!res.ok) return null;
-    const data = await res.json() as { stargazers_count?: number };
-    return typeof data.stargazers_count === 'number' ? data.stargazers_count : null;
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Fetch OpenSSF Scorecard score at build time — falls back to null on any error, including a
- * plain 404 for a repo OpenSSF hasn't scanned yet (devcontainer/action don't have the Scorecard
- * workflow set up as of 2026-07-26, unlike typescript). The badge just doesn't render for those.
- */
-async function fetchScorecard(repoPath: string): Promise<number | null> {
-  try {
-    const res = await fetch(`https://api.securityscorecards.dev/projects/github.com/${repoPath}`);
-    if (!res.ok) return null;
-    const data = await res.json() as { score?: number };
-    return typeof data.score === 'number' ? data.score : null;
-  } catch {
-    return null;
-  }
-}
-
-const starsMap = Object.fromEntries(
-  await Promise.all(PROJECTS.map(async (p) => [p.repoPath, await fetchStars(p.repoPath)])),
+const statsEntries = await Promise.all(
+  PROJECTS.map(async (p) => [p.repoPath, await getRepoStats(p.repoPath)] as const),
 );
-const scorecardMap = Object.fromEntries(
-  await Promise.all(PROJECTS.map(async (p) => [p.repoPath, await fetchScorecard(p.repoPath)])),
-);
+const starsMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => [repoPath, stats.stars]));
+const scorecardMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => [repoPath, stats.scorecard]));
 ---
 
 <!doctype html>
