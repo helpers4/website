@@ -30,7 +30,10 @@ function typescriptTopicItems(slug) {
   const items = [
     { slug },
     { slug: `${slug}/getting-started` },
-    { label: 'Categories', items: [{ autogenerate: { directory: `${slug}/categories` } }] },
+    {
+      label: 'Categories',
+      items: [{ autogenerate: { directory: `${slug}/categories`, collapsed: true } }],
+    },
     { label: 'Reference', items: [{ autogenerate: { directory: `${slug}/reference` } }] },
   ];
   if (fs.existsSync(path.join(docsDir, slug, 'comparisons'))) {
