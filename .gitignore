@@ -8,3 +8,7 @@
 .astro/
 dist/
 node_modules
+
+# Local secrets
+.env
+.env.local
