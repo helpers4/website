@@ -317,10 +317,16 @@ const heroPhoto = await fetchRandomHeroPhoto();
     overflow: hidden;
     backdrop-filter: blur(32px) brightness(0.85) saturate(2.5);
     -webkit-backdrop-filter: blur(32px) brightness(0.85) saturate(2.5);
+    transition: backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
     background-color: hsl(189 80% 10% / 0.2);
     background-image: url('https://www.transparenttextures.com/patterns/egg-shell.png');
     background-size: 100px;
     background-repeat: repeat;
+  }
+
+  body.has-photo .cards-grid :global(.project-card):hover::before {
+    backdrop-filter: blur(54px) brightness(0.85) saturate(2.5);
+    -webkit-backdrop-filter: blur(54px) brightness(0.85) saturate(2.5);
   }
 
   body.has-photo .cards-grid :global(.project-card)::after {
