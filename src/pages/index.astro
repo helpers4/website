@@ -144,11 +144,13 @@ const heroPhoto = await fetchRandomHeroPhoto();
           <a href="/blog">Blog</a>
           &nbsp;·&nbsp;
           <a href="https://github.com/helpers4" target="_blank" rel="noopener noreferrer">GitHub</a>
-          &nbsp;·&nbsp;
-          <a href="/typescript/legal/license">License (LGPL-3.0)</a>
         </p>
       </footer>
     </div>
+
+    <p class="copyright-credit">
+      © 2025 helpers4 · <a href="/typescript/legal/license">LGPL-3.0</a>
+    </p>
   </body>
 </html>
 
@@ -211,6 +213,20 @@ const heroPhoto = await fetchRandomHeroPhoto();
   }
 
   .hero-credit a {
+    color: inherit;
+  }
+
+  .copyright-credit {
+    position: fixed;
+    bottom: 0.5rem;
+    left: 0.75rem;
+    z-index: 1;
+    margin: 0;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .copyright-credit a {
     color: inherit;
   }
 
