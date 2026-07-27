@@ -28,17 +28,20 @@ function formatStars(value: number | null): string {
   return String(value);
 }
 
+// The "-high" variant, not the bare token: starlight-theme-nova remaps --sl-color-green/orange/red
+// to dark, background-appropriate shades in dark mode (paired with a light "-high" foreground
+// counterpart) — using the bare token as text color makes it nearly invisible on a dark card.
 // OpenSSF's own badge thresholds (score is 0–10).
 function scorecardColor(score: number): string {
-  if (score >= 7) return 'var(--sl-color-green)';
-  if (score >= 4) return 'var(--sl-color-orange)';
-  return 'var(--sl-color-red)';
+  if (score >= 7) return 'var(--sl-color-green-high)';
+  if (score >= 4) return 'var(--sl-color-orange-high)';
+  return 'var(--sl-color-red-high)';
 }
 
 function coverageColor(pct: number): string {
-  if (pct >= 90) return 'var(--sl-color-green)';
-  if (pct >= 70) return 'var(--sl-color-orange)';
-  return 'var(--sl-color-red)';
+  if (pct >= 90) return 'var(--sl-color-green-high)';
+  if (pct >= 70) return 'var(--sl-color-orange-high)';
+  return 'var(--sl-color-red-high)';
 }
 ---
 
@@ -196,11 +199,11 @@ function coverageColor(pct: number): string {
     align-items: center;
     gap: 0.25rem;
     font-size: 0.85rem;
-    color: var(--sl-color-orange);
+    color: var(--sl-color-orange-high);
     text-decoration: none;
     padding: 0.2rem 0.5rem;
     border-radius: 0.375rem;
-    border: 1px solid var(--sl-color-orange);
+    border: 1px solid var(--sl-color-orange-high);
     transition: opacity 0.2s;
   }
 
