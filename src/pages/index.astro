@@ -41,6 +41,47 @@ const statsEntries = await Promise.all(
 const starsMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => [repoPath, stats.stars]));
 const scorecardMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => [repoPath, stats.scorecard]));
 const coverageMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => [repoPath, stats.coverage]));
+
+interface UnsplashPhoto {
+  url: string;
+  photographerName: string;
+  photographerUrl: string;
+}
+
+/**
+ * One random "technology, abstract" photo per build (not per visitor) — fetched at build time so
+ * the Unsplash Access Key never reaches the client and the site stays static/JS-free. Falls back
+ * to no photo (plain background) if UNSPLASH_ACCESS_KEY isn't set or the request fails for any
+ * reason. Per Unsplash's API guidelines, using a photo requires visible attribution (handled in
+ * the markup below) and a ping to its download-tracking endpoint (handled here).
+ */
+async function fetchRandomHeroPhoto(): Promise<UnsplashPhoto | null> {
+  const accessKey = import.meta.env.UNSPLASH_ACCESS_KEY;
+  if (!accessKey) return null;
+  try {
+    const headers = { Authorization: `Client-ID ${accessKey}` };
+    const res = await fetch(
+      'https://api.unsplash.com/photos/random?query=technology,abstract&orientation=landscape&content_filter=high',
+      { headers },
+    );
+    if (!res.ok) return null;
+    const data = (await res.json()) as {
+      urls?: { regular?: string };
+      user?: { name?: string; links?: { html?: string } };
+      links?: { download_location?: string };
+    };
+    if (!data.urls?.regular || !data.user?.name || !data.user.links?.html || !data.links?.download_location) {
+      return null;
+    }
+    // Required by Unsplash's API guidelines whenever a photo obtained via the API is displayed.
+    fetch(data.links.download_location, { headers }).catch(() => {});
+    return { url: data.urls.regular, photographerName: data.user.name, photographerUrl: data.user.links.html };
+  } catch {
+    return null;
+  }
+}
+
+const heroPhoto = await fetchRandomHeroPhoto();
 ---
 
 <!doctype html>
@@ -65,20 +106,29 @@ const coverageMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => [
   </head>
   <body>
     <div class="page">
-      <header class="site-header">
-        <img src="/helpers4-logo.png" alt="helpers4" class="logo" width="56" height="56" />
-        <h1>helpers4</h1>
-      </header>
+      <div class:list={['hero', { 'has-photo': heroPhoto }]} style={heroPhoto ? `--hero-image: url(${heroPhoto.url})` : undefined}>
+        <header class="site-header">
+          <img src="/helpers4-logo.png" alt="helpers4" class="logo" width="56" height="56" />
+          <h1>helpers4</h1>
+        </header>
 
-      <section class="intro">
-        <p>
-          Open-source developer tools built for real projects.
-        </p>
-        <p class="license-note">
-          Free to use under the LGPL-3.0 license, including in commercial products.
-          Distribute modified source? Share those changes. Run it as a service? No obligations.
-        </p>
-      </section>
+        <section class="intro">
+          <p>
+            Open-source developer tools built for real projects.
+          </p>
+          <p class="license-note">
+            Free to use under the LGPL-3.0 license, including in commercial products.
+            Distribute modified source? Share those changes. Run it as a service? No obligations.
+          </p>
+        </section>
+
+        {heroPhoto && (
+          <p class="hero-credit">
+            Photo by <a href={`${heroPhoto.photographerUrl}?utm_source=helpers4&utm_medium=referral`} target="_blank" rel="noopener noreferrer">{heroPhoto.photographerName}</a>
+            {' '}on <a href="https://unsplash.com/?utm_source=helpers4&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
+          </p>
+        )}
+      </div>
 
       <section class="cards-grid">
         {PROJECTS.map((project) => (
@@ -144,6 +194,40 @@ const coverageMap = Object.fromEntries(statsEntries.map(([repoPath, stats]) => [
     max-width: 960px;
     margin: 0 auto;
     padding: 2rem 1rem 4rem;
+  }
+
+  .hero {
+    position: relative;
+  }
+
+  .hero.has-photo {
+    padding: 1.5rem 1.5rem 2.25rem;
+    border-radius: var(--radius);
+    background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.35)), var(--hero-image);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero.has-photo .site-header h1,
+  .hero.has-photo .intro p:not(.license-note) {
+    color: #fff;
+  }
+
+  .hero.has-photo .license-note {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .hero-credit {
+    position: absolute;
+    bottom: 0.4rem;
+    right: 0.9rem;
+    margin: 0;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .hero-credit a {
+    color: inherit;
   }
 
   .site-header {

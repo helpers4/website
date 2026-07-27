@@ -77,6 +77,8 @@ jobs:
           fi
 
       - name: Build all packages
+        env:
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: pnpm build
 
       - name: Upload artifacts
