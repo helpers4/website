@@ -199,3 +199,18 @@
 > it's purely a human-facing transparency/credit gesture. Adoption is tiny (well under 200k sites).
 
 - [x] 🟢 Add `public/humans.txt` (2026-07-19) — team credit, tech stack used.
+
+---
+
+## 10. Sponsors / donations page
+
+> Not researched yet. Goal: a page (and/or GitHub Sponsors-style entry points on the repos) to
+> help cover real infrastructure costs (CI minutes, any paid services) rather than it all being
+> solo-funded indefinitely — see the "Solo-maintained" line in the comparison pages' Philosophy
+> tables, this is the practical side of that.
+
+- [ ] 🟡 **Research the actual mechanism first** — GitHub Sponsors (zero-fee, shows up natively
+  on the repo/profile) vs Open Collective (more transparent/public ledger, but takes a cut) vs
+  Ko-fi/other. Pick one before building any page around it.
+- [ ] 🟡 Add a `sponsors`/`funding` page to the site once the mechanism is picked, plus a
+  `.github/FUNDING.yml` in each of the three repos so GitHub surfaces the native "Sponsor" button.
