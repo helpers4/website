@@ -104,31 +104,29 @@ const heroPhoto = await fetchRandomHeroPhoto();
     <meta property="og:description" content="Open-source developer tools built for real projects." />
     <meta property="og:image" content="/helpers4-logo.png" />
   </head>
-  <body>
+  <body class:list={{ 'has-photo': heroPhoto }} style={heroPhoto ? `--hero-image: url(${heroPhoto.url})` : undefined}>
+    {heroPhoto && (
+      <p class="hero-credit">
+        Photo by <a href={`${heroPhoto.photographerUrl}?utm_source=helpers4&utm_medium=referral`} target="_blank" rel="noopener noreferrer">{heroPhoto.photographerName}</a>
+        {' '}on <a href="https://unsplash.com/?utm_source=helpers4&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
+      </p>
+    )}
+
     <div class="page">
-      <div class:list={['hero', { 'has-photo': heroPhoto }]} style={heroPhoto ? `--hero-image: url(${heroPhoto.url})` : undefined}>
-        <header class="site-header">
-          <img src="/helpers4-logo.png" alt="helpers4" class="logo" width="56" height="56" />
-          <h1>helpers4</h1>
-        </header>
+      <header class="site-header">
+        <img src="/helpers4-logo.png" alt="helpers4" class="logo" width="56" height="56" />
+        <h1>helpers4</h1>
+      </header>
 
-        <section class="intro">
-          <p>
-            Open-source developer tools built for real projects.
-          </p>
-          <p class="license-note">
-            Free to use under the LGPL-3.0 license, including in commercial products.
-            Distribute modified source? Share those changes. Run it as a service? No obligations.
-          </p>
-        </section>
-
-        {heroPhoto && (
-          <p class="hero-credit">
-            Photo by <a href={`${heroPhoto.photographerUrl}?utm_source=helpers4&utm_medium=referral`} target="_blank" rel="noopener noreferrer">{heroPhoto.photographerName}</a>
-            {' '}on <a href="https://unsplash.com/?utm_source=helpers4&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
-          </p>
-        )}
-      </div>
+      <section class="intro">
+        <p>
+          Open-source developer tools built for real projects.
+        </p>
+        <p class="license-note">
+          Free to use under the LGPL-3.0 license, including in commercial products.
+          Distribute modified source? Share those changes. Run it as a service? No obligations.
+        </p>
+      </section>
 
       <section class="cards-grid">
         {PROJECTS.map((project) => (
@@ -190,37 +188,23 @@ const heroPhoto = await fetchRandomHeroPhoto();
     min-height: 100vh;
   }
 
-  .page {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 2rem 1rem 4rem;
-  }
-
-  .hero {
-    position: relative;
-  }
-
-  .hero.has-photo {
-    padding: 1.5rem 1.5rem 2.25rem;
-    border-radius: var(--radius);
-    background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.35)), var(--hero-image);
+  /* Overriding just these two tokens re-colors everything on the page that already reads them
+     (headings, intro text, footer, and — via the .cards-grid override block below — card text
+     too), so the photo doesn't need per-element color overrides. */
+  body.has-photo {
+    --text: #fff;
+    --text-muted: rgba(255, 255, 255, 0.75);
+    background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.55)), var(--hero-image);
     background-size: cover;
     background-position: center;
-  }
-
-  .hero.has-photo .site-header h1,
-  .hero.has-photo .intro p:not(.license-note) {
-    color: #fff;
-  }
-
-  .hero.has-photo .license-note {
-    color: rgba(255, 255, 255, 0.8) !important;
+    background-attachment: fixed;
   }
 
   .hero-credit {
-    position: absolute;
-    bottom: 0.4rem;
-    right: 0.9rem;
+    position: fixed;
+    bottom: 0.5rem;
+    right: 0.75rem;
+    z-index: 1;
     margin: 0;
     font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.85);
@@ -228,6 +212,12 @@ const heroPhoto = await fetchRandomHeroPhoto();
 
   .hero-credit a {
     color: inherit;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
   }
 
   .site-header {
