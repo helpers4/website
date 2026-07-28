@@ -3,6 +3,7 @@ title: "isUndefined"
 sidebar:
   label: "isUndefined"
 description: "Checks if a value is `undefined`."
+version: "3.0.5"
 ---
 
 Checks if a value is `undefined`.

@@ -1,0 +1,30 @@
+---
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * Starlight `LastUpdated` override — prefixes the library version a generated function page
+ * documents (see scripts/generate-typescript-docs.js's `version:` frontmatter field) before the
+ * date, e.g. "v3.0.5 · Last updated: Jul 28, 2026". Hand-authored pages (comparisons, philosophy,
+ * ...) have no `version` in frontmatter — there's no single version to attribute them to — and
+ * fall back to Starlight's own unmodified rendering.
+ */
+import Default from '@astrojs/starlight/components/LastUpdated.astro';
+
+const { lang, lastUpdated, entry } = Astro.locals.starlightRoute;
+const version = entry.data.version;
+---
+
+{lastUpdated && version ? (
+  <p>
+    <strong>v{version}</strong>
+    {' · '}
+    {Astro.locals.t('page.lastUpdated')}{' '}
+    <time datetime={lastUpdated.toISOString()}>
+      {lastUpdated.toLocaleDateString(lang, { dateStyle: 'medium', timeZone: 'UTC' })}
+    </time>
+  </p>
+) : (
+  <Default />
+)}

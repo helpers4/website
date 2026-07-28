@@ -3,6 +3,7 @@ title: "combineLatest"
 sidebar:
   label: "combineLatest"
 description: "Combines multiple Observables to create an Observable whose values are calculated from the latest values of each of i…"
+version: "3.0.5"
 ---
 
 Combines multiple Observables to create an Observable whose values are

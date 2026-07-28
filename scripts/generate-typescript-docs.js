@@ -273,6 +273,7 @@ ${depsList}
 title: "${fn.name}"
 sidebar:
   label: "${fn.name}"${pageDescription ? `\ndescription: "${pageDescription}"` : ''}
+version: "${LIBRARY_VERSION}"
 ---
 
 ${fn.description || ''}

@@ -3,6 +3,7 @@ title: "cloneDeep"
 sidebar:
   label: "cloneDeep"
 description: "Creates a deep copy of an object or array."
+version: "3.0.5"
 ---
 
 Creates a deep copy of an object or array.

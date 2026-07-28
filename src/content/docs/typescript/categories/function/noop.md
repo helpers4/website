@@ -3,6 +3,7 @@ title: "noop"
 sidebar:
   label: "noop"
 description: "A no-operation function that does nothing and returns `undefined`  Useful as a default callback, placeholder, or to e…"
+version: "3.0.5"
 ---
 
 A no-operation function that does nothing and returns `undefined`

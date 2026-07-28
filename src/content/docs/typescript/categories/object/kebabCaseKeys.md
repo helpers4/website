@@ -3,6 +3,7 @@ title: "kebabCaseKeys"
 sidebar:
   label: "kebabCaseKeys"
 description: "Recursively transforms every key of a plain object (including keys nested inside arrays and nested objects) to kebab-…"
+version: "3.0.5"
 ---
 
 Recursively transforms every key of a plain object (including keys nested inside arrays and

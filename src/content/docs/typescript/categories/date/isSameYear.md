@@ -3,6 +3,7 @@ title: "isSameYear"
 sidebar:
   label: "isSameYear"
 description: "Checks if two dates are in the same year."
+version: "3.0.5"
 ---
 
 Checks if two dates are in the same year.

@@ -3,6 +3,7 @@ title: "buildStatusTable"
 sidebar:
   label: "buildStatusTable"
 description: "Builds a Markdown table body from a map of job names to CI/CD statuses."
+version: "3.0.5"
 ---
 
 Builds a Markdown table body from a map of job names to CI/CD statuses.

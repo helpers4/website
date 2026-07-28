@@ -3,6 +3,7 @@ title: "isNode"
 sidebar:
   label: "isNode"
 description: "Checks whether the code is currently running in a Node.js-like environment (`process.versions.node` is defined — also…"
+version: "3.0.5"
 ---
 
 Checks whether the code is currently running in a Node.js-like environment

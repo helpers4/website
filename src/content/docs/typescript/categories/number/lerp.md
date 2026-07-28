@@ -3,6 +3,7 @@ title: "lerp"
 sidebar:
   label: "lerp"
 description: "Linearly interpolates between `start` and `end` by the factor `t`."
+version: "3.0.5"
 ---
 
 Linearly interpolates between `start` and `end` by the factor `t`.

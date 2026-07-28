@@ -3,6 +3,7 @@ title: "increment"
 sidebar:
   label: "increment"
 description: "Increments a semantic version"
+version: "3.0.5"
 ---
 
 Increments a semantic version
