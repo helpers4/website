@@ -192,9 +192,12 @@
   audits 7 representative pages (not all ~940 — same template per page type). Accessibility/SEO
   at `error`, performance/best-practices at `warn` (performance is noisy on shared runners).
   `numberOfRuns: 1` for speed — worth revisiting once thresholds are tuned against real CI runs.
-- [ ] 🟢 **Broken-link checker** (e.g. `lychee-action`) — run on pushes touching
-  `src/content/docs/**`, plus a weekly scheduled run to catch external link rot (sites that move
-  or disappear after the fact, not just links that were wrong at merge time).
+- [x] 🟢 **Broken-link checker** (2026-07-28) — new `link-check.yml` (`lycheeverse/lychee-action@v2`),
+  triggers on pushes touching `src/content/docs/**` plus a weekly cron. Checks built `dist/**/*.html`
+  against `lychee.toml` (first-pass config: accepts 200/429, skips fragments, excludes archived
+  `typescript/vN` snapshots for now — real tradeoff, not full coverage). Opens a GitHub issue on
+  scheduled-run failure. Verified: valid TOML, valid workflow structure, real `pnpm build` still
+  clean.
 
 ---
 
