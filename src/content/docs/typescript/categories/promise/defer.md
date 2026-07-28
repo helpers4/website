@@ -2,7 +2,7 @@
 title: "defer"
 sidebar:
   label: "defer"
-description: "Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last regist…"
+description: "Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last register…"
 version: "3.0.5"
 ---
 

@@ -15,6 +15,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { createSortByStringFn } from '@helpers4/array';
 import { escape } from '@helpers4/markdown';
+import { capitalize, leadingSentence, truncate } from '@helpers4/string';
 import { compare } from '@helpers4/version';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -78,10 +79,6 @@ if (fs.existsSync(docsOutputPath)) {
 }
 fs.mkdirSync(docsOutputPath, { recursive: true });
 
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 function readJson(filePath) {
   try {
     return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
@@ -112,16 +109,9 @@ function escapeYamlDoubleQuoted(str) {
   return (str || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 }
 
-/**
- * Returns the first sentence of a description, capped at 120 characters.
- * Keeps the category index compact.
- */
+// First sentence of a description, capped at 120 characters — keeps the category index compact.
 function firstSentence(str) {
-  if (!str) return '';
-  const clean = str.replace(/\n/g, ' ').trim();
-  const end = clean.search(/\.\s|\.$/);
-  const sentence = end !== -1 ? clean.slice(0, end + 1) : clean;
-  return sentence.length > 120 ? sentence.slice(0, 117) + '…' : sentence;
+  return truncate(leadingSentence(str), 120);
 }
 
 /**

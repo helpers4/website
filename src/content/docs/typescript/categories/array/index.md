@@ -13,9 +13,9 @@ Utility functions for working with array operations.
 |----------|-------------|
 | [`cartesianProduct`](./cartesianproduct/) | Computes the Cartesian product of the provided arrays\. |
 | [`chunk`](./chunk/) | Chunks an array into smaller arrays of specified size\. |
-| [`combineSortFns`](./combinesortfns/) | Chains multiple sort functions into a single comparator: the first function decides the order unless it reports a tie… |
+| [`combineSortFns`](./combinesortfns/) | Chains multiple sort functions into a single comparator: the first function decides the order unless it reports a tie \(… |
 | [`compact`](./compact/) | Removes all falsy values \(\`false\`, \`null\`, \`undefined\`, \`0\`, \`""\`, \`NaN\`\) from an array\. |
-| [`countBy`](./countby/) | Groups the elements of an array by the key returned by \`keyFn\` and returns a record mapping each key to the number of… |
+| [`countBy`](./countby/) | Groups the elements of an array by the key returned by \`keyFn\` and returns a record mapping each key to the number of m… |
 | [`createSortByBooleanFn`](./createsortbybooleanfn/) | Creates a sort function for objects by a boolean property\. |
 | [`createSortByDateFn`](./createsortbydatefn/) | Creates a sort function for objects by date property\. |
 | [`createSortByNaturalFn`](./createsortbynaturalfn/) | Creates a sort function for objects by one or more string properties using natural ordering\. |
@@ -27,10 +27,10 @@ Utility functions for working with array operations.
 | [`equalsDeep`](./equalsdeep/) | Recursive structural array equality\. |
 | [`equalsShallow`](./equalsshallow/) | Positional, one\-level \(shallow\) array equality\. |
 | [`equalsUnordered`](./equalsunordered/) | Order\-independent \(set\-style\) array equality\. |
-| [`filterAsync`](./filterasync/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose pr… |
+| [`filterAsync`](./filterasync/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose pred… |
 | `find / findIndex` | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
 | `flatten / flat` | <span class="badge badge--secondary">native JS</span> `Array.prototype.flat(depth?)` *(ES2019)* |
-| [`forEachAsync`](./foreachasync/) | The async counterpart to \`Array\.prototype\.forEach\`: runs \`fn\` for every item for its side effects, discarding any ret… |
+| [`forEachAsync`](./foreachasync/) | The async counterpart to \`Array\.prototype\.forEach\`: runs \`fn\` for every item for its side effects, discarding any retur… |
 | `groupBy / group` | <span class="badge badge--secondary">native JS</span> `Object.groupBy(arr, fn)` *(ES2024)* |
 | `head / first` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(0)` *(ES2022)* |
 | `includes` | <span class="badge badge--secondary">native JS</span> `Array.prototype.includes()` *(ES2016)* |
@@ -39,16 +39,16 @@ Utility functions for working with array operations.
 | [`isEmpty`](./isempty/) | Checks if an array is empty \(has no elements\)\. |
 | [`isNonEmpty`](./isnonempty/) | Checks if an array is non\-empty \(has at least one element\)\. |
 | `last` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
-| [`mapAsync`](./mapasync/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, i… |
-| [`max`](./max/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
+| [`mapAsync`](./mapasync/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, in … |
+| [`max`](./max/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
 | [`mean`](./mean/) | Calculates the arithmetic mean \(average\) of an array of numbers\. |
 | [`meanBy`](./meanby/) | Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee\. |
 | [`median`](./median/) | Calculates the median \(middle value\) of an array of numbers\. |
-| [`min`](./min/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
+| [`min`](./min/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
 | [`partition`](./partition/) | Splits an array into two groups based on a predicate function\. |
 | [`percentile`](./percentile/) | Calculates the p\-th percentile of an array of numbers using linear interpolation between the closest ranks\. |
 | [`range`](./range/) | Generates an array of sequential numbers from start to end \(exclusive\)\. |
-| [`replaceOrAppend`](./replaceorappend/) | Returns a new array with the first item matching \`predicate\` replaced by \`item\` — or \`item\` appended at the end if no… |
+| [`replaceOrAppend`](./replaceorappend/) | Returns a new array with the first item matching \`predicate\` replaced by \`item\` — or \`item\` appended at the end if no m… |
 | `reverse` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
 | [`sample`](./sample/) | Picks one or more random elements from an array\. |
 | [`select`](./select/) | Filters and transforms an array in a single pass\. |
@@ -62,12 +62,12 @@ Utility functions for working with array operations.
 | [`sortStringAscInsensitiveFn`](./sortstringascinsensitivefn/) | Sort strings in ascending order \(case insensitive\) |
 | [`sortStringDescFn`](./sortstringdescfn/) | Sort strings in descending order |
 | [`sortStringNaturalAscFn`](./sortstringnaturalascfn/) | Sort strings in ascending order using natural \(human\-friendly\) ordering\. |
-| [`sortStringNaturalAscInsensitiveFn`](./sortstringnaturalascinsensitivefn/) | Sort strings in ascending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` — … |
+| [`sortStringNaturalAscInsensitiveFn`](./sortstringnaturalascinsensitivefn/) | Sort strings in ascending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` — tr… |
 | [`sortStringNaturalDescFn`](./sortstringnaturaldescfn/) | Sort strings in descending order using natural \(human\-friendly\) ordering\. |
-| [`sortStringNaturalDescInsensitiveFn`](./sortstringnaturaldescinsensitivefn/) | Sort strings in descending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` —… |
+| [`sortStringNaturalDescInsensitiveFn`](./sortstringnaturaldescinsensitivefn/) | Sort strings in descending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` — t… |
 | [`sum`](./sum/) | Calculates the sum of an array of numbers\. |
 | [`sumBy`](./sumby/) | Calculates the sum of numbers derived from each item of an array via an iteratee\. |
-| [`symmetricDifference`](./symmetricdifference/) | Returns the symmetric difference between two arrays: items present in exactly one of the two arrays \(in either, but n… |
+| [`symmetricDifference`](./symmetricdifference/) | Returns the symmetric difference between two arrays: items present in exactly one of the two arrays \(in either, but not… |
 | `tail` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
 | [`toggle`](./toggle/) | Returns a new array with \`item\` removed if present, or appended if absent — the common "toggle a selection" pattern\. |

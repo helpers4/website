@@ -2,7 +2,7 @@
 title: "incrementPrerelease"
 sidebar:
   label: "incrementPrerelease"
-description: "Increments the prerelease portion of a semantic version — the semantics `npm version prerelease --preid <id>` uses, n…"
+description: "Increments the prerelease portion of a semantic version — the semantics `npm version prerelease --preid <id>` uses, not…"
 version: "3.0.5"
 ---
 

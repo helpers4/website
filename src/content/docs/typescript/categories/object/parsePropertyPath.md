@@ -2,7 +2,7 @@
 title: "parsePropertyPath"
 sidebar:
   label: "parsePropertyPath"
-description: "Parses a dot/bracket-notation property path into an array of string/number key segments — the same notation accepted …"
+description: "Parses a dot/bracket-notation property path into an array of string/number key segments — the same notation accepted by…"
 version: "3.0.5"
 ---
 
