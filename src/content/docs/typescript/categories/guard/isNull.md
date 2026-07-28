@@ -2,6 +2,7 @@
 title: "isNull"
 sidebar:
   label: "isNull"
+description: "Checks if a value is `null`."
 ---
 
 Checks if a value is `null`.

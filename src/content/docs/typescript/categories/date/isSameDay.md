@@ -2,6 +2,7 @@
 title: "isSameDay"
 sidebar:
   label: "isSameDay"
+description: "Checks if two dates are the same day."
 ---
 
 Checks if two dates are the same day.

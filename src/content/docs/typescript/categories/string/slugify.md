@@ -2,6 +2,7 @@
 title: "slugify"
 sidebar:
   label: "slugify"
+description: "Converts a string into a URL-friendly slug."
 ---
 
 Converts a string into a URL-friendly slug.

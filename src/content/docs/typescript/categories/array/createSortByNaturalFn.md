@@ -2,6 +2,7 @@
 title: "createSortByNaturalFn"
 sidebar:
   label: "createSortByNaturalFn"
+description: "Creates a sort function for objects by one or more string properties using natural ordering."
 ---
 
 Creates a sort function for objects by one or more string properties using

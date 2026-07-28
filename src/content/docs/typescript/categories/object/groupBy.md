@@ -2,6 +2,7 @@
 title: "groupBy"
 sidebar:
   label: "groupBy"
+description: "Groups an array of items by a key derived from each item."
 ---
 
 Groups an array of items by a key derived from each item.

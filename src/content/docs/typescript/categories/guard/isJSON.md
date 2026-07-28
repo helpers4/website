@@ -2,6 +2,7 @@
 title: "isJSON"
 sidebar:
   label: "isJSON"
+description: "Checks whether a value is a string containing valid, parseable JSON text."
 ---
 
 Checks whether a value is a string containing valid, parseable JSON text.

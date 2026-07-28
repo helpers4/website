@@ -2,6 +2,7 @@
 title: "toSeconds"
 sidebar:
   label: "toSeconds"
+description: "Converts a date to a timestamp in **seconds** (epoch seconds)."
 ---
 
 Converts a date to a timestamp in **seconds** (epoch seconds).

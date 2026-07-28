@@ -2,6 +2,7 @@
 title: "tryit"
 sidebar:
   label: "tryit"
+description: "Wraps a function so it never throws."
 ---
 
 Wraps a function so it never throws. Instead, it returns a `[error, result]` tuple.

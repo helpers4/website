@@ -2,6 +2,7 @@
 title: "extractNumber"
 sidebar:
   label: "extractNumber"
+description: "Extracts the first number embedded anywhere in a string, or passes through a `number`."
 ---
 
 Extracts the first number embedded anywhere in a string, or passes through a `number`.

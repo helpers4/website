@@ -2,6 +2,7 @@
 title: "parallel"
 sidebar:
   label: "parallel"
+description: "Runs an array of async functions with a concurrency limit."
 ---
 
 Runs an array of async functions with a concurrency limit.

@@ -2,6 +2,7 @@
 title: "titleCaseKeys"
 sidebar:
   label: "titleCaseKeys"
+description: "Recursively transforms every key of a plain object (including keys nested inside arrays and nested objects) to Title …"
 ---
 
 Recursively transforms every key of a plain object (including keys nested inside arrays and

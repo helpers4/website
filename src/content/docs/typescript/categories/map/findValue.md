@@ -2,6 +2,7 @@
 title: "findValue"
 sidebar:
   label: "findValue"
+description: "Returns the first value of a Map whose entry satisfies the predicate, in insertion order."
 ---
 
 Returns the first value of a Map whose entry satisfies the predicate, in insertion order.

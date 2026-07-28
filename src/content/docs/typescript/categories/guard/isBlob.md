@@ -2,6 +2,7 @@
 title: "isBlob"
 sidebar:
   label: "isBlob"
+description: "Checks if a value is a Blob instance."
 ---
 
 Checks if a value is a Blob instance.

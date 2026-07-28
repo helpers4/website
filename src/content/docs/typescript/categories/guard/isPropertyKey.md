@@ -2,6 +2,7 @@
 title: "isPropertyKey"
 sidebar:
   label: "isPropertyKey"
+description: "Checks if a value is a valid property key: `string`, `number`, or `symbol`."
 ---
 
 Checks if a value is a valid property key: `string`, `number`, or `symbol`.

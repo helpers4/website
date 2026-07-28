@@ -2,6 +2,7 @@
 title: "isObservable"
 sidebar:
   label: "isObservable"
+description: "Checks if a value is an RxJS Observable or any compatible observable."
 ---
 
 Checks if a value is an RxJS Observable or any compatible observable.

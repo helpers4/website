@@ -2,6 +2,7 @@
 title: "parallelSettle"
 sidebar:
   label: "parallelSettle"
+description: "Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the firs…"
 ---
 
 Runs an array of async functions with a concurrency limit, partitioning the outcomes

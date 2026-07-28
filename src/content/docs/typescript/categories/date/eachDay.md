@@ -2,6 +2,7 @@
 title: "eachDay"
 sidebar:
   label: "eachDay"
+description: "Returns an array of `Date` objects for each day from `start` to `end` (inclusive)."
 ---
 
 Returns an array of `Date` objects for each day from `start` to `end` (inclusive).

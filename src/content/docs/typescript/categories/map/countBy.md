@@ -2,6 +2,7 @@
 title: "countBy"
 sidebar:
   label: "countBy"
+description: "Groups the entries of a Map by a derived key and counts how many fall into each group."
 ---
 
 Groups the entries of a Map by a derived key and counts how many fall into each group.

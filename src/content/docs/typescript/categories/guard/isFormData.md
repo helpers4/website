@@ -2,6 +2,7 @@
 title: "isFormData"
 sidebar:
   label: "isFormData"
+description: "Checks if a value is a FormData instance."
 ---
 
 Checks if a value is a FormData instance.

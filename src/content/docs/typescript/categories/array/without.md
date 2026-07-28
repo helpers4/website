@@ -2,6 +2,7 @@
 title: "without"
 sidebar:
   label: "without"
+description: "Returns a new array with all occurrences of the given values removed."
 ---
 
 Returns a new array with all occurrences of the given values removed.

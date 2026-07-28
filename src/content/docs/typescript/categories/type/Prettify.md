@@ -2,6 +2,7 @@
 title: "Prettify"
 sidebar:
   label: "Prettify"
+description: "Flattens an intersection type into a single readable object type."
 ---
 
 Flattens an intersection type into a single readable object type.

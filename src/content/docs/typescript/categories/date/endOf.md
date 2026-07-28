@@ -2,6 +2,7 @@
 title: "endOf"
 sidebar:
   label: "endOf"
+description: "Returns a new `Date` set to the **end** of the given unit."
 ---
 
 Returns a new `Date` set to the **end** of the given unit.

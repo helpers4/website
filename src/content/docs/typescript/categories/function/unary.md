@@ -2,6 +2,7 @@
 title: "unary"
 sidebar:
   label: "unary"
+description: "Creates a function that calls `fn` with only its first argument, discarding any others."
 ---
 
 Creates a function that calls `fn` with only its first argument, discarding

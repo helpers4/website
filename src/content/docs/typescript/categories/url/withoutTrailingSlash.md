@@ -2,6 +2,7 @@
 title: "withoutTrailingSlash"
 sidebar:
   label: "withoutTrailingSlash"
+description: "Removes the trailing slash `/` from the given URL if it is present."
 ---
 
 Removes the trailing slash `/` from the given URL if it is present.

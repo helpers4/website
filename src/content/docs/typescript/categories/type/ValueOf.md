@@ -2,6 +2,7 @@
 title: "ValueOf"
 sidebar:
   label: "ValueOf"
+description: "Produces a union of all value types of an object type `T`."
 ---
 
 Produces a union of all value types of an object type `T`.

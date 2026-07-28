@@ -2,6 +2,7 @@
 title: "pascalCase"
 sidebar:
   label: "pascalCase"
+description: "Converts a string to PascalCase."
 ---
 
 Converts a string to PascalCase.

@@ -2,6 +2,7 @@
 title: "normalizeTimestamp"
 sidebar:
   label: "normalizeTimestamp"
+description: "Converts a timestamp to JavaScript milliseconds format"
 ---
 
 Converts a timestamp to JavaScript milliseconds format

@@ -2,6 +2,7 @@
 title: "isDate"
 sidebar:
   label: "isDate"
+description: "Checks if a value is a Date instance."
 ---
 
 Checks if a value is a Date instance.

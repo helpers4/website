@@ -2,6 +2,7 @@
 title: "isSymbol"
 sidebar:
   label: "isSymbol"
+description: "Checks if a value is a symbol."
 ---
 
 Checks if a value is a symbol.

@@ -2,6 +2,7 @@
 title: "falsyPromiseOrThrow"
 sidebar:
   label: "falsyPromiseOrThrow"
+description: "Returns a function that passes through falsy data or throws an error."
 ---
 
 Returns a function that passes through falsy data or throws an error.

@@ -2,6 +2,7 @@
 title: "snakeCase"
 sidebar:
   label: "snakeCase"
+description: "Converts a string to snake_case."
 ---
 
 Converts a string to snake_case.

@@ -2,6 +2,7 @@
 title: "isBigInt"
 sidebar:
   label: "isBigInt"
+description: "Checks if a value is a bigint."
 ---
 
 Checks if a value is a bigint.

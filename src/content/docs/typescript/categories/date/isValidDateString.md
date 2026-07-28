@@ -2,6 +2,7 @@
 title: "isValidDateString"
 sidebar:
   label: "isValidDateString"
+description: "Checks whether a string can be parsed into a valid `Date`."
 ---
 
 Checks whether a string can be parsed into a valid `Date`.

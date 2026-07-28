@@ -2,6 +2,7 @@
 title: "equalsDeep"
 sidebar:
   label: "equalsDeep"
+description: "Recursive structural object equality."
 ---
 
 Recursive structural object equality.

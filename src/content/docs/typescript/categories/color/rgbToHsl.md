@@ -2,6 +2,7 @@
 title: "rgbToHsl"
 sidebar:
   label: "rgbToHsl"
+description: "Converts an RGB(A) color into HSL(A)."
 ---
 
 Converts an RGB(A) color into HSL(A).

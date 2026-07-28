@@ -2,6 +2,7 @@
 title: "statusToIcon"
 sidebar:
   label: "statusToIcon"
+description: "Maps a CI/CD job status to an emoji icon."
 ---
 
 Maps a CI/CD job status to an emoji icon.

@@ -2,6 +2,7 @@
 title: "isNonEmpty"
 sidebar:
   label: "isNonEmpty"
+description: "Checks if an array is non-empty (has at least one element)."
 ---
 
 Checks if an array is non-empty (has at least one element).

@@ -2,6 +2,7 @@
 title: "sortNumberDescFn"
 sidebar:
   label: "sortNumberDescFn"
+description: "Sort numbers in descending order"
 ---
 
 Sort numbers in descending order

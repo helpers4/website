@@ -2,6 +2,7 @@
 title: "parseDuration"
 sidebar:
   label: "parseDuration"
+description: "Parses a compact duration string (as produced by formatDuration, e.g."
 ---
 
 Parses a compact duration string (as produced by formatDuration,

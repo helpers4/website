@@ -2,6 +2,7 @@
 title: "truncate"
 sidebar:
   label: "truncate"
+description: "Truncates a string to `maxLength` characters, appending an ellipsis when cut."
 ---
 
 Truncates a string to `maxLength` characters, appending an ellipsis when cut.

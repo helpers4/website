@@ -2,6 +2,7 @@
 title: "isJSONArray"
 sidebar:
   label: "isJSONArray"
+description: "Checks whether a value is an array whose every element is a valid JSON value (see isJSONValue)."
 ---
 
 Checks whether a value is an array whose every element is a valid JSON value

@@ -2,6 +2,7 @@
 title: "sortKeys"
 sidebar:
   label: "sortKeys"
+description: "Creates a new object with the same entries as the input, but with its own keys sorted."
 ---
 
 Creates a new object with the same entries as the input, but with its own keys sorted.

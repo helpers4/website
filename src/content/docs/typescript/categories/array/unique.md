@@ -2,6 +2,7 @@
 title: "unique"
 sidebar:
   label: "unique"
+description: "Removes duplicate values from an array."
 ---
 
 Removes duplicate values from an array.

@@ -2,6 +2,7 @@
 title: "clamp"
 sidebar:
   label: "clamp"
+description: "Clamps a number between min and max values"
 ---
 
 Clamps a number between min and max values

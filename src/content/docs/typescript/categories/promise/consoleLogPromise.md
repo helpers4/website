@@ -2,6 +2,7 @@
 title: "consoleLogPromise"
 sidebar:
   label: "consoleLogPromise"
+description: "Returns a function that logs data to the console and passes it through."
 ---
 
 Returns a function that logs data to the console and passes it through.

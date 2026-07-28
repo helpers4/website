@@ -2,6 +2,7 @@
 title: "chunk"
 sidebar:
   label: "chunk"
+description: "Chunks an array into smaller arrays of specified size."
 ---
 
 Chunks an array into smaller arrays of specified size.

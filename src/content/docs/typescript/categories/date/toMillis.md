@@ -2,6 +2,7 @@
 title: "toMillis"
 sidebar:
   label: "toMillis"
+description: "Converts a date to a timestamp in **milliseconds** (epoch millis)."
 ---
 
 Converts a date to a timestamp in **milliseconds** (epoch millis).

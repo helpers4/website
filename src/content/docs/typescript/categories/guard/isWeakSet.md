@@ -2,6 +2,7 @@
 title: "isWeakSet"
 sidebar:
   label: "isWeakSet"
+description: "Checks if a value is a WeakSet instance."
 ---
 
 Checks if a value is a WeakSet instance.

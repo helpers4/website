@@ -2,6 +2,7 @@
 title: "kebabCase"
 sidebar:
   label: "kebabCase"
+description: "Converts a string to kebab-case."
 ---
 
 Converts a string to kebab-case.

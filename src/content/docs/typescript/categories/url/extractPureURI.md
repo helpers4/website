@@ -2,6 +2,7 @@
 title: "extractPureURI"
 sidebar:
   label: "extractPureURI"
+description: "Extracts the pure URI from a URL by removing query parameters and fragments."
 ---
 
 Extracts the pure URI from a URL by removing query parameters and fragments.

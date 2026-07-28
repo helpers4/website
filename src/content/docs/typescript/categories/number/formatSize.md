@@ -2,6 +2,7 @@
 title: "formatSize"
 sidebar:
   label: "formatSize"
+description: "Format a byte count into a human-readable string with the appropriate unit."
 ---
 
 Format a byte count into a human-readable string with the appropriate unit.

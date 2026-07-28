@@ -2,6 +2,7 @@
 title: "onlyPath"
 sidebar:
   label: "onlyPath"
+description: "Extract only the path from an URI with optional query and fragments."
 ---
 
 Extract only the path from an URI with optional query and fragments.

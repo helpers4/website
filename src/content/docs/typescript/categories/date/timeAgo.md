@@ -2,6 +2,7 @@
 title: "timeAgo"
 sidebar:
   label: "timeAgo"
+description: "Formats a date as a human-readable relative time string."
 ---
 
 Formats a date as a human-readable relative time string.

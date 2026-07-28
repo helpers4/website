@@ -2,6 +2,7 @@
 title: "addMonths"
 sidebar:
   label: "addMonths"
+description: "Adds months to a date."
 ---
 
 Adds months to a date.

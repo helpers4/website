@@ -2,6 +2,7 @@
 title: "withLeadingSlash"
 sidebar:
   label: "withLeadingSlash"
+description: "Adds a leading slash `/` to the given URL if it is not already present."
 ---
 
 Adds a leading slash `/` to the given URL if it is not already present.

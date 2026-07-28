@@ -2,6 +2,7 @@
 title: "percentile"
 sidebar:
   label: "percentile"
+description: "Calculates the p-th percentile of an array of numbers using linear interpolation between the closest ranks."
 ---
 
 Calculates the p-th percentile of an array of numbers using linear interpolation between

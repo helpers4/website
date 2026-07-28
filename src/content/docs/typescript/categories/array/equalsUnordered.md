@@ -2,6 +2,7 @@
 title: "equalsUnordered"
 sidebar:
   label: "equalsUnordered"
+description: "Order-independent (set-style) array equality."
 ---
 
 Order-independent (set-style) array equality.

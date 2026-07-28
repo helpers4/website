@@ -2,6 +2,7 @@
 title: "resolveRecord"
 sidebar:
   label: "resolveRecord"
+description: "Resolves an array of keys into a record by calling an async mapper for each key."
 ---
 
 Resolves an array of keys into a record by calling an async mapper for each key.

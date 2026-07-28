@@ -2,6 +2,7 @@
 title: "isAsyncGenerator"
 sidebar:
   label: "isAsyncGenerator"
+description: "Checks if a value is an async generator object (the result of calling an `async function*`)."
 ---
 
 Checks if a value is an async generator object (the result of calling an `async function*`).

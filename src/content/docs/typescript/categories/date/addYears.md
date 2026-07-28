@@ -2,6 +2,7 @@
 title: "addYears"
 sidebar:
   label: "addYears"
+description: "Adds years to a date."
 ---
 
 Adds years to a date.

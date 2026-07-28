@@ -2,6 +2,7 @@
 title: "once"
 sidebar:
   label: "once"
+description: "Creates a function that is restricted to be called only once."
 ---
 
 Creates a function that is restricted to be called only once.

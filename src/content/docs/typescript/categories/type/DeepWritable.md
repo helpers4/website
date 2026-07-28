@@ -2,6 +2,7 @@
 title: "DeepWritable"
 sidebar:
   label: "DeepWritable"
+description: "Recursively removes `readonly` from all properties of T, including nested objects, array elements, and tuple positions."
 ---
 
 Recursively removes `readonly` from all properties of T, including nested

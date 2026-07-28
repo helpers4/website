@@ -2,6 +2,7 @@
 title: "sortStringAscInsensitiveFn"
 sidebar:
   label: "sortStringAscInsensitiveFn"
+description: "Sort strings in ascending order (case insensitive)"
 ---
 
 Sort strings in ascending order (case insensitive)

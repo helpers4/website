@@ -2,6 +2,7 @@
 title: "symmetricDifference"
 sidebar:
   label: "symmetricDifference"
+description: "Returns the symmetric difference between two arrays: items present in exactly one of the two arrays (in either, but n…"
 ---
 
 Returns the symmetric difference between two arrays: items present in

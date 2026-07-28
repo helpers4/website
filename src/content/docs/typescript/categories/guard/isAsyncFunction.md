@@ -2,6 +2,7 @@
 title: "isAsyncFunction"
 sidebar:
   label: "isAsyncFunction"
+description: "Checks if a value is an async function."
 ---
 
 Checks if a value is an async function.

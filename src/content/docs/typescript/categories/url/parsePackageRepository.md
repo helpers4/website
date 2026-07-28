@@ -2,6 +2,7 @@
 title: "parsePackageRepository"
 sidebar:
   label: "parsePackageRepository"
+description: "Parse the `repository` field from `package.json` into a structured object."
 ---
 
 Parse the `repository` field from `package.json` into a structured object.

@@ -2,6 +2,7 @@
 title: "isNonEmpty"
 sidebar:
   label: "isNonEmpty"
+description: "Checks if a string is non-empty (has at least one character)."
 ---
 
 Checks if a string is non-empty (has at least one character).

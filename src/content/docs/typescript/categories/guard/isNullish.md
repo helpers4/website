@@ -2,6 +2,7 @@
 title: "isNullish"
 sidebar:
   label: "isNullish"
+description: "Checks if a value is null or undefined (nullish)."
 ---
 
 Checks if a value is null or undefined (nullish).

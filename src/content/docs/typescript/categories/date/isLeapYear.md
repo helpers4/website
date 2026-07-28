@@ -2,6 +2,7 @@
 title: "isLeapYear"
 sidebar:
   label: "isLeapYear"
+description: "Returns `true` if the given year is a leap year."
 ---
 
 Returns `true` if the given year is a leap year.

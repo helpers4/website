@@ -2,6 +2,7 @@
 title: "partial"
 sidebar:
   label: "partial"
+description: "Partially applies arguments to a function, returning a new function that accepts the remaining arguments."
 ---
 
 Partially applies arguments to a function, returning a new function that

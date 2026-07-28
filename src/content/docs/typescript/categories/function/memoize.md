@@ -2,6 +2,7 @@
 title: "memoize"
 sidebar:
   label: "memoize"
+description: "Returns a memoized version of the function that caches results."
 ---
 
 Returns a memoized version of the function that caches results.

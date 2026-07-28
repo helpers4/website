@@ -2,6 +2,7 @@
 title: "titleCase"
 sidebar:
   label: "titleCase"
+description: "Converts a string to Title Case."
 ---
 
 Converts a string to Title Case.

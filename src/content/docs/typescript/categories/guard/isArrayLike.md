@@ -2,6 +2,7 @@
 title: "isArrayLike"
 sidebar:
   label: "isArrayLike"
+description: "Checks if a value is array-like: has a non-negative integer `length` property."
 ---
 
 Checks if a value is array-like: has a non-negative integer `length` property.

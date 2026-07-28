@@ -2,6 +2,7 @@
 title: "isPlainObject"
 sidebar:
   label: "isPlainObject"
+description: "Checks if a value is a plain object."
 ---
 
 Checks if a value is a plain object.

@@ -2,6 +2,7 @@
 title: "isNumber"
 sidebar:
   label: "isNumber"
+description: "Checks if a value is a number."
 ---
 
 Checks if a value is a number.

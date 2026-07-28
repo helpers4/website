@@ -2,6 +2,7 @@
 title: "throttle"
 sidebar:
   label: "throttle"
+description: "Creates a throttled function that only invokes func at most once per every wait milliseconds"
 ---
 
 Creates a throttled function that only invokes func at most once per every wait milliseconds

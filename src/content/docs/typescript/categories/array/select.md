@@ -2,6 +2,7 @@
 title: "select"
 sidebar:
   label: "select"
+description: "Filters and transforms an array in a single pass."
 ---
 
 Filters and transforms an array in a single pass.

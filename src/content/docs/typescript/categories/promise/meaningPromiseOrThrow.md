@@ -2,6 +2,7 @@
 title: "meaningPromiseOrThrow"
 sidebar:
   label: "meaningPromiseOrThrow"
+description: "Returns a function that passes through meaningful data or throws an error."
 ---
 
 Returns a function that passes through meaningful data or throws an error.

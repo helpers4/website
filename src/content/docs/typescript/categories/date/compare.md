@@ -2,6 +2,7 @@
 title: "compare"
 sidebar:
   label: "compare"
+description: "Comparison of two dates."
 ---
 
 Comparison of two dates.

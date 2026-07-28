@@ -2,6 +2,7 @@
 title: "safeJsonParse"
 sidebar:
   label: "safeJsonParse"
+description: "Parses a JSON string, returning `null` (or a fallback) on any parse failure."
 ---
 
 Parses a JSON string, returning `null` (or a fallback) on any parse failure.

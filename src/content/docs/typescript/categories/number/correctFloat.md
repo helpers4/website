@@ -2,6 +2,7 @@
 title: "correctFloat"
 sidebar:
   label: "correctFloat"
+description: "Corrects floating-point arithmetic errors by rounding to a given number of significant digits."
 ---
 
 Corrects floating-point arithmetic errors by rounding to a given number

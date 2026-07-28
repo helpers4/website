@@ -2,6 +2,7 @@
 title: "set"
 sidebar:
   label: "set"
+description: "Sets a value in an object at the given path, creating intermediate objects as needed."
 ---
 
 Sets a value in an object at the given path, creating intermediate objects as needed.

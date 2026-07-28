@@ -2,6 +2,7 @@
 title: "isPromiseLike"
 sidebar:
   label: "isPromiseLike"
+description: "Checks if a value is a thenable (has a `.then()` method)."
 ---
 
 Checks if a value is a thenable (has a `.then()` method).

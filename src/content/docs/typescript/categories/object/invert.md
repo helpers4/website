@@ -2,6 +2,7 @@
 title: "invert"
 sidebar:
   label: "invert"
+description: "Returns a new object with keys and values swapped."
 ---
 
 Returns a new object with keys and values swapped.

@@ -2,6 +2,7 @@
 title: "isRegExp"
 sidebar:
   label: "isRegExp"
+description: "Checks if a value is a RegExp instance."
 ---
 
 Checks if a value is a RegExp instance.

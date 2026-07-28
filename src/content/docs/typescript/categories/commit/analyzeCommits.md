@@ -2,6 +2,7 @@
 title: "analyzeCommits"
 sidebar:
   label: "analyzeCommits"
+description: "Analyses a list of commits to suggest a semantic version bump."
 ---
 
 Analyses a list of commits to suggest a semantic version bump.

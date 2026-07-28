@@ -2,6 +2,7 @@
 title: "isValid"
 sidebar:
   label: "isValid"
+description: "Checks if a value is a valid Date instance (not `Invalid Date`)."
 ---
 
 Checks if a value is a valid Date instance (not `Invalid Date`).

@@ -2,6 +2,7 @@
 title: "addDays"
 sidebar:
   label: "addDays"
+description: "Adds days to a date."
 ---
 
 Adds days to a date.

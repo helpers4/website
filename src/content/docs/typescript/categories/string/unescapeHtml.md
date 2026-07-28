@@ -2,6 +2,7 @@
 title: "unescapeHtml"
 sidebar:
   label: "unescapeHtml"
+description: "Unescapes the HTML entities `&amp;`, `&lt;`, `&gt;`, `&quot;`, and `&#39;` back to `&`, `<`, `>`, `\"`, and `'`."
 ---
 
 Unescapes the HTML entities `&amp;`, `&lt;`, `&gt;`, `&quot;`, and `&#39;`

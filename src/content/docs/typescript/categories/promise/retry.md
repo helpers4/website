@@ -2,6 +2,7 @@
 title: "retry"
 sidebar:
   label: "retry"
+description: "Retries a promise-returning function up to maxAttempts times"
 ---
 
 Retries a promise-returning function up to maxAttempts times
