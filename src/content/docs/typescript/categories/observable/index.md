@@ -12,7 +12,7 @@ Utility functions for working with observable operations.
 | Function | Description |
 |----------|-------------|
 | [`combine`](./combine/) | Combine two observables with a map function and an optional pre\-treatment\. |
-| [`combineLatest`](./combinelatest/) | Combines multiple Observables to create an Observable whose values are calculated from the latest values of each of i… |
+| [`combineLatest`](./combinelatest/) | Combines multiple Observables to create an Observable whose values are calculated from the latest values of each of its… |
 | [`isObservable`](./isobservable/) | Checks if a value is an RxJS Observable or any compatible observable\. |
 
 ## Dependencies

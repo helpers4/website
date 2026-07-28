@@ -22,7 +22,7 @@ sidebar:
 | [`buildConventionalCommitRegex`](../commit/buildconventionalcommitregex/) | [commit](../commit/) | Builds a regular expression matching the \*\*subject line\*\* of a Conventional Commits message\. |
 | [`buildStatusTable`](../ci/buildstatustable/) | [ci](../ci/) | Builds a Markdown table body from a map of job names to CI/CD statuses\. |
 | [`camelCase`](../string/camelcase/) | [string](../string/) | Converts a string to camelCase\. |
-| [`camelCaseKeys`](../object/camelcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to camelC… |
+| [`camelCaseKeys`](../object/camelcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to camelCas… |
 | [`capitalize`](../string/capitalize/) | [string](../string/) | Capitalizes the first letter of a string\. |
 | [`cartesianProduct`](../array/cartesianproduct/) | [array](../array/) | Computes the Cartesian product of the provided arrays\. |
 | `ceil / floor` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `Math.ceil() / Math.floor()` *(ES1)* |
@@ -33,21 +33,21 @@ sidebar:
 | [`clone`](../object/clone/) | [object](../object/) | Creates a shallow copy of a value — one level deep, unlike cloneDeep\. |
 | [`cloneDeep`](../object/clonedeep/) | [object](../object/) | Creates a deep copy of an object or array\. |
 | [`combine`](../observable/combine/) | [observable](../observable/) | Combine two observables with a map function and an optional pre\-treatment\. |
-| [`combineLatest`](../observable/combinelatest/) | [observable](../observable/) | Combines multiple Observables to create an Observable whose values are calculated from the latest values of each of i… |
-| [`combineSortFns`](../array/combinesortfns/) | [array](../array/) | Chains multiple sort functions into a single comparator: the first function decides the order unless it reports a tie… |
+| [`combineLatest`](../observable/combinelatest/) | [observable](../observable/) | Combines multiple Observables to create an Observable whose values are calculated from the latest values of each of its… |
+| [`combineSortFns`](../array/combinesortfns/) | [array](../array/) | Chains multiple sort functions into a single comparator: the first function decides the order unless it reports a tie \(… |
 | [`compact`](../array/compact/) | [array](../array/) | Removes all falsy values \(\`false\`, \`null\`, \`undefined\`, \`0\`, \`""\`, \`NaN\`\) from an array\. |
 | [`compact`](../object/compact/) | [object](../object/) | Removes all entries with falsy values \(\`false\`, \`null\`, \`undefined\`, \`0\`, \`""\`, \`NaN\`\) from an object\. |
 | [`compare`](../date/compare/) | [date](../date/) | Comparison of two dates\. |
-| [`compare`](../version/compare/) | [version](../version/) | Compares two semantic version strings according to SemVer 2\.0\.0 specification  Supports: \- Core version: MAJOR\.MINOR\.… |
+| [`compare`](../version/compare/) | [version](../version/) | Compares two semantic version strings according to SemVer 2\.0\.0 specification  Supports: \- Core version: MAJOR\.MINOR\.PA… |
 | `compare (ordering)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.compare(a, b) / Temporal.Instant.compare(a, b)` *(Temporal (Stage 3))* |
 | [`compose`](../function/compose/) | [function](../function/) | Composes functions right\-to\-left: \`compose\(f, g\)\(x\)\` is equivalent to \`f\(g\(x\)\)\`\. |
 | [`consoleLogPromise`](../promise/consolelogpromise/) | [promise](../promise/) | Returns a function that logs data to the console and passes it through\. |
 | [`correctFloat`](../number/correctfloat/) | [number](../number/) | Corrects floating\-point arithmetic errors by rounding to a given number of significant digits\. |
-| [`countBy`](../array/countby/) | [array](../array/) | Groups the elements of an array by the key returned by \`keyFn\` and returns a record mapping each key to the number of… |
+| [`countBy`](../array/countby/) | [array](../array/) | Groups the elements of an array by the key returned by \`keyFn\` and returns a record mapping each key to the number of m… |
 | [`countBy`](../map/countby/) | [map](../map/) | Groups the entries of a Map by a derived key and counts how many fall into each group\. |
 | [`countBy`](../set/countby/) | [set](../set/) | Groups the values of a Set by a derived key and counts how many fall into each group\. |
 | [`createMutex`](../promise/createmutex/) | [promise](../promise/) | Creates a mutex: a lock allowing at most one holder at a time, queueing excess \`acquire\(\)\` callers in FIFO order\. |
-| [`createSemaphore`](../promise/createsemaphore/) | [promise](../promise/) | Creates a semaphore limiting concurrent access to \`permits\` holders at a time, queueing excess \`acquire\(\)\` callers in… |
+| [`createSemaphore`](../promise/createsemaphore/) | [promise](../promise/) | Creates a semaphore limiting concurrent access to \`permits\` holders at a time, queueing excess \`acquire\(\)\` callers in F… |
 | [`createSortByBooleanFn`](../array/createsortbybooleanfn/) | [array](../array/) | Creates a sort function for objects by a boolean property\. |
 | [`createSortByDateFn`](../array/createsortbydatefn/) | [array](../array/) | Creates a sort function for objects by date property\. |
 | [`createSortByNaturalFn`](../array/createsortbynaturalfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties using natural ordering\. |
@@ -55,14 +55,14 @@ sidebar:
 | [`createSortByStringFn`](../array/createsortbystringfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties\. |
 | [`curry`](../function/curry/) | [function](../function/) | Transforms a multi\-argument function into a chain of single\-argument functions \(Haskell\-style currying\)\. |
 | [`daysInMonth`](../date/daysinmonth/) | [date](../date/) | Returns the number of days in the given month of the given year\. |
-| [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last tim… |
-| [`dedent`](../string/dedent/) | [string](../string/) | Strips the common leading whitespace from every line of a multi\-line string, and trims a single leading/trailing blan… |
+| [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time … |
+| [`dedent`](../string/dedent/) | [string](../string/) | Strips the common leading whitespace from every line of a multi\-line string, and trims a single leading/trailing blank … |
 | [`DeepGet`](../type/deepget/) | [type](../type/) | Resolves the value type at a given \`Path\` within \`T\`\. |
 | [`DeepPartial`](../type/deeppartial/) | [type](../type/) | Recursively makes all properties of T optional, including nested objects and array elements\. |
 | [`DeepSet`](../type/deepset/) | [type](../type/) | Produces the type of \`T\` after replacing the value at \`Path\` with \`V\`\. |
 | [`DeepWritable`](../type/deepwritable/) | [type](../type/) | Recursively removes \`readonly\` from all properties of T, including nested objects, array elements, and tuple positions\. |
 | [`DEFAULT_PERCENTAGE_TIERS`](../ci/default_percentage_tiers/) | [ci](../ci/) | Default tiers, geared towards coverage/quality\-gate style percentages\. |
-| [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order \(last regist… |
+| [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order \(last register… |
 | [`delay`](../promise/delay/) | [promise](../promise/) | Creates a promise that resolves after specified delay |
 | [`diff`](../object/diff/) | [object](../object/) | Structural object diff\. |
 | [`difference`](../array/difference/) | [array](../array/) | Returns the difference between two arrays \(items in first array but not in second\)\. |
@@ -89,7 +89,7 @@ sidebar:
 | [`falsyPromiseOrThrow`](../promise/falsypromiseorthrow/) | [promise](../promise/) | Returns a function that passes through falsy data or throws an error\. |
 | [`filter`](../map/filter/) | [map](../map/) | Creates a new Map containing only the entries for which the predicate returns true\. |
 | [`filter`](../set/filter/) | [set](../set/) | Creates a new Set containing only the values for which the predicate returns true\. |
-| [`filterAsync`](../array/filterasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose pr… |
+| [`filterAsync`](../array/filterasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose pred… |
 | `find / findIndex` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
 | [`findKey`](../map/findkey/) | [map](../map/) | Returns the first key of a Map whose entry satisfies the predicate, in insertion order\. |
 | `findKey / findValue` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.entries().find(([k, v]) => pred(v, k))?.[0 or 1]` *(ES2025 (Iterator Helpers))* |
@@ -99,11 +99,11 @@ sidebar:
 | [`flip`](../function/flip/) | [function](../function/) | Creates a function that invokes \`fn\` with the first two arguments swapped\. |
 | `forEach` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `Map.prototype.forEach((value, key, map) => ...)` *(ES2015)* |
 | `forEach` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.forEach((value, value2, set) => ...)` *(ES2015)* |
-| [`forEachAsync`](../array/foreachasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.forEach\`: runs \`fn\` for every item for its side effects, discarding any ret… |
+| [`forEachAsync`](../array/foreachasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.forEach\`: runs \`fn\` for every item for its side effects, discarding any retur… |
 | [`formatCompact`](../number/formatcompact/) | [number](../number/) | Formats a number using compact notation \(e\.g\. |
 | [`formatDuration`](../date/formatduration/) | [date](../date/) | Formats a duration in milliseconds as a compact human\-readable string\. |
 | [`formatInTimezone`](../date/formatintimezone/) | [date](../date/) | Formats a date in a specific IANA timezone using \`Intl\.DateTimeFormat\`\. |
-| [`formatProgressBar`](../string/formatprogressbar/) | [string](../string/) | Formats a value as a text progress bar, repeating \`filledChar\`/\`emptyChar\` across \`width\` cells proportional to \`valu… |
+| [`formatProgressBar`](../string/formatprogressbar/) | [string](../string/) | Formats a value as a text progress bar, repeating \`filledChar\`/\`emptyChar\` across \`width\` cells proportional to \`value … |
 | [`formatSize`](../number/formatsize/) | [number](../number/) | Format a byte count into a human\-readable string with the appropriate unit\. |
 | `from (parse temporal string)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.from(str) / Temporal.PlainDate.from(str) / etc.` *(Temporal (Stage 3))* |
 | [`fromMillis`](../date/frommillis/) | [date](../date/) | Creates a \`Date\` from a timestamp in \*\*milliseconds\*\*\. |
@@ -119,13 +119,13 @@ sidebar:
 | [`hasValue`](../map/hasvalue/) | [map](../map/) | Checks whether a value exists anywhere in a Map \(\`Map\.prototype\.has\` checks keys, not values\)\. |
 | `hasValue` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.values().some(v => Object.is(v, value))` *(ES2025 (Iterator Helpers))* |
 | `head / first` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(0)` *(ES2022)* |
-| [`hexToRgb`](../color/hextorgb/) | [color](../color/) | Parses a hex color string \(\`\#rgb\`, \`\#rgba\`, \`\#rrggbb\`, \`\#rrggbbaa\` — the leading \`\#\` is optional\) into its RGB\(A\) cha… |
+| [`hexToRgb`](../color/hextorgb/) | [color](../color/) | Parses a hex color string \(\`\#rgb\`, \`\#rgba\`, \`\#rrggbb\`, \`\#rrggbbaa\` — the leading \`\#\` is optional\) into its RGB\(A\) chann… |
 | [`hslToRgb`](../color/hsltorgb/) | [color](../color/) | Converts an HSL\(A\) color into RGB\(A\)\. |
 | [`identity`](../function/identity/) | [function](../function/) | Returns the given value unchanged  Useful as a default transform, in function composition, or as a placeholder mapper\. |
 | `includes` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.includes()` *(ES2016)* |
 | [`increment`](../version/increment/) | [version](../version/) | Increments a semantic version |
-| [`incrementPrerelease`](../version/incrementprerelease/) | [version](../version/) | Increments the prerelease portion of a semantic version — the semantics \`npm version prerelease \-\-preid <id>\` uses, n… |
-| [`injectWordBreaks`](../string/injectwordbreaks/) | [string](../string/) | Adds word\-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table… |
+| [`incrementPrerelease`](../version/incrementprerelease/) | [version](../version/) | Increments the prerelease portion of a semantic version — the semantics \`npm version prerelease \-\-preid <id>\` uses, not… |
+| [`injectWordBreaks`](../string/injectwordbreaks/) | [string](../string/) | Adds word\-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table c… |
 | [`inRange`](../number/inrange/) | [number](../number/) | Checks whether a number falls within \`\[min, max\]\` \(both inclusive by default\)\. |
 | [`intersection`](../array/intersection/) | [array](../array/) | Compute the intersection of two arrays, meaning the elements that are present in both arrays\. |
 | `intersection` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.intersection()` *(ES2025 (Set methods))* |
@@ -142,11 +142,11 @@ sidebar:
 | [`isBlank`](../string/isblank/) | [string](../string/) | Checks if a string is blank — empty or contains only whitespace characters\. |
 | [`isBlob`](../guard/isblob/) | [guard](../guard/) | Checks if a value is a Blob instance\. |
 | [`isBoolean`](../guard/isboolean/) | [guard](../guard/) | Checks if a value is a boolean\. |
-| [`isBrowser`](../guard/isbrowser/) | [guard](../guard/) | Checks whether the code is currently running in a browser\-like environment \(\`window\` and \`window\.document\` both defin… |
+| [`isBrowser`](../guard/isbrowser/) | [guard](../guard/) | Checks whether the code is currently running in a browser\-like environment \(\`window\` and \`window\.document\` both defined… |
 | [`isBuffer`](../node/isbuffer/) | [node](../node/) | Checks if a value is a Node\.js Buffer instance\. |
 | [`isBusinessDay`](../date/isbusinessday/) | [date](../date/) | Checks whether a date falls on a business day \(i\.e\. |
 | [`isConventionalCommit`](../commit/isconventionalcommit/) | [commit](../commit/) | Checks whether a commit message's subject line follows the Conventional Commits format constrained by the given options\. |
-| [`isCssColor`](../guard/iscsscolor/) | [guard](../guard/) | Checks whether a value is a syntactically\-safe, plain CSS color: a hex color \(\`\#rgb\`, \`\#rgba\`, \`\#rrggbb\`, \`\#rrggbbaa\`… |
+| [`isCssColor`](../guard/iscsscolor/) | [guard](../guard/) | Checks whether a value is a syntactically\-safe, plain CSS color: a hex color \(\`\#rgb\`, \`\#rgba\`, \`\#rrggbb\`, \`\#rrggbbaa\`\),… |
 | [`isDate`](../guard/isdate/) | [guard](../guard/) | Checks if a value is a Date instance\. |
 | [`isDefined`](../guard/isdefined/) | [guard](../guard/) | Checks if a value is defined \(not undefined nor null\)\. |
 | `isDirectInstanceOf` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value.constructor === Foo` *(ES1)* |
@@ -168,14 +168,14 @@ sidebar:
 | [`isJSON`](../guard/isjson/) | [guard](../guard/) | Checks whether a value is a string containing valid, parseable JSON text\. |
 | [`isJSONArray`](../guard/isjsonarray/) | [guard](../guard/) | Checks whether a value is an array whose every element is a valid JSON value \(see isJSONValue\)\. |
 | [`isJSONObject`](../guard/isjsonobject/) | [guard](../guard/) | Checks whether a value is a plain object whose every own value is a valid JSON value \(see isJSONValue\)\. |
-| [`isJSONValue`](../guard/isjsonvalue/) | [guard](../guard/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`… |
+| [`isJSONValue`](../guard/isjsonvalue/) | [guard](../guard/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`, … |
 | [`isLeapYear`](../date/isleapyear/) | [date](../date/) | Returns \`true\` if the given year is a leap year\. |
-| [`isLength`](../guard/islength/) | [guard](../guard/) | Checks whether a value is a valid array\-like \`length\`: a non\-negative safe integer \(\`0 <= value <= Number\.MAX\_SAFE\_IN… |
+| [`isLength`](../guard/islength/) | [guard](../guard/) | Checks whether a value is a valid array\-like \`length\`: a non\-negative safe integer \(\`0 <= value <= Number\.MAX\_SAFE\_INTE… |
 | `isLight / isDark (pick a readable text color)` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `contrast-color(<color>)` *(CSS Color 6 (Baseline newly available since April 2026 — Chrome 147, Firefox 146, Safari 26.0))* |
 | [`isMap`](../guard/ismap/) | [guard](../guard/) | Checks if a value is a Map instance\. |
 | `isNaN` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isNaN(value)` *(ES2015)* |
 | [`isNegative`](../number/isnegative/) | [number](../number/) | Checks if a value is a number less than 0\. |
-| [`isNode`](../guard/isnode/) | [guard](../guard/) | Checks whether the code is currently running in a Node\.js\-like environment \(\`process\.versions\.node\` is defined — also… |
+| [`isNode`](../guard/isnode/) | [guard](../guard/) | Checks whether the code is currently running in a Node\.js\-like environment \(\`process\.versions\.node\` is defined — also t… |
 | [`isNodeStream`](../node/isnodestream/) | [node](../node/) | Checks if a value is a Node\.js stream \(has a \`\.pipe\(\)\` method\)\. |
 | [`isNonEmpty`](../array/isnonempty/) | [array](../array/) | Checks if an array is non\-empty \(has at least one element\)\. |
 | [`isNonEmpty`](../object/isnonempty/) | [object](../object/) | Checks if a plain object has at least one own enumerable string\-keyed property\. |
@@ -223,7 +223,7 @@ sidebar:
 | [`isWeekend`](../date/isweekend/) | [date](../date/) | Checks whether a date falls on a weekend day\. |
 | [`isWithinRange`](../date/iswithinrange/) | [date](../date/) | Checks whether a date falls within a range \(inclusive on both ends\)\. |
 | [`kebabCase`](../string/kebabcase/) | [string](../string/) | Converts a string to kebab\-case\. |
-| [`kebabCaseKeys`](../object/kebabcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to kebab\-… |
+| [`kebabCaseKeys`](../object/kebabcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to kebab\-ca… |
 | `keys / values` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `Object.keys() / Object.values()` *(ES2017)* |
 | [`KeysOfType`](../type/keysoftype/) | [type](../type/) | Extracts the keys of \`T\` whose values extend \`V\`\. |
 | `last` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
@@ -234,11 +234,11 @@ sidebar:
 | [`map`](../object/map/) | [object](../object/) | Transforms the values and/or keys of a plain object in a single pass\. |
 | [`map`](../set/map/) | [set](../set/) | Creates a new Set with each value transformed by a function\. |
 | `map / filter` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `new Set(set.values().map(fn)) / new Set(set.values().filter(fn))` *(ES2025 (Iterator Helpers))* |
-| [`mapAsync`](../array/mapasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, i… |
-| [`mapDeep`](../object/mapdeep/) | [object](../object/) | Recursively transforms the keys and/or values of a plain object — the deep counterpart to map, which only transforms … |
+| [`mapAsync`](../array/mapasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, in … |
+| [`mapDeep`](../object/mapdeep/) | [object](../object/) | Recursively transforms the keys and/or values of a plain object — the deep counterpart to map, which only transforms th… |
 | [`mapKeys`](../map/mapkeys/) | [map](../map/) | Creates a new Map with the same values but with each key transformed by a function\. |
 | [`mapValues`](../map/mapvalues/) | [map](../map/) | Creates a new Map with the same keys but with each value transformed by a function\. |
-| [`max`](../array/max/) | [array](../array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
+| [`max`](../array/max/) | [array](../array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
 | [`Maybe`](../type/maybe/) | [type](../type/) | Type for values that can be T, undefined, or null\. |
 | [`mean`](../array/mean/) | [array](../array/) | Calculates the arithmetic mean \(average\) of an array of numbers\. |
 | [`meanBy`](../array/meanby/) | [array](../array/) | Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee\. |
@@ -247,10 +247,10 @@ sidebar:
 | [`memoize`](../function/memoize/) | [function](../function/) | Returns a memoized version of the function that caches results\. |
 | `merge (shallow)` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `{ ...a, ...b } or Object.assign({}, a, b)` *(ES2015)* |
 | [`mergeDeep`](../object/mergedeep/) | [object](../object/) | Merges two or more objects deeply, returning a \*\*new\*\* object without mutating any input\. |
-| [`min`](../array/min/) | [array](../array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi… |
+| [`min`](../array/min/) | [array](../array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
 | `min / max` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `Math.min(...arr) / Math.max(...arr)` *(ES1)* |
 | [`negate`](../function/negate/) | [function](../function/) | Creates a function that negates the result of \`predicate\`\. |
-| [`noop`](../function/noop/) | [function](../function/) | A no\-operation function that does nothing and returns \`undefined\`  Useful as a default callback, placeholder, or to e… |
+| [`noop`](../function/noop/) | [function](../function/) | A no\-operation function that does nothing and returns \`undefined\`  Useful as a default callback, placeholder, or to exp… |
 | [`normalizeTimestamp`](../date/normalizetimestamp/) | [date](../date/) | Converts a timestamp to JavaScript milliseconds format |
 | `now (date/time/instant)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Now.instant() / .zonedDateTimeISO() / .plainDateISO() / .plainTimeISO()` *(Temporal (Stage 3))* |
 | [`Nullable`](../type/nullable/) | [type](../type/) | Adds \`null\` to a type \(\`T \| null\`\)\. |
@@ -264,16 +264,16 @@ sidebar:
 | [`overlaps`](../date/overlaps/) | [date](../date/) | Checks whether two date ranges overlap\. |
 | `padStart / padEnd` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
 | [`parallel`](../promise/parallel/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit\. |
-| [`parallelSettle`](../promise/parallelsettle/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the firs… |
-| [`parse`](../version/parse/) | [version](../version/) | Parses a semantic version string into its components according to SemVer 2\.0\.0 specification  Supports: \- Core versio… |
+| [`parallelSettle`](../promise/parallelsettle/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first … |
+| [`parse`](../version/parse/) | [version](../version/) | Parses a semantic version string into its components according to SemVer 2\.0\.0 specification  Supports: \- Core version:… |
 | [`parseConventionalCommit`](../commit/parseconventionalcommit/) | [commit](../commit/) | Parses a Conventional Commits message into a structured object\. |
 | [`parseDuration`](../date/parseduration/) | [date](../date/) | Parses a compact duration string \(as produced by formatDuration, e\.g\. |
 | [`parsePackageRepository`](../url/parsepackagerepository/) | [url](../url/) | Parse the \`repository\` field from \`package\.json\` into a structured object\. |
-| [`parsePropertyPath`](../object/parsepropertypath/) | [object](../object/) | Parses a dot/bracket\-notation property path into an array of string/number key segments — the same notation accepted … |
+| [`parsePropertyPath`](../object/parsepropertypath/) | [object](../object/) | Parses a dot/bracket\-notation property path into an array of string/number key segments — the same notation accepted by… |
 | [`partial`](../function/partial/) | [function](../function/) | Partially applies arguments to a function, returning a new function that accepts the remaining arguments\. |
 | [`partition`](../array/partition/) | [array](../array/) | Splits an array into two groups based on a predicate function\. |
 | [`pascalCase`](../string/pascalcase/) | [string](../string/) | Converts a string to PascalCase\. |
-| [`pascalCaseKeys`](../object/pascalcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to Pascal… |
+| [`pascalCaseKeys`](../object/pascalcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to PascalCa… |
 | [`percentageToTier`](../ci/percentagetotier/) | [ci](../ci/) | Maps a numeric percentage to a tier \(icon, color, label\) using configurable thresholds\. |
 | [`percentile`](../array/percentile/) | [array](../array/) | Calculates the p\-th percentile of an array of numbers using linear interpolation between the closest ranks\. |
 | [`pick`](../object/pick/) | [object](../object/) | Creates a new object with only the specified keys\. |
@@ -291,7 +291,7 @@ sidebar:
 | [`removeDiacritics`](../string/removediacritics/) | [string](../string/) | Removes diacritical marks \(accents\) from a string, e\.g\. |
 | [`removeUndefinedNull`](../object/removeundefinednull/) | [object](../object/) | Remove null and undefined values from an object\. |
 | `repeat` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.repeat()` *(ES2015)* |
-| [`replaceOrAppend`](../array/replaceorappend/) | [array](../array/) | Returns a new array with the first item matching \`predicate\` replaced by \`item\` — or \`item\` appended at the end if no… |
+| [`replaceOrAppend`](../array/replaceorappend/) | [array](../array/) | Returns a new array with the first item matching \`predicate\` replaced by \`item\` — or \`item\` appended at the end if no m… |
 | [`RequiredKeys`](../type/requiredkeys/) | [type](../type/) | Extracts the required \(non\-optional\) keys of an object type \`T\`\. |
 | [`resolveRecord`](../promise/resolverecord/) | [promise](../promise/) | Resolves an array of keys into a record by calling an async mapper for each key\. |
 | [`retry`](../promise/retry/) | [promise](../promise/) | Retries a promise\-returning function up to maxAttempts times |
@@ -300,18 +300,18 @@ sidebar:
 | [`rgbToHex`](../color/rgbtohex/) | [color](../color/) | Converts an RGB\(A\) color into a hex color string\. |
 | [`rgbToHsl`](../color/rgbtohsl/) | [color](../color/) | Converts an RGB\(A\) color into HSL\(A\)\. |
 | [`roundTo`](../number/roundto/) | [number](../number/) | Rounds a number to specified decimal places |
-| [`safeFetch`](../promise/safefetch/) | [promise](../promise/) | Wraps \`fetch\` with built\-in error handling: returns \`null\` when the request fails \(network error, non\-OK status, or p… |
+| [`safeFetch`](../promise/safefetch/) | [promise](../promise/) | Wraps \`fetch\` with built\-in error handling: returns \`null\` when the request fails \(network error, non\-OK status, or par… |
 | [`safeJsonParse`](../object/safejsonparse/) | [object](../object/) | Parses a JSON string, returning \`null\` \(or a fallback\) on any parse failure\. |
 | [`sample`](../array/sample/) | [array](../array/) | Picks one or more random elements from an array\. |
 | [`satisfiesRange`](../version/satisfiesrange/) | [version](../version/) | Checks if a version satisfies a range \(simple implementation\) |
 | [`select`](../array/select/) | [array](../array/) | Filters and transforms an array in a single pass\. |
 | `select / filterMap` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
 | [`set`](../object/set/) | [object](../object/) | Sets a value in an object at the given path, creating intermediate objects as needed\. |
-| [`settle`](../promise/settle/) | [promise](../promise/) | Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first failure, unlike … |
+| [`settle`](../promise/settle/) | [promise](../promise/) | Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first failure, unlike \`P… |
 | [`shuffle`](../array/shuffle/) | [array](../array/) | Randomly reorders elements of an array using the Fisher\-Yates algorithm\. |
 | [`slugify`](../string/slugify/) | [string](../string/) | Converts a string into a URL\-friendly slug\. |
 | [`snakeCase`](../string/snakecase/) | [string](../string/) | Converts a string to snake\_case\. |
-| [`snakeCaseKeys`](../object/snakecasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to snake\_… |
+| [`snakeCaseKeys`](../object/snakecasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to snake\_ca… |
 | [`some`](../map/some/) | [map](../map/) | Checks if at least one entry of a Map satisfies the predicate\. |
 | `sort (immutable)` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(compareFn?)` *(ES2023)* |
 | `sortBy / orderBy` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toSorted(fn?)` *(ES2023)* |
@@ -322,9 +322,9 @@ sidebar:
 | [`sortStringAscInsensitiveFn`](../array/sortstringascinsensitivefn/) | [array](../array/) | Sort strings in ascending order \(case insensitive\) |
 | [`sortStringDescFn`](../array/sortstringdescfn/) | [array](../array/) | Sort strings in descending order |
 | [`sortStringNaturalAscFn`](../array/sortstringnaturalascfn/) | [array](../array/) | Sort strings in ascending order using natural \(human\-friendly\) ordering\. |
-| [`sortStringNaturalAscInsensitiveFn`](../array/sortstringnaturalascinsensitivefn/) | [array](../array/) | Sort strings in ascending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` — … |
+| [`sortStringNaturalAscInsensitiveFn`](../array/sortstringnaturalascinsensitivefn/) | [array](../array/) | Sort strings in ascending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` — tr… |
 | [`sortStringNaturalDescFn`](../array/sortstringnaturaldescfn/) | [array](../array/) | Sort strings in descending order using natural \(human\-friendly\) ordering\. |
-| [`sortStringNaturalDescInsensitiveFn`](../array/sortstringnaturaldescinsensitivefn/) | [array](../array/) | Sort strings in descending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` —… |
+| [`sortStringNaturalDescInsensitiveFn`](../array/sortstringnaturaldescinsensitivefn/) | [array](../array/) | Sort strings in descending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` — t… |
 | [`startOf`](../date/startof/) | [date](../date/) | Returns a new \`Date\` set to the \*\*start\*\* of the given unit\. |
 | `startsWith / endsWith` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |
 | [`statusToBadge`](../ci/statustobadge/) | [ci](../ci/) | Maps a CI/CD job status to an inline code badge string\. |
@@ -333,7 +333,7 @@ sidebar:
 | [`stripV`](../version/stripv/) | [version](../version/) | Strip the leading "v" from a version string if it exists\. |
 | [`sum`](../array/sum/) | [array](../array/) | Calculates the sum of an array of numbers\. |
 | [`sumBy`](../array/sumby/) | [array](../array/) | Calculates the sum of numbers derived from each item of an array via an iteratee\. |
-| [`symmetricDifference`](../array/symmetricdifference/) | [array](../array/) | Returns the symmetric difference between two arrays: items present in exactly one of the two arrays \(in either, but n… |
+| [`symmetricDifference`](../array/symmetricdifference/) | [array](../array/) | Returns the symmetric difference between two arrays: items present in exactly one of the two arrays \(in either, but not… |
 | `symmetricDifference` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.symmetricDifference()` *(ES2025 (Set methods))* |
 | `tail` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
@@ -342,7 +342,7 @@ sidebar:
 | [`timeAgo`](../date/timeago/) | [date](../date/) | Formats a date as a human\-readable relative time string\. |
 | [`timeout`](../promise/timeout/) | [promise](../promise/) | Wraps a promise to reject with a \`TimeoutError\` if it does not resolve within the specified duration\. |
 | [`titleCase`](../string/titlecase/) | [string](../string/) | Converts a string to Title Case\. |
-| [`titleCaseKeys`](../object/titlecasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to Title … |
+| [`titleCaseKeys`](../object/titlecasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to Title Ca… |
 | [`toggle`](../array/toggle/) | [array](../array/) | Returns a new array with \`item\` removed if present, or appended if absent — the common "toggle a selection" pattern\. |
 | `toInt / toFloat` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `parseInt(str, 10) / parseFloat(str)` *(ES1)* |
 | [`toISO8601`](../date/toiso8601/) | [date](../date/) | Converts a date to ISO 8601 format Format: YYYY\-MM\-DDTHH:mm:ss\.sssZ |
@@ -351,8 +351,8 @@ sidebar:
 | [`toMillis`](../date/tomillis/) | [date](../date/) | Converts a date to a timestamp in \*\*milliseconds\*\* \(epoch millis\)\. |
 | `toPairs / fromPairs` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `Object.entries() / Object.fromEntries()` *(ES2019)* |
 | `toPlainDate / toPlainDateTime / toPlainTime` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.ZonedDateTime.prototype.toPlainDate() / toPlainDateTime() / toPlainTime()` *(Temporal (Stage 3))* |
-| [`toRFC2822`](../date/torfc2822/) | [date](../date/) | Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss \+0000 Used in email headers \(Date field\) and HTT… |
-| [`toRFC3339`](../date/torfc3339/) | [date](../date/) | Converts a date to RFC 3339 format Format: YYYY\-MM\-DDTHH:mm:ssZ or YYYY\-MM\-DDTHH:mm:ss\+HH:mm RFC 3339 is a profile of… |
+| [`toRFC2822`](../date/torfc2822/) | [date](../date/) | Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss \+0000 Used in email headers \(Date field\) and HTTP … |
+| [`toRFC3339`](../date/torfc3339/) | [date](../date/) | Converts a date to RFC 3339 format Format: YYYY\-MM\-DDTHH:mm:ssZ or YYYY\-MM\-DDTHH:mm:ss\+HH:mm RFC 3339 is a profile of I… |
 | [`toSeconds`](../date/toseconds/) | [date](../date/) | Converts a date to a timestamp in \*\*seconds\*\* \(epoch seconds\)\. |
 | `toTemporalInstant` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Date.prototype.toTemporalInstant()` *(Temporal (Stage 3))* |
 | `toZonedDateTime` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.prototype.toZonedDateTimeISO(tz)` *(Temporal (Stage 3))* |

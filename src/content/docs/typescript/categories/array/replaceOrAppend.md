@@ -2,7 +2,7 @@
 title: "replaceOrAppend"
 sidebar:
   label: "replaceOrAppend"
-description: "Returns a new array with the first item matching `predicate` replaced by `item` — or `item` appended at the end if no…"
+description: "Returns a new array with the first item matching `predicate` replaced by `item` — or `item` appended at the end if no m…"
 version: "3.0.5"
 ---
 

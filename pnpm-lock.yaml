@@ -34,6 +34,9 @@ importers:
       '@helpers4/markdown':
         specifier: ^3.0.5
         version: 3.0.5
+      '@helpers4/string':
+        specifier: ^3.0.5
+        version: 3.0.5
       '@helpers4/version':
         specifier: ^3.0.5
         version: 3.0.5
@@ -384,6 +387,10 @@ packages:
 
   '@helpers4/markdown@3.0.5':
     resolution: {integrity: sha512-HQDN7cXM1JUItmYI0hLo63GXFI27fbzwv1xp2pnruRVvJir/OpTjEMnR6F+8cAFAs//QPkN6tdxJOkM8NGSziQ==}
+    engines: {node: '>=26.0.0'}
+
+  '@helpers4/string@3.0.5':
+    resolution: {integrity: sha512-Q1zcSKJHTiDU2rOd8ZgE1qJqr47kVLwDZZcBpMP+5Q1MM6O9oCNzYOy3Sh9q1X88LGqvAbvkNUVhEU6kQREKHg==}
     engines: {node: '>=26.0.0'}
 
   '@helpers4/version@3.0.5':
@@ -2402,6 +2409,8 @@ snapshots:
   '@helpers4/array@3.0.5': {}
 
   '@helpers4/markdown@3.0.5': {}
+
+  '@helpers4/string@3.0.5': {}
 
   '@helpers4/version@3.0.5': {}
 

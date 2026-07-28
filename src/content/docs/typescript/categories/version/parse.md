@@ -2,7 +2,7 @@
 title: "parse"
 sidebar:
   label: "parse"
-description: "Parses a semantic version string into its components according to SemVer 2.0.0 specification  Supports: - Core versio…"
+description: "Parses a semantic version string into its components according to SemVer 2.0.0 specification  Supports: - Core version:…"
 version: "3.0.5"
 ---
 

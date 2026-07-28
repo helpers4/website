@@ -2,7 +2,7 @@
 title: "dedent"
 sidebar:
   label: "dedent"
-description: "Strips the common leading whitespace from every line of a multi-line string, and trims a single leading/trailing blan…"
+description: "Strips the common leading whitespace from every line of a multi-line string, and trims a single leading/trailing blank …"
 version: "3.0.5"
 ---
 

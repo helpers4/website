@@ -21,8 +21,8 @@ Utility functions for working with guard operations.
 | [`isBigInt`](./isbigint/) | Checks if a value is a bigint\. |
 | [`isBlob`](./isblob/) | Checks if a value is a Blob instance\. |
 | [`isBoolean`](./isboolean/) | Checks if a value is a boolean\. |
-| [`isBrowser`](./isbrowser/) | Checks whether the code is currently running in a browser\-like environment \(\`window\` and \`window\.document\` both defin… |
-| [`isCssColor`](./iscsscolor/) | Checks whether a value is a syntactically\-safe, plain CSS color: a hex color \(\`\#rgb\`, \`\#rgba\`, \`\#rrggbb\`, \`\#rrggbbaa\`… |
+| [`isBrowser`](./isbrowser/) | Checks whether the code is currently running in a browser\-like environment \(\`window\` and \`window\.document\` both defined… |
+| [`isCssColor`](./iscsscolor/) | Checks whether a value is a syntactically\-safe, plain CSS color: a hex color \(\`\#rgb\`, \`\#rgba\`, \`\#rrggbb\`, \`\#rrggbbaa\`\),… |
 | [`isDate`](./isdate/) | Checks if a value is a Date instance\. |
 | [`isDefined`](./isdefined/) | Checks if a value is defined \(not undefined nor null\)\. |
 | [`isError`](./iserror/) | Checks if a value is an Error instance\. |
@@ -35,10 +35,10 @@ Utility functions for working with guard operations.
 | [`isJSON`](./isjson/) | Checks whether a value is a string containing valid, parseable JSON text\. |
 | [`isJSONArray`](./isjsonarray/) | Checks whether a value is an array whose every element is a valid JSON value \(see isJSONValue\)\. |
 | [`isJSONObject`](./isjsonobject/) | Checks whether a value is a plain object whose every own value is a valid JSON value \(see isJSONValue\)\. |
-| [`isJSONValue`](./isjsonvalue/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`… |
-| [`isLength`](./islength/) | Checks whether a value is a valid array\-like \`length\`: a non\-negative safe integer \(\`0 <= value <= Number\.MAX\_SAFE\_IN… |
+| [`isJSONValue`](./isjsonvalue/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`, … |
+| [`isLength`](./islength/) | Checks whether a value is a valid array\-like \`length\`: a non\-negative safe integer \(\`0 <= value <= Number\.MAX\_SAFE\_INTE… |
 | [`isMap`](./ismap/) | Checks if a value is a Map instance\. |
-| [`isNode`](./isnode/) | Checks whether the code is currently running in a Node\.js\-like environment \(\`process\.versions\.node\` is defined — also… |
+| [`isNode`](./isnode/) | Checks whether the code is currently running in a Node\.js\-like environment \(\`process\.versions\.node\` is defined — also t… |
 | [`isNull`](./isnull/) | Checks if a value is \`null\`\. |
 | [`isNullish`](./isnullish/) | Checks if a value is null or undefined \(nullish\)\. |
 | [`isNumber`](./isnumber/) | Checks if a value is a number\. |

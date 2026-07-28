@@ -50,8 +50,8 @@ Utility functions for working with date operations.
 | [`toISO8601`](./toiso8601/) | Converts a date to ISO 8601 format Format: YYYY\-MM\-DDTHH:mm:ss\.sssZ |
 | [`toMillis`](./tomillis/) | Converts a date to a timestamp in \*\*milliseconds\*\* \(epoch millis\)\. |
 | `toPlainDate / toPlainDateTime / toPlainTime` | <span class="badge badge--secondary">native JS</span> `Temporal.ZonedDateTime.prototype.toPlainDate() / toPlainDateTime() / toPlainTime()` *(Temporal (Stage 3))* |
-| [`toRFC2822`](./torfc2822/) | Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss \+0000 Used in email headers \(Date field\) and HTT… |
-| [`toRFC3339`](./torfc3339/) | Converts a date to RFC 3339 format Format: YYYY\-MM\-DDTHH:mm:ssZ or YYYY\-MM\-DDTHH:mm:ss\+HH:mm RFC 3339 is a profile of… |
+| [`toRFC2822`](./torfc2822/) | Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss \+0000 Used in email headers \(Date field\) and HTTP … |
+| [`toRFC3339`](./torfc3339/) | Converts a date to RFC 3339 format Format: YYYY\-MM\-DDTHH:mm:ssZ or YYYY\-MM\-DDTHH:mm:ss\+HH:mm RFC 3339 is a profile of I… |
 | [`toSeconds`](./toseconds/) | Converts a date to a timestamp in \*\*seconds\*\* \(epoch seconds\)\. |
 | `toTemporalInstant` | <span class="badge badge--secondary">native JS</span> `Date.prototype.toTemporalInstant()` *(Temporal (Stage 3))* |
 | `toZonedDateTime` | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.prototype.toZonedDateTimeISO(tz)` *(Temporal (Stage 3))* |
