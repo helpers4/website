@@ -214,3 +214,19 @@
   Ko-fi/other. Pick one before building any page around it.
 - [ ] 🟡 Add a `sponsors`/`funding` page to the site once the mechanism is picked, plus a
   `.github/FUNDING.yml` in each of the three repos so GitHub surfaces the native "Sponsor" button.
+
+---
+
+## 11. Old/alternate domains cleanup
+
+> Two legacy public entry points outside helpers4.dev, predating the current site. Verified
+> 2026-07-28: `helpers4.js.org` returns a real `200` but serves stale v1-era content;
+> `helpers4.us.to` is unreachable (curl fails outright — SSL/connection error, no response).
+> Neither is fixable from this repo — both need DNS/registrar-side action.
+
+- [ ] 🟡 `helpers4.js.org` — still resolves and serves the old v1 site. Either redirect it to
+  helpers4.dev or take the listing down (js.org entries are managed via a PR against
+  `js-org/js.org`'s `cnames_active.js`, removing or updating the `helpers4` CNAME).
+- [ ] 🟡 `helpers4.us.to` — broken, no response at all. Confirm whether this domain is still
+  under our control; if so, either fix the redirect to helpers4.dev or let the registration lapse
+  instead of leaving a dead link wherever it was shared.
