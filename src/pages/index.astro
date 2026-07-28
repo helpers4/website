@@ -402,12 +402,14 @@ const currentYear = new Date().getFullYear();
     text-decoration: underline;
   }
 
-  /* Glassmorphism over the fixed hero photo. Only when there's an actual photo behind the cards
-     to blur (a flat --bg color underneath wouldn't read as "glass", just a wash of that color).
-     Background must go transparent for backdrop-filter to pick up the real page background
-     instead of an opaque fill. Both pseudo-elements sit at a negative z-index so they land behind
-     normal-flow content automatically, without needing to touch ProjectCard.astro's markup. */
-  body.has-photo .cards-grid :global(.project-card) {
+  /* Glassmorphism over the fixed hero photo — shared between the cards and the blog strips so
+     they read as one visual system. Only when there's an actual photo behind them to blur (a flat
+     --bg color underneath wouldn't read as "glass", just a wash of that color). Background must go
+     transparent for backdrop-filter to pick up the real page background instead of an opaque fill.
+     Both pseudo-elements sit at a negative z-index so they land behind normal-flow content
+     automatically, without needing to touch ProjectCard.astro's markup. */
+  body.has-photo .cards-grid :global(.project-card),
+  body.has-photo .blog-strip {
     position: relative;
     background: transparent;
     border-color: transparent;
@@ -422,7 +424,8 @@ const currentYear = new Date().getFullYear();
       0 4px 20px hsl(124 70% 65% / 0);
   }
 
-  body.has-photo .cards-grid :global(.project-card):hover {
+  body.has-photo .cards-grid :global(.project-card):hover,
+  body.has-photo .blog-strip:hover {
     border-color: var(--accent);
     box-shadow:
       0 0 0.75px hsl(205 20% 10% / 0.3),
@@ -435,7 +438,8 @@ const currentYear = new Date().getFullYear();
       0 4px 20px hsl(124 70% 65% / 0.15);
   }
 
-  body.has-photo .cards-grid :global(.project-card)::before {
+  body.has-photo .cards-grid :global(.project-card)::before,
+  body.has-photo .blog-strip::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -452,12 +456,14 @@ const currentYear = new Date().getFullYear();
     background-repeat: repeat;
   }
 
-  body.has-photo .cards-grid :global(.project-card):hover::before {
+  body.has-photo .cards-grid :global(.project-card):hover::before,
+  body.has-photo .blog-strip:hover::before {
     backdrop-filter: blur(54px) brightness(1.05) saturate(2.5);
     -webkit-backdrop-filter: blur(54px) brightness(1.05) saturate(2.5);
   }
 
-  body.has-photo .cards-grid :global(.project-card)::after {
+  body.has-photo .cards-grid :global(.project-card)::after,
+  body.has-photo .blog-strip::after {
     content: '';
     position: absolute;
     inset: 0;
