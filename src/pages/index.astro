@@ -14,7 +14,7 @@ import { getRepoStats } from '../lib/repoStats';
 
 const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 2);
+  .slice(0, 1);
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -170,6 +170,7 @@ const currentYear = new Date().getFullYear();
               </a>
             ))}
           </div>
+          <a href="/blog" class="blog-see-all">See all articles →</a>
         </section>
       )}
     </div>
@@ -386,6 +387,18 @@ const currentYear = new Date().getFullYear();
     font-size: 0.8rem;
     color: var(--text-muted);
     line-height: 1.4;
+  }
+
+  .blog-see-all {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .blog-see-all:hover {
+    text-decoration: underline;
   }
 
   /* Glassmorphism over the fixed hero photo. Only when there's an actual photo behind the cards
