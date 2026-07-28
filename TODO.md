@@ -41,8 +41,10 @@
   images or dynamic generation (e.g. `@vercel/og`/satori) — real infra work for ~300 pages, lower
   priority than the description fix above since descriptions are what actually shows in most
   shared-link previews and search results.
-- [ ] 🟢 **Structured data (JSON-LD)** — `TechArticle`/`SoftwareSourceCode` schema on doc pages.
-  Lower priority than the above; mostly helps rich-result eligibility, not core rankability.
+- [x] 🟢 **Structured data (JSON-LD)** (2026-07-28) — new `Head.astro` override adds a
+  `TechArticle`/`SoftwareSourceCode` script tag on generated function pages (gated on
+  `entry.data.version`, same signal as `LastUpdated.astro`). Verified in a real build: valid JSON,
+  correctly absent on hand-authored pages, correct escaping on a description containing quotes.
 - [x] 🟡 Explicit AI-bot rules in `robots.txt` (researched 2026-07-18, shipped 2026-07-19) — `robots.txt` isn't
   just a human-search-engine file anymore; AI crawlers each use their own `User-agent`
   (`GPTBot`, `ClaudeBot`, `Google-Extended`, `CCBot`, `meta-externalagent`…), and training
