@@ -8,8 +8,17 @@
  * GitHub stars are fetched at build time.
  */
 
+import { getCollection } from 'astro:content';
 import ProjectCard, { type ProjectCard as ProjectCardType } from '../components/ProjectCard.astro';
 import { getRepoStats } from '../lib/repoStats';
+
+const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 2);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
 
 const PROJECTS: ProjectCardType[] = [
   {
@@ -139,6 +148,30 @@ const currentYear = new Date().getFullYear();
           />
         ))}
       </section>
+
+      {latestPosts.length > 0 && (
+        <section class="blog-section">
+          <h2>Latest from the blog</h2>
+          <div class="blog-strips">
+            {latestPosts.map((post) => (
+              <a href={`/blog/${post.id}`} class="blog-strip">
+                <h3 class="blog-strip-title">{post.data.title}</h3>
+                <div class="blog-strip-meta">
+                  <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+                  <span>·</span>
+                  <span>{post.data.author}</span>
+                  {post.data.tags.length > 0 && (
+                    <div class="blog-strip-tags">
+                      {post.data.tags.map((tag) => <span class="blog-strip-tag">{tag}</span>)}
+                    </div>
+                  )}
+                </div>
+                <p class="blog-strip-excerpt">{post.data.excerpt}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
 
     <p class="copyright-credit">
@@ -281,6 +314,78 @@ const currentYear = new Date().getFullYear();
     --sl-color-text-accent: var(--text);
     --sl-color-accent: var(--accent);
     --sl-color-accent-high: var(--accent-dark);
+  }
+
+  .blog-section {
+    margin-bottom: 3rem;
+  }
+
+  .blog-section h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* Deliberately flatter and thinner than .project-card — full-width rows, not grid squares,
+     so the blog section reads as a distinct kind of content, not a fourth product card. */
+  .blog-strips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .blog-strip {
+    display: block;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+    background: var(--bg-card);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .blog-strip:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 16px color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  .blog-strip-title {
+    margin: 0 0 0.15rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .blog-strip-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .blog-strip-tags {
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .blog-strip-tag {
+    display: inline-block;
+    padding: 0.05rem 0.45rem;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    font-size: 0.65rem;
+  }
+
+  .blog-strip-excerpt {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
   }
 
   /* Glassmorphism over the fixed hero photo. Only when there's an actual photo behind the cards
