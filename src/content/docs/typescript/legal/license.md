@@ -55,6 +55,6 @@ LGPL-3.0 is a **weak copyleft** license, mainly designed for libraries. It allow
 
 The complete license text is available at [gnu.org/licenses/lgpl-3.0](https://www.gnu.org/licenses/lgpl-3.0.html) and in the [LICENSE](https://github.com/helpers4/typescript/blob/main/LICENSE) file of each repository.
 
-:::info Disclaimer
+:::note[Disclaimer]
 This page is a human-readable summary and **not** a substitute for the [full license text](https://www.gnu.org/licenses/lgpl-3.0.html). If in doubt, refer to the official license or consult legal counsel.
 :::
