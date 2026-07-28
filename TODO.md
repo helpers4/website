@@ -135,10 +135,11 @@
   release workflow commits regenerated files with real dates vs. a squash/rebase) is resolved —
   the `archiveStableIfMajorBump` TDZ bug is fixed and the pipeline has since had a real green run
   on v3.0.0/v3.0.1, so the dates flowing into `lastUpdated` are trustworthy.
-- [ ] 🟡 **Show the source library version, not just a date** — `lastUpdated` alone doesn't say
-  *which* version a page documents. The generators already know the version when they run
-  (see `src/data/versions.json`); have them inject it into page frontmatter and render it
-  alongside the date (e.g. "v3.0.0 · updated Jul 18, 2026").
+- [x] 🟡 **Show the source library version, not just a date** (2026-07-28) — `version:` now
+  injected into every generated function page's frontmatter (extends the docs schema in
+  `content.config.ts`), rendered as "v3.0.5 · Last updated: Jul 28, 2026" via a custom
+  `LastUpdated.astro` override. Hand-authored pages (no `version`) fall back to Starlight's
+  unmodified date-only rendering. Verified in a real build on both cases.
 
 ---
 
@@ -186,9 +187,11 @@
 > Sequencing matters: a regression check is only useful once there's a baseline worth protecting
 > — land the §2 SEO work first, then guard it.
 
-- [ ] 🟡 **Lighthouse CI** (`treosh/lighthouse-ci-action` or `GoogleChrome/lighthouse-ci`) —
-  assert on performance/SEO/accessibility/best-practices categories against `dist/` on PRs.
-  No infra needed beyond the GitHub Action itself.
+- [x] 🟡 **Lighthouse CI** (2026-07-28) — `treosh/lighthouse-ci-action@v12`, new job in
+  `pr-validation.yml` wired into the existing status/PR-comment pattern. `.lighthouserc.json`
+  audits 7 representative pages (not all ~940 — same template per page type). Accessibility/SEO
+  at `error`, performance/best-practices at `warn` (performance is noisy on shared runners).
+  `numberOfRuns: 1` for speed — worth revisiting once thresholds are tuned against real CI runs.
 - [ ] 🟢 **Broken-link checker** (e.g. `lychee-action`) — run on pushes touching
   `src/content/docs/**`, plus a weekly scheduled run to catch external link rot (sites that move
   or disappear after the fact, not just links that were wrong at merge time).
