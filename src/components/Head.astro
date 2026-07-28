@@ -1,0 +1,42 @@
+---
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * Starlight `Head` override — adds JSON-LD structured data (schema.org TechArticle, `about` a
+ * SoftwareSourceCode) on generated typescript function pages. Gated on `entry.data.version`:
+ * that field is only set by scripts/generate-typescript-docs.js on generated function reference
+ * pages (see LastUpdated.astro, which uses the same signal) — hand-authored pages (comparisons,
+ * philosophy, ...) have no single version/function to describe this way and get no JSON-LD.
+ */
+import Default from '@astrojs/starlight/components/Head.astro';
+
+const { entry, lastUpdated } = Astro.locals.starlightRoute;
+const { title, description, version } = entry.data;
+
+const jsonLd = version
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      headline: title,
+      description,
+      dateModified: lastUpdated?.toISOString(),
+      about: {
+        '@type': 'SoftwareSourceCode',
+        name: title,
+        description,
+        programmingLanguage: 'TypeScript',
+        codeRepository: 'https://github.com/helpers4/typescript',
+        softwareVersion: version,
+        license: 'https://www.gnu.org/licenses/lgpl-3.0.html',
+      },
+    }
+  : null;
+
+// Prevent a literal `</script>` inside a description from closing the tag early.
+const jsonLdString = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : '';
+---
+
+<Default />
+{jsonLd && <script type="application/ld+json" set:html={jsonLdString} />}
