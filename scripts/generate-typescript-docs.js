@@ -709,6 +709,11 @@ sidebar:
   order: 2
 ---
 
+Current published version: **v${LIBRARY_VERSION}**. This page groups helpers by the version that
+*first introduced* them — a release with no new helpers (bug fixes, docs, internal changes only)
+gets no section of its own here. For the full release-by-release history, see
+[CHANGELOG.md](https://github.com/helpers4/typescript/blob/main/CHANGELOG.md) on GitHub.
+
 `;
 
   // Skip 'next' section if the current version is a stable release (no prerelease marker)
@@ -729,7 +734,7 @@ sidebar:
       : version === 'next'
         ? '*(coming in next release)*'
         : isLatestStable
-          ? `v${version} *(Latest)*`
+          ? `v${version} *(latest with new helpers)*`
           : `v${version}`;
     content += `## ${label}\n\n`;
     content += `| Function | Category | Description |\n`;
