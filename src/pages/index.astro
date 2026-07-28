@@ -140,9 +140,9 @@ const currentYear = new Date().getFullYear();
         ))}
       </section>
 
-      <div class="footer-links">
-        <a href="/blog" class="footer-btn">Blog</a>
-        <a href="https://github.com/helpers4" target="_blank" rel="noopener noreferrer" class="footer-btn">GitHub</a>
+      <div class="link-buttons">
+        <a href="/blog" class="link-btn">Blog</a>
+        <a href="https://github.com/helpers4" target="_blank" rel="noopener noreferrer" class="link-btn">GitHub</a>
       </div>
     </div>
 
@@ -288,7 +288,7 @@ const currentYear = new Date().getFullYear();
     --sl-color-accent-high: var(--accent-dark);
   }
 
-  .footer-links {
+  .link-buttons {
     display: flex;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
@@ -296,7 +296,7 @@ const currentYear = new Date().getFullYear();
 
   /* Same visual language as .project-card (background/border/hover), just more "button" than
      "card": tighter padding, smaller radius, equal width, centered label. */
-  .footer-btn {
+  .link-btn {
     flex: 1;
     display: flex;
     align-items: center;
@@ -312,7 +312,7 @@ const currentYear = new Date().getFullYear();
     transition: border-color 0.2s, box-shadow 0.2s;
   }
 
-  .footer-btn:hover {
+  .link-btn:hover {
     border-color: var(--accent);
     box-shadow: 0 2px 16px color-mix(in srgb, var(--accent) 10%, transparent);
   }
@@ -324,7 +324,7 @@ const currentYear = new Date().getFullYear();
      Both pseudo-elements sit at a negative z-index so they land behind normal-flow content
      automatically, without needing to touch ProjectCard.astro's markup. */
   body.has-photo .cards-grid :global(.project-card),
-  body.has-photo .footer-btn {
+  body.has-photo .link-btn {
     position: relative;
     background: transparent;
     border-color: transparent;
@@ -339,7 +339,7 @@ const currentYear = new Date().getFullYear();
   }
 
   body.has-photo .cards-grid :global(.project-card):hover,
-  body.has-photo .footer-btn:hover {
+  body.has-photo .link-btn:hover {
     border-color: transparent;
     box-shadow:
       0 0 0.75px hsl(205 20% 10% / 0.3),
@@ -353,7 +353,7 @@ const currentYear = new Date().getFullYear();
   }
 
   body.has-photo .cards-grid :global(.project-card)::before,
-  body.has-photo .footer-btn::before {
+  body.has-photo .link-btn::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -371,13 +371,13 @@ const currentYear = new Date().getFullYear();
   }
 
   body.has-photo .cards-grid :global(.project-card):hover::before,
-  body.has-photo .footer-btn:hover::before {
+  body.has-photo .link-btn:hover::before {
     backdrop-filter: blur(54px) brightness(1.05) saturate(2.5);
     -webkit-backdrop-filter: blur(54px) brightness(1.05) saturate(2.5);
   }
 
   body.has-photo .cards-grid :global(.project-card)::after,
-  body.has-photo .footer-btn::after {
+  body.has-photo .link-btn::after {
     content: '';
     position: absolute;
     inset: 0;
