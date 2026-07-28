@@ -32,11 +32,15 @@
   Astro/Starlight already emit a self-referential `<link rel="canonical">` per page by default
   (confirmed on `typescript/`, `typescript/next/`, and `typescript/v2/`, each pointing at its own
   URL) — the policy this repo wanted was already the shipped behavior.
-- [ ] 🟡 **OG images + meta descriptions per generated page** — currently relies entirely on
-  Starlight's defaults (title + site description). The doc generators
-  (`generate-typescript-docs.js` etc.) already have per-page frontmatter data (category,
-  function name, JSDoc summary) that could feed a real per-page description instead of the
-  site-wide fallback.
+- [x] 🟡 Meta descriptions per generated page (2026-07-28) — `generate-typescript-docs.js` now
+  injects `description:` frontmatter from `firstSentence(fn.description)` for all 312 function
+  pages, properly YAML-escaped. Verified in a real build: per-function `<meta name="description">`
+  and `og:description` instead of the site-wide fallback.
+- [ ] 🟢 **OG images per generated page** — still relies on the single site-wide
+  `/helpers4-logo.png` for every page's `og:image`. Would need either static category-icon-based
+  images or dynamic generation (e.g. `@vercel/og`/satori) — real infra work for ~300 pages, lower
+  priority than the description fix above since descriptions are what actually shows in most
+  shared-link previews and search results.
 - [ ] 🟢 **Structured data (JSON-LD)** — `TechArticle`/`SoftwareSourceCode` schema on doc pages.
   Lower priority than the above; mostly helps rich-result eligibility, not core rankability.
 - [x] 🟡 Explicit AI-bot rules in `robots.txt` (researched 2026-07-18, shipped 2026-07-19) — `robots.txt` isn't
