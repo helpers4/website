@@ -3,6 +3,7 @@ title: "compare"
 sidebar:
   label: "compare"
 description: "Compares two semantic version strings according to SemVer 2.0.0 specification  Supports: - Core version: MAJOR.MINOR.…"
+version: "3.0.5"
 ---
 
 Compares two semantic version strings according to SemVer 2.0.0 specification

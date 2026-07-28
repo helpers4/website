@@ -3,6 +3,7 @@ title: "isBigInt"
 sidebar:
   label: "isBigInt"
 description: "Checks if a value is a bigint."
+version: "3.0.5"
 ---
 
 Checks if a value is a bigint.

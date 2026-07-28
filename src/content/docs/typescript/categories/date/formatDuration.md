@@ -3,6 +3,7 @@ title: "formatDuration"
 sidebar:
   label: "formatDuration"
 description: "Formats a duration in milliseconds as a compact human-readable string."
+version: "3.0.5"
 ---
 
 Formats a duration in milliseconds as a compact human-readable string.

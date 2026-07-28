@@ -3,6 +3,7 @@ title: "OptionalKeys"
 sidebar:
   label: "OptionalKeys"
 description: "Extracts the optional keys of an object type `T`."
+version: "3.0.5"
 ---
 
 Extracts the optional keys of an object type `T`.

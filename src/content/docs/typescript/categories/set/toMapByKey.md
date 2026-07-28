@@ -3,6 +3,7 @@ title: "toMapByKey"
 sidebar:
   label: "toMapByKey"
 description: "Builds a Map from a Set, keyed by a derived key."
+version: "3.0.5"
 ---
 
 Builds a Map from a Set, keyed by a derived key. When two values derive the same key,

@@ -3,6 +3,7 @@ title: "mapAsync"
 sidebar:
   label: "mapAsync"
 description: "The async counterpart to `Array.prototype.map`: applies `fn` to every item and resolves to an array of the results, i…"
+version: "3.0.5"
 ---
 
 The async counterpart to `Array.prototype.map`: applies `fn` to every item and resolves to

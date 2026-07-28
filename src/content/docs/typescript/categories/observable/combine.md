@@ -3,6 +3,7 @@ title: "combine"
 sidebar:
   label: "combine"
 description: "Combine two observables with a map function and an optional pre-treatment."
+version: "3.0.5"
 ---
 
 Combine two observables with a map function and an optional pre-treatment.

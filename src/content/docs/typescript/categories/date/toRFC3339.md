@@ -3,6 +3,7 @@ title: "toRFC3339"
 sidebar:
   label: "toRFC3339"
 description: "Converts a date to RFC 3339 format Format: YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss+HH:mm RFC 3339 is a profile of…"
+version: "3.0.5"
 ---
 
 Converts a date to RFC 3339 format

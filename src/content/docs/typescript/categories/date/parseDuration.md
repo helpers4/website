@@ -3,6 +3,7 @@ title: "parseDuration"
 sidebar:
   label: "parseDuration"
 description: "Parses a compact duration string (as produced by formatDuration, e.g."
+version: "3.0.5"
 ---
 
 Parses a compact duration string (as produced by formatDuration,

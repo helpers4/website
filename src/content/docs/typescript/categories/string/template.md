@@ -3,6 +3,7 @@ title: "template"
 sidebar:
   label: "template"
 description: "Interpolates `{{key}}` placeholders in a template string with values from a data record."
+version: "3.0.5"
 ---
 
 Interpolates `{{key}}` placeholders in a template string with values from

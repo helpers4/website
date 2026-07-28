@@ -3,6 +3,7 @@ title: "safeFetch"
 sidebar:
   label: "safeFetch"
 description: "Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, non-OK status, or p…"
+version: "3.0.5"
 ---
 
 Wraps `fetch` with built-in error handling: returns `null` when the

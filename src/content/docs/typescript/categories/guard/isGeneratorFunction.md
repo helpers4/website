@@ -3,6 +3,7 @@ title: "isGeneratorFunction"
 sidebar:
   label: "isGeneratorFunction"
 description: "Checks if a value is a generator function (a `function*` declaration or expression)."
+version: "3.0.5"
 ---
 
 Checks if a value is a generator function (a `function*` declaration or expression).

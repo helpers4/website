@@ -3,6 +3,7 @@ title: "equalsShallow"
 sidebar:
   label: "equalsShallow"
 description: "One-level (shallow) object equality."
+version: "3.0.5"
 ---
 
 One-level (shallow) object equality.

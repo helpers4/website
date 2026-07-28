@@ -3,6 +3,7 @@ title: "mergeDeep"
 sidebar:
   label: "mergeDeep"
 description: "Merges two or more objects deeply, returning a **new** object without mutating any input."
+version: "3.0.5"
 ---
 
 Merges two or more objects deeply, returning a **new** object without mutating any input.

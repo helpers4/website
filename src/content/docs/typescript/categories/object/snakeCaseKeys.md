@@ -3,6 +3,7 @@ title: "snakeCaseKeys"
 sidebar:
   label: "snakeCaseKeys"
 description: "Recursively transforms every key of a plain object (including keys nested inside arrays and nested objects) to snake_…"
+version: "3.0.5"
 ---
 
 Recursively transforms every key of a plain object (including keys nested inside arrays and

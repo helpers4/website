@@ -143,6 +143,7 @@ export default defineConfig({
         starlightThemeNova(),
       ],
       components: {
+        LastUpdated: './src/components/LastUpdated.astro',
         MarkdownContent: './src/components/MarkdownContent.astro',
         Search: './src/components/Search.astro',
         Sidebar: './src/components/Sidebar.astro',

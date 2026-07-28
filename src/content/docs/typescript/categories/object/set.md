@@ -3,6 +3,7 @@ title: "set"
 sidebar:
   label: "set"
 description: "Sets a value in an object at the given path, creating intermediate objects as needed."
+version: "3.0.5"
 ---
 
 Sets a value in an object at the given path, creating intermediate objects as needed.

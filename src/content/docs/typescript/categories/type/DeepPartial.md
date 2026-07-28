@@ -3,6 +3,7 @@ title: "DeepPartial"
 sidebar:
   label: "DeepPartial"
 description: "Recursively makes all properties of T optional, including nested objects and array elements."
+version: "3.0.5"
 ---
 
 Recursively makes all properties of T optional, including nested objects
