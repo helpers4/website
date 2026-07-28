@@ -12,8 +12,6 @@ permissions:
 jobs:
   conventional-commits:
     runs-on: ubuntu-latest
-    outputs:
-      status: ${{ steps.status.outputs.status }}
     steps:
       - name: Check conventional commits
         uses: helpers4/action/conventional-commits@main
@@ -21,76 +19,34 @@ jobs:
           checkout: "true"
           pr-comment: "error"
 
-      - name: Set status
-        id: status
-        if: always()
-        env:
-          JOB_STATUS: ${{ job.status }}
-        run: |
-          if [ "$JOB_STATUS" == "success" ]; then
-            echo "status=success" >> $GITHUB_OUTPUT
-          else
-            echo "status=failure" >> $GITHUB_OUTPUT
-          fi
-
   build:
     runs-on: ubuntu-latest
-    outputs:
-      status: ${{ steps.status.outputs.status }}
+    env:
+      NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - uses: helpers4/action/setup-pnpm@main
         with:
           node-version: "24"
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Install dependencies
-        env:
-          NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
-        run: pnpm install --frozen-lockfile
 
       - name: Build all packages
         run: pnpm build
 
-      - name: Set status
-        id: status
-        if: always()
-        env:
-          JOB_STATUS: ${{ job.status }}
-        run: |
-          if [ "$JOB_STATUS" == "success" ]; then
-            echo "status=success" >> $GITHUB_OUTPUT
-          else
-            echo "status=failure" >> $GITHUB_OUTPUT
-          fi
-
   lighthouse:
     runs-on: ubuntu-latest
-    outputs:
-      status: ${{ steps.status.outputs.status }}
+    env:
+      NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - uses: helpers4/action/setup-pnpm@main
         with:
           node-version: "24"
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Install dependencies
-        env:
-          NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
-        run: pnpm install --frozen-lockfile
 
       - name: Build all packages
         run: pnpm build
@@ -102,55 +58,22 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: true
 
-      - name: Set status
-        id: status
-        if: always()
-        env:
-          JOB_STATUS: ${{ job.status }}
-        run: |
-          if [ "$JOB_STATUS" == "success" ]; then
-            echo "status=success" >> $GITHUB_OUTPUT
-          else
-            echo "status=failure" >> $GITHUB_OUTPUT
-          fi
-
   typecheck:
     runs-on: ubuntu-latest
-    outputs:
-      status: ${{ steps.status.outputs.status }}
+    env:
+      NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - uses: helpers4/action/setup-pnpm@main
         with:
           node-version: "24"
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Install dependencies
-        env:
-          NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
-        run: pnpm install --frozen-lockfile
 
       - name: TypeScript check
         run: |
           pnpm run sync
           pnpm exec tsc --noEmit
-
-      - name: Set status
-        id: status
-        if: always()
-        env:
-          JOB_STATUS: ${{ job.status }}
-        run: |
-          if [ "$JOB_STATUS" == "success" ]; then
-            echo "status=success" >> $GITHUB_OUTPUT
-          else
-            echo "status=failure" >> $GITHUB_OUTPUT
-          fi
 
   pr-comment:
     runs-on: ubuntu-latest
@@ -158,80 +81,12 @@ jobs:
     if: always()
     steps:
       - name: Update PR comment
-        uses: actions/github-script@v9
-        env:
-          STATUS_COMMITS: ${{ needs.conventional-commits.outputs.status || 'unknown' }}
-          STATUS_BUILD: ${{ needs.build.outputs.status || 'unknown' }}
-          STATUS_TYPECHECK: ${{ needs.typecheck.outputs.status || 'unknown' }}
-          STATUS_LIGHTHOUSE: ${{ needs.lighthouse.outputs.status || 'unknown' }}
+        uses: helpers4/action/pr-status-comment@main
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const jobs = {
-              '🧾 Conventional Commits': process.env.STATUS_COMMITS,
-              '🏗️ Build': process.env.STATUS_BUILD,
-              '📘 TypeCheck': process.env.STATUS_TYPECHECK,
-              '🏮 Lighthouse': process.env.STATUS_LIGHTHOUSE,
-            };
-
-            const rows = Object.entries(jobs).map(([job, status]) => {
-              const icon = status === 'success' ? '✅' :
-                         status === 'failure' ? '❌' :
-                         status === 'skipped' ? '⏭️' : '⚠️';
-              const badge = status === 'success' ? '`passing`' :
-                           status === 'failure' ? '`failing`' :
-                           status === 'skipped' ? '`skipped`' : '`unknown`';
-              return `| ${icon} | **${job}** | ${badge} |`;
-            }).join('\n');
-
-            const passedCount = Object.values(jobs).filter(s => s === 'success').length;
-            const totalJobs = Object.keys(jobs).length;
-            const allPassed = passedCount === totalJobs;
-
-            const statusBanner = allPassed
-              ? '## ✅ PR Validation Passed\n\n> All checks passed!'
-              : `## ❌ PR Validation Failed\n\n> ${passedCount}/${totalJobs} checks passed`;
-
-            const comment = `${statusBanner}
-
-            ---
-
-            ### 📋 Pipeline Status
-
-            | | Job | Status |
-            |:---:|-----|:------:|
-            ${rows}
-
-            ---
-
-            <sub>🤖 Generated by **@helpers4** CI • ${new Date().toISOString().split('T')[0]}</sub>`;
-
-            try {
-              const { data: comments } = await github.rest.issues.listComments({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-              });
-
-              const botComment = comments.find(c =>
-                c.user.type === 'Bot' && c.body.includes('PR Validation')
-              );
-
-              if (botComment) {
-                await github.rest.issues.updateComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  comment_id: botComment.id,
-                  body: comment
-                });
-              } else {
-                await github.rest.issues.createComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: context.issue.number,
-                  body: comment
-                });
-              }
-            } catch (error) {
-              console.error('Error updating PR comment:', error);
+          jobs: |
+            {
+              "🧾 Conventional Commits": "${{ needs.conventional-commits.result }}",
+              "🏗️ Build": "${{ needs.build.result }}",
+              "📘 TypeCheck": "${{ needs.typecheck.result }}",
+              "🏮 Lighthouse": "${{ needs.lighthouse.result }}"
             }

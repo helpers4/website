@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
     steps:
       - name: Get Pushinator token
         id: app_token
@@ -35,18 +37,9 @@ jobs:
         with:
           token: ${{ steps.app_token.outputs.token }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - uses: helpers4/action/setup-pnpm@main
         with:
           node-version: "24"
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Install dependencies
-        env:
-          NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
-        run: pnpm install --frozen-lockfile
 
       - name: Download TypeScript build artifacts
         env:
