@@ -2,6 +2,7 @@
 title: "isPromise"
 sidebar:
   label: "isPromise"
+description: "Checks if a value is a Promise or a thenable."
 ---
 
 Checks if a value is a Promise or a thenable.

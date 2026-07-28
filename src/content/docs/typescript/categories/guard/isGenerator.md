@@ -2,6 +2,7 @@
 title: "isGenerator"
 sidebar:
   label: "isGenerator"
+description: "Checks if a value is a generator object (the result of calling a `function*`)."
 ---
 
 Checks if a value is a generator object (the result of calling a `function*`).

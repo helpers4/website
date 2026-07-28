@@ -2,6 +2,7 @@
 title: "KeysOfType"
 sidebar:
   label: "KeysOfType"
+description: "Extracts the keys of `T` whose values extend `V`."
 ---
 
 Extracts the keys of `T` whose values extend `V`.

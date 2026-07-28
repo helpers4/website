@@ -2,6 +2,7 @@
 title: "isEven"
 sidebar:
   label: "isEven"
+description: "Checks if a value is an even integer."
 ---
 
 Checks if a value is an even integer.

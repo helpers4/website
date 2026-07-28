@@ -2,6 +2,7 @@
 title: "get"
 sidebar:
   label: "get"
+description: "Gets a value from an object using a dot/bracket-notated path or explicit key array."
 ---
 
 Gets a value from an object using a dot/bracket-notated path or explicit key array.

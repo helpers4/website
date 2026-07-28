@@ -2,6 +2,7 @@
 title: "Brand"
 sidebar:
   label: "Brand"
+description: "Brands a base type `T` with a phantom tag `B` to create a nominal type."
 ---
 
 Brands a base type `T` with a phantom tag `B` to create a nominal type.

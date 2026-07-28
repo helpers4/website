@@ -2,6 +2,7 @@
 title: "isTemporalZonedDateTime"
 sidebar:
   label: "isTemporalZonedDateTime"
+description: "Checks if a value is a `Temporal.ZonedDateTime`."
 ---
 
 Checks if a value is a `Temporal.ZonedDateTime`.

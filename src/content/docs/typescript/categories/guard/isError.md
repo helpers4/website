@@ -2,6 +2,7 @@
 title: "isError"
 sidebar:
   label: "isError"
+description: "Checks if a value is an Error instance."
 ---
 
 Checks if a value is an Error instance.

@@ -2,6 +2,7 @@
 title: "PickByValue"
 sidebar:
   label: "PickByValue"
+description: "Constructs a type by picking all entries of `T` whose values extend `V`."
 ---
 
 Constructs a type by picking all entries of `T` whose values extend `V`.

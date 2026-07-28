@@ -2,6 +2,7 @@
 title: "camelCase"
 sidebar:
   label: "camelCase"
+description: "Converts a string to camelCase."
 ---
 
 Converts a string to camelCase.

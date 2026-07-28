@@ -2,6 +2,7 @@
 title: "sortStringDescFn"
 sidebar:
   label: "sortStringDescFn"
+description: "Sort strings in descending order"
 ---
 
 Sort strings in descending order

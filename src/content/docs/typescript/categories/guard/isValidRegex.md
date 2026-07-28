@@ -2,6 +2,7 @@
 title: "isValidRegex"
 sidebar:
   label: "isValidRegex"
+description: "Checks if a string is a valid regex pattern."
 ---
 
 Checks if a string is a valid regex pattern.

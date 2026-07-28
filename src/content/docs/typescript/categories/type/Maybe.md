@@ -2,6 +2,7 @@
 title: "Maybe"
 sidebar:
   label: "Maybe"
+description: "Type for values that can be T, undefined, or null."
 ---
 
 Type for values that can be T, undefined, or null.

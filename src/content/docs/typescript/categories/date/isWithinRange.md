@@ -2,6 +2,7 @@
 title: "isWithinRange"
 sidebar:
   label: "isWithinRange"
+description: "Checks whether a date falls within a range (inclusive on both ends)."
 ---
 
 Checks whether a date falls within a range (inclusive on both ends).

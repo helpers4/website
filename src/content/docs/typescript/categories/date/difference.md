@@ -2,6 +2,7 @@
 title: "difference"
 sidebar:
   label: "difference"
+description: "Calculates the difference between two dates in the specified unit."
 ---
 
 Calculates the difference between two dates in the specified unit.

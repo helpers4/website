@@ -2,6 +2,7 @@
 title: "flip"
 sidebar:
   label: "flip"
+description: "Creates a function that invokes `fn` with the first two arguments swapped."
 ---
 
 Creates a function that invokes `fn` with the first two arguments swapped.

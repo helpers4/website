@@ -2,6 +2,7 @@
 title: "difference"
 sidebar:
   label: "difference"
+description: "Returns the difference between two arrays (items in first array but not in second)."
 ---
 
 Returns the difference between two arrays (items in first array but not in second).

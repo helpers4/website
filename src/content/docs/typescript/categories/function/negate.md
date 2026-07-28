@@ -2,6 +2,7 @@
 title: "negate"
 sidebar:
   label: "negate"
+description: "Creates a function that negates the result of `predicate`."
 ---
 
 Creates a function that negates the result of `predicate`.

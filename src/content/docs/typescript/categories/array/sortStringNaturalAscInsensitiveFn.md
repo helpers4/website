@@ -2,6 +2,7 @@
 title: "sortStringNaturalAscInsensitiveFn"
 sidebar:
   label: "sortStringNaturalAscInsensitiveFn"
+description: "Sort strings in ascending natural order, ignoring case **and diacritics** (`Intl.Collator { sensitivity: 'base' }` — …"
 ---
 
 Sort strings in ascending natural order, ignoring case **and diacritics**

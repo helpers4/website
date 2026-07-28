@@ -2,6 +2,7 @@
 title: "sortStringNaturalAscFn"
 sidebar:
   label: "sortStringNaturalAscFn"
+description: "Sort strings in ascending order using natural (human-friendly) ordering."
 ---
 
 Sort strings in ascending order using natural (human-friendly) ordering.

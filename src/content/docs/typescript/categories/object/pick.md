@@ -2,6 +2,7 @@
 title: "pick"
 sidebar:
   label: "pick"
+description: "Creates a new object with only the specified keys."
 ---
 
 Creates a new object with only the specified keys.

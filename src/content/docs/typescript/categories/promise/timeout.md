@@ -2,6 +2,7 @@
 title: "timeout"
 sidebar:
   label: "timeout"
+description: "Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration."
 ---
 
 Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration.

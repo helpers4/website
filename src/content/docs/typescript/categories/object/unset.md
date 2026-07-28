@@ -2,6 +2,7 @@
 title: "unset"
 sidebar:
   label: "unset"
+description: "Removes the value at a dot/bracket-notation path or explicit key array, mutating the object in place."
 ---
 
 Removes the value at a dot/bracket-notation path or explicit key array,

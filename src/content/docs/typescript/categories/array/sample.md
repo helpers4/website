@@ -2,6 +2,7 @@
 title: "sample"
 sidebar:
   label: "sample"
+description: "Picks one or more random elements from an array."
 ---
 
 Picks one or more random elements from an array.

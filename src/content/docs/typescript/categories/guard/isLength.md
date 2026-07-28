@@ -2,6 +2,7 @@
 title: "isLength"
 sidebar:
   label: "isLength"
+description: "Checks whether a value is a valid array-like `length`: a non-negative safe integer (`0 <= value <= Number.MAX_SAFE_IN…"
 ---
 
 Checks whether a value is a valid array-like `length`: a non-negative safe integer

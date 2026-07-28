@@ -2,6 +2,7 @@
 title: "diff"
 sidebar:
   label: "diff"
+description: "Structural object diff."
 ---
 
 Structural object diff.

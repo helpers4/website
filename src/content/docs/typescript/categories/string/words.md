@@ -2,6 +2,7 @@
 title: "words"
 sidebar:
   label: "words"
+description: "Splits a string into an array of words."
 ---
 
 Splits a string into an array of words.

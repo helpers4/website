@@ -2,6 +2,7 @@
 title: "increment"
 sidebar:
   label: "increment"
+description: "Increments a semantic version"
 ---
 
 Increments a semantic version

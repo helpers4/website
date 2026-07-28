@@ -2,6 +2,7 @@
 title: "withoutLeadingSlash"
 sidebar:
   label: "withoutLeadingSlash"
+description: "Removes the leading slash `/` from the given URL if it is present."
 ---
 
 Removes the leading slash `/` from the given URL if it is present.

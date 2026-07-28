@@ -2,6 +2,7 @@
 title: "DeepGet"
 sidebar:
   label: "DeepGet"
+description: "Resolves the value type at a given `Path` within `T`."
 ---
 
 Resolves the value type at a given `Path` within `T`.

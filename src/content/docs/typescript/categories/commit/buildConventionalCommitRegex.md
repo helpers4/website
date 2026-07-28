@@ -2,6 +2,7 @@
 title: "buildConventionalCommitRegex"
 sidebar:
   label: "buildConventionalCommitRegex"
+description: "Builds a regular expression matching the **subject line** of a Conventional Commits message."
 ---
 
 Builds a regular expression matching the **subject line** of a Conventional

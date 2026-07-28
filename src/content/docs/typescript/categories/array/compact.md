@@ -2,6 +2,7 @@
 title: "compact"
 sidebar:
   label: "compact"
+description: "Removes all falsy values (`false`, `null`, `undefined`, `0`, `\"\"`, `NaN`) from an array."
 ---
 
 Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array.

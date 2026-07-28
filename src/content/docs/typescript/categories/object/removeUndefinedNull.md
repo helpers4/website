@@ -2,6 +2,7 @@
 title: "removeUndefinedNull"
 sidebar:
   label: "removeUndefinedNull"
+description: "Remove null and undefined values from an object."
 ---
 
 Remove null and undefined values from an object.

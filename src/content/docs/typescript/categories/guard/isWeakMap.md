@@ -2,6 +2,7 @@
 title: "isWeakMap"
 sidebar:
   label: "isWeakMap"
+description: "Checks if a value is a WeakMap instance."
 ---
 
 Checks if a value is a WeakMap instance.

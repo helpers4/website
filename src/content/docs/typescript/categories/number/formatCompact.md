@@ -2,6 +2,7 @@
 title: "formatCompact"
 sidebar:
   label: "formatCompact"
+description: "Formats a number using compact notation (e.g."
 ---
 
 Formats a number using compact notation (e.g. `1_500_000 → "1.5M"`).

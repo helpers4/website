@@ -2,6 +2,7 @@
 title: "isBrowser"
 sidebar:
   label: "isBrowser"
+description: "Checks whether the code is currently running in a browser-like environment (`window` and `window.document` both defin…"
 ---
 
 Checks whether the code is currently running in a browser-like environment

@@ -2,6 +2,7 @@
 title: "isArray"
 sidebar:
   label: "isArray"
+description: "Checks if a value is an array."
 ---
 
 Checks if a value is an array.

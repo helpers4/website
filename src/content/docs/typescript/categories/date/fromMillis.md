@@ -2,6 +2,7 @@
 title: "fromMillis"
 sidebar:
   label: "fromMillis"
+description: "Creates a `Date` from a timestamp in **milliseconds**."
 ---
 
 Creates a `Date` from a timestamp in **milliseconds**.

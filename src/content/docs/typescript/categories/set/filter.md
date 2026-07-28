@@ -2,6 +2,7 @@
 title: "filter"
 sidebar:
   label: "filter"
+description: "Creates a new Set containing only the values for which the predicate returns true."
 ---
 
 Creates a new Set containing only the values for which the predicate returns true.

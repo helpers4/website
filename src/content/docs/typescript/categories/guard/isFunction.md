@@ -2,6 +2,7 @@
 title: "isFunction"
 sidebar:
   label: "isFunction"
+description: "Checks if a value is a function."
 ---
 
 Checks if a value is a function.

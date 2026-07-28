@@ -2,6 +2,7 @@
 title: "capitalize"
 sidebar:
   label: "capitalize"
+description: "Capitalizes the first letter of a string."
 ---
 
 Capitalizes the first letter of a string.

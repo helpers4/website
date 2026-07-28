@@ -2,6 +2,7 @@
 title: "flatten"
 sidebar:
   label: "flatten"
+description: "Flattens a nested object into a single-level object whose keys are the dot-notation path to each leaf value."
 ---
 
 Flattens a nested object into a single-level object whose keys are the

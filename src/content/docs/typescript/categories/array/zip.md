@@ -2,6 +2,7 @@
 title: "zip"
 sidebar:
   label: "zip"
+description: "Combines multiple arrays element-by-element into an array of tuples."
 ---
 
 Combines multiple arrays element-by-element into an array of tuples.

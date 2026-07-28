@@ -2,6 +2,7 @@
 title: "sum"
 sidebar:
   label: "sum"
+description: "Calculates the sum of an array of numbers."
 ---
 
 Calculates the sum of an array of numbers.

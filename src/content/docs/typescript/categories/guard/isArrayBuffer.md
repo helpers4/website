@@ -2,6 +2,7 @@
 title: "isArrayBuffer"
 sidebar:
   label: "isArrayBuffer"
+description: "Checks if a value is an ArrayBuffer instance."
 ---
 
 Checks if a value is an ArrayBuffer instance.

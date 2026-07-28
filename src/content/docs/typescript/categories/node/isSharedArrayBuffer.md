@@ -2,6 +2,7 @@
 title: "isSharedArrayBuffer"
 sidebar:
   label: "isSharedArrayBuffer"
+description: "Checks if a value is a `SharedArrayBuffer` instance."
 ---
 
 Checks if a value is a `SharedArrayBuffer` instance.

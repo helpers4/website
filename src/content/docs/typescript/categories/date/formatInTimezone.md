@@ -2,6 +2,7 @@
 title: "formatInTimezone"
 sidebar:
   label: "formatInTimezone"
+description: "Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`."
 ---
 
 Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`.

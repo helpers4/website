@@ -2,6 +2,7 @@
 title: "UnionToIntersection"
 sidebar:
   label: "UnionToIntersection"
+description: "Converts a union type to an intersection type: `A | B | C` → `A & B & C`."
 ---
 
 Converts a union type to an intersection type: `A | B | C` → `A & B & C`.

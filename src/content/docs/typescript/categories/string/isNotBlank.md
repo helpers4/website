@@ -2,6 +2,7 @@
 title: "isNotBlank"
 sidebar:
   label: "isNotBlank"
+description: "Checks if a string is not blank — non-empty and contains at least one non-whitespace character."
 ---
 
 Checks if a string is not blank — non-empty and contains at least one

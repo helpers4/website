@@ -2,6 +2,7 @@
 title: "countBy"
 sidebar:
   label: "countBy"
+description: "Groups the values of a Set by a derived key and counts how many fall into each group."
 ---
 
 Groups the values of a Set by a derived key and counts how many fall into each group.

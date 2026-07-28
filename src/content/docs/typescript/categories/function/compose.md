@@ -2,6 +2,7 @@
 title: "compose"
 sidebar:
   label: "compose"
+description: "Composes functions right-to-left: `compose(f, g)(x)` is equivalent to `f(g(x))`."
 ---
 
 Composes functions right-to-left: `compose(f, g)(x)` is equivalent to `f(g(x))`.

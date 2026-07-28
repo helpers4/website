@@ -2,6 +2,7 @@
 title: "isBusinessDay"
 sidebar:
   label: "isBusinessDay"
+description: "Checks whether a date falls on a business day (i.e."
 ---
 
 Checks whether a date falls on a business day (i.e. **not** a weekend day).

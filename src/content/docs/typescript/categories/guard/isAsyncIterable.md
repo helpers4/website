@@ -2,6 +2,7 @@
 title: "isAsyncIterable"
 sidebar:
   label: "isAsyncIterable"
+description: "Checks if a value implements the async iterable protocol."
 ---
 
 Checks if a value implements the async iterable protocol.

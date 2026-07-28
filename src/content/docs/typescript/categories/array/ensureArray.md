@@ -2,6 +2,7 @@
 title: "ensureArray"
 sidebar:
   label: "ensureArray"
+description: "Wraps a value in an array if it is not already one."
 ---
 
 Wraps a value in an array if it is not already one.

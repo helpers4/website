@@ -2,6 +2,7 @@
 title: "delay"
 sidebar:
   label: "delay"
+description: "Creates a promise that resolves after specified delay"
 ---
 
 Creates a promise that resolves after specified delay

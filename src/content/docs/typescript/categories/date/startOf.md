@@ -2,6 +2,7 @@
 title: "startOf"
 sidebar:
   label: "startOf"
+description: "Returns a new `Date` set to the **start** of the given unit."
 ---
 
 Returns a new `Date` set to the **start** of the given unit.

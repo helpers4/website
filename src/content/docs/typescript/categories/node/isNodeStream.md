@@ -2,6 +2,7 @@
 title: "isNodeStream"
 sidebar:
   label: "isNodeStream"
+description: "Checks if a value is a Node.js stream (has a `.pipe()` method)."
 ---
 
 Checks if a value is a Node.js stream (has a `.pipe()` method).

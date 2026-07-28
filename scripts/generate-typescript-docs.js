@@ -107,6 +107,11 @@ function escapeMarkdownCodeCell(str) {
   return (str || '').replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/\n/g, ' ');
 }
 
+// For a value going inside a double-quoted YAML frontmatter string (e.g. `description: "..."`).
+function escapeYamlDoubleQuoted(str) {
+  return (str || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
 /**
  * Returns the first sentence of a description, capped at 120 characters.
  * Keeps the category index compact.
@@ -262,11 +267,12 @@ ${depsList}
     for (const fn of functions) {
       const fnExamples = examplesMap[fn.name] || fn.examples || [];
       const sig = fn.signatures?.[0];
+      const pageDescription = escapeYamlDoubleQuoted(firstSentence(fn.description));
 
       let content = `---
 title: "${fn.name}"
 sidebar:
-  label: "${fn.name}"
+  label: "${fn.name}"${pageDescription ? `\ndescription: "${pageDescription}"` : ''}
 ---
 
 ${fn.description || ''}

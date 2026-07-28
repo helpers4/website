@@ -2,6 +2,7 @@
 title: "createSortByStringFn"
 sidebar:
   label: "createSortByStringFn"
+description: "Creates a sort function for objects by one or more string properties."
 ---
 
 Creates a sort function for objects by one or more string properties.

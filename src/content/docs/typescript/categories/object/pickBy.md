@@ -2,6 +2,7 @@
 title: "pickBy"
 sidebar:
   label: "pickBy"
+description: "Creates a new object with only the own enumerable entries for which `predicate` returns `true`."
 ---
 
 Creates a new object with only the own enumerable entries for which

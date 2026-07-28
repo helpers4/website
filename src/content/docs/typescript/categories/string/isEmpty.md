@@ -2,6 +2,7 @@
 title: "isEmpty"
 sidebar:
   label: "isEmpty"
+description: "Checks if a string is empty (`\"\"`), `null`, or `undefined`."
 ---
 
 Checks if a string is empty (`""`), `null`, or `undefined`.

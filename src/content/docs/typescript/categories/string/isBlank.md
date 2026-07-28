@@ -2,6 +2,7 @@
 title: "isBlank"
 sidebar:
   label: "isBlank"
+description: "Checks if a string is blank — empty or contains only whitespace characters."
 ---
 
 Checks if a string is blank — empty or contains only whitespace characters.

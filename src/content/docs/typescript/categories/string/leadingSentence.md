@@ -2,6 +2,7 @@
 title: "leadingSentence"
 sidebar:
   label: "leadingSentence"
+description: "Extracts the leading sentence from a string."
 ---
 
 Extracts the leading sentence from a string.

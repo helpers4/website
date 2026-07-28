@@ -2,6 +2,7 @@
 title: "isBoolean"
 sidebar:
   label: "isBoolean"
+description: "Checks if a value is a boolean."
 ---
 
 Checks if a value is a boolean.

@@ -2,6 +2,7 @@
 title: "omit"
 sidebar:
   label: "omit"
+description: "Creates a new object without the specified keys."
 ---
 
 Creates a new object without the specified keys.

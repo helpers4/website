@@ -2,6 +2,7 @@
 title: "isBuffer"
 sidebar:
   label: "isBuffer"
+description: "Checks if a value is a Node.js Buffer instance."
 ---
 
 Checks if a value is a Node.js Buffer instance.

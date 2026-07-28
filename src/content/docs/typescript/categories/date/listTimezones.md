@@ -2,6 +2,7 @@
 title: "listTimezones"
 sidebar:
   label: "listTimezones"
+description: "Returns the list of IANA timezone identifiers supported by the runtime."
 ---
 
 Returns the list of IANA timezone identifiers supported by the runtime.

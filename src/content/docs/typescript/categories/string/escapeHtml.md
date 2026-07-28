@@ -2,6 +2,7 @@
 title: "escapeHtml"
 sidebar:
   label: "escapeHtml"
+description: "Escapes the HTML special characters `&`, `<`, `>`, `\"`, and `'` in a string."
 ---
 
 Escapes the HTML special characters `&`, `<`, `>`, `"`, and `'` in a string.

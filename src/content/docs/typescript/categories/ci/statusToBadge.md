@@ -2,6 +2,7 @@
 title: "statusToBadge"
 sidebar:
   label: "statusToBadge"
+description: "Maps a CI/CD job status to an inline code badge string."
 ---
 
 Maps a CI/CD job status to an inline code badge string.

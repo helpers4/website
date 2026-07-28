@@ -2,6 +2,7 @@
 title: "isTemporalInstant"
 sidebar:
   label: "isTemporalInstant"
+description: "Checks if a value is a `Temporal.Instant`."
 ---
 
 Checks if a value is a `Temporal.Instant`.

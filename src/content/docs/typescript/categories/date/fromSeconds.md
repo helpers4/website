@@ -2,6 +2,7 @@
 title: "fromSeconds"
 sidebar:
   label: "fromSeconds"
+description: "Creates a `Date` from a timestamp in **seconds**."
 ---
 
 Creates a `Date` from a timestamp in **seconds**.

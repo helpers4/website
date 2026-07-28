@@ -2,6 +2,7 @@
 title: "max"
 sidebar:
   label: "max"
+description: "Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs wi…"
 ---
 
 Returns the maximum value in an array using a loop instead of spread,

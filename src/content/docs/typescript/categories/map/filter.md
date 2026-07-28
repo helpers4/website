@@ -2,6 +2,7 @@
 title: "filter"
 sidebar:
   label: "filter"
+description: "Creates a new Map containing only the entries for which the predicate returns true."
 ---
 
 Creates a new Map containing only the entries for which the predicate returns true.

@@ -2,6 +2,7 @@
 title: "intersection"
 sidebar:
   label: "intersection"
+description: "Compute the intersection of two arrays, meaning the elements that are present in both arrays."
 ---
 
 Compute the intersection of two arrays, meaning the elements that are present

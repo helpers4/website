@@ -2,6 +2,7 @@
 title: "curry"
 sidebar:
   label: "curry"
+description: "Transforms a multi-argument function into a chain of single-argument functions (Haskell-style currying)."
 ---
 
 Transforms a multi-argument function into a chain of single-argument functions

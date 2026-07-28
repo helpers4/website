@@ -2,6 +2,7 @@
 title: "partition"
 sidebar:
   label: "partition"
+description: "Splits an array into two groups based on a predicate function."
 ---
 
 Splits an array into two groups based on a predicate function.

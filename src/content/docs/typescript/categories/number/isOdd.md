@@ -2,6 +2,7 @@
 title: "isOdd"
 sidebar:
   label: "isOdd"
+description: "Checks if a value is an odd integer."
 ---
 
 Checks if a value is an odd integer.

@@ -2,6 +2,7 @@
 title: "isEmpty"
 sidebar:
   label: "isEmpty"
+description: "Checks if an array is empty (has no elements)."
 ---
 
 Checks if an array is empty (has no elements).

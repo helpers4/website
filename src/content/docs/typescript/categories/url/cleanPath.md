@@ -2,6 +2,7 @@
 title: "cleanPath"
 sidebar:
   label: "cleanPath"
+description: "Clean an URL by removing duplicate slashes."
 ---
 
 Clean an URL by removing duplicate slashes.

@@ -2,6 +2,7 @@
 title: "roundTo"
 sidebar:
   label: "roundTo"
+description: "Rounds a number to specified decimal places"
 ---
 
 Rounds a number to specified decimal places

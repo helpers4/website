@@ -2,6 +2,7 @@
 title: "sortNumberAscFn"
 sidebar:
   label: "sortNumberAscFn"
+description: "Sort numbers in ascending order"
 ---
 
 Sort numbers in ascending order

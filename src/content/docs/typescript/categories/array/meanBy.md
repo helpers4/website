@@ -2,6 +2,7 @@
 title: "meanBy"
 sidebar:
   label: "meanBy"
+description: "Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee."
 ---
 
 Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee.

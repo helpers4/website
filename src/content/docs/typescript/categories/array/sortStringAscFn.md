@@ -2,6 +2,7 @@
 title: "sortStringAscFn"
 sidebar:
   label: "sortStringAscFn"
+description: "Sort strings in ascending order"
 ---
 
 Sort strings in ascending order

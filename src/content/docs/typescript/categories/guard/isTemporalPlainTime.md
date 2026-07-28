@@ -2,6 +2,7 @@
 title: "isTemporalPlainTime"
 sidebar:
   label: "isTemporalPlainTime"
+description: "Checks if a value is a `Temporal.PlainTime`."
 ---
 
 Checks if a value is a `Temporal.PlainTime`.

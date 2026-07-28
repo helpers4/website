@@ -2,6 +2,7 @@
 title: "escapeRegExp"
 sidebar:
   label: "escapeRegExp"
+description: "Escapes regular expression metacharacters (`."
 ---
 
 Escapes regular expression metacharacters (`. * + ? ^ $ { } ( ) | [ ] \`)

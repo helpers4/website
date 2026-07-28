@@ -2,6 +2,7 @@
 title: "cloneDeep"
 sidebar:
   label: "cloneDeep"
+description: "Creates a deep copy of an object or array."
 ---
 
 Creates a deep copy of an object or array.

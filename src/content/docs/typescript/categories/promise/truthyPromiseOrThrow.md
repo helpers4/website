@@ -2,6 +2,7 @@
 title: "truthyPromiseOrThrow"
 sidebar:
   label: "truthyPromiseOrThrow"
+description: "Returns a function that passes through truthy data or throws an error."
 ---
 
 Returns a function that passes through truthy data or throws an error.

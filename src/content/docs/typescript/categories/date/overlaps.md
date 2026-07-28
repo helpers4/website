@@ -2,6 +2,7 @@
 title: "overlaps"
 sidebar:
   label: "overlaps"
+description: "Checks whether two date ranges overlap."
 ---
 
 Checks whether two date ranges overlap.

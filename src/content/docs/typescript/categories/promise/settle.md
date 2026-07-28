@@ -2,6 +2,7 @@
 title: "settle"
 sidebar:
   label: "settle"
+description: "Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first failure, unlike …"
 ---
 
 Runs an array of promises concurrently and partitions the outcomes instead of

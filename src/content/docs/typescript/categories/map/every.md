@@ -2,6 +2,7 @@
 title: "every"
 sidebar:
   label: "every"
+description: "Checks if every entry of a Map satisfies the predicate."
 ---
 
 Checks if every entry of a Map satisfies the predicate. Short-circuits on the first mismatch.

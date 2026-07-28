@@ -2,6 +2,7 @@
 title: "sortStringNaturalDescFn"
 sidebar:
   label: "sortStringNaturalDescFn"
+description: "Sort strings in descending order using natural (human-friendly) ordering."
 ---
 
 Sort strings in descending order using natural (human-friendly) ordering.

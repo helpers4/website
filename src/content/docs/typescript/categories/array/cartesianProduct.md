@@ -2,6 +2,7 @@
 title: "cartesianProduct"
 sidebar:
   label: "cartesianProduct"
+description: "Computes the Cartesian product of the provided arrays."
 ---
 
 Computes the Cartesian product of the provided arrays.

@@ -2,6 +2,7 @@
 title: "isNegative"
 sidebar:
   label: "isNegative"
+description: "Checks if a value is a number less than 0."
 ---
 
 Checks if a value is a number less than 0.
