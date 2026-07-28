@@ -82,6 +82,7 @@ async function fetchRandomHeroPhoto(): Promise<UnsplashPhoto | null> {
 }
 
 const heroPhoto = await fetchRandomHeroPhoto();
+const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -146,7 +147,7 @@ const heroPhoto = await fetchRandomHeroPhoto();
     </div>
 
     <p class="copyright-credit">
-      © 2025 helpers4 · <a href="/typescript/legal/license">LGPL-3.0</a>
+      © {currentYear} helpers4 · <a href="/typescript/legal/license">LGPL-3.0</a>
     </p>
   </body>
 </html>
