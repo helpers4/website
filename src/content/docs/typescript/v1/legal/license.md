@@ -58,7 +58,7 @@ keeping *modifications to the library itself* copyleft.
 The complete license text is available at
 [gnu.org/licenses/agpl-3.0](https://www.gnu.org/licenses/agpl-3.0.html).
 
-:::info Disclaimer
+:::note[Disclaimer]
 This page is a human-readable summary and **not** a substitute for the
 [full license text](https://www.gnu.org/licenses/agpl-3.0.html), and it does not constitute legal
 advice. If in doubt, refer to the official license or consult legal counsel.
