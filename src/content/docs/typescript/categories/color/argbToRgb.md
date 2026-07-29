@@ -3,7 +3,7 @@ title: "argbToRgb"
 sidebar:
   label: "argbToRgb"
 description: "Converts a 32-bit packed ARGB integer (as used by e.g."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Converts a 32-bit packed ARGB integer (as used by e.g. Chromium's

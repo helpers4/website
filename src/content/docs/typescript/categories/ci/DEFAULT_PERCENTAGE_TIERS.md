@@ -3,7 +3,7 @@ title: "DEFAULT_PERCENTAGE_TIERS"
 sidebar:
   label: "DEFAULT_PERCENTAGE_TIERS"
 description: "Default tiers, geared towards coverage/quality-gate style percentages."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Default tiers, geared towards coverage/quality-gate style percentages.

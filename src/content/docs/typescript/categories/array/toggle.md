@@ -3,7 +3,7 @@ title: "toggle"
 sidebar:
   label: "toggle"
 description: "Returns a new array with `item` removed if present, or appended if absent — the common \"toggle a selection\" pattern."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Returns a new array with `item` removed if present, or appended if absent —

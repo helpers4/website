@@ -3,15 +3,24 @@ title: "truncate"
 sidebar:
   label: "truncate"
 description: "Truncates a string to `maxLength` characters, appending an ellipsis when cut."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Truncates a string to `maxLength` characters, appending an ellipsis when cut.
 
 The ellipsis counts toward `maxLength`, so the result is always at most
-`maxLength` characters long. If the string is already within the limit, it
-is returned unchanged (no ellipsis appended). `null` and `undefined` inputs
-are returned as-is to align with other string helpers.
+`maxLength` characters long. The cut point is snapped back to the nearest
+grapheme-cluster boundary and trailing breakable whitespace is trimmed, so
+a cut never leaves a dangling space (`'Hello,…'`, not `'Hello, …'`) or a
+split multi-code-unit character (a lone surrogate, an orphaned combining
+mark, a family emoji cut mid-sequence, …) in front of the ellipsis — this
+means the result can be shorter than `maxLength` when the cut point falls
+on whitespace or inside such a cluster. Non-breaking spaces (U+00A0) and
+other "no-break" Unicode separators are deliberately left untouched, since
+their whole purpose is to resist being treated as a break point. If the
+string is already within the limit, it is returned unchanged (no ellipsis
+appended, no trimming). `null` and `undefined` inputs are returned as-is to
+align with other string helpers.
 
 > Available since v2.0.0
 
@@ -44,11 +53,11 @@ truncate(input: undefined, maxLength: number, ellipsis?: string): undefined
 
 ### Truncate with default ellipsis
 
-Appends … when the string exceeds the limit.
+Appends … when the string exceeds the limit, trimming a trailing space at the cut point.
 
 ```ts
 truncate('Hello, world!', 8)
-// => 'Hello, …'
+// => 'Hello,…'
 ```
 
 ### Truncate with custom ellipsis

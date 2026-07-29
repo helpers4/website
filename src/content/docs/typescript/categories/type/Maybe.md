@@ -3,7 +3,7 @@ title: "Maybe"
 sidebar:
   label: "Maybe"
 description: "Type for values that can be T, undefined, or null."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Type for values that can be T, undefined, or null.

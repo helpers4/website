@@ -3,7 +3,7 @@ title: "formatCompact"
 sidebar:
   label: "formatCompact"
 description: "Formats a number using compact notation (e.g."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Formats a number using compact notation (e.g. `1_500_000 → "1.5M"`).

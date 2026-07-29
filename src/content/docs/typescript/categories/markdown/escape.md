@@ -3,7 +3,7 @@ title: "escape"
 sidebar:
   label: "escape"
 description: "Escapes all Markdown special characters in a string so they render as literal text rather than formatting syntax."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Escapes all Markdown special characters in a string so they render as

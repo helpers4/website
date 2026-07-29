@@ -3,7 +3,7 @@ title: "isNumber"
 sidebar:
   label: "isNumber"
 description: "Checks if a value is a number."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Checks if a value is a number.

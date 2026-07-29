@@ -6,12 +6,21 @@ sidebar:
   order: 2
 ---
 
-Current published version: **v3.0.5**. This page groups helpers by the version that
+Current published version: **v3.0.6**. This page groups helpers by the version that
 *first introduced* them — a release with no new helpers (bug fixes, docs, internal changes only)
 gets no section of its own here. For the full release-by-release history, see
 [CHANGELOG.md](https://github.com/helpers4/typescript/blob/main/CHANGELOG.md) on GitHub.
 
-## v3.0.4 *(latest with new helpers)*
+## v3.0.6 *(latest with new helpers)*
+
+| Function | Category | Description |
+|----------|----------|-------------|
+| [`safeReadJsonFile`](../categories/node/safereadjsonfile/) | [node](../categories/node/) | Reads a file and parses its contents as JSON, returning \`null\` \(or a fallback\) on any failure — a missing/unreadable file and invalid content are both treated the same way\.  Also tolerates JSONC \(line/block comments and trailing commas — the dialect used by \`tsconfig\.json\`, VS Code's \`settings\.json\`, etc\.\): strict \`JSON\.parse\` is tried first, and only on failure is the content re\-parsed with comments/trailing commas stripped, so plain JSON pays no extra cost\.  Unlike \`readFileSync\` \+ \`JSON\.parse\`, this never throws\. |
+| [`trim`](../categories/string/trim/) | [string](../categories/string/) | Trims both leading and trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. Defaults to \`'whitespace'\`, which behaves exactly like \`String\.prototype\.trim\`\.  Unlike the native \`trim\`, non\-breaking spaces \(NBSP, FIGURE SPACE, NARROW NO\-BREAK SPACE\) are only stripped for \`'separator'\` mode and above \- pass \`'wrappable'\` to preserve them, since their whole purpose is to resist being treated as a break point\. |
+| [`trimEnd`](../categories/string/trimend/) | [string](../categories/string/) | Trims trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. Defaults to \`'whitespace'\`, which behaves exactly like \`String\.prototype\.trimEnd\`\.  Unlike the native \`trimEnd\`, non\-breaking spaces \(NBSP, FIGURE SPACE, NARROW NO\-BREAK SPACE\) are only stripped for \`'separator'\` mode and above \- pass \`'wrappable'\` to preserve them, since their whole purpose is to resist being treated as a break point \(e\.g\. gluing a number to its unit\)\. |
+| [`trimStart`](../categories/string/trimstart/) | [string](../categories/string/) | Trims leading characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. Defaults to \`'whitespace'\`, which behaves exactly like \`String\.prototype\.trimStart\`\.  Unlike the native \`trimStart\`, non\-breaking spaces \(NBSP, FIGURE SPACE, NARROW NO\-BREAK SPACE\) are only stripped for \`'separator'\` mode and above \- pass \`'wrappable'\` to preserve them, since their whole purpose is to resist being treated as a break point\. |
+
+## v3.0.4
 
 | Function | Category | Description |
 |----------|----------|-------------|

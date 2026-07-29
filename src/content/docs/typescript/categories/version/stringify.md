@@ -3,7 +3,7 @@ title: "stringify"
 sidebar:
   label: "stringify"
 description: "Reconstruct a semantic version string from a ParsedVersion object."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Reconstruct a semantic version string from a ParsedVersion object.

@@ -3,7 +3,7 @@ title: "parsePackageRepository"
 sidebar:
   label: "parsePackageRepository"
 description: "Parse the `repository` field from `package.json` into a structured object."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Parse the `repository` field from `package.json` into a structured object.

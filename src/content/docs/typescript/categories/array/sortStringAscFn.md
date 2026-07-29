@@ -3,7 +3,7 @@ title: "sortStringAscFn"
 sidebar:
   label: "sortStringAscFn"
 description: "Sort strings in ascending order"
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Sort strings in ascending order

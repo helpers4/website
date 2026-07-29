@@ -3,7 +3,7 @@ title: "isPromise"
 sidebar:
   label: "isPromise"
 description: "Checks if a value is a Promise or a thenable."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Checks if a value is a Promise or a thenable.

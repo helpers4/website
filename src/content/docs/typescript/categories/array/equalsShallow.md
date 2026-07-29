@@ -3,7 +3,7 @@ title: "equalsShallow"
 sidebar:
   label: "equalsShallow"
 description: "Positional, one-level (shallow) array equality."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Positional, one-level (shallow) array equality.

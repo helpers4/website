@@ -3,7 +3,7 @@ title: "equalsUnordered"
 sidebar:
   label: "equalsUnordered"
 description: "Order-independent (set-style) array equality."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Order-independent (set-style) array equality.

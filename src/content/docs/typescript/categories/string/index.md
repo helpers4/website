@@ -34,7 +34,10 @@ Utility functions for working with string operations.
 | `startsWith / endsWith` | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |
 | [`template`](./template/) | Interpolates \`\{\{key\}\}\` placeholders in a template string with values from a data record\. |
 | [`titleCase`](./titlecase/) | Converts a string to Title Case\. |
+| [`trim`](./trim/) | Trims both leading and trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |
 | `trim / trimStart / trimEnd` | <span class="badge badge--secondary">native JS</span> `String.prototype.trim() / trimStart() / trimEnd()` *(ES2019)* |
+| [`trimEnd`](./trimend/) | Trims trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |
+| [`trimStart`](./trimstart/) | Trims leading characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |
 | [`truncate`](./truncate/) | Truncates a string to \`maxLength\` characters, appending an ellipsis when cut\. |
 | [`unescapeHtml`](./unescapehtml/) | Unescapes the HTML entities \`&amp;\`, \`&lt;\`, \`&gt;\`, \`&quot;\`, and \`&\#39;\` back to \`&\`, \`<\`, \`>\`, \`"\`, and \`'\`\. |
 | [`words`](./words/) | Splits a string into an array of words\. |

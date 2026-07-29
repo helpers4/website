@@ -3,7 +3,7 @@ title: "DeepGet"
 sidebar:
   label: "DeepGet"
 description: "Resolves the value type at a given `Path` within `T`."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Resolves the value type at a given `Path` within `T`.

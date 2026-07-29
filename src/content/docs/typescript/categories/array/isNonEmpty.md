@@ -3,7 +3,7 @@ title: "isNonEmpty"
 sidebar:
   label: "isNonEmpty"
 description: "Checks if an array is non-empty (has at least one element)."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Checks if an array is non-empty (has at least one element).

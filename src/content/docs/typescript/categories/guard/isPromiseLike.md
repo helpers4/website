@@ -3,7 +3,7 @@ title: "isPromiseLike"
 sidebar:
   label: "isPromiseLike"
 description: "Checks if a value is a thenable (has a `.then()` method)."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Checks if a value is a thenable (has a `.then()` method).

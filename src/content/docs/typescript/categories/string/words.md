@@ -3,7 +3,7 @@ title: "words"
 sidebar:
   label: "words"
 description: "Splits a string into an array of words."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Splits a string into an array of words.

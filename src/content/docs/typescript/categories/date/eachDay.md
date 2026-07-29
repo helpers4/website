@@ -3,7 +3,7 @@ title: "eachDay"
 sidebar:
   label: "eachDay"
 description: "Returns an array of `Date` objects for each day from `start` to `end` (inclusive)."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Returns an array of `Date` objects for each day from `start` to `end` (inclusive).

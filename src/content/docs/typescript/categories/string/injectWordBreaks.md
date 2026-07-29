@@ -3,7 +3,7 @@ title: "injectWordBreaks"
 sidebar:
   label: "injectWordBreaks"
 description: "Adds word-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table c…"
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Adds word-break opportunities to a string so it can wrap cleanly in narrow

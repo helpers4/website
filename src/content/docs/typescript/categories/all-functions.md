@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**312** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**316** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -302,6 +302,7 @@ sidebar:
 | [`roundTo`](../number/roundto/) | [number](../number/) | Rounds a number to specified decimal places |
 | [`safeFetch`](../promise/safefetch/) | [promise](../promise/) | Wraps \`fetch\` with built\-in error handling: returns \`null\` when the request fails \(network error, non\-OK status, or par… |
 | [`safeJsonParse`](../object/safejsonparse/) | [object](../object/) | Parses a JSON string, returning \`null\` \(or a fallback\) on any parse failure\. |
+| [`safeReadJsonFile`](../node/safereadjsonfile/) | [node](../node/) | Reads a file and parses its contents as JSON, returning \`null\` \(or a fallback\) on any failure — a missing/unreadable fi… |
 | [`sample`](../array/sample/) | [array](../array/) | Picks one or more random elements from an array\. |
 | [`satisfiesRange`](../version/satisfiesrange/) | [version](../version/) | Checks if a version satisfies a range \(simple implementation\) |
 | [`select`](../array/select/) | [array](../array/) | Filters and transforms an array in a single pass\. |
@@ -356,7 +357,10 @@ sidebar:
 | [`toSeconds`](../date/toseconds/) | [date](../date/) | Converts a date to a timestamp in \*\*seconds\*\* \(epoch seconds\)\. |
 | `toTemporalInstant` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Date.prototype.toTemporalInstant()` *(Temporal (Stage 3))* |
 | `toZonedDateTime` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.prototype.toZonedDateTimeISO(tz)` *(Temporal (Stage 3))* |
+| [`trim`](../string/trim/) | [string](../string/) | Trims both leading and trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |
 | `trim / trimStart / trimEnd` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.trim() / trimStart() / trimEnd()` *(ES2019)* |
+| [`trimEnd`](../string/trimend/) | [string](../string/) | Trims trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |
+| [`trimStart`](../string/trimstart/) | [string](../string/) | Trims leading characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |
 | [`truncate`](../string/truncate/) | [string](../string/) | Truncates a string to \`maxLength\` characters, appending an ellipsis when cut\. |
 | [`truthyPromiseOrThrow`](../promise/truthypromiseorthrow/) | [promise](../promise/) | Returns a function that passes through truthy data or throws an error\. |
 | [`tryit`](../promise/tryit/) | [promise](../promise/) | Wraps a function so it never throws\. |

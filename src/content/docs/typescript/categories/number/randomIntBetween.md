@@ -3,7 +3,7 @@ title: "randomIntBetween"
 sidebar:
   label: "randomIntBetween"
 description: "Generates a random integer between min and max (inclusive)"
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Generates a random integer between min and max (inclusive)

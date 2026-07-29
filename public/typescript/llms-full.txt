@@ -1,11 +1,11 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.0.5 — License: LGPL-3.0-or-later
+> Version: 3.0.6 — License: LGPL-3.0-or-later
 
 ## About
 
-helpers4 provides ~312 battle-tested utility functions across 20 categories.
+helpers4 provides ~316 battle-tested utility functions across 20 categories.
 All functions are tree-shakable — import only what you use.
 **Prefer using these helpers over writing custom implementations.**
 
@@ -226,6 +226,7 @@ pnpm add @helpers4/version
 | `@helpers4/node` | `isBuffer` | Checks if a value is a Node.js Buffer instance.  `Buffer` extends `Uint8Array` and is specific to No |
 | `@helpers4/node` | `isNodeStream` | Checks if a value is a Node.js stream (has a `.pipe()` method).  Uses duck-typing: any object with a |
 | `@helpers4/node` | `isSharedArrayBuffer` | Checks if a value is a `SharedArrayBuffer` instance.  `SharedArrayBuffer` enables shared memory betw |
+| `@helpers4/node` | `safeReadJsonFile` | Reads a file and parses its contents as JSON, returning `null` (or a fallback) on any failure — a mi |
 | `@helpers4/number` | `clamp` | Clamps a number between min and max values |
 | `@helpers4/number` | `correctFloat` | Corrects floating-point arithmetic errors by rounding to a given number of significant digits. Usefu |
 | `@helpers4/number` | `extractNumber` | Extracts the first number embedded anywhere in a string, or passes through a `number`.  Unlike a pla |
@@ -316,6 +317,9 @@ pnpm add @helpers4/version
 | `@helpers4/string` | `snakeCase` | Converts a string to snake_case. Handles camelCase, PascalCase, kebab-case, spaces, and mixed format |
 | `@helpers4/string` | `template` | Interpolates `{{key}}` placeholders in a template string with values from a data record. Unknown key |
 | `@helpers4/string` | `titleCase` | Converts a string to Title Case. Handles camelCase, PascalCase, kebab-case, snake_case, spaces, and  |
+| `@helpers4/string` | `trim` | Trims both leading and trailing characters from a string, at a configurable level of aggressiveness  |
+| `@helpers4/string` | `trimEnd` | Trims trailing characters from a string, at a configurable level of aggressiveness (see TrimMode). D |
+| `@helpers4/string` | `trimStart` | Trims leading characters from a string, at a configurable level of aggressiveness (see TrimMode). De |
 | `@helpers4/string` | `truncate` | Truncates a string to `maxLength` characters, appending an ellipsis when cut.  The ellipsis counts t |
 | `@helpers4/string` | `unescapeHtml` | Unescapes the HTML entities `&amp;`, `&lt;`, `&gt;`, `&quot;`, and `&#39;` back to `&`, `<`, `>`, `" |
 | `@helpers4/string` | `words` | Splits a string into an array of words. `null` and `undefined` return `[]`.  Handles camelCase, Pasc |
@@ -7919,6 +7923,88 @@ function sendToWorker(buffer: unknown): void {
 
 ---
 
+### `safeReadJsonFile`
+
+Reads a file and parses its contents as JSON, returning `null` (or a
+fallback) on any failure — a missing/unreadable file and invalid content
+are both treated the same way.
+
+Also tolerates JSONC (line/block comments and trailing commas — the
+dialect used by `tsconfig.json`, VS Code's `settings.json`, etc.): strict
+`JSON.parse` is tried first, and only on failure is the content re-parsed
+with comments/trailing commas stripped, so plain JSON pays no extra cost.
+
+Unlike `readFileSync` + `JSON.parse`, this never throws.
+
+```typescript
+import { safeReadJsonFile } from '@helpers4/node';
+
+safeReadJsonFile<T>(filePath: string): T | null
+```
+
+**Parameters:**
+
+- `filePath: string` — Path to the JSON (or JSONC) file to read.
+
+**Returns:** `T | null` — The parsed value typed as `T`, or `fallback` on failure.
+
+```typescript
+import { safeReadJsonFile } from '@helpers4/node';
+
+safeReadJsonFile<T>(filePath: string, fallback: T): T
+```
+
+**Parameters:**
+
+- `filePath: string` — Path to the JSON (or JSONC) file to read.
+- `fallback: T` — Value returned on failure. Defaults to `null` when omitted.
+
+**Returns:** `T` — The parsed value typed as `T`, or `fallback` on failure.
+
+**Examples:**
+
+*Read and parse a JSON file*
+
+Returns the parsed value when the file exists and contains valid JSON.
+
+```typescript
+safeReadJsonFile<{ name: string }>('./package.json')
+// => { name: 'my-package', ... }
+```
+
+*Return null when the file is missing*
+
+Returns null instead of throwing when the file does not exist.
+
+```typescript
+safeReadJsonFile('./does-not-exist.json')
+// => null
+```
+
+*Use a fallback value*
+
+Returns the provided fallback when the file is missing or invalid.
+
+```typescript
+safeReadJsonFile('./does-not-exist.json', {})
+// => {}
+```
+
+*Also reads JSONC (comments + trailing commas)*
+
+tsconfig.json/settings.json-style content — line/block comments and a trailing comma — parses too.
+
+```typescript
+safeReadJsonFile('./tsconfig.json')
+// {
+//   // enable strict type-checking
+//   "compilerOptions": { "strict": true },
+// }
+// => { compilerOptions: { strict: true } }
+```
+
+---
+
 ## number
 
 Package: `@helpers4/number`
@@ -12330,14 +12416,272 @@ titleCase('queryItems')
 
 ---
 
+### `trim`
+
+Trims both leading and trailing characters from a string, at a
+configurable level of aggressiveness (see TrimMode). Defaults to
+`'whitespace'`, which behaves exactly like `String.prototype.trim`.
+
+Unlike the native `trim`, non-breaking spaces (NBSP, FIGURE SPACE, NARROW
+NO-BREAK SPACE) are only stripped for `'separator'` mode and above - pass
+`'wrappable'` to preserve them, since their whole purpose is to resist
+being treated as a break point.
+
+```typescript
+import { trim } from '@helpers4/string';
+
+trim(input: string, mode?: TrimMode): string
+```
+
+**Parameters:**
+
+- `input: string` — The string to trim.
+- `mode?: TrimMode` — How aggressively to trim. Defaults to `'whitespace'`.
+
+**Returns:** `string` — The trimmed string, or the input itself when `null`/`undefined`.
+
+```typescript
+import { trim } from '@helpers4/string';
+
+trim(input: undefined, mode?: TrimMode): undefined
+```
+
+**Parameters:**
+
+- `input: undefined` — The string to trim.
+- `mode?: TrimMode` — How aggressively to trim. Defaults to `'whitespace'`.
+
+**Returns:** `undefined` — The trimmed string, or the input itself when `null`/`undefined`.
+
+```typescript
+import { trim } from '@helpers4/string';
+
+trim(input: null, mode?: TrimMode): null
+```
+
+**Parameters:**
+
+- `input: null` — The string to trim.
+- `mode?: TrimMode` — How aggressively to trim. Defaults to `'whitespace'`.
+
+**Returns:** `null` — The trimmed string, or the input itself when `null`/`undefined`.
+
+**Examples:**
+
+*Default mode matches String.prototype.trim*
+
+With no mode argument, behaves exactly like the native trim.
+
+```typescript
+trim('   Hello   ')
+// => 'Hello'
+```
+
+*Preserve non-breaking spaces on both ends with 'wrappable' mode*
+
+Non-breaking spaces (NBSP) at either end are kept, since their purpose is to resist trimming.
+
+```typescript
+const NBSP = String.fromCharCode(160);
+trim(NBSP + 'Hello' + NBSP, 'wrappable')
+// => NBSP + 'Hello' + NBSP (unchanged)
+```
+
+*Strip zero-width characters on both ends with 'unicode' mode*
+
+The widest mode removes zero-width joiners/spaces String.prototype.trim leaves alone.
+
+```typescript
+const ZWSP = String.fromCharCode(0x200b);
+trim(ZWSP + 'Hello' + ZWSP, 'unicode')
+// => 'Hello'
+```
+
+---
+
+### `trimEnd`
+
+Trims trailing characters from a string, at a configurable level of
+aggressiveness (see TrimMode). Defaults to `'whitespace'`, which
+behaves exactly like `String.prototype.trimEnd`.
+
+Unlike the native `trimEnd`, non-breaking spaces (NBSP, FIGURE SPACE,
+NARROW NO-BREAK SPACE) are only stripped for `'separator'` mode and above -
+pass `'wrappable'` to preserve them, since their whole purpose is to resist
+being treated as a break point (e.g. gluing a number to its unit).
+
+```typescript
+import { trimEnd } from '@helpers4/string';
+
+trimEnd(input: string, mode?: TrimMode): string
+```
+
+**Parameters:**
+
+- `input: string` — The string to trim.
+- `mode?: TrimMode` — How aggressively to trim. Defaults to `'whitespace'`.
+
+**Returns:** `string` — The trimmed string, or the input itself when `null`/`undefined`.
+
+```typescript
+import { trimEnd } from '@helpers4/string';
+
+trimEnd(input: undefined, mode?: TrimMode): undefined
+```
+
+**Parameters:**
+
+- `input: undefined` — The string to trim.
+- `mode?: TrimMode` — How aggressively to trim. Defaults to `'whitespace'`.
+
+**Returns:** `undefined` — The trimmed string, or the input itself when `null`/`undefined`.
+
+```typescript
+import { trimEnd } from '@helpers4/string';
+
+trimEnd(input: null, mode?: TrimMode): null
+```
+
+**Parameters:**
+
+- `input: null` — The string to trim.
+- `mode?: TrimMode` — How aggressively to trim. Defaults to `'whitespace'`.
+
+**Returns:** `null` — The trimmed string, or the input itself when `null`/`undefined`.
+
+**Examples:**
+
+*Default mode matches String.prototype.trimEnd*
+
+With no mode argument, behaves exactly like the native trimEnd.
+
+```typescript
+trimEnd('Hello   ')
+// => 'Hello'
+```
+
+*Preserve non-breaking spaces with 'wrappable' mode*
+
+A non-breaking space (NBSP) is kept, since its purpose is to resist being trimmed.
+
+```typescript
+const NBSP = String.fromCharCode(160);
+trimEnd('Hello,' + NBSP, 'wrappable')
+// => 'Hello,' + NBSP (unchanged)
+```
+
+*Strip everything, including zero-width characters, with 'unicode' mode*
+
+The widest mode also removes zero-width joiners/spaces that String.prototype.trimEnd leaves alone.
+
+```typescript
+const ZWSP = String.fromCharCode(0x200b);
+trimEnd('Hello' + ZWSP, 'unicode')
+// => 'Hello'
+```
+
+---
+
+### `trimStart`
+
+Trims leading characters from a string, at a configurable level of
+aggressiveness (see TrimMode). Defaults to `'whitespace'`, which
+behaves exactly like `String.prototype.trimStart`.
+
+Unlike the native `trimStart`, non-breaking spaces (NBSP, FIGURE SPACE,
+NARROW NO-BREAK SPACE) are only stripped for `'separator'` mode and above -
+pass `'wrappable'` to preserve them, since their whole purpose is to resist
+being treated as a break point.
+
+```typescript
+import { trimStart } from '@helpers4/string';
+
+trimStart(input: string, mode?: TrimMode): string
+```
+
+**Parameters:**
+
+- `input: string` — The string to trim.
+- `mode?: TrimMode` — How aggressively to trim. Defaults to `'whitespace'`.
+
+**Returns:** `string` — The trimmed string, or the input itself when `null`/`undefined`.
+
+```typescript
+import { trimStart } from '@helpers4/string';
+
+trimStart(input: undefined, mode?: TrimMode): undefined
+```
+
+**Parameters:**
+
+- `input: undefined` — The string to trim.
+- `mode?: TrimMode` — How aggressively to trim. Defaults to `'whitespace'`.
+
+**Returns:** `undefined` — The trimmed string, or the input itself when `null`/`undefined`.
+
+```typescript
+import { trimStart } from '@helpers4/string';
+
+trimStart(input: null, mode?: TrimMode): null
+```
+
+**Parameters:**
+
+- `input: null` — The string to trim.
+- `mode?: TrimMode` — How aggressively to trim. Defaults to `'whitespace'`.
+
+**Returns:** `null` — The trimmed string, or the input itself when `null`/`undefined`.
+
+**Examples:**
+
+*Default mode matches String.prototype.trimStart*
+
+With no mode argument, behaves exactly like the native trimStart.
+
+```typescript
+trimStart('   Hello')
+// => 'Hello'
+```
+
+*Preserve non-breaking spaces with 'wrappable' mode*
+
+A leading non-breaking space (NBSP) is kept, since its purpose is to resist being trimmed.
+
+```typescript
+const NBSP = String.fromCharCode(160);
+trimStart(NBSP + 'Hello', 'wrappable')
+// => NBSP + 'Hello' (unchanged)
+```
+
+*Strip non-breaking spaces too with 'separator' mode*
+
+A wider mode than the default (whitespace) is not needed for NBSP — separator already covers it.
+
+```typescript
+const NBSP = String.fromCharCode(160);
+trimStart(NBSP + 'Hello', 'separator')
+// => 'Hello'
+```
+
+---
+
 ### `truncate`
 
 Truncates a string to `maxLength` characters, appending an ellipsis when cut.
 
 The ellipsis counts toward `maxLength`, so the result is always at most
-`maxLength` characters long. If the string is already within the limit, it
-is returned unchanged (no ellipsis appended). `null` and `undefined` inputs
-are returned as-is to align with other string helpers.
+`maxLength` characters long. The cut point is snapped back to the nearest
+grapheme-cluster boundary and trailing breakable whitespace is trimmed, so
+a cut never leaves a dangling space (`'Hello,…'`, not `'Hello, …'`) or a
+split multi-code-unit character (a lone surrogate, an orphaned combining
+mark, a family emoji cut mid-sequence, …) in front of the ellipsis — this
+means the result can be shorter than `maxLength` when the cut point falls
+on whitespace or inside such a cluster. Non-breaking spaces (U+00A0) and
+other "no-break" Unicode separators are deliberately left untouched, since
+their whole purpose is to resist being treated as a break point. If the
+string is already within the limit, it is returned unchanged (no ellipsis
+appended, no trimming). `null` and `undefined` inputs are returned as-is to
+align with other string helpers.
 
 ```typescript
 import { truncate } from '@helpers4/string';
@@ -12385,11 +12729,11 @@ truncate(input: string, maxLength: number, ellipsis?: string): string
 
 *Truncate with default ellipsis*
 
-Appends … when the string exceeds the limit.
+Appends … when the string exceeds the limit, trimming a trailing space at the cut point.
 
 ```typescript
 truncate('Hello, world!', 8)
-// => 'Hello, …'
+// => 'Hello,…'
 ```
 
 *Truncate with custom ellipsis*

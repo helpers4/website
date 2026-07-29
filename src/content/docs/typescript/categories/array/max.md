@@ -3,7 +3,7 @@ title: "max"
 sidebar:
   label: "max"
 description: "Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with…"
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Returns the maximum value in an array using a loop instead of spread,

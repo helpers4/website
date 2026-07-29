@@ -3,7 +3,7 @@ title: "withoutLeadingSlash"
 sidebar:
   label: "withoutLeadingSlash"
 description: "Removes the leading slash `/` from the given URL if it is present."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Removes the leading slash `/` from the given URL if it is present.

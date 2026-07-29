@@ -3,7 +3,7 @@ title: "invert"
 sidebar:
   label: "invert"
 description: "Returns a new object with keys and values swapped."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Returns a new object with keys and values swapped.

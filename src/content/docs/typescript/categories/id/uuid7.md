@@ -3,7 +3,7 @@ title: "uuid7"
 sidebar:
   label: "uuid7"
 description: "Generates a UUID v7 string (RFC 9562)."
-version: "3.0.5"
+version: "3.0.6"
 ---
 
 Generates a UUID v7 string (RFC 9562).
