@@ -10,13 +10,16 @@ Reusable GitHub Actions for consistent, automated workflows across your reposito
 ## Quick Links
 
 - **[Browse Actions](./actions/conventional-commits)** — All available actions
-- **[GitHub](https://github.com/helpers4/action)** · **[Marketplace](https://github.com/marketplace?type=actions&query=helpers4)** · **[License (LGPL-3.0)](./legal/license)** · <a href="https://deepwiki.com/helpers4/action" target="_blank" rel="noopener">Ask AI (DeepWiki) ↗</a>**
+- **[GitHub](https://github.com/helpers4/action)** · **[Marketplace](https://github.com/marketplace?type=actions&query=helpers4)** · **[License (LGPL-3.0)](./legal/license)** · <a href="https://deepwiki.com/helpers4/action" target="_blank" rel="noopener">Ask AI (DeepWiki) ↗</a>
 
 ## Available Actions
 
 | Action | Description |
 |--------|-------------|
 | [conventional-commits](./actions/conventional-commits) | Validate commit messages against the Conventional Commits specification |
+| [dispatch-with-fallback](./actions/dispatch-with-fallback) | Dispatch a repository_dispatch event to a repository via a GitHub App token, with an optional fallback identity retried on failure |
+| [pr-status-comment](./actions/pr-status-comment) | Post or update a single sticky PR comment summarizing job statuses as a table |
+| [setup-pnpm](./actions/setup-pnpm) | Setup Node.js + pnpm, optionally installing dependencies |
 
 ## Usage
 
