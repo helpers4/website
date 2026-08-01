@@ -1,7 +1,7 @@
 ---
 title: "Vite+ Development Environment (vite-plus)"
 sidebar:
-  order: 16
+  order: 17
 ---
 
 Complete Vite+ unified toolchain setup with the `vp` CLI, integrating Vite, Vitest, Oxlint, Oxfmt, Rolldown, tsdown, and Vite Task into a single development experience with VS Code extensions pre-configured.
