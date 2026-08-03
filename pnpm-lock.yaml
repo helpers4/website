@@ -29,17 +29,17 @@ importers:
         specifier: ^0.40.0
         version: 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@6.4.8(@types/node@26.1.1)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0))(typescript@5.9.3)
       '@helpers4/array':
-        specifier: ^3.0.5
-        version: 3.0.5
+        specifier: ^3.0.6
+        version: 3.0.6
       '@helpers4/markdown':
-        specifier: ^3.0.5
-        version: 3.0.5
+        specifier: ^3.0.6
+        version: 3.0.6
       '@helpers4/string':
-        specifier: ^3.0.5
-        version: 3.0.5
+        specifier: ^3.0.6
+        version: 3.0.6
       '@helpers4/version':
-        specifier: ^3.0.5
-        version: 3.0.5
+        specifier: ^3.0.6
+        version: 3.0.6
       astro:
         specifier: ^6.4.8
         version: 6.4.8(@types/node@26.1.1)(jiti@1.21.7)(rollup@4.62.0)(terser@5.46.0)
@@ -381,20 +381,20 @@ packages:
   '@floating-ui/utils@0.2.12':
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
 
-  '@helpers4/array@3.0.5':
-    resolution: {integrity: sha512-90xAxQCSxnmiMBJzuNNyZmHfqlGKIsVZs0S/XBEnf5dcZPC1ZX3ZrPzeKnQOp86rewCRm+R9qAlmhvG5wialZA==}
+  '@helpers4/array@3.0.6':
+    resolution: {integrity: sha512-2CV+JZJHwjNi4CtHRuIVBErPbL1a7oJljmm2j9rpDKLmxYUWRFEG9HtqeUP7A8T0PPJasg0aHbyy+NEOuTf9MQ==}
     engines: {node: '>=26.0.0'}
 
-  '@helpers4/markdown@3.0.5':
-    resolution: {integrity: sha512-HQDN7cXM1JUItmYI0hLo63GXFI27fbzwv1xp2pnruRVvJir/OpTjEMnR6F+8cAFAs//QPkN6tdxJOkM8NGSziQ==}
+  '@helpers4/markdown@3.0.6':
+    resolution: {integrity: sha512-mMGW+DKRrcn2rB3NEcJMWhny0nlFitnlmpMa/cl1su43w4mbY4/vgXGUnhCeHS6JcYFqiLN0I2uZ7XWXTNLBVg==}
     engines: {node: '>=26.0.0'}
 
-  '@helpers4/string@3.0.5':
-    resolution: {integrity: sha512-Q1zcSKJHTiDU2rOd8ZgE1qJqr47kVLwDZZcBpMP+5Q1MM6O9oCNzYOy3Sh9q1X88LGqvAbvkNUVhEU6kQREKHg==}
+  '@helpers4/string@3.0.6':
+    resolution: {integrity: sha512-KTmVehp5WS4hB+C97kVrbujGqviIssK5BMplyfzC3Kp0WgikB6COs8Q/Au1FNSxYTzb8tJs7yfRnGAnxOrGZ/w==}
     engines: {node: '>=26.0.0'}
 
-  '@helpers4/version@3.0.5':
-    resolution: {integrity: sha512-fUBrGXZzGd6ZCvkf9zFKzYNrLsu0D6/gGAp3ErmaMu+f7GG/jtIOUh0DFQ9gsS6PjsE5SVv212Spem5EtE6s7Q==}
+  '@helpers4/version@3.0.6':
+    resolution: {integrity: sha512-AVCmf0OscgvkT3tIwVea/LwrPivdaPfFnDWO+be/QbKc0P9zORfYd+i+zupA3Gie2KCWq4g4hrxZjsupb6IA7A==}
     engines: {node: '>=26.0.0'}
 
   '@img/colour@1.1.0':
@@ -888,6 +888,11 @@ packages:
 
   acorn@8.17.0:
     resolution: {integrity: sha512-xRQbDb9BnwDafYNn6Vwl839DYVjqXYb1XVGtWAZ1kcDc6iwAL4hg3B1dZlRiuENFeO2H53gFG3in621AdERVAg==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
+  acorn@8.18.0:
+    resolution: {integrity: sha512-lGq+9yr1/GuAWaVYIHRjvvySG5/4VfKIvC8EWxStPdcDh/Ka7FG3twP6v4d5BkravUilhIAsG4Qj83t02LWUPQ==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -2406,13 +2411,13 @@ snapshots:
 
   '@floating-ui/utils@0.2.12': {}
 
-  '@helpers4/array@3.0.5': {}
+  '@helpers4/array@3.0.6': {}
 
-  '@helpers4/markdown@3.0.5': {}
+  '@helpers4/markdown@3.0.6': {}
 
-  '@helpers4/string@3.0.5': {}
+  '@helpers4/string@3.0.6': {}
 
-  '@helpers4/version@3.0.5': {}
+  '@helpers4/version@3.0.6': {}
 
   '@img/colour@1.1.0':
     optional: true
@@ -2825,6 +2830,9 @@ snapshots:
       acorn: 8.17.0
 
   acorn@8.17.0: {}
+
+  acorn@8.18.0:
+    optional: true
 
   alien-signals@3.2.1: {}
 
@@ -4423,7 +4431,7 @@ snapshots:
   terser@5.46.0:
     dependencies:
       '@jridgewell/source-map': 0.3.11
-      acorn: 8.17.0
+      acorn: 8.18.0
       commander: 2.20.3
       source-map-support: 0.5.21
     optional: true
