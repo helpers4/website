@@ -3,7 +3,7 @@ title: "isJSONValue"
 sidebar:
   label: "isJSONValue"
 description: "Checks whether a value is composed entirely of JSON-representable types: `string`, finite `number`, `boolean`, `null`, …"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks whether a value is composed entirely of JSON-representable types: `string`, finite

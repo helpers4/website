@@ -3,7 +3,7 @@ title: "trimEnd"
 sidebar:
   label: "trimEnd"
 description: "Trims trailing characters from a string, at a configurable level of aggressiveness (see TrimMode)."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Trims trailing characters from a string, at a configurable level of
@@ -70,6 +70,31 @@ The widest mode also removes zero-width joiners/spaces that String.prototype.tri
 const ZWSP = String.fromCharCode(0x200b);
 trimEnd('Hello' + ZWSP, 'unicode')
 // => 'Hello'
+```
+
+## Related Types
+
+### `TrimMode`
+
+How aggressively trim/trimStart/trimEnd strip
+characters. The four levels are strictly nested — each one strips
+everything the previous level does, plus more — from narrowest to widest:
+
+| Mode | Strips | Example character(s) |
+| ---- | ------ | --------------------- |
+| `'wrappable'`  | Only characters where a line can break: ASCII whitespace, the breakable subset of Unicode's Space_Separator category, and the mandatory line/paragraph separators. **Preserves non-breaking spaces.** | space, tab, newline, EM SPACE |
+| `'separator'`  | `'wrappable'`, plus the non-breaking subset — the full Unicode Space_Separator (Zs) category. | NBSP, FIGURE SPACE, NARROW NO-BREAK SPACE |
+| `'whitespace'` | `'separator'`, plus U+FEFF (BOM / zero-width no-break space) — exactly what `String.prototype.trim` already strips. **Default.** | everything above, plus BOM |
+| `'unicode'`    | `'whitespace'`, plus genuinely invisible zero-width Format (Cf) characters that `String.prototype.trim` does **not** strip. | ZERO WIDTH SPACE, ZERO WIDTH JOINER, WORD JOINER |
+
+Use `'wrappable'` when a non-breaking space is meaningful and must survive
+(e.g. gluing a number to its unit before truncating). Use `'unicode'` to
+also clean up invisible characters accidentally left over from a paste —
+neither of those is what `String.prototype.trim` does, which is exactly
+why this type has more than one level instead of a boolean flag.
+
+```ts
+type TrimMode = 'wrappable' | 'separator' | 'whitespace' | 'unicode'
 ```
 
 ## Source

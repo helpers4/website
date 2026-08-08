@@ -3,7 +3,7 @@ title: "once"
 sidebar:
   label: "once"
 description: "Creates a function that is restricted to be called only once."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Creates a function that is restricted to be called only once.
@@ -66,6 +66,21 @@ const register = once((el: HTMLElement) => {
 
 register(button); // registers handler
 register(button); // no-op — handler already registered
+```
+
+## Related Types
+
+### `OnceFn`
+
+A function wrapped with once, extended with a `reset()` method.
+Calling `reset()` clears the cached result so the next call re-invokes
+the original function.
+
+```ts
+type OnceFn<A extends unknown[], R> = ((...args: A) => R) & {
+  /** Clears the cached result. The next call will re-invoke the original function. */
+  reset: () => void;
+}
 ```
 
 ## Source

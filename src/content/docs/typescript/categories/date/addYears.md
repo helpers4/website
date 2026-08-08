@@ -3,7 +3,7 @@ title: "addYears"
 sidebar:
   label: "addYears"
 description: "Adds years to a date."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Adds years to a date.

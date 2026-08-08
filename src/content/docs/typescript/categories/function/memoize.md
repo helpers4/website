@@ -3,7 +3,7 @@ title: "memoize"
 sidebar:
   label: "memoize"
 description: "Returns a memoized version of the function that caches results."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Returns a memoized version of the function that caches results.

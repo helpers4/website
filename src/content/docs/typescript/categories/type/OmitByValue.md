@@ -3,7 +3,7 @@ title: "OmitByValue"
 sidebar:
   label: "OmitByValue"
 description: "Constructs a type by omitting all entries of `T` whose values extend `V`."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Constructs a type by omitting all entries of `T` whose values extend `V`.

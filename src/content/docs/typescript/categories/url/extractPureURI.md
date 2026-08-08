@@ -3,7 +3,7 @@ title: "extractPureURI"
 sidebar:
   label: "extractPureURI"
 description: "Extracts the pure URI from a URL by removing query parameters and fragments."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Extracts the pure URI from a URL by removing query parameters and fragments.

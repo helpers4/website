@@ -3,7 +3,7 @@ title: "roundTo"
 sidebar:
   label: "roundTo"
 description: "Rounds a number to specified decimal places"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Rounds a number to specified decimal places

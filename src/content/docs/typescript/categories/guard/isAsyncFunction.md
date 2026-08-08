@@ -3,7 +3,7 @@ title: "isAsyncFunction"
 sidebar:
   label: "isAsyncFunction"
 description: "Checks if a value is an async function."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks if a value is an async function.

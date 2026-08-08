@@ -3,7 +3,7 @@ title: "isNull"
 sidebar:
   label: "isNull"
 description: "Checks if a value is `null`."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks if a value is `null`.

@@ -3,7 +3,7 @@ title: "stringify"
 sidebar:
   label: "stringify"
 description: "Reconstruct a semantic version string from a ParsedVersion object."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Reconstruct a semantic version string from a ParsedVersion object.
@@ -57,6 +57,22 @@ stringify(parse('2.0.0-alpha.1'))
 
 stringify(parse('1.0.0-beta+exp.sha.5114f85'))
 // => '1.0.0-beta+exp.sha.5114f85'
+```
+
+## Related Types
+
+### `ParsedVersion`
+
+Represents a parsed semantic version according to SemVer 2.0.0 specification
+
+```ts
+interface ParsedVersion {
+  build: string[];
+  major: number;
+  minor: number;
+  patch: number;
+  prerelease: string[];
+}
 ```
 
 ## Source

@@ -3,7 +3,7 @@ title: "isError"
 sidebar:
   label: "isError"
 description: "Checks if a value is an Error instance."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks if a value is an Error instance.

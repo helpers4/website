@@ -3,7 +3,7 @@ title: "pascalCaseKeys"
 sidebar:
   label: "pascalCaseKeys"
 description: "Recursively transforms every key of a plain object (including keys nested inside arrays and nested objects) to PascalCa…"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Recursively transforms every key of a plain object (including keys nested inside arrays and

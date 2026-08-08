@@ -3,7 +3,7 @@ title: "rgbToHex"
 sidebar:
   label: "rgbToHex"
 description: "Converts an RGB(A) color into a hex color string."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Converts an RGB(A) color into a hex color string.
@@ -55,6 +55,22 @@ A non-opaque color formats as an 8-digit #rrggbbaa string.
 ```ts
 rgbToHex({ r: 0, g: 255, b: 0, a: 0.5 })
 // => '#00ff0080'
+```
+
+## Related Types
+
+### `RgbColor`
+
+An RGB(A) color with channels expressed as plain numbers, convenient for
+further conversion or manipulation.
+
+```ts
+interface RgbColor {
+  a?: number;
+  b: number;
+  g: number;
+  r: number;
+}
 ```
 
 ## Source

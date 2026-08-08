@@ -3,7 +3,7 @@ title: "isEmpty"
 sidebar:
   label: "isEmpty"
 description: "Checks if a string is empty (`\"\"`), `null`, or `undefined`."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks if a string is empty (`""`), `null`, or `undefined`.

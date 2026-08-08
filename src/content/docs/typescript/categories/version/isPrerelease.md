@@ -3,7 +3,7 @@ title: "isPrerelease"
 sidebar:
   label: "isPrerelease"
 description: "Returns `true` when the version string has a prerelease suffix (i.e."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Returns `true` when the version string has a prerelease suffix
@@ -61,6 +61,22 @@ Works with the result of parse() — checks the prerelease array instead of stri
 ```ts
 isPrerelease(parse('2.0.0-alpha.1')) // true
 isPrerelease(parse('1.0.0'))         // false
+```
+
+## Related Types
+
+### `ParsedVersion`
+
+Represents a parsed semantic version according to SemVer 2.0.0 specification
+
+```ts
+interface ParsedVersion {
+  build: string[];
+  major: number;
+  minor: number;
+  patch: number;
+  prerelease: string[];
+}
 ```
 
 ## Source

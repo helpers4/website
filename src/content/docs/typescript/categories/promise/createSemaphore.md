@@ -3,7 +3,7 @@ title: "createSemaphore"
 sidebar:
   label: "createSemaphore"
 description: "Creates a semaphore limiting concurrent access to `permits` holders at a time, queueing excess `acquire()` callers in F…"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Creates a semaphore limiting concurrent access to `permits` holders at a time, queueing
@@ -77,6 +77,20 @@ const semaphore = createSemaphore(1);
 const release = await semaphore.acquire();
 release();
 release(); // throws RangeError: this permit was already released
+```
+
+## Related Types
+
+### `Semaphore`
+
+A semaphore created by createSemaphore.
+
+```ts
+interface Semaphore {
+  acquire(): Promise<Release>;
+  availablePermits(): number;
+  run<T>(fn: function): Promise<T>;
+}
 ```
 
 ## Source

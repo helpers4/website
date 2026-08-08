@@ -3,7 +3,7 @@ title: "without"
 sidebar:
   label: "without"
 description: "Returns a new array with all occurrences of the given values removed."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Returns a new array with all occurrences of the given values removed.

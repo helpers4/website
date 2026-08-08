@@ -3,7 +3,7 @@ title: "flip"
 sidebar:
   label: "flip"
 description: "Creates a function that invokes `fn` with the first two arguments swapped."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Creates a function that invokes `fn` with the first two arguments swapped.

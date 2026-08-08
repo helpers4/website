@@ -3,7 +3,7 @@ title: "Prettify"
 sidebar:
   label: "Prettify"
 description: "Flattens an intersection type into a single readable object type."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Flattens an intersection type into a single readable object type.

@@ -3,7 +3,7 @@ title: "isEven"
 sidebar:
   label: "isEven"
 description: "Checks if a value is an even integer."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks if a value is an even integer.

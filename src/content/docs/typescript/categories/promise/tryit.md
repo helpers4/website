@@ -3,7 +3,7 @@ title: "tryit"
 sidebar:
   label: "tryit"
 description: "Wraps a function so it never throws."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Wraps a function so it never throws. Instead, it returns a `[error, result]` tuple.
@@ -54,6 +54,17 @@ On error, the first element of the tuple is the Error.
 const safeParse = tryit(JSON.parse);
 const [error, data] = safeParse('invalid');
 // error instanceof SyntaxError, data === undefined
+```
+
+## Related Types
+
+### `Result`
+
+Result tuple representing either a successful value or an error.
+On success: `[undefined, T]`. On error: `[Error, undefined]`.
+
+```ts
+type Result<T> = [error: undefined, value: T] | [error: Error, value: undefined]
 ```
 
 ## Source

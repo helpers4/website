@@ -3,7 +3,7 @@ title: "mapDeep"
 sidebar:
   label: "mapDeep"
 description: "Recursively transforms the keys and/or values of a plain object — the deep counterpart to map, which only transforms th…"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Recursively transforms the keys and/or values of a plain object — the deep counterpart to

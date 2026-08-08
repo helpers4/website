@@ -3,7 +3,7 @@ title: "diff"
 sidebar:
   label: "diff"
 description: "Structural object diff."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Structural object diff.

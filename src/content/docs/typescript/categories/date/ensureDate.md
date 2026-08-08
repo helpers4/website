@@ -3,7 +3,7 @@ title: "ensureDate"
 sidebar:
   label: "ensureDate"
 description: "Safely converts a date-like value to a valid `Date` object, or returns `null`."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Safely converts a date-like value to a valid `Date` object, or returns `null`.

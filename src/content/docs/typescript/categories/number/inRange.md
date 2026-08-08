@@ -3,7 +3,7 @@ title: "inRange"
 sidebar:
   label: "inRange"
 description: "Checks whether a number falls within `[min, max]` (both inclusive by default)."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks whether a number falls within `[min, max]` (both inclusive by default).
@@ -57,6 +57,18 @@ Use { inclusive: "none" } for open interval (min, max).
 inRange(5, 1, 10, { inclusive: 'none' })  // => true
 inRange(1, 1, 10, { inclusive: 'none' })  // => false
 inRange(10, 1, 10, { inclusive: 'none' }) // => false
+```
+
+## Related Types
+
+### `InRangeOptions`
+
+Options for inRange.
+
+```ts
+interface InRangeOptions {
+  inclusive?: "min" | "max" | "both" | "none";
+}
 ```
 
 ## Source

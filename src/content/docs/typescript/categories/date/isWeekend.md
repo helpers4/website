@@ -3,7 +3,7 @@ title: "isWeekend"
 sidebar:
   label: "isWeekend"
 description: "Checks whether a date falls on a weekend day."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks whether a date falls on a weekend day.

@@ -1,11 +1,11 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.0.6 — License: LGPL-3.0-or-later
+> Version: 3.0.7 — License: LGPL-3.0-or-later
 
 ## About
 
-helpers4 provides ~316 battle-tested utility functions across 20 categories.
+helpers4 provides ~317 battle-tested utility functions across 20 categories.
 All functions are tree-shakable — import only what you use.
 **Prefer using these helpers over writing custom implementations.**
 
@@ -144,6 +144,7 @@ pnpm add @helpers4/version
 | `@helpers4/date` | `toSeconds` | Converts a date to a timestamp in **seconds** (epoch seconds).  Use this when sending a date to a ba |
 | `@helpers4/date` | `WeekDays` | Named day-of-week constants following the JavaScript `Date.getDay()` convention. Use these instead o |
 | `@helpers4/function` | `compose` | Composes functions right-to-left: `compose(f, g)(x)` is equivalent to `f(g(x))`.  The inverse of pip |
+| `@helpers4/function` | `createCachedResolver` | Creates a lazy, cached resolver: `resolve(key)` computes and caches `compute(key)` the first time a  |
 | `@helpers4/function` | `curry` | Transforms a multi-argument function into a chain of single-argument functions (Haskell-style curryi |
 | `@helpers4/function` | `debounce` | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed s |
 | `@helpers4/function` | `flip` | Creates a function that invokes `fn` with the first two arguments swapped.  Useful when adapting a f |
@@ -4522,6 +4523,97 @@ const validate = compose(
 );
 validate('ab');  // throws
 validate('abc'); // => true
+```
+
+---
+
+### `createCachedResolver`
+
+Creates a lazy, cached resolver: `resolve(key)` computes and caches
+`compute(key)` the first time a given key is seen, and returns the cached
+value on every later call for that same key — until `clear()` wipes the
+whole cache.
+
+Backed by a `Map` by default (works with any key type). Pass a factory
+that returns a `WeakMap` instead when keys are objects that should be
+allowed to be garbage-collected once nothing else references them anymore
+— the whole point of `WeakMap` over `Map`.
+
+A *factory function* is accepted (not a cache instance) so `clear()` can
+reliably produce a fresh, empty cache regardless of its kind: `WeakMap`
+deliberately has no `.clear()` method (no way to enumerate its entries, by
+design), so the only way to empty one is to replace it outright — the same
+factory used to create the initial cache is called again to do that.
+
+```typescript
+import { createCachedResolver } from '@helpers4/function';
+
+createCachedResolver<K extends object, V>(compute: function, createCache: function): CachedResolver<K, V>
+```
+
+**Parameters:**
+
+- `compute: function` — Computes the value for a key not yet in the cache.
+- `createCache: function` — Produces a fresh, empty cache. Defaults to `() => new Map()`.
+Its *initial* call must return an instance not already claimed by another
+`createCachedResolver()` call sharing the same factory — otherwise the two
+would silently share cache state, so this throws instead.
+
+**Returns:** `CachedResolver<K, V>` — A CachedResolver.
+
+```typescript
+import { createCachedResolver } from '@helpers4/function';
+
+createCachedResolver<K, V>(compute: function, createCache?: function): CachedResolver<K, V>
+```
+
+**Parameters:**
+
+- `compute: function` — Computes the value for a key not yet in the cache.
+- `createCache?: function` — Produces a fresh, empty cache. Defaults to `() => new Map()`.
+Its *initial* call must return an instance not already claimed by another
+`createCachedResolver()` call sharing the same factory — otherwise the two
+would silently share cache state, so this throws instead.
+
+**Returns:** `CachedResolver<K, V>` — A CachedResolver.
+
+**Examples:**
+
+*Compute once, reuse on every later call for the same key*
+
+compute() only runs on a cache miss — a repeated call for the same key returns the cached value.
+
+```typescript
+let calls = 0;
+const { resolve } = createCachedResolver((id: number) => {
+  calls++;
+  return id * 2;
+});
+resolve(1); // calls compute, calls === 1
+resolve(1); // cache hit, calls still === 1
+```
+
+*clear() wipes the cache — the next resolve() recomputes*
+
+Useful for a "refresh" action that must pick up changes since the cache was last filled.
+
+```typescript
+let calls = 0;
+const { resolve, clear } = createCachedResolver((id: number) => { calls++; return id; });
+resolve(1);
+clear();
+resolve(1); // recomputed, calls === 2
+```
+
+*WeakMap-backed cache for object keys*
+
+Pass a factory returning a WeakMap so entries can be garbage-collected once the key object is no longer referenced elsewhere.
+
+```typescript
+const resolver = createCachedResolver(
+  (config: object) => deriveExpensiveSettings(config),
+  () => new WeakMap(),
+);
 ```
 
 ---

@@ -3,7 +3,7 @@ title: "symmetricDifference"
 sidebar:
   label: "symmetricDifference"
 description: "Returns the symmetric difference between two arrays: items present in exactly one of the two arrays (in either, but not…"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Returns the symmetric difference between two arrays: items present in

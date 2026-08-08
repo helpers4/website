@@ -3,7 +3,7 @@ title: "timeout"
 sidebar:
   label: "timeout"
 description: "Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration.

@@ -3,7 +3,7 @@ title: "defer"
 sidebar:
   label: "defer"
 description: "Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order (last register…"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Runs an async function and guarantees that all deferred callbacks are
@@ -76,6 +76,16 @@ await defer(async (d) => {
   throw new Error('something failed');
 }).catch(() => {});
 // logs: 'lock released'
+```
+
+## Related Types
+
+### `DeferCallback`
+
+Callback registered via the `defer` function. Receives the error if the main work threw.
+
+```ts
+type DeferCallback = (error?: unknown) => void | Promise<void>
 ```
 
 ## Source

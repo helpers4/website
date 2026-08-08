@@ -3,7 +3,7 @@ title: "partial"
 sidebar:
   label: "partial"
 description: "Partially applies arguments to a function, returning a new function that accepts the remaining arguments."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Partially applies arguments to a function, returning a new function that

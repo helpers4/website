@@ -3,7 +3,7 @@ title: "hexToRgb"
 sidebar:
   label: "hexToRgb"
 description: "Parses a hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa` — the leading `#` is optional) into its RGB(A) chann…"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Parses a hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa` — the
@@ -52,6 +52,22 @@ Lets you branch on parse failure instead of getting a garbage color.
 ```ts
 hexToRgb('not-a-color')
 // => null
+```
+
+## Related Types
+
+### `RgbColor`
+
+An RGB(A) color with channels expressed as plain numbers, convenient for
+further conversion or manipulation.
+
+```ts
+interface RgbColor {
+  a?: number;
+  b: number;
+  g: number;
+  r: number;
+}
 ```
 
 ## Source

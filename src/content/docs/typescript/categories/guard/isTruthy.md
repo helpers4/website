@@ -3,7 +3,7 @@ title: "isTruthy"
 sidebar:
   label: "isTruthy"
 description: "Checks if a value is truthy (not `false`, `null`, `undefined`, `0`, `\"\"`, or `NaN`)."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks if a value is truthy (not `false`, `null`, `undefined`, `0`, `""`, or `NaN`).
@@ -58,6 +58,17 @@ Use isTruthy with Array.filter to get correct TypeScript narrowing.
 const items = ['a', '', null, 'b', undefined];
 const result = items.filter(isTruthy);
 // => ['a', 'b'] with type string[]
+```
+
+## Related Types
+
+### `Falsy`
+
+Union of all falsy types in JavaScript.
+Note: `NaN` cannot be represented as a type in TypeScript.
+
+```ts
+type Falsy = false | null | undefined | 0 | ''
 ```
 
 ## Source

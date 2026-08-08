@@ -3,7 +3,7 @@ title: "isSharedArrayBuffer"
 sidebar:
   label: "isSharedArrayBuffer"
 description: "Checks if a value is a `SharedArrayBuffer` instance."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks if a value is a `SharedArrayBuffer` instance.

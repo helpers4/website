@@ -3,7 +3,7 @@ title: "hslToRgb"
 sidebar:
   label: "hslToRgb"
 description: "Converts an HSL(A) color into RGB(A)."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Converts an HSL(A) color into RGB(A).
@@ -51,6 +51,35 @@ Negative or out-of-range hues are normalized before conversion.
 ```ts
 hslToRgb({ h: -360, s: 100, l: 50 })
 // => { r: 255, g: 0, b: 0, a: 1 }  (same as h: 0)
+```
+
+## Related Types
+
+### `HslColor`
+
+An HSL(A) color with channels expressed as plain numbers.
+
+```ts
+interface HslColor {
+  a?: number;
+  h: number;
+  l: number;
+  s: number;
+}
+```
+
+### `RgbColor`
+
+An RGB(A) color with channels expressed as plain numbers, convenient for
+further conversion or manipulation.
+
+```ts
+interface RgbColor {
+  a?: number;
+  b: number;
+  g: number;
+  r: number;
+}
 ```
 
 ## Source

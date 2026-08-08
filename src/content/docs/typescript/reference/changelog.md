@@ -6,12 +6,18 @@ sidebar:
   order: 2
 ---
 
-Current published version: **v3.0.6**. This page groups helpers by the version that
+Current published version: **v3.0.7**. This page groups helpers by the version that
 *first introduced* them — a release with no new helpers (bug fixes, docs, internal changes only)
 gets no section of its own here. For the full release-by-release history, see
 [CHANGELOG.md](https://github.com/helpers4/typescript/blob/main/CHANGELOG.md) on GitHub.
 
-## v3.0.6 *(latest with new helpers)*
+## v3.0.7 *(latest with new helpers)*
+
+| Function | Category | Description |
+|----------|----------|-------------|
+| [`createCachedResolver`](../categories/function/createcachedresolver/) | [function](../categories/function/) | Creates a lazy, cached resolver: \`resolve\(key\)\` computes and caches \`compute\(key\)\` the first time a given key is seen, and returns the cached value on every later call for that same key — until \`clear\(\)\` wipes the whole cache\.  Backed by a \`Map\` by default \(works with any key type\)\. Pass a factory that returns a \`WeakMap\` instead when keys are objects that should be allowed to be garbage\-collected once nothing else references them anymore — the whole point of \`WeakMap\` over \`Map\`\.  A \*factory function\* is accepted \(not a cache instance\) so \`clear\(\)\` can reliably produce a fresh, empty cache regardless of its kind: \`WeakMap\` deliberately has no \`\.clear\(\)\` method \(no way to enumerate its entries, by design\), so the only way to empty one is to replace it outright — the same factory used to create the initial cache is called again to do that\. |
+
+## v3.0.6
 
 | Function | Category | Description |
 |----------|----------|-------------|

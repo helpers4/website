@@ -3,7 +3,7 @@ title: "rgbToHsl"
 sidebar:
   label: "rgbToHsl"
 description: "Converts an RGB(A) color into HSL(A)."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Converts an RGB(A) color into HSL(A).
@@ -53,6 +53,35 @@ When r, g, and b are equal, the color is achromatic (s = 0).
 ```ts
 rgbToHsl({ r: 128, g: 128, b: 128 })
 // => { h: 0, s: 0, l: 50.2, a: 1 }
+```
+
+## Related Types
+
+### `HslColor`
+
+An HSL(A) color with channels expressed as plain numbers.
+
+```ts
+interface HslColor {
+  a?: number;
+  h: number;
+  l: number;
+  s: number;
+}
+```
+
+### `RgbColor`
+
+An RGB(A) color with channels expressed as plain numbers, convenient for
+further conversion or manipulation.
+
+```ts
+interface RgbColor {
+  a?: number;
+  b: number;
+  g: number;
+  r: number;
+}
 ```
 
 ## Source

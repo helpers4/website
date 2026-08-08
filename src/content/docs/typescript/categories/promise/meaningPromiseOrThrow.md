@@ -3,7 +3,7 @@ title: "meaningPromiseOrThrow"
 sidebar:
   label: "meaningPromiseOrThrow"
 description: "Returns a function that passes through meaningful data or throws an error."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Returns a function that passes through meaningful data or throws an error.

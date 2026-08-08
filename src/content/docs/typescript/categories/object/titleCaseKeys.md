@@ -3,7 +3,7 @@ title: "titleCaseKeys"
 sidebar:
   label: "titleCaseKeys"
 description: "Recursively transforms every key of a plain object (including keys nested inside arrays and nested objects) to Title Ca…"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Recursively transforms every key of a plain object (including keys nested inside arrays and

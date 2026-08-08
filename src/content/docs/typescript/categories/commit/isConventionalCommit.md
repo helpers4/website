@@ -3,7 +3,7 @@ title: "isConventionalCommit"
 sidebar:
   label: "isConventionalCommit"
 description: "Checks whether a commit message's subject line follows the Conventional Commits format constrained by the given options."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks whether a commit message's subject line follows the Conventional

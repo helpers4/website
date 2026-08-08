@@ -3,7 +3,7 @@ title: "toISO8601"
 sidebar:
   label: "toISO8601"
 description: "Converts a date to ISO 8601 format Format: YYYY-MM-DDTHH:mm:ss.sssZ"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Converts a date to ISO 8601 format

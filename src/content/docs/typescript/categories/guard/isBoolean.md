@@ -3,7 +3,7 @@ title: "isBoolean"
 sidebar:
   label: "isBoolean"
 description: "Checks if a value is a boolean."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Checks if a value is a boolean.

@@ -3,7 +3,7 @@ title: "forEachAsync"
 sidebar:
   label: "forEachAsync"
 description: "The async counterpart to `Array.prototype.forEach`: runs `fn` for every item for its side effects, discarding any retur…"
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 The async counterpart to `Array.prototype.forEach`: runs `fn` for every item for its

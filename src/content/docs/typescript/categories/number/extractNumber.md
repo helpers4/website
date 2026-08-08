@@ -3,7 +3,7 @@ title: "extractNumber"
 sidebar:
   label: "extractNumber"
 description: "Extracts the first number embedded anywhere in a string, or passes through a `number`."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Extracts the first number embedded anywhere in a string, or passes through a `number`.
@@ -60,6 +60,19 @@ extractNumber('1e5 mol')       // => 100000
 extractNumber('1e5kg')         // => 1     ('e5' glued to text → mantissa only)
 extractNumber('no number')     // => undefined
 extractNumber(42)              // => 42
+```
+
+## Related Types
+
+### `ExtractNumberOptions`
+
+Options for extractNumber.
+
+```ts
+interface ExtractNumberOptions {
+  exponent?: "auto" | "strict" | "ignore";
+  sign?: "auto" | "strict" | "ignore";
+}
 ```
 
 ## Source

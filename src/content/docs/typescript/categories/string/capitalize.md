@@ -3,7 +3,7 @@ title: "capitalize"
 sidebar:
   label: "capitalize"
 description: "Capitalizes the first letter of a string."
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 Capitalizes the first letter of a string.
@@ -63,6 +63,18 @@ Use { lowercaseRest: false } to preserve the original casing of the remaining ch
 ```ts
 capitalize('hELLO', { lowercaseRest: false })
 // => 'HELLO'
+```
+
+## Related Types
+
+### `CapitalizeOptions`
+
+Options for capitalize.
+
+```ts
+interface CapitalizeOptions {
+  lowercaseRest?: boolean;
+}
 ```
 
 ## Source
