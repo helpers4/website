@@ -9,9 +9,9 @@ timeout = 20
 max_retries = 3
 retry_wait_time = 5
 
-# Don't check fragments (#section-anchors) — high false-positive rate on generated docs pages,
-# and broken headings are a content-quality problem, not a link-rot one.
-include_fragments = false
+# Fragment checking (#section-anchors) is opt-in via include_fragments = "full" — leaving it
+# unset keeps it off by default. High false-positive rate on generated docs pages, and a broken
+# heading is a content-quality problem, not a link-rot one.
 
 exclude = [
   # Loopback/example placeholders that sometimes show up in code samples, not real links.
