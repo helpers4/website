@@ -3,7 +3,7 @@ title: "createSortByNaturalFn"
 sidebar:
   label: "createSortByNaturalFn"
 description: "Creates a sort function for objects by one or more string properties using natural ordering."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Creates a sort function for objects by one or more string properties using

@@ -2,17 +2,22 @@
 title: "compare"
 sidebar:
   label: "compare"
-description: "Compares two semantic version strings according to SemVer 2.0.0 specification  Supports: - Core version: MAJOR.MINOR.PA…"
-version: "3.0.7"
+description: "Compares two version strings, according to the given `scheme`."
+version: "3.0.9"
 ---
 
-Compares two semantic version strings according to SemVer 2.0.0 specification
+Compares two version strings, according to the given `scheme`.
 
-Supports:
+**`'semver'`** (default) — SemVer 2.0.0 precedence rules:
 - Core version: MAJOR.MINOR.PATCH
-- Pre-release: -alpha, -beta.1, -rc.1, etc.
+- Pre-release: -alpha, -beta.1, -rc.1, etc. (sorts below the plain release)
 - Build metadata: +build, +sha.abc123 (ignored in comparison per spec)
 - Optional 'v' prefix
+
+**`'gentoo'`** — Gentoo/Portage ebuild version ordering (see ParsedGentooVersion):
+numeric components, then letter suffix, then suffix segment (`alpha`/`beta`/`pre`/`rc` sort
+below the plain release, `p` sorts above it), then `-r` revision. Note the key difference
+from SemVer: a `-r` revision is *not* a prerelease and sorts *above* the base version.
 
 > Available since v1.9.0
 
@@ -26,7 +31,7 @@ import { compare } from '@helpers4/version';
 
 
 ```ts
-compare(version1: string, version2: string): number
+compare(version1: string, version2: string, scheme: VersionScheme): number
 ```
 
 ## Parameters
@@ -35,6 +40,7 @@ compare(version1: string, version2: string): number
 |-----------|------|-------------|
 | `version1` | `string` | First version string |
 | `version2` | `string` | Second version string |
+| `scheme` | `VersionScheme` | Which version scheme to compare \`version1\`/\`version2\` as\. Defaults to \`'semver'\`\. |
 
 ## Returns
 
@@ -59,6 +65,26 @@ A prerelease version is always less than the release.
 ```ts
 compare('1.0.0-alpha', '1.0.0')
 // => -1
+```
+
+### Gentoo: a revision sorts above its base version
+
+Unlike SemVer's '-' (prerelease, sorts below release), Gentoo's '-r' revision sorts above it.
+
+```ts
+compare('1.2.3', '1.2.3-r1', 'gentoo')
+// => -1
+```
+
+## Related Types
+
+### `VersionScheme`
+
+Identifies which version scheme parse/compare should use to interpret a
+version string. Defaults to `'semver'` everywhere it's accepted.
+
+```ts
+type VersionScheme = 'semver' | 'gentoo'
 ```
 
 :::caution[Name conflict]

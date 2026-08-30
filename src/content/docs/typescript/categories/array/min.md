@@ -3,7 +3,7 @@ title: "min"
 sidebar:
   label: "min"
 description: "Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with…"
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Returns the minimum value in an array using a loop instead of spread,

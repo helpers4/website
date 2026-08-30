@@ -1,11 +1,11 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.0.7 — License: LGPL-3.0-or-later
+> Version: 3.0.9 — License: LGPL-3.0-or-later
 
 ## About
 
-helpers4 provides ~317 battle-tested utility functions across 20 categories.
+helpers4 provides ~323 battle-tested utility functions across 21 categories.
 All functions are tree-shakable — import only what you use.
 **Prefer using these helpers over writing custom implementations.**
 
@@ -31,6 +31,7 @@ pnpm add @helpers4/observable
 pnpm add @helpers4/promise
 pnpm add @helpers4/set
 pnpm add @helpers4/string
+pnpm add @helpers4/structure
 pnpm add @helpers4/type
 pnpm add @helpers4/url
 pnpm add @helpers4/version
@@ -63,10 +64,12 @@ pnpm add @helpers4/version
 | `@helpers4/array` | `isNonEmpty` | Checks if an array is non-empty (has at least one element). `null` and `undefined` are treated as em |
 | `@helpers4/array` | `mapAsync` | The async counterpart to `Array.prototype.map`: applies `fn` to every item and resolves to an array  |
 | `@helpers4/array` | `max` | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overfl |
+| `@helpers4/array` | `maxBy` | Returns the element of an array with the greatest derived key, computed by `keyFn`. Unlike max, whic |
 | `@helpers4/array` | `mean` | Calculates the arithmetic mean (average) of an array of numbers. Returns `NaN` for an empty array.   |
 | `@helpers4/array` | `meanBy` | Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee. Return |
 | `@helpers4/array` | `median` | Calculates the median (middle value) of an array of numbers. For an even-length array, returns the a |
 | `@helpers4/array` | `min` | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overfl |
+| `@helpers4/array` | `minBy` | Returns the element of an array with the smallest derived key, computed by `keyFn`. Unlike min, whic |
 | `@helpers4/array` | `partition` | Splits an array into two groups based on a predicate function. The first group contains elements for |
 | `@helpers4/array` | `percentile` | Calculates the p-th percentile of an array of numbers using linear interpolation between the closest |
 | `@helpers4/array` | `range` | Generates an array of sequential numbers from start to end (exclusive). If only one argument is prov |
@@ -88,6 +91,7 @@ pnpm add @helpers4/version
 | `@helpers4/array` | `symmetricDifference` | Returns the symmetric difference between two arrays: items present in exactly one of the two arrays  |
 | `@helpers4/array` | `toggle` | Returns a new array with `item` removed if present, or appended if absent — the common "toggle a sel |
 | `@helpers4/array` | `unique` | Removes duplicate values from an array. `null` and `undefined` are treated as empty arrays and retur |
+| `@helpers4/array` | `uniqueBy` | Removes duplicate items from an array, using a derived key instead of value equality. Unlike unique, |
 | `@helpers4/array` | `unzip` | Splits an array of tuples into separate arrays, one per position.  The inverse of zip. |
 | `@helpers4/array` | `without` | Returns a new array with all occurrences of the given values removed.  Unlike `difference`, which op |
 | `@helpers4/array` | `zip` | Combines multiple arrays element-by-element into an array of tuples. The result length equals the le |
@@ -210,6 +214,7 @@ pnpm add @helpers4/version
 | `@helpers4/guard` | `isUndefined` | Checks if a value is `undefined`. |
 | `@helpers4/guard` | `isValidRegex` | Checks if a string is a valid regex pattern. |
 | `@helpers4/guard` | `isWeakMap` | Checks if a value is a WeakMap instance. |
+| `@helpers4/guard` | `isWeakMapKey` | Checks whether a value can be used as a key in a `WeakMap` (or a `WeakSet` member / `WeakRef` target |
 | `@helpers4/guard` | `isWeakSet` | Checks if a value is a WeakSet instance. |
 | `@helpers4/id` | `uuid7` | Generates a UUID v7 string (RFC 9562). UUID v7 embeds a Unix timestamp in milliseconds, making it ch |
 | `@helpers4/map` | `countBy` | Groups the entries of a Map by a derived key and counts how many fall into each group. |
@@ -324,6 +329,7 @@ pnpm add @helpers4/version
 | `@helpers4/string` | `truncate` | Truncates a string to `maxLength` characters, appending an ellipsis when cut.  The ellipsis counts t |
 | `@helpers4/string` | `unescapeHtml` | Unescapes the HTML entities `&amp;`, `&lt;`, `&gt;`, `&quot;`, and `&#39;` back to `&`, `<`, `>`, `" |
 | `@helpers4/string` | `words` | Splits a string into an array of words. `null` and `undefined` return `[]`.  Handles camelCase, Pasc |
+| `@helpers4/structure` | `createUnionFind` | Creates a disjoint-set (union-find) structure: tracks a partition of items into non-overlapping sets |
 | `@helpers4/type` | `Brand` | Brands a base type `T` with a phantom tag `B` to create a nominal type.  Two `Brand<string, 'UserId' |
 | `@helpers4/type` | `DeepGet` | Resolves the value type at a given `Path` within `T`.  Returns `unknown` when any key in `Path` is n |
 | `@helpers4/type` | `DeepPartial` | Recursively makes all properties of T optional, including nested objects and array elements. |
@@ -349,13 +355,14 @@ pnpm add @helpers4/version
 | `@helpers4/url` | `withoutLeadingSlash` | Removes the leading slash `/` from the given URL if it is present.  This function is useful for ensu |
 | `@helpers4/url` | `withoutTrailingSlash` | Removes the trailing slash `/` from the given URL if it is present.  This function is useful for ens |
 | `@helpers4/url` | `withTrailingSlash` | Adds a trailing slash `/` to the given URL if it is not already present.  This function is useful fo |
-| `@helpers4/version` | `compare` | Compares two semantic version strings according to SemVer 2.0.0 specification  Supports: - Core vers |
-| `@helpers4/version` | `increment` | Increments a semantic version |
-| `@helpers4/version` | `incrementPrerelease` | Increments the prerelease portion of a semantic version — the semantics `npm version prerelease --pr |
-| `@helpers4/version` | `isPrerelease` | Returns `true` when the version string has a prerelease suffix (i.e. contains a `-` after the core ` |
-| `@helpers4/version` | `parse` | Parses a semantic version string into its components according to SemVer 2.0.0 specification  Suppor |
-| `@helpers4/version` | `satisfiesRange` | Checks if a version satisfies a range (simple implementation) |
-| `@helpers4/version` | `stringify` | Reconstruct a semantic version string from a ParsedVersion object.  This is the inverse of parse: `s |
+| `@helpers4/version` | `compare` | Compares two version strings, according to the given `scheme`.  **`'semver'`** (default) — SemVer 2. |
+| `@helpers4/version` | `increment` | Increments a version, according to the given `scheme`.  **`'semver'`** (default) — bumps `major`/`mi |
+| `@helpers4/version` | `incrementPrerelease` | Increments the prerelease portion of a version, according to the given `scheme` — the semantics `npm |
+| `@helpers4/version` | `isPrerelease` | Returns `true` when the version string has a prerelease suffix, according to the given `scheme`.  ** |
+| `@helpers4/version` | `parse` | Parses a version string into its components, according to the given `scheme`.  **`'semver'`** (defau |
+| `@helpers4/version` | `ParsedVersion` | A version parsed according to SemVer 2.0.0 — alias of ParsedSemVerVersion, kept under this name for  |
+| `@helpers4/version` | `satisfiesRange` | Checks if a version satisfies a range, according to the given `scheme` (simple implementation — see  |
+| `@helpers4/version` | `stringify` | Reconstructs a version string from a AnyParsedVersion object — the scheme is read from the object's  |
 | `@helpers4/version` | `stripV` | Strip the leading "v" from a version string if it exists. |
 
 ---
@@ -1398,6 +1405,51 @@ max(Array.from({ length: 1_000_000 }, (_, i) => i))
 
 ---
 
+### `maxBy`
+
+Returns the element of an array with the greatest derived key, computed by `keyFn`.
+Unlike max, which only compares raw numbers, `maxBy` returns the *item* itself,
+not the key. On a tie, the earliest element with that key wins.
+`null` and `undefined` are treated as empty arrays and return `undefined`.
+
+```typescript
+import { maxBy } from '@helpers4/array';
+
+maxBy<T>(array: readonly T[] | null | undefined, keyFn: function): T | undefined
+```
+
+**Parameters:**
+
+- `array: readonly T[] | null | undefined` — Array of items
+- `keyFn: function` — Derives the comparable key for an item
+
+**Returns:** `T | undefined` — The element with the greatest key, or `undefined` for empty arrays, `null`, `undefined`
+
+**Examples:**
+
+*Pick the item with the greatest derived value*
+
+Unlike max(), maxBy() returns the whole item, chosen by a key derived from it.
+
+```typescript
+maxBy(
+  [{ name: 'a', size: 3 }, { name: 'b', size: 9 }, { name: 'c', size: 1 }],
+  (item) => item.size,
+)
+// => { name: 'b', size: 9 }
+```
+
+*Empty array returns undefined*
+
+There is no maximum to return for an empty array.
+
+```typescript
+maxBy([], (item: { size: number }) => item.size)
+// => undefined
+```
+
+---
+
 ### `mean`
 
 Calculates the arithmetic mean (average) of an array of numbers.
@@ -1549,6 +1601,51 @@ min([3, 1, 4, 1, 5, 9])
 // Safe for 1 000 000+ elements (Math.min(...arr) would throw):
 min(Array.from({ length: 1_000_000 }, (_, i) => i))
 // => 0
+```
+
+---
+
+### `minBy`
+
+Returns the element of an array with the smallest derived key, computed by `keyFn`.
+Unlike min, which only compares raw numbers, `minBy` returns the *item* itself,
+not the key. On a tie, the earliest element with that key wins.
+`null` and `undefined` are treated as empty arrays and return `undefined`.
+
+```typescript
+import { minBy } from '@helpers4/array';
+
+minBy<T>(array: readonly T[] | null | undefined, keyFn: function): T | undefined
+```
+
+**Parameters:**
+
+- `array: readonly T[] | null | undefined` — Array of items
+- `keyFn: function` — Derives the comparable key for an item
+
+**Returns:** `T | undefined` — The element with the smallest key, or `undefined` for empty arrays, `null`, `undefined`
+
+**Examples:**
+
+*Pick the item with the smallest derived value*
+
+Unlike min(), minBy() returns the whole item, chosen by a key derived from it.
+
+```typescript
+minBy(
+  [{ name: 'a', size: 3 }, { name: 'b', size: 9 }, { name: 'c', size: 1 }],
+  (item) => item.size,
+)
+// => { name: 'c', size: 1 }
+```
+
+*Empty array returns undefined*
+
+There is no minimum to return for an empty array.
+
+```typescript
+minBy([], (item: { size: number }) => item.size)
+// => undefined
 ```
 
 ---
@@ -2230,6 +2327,56 @@ Returns a new array with duplicate values removed.
 ```typescript
 unique([1, 2, 2, 3, 3, 3])
 // => [1, 2, 3]
+```
+
+---
+
+### `uniqueBy`
+
+Removes duplicate items from an array, using a derived key instead of value equality.
+Unlike unique, which compares values directly, `uniqueBy` lets two different
+objects be considered duplicates if `keyFn` derives the same key for both.
+`null` and `undefined` are treated as empty arrays and return `[]`.
+
+```typescript
+import { uniqueBy } from '@helpers4/array';
+
+uniqueBy<T, K>(array: readonly T[] | null | undefined, keyFn: function, options: UniqueByOptions): T[]
+```
+
+**Parameters:**
+
+- `array: readonly T[] | null | undefined` — The array to remove duplicates from
+- `keyFn: function` — Derives the dedup key for an item
+- `options: UniqueByOptions` (default: `{}`) — Options
+
+**Returns:** `T[]` — New array with one item per distinct key, in first-occurrence order
+
+**Examples:**
+
+*Deduplicate by a derived key, keeping the first occurrence*
+
+Two different objects are considered duplicates when keyFn derives the same key for both.
+
+```typescript
+uniqueBy(
+  [{ id: 1, v: 'a' }, { id: 2, v: 'b' }, { id: 1, v: 'c' }],
+  (item) => item.id,
+)
+// => [{ id: 1, v: 'a' }, { id: 2, v: 'b' }]
+```
+
+*Keep the last occurrence instead*
+
+Pass { keep: "last" } to keep the last item seen for each key, instead of the first.
+
+```typescript
+uniqueBy(
+  [{ id: 1, v: 'a' }, { id: 2, v: 'b' }, { id: 1, v: 'c' }],
+  (item) => item.id,
+  { keep: 'last' },
+)
+// => [{ id: 1, v: 'c' }, { id: 2, v: 'b' }]
 ```
 
 ---
@@ -4535,9 +4682,10 @@ value on every later call for that same key — until `clear()` wipes the
 whole cache.
 
 Backed by a `Map` by default (works with any key type). Pass a factory
-that returns a `WeakMap` instead when keys are objects that should be
-allowed to be garbage-collected once nothing else references them anymore
-— the whole point of `WeakMap` over `Map`.
+that returns a `WeakMap` instead when keys (objects, functions, or
+symbols — see isWeakMapKey) should be allowed to be
+garbage-collected once nothing else references them anymore — the whole
+point of `WeakMap` over `Map`.
 
 A *factory function* is accepted (not a cache instance) so `clear()` can
 reliably produce a fresh, empty cache regardless of its kind: `WeakMap`
@@ -4548,7 +4696,7 @@ factory used to create the initial cache is called again to do that.
 ```typescript
 import { createCachedResolver } from '@helpers4/function';
 
-createCachedResolver<K extends object, V>(compute: function, createCache: function): CachedResolver<K, V>
+createCachedResolver<K extends WeakKey, V>(compute: function, createCache: function): CachedResolver<K, V>
 ```
 
 **Parameters:**
@@ -7315,6 +7463,53 @@ isWeakMap({ get: () => undefined, set: () => {} })
 
 ---
 
+### `isWeakMapKey`
+
+Checks whether a value can be used as a key in a `WeakMap` (or a `WeakSet` member / `WeakRef`
+target) — an object, a function (despite `typeof` reporting `'function'`, functions are
+objects), or an *unregistered* symbol (a plain `Symbol(...)` or a well-known symbol like
+`Symbol.iterator`).
+
+Symbols registered via `Symbol.for(...)` are excluded: since they live forever in the global
+symbol registry, the language disallows them as weak references (ES2023's "Symbols as
+WeakMap keys"). This is the part of the check easy to get wrong — `typeof value === 'symbol'`
+alone accepts registered symbols too, which actually throw at `WeakMap.prototype.set`.
+
+```typescript
+import { isWeakMapKey } from '@helpers4/guard';
+
+isWeakMapKey(value: unknown): value is symbol | object
+```
+
+**Parameters:**
+
+- `value: unknown` — The value to check
+
+**Returns:** `value is symbol | object` — `true` if `value` is a valid `WeakMap`/`WeakSet` key or `WeakRef` target
+
+**Examples:**
+
+*Objects and functions are valid WeakMap keys*
+
+Functions pass despite typeof reporting "function" — they are objects.
+
+```typescript
+isWeakMapKey({})       // => true
+isWeakMapKey(() => {}) // => true
+isWeakMapKey(42)       // => false
+```
+
+*Unregistered symbols pass, registered ones do not*
+
+Symbol.for(...) symbols live forever in the global registry, so the language disallows them as weak references.
+
+```typescript
+isWeakMapKey(Symbol('x'))     // => true
+isWeakMapKey(Symbol.for('x')) // => false
+```
+
+---
+
 ### `isWeakSet`
 
 Checks if a value is a WeakSet instance.
@@ -8281,17 +8476,18 @@ formatCompact(1_500_000, 'fr') // => '1,5 M'
 Format a byte count into a human-readable string with the appropriate unit.
 
 Each unit is 1024 of the previous (binary prefix). The result is formatted
-with one decimal place.
+with one decimal place, unless `integerBelowFirstUnit` is set.
 
 ```typescript
 import { formatSize } from '@helpers4/number';
 
-formatSize(bytes: number): string
+formatSize(bytes: number, options: FormatSizeOptions): string
 ```
 
 **Parameters:**
 
 - `bytes: number` — A non-negative integer representing a byte count.
+- `options: FormatSizeOptions` (default: `{}`) — Options.
 
 **Returns:** `string` — A human-readable string such as `'0.0B'`, `'1.5KB'`, `'3.2MB'`.
 
@@ -8307,6 +8503,16 @@ formatSize(512)           // '512.0B'
 formatSize(1024)          // '1.0KB'
 formatSize(1_048_576)     // '1.0MB'
 formatSize(1_073_741_824) // '1.0GB'
+```
+
+*Space before the unit, and a bare integer below the first unit*
+
+unitSeparator inserts a separator before the unit; integerBelowFirstUnit drops the decimal for byte counts under 1024.
+
+```typescript
+formatSize(1536, { unitSeparator: ' ' })                            // '1.5 KB'
+formatSize(512, { integerBelowFirstUnit: true })                    // '512B'
+formatSize(512, { unitSeparator: ' ', integerBelowFirstUnit: true }) // '512 B'
 ```
 
 ---
@@ -11834,7 +12040,7 @@ category characters (en space, em space, thin space, ideographic space, etc.).
 **Zero-width characters** (U+200B zero-width space, U+200C, U+200D, U+2060)
 are **not** treated as whitespace — they are Unicode "Format" (Cf) characters,
 not spaces. Strip them explicitly if needed:
-`isBlank(value.replace(/[​-‍⁠]/g, ''))`
+`isBlank(value.replace(/[\u200B-\u200D\u2060]/g, ''))`
 
 ```typescript
 import { isBlank } from '@helpers4/string';
@@ -12939,6 +13145,60 @@ toCamel('hello-world'); // => 'helloWorld'
 
 ---
 
+## structure
+
+Package: `@helpers4/structure`
+
+### `createUnionFind`
+
+Creates a disjoint-set (union-find) structure: tracks a partition of items into
+non-overlapping sets, merging two sets in near-constant time via `union`, and answering
+"are these in the same set?" via `connected` — the classic tool for clustering items by
+an equivalence relation built up incrementally (e.g. grouping records that pairwise match
+on some criterion into connected components), without recomputing the whole partition
+from scratch after every new match.
+
+Uses union-by-rank and path compression internally, so `find`/`union`/`connected` are all
+near-O(1) amortized regardless of how many items or unions have been performed.
+
+Items are compared by `Map` key semantics (`SameValueZero`, like `Set`/`Map` themselves) —
+so object identity for objects, value equality for primitives.
+
+```typescript
+import { createUnionFind } from '@helpers4/structure';
+
+createUnionFind<T>(): UnionFind<T>
+```
+
+**Returns:** `UnionFind<T>` — A UnionFind.
+
+**Examples:**
+
+*Group items by a pairwise match built up incrementally*
+
+union() merges two items into the same set; connected() checks whether two items ended up in the same set, even through a chain of intermediate matches.
+
+```typescript
+const uf = createUnionFind<string>();
+uf.union('a', 'b');
+uf.union('b', 'c');
+uf.connected('a', 'c'); // true — merged transitively through 'b'
+uf.connected('a', 'd'); // false — 'd' was never unioned with anything
+```
+
+*find() returns the shared representative of a set*
+
+Every item in the same set resolves to the same representative via find() — useful to bucket items by their final group afterwards.
+
+```typescript
+const uf = createUnionFind<number>();
+uf.union(1, 2);
+uf.union(2, 3);
+uf.find(1) === uf.find(3) // true
+```
+
+---
+
 ## type
 
 Package: `@helpers4/type`
@@ -13785,24 +14045,30 @@ Package: `@helpers4/version`
 
 ### `compare`
 
-Compares two semantic version strings according to SemVer 2.0.0 specification
+Compares two version strings, according to the given `scheme`.
 
-Supports:
+**`'semver'`** (default) — SemVer 2.0.0 precedence rules:
 - Core version: MAJOR.MINOR.PATCH
-- Pre-release: -alpha, -beta.1, -rc.1, etc.
+- Pre-release: -alpha, -beta.1, -rc.1, etc. (sorts below the plain release)
 - Build metadata: +build, +sha.abc123 (ignored in comparison per spec)
 - Optional 'v' prefix
+
+**`'gentoo'`** — Gentoo/Portage ebuild version ordering (see ParsedGentooVersion):
+numeric components, then letter suffix, then suffix segment (`alpha`/`beta`/`pre`/`rc` sort
+below the plain release, `p` sorts above it), then `-r` revision. Note the key difference
+from SemVer: a `-r` revision is *not* a prerelease and sorts *above* the base version.
 
 ```typescript
 import { compare } from '@helpers4/version';
 
-compare(version1: string, version2: string): number
+compare(version1: string, version2: string, scheme: VersionScheme): number
 ```
 
 **Parameters:**
 
 - `version1: string` — First version string
 - `version2: string` — Second version string
+- `scheme: VersionScheme` (default: `'semver'`) — Which version scheme to compare `version1`/`version2` as. Defaults to `'semver'`.
 
 **Returns:** `number` — -1 if version1 < version2, 0 if equal, 1 if version1 > version2
 
@@ -13827,48 +14093,69 @@ compare('1.0.0-alpha', '1.0.0')
 // => -1
 ```
 
+*Gentoo: a revision sorts above its base version*
+
+Unlike SemVer's '-' (prerelease, sorts below release), Gentoo's '-r' revision sorts above it.
+
+```typescript
+compare('1.2.3', '1.2.3-r1', 'gentoo')
+// => -1
+```
+
 ---
 
 ### `increment`
 
-Increments a semantic version
+Increments a version, according to the given `scheme`.
+
+**`'semver'`** (default) — bumps `major`/`minor`/`patch` per SemVer, resetting the
+finer-grained components (bumping `major` resets `minor` and `patch` to `0`, etc.) and
+dropping any prerelease/build metadata.
+
+**`'gentoo'`** — bumps the component at `type`'s position (`major` → 1st, `minor` → 2nd,
+`patch` → 3rd — Gentoo's `components` array can be any length, but the first three follow
+the same positional convention as SemVer), zeroing everything after it and dropping the
+letter/suffixes/revision.
 
 ```typescript
 import { increment } from '@helpers4/version';
 
-increment(version: string, type: "major" | "minor" | "patch"): string
+increment(version: string, type: IncrementType, scheme?: VersionScheme): string
 ```
 
 **Parameters:**
 
 - `version: string` — The version to increment
-- `type: "major" | "minor" | "patch"` — The increment type ('major', 'minor', 'patch')
+- `type: IncrementType` — The increment type ('major', 'minor', 'patch')
+- `scheme?: VersionScheme` — Which version scheme to interpret `version` as. Defaults to `'semver'`.
 
 **Returns:** `string` — Incremented version string
 
 ```typescript
 import { increment } from '@helpers4/version';
 
-increment(version: undefined, type: "major" | "minor" | "patch"): undefined
+increment(version: undefined, type: IncrementType, scheme?: VersionScheme): undefined
 ```
 
 **Parameters:**
 
 - `version: undefined` — The version to increment
-- `type: "major" | "minor" | "patch"` — The increment type ('major', 'minor', 'patch')
+- `type: IncrementType` — The increment type ('major', 'minor', 'patch')
+- `scheme?: VersionScheme` — Which version scheme to interpret `version` as. Defaults to `'semver'`.
 
 **Returns:** `undefined` — Incremented version string
 
 ```typescript
 import { increment } from '@helpers4/version';
 
-increment(version: null, type: "major" | "minor" | "patch"): null
+increment(version: null, type: IncrementType, scheme?: VersionScheme): null
 ```
 
 **Parameters:**
 
 - `version: null` — The version to increment
-- `type: "major" | "minor" | "patch"` — The increment type ('major', 'minor', 'patch')
+- `type: IncrementType` — The increment type ('major', 'minor', 'patch')
+- `scheme?: VersionScheme` — Which version scheme to interpret `version` as. Defaults to `'semver'`.
 
 **Returns:** `null` — Incremented version string
 
@@ -13901,14 +14188,24 @@ increment('v1.0.0', 'major')
 // => 'v2.0.0'
 ```
 
+*Increment a Gentoo/Portage version*
+
+Drops any letter/suffix/revision and resets components after the bumped one, same as the SemVer scheme.
+
+```typescript
+increment('1.2.3_rc1', 'patch', 'gentoo')
+// => '1.2.4'
+```
+
 ---
 
 ### `incrementPrerelease`
 
-Increments the prerelease portion of a semantic version — the semantics `npm version
-prerelease --preid <id>` uses, not covered by increment (which only handles
-`'major' | 'minor' | 'patch'`).
+Increments the prerelease portion of a version, according to the given `scheme` — the
+semantics `npm version prerelease --preid <id>` uses, not covered by increment (which
+only handles `'major' | 'minor' | 'patch'`).
 
+**`'semver'`** (default):
 - No current prerelease (a release version) → bumps `patch` and starts a new prerelease line
   at `<prereleaseId>.0` (a prerelease of the version itself, e.g. `1.2.3`, would already be
   released).
@@ -13921,42 +14218,51 @@ dropped — it's tied to the specific build that produced the input version, not
 A leading `v` is preserved if present, matching increment's behavior (`parse`/
 `stringify` alone would strip it — see their docs).
 
+**`'gentoo'`** — the same rules, but `prereleaseId` must be one of the five real Gentoo
+suffix types (`alpha`/`beta`/`pre`/`rc`/`p`), not a free-form string — Portage's suffix
+vocabulary is fixed by spec, unlike SemVer's arbitrary prerelease identifiers. No current
+prerelease suffix bumps the last numeric component instead of specifically `patch`, since
+Gentoo's `components` array can be any length.
+
 ```typescript
 import { incrementPrerelease } from '@helpers4/version';
 
-incrementPrerelease(version: string, prereleaseId: string): string
+incrementPrerelease(version: string, prereleaseId: string, scheme?: VersionScheme): string
 ```
 
 **Parameters:**
 
 - `version: string` — The version to increment
 - `prereleaseId: string` — The prerelease type/identifier (e.g. `'alpha'`, `'beta'`, `'rc'`)
+- `scheme?: VersionScheme` — Which version scheme to interpret `version` as. Defaults to `'semver'`.
 
 **Returns:** `string` — The version with an incremented or newly-started prerelease
 
 ```typescript
 import { incrementPrerelease } from '@helpers4/version';
 
-incrementPrerelease(version: undefined, prereleaseId: string): undefined
+incrementPrerelease(version: undefined, prereleaseId: string, scheme?: VersionScheme): undefined
 ```
 
 **Parameters:**
 
 - `version: undefined` — The version to increment
 - `prereleaseId: string` — The prerelease type/identifier (e.g. `'alpha'`, `'beta'`, `'rc'`)
+- `scheme?: VersionScheme` — Which version scheme to interpret `version` as. Defaults to `'semver'`.
 
 **Returns:** `undefined` — The version with an incremented or newly-started prerelease
 
 ```typescript
 import { incrementPrerelease } from '@helpers4/version';
 
-incrementPrerelease(version: null, prereleaseId: string): null
+incrementPrerelease(version: null, prereleaseId: string, scheme?: VersionScheme): null
 ```
 
 **Parameters:**
 
 - `version: null` — The version to increment
 - `prereleaseId: string` — The prerelease type/identifier (e.g. `'alpha'`, `'beta'`, `'rc'`)
+- `scheme?: VersionScheme` — Which version scheme to interpret `version` as. Defaults to `'semver'`.
 
 **Returns:** `null` — The version with an incremented or newly-started prerelease
 
@@ -13989,36 +14295,52 @@ incrementPrerelease('1.2.4-alpha.3', 'beta')
 // => '1.2.4-beta.0'
 ```
 
+*Increment a Gentoo/Portage prerelease*
+
+prereleaseId must be one of Gentoo's fixed suffix types (alpha/beta/pre/rc/p), not a free-form string.
+
+```typescript
+incrementPrerelease('1.2.3', 'alpha', 'gentoo')
+// => '1.2.4_alpha'
+```
+
 ---
 
 ### `isPrerelease`
 
-Returns `true` when the version string has a prerelease suffix
-(i.e. contains a `-` after the core `MAJOR.MINOR.PATCH`).
+Returns `true` when the version string has a prerelease suffix, according to the given
+`scheme`.
+
+**`'semver'`** (default) — `true` when there's a `-` after the core `MAJOR.MINOR.PATCH`.
+
+**`'gentoo'`** — `true` when the last suffix segment is `alpha`/`beta`/`pre`/`rc` (these sort
+below the plain release). A `p` suffix or a `-r` revision don't count — `p` sorts *above* the
+release, and a revision isn't a prerelease of anything, it's a rebuild of the same version.
 
 ```typescript
 import { isPrerelease } from '@helpers4/version';
 
-isPrerelease(version: string): boolean
+isPrerelease(version: string, scheme?: VersionScheme): boolean
 ```
 
 **Parameters:**
 
-- `version: string` — A semantic version string (e.g. `'2.0.0-alpha.1'`, `'1.0.0'`).
+- `version: string` — A version string (e.g. `'2.0.0-alpha.1'`, `'1.0.0'`, `'1.2.3_rc1'`).
+- `scheme?: VersionScheme` — Which version scheme to interpret `version` as. Defaults to `'semver'`.
 
 **Returns:** `boolean` — `true` if the version is a prerelease, `false` otherwise.
 
 ```typescript
 import { isPrerelease } from '@helpers4/version';
 
-isPrerelease(version: ParsedVersion): boolean
+isPrerelease(version: AnyParsedVersion): boolean
 ```
 
 **Parameters:**
 
-- `version: ParsedVersion` — A ParsedVersion object (as returned by parse).
+- `version: AnyParsedVersion` — A AnyParsedVersion object, as returned by parse.
 
-**Returns:** `boolean` — `true` if `version.prerelease` is non-empty, `false` otherwise.
+**Returns:** `boolean` — `true` if `version` is a prerelease, `false` otherwise.
 
 ```typescript
 import { isPrerelease } from '@helpers4/version';
@@ -14028,7 +14350,7 @@ isPrerelease(version: undefined): undefined
 
 **Parameters:**
 
-- `version: undefined` — A semantic version string (e.g. `'2.0.0-alpha.1'`, `'1.0.0'`).
+- `version: undefined` — A version string (e.g. `'2.0.0-alpha.1'`, `'1.0.0'`, `'1.2.3_rc1'`).
 
 **Returns:** `undefined` — `true` if the version is a prerelease, `false` otherwise.
 
@@ -14040,7 +14362,7 @@ isPrerelease(version: null): null
 
 **Parameters:**
 
-- `version: null` — A semantic version string (e.g. `'2.0.0-alpha.1'`, `'1.0.0'`).
+- `version: null` — A version string (e.g. `'2.0.0-alpha.1'`, `'1.0.0'`, `'1.2.3_rc1'`).
 
 **Returns:** `null` — `true` if the version is a prerelease, `false` otherwise.
 
@@ -14077,49 +14399,86 @@ isPrerelease(parse('1.0.0'))         // false
 
 ### `parse`
 
-Parses a semantic version string into its components according to SemVer 2.0.0 specification
+Parses a version string into its components, according to the given `scheme`.
 
-Supports:
+**`'semver'`** (default) — SemVer 2.0.0. Supports:
 - Core version: MAJOR.MINOR.PATCH
 - Pre-release: -alpha, -beta.1, -rc.1, -0.3.7, -x.7.z.92
 - Build metadata: +build, +sha.abc123, +20130313144700
 - Optional 'v' prefix (commonly used in git tags)
 
+**`'gentoo'`** — Gentoo/Portage ebuild versions (see ParsedGentooVersion). Throws a
+`SyntaxError` if `version` doesn't match the grammar (unlike `'semver'`, which never throws).
+
 ```typescript
 import { parse } from '@helpers4/version';
 
-parse(version: string): ParsedVersion
+parse(version: string, scheme?: "semver"): ParsedSemVerVersion
 ```
 
 **Parameters:**
 
 - `version: string` — Version string to parse
+- `scheme?: "semver"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
-**Returns:** `ParsedVersion` — Parsed version object with major, minor, patch, prerelease, and build
+**Returns:** `ParsedSemVerVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
+ParsedGentooVersion for `'gentoo'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
 
-parse(version: undefined): undefined
+parse(version: string, scheme: "gentoo"): ParsedGentooVersion
+```
+
+**Parameters:**
+
+- `version: string` — Version string to parse
+- `scheme: "gentoo"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
+
+**Returns:** `ParsedGentooVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
+ParsedGentooVersion for `'gentoo'`.
+
+```typescript
+import { parse } from '@helpers4/version';
+
+parse(version: string, scheme: VersionScheme): AnyParsedVersion
+```
+
+**Parameters:**
+
+- `version: string` — Version string to parse
+- `scheme: VersionScheme` — Which version scheme to parse `version` as. Defaults to `'semver'`.
+
+**Returns:** `AnyParsedVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
+ParsedGentooVersion for `'gentoo'`.
+
+```typescript
+import { parse } from '@helpers4/version';
+
+parse(version: undefined, scheme?: VersionScheme): undefined
 ```
 
 **Parameters:**
 
 - `version: undefined` — Version string to parse
+- `scheme?: VersionScheme` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
-**Returns:** `undefined` — Parsed version object with major, minor, patch, prerelease, and build
+**Returns:** `undefined` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
+ParsedGentooVersion for `'gentoo'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
 
-parse(version: null): null
+parse(version: null, scheme?: VersionScheme): null
 ```
 
 **Parameters:**
 
 - `version: null` — Version string to parse
+- `scheme?: VersionScheme` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
-**Returns:** `null` — Parsed version object with major, minor, patch, prerelease, and build
+**Returns:** `null` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
+ParsedGentooVersion for `'gentoo'`.
 
 **Examples:**
 
@@ -14129,7 +14488,7 @@ Breaks a semantic version string into its components.
 
 ```typescript
 parse('1.2.3')
-// => { major: 1, minor: 2, patch: 3, prerelease: [], build: [] }
+// => { scheme: 'semver', major: 1, minor: 2, patch: 3, prerelease: [], build: [] }
 ```
 
 *Parse a prerelease version*
@@ -14138,25 +14497,53 @@ Handles prerelease identifiers and optional v prefix.
 
 ```typescript
 parse('v2.0.0-alpha.1')
-// => { major: 2, minor: 0, patch: 0, prerelease: ['alpha', '1'], build: [] }
+// => { scheme: 'semver', major: 2, minor: 0, patch: 0, prerelease: ['alpha', '1'], build: [] }
 ```
+
+*Parse a Gentoo/Portage ebuild version*
+
+Pass 'gentoo' as the scheme to parse Gentoo's own version format instead of SemVer.
+
+```typescript
+parse('1.2.3b_rc1-r2', 'gentoo')
+// => { scheme: 'gentoo', components: [1, 2, 3], letter: 'b', suffixes: [{ type: 'rc', number: 1 }], revision: 2 }
+```
+
+---
+
+### `ParsedVersion`
+
+A version parsed according to SemVer 2.0.0 — alias of ParsedSemVerVersion, kept under
+this name for backward compatibility (public API since 2.0.0, well before Gentoo/Portage
+support existed). Use AnyParsedVersion to accept a parsed version in any supported
+scheme, e.g. when writing scheme-agnostic code like stringify or isPrerelease.
 
 ---
 
 ### `satisfiesRange`
 
-Checks if a version satisfies a range (simple implementation)
+Checks if a version satisfies a range, according to the given `scheme` (simple
+implementation — see each scheme's own doc for exactly which operators are supported).
+
+**`'semver'`** (default) — `>=`, `>`, `<=`, `<`, `^` (caret, patch+minor updates within the
+same major), `~` (tilde, patch updates within the same major.minor), or an exact match.
+
+**`'gentoo'`** — `>=`, `>`, `<=`, `<`, or an exact match, compared per Gentoo/Portage
+ordering (see compare). `^`/`~` throw: Portage's own atom syntax gives those
+characters different, unrelated meanings, so silently reusing SemVer's semantics for them
+would be actively misleading rather than merely unsupported.
 
 ```typescript
 import { satisfiesRange } from '@helpers4/version';
 
-satisfiesRange(version: string, range: string): boolean
+satisfiesRange(version: string, range: string, scheme: VersionScheme): boolean
 ```
 
 **Parameters:**
 
 - `version: string` — Version to check
 - `range: string` — Range pattern (e.g., ">=1.0.0", "~1.2.0", "^1.0.0")
+- `scheme: VersionScheme` (default: `'semver'`) — Which version scheme to interpret `version`/`range` as. Defaults to `'semver'`.
 
 **Returns:** `boolean` — True if version satisfies the range
 
@@ -14189,24 +14576,35 @@ satisfiesRange('0.9.0', '>=1.0.0')
 // => false
 ```
 
+*Check a Gentoo/Portage range*
+
+Supports >=, >, <=, <, and exact match — ^ and ~ throw, since Portage gives those characters different, unrelated meanings.
+
+```typescript
+satisfiesRange('1.2.3', '>=1.2.0', 'gentoo')
+// => true
+```
+
 ---
 
 ### `stringify`
 
-Reconstruct a semantic version string from a ParsedVersion object.
+Reconstructs a version string from a AnyParsedVersion object — the scheme is read from
+the object's own `scheme` field, not passed separately (a `ParsedGentooVersion` can only ever
+stringify as Gentoo, so there's nothing to disambiguate).
 
 This is the inverse of parse:
-`stringify(parse(v)) === stripV(v)` for any valid SemVer string `v`.
+`stringify(parse(v)) === stripV(v)` for any valid version string `v`, in either scheme.
 
 ```typescript
 import { stringify } from '@helpers4/version';
 
-stringify(parsed: ParsedVersion): string
+stringify(parsed: AnyParsedVersion): string
 ```
 
 **Parameters:**
 
-- `parsed: ParsedVersion` — A parsed semantic version object.
+- `parsed: AnyParsedVersion` — A parsed version object, as returned by parse.
 
 **Returns:** `string` — The reconstructed version string (without leading `v`).
 
@@ -14218,7 +14616,7 @@ stringify(parsed: undefined): undefined
 
 **Parameters:**
 
-- `parsed: undefined` — A parsed semantic version object.
+- `parsed: undefined` — A parsed version object, as returned by parse.
 
 **Returns:** `undefined` — The reconstructed version string (without leading `v`).
 
@@ -14230,7 +14628,7 @@ stringify(parsed: null): null
 
 **Parameters:**
 
-- `parsed: null` — A parsed semantic version object.
+- `parsed: null` — A parsed version object, as returned by parse.
 
 **Returns:** `null` — The reconstructed version string (without leading `v`).
 
@@ -14241,7 +14639,7 @@ stringify(parsed: null): null
 Converts a ParsedVersion object back to a version string.
 
 ```typescript
-stringify({ major: 1, minor: 2, patch: 3, prerelease: [], build: [] })
+stringify({ scheme: 'semver', major: 1, minor: 2, patch: 3, prerelease: [], build: [] })
 // => '1.2.3'
 ```
 
@@ -14255,6 +14653,15 @@ stringify(parse('2.0.0-alpha.1'))
 
 stringify(parse('1.0.0-beta+exp.sha.5114f85'))
 // => '1.0.0-beta+exp.sha.5114f85'
+```
+
+*Reconstruct a Gentoo/Portage version*
+
+The scheme is read from the parsed object itself, not passed separately.
+
+```typescript
+stringify({ scheme: 'gentoo', components: [1, 2, 3], letter: 'b', suffixes: [{ type: 'rc', number: 1 }], revision: 2 })
+// => '1.2.3b_rc1-r2'
 ```
 
 ---

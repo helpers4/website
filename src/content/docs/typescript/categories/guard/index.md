@@ -35,7 +35,7 @@ Utility functions for working with guard operations.
 | [`isJSON`](./isjson/) | Checks whether a value is a string containing valid, parseable JSON text\. |
 | [`isJSONArray`](./isjsonarray/) | Checks whether a value is an array whose every element is a valid JSON value \(see isJSONValue\)\. |
 | [`isJSONObject`](./isjsonobject/) | Checks whether a value is a plain object whose every own value is a valid JSON value \(see isJSONValue\)\. |
-| [`isJSONValue`](./isjsonvalue/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`, … |
+| [`isJSONValue`](./isjsonvalue/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`,… |
 | [`isLength`](./islength/) | Checks whether a value is a valid array\-like \`length\`: a non\-negative safe integer \(\`0 <= value <= Number\.MAX\_SAFE\_INTE… |
 | [`isMap`](./ismap/) | Checks if a value is a Map instance\. |
 | [`isNode`](./isnode/) | Checks whether the code is currently running in a Node\.js\-like environment \(\`process\.versions\.node\` is defined — also t… |
@@ -63,5 +63,6 @@ Utility functions for working with guard operations.
 | [`isUndefined`](./isundefined/) | Checks if a value is \`undefined\`\. |
 | [`isValidRegex`](./isvalidregex/) | Checks if a string is a valid regex pattern\. |
 | [`isWeakMap`](./isweakmap/) | Checks if a value is a WeakMap instance\. |
+| [`isWeakMapKey`](./isweakmapkey/) | Checks whether a value can be used as a key in a \`WeakMap\` \(or a \`WeakSet\` member / \`WeakRef\` target\) — an object, a fu… |
 | [`isWeakSet`](./isweakset/) | Checks if a value is a WeakSet instance\. |
 

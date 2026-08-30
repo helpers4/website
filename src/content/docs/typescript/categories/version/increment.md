@@ -2,11 +2,20 @@
 title: "increment"
 sidebar:
   label: "increment"
-description: "Increments a semantic version"
-version: "3.0.7"
+description: "Increments a version, according to the given `scheme`."
+version: "3.0.9"
 ---
 
-Increments a semantic version
+Increments a version, according to the given `scheme`.
+
+**`'semver'`** (default) — bumps `major`/`minor`/`patch` per SemVer, resetting the
+finer-grained components (bumping `major` resets `minor` and `patch` to `0`, etc.) and
+dropping any prerelease/build metadata.
+
+**`'gentoo'`** — bumps the component at `type`'s position (`major` → 1st, `minor` → 2nd,
+`patch` → 3rd — Gentoo's `components` array can be any length, but the first three follow
+the same positional convention as SemVer), zeroing everything after it and dropping the
+letter/suffixes/revision.
 
 > Available since v1.9.0
 
@@ -20,7 +29,7 @@ import { increment } from '@helpers4/version';
 
 
 ```ts
-increment(version: string, type: "major" | "minor" | "patch"): string
+increment(version: string, type: IncrementType, scheme?: VersionScheme): string
 ```
 
 ## Parameters
@@ -28,7 +37,8 @@ increment(version: string, type: "major" | "minor" | "patch"): string
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `version` | `string` | The version to increment |
-| `type` | `"major" \| "minor" \| "patch"` | The increment type \('major', 'minor', 'patch'\) |
+| `type` | `IncrementType` | The increment type \('major', 'minor', 'patch'\) |
+| `scheme` | `VersionScheme` | Which version scheme to interpret \`version\` as\. Defaults to \`'semver'\`\. *(optional)* |
 
 ## Returns
 
@@ -61,6 +71,34 @@ The v prefix is preserved if present in the input.
 ```ts
 increment('v1.0.0', 'major')
 // => 'v2.0.0'
+```
+
+### Increment a Gentoo/Portage version
+
+Drops any letter/suffix/revision and resets components after the bumped one, same as the SemVer scheme.
+
+```ts
+increment('1.2.3_rc1', 'patch', 'gentoo')
+// => '1.2.4'
+```
+
+## Related Types
+
+### `IncrementType`
+
+The unit to bump — see increment.
+
+```ts
+type IncrementType = 'major' | 'minor' | 'patch'
+```
+
+### `VersionScheme`
+
+Identifies which version scheme parse/compare should use to interpret a
+version string. Defaults to `'semver'` everywhere it's accepted.
+
+```ts
+type VersionScheme = 'semver' | 'gentoo'
 ```
 
 ## Source

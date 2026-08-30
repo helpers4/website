@@ -3,7 +3,7 @@ title: "chunk"
 sidebar:
   label: "chunk"
 description: "Chunks an array into smaller arrays of specified size."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Chunks an array into smaller arrays of specified size.

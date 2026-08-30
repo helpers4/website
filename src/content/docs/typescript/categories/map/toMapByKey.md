@@ -3,7 +3,7 @@ title: "toMapByKey"
 sidebar:
   label: "toMapByKey"
 description: "Builds a Map from an iterable of items, keyed by a derived key."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Builds a Map from an iterable of items, keyed by a derived key. When two items derive the

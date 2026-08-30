@@ -3,7 +3,7 @@ title: "createSortByNumberFn"
 sidebar:
   label: "createSortByNumberFn"
 description: "Creates a sort function for objects by number property."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Creates a sort function for objects by number property.

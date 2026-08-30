@@ -3,7 +3,7 @@ title: "isWithinRange"
 sidebar:
   label: "isWithinRange"
 description: "Checks whether a date falls within a range (inclusive on both ends)."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Checks whether a date falls within a range (inclusive on both ends).

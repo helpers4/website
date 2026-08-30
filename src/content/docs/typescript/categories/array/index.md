@@ -39,12 +39,14 @@ Utility functions for working with array operations.
 | [`isEmpty`](./isempty/) | Checks if an array is empty \(has no elements\)\. |
 | [`isNonEmpty`](./isnonempty/) | Checks if an array is non\-empty \(has at least one element\)\. |
 | `last` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
-| [`mapAsync`](./mapasync/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, in … |
+| [`mapAsync`](./mapasync/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, in… |
 | [`max`](./max/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
+| [`maxBy`](./maxby/) | Returns the element of an array with the greatest derived key, computed by \`keyFn\`\. |
 | [`mean`](./mean/) | Calculates the arithmetic mean \(average\) of an array of numbers\. |
 | [`meanBy`](./meanby/) | Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee\. |
 | [`median`](./median/) | Calculates the median \(middle value\) of an array of numbers\. |
 | [`min`](./min/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
+| [`minBy`](./minby/) | Returns the element of an array with the smallest derived key, computed by \`keyFn\`\. |
 | [`partition`](./partition/) | Splits an array into two groups based on a predicate function\. |
 | [`percentile`](./percentile/) | Calculates the p\-th percentile of an array of numbers using linear interpolation between the closest ranks\. |
 | [`range`](./range/) | Generates an array of sequential numbers from start to end \(exclusive\)\. |
@@ -73,6 +75,7 @@ Utility functions for working with array operations.
 | [`toggle`](./toggle/) | Returns a new array with \`item\` removed if present, or appended if absent — the common "toggle a selection" pattern\. |
 | `union` | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |
 | [`unique`](./unique/) | Removes duplicate values from an array\. |
+| [`uniqueBy`](./uniqueby/) | Removes duplicate items from an array, using a derived key instead of value equality\. |
 | [`unzip`](./unzip/) | Splits an array of tuples into separate arrays, one per position\. |
 | [`without`](./without/) | Returns a new array with all occurrences of the given values removed\. |
 | [`zip`](./zip/) | Combines multiple arrays element\-by\-element into an array of tuples\. |

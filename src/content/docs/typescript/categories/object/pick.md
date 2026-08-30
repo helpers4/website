@@ -3,7 +3,7 @@ title: "pick"
 sidebar:
   label: "pick"
 description: "Creates a new object with only the specified keys."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Creates a new object with only the specified keys.

@@ -3,7 +3,7 @@ title: "combineSortFns"
 sidebar:
   label: "combineSortFns"
 description: "Chains multiple sort functions into a single comparator: the first function decides the order unless it reports a tie (…"
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Chains multiple sort functions into a single comparator: the first function

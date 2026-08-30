@@ -2,8 +2,8 @@
 title: "createCachedResolver"
 sidebar:
   label: "createCachedResolver"
-description: "Creates a lazy, cached resolver: `resolve(key)` computes and caches `compute(key)` the first time a given key is seen, …"
-version: "3.0.7"
+description: "Creates a lazy, cached resolver: `resolve(key)` computes and caches `compute(key)` the first time a given key is seen,…"
+version: "3.0.9"
 ---
 
 Creates a lazy, cached resolver: `resolve(key)` computes and caches
@@ -12,9 +12,10 @@ value on every later call for that same key — until `clear()` wipes the
 whole cache.
 
 Backed by a `Map` by default (works with any key type). Pass a factory
-that returns a `WeakMap` instead when keys are objects that should be
-allowed to be garbage-collected once nothing else references them anymore
-— the whole point of `WeakMap` over `Map`.
+that returns a `WeakMap` instead when keys (objects, functions, or
+symbols — see isWeakMapKey) should be allowed to be
+garbage-collected once nothing else references them anymore — the whole
+point of `WeakMap` over `Map`.
 
 A *factory function* is accepted (not a cache instance) so `clear()` can
 reliably produce a fresh, empty cache regardless of its kind: `WeakMap`
@@ -34,7 +35,7 @@ import { createCachedResolver } from '@helpers4/function';
 
 
 ```ts
-createCachedResolver<K extends object, V>(compute: function, createCache: function): CachedResolver<K, V>
+createCachedResolver<K extends WeakKey, V>(compute: function, createCache: function): CachedResolver<K, V>
 ```
 
 ## Parameters

@@ -3,7 +3,7 @@ title: "isNodeStream"
 sidebar:
   label: "isNodeStream"
 description: "Checks if a value is a Node.js stream (has a `.pipe()` method)."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Checks if a value is a Node.js stream (has a `.pipe()` method).

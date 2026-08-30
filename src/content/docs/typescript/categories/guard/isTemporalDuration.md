@@ -3,7 +3,7 @@ title: "isTemporalDuration"
 sidebar:
   label: "isTemporalDuration"
 description: "Checks if a value is a `Temporal.Duration`."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Checks if a value is a `Temporal.Duration`.

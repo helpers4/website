@@ -3,7 +3,7 @@ title: "retry"
 sidebar:
   label: "retry"
 description: "Retries a promise-returning function up to maxAttempts times"
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Retries a promise-returning function up to maxAttempts times

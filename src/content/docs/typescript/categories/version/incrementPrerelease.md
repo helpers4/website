@@ -2,14 +2,15 @@
 title: "incrementPrerelease"
 sidebar:
   label: "incrementPrerelease"
-description: "Increments the prerelease portion of a semantic version — the semantics `npm version prerelease --preid <id>` uses, not…"
-version: "3.0.7"
+description: "Increments the prerelease portion of a version, according to the given `scheme` — the semantics `npm version prerelease…"
+version: "3.0.9"
 ---
 
-Increments the prerelease portion of a semantic version — the semantics `npm version
-prerelease --preid <id>` uses, not covered by increment (which only handles
-`'major' | 'minor' | 'patch'`).
+Increments the prerelease portion of a version, according to the given `scheme` — the
+semantics `npm version prerelease --preid <id>` uses, not covered by increment (which
+only handles `'major' | 'minor' | 'patch'`).
 
+**`'semver'`** (default):
 - No current prerelease (a release version) → bumps `patch` and starts a new prerelease line
   at `<prereleaseId>.0` (a prerelease of the version itself, e.g. `1.2.3`, would already be
   released).
@@ -21,6 +22,12 @@ output is always normalized to `<prereleaseId>.<number>`. Build metadata, if any
 dropped — it's tied to the specific build that produced the input version, not the new one.
 A leading `v` is preserved if present, matching increment's behavior (`parse`/
 `stringify` alone would strip it — see their docs).
+
+**`'gentoo'`** — the same rules, but `prereleaseId` must be one of the five real Gentoo
+suffix types (`alpha`/`beta`/`pre`/`rc`/`p`), not a free-form string — Portage's suffix
+vocabulary is fixed by spec, unlike SemVer's arbitrary prerelease identifiers. No current
+prerelease suffix bumps the last numeric component instead of specifically `patch`, since
+Gentoo's `components` array can be any length.
 
 > Available since v3.0.1
 
@@ -34,7 +41,7 @@ import { incrementPrerelease } from '@helpers4/version';
 
 
 ```ts
-incrementPrerelease(version: string, prereleaseId: string): string
+incrementPrerelease(version: string, prereleaseId: string, scheme?: VersionScheme): string
 ```
 
 ## Parameters
@@ -43,6 +50,7 @@ incrementPrerelease(version: string, prereleaseId: string): string
 |-----------|------|-------------|
 | `version` | `string` | The version to increment |
 | `prereleaseId` | `string` | The prerelease type/identifier \(e\.g\. \`'alpha'\`, \`'beta'\`, \`'rc'\`\) |
+| `scheme` | `VersionScheme` | Which version scheme to interpret \`version\` as\. Defaults to \`'semver'\`\. *(optional)* |
 
 ## Returns
 
@@ -75,6 +83,26 @@ Switching to a different prereleaseId resets the counter to 0, e.g. graduating f
 ```ts
 incrementPrerelease('1.2.4-alpha.3', 'beta')
 // => '1.2.4-beta.0'
+```
+
+### Increment a Gentoo/Portage prerelease
+
+prereleaseId must be one of Gentoo's fixed suffix types (alpha/beta/pre/rc/p), not a free-form string.
+
+```ts
+incrementPrerelease('1.2.3', 'alpha', 'gentoo')
+// => '1.2.4_alpha'
+```
+
+## Related Types
+
+### `VersionScheme`
+
+Identifies which version scheme parse/compare should use to interpret a
+version string. Defaults to `'semver'` everywhere it's accepted.
+
+```ts
+type VersionScheme = 'semver' | 'gentoo'
 ```
 
 ## Source

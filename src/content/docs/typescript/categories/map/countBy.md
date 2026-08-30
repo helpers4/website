@@ -3,7 +3,7 @@ title: "countBy"
 sidebar:
   label: "countBy"
 description: "Groups the entries of a Map by a derived key and counts how many fall into each group."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Groups the entries of a Map by a derived key and counts how many fall into each group.

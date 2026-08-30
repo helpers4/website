@@ -3,7 +3,7 @@ title: "isBlank"
 sidebar:
   label: "isBlank"
 description: "Checks if a string is blank — empty or contains only whitespace characters."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Checks if a string is blank — empty or contains only whitespace characters.
@@ -17,7 +17,7 @@ category characters (en space, em space, thin space, ideographic space, etc.).
 **Zero-width characters** (U+200B zero-width space, U+200C, U+200D, U+2060)
 are **not** treated as whitespace — they are Unicode "Format" (Cf) characters,
 not spaces. Strip them explicitly if needed:
-`isBlank(value.replace(/[​-‍⁠]/g, ''))`
+`isBlank(value.replace(/[\u200B-\u200D\u2060]/g, ''))`
 
 > Available since v2.0.3
 

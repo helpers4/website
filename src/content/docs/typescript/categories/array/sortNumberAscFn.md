@@ -3,7 +3,7 @@ title: "sortNumberAscFn"
 sidebar:
   label: "sortNumberAscFn"
 description: "Sort numbers in ascending order"
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Sort numbers in ascending order

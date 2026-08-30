@@ -3,7 +3,7 @@ title: "isSameMonth"
 sidebar:
   label: "isSameMonth"
 description: "Checks if two dates are in the same month (and year)."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Checks if two dates are in the same month (and year).

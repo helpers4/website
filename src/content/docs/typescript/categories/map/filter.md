@@ -3,7 +3,7 @@ title: "filter"
 sidebar:
   label: "filter"
 description: "Creates a new Map containing only the entries for which the predicate returns true."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Creates a new Map containing only the entries for which the predicate returns true.

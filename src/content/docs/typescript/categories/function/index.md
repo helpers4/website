@@ -12,9 +12,9 @@ Utility functions for working with function operations.
 | Function | Description |
 |----------|-------------|
 | [`compose`](./compose/) | Composes functions right\-to\-left: \`compose\(f, g\)\(x\)\` is equivalent to \`f\(g\(x\)\)\`\. |
-| [`createCachedResolver`](./createcachedresolver/) | Creates a lazy, cached resolver: \`resolve\(key\)\` computes and caches \`compute\(key\)\` the first time a given key is seen, … |
+| [`createCachedResolver`](./createcachedresolver/) | Creates a lazy, cached resolver: \`resolve\(key\)\` computes and caches \`compute\(key\)\` the first time a given key is seen,… |
 | [`curry`](./curry/) | Transforms a multi\-argument function into a chain of single\-argument functions \(Haskell\-style currying\)\. |
-| [`debounce`](./debounce/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time … |
+| [`debounce`](./debounce/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time… |
 | [`flip`](./flip/) | Creates a function that invokes \`fn\` with the first two arguments swapped\. |
 | [`identity`](./identity/) | Returns the given value unchanged  Useful as a default transform, in function composition, or as a placeholder mapper\. |
 | [`memoize`](./memoize/) | Returns a memoized version of the function that caches results\. |

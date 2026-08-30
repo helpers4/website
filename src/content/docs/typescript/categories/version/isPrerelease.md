@@ -2,12 +2,18 @@
 title: "isPrerelease"
 sidebar:
   label: "isPrerelease"
-description: "Returns `true` when the version string has a prerelease suffix (i.e."
-version: "3.0.7"
+description: "Returns `true` when the version string has a prerelease suffix, according to the given `scheme`."
+version: "3.0.9"
 ---
 
-Returns `true` when the version string has a prerelease suffix
-(i.e. contains a `-` after the core `MAJOR.MINOR.PATCH`).
+Returns `true` when the version string has a prerelease suffix, according to the given
+`scheme`.
+
+**`'semver'`** (default) — `true` when there's a `-` after the core `MAJOR.MINOR.PATCH`.
+
+**`'gentoo'`** — `true` when the last suffix segment is `alpha`/`beta`/`pre`/`rc` (these sort
+below the plain release). A `p` suffix or a `-r` revision don't count — `p` sorts *above* the
+release, and a revision isn't a prerelease of anything, it's a rebuild of the same version.
 
 > Available since v2.0.0
 
@@ -21,14 +27,15 @@ import { isPrerelease } from '@helpers4/version';
 
 
 ```ts
-isPrerelease(version: string): boolean
+isPrerelease(version: string, scheme?: VersionScheme): boolean
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `version` | `string` | A semantic version string \(e\.g\. \`'2\.0\.0\-alpha\.1'\`, \`'1\.0\.0'\`\)\. |
+| `version` | `string` | A version string \(e\.g\. \`'2\.0\.0\-alpha\.1'\`, \`'1\.0\.0'\`, \`'1\.2\.3\_rc1'\`\)\. |
+| `scheme` | `VersionScheme` | Which version scheme to interpret \`version\` as\. Defaults to \`'semver'\`\. *(optional)* |
 
 ## Returns
 
@@ -65,18 +72,29 @@ isPrerelease(parse('1.0.0'))         // false
 
 ## Related Types
 
-### `ParsedVersion`
+### `AnyParsedVersion`
 
-Represents a parsed semantic version according to SemVer 2.0.0 specification
+A version parsed by parse, in whichever scheme it was parsed as — narrow on the
+`scheme` field to access scheme-specific properties (`major`/`minor`/`patch` for `'semver'`,
+`components`/`letter`/`suffixes`/`revision` for `'gentoo'`).
+
+Deliberately **not** named `ParsedVersion`: that name has been public API since 2.0.0 for
+the flat SemVer-only shape (`.major`/`.minor`/`.patch` directly, no narrowing needed), and
+turning it into a union would silently break any existing code typed as `ParsedVersion` that
+reads those fields without narrowing first — a real compatibility break with no
+`MIGRATION.md` entry, since this repo ties breaking changes to major-version bumps.
 
 ```ts
-interface ParsedVersion {
-  build: string[];
-  major: number;
-  minor: number;
-  patch: number;
-  prerelease: string[];
-}
+type AnyParsedVersion = ParsedSemVerVersion | ParsedGentooVersion
+```
+
+### `VersionScheme`
+
+Identifies which version scheme parse/compare should use to interpret a
+version string. Defaults to `'semver'` everywhere it's accepted.
+
+```ts
+type VersionScheme = 'semver' | 'gentoo'
 ```
 
 ## Source

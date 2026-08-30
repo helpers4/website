@@ -3,7 +3,7 @@ title: "fromMillis"
 sidebar:
   label: "fromMillis"
 description: "Creates a `Date` from a timestamp in **milliseconds**."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Creates a `Date` from a timestamp in **milliseconds**.

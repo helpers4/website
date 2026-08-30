@@ -2,8 +2,8 @@
 title: "toRFC2822"
 sidebar:
   label: "toRFC2822"
-description: "Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss +0000 Used in email headers (Date field) and HTTP …"
-version: "3.0.7"
+description: "Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss +0000 Used in email headers (Date field) and HTTP…"
+version: "3.0.9"
 ---
 
 Converts a date to RFC 2822 format

@@ -3,7 +3,7 @@ title: "mean"
 sidebar:
   label: "mean"
 description: "Calculates the arithmetic mean (average) of an array of numbers."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Calculates the arithmetic mean (average) of an array of numbers.

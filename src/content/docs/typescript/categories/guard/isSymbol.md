@@ -3,7 +3,7 @@ title: "isSymbol"
 sidebar:
   label: "isSymbol"
 description: "Checks if a value is a symbol."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Checks if a value is a symbol.

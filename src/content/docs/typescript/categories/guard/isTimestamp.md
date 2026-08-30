@@ -3,7 +3,7 @@ title: "isTimestamp"
 sidebar:
   label: "isTimestamp"
 description: "Checks if a value is a valid timestamp (milliseconds or Unix seconds)."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Checks if a value is a valid timestamp (milliseconds or Unix seconds).

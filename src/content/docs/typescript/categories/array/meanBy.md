@@ -3,7 +3,7 @@ title: "meanBy"
 sidebar:
   label: "meanBy"
 description: "Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee.

@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**317** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**323** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -38,7 +38,7 @@ sidebar:
 | [`compact`](../array/compact/) | [array](../array/) | Removes all falsy values \(\`false\`, \`null\`, \`undefined\`, \`0\`, \`""\`, \`NaN\`\) from an array\. |
 | [`compact`](../object/compact/) | [object](../object/) | Removes all entries with falsy values \(\`false\`, \`null\`, \`undefined\`, \`0\`, \`""\`, \`NaN\`\) from an object\. |
 | [`compare`](../date/compare/) | [date](../date/) | Comparison of two dates\. |
-| [`compare`](../version/compare/) | [version](../version/) | Compares two semantic version strings according to SemVer 2\.0\.0 specification  Supports: \- Core version: MAJOR\.MINOR\.PA… |
+| [`compare`](../version/compare/) | [version](../version/) | Compares two version strings, according to the given \`scheme\`\. |
 | `compare (ordering)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.compare(a, b) / Temporal.Instant.compare(a, b)` *(Temporal (Stage 3))* |
 | [`compose`](../function/compose/) | [function](../function/) | Composes functions right\-to\-left: \`compose\(f, g\)\(x\)\` is equivalent to \`f\(g\(x\)\)\`\. |
 | [`consoleLogPromise`](../promise/consolelogpromise/) | [promise](../promise/) | Returns a function that logs data to the console and passes it through\. |
@@ -46,7 +46,7 @@ sidebar:
 | [`countBy`](../array/countby/) | [array](../array/) | Groups the elements of an array by the key returned by \`keyFn\` and returns a record mapping each key to the number of m… |
 | [`countBy`](../map/countby/) | [map](../map/) | Groups the entries of a Map by a derived key and counts how many fall into each group\. |
 | [`countBy`](../set/countby/) | [set](../set/) | Groups the values of a Set by a derived key and counts how many fall into each group\. |
-| [`createCachedResolver`](../function/createcachedresolver/) | [function](../function/) | Creates a lazy, cached resolver: \`resolve\(key\)\` computes and caches \`compute\(key\)\` the first time a given key is seen, … |
+| [`createCachedResolver`](../function/createcachedresolver/) | [function](../function/) | Creates a lazy, cached resolver: \`resolve\(key\)\` computes and caches \`compute\(key\)\` the first time a given key is seen,… |
 | [`createMutex`](../promise/createmutex/) | [promise](../promise/) | Creates a mutex: a lock allowing at most one holder at a time, queueing excess \`acquire\(\)\` callers in FIFO order\. |
 | [`createSemaphore`](../promise/createsemaphore/) | [promise](../promise/) | Creates a semaphore limiting concurrent access to \`permits\` holders at a time, queueing excess \`acquire\(\)\` callers in F… |
 | [`createSortByBooleanFn`](../array/createsortbybooleanfn/) | [array](../array/) | Creates a sort function for objects by a boolean property\. |
@@ -54,10 +54,11 @@ sidebar:
 | [`createSortByNaturalFn`](../array/createsortbynaturalfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties using natural ordering\. |
 | [`createSortByNumberFn`](../array/createsortbynumberfn/) | [array](../array/) | Creates a sort function for objects by number property\. |
 | [`createSortByStringFn`](../array/createsortbystringfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties\. |
+| [`createUnionFind`](../structure/createunionfind/) | [structure](../structure/) | Creates a disjoint\-set \(union\-find\) structure: tracks a partition of items into non\-overlapping sets, merging two sets… |
 | [`curry`](../function/curry/) | [function](../function/) | Transforms a multi\-argument function into a chain of single\-argument functions \(Haskell\-style currying\)\. |
 | [`daysInMonth`](../date/daysinmonth/) | [date](../date/) | Returns the number of days in the given month of the given year\. |
-| [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time … |
-| [`dedent`](../string/dedent/) | [string](../string/) | Strips the common leading whitespace from every line of a multi\-line string, and trims a single leading/trailing blank … |
+| [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time… |
+| [`dedent`](../string/dedent/) | [string](../string/) | Strips the common leading whitespace from every line of a multi\-line string, and trims a single leading/trailing blank… |
 | [`DeepGet`](../type/deepget/) | [type](../type/) | Resolves the value type at a given \`Path\` within \`T\`\. |
 | [`DeepPartial`](../type/deeppartial/) | [type](../type/) | Recursively makes all properties of T optional, including nested objects and array elements\. |
 | [`DeepSet`](../type/deepset/) | [type](../type/) | Produces the type of \`T\` after replacing the value at \`Path\` with \`V\`\. |
@@ -104,7 +105,7 @@ sidebar:
 | [`formatCompact`](../number/formatcompact/) | [number](../number/) | Formats a number using compact notation \(e\.g\. |
 | [`formatDuration`](../date/formatduration/) | [date](../date/) | Formats a duration in milliseconds as a compact human\-readable string\. |
 | [`formatInTimezone`](../date/formatintimezone/) | [date](../date/) | Formats a date in a specific IANA timezone using \`Intl\.DateTimeFormat\`\. |
-| [`formatProgressBar`](../string/formatprogressbar/) | [string](../string/) | Formats a value as a text progress bar, repeating \`filledChar\`/\`emptyChar\` across \`width\` cells proportional to \`value … |
+| [`formatProgressBar`](../string/formatprogressbar/) | [string](../string/) | Formats a value as a text progress bar, repeating \`filledChar\`/\`emptyChar\` across \`width\` cells proportional to \`value… |
 | [`formatSize`](../number/formatsize/) | [number](../number/) | Format a byte count into a human\-readable string with the appropriate unit\. |
 | `from (parse temporal string)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.from(str) / Temporal.PlainDate.from(str) / etc.` *(Temporal (Stage 3))* |
 | [`fromMillis`](../date/frommillis/) | [date](../date/) | Creates a \`Date\` from a timestamp in \*\*milliseconds\*\*\. |
@@ -124,8 +125,8 @@ sidebar:
 | [`hslToRgb`](../color/hsltorgb/) | [color](../color/) | Converts an HSL\(A\) color into RGB\(A\)\. |
 | [`identity`](../function/identity/) | [function](../function/) | Returns the given value unchanged  Useful as a default transform, in function composition, or as a placeholder mapper\. |
 | `includes` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.includes()` *(ES2016)* |
-| [`increment`](../version/increment/) | [version](../version/) | Increments a semantic version |
-| [`incrementPrerelease`](../version/incrementprerelease/) | [version](../version/) | Increments the prerelease portion of a semantic version — the semantics \`npm version prerelease \-\-preid <id>\` uses, not… |
+| [`increment`](../version/increment/) | [version](../version/) | Increments a version, according to the given \`scheme\`\. |
+| [`incrementPrerelease`](../version/incrementprerelease/) | [version](../version/) | Increments the prerelease portion of a version, according to the given \`scheme\` — the semantics \`npm version prerelease… |
 | [`injectWordBreaks`](../string/injectwordbreaks/) | [string](../string/) | Adds word\-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table c… |
 | [`inRange`](../number/inrange/) | [number](../number/) | Checks whether a number falls within \`\[min, max\]\` \(both inclusive by default\)\. |
 | [`intersection`](../array/intersection/) | [array](../array/) | Compute the intersection of two arrays, meaning the elements that are present in both arrays\. |
@@ -169,7 +170,7 @@ sidebar:
 | [`isJSON`](../guard/isjson/) | [guard](../guard/) | Checks whether a value is a string containing valid, parseable JSON text\. |
 | [`isJSONArray`](../guard/isjsonarray/) | [guard](../guard/) | Checks whether a value is an array whose every element is a valid JSON value \(see isJSONValue\)\. |
 | [`isJSONObject`](../guard/isjsonobject/) | [guard](../guard/) | Checks whether a value is a plain object whose every own value is a valid JSON value \(see isJSONValue\)\. |
-| [`isJSONValue`](../guard/isjsonvalue/) | [guard](../guard/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`, … |
+| [`isJSONValue`](../guard/isjsonvalue/) | [guard](../guard/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`,… |
 | [`isLeapYear`](../date/isleapyear/) | [date](../date/) | Returns \`true\` if the given year is a leap year\. |
 | [`isLength`](../guard/islength/) | [guard](../guard/) | Checks whether a value is a valid array\-like \`length\`: a non\-negative safe integer \(\`0 <= value <= Number\.MAX\_SAFE\_INTE… |
 | `isLight / isDark (pick a readable text color)` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `contrast-color(<color>)` *(CSS Color 6 (Baseline newly available since April 2026 — Chrome 147, Firefox 146, Safari 26.0))* |
@@ -189,7 +190,7 @@ sidebar:
 | [`isOdd`](../number/isodd/) | [number](../number/) | Checks if a value is an odd integer\. |
 | [`isPlainObject`](../guard/isplainobject/) | [guard](../guard/) | Checks if a value is a plain object\. |
 | [`isPositive`](../number/ispositive/) | [number](../number/) | Checks if a value is a number greater than 0\. |
-| [`isPrerelease`](../version/isprerelease/) | [version](../version/) | Returns \`true\` when the version string has a prerelease suffix \(i\.e\. |
+| [`isPrerelease`](../version/isprerelease/) | [version](../version/) | Returns \`true\` when the version string has a prerelease suffix, according to the given \`scheme\`\. |
 | [`isPrimitive`](../guard/isprimitive/) | [guard](../guard/) | Checks if a value is a JavaScript primitive\. |
 | [`isPromise`](../guard/ispromise/) | [guard](../guard/) | Checks if a value is a Promise or a thenable\. |
 | [`isPromiseLike`](../guard/ispromiselike/) | [guard](../guard/) | Checks if a value is a thenable \(has a \`\.then\(\)\` method\)\. |
@@ -220,6 +221,7 @@ sidebar:
 | [`isValidRegex`](../guard/isvalidregex/) | [guard](../guard/) | Checks if a string is a valid regex pattern\. |
 | [`isWeakMap`](../guard/isweakmap/) | [guard](../guard/) | Checks if a value is a WeakMap instance\. |
 | `isWeakMap / isWeakSet / isWeakRef` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof WeakMap / WeakSet / WeakRef` *(ES2015 / ES2021)* |
+| [`isWeakMapKey`](../guard/isweakmapkey/) | [guard](../guard/) | Checks whether a value can be used as a key in a \`WeakMap\` \(or a \`WeakSet\` member / \`WeakRef\` target\) — an object, a fu… |
 | [`isWeakSet`](../guard/isweakset/) | [guard](../guard/) | Checks if a value is a WeakSet instance\. |
 | [`isWeekend`](../date/isweekend/) | [date](../date/) | Checks whether a date falls on a weekend day\. |
 | [`isWithinRange`](../date/iswithinrange/) | [date](../date/) | Checks whether a date falls within a range \(inclusive on both ends\)\. |
@@ -235,11 +237,12 @@ sidebar:
 | [`map`](../object/map/) | [object](../object/) | Transforms the values and/or keys of a plain object in a single pass\. |
 | [`map`](../set/map/) | [set](../set/) | Creates a new Set with each value transformed by a function\. |
 | `map / filter` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `new Set(set.values().map(fn)) / new Set(set.values().filter(fn))` *(ES2025 (Iterator Helpers))* |
-| [`mapAsync`](../array/mapasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, in … |
+| [`mapAsync`](../array/mapasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, in… |
 | [`mapDeep`](../object/mapdeep/) | [object](../object/) | Recursively transforms the keys and/or values of a plain object — the deep counterpart to map, which only transforms th… |
 | [`mapKeys`](../map/mapkeys/) | [map](../map/) | Creates a new Map with the same values but with each key transformed by a function\. |
 | [`mapValues`](../map/mapvalues/) | [map](../map/) | Creates a new Map with the same keys but with each value transformed by a function\. |
 | [`max`](../array/max/) | [array](../array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
+| [`maxBy`](../array/maxby/) | [array](../array/) | Returns the element of an array with the greatest derived key, computed by \`keyFn\`\. |
 | [`Maybe`](../type/maybe/) | [type](../type/) | Type for values that can be T, undefined, or null\. |
 | [`mean`](../array/mean/) | [array](../array/) | Calculates the arithmetic mean \(average\) of an array of numbers\. |
 | [`meanBy`](../array/meanby/) | [array](../array/) | Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee\. |
@@ -250,6 +253,7 @@ sidebar:
 | [`mergeDeep`](../object/mergedeep/) | [object](../object/) | Merges two or more objects deeply, returning a \*\*new\*\* object without mutating any input\. |
 | [`min`](../array/min/) | [array](../array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
 | `min / max` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `Math.min(...arr) / Math.max(...arr)` *(ES1)* |
+| [`minBy`](../array/minby/) | [array](../array/) | Returns the element of an array with the smallest derived key, computed by \`keyFn\`\. |
 | [`negate`](../function/negate/) | [function](../function/) | Creates a function that negates the result of \`predicate\`\. |
 | [`noop`](../function/noop/) | [function](../function/) | A no\-operation function that does nothing and returns \`undefined\`  Useful as a default callback, placeholder, or to exp… |
 | [`normalizeTimestamp`](../date/normalizetimestamp/) | [date](../date/) | Converts a timestamp to JavaScript milliseconds format |
@@ -265,10 +269,11 @@ sidebar:
 | [`overlaps`](../date/overlaps/) | [date](../date/) | Checks whether two date ranges overlap\. |
 | `padStart / padEnd` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
 | [`parallel`](../promise/parallel/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit\. |
-| [`parallelSettle`](../promise/parallelsettle/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first … |
-| [`parse`](../version/parse/) | [version](../version/) | Parses a semantic version string into its components according to SemVer 2\.0\.0 specification  Supports: \- Core version:… |
+| [`parallelSettle`](../promise/parallelsettle/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first… |
+| [`parse`](../version/parse/) | [version](../version/) | Parses a version string into its components, according to the given \`scheme\`\. |
 | [`parseConventionalCommit`](../commit/parseconventionalcommit/) | [commit](../commit/) | Parses a Conventional Commits message into a structured object\. |
 | [`parseDuration`](../date/parseduration/) | [date](../date/) | Parses a compact duration string \(as produced by formatDuration, e\.g\. |
+| [`ParsedVersion`](../version/parsedversion/) | [version](../version/) | A version parsed according to SemVer 2\.0\.0 — alias of ParsedSemVerVersion, kept under this name for backward compatibil… |
 | [`parsePackageRepository`](../url/parsepackagerepository/) | [url](../url/) | Parse the \`repository\` field from \`package\.json\` into a structured object\. |
 | [`parsePropertyPath`](../object/parsepropertypath/) | [object](../object/) | Parses a dot/bracket\-notation property path into an array of string/number key segments — the same notation accepted by… |
 | [`partial`](../function/partial/) | [function](../function/) | Partially applies arguments to a function, returning a new function that accepts the remaining arguments\. |
@@ -305,7 +310,7 @@ sidebar:
 | [`safeJsonParse`](../object/safejsonparse/) | [object](../object/) | Parses a JSON string, returning \`null\` \(or a fallback\) on any parse failure\. |
 | [`safeReadJsonFile`](../node/safereadjsonfile/) | [node](../node/) | Reads a file and parses its contents as JSON, returning \`null\` \(or a fallback\) on any failure — a missing/unreadable fi… |
 | [`sample`](../array/sample/) | [array](../array/) | Picks one or more random elements from an array\. |
-| [`satisfiesRange`](../version/satisfiesrange/) | [version](../version/) | Checks if a version satisfies a range \(simple implementation\) |
+| [`satisfiesRange`](../version/satisfiesrange/) | [version](../version/) | Checks if a version satisfies a range, according to the given \`scheme\` \(simple implementation — see each scheme's own d… |
 | [`select`](../array/select/) | [array](../array/) | Filters and transforms an array in a single pass\. |
 | `select / filterMap` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
 | [`set`](../object/set/) | [object](../object/) | Sets a value in an object at the given path, creating intermediate objects as needed\. |
@@ -331,7 +336,7 @@ sidebar:
 | `startsWith / endsWith` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |
 | [`statusToBadge`](../ci/statustobadge/) | [ci](../ci/) | Maps a CI/CD job status to an inline code badge string\. |
 | [`statusToIcon`](../ci/statustoicon/) | [ci](../ci/) | Maps a CI/CD job status to an emoji icon\. |
-| [`stringify`](../version/stringify/) | [version](../version/) | Reconstruct a semantic version string from a ParsedVersion object\. |
+| [`stringify`](../version/stringify/) | [version](../version/) | Reconstructs a version string from a AnyParsedVersion object — the scheme is read from the object's own \`scheme\` field,… |
 | [`stripV`](../version/stripv/) | [version](../version/) | Strip the leading "v" from a version string if it exists\. |
 | [`sum`](../array/sum/) | [array](../array/) | Calculates the sum of an array of numbers\. |
 | [`sumBy`](../array/sumby/) | [array](../array/) | Calculates the sum of numbers derived from each item of an array via an iteratee\. |
@@ -353,7 +358,7 @@ sidebar:
 | [`toMillis`](../date/tomillis/) | [date](../date/) | Converts a date to a timestamp in \*\*milliseconds\*\* \(epoch millis\)\. |
 | `toPairs / fromPairs` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `Object.entries() / Object.fromEntries()` *(ES2019)* |
 | `toPlainDate / toPlainDateTime / toPlainTime` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.ZonedDateTime.prototype.toPlainDate() / toPlainDateTime() / toPlainTime()` *(Temporal (Stage 3))* |
-| [`toRFC2822`](../date/torfc2822/) | [date](../date/) | Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss \+0000 Used in email headers \(Date field\) and HTTP … |
+| [`toRFC2822`](../date/torfc2822/) | [date](../date/) | Converts a date to RFC 2822 format Format: Day, DD Mon YYYY HH:mm:ss \+0000 Used in email headers \(Date field\) and HTTP… |
 | [`toRFC3339`](../date/torfc3339/) | [date](../date/) | Converts a date to RFC 3339 format Format: YYYY\-MM\-DDTHH:mm:ssZ or YYYY\-MM\-DDTHH:mm:ss\+HH:mm RFC 3339 is a profile of I… |
 | [`toSeconds`](../date/toseconds/) | [date](../date/) | Converts a date to a timestamp in \*\*seconds\*\* \(epoch seconds\)\. |
 | `toTemporalInstant` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Date.prototype.toTemporalInstant()` *(Temporal (Stage 3))* |
@@ -373,6 +378,7 @@ sidebar:
 | `union` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.union()` *(ES2025 (Set methods))* |
 | [`UnionToIntersection`](../type/uniontointersection/) | [type](../type/) | Converts a union type to an intersection type: \`A \| B \| C\` → \`A & B & C\`\. |
 | [`unique`](../array/unique/) | [array](../array/) | Removes duplicate values from an array\. |
+| [`uniqueBy`](../array/uniqueby/) | [array](../array/) | Removes duplicate items from an array, using a derived key instead of value equality\. |
 | [`unset`](../object/unset/) | [object](../object/) | Removes the value at a dot/bracket\-notation path or explicit key array, mutating the object in place\. |
 | `until / since (difference)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.prototype.until(other) / .since(other)` *(Temporal (Stage 3))* |
 | [`unzip`](../array/unzip/) | [array](../array/) | Splits an array of tuples into separate arrays, one per position\. |

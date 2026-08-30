@@ -3,7 +3,7 @@ title: "createSortByBooleanFn"
 sidebar:
   label: "createSortByBooleanFn"
 description: "Creates a sort function for objects by a boolean property."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Creates a sort function for objects by a boolean property.

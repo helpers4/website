@@ -3,7 +3,7 @@ title: "trimStart"
 sidebar:
   label: "trimStart"
 description: "Trims leading characters from a string, at a configurable level of aggressiveness (see TrimMode)."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Trims leading characters from a string, at a configurable level of

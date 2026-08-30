@@ -1,0 +1,10 @@
+{
+  "label": "Structure",
+  "position": 18,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "doc",
+    "id": "categories/structure/index"
+  }
+}

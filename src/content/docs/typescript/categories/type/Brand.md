@@ -3,7 +3,7 @@ title: "Brand"
 sidebar:
   label: "Brand"
 description: "Brands a base type `T` with a phantom tag `B` to create a nominal type."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Brands a base type `T` with a phantom tag `B` to create a nominal type.

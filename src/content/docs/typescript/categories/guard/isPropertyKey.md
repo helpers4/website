@@ -3,7 +3,7 @@ title: "isPropertyKey"
 sidebar:
   label: "isPropertyKey"
 description: "Checks if a value is a valid property key: `string`, `number`, or `symbol`."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Checks if a value is a valid property key: `string`, `number`, or `symbol`.

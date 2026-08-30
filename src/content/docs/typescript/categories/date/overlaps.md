@@ -3,7 +3,7 @@ title: "overlaps"
 sidebar:
   label: "overlaps"
 description: "Checks whether two date ranges overlap."
-version: "3.0.7"
+version: "3.0.9"
 ---
 
 Checks whether two date ranges overlap.
