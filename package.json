@@ -27,10 +27,10 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.40.0",
-    "@helpers4/array": "^3.0.6",
-    "@helpers4/markdown": "^3.0.6",
-    "@helpers4/string": "^3.0.6",
-    "@helpers4/version": "^3.0.6",
+    "@helpers4/array": "^3.0.7",
+    "@helpers4/markdown": "^3.0.7",
+    "@helpers4/string": "^3.0.7",
+    "@helpers4/version": "^3.0.7",
     "astro": "^7.2.0",
     "starlight-sidebar-topics": "^0.8.0",
     "starlight-theme-nova": "^0.12.2"
