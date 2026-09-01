@@ -3,3 +3,10 @@ compatibility_date = "2026-09-01"
 
 [assets]
 directory = "./dist"
+
+# Only the apex — www.helpers4.dev deliberately isn't a route here. It redirects to this domain
+# via a Cloudflare Redirect Rule instead (zone-level, see dashboard), so it must NOT also be
+# attached directly to this Worker as a Custom Domain — the two would fight over the request.
+[[routes]]
+pattern = "helpers4.dev"
+custom_domain = true
