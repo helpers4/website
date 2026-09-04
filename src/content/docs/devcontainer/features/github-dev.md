@@ -1,7 +1,7 @@
 ---
 title: "GitHub Development Environment (github-dev)"
 sidebar:
-  order: 8
+  order: 9
 ---
 
 Installs the **GitHub CLI (`gh`)** and the essential GitHub VS Code **platform** extensions (Pull Requests & Issues, GitHub Actions, RemoteHub). Automatically authenticates `gh` if a token is available in the environment.

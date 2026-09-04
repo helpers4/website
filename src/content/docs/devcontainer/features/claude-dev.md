@@ -7,7 +7,7 @@ sidebar:
 Installs the [Claude Code](https://www.anthropic.com/claude-code) IDE extension
 across supported editors and persists `~/.claude` (credentials, config, memory)
 across every devcontainer rebuild — including GitHub Codespaces — via a Docker
-named volume.
+named volume. Optionally installs the `claude` CLI too.
 
 ## Example Usage
 
@@ -21,6 +21,18 @@ named volume.
 
 No `initializeCommand` required — Docker creates the volume automatically the
 first time it's needed.
+
+With the CLI:
+
+```jsonc
+{
+  "features": {
+    "ghcr.io/helpers4/devcontainer/claude-dev:1": {
+      "installCli": true
+    }
+  }
+}
+```
 
 ## GitHub Codespaces
 
@@ -41,6 +53,7 @@ knowing on a shared multi-user build server.
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `username` | string | `auto` | Container user that receives the `~/.claude` symlink. `auto` detects vscode/node/codespace/uid-1000, in that order; set an explicit username to override. |
+| `installCli` | boolean | `false` | Install the Claude Code CLI (`claude` command) via the official native installer. |
 
 ## IDE support
 
@@ -65,7 +78,24 @@ If `/mnt/h4claude` is not mounted (e.g. a standalone `install.sh` test), the
 script warns and exits cleanly — the container starts normally, just without
 persistence.
 
+With `installCli: true`, `install.sh` also runs the official native installer
+(`curl -fsSL https://claude.ai/install.sh | bash`) as the target user, then
+symlinks the resulting binary into `/usr/local/bin/claude` so it's on `PATH`
+without depending on that user's shell profile already including
+`~/.local/bin`.
+
 ## OS and Architecture Support
 
 - **OS:** any (no OS-level installation — pure IDE configuration)
 - **Architectures:** amd64, arm64
+
+## Version History
+
+- **v1.0.7**: Added `installCli` to install the `claude` CLI alongside the extension.
+- **v1.0.6**: Switched credential persistence from a host bind-mount to a Docker named volume
+  to fix GitHub Codespaces, which doesn't support host bind-mounts at all (#66). **If you're
+  upgrading from v1.0.5 or earlier**, this is a breaking change: the new volume starts empty —
+  your old host-bound `~/.claude` isn't copied in automatically. Re-authenticate once after
+  upgrading, or manually copy your old `~/.claude` content into the new volume (e.g. `docker cp`
+  into a throwaway container mounting `helpers4-claude-credentials-${USER}`) if you want to
+  keep it.

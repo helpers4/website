@@ -1,7 +1,7 @@
 ---
 title: "GitHub Copilot Development Environment (copilot-dev)"
 sidebar:
-  order: 4
+  order: 5
 ---
 
 Installs the [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
