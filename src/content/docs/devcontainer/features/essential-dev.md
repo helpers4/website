@@ -1,7 +1,7 @@
 ---
 title: "Essential Development Environment (essential-dev)"
 sidebar:
-  order: 7
+  order: 8
 ---
 
 Core development environment with Git integration, GitHub Copilot, Markdown support, and essential editor enhancements. Perfect base for all development projects.

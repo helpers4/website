@@ -1,7 +1,7 @@
 ---
 title: "pnpm Store (pnpm-store)"
 sidebar:
-  order: 16
+  order: 17
 ---
 
 Shares a single [pnpm](https://pnpm.io) content-addressable store across **every

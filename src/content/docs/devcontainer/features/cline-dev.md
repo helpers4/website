@@ -1,7 +1,7 @@
 ---
 title: "Cline Development Environment (cline-dev)"
 sidebar:
-  order: 4
+  order: 5
 ---
 
 Installs the [Cline](https://cline.bot) AI coding agent extension for VS Code

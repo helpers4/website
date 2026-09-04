@@ -1,7 +1,7 @@
 ---
 title: "Claude Code Development Environment (claude-dev)"
 sidebar:
-  order: 3
+  order: 4
 ---
 
 Installs the [Claude Code](https://www.anthropic.com/claude-code) IDE extension

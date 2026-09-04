@@ -1,7 +1,7 @@
 ---
 title: "Mistral Vibe Development Environment (mistral-dev)"
 sidebar:
-  order: 11
+  order: 12
 ---
 
 Installs the [Mistral Vibe](https://docs.mistral.ai/vibe/code/overview) IDE extension
