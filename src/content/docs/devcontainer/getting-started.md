@@ -36,104 +36,58 @@ A DevContainer is a development container specification that provides a consiste
 
 ## Available Features
 
-### vite-plus
+19 features, published to GHCR. Most are added under `"features"` in `devcontainer.json`;
+`vite-plus`, `typescript-dev`, and `angular-dev` are full base images (`"image"`) that bundle
+their own toolchain. See each feature's own page for its exact `devcontainer.json` snippet
+and options.
 
-Complete Vite+ development environment with optimized tooling.
+### AI coding agents
 
-```json
-{
-  "image": "ghcr.io/helpers4/devcontainer/vite-plus:latest"
-}
-```
+| Feature | Description |
+|---------|-------------|
+| [claude-dev](./features/claude-dev/) | Claude Code extension + CLI, with `~/.claude` persisted across rebuilds |
+| [cline-dev](./features/cline-dev/) | Cline AI coding agent extension + optional CLI |
+| [copilot-dev](./features/copilot-dev/) | Copilot Chat + `gh copilot` CLI, with shared commit/PR/review instructions |
+| [mistral-dev](./features/mistral-dev/) | Mistral Vibe extension, with `~/.vibe` persisted across rebuilds |
+| [peon-ping](./features/peon-ping/) | Game-character voice/audio notifications when your AI agent finishes or needs input |
 
-**Includes:**
-- Vite 6.x
-- Node.js 20+
-- pnpm 9+
-- Oxc (linter/formatter)
-- VS Code extensions (Oxc, Vitest)
+### Editor & Git tooling
 
-[Full Documentation →](./features/vite-plus/)
+| Feature | Description |
+|---------|-------------|
+| [essential-dev](./features/essential-dev/) | Baseline environment: Git visualization, Markdown support, editor enhancements |
+| [github-dev](./features/github-dev/) | `gh` CLI + GitHub VS Code extensions (Pull Requests & Issues, Actions) |
+| [git-absorb](./features/git-absorb/) | Automatically absorbs staged changes into their logical commits |
+| [auto-header](./features/auto-header/) | Auto-configures VS Code file headers (license, company, contributors) |
+| [dotfiles-sync](./features/dotfiles-sync/) | Syncs local Git/SSH/GPG/npm/yarn config (and opt-in cloud credentials) into the container |
+| [shell-history-per-project](./features/shell-history-per-project/) | Persists shell history per project (zsh, bash, fish) |
 
-### typescript-dev
+### Language & build toolchains
 
-TypeScript development environment with strict mode best practices.
+| Feature | Description |
+|---------|-------------|
+| [typescript-dev](./features/typescript-dev/) | TypeScript/JavaScript setup — indexing, import management, HTML/CSS tooling |
+| [vite-plus](./features/vite-plus/) | Unified Vite+ toolchain: Vite, Vitest, Oxlint, Oxfmt, Rolldown, tsdown |
+| [angular-dev](./features/angular-dev/) | Angular environment: port forwarding, VS Code extensions, CLI autocompletion |
+| [nub](./features/nub/) | Runs TS/JS files, `package.json` scripts, and local CLIs directly — no new runtime |
+| [playwright-dev](./features/playwright-dev/) | Playwright E2E toolchain: Chromium/Firefox/WebKit deps, cached browser binaries |
 
-```json
-{
-  "image": "ghcr.io/helpers4/devcontainer/typescript-dev:latest"
-}
-```
+### Infra & caching
 
-[Full Documentation →](./features/typescript-dev/)
+| Feature | Description |
+|---------|-------------|
+| [pnpm-store](./features/pnpm-store/) | Shares a single pnpm content-addressable store across repos and rebuilds |
+| [package-auto-install](./features/package-auto-install/) | Auto-runs npm/yarn/pnpm/nub install after container creation |
 
-### git-absorb
+### Security
 
-Git absorb integration for interactive rebase workflows.
+| Feature | Description |
+|---------|-------------|
+| [bitwarden-secrets-manager](./features/bitwarden-secrets-manager/) | Installs `bws`, the Bitwarden Secrets Manager CLI (machine-token auth only) |
 
-```json
-{
-  "features": {
-    "ghcr.io/helpers4/devcontainer/git-absorb": {}
-  }
-}
-```
-
-[Full Documentation →](./features/git-absorb/)
-
-### shell-history-per-project
-
-Separate shell history per project for better organization.
-
-```json
-{
-  "features": {
-    "ghcr.io/helpers4/devcontainer/shell-history-per-project": {}
-  }
-}
-```
-
-[Full Documentation →](./features/shell-history-per-project/)
-
-### local-mounts
-
-Configure local mount points for development.
-
-```json
-{
-  "features": {
-    "ghcr.io/helpers4/devcontainer/local-mounts": {}
-  }
-}
-```
-
-[Full Documentation →](./deprecated/local-mounts/)
-
-### angular-dev
-
-Pre-configured Angular development environment.
-
-```json
-{
-  "image": "ghcr.io/helpers4/devcontainer/angular-dev:latest"
-}
-```
-
-[Full Documentation →](./features/angular-dev/)
-
-### package-auto-install
-
-Automatically install npm/pnpm packages on container start.
-
-```json
-{
-  "features": {
-    "ghcr.io/helpers4/devcontainer/package-auto-install": {}
-  }
-}
-```
-
-[Full Documentation →](./features/package-auto-install/)
+:::note
+Retired features (e.g. `local-mounts`) are kept for reference under [Deprecated](./deprecated/local-mounts/) — don't install them in new projects.
+:::
 
 ## Combining Features
 
@@ -145,7 +99,7 @@ Mix multiple features for your perfect environment:
   "image": "ghcr.io/helpers4/devcontainer/vite-plus:latest",
   "features": {
     "ghcr.io/helpers4/devcontainer/shell-history-per-project": {},
-    "ghcr.io/helpers4/devcontainer/local-mounts": {}
+    "ghcr.io/helpers4/devcontainer/pnpm-store": {}
   },
   "postCreateCommand": "pnpm install"
 }
