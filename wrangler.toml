@@ -1,6 +1,13 @@
 name = "helpers4-website"
 compatibility_date = "2026-09-01"
 
+# Adding a custom-domain route below makes Cloudflare infer workers_dev = false on deploy, and
+# Preview URLs default to matching workers_dev — so without this, PR builds (wrangler versions
+# upload) silently stop generating *.workers.dev preview links/PR comments. Preview URLs only
+# ever expose *.workers.dev, never the custom domain, so this is safe to force on regardless of
+# workers_dev's inferred value.
+preview_urls = true
+
 [assets]
 directory = "./dist"
 
