@@ -13,10 +13,10 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { createSortByStringFn } from '@helpers4/array';
-import { escape } from '@helpers4/markdown';
-import { capitalize, leadingSentence, truncate } from '@helpers4/string';
-import { compare } from '@helpers4/version';
+import { createSortByStringFn } from 'helpers4/array';
+import { escape } from 'helpers4/markdown';
+import { capitalize, leadingSentence, truncate } from 'helpers4/string';
+import { compare } from 'helpers4/version';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
