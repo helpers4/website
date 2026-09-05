@@ -17,6 +17,8 @@ for very large arrays (> ~65 000 elements).
 
 ```ts
 import { min } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { min } from 'helpers4/array';
 ```
 
 ## Signature

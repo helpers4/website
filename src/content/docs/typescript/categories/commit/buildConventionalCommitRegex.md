@@ -22,6 +22,8 @@ The returned regex exposes four capture groups:
 
 ```ts
 import { buildConventionalCommitRegex } from '@helpers4/commit';
+// or, from the all-in-one package (same code, one install):
+import { buildConventionalCommitRegex } from 'helpers4/commit';
 ```
 
 ## Signature

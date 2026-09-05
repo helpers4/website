@@ -15,6 +15,8 @@ If two entries derive the same new key, the later one (in insertion order) wins.
 
 ```ts
 import { mapKeys } from '@helpers4/map';
+// or, from the all-in-one package (same code, one install):
+import { mapKeys } from 'helpers4/map';
 ```
 
 ## Signature

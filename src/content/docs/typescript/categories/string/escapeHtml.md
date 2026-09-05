@@ -17,6 +17,8 @@ text nodes without risk of XSS injection.
 
 ```ts
 import { escapeHtml } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { escapeHtml } from 'helpers4/string';
 ```
 
 ## Signature

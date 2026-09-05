@@ -17,6 +17,8 @@ Returns `null` if the input is invalid.
 
 ```ts
 import { addDays } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { addDays } from 'helpers4/date';
 ```
 
 ## Signature

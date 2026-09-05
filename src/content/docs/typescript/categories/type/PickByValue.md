@@ -17,6 +17,8 @@ optional `string` property is picked the same as a required one.
 
 ```ts
 import type { PickByValue } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { PickByValue } from 'helpers4/type';
 ```
 
 ## Type Definition

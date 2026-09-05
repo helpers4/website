@@ -24,6 +24,8 @@ argument like in combineLatestOperator.
 
 ```ts
 import { combineLatest } from '@helpers4/observable';
+// or, from the all-in-one package (same code, one install):
+import { combineLatest } from 'helpers4/observable';
 ```
 
 ## Signature

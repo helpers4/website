@@ -14,6 +14,8 @@ Reduces a Map to a single value by applying a function to each entry, in inserti
 
 ```ts
 import { reduce } from '@helpers4/map';
+// or, from the all-in-one package (same code, one install):
+import { reduce } from 'helpers4/map';
 ```
 
 ## Signature

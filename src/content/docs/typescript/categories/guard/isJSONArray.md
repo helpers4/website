@@ -15,6 +15,8 @@ Checks whether a value is an array whose every element is a valid JSON value
 
 ```ts
 import { isJSONArray } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isJSONArray } from 'helpers4/guard';
 ```
 
 ## Signature

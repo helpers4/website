@@ -14,6 +14,8 @@ Remove null and undefined values from an object.
 
 ```ts
 import { removeUndefinedNull } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { removeUndefinedNull } from 'helpers4/object';
 ```
 
 ## Signature

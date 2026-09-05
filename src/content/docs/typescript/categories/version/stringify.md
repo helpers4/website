@@ -19,6 +19,8 @@ This is the inverse of parse:
 
 ```ts
 import { stringify } from '@helpers4/version';
+// or, from the all-in-one package (same code, one install):
+import { stringify } from 'helpers4/version';
 ```
 
 ## Signature

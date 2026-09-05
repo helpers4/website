@@ -14,6 +14,8 @@ Extracts the pure URI from a URL by removing query parameters and fragments.
 
 ```ts
 import { extractPureURI } from '@helpers4/url';
+// or, from the all-in-one package (same code, one install):
+import { extractPureURI } from 'helpers4/url';
 ```
 
 ## Signature

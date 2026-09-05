@@ -15,6 +15,8 @@ Checks whether a value is a valid array-like `length`: a non-negative safe integ
 
 ```ts
 import { isLength } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isLength } from 'helpers4/guard';
 ```
 
 ## Signature

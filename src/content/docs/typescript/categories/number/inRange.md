@@ -14,6 +14,8 @@ Checks whether a number falls within `[min, max]` (both inclusive by default).
 
 ```ts
 import { inRange } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { inRange } from 'helpers4/number';
 ```
 
 ## Signature

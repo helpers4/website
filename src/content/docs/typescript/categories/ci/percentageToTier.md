@@ -18,6 +18,8 @@ the tier with the lowest `min` — there's always a match as long as `tiers` is 
 
 ```ts
 import { percentageToTier } from '@helpers4/ci';
+// or, from the all-in-one package (same code, one install):
+import { percentageToTier } from 'helpers4/ci';
 ```
 
 ## Signature

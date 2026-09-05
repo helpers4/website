@@ -21,6 +21,8 @@ representation in the target timezone, then computes the delta from UTC.
 
 ```ts
 import { getTimezoneOffset } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { getTimezoneOffset } from 'helpers4/date';
 ```
 
 ## Signature

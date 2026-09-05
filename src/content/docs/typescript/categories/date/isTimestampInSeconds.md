@@ -14,6 +14,8 @@ Checks if a timestamp is likely in seconds (Java/Unix style) vs milliseconds (Ja
 
 ```ts
 import { isTimestampInSeconds } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { isTimestampInSeconds } from 'helpers4/date';
 ```
 
 ## Signature

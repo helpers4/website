@@ -16,6 +16,8 @@ Returns `false` for non-numbers, non-integers, `NaN`, `Infinity`, and even integ
 
 ```ts
 import { isOdd } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { isOdd } from 'helpers4/number';
 ```
 
 ## Signature

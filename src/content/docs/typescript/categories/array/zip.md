@@ -17,6 +17,8 @@ The inverse of unzip.
 
 ```ts
 import { zip } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { zip } from 'helpers4/array';
 ```
 
 ## Signature

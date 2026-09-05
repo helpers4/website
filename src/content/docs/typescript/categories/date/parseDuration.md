@@ -20,6 +20,8 @@ Returns `null` when no valid segment is found.
 
 ```ts
 import { parseDuration } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { parseDuration } from 'helpers4/date';
 ```
 
 ## Signature

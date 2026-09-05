@@ -18,6 +18,8 @@ Entries whose source key **or** value is a prototype-polluting string
 
 ```ts
 import { invert } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { invert } from 'helpers4/object';
 ```
 
 ## Signature

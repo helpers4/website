@@ -26,6 +26,8 @@ truncate(leadingSentence(input), 120)
 
 ```ts
 import { leadingSentence } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { leadingSentence } from 'helpers4/string';
 ```
 
 ## Signature

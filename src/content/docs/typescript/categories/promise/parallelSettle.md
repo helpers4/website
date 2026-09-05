@@ -21,6 +21,8 @@ function starts.
 
 ```ts
 import { parallelSettle } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { parallelSettle } from 'helpers4/promise';
 ```
 
 ## Signature

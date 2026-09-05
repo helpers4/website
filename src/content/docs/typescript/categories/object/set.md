@@ -32,6 +32,8 @@ is rejected and the original object is returned unchanged (prototype-pollution g
 
 ```ts
 import { set } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { set } from 'helpers4/object';
 ```
 
 ## Signature

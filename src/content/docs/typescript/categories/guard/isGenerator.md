@@ -17,6 +17,8 @@ Distinct from isGeneratorFunction: this predicate targets the
 
 ```ts
 import { isGenerator } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isGenerator } from 'helpers4/guard';
 ```
 
 ## Signature

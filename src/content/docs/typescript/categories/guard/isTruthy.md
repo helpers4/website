@@ -18,6 +18,8 @@ resulting array type by excluding falsy values.
 
 ```ts
 import { isTruthy } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isTruthy } from 'helpers4/guard';
 ```
 
 ## Signature

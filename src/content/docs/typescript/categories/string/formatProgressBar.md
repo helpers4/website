@@ -19,6 +19,8 @@ above `max`) produce an empty or fully-filled bar instead of throwing. Non-finit
 
 ```ts
 import { formatProgressBar } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { formatProgressBar } from 'helpers4/string';
 ```
 
 ## Signature

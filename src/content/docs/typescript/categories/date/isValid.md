@@ -17,6 +17,8 @@ is not `NaN`.
 
 ```ts
 import { isValid } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { isValid } from 'helpers4/date';
 ```
 
 ## Signature

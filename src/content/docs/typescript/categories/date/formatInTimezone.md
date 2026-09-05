@@ -16,6 +16,8 @@ Returns `null` if the date or timezone is invalid.
 
 ```ts
 import { formatInTimezone } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { formatInTimezone } from 'helpers4/date';
 ```
 
 ## Signature

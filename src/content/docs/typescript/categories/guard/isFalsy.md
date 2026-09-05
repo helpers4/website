@@ -14,6 +14,8 @@ Checks if a value is falsy (`false`, `null`, `undefined`, `0`, `""`, `NaN`).
 
 ```ts
 import { isFalsy } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isFalsy } from 'helpers4/guard';
 ```
 
 ## Signature

@@ -17,6 +17,8 @@ Node 18+, Chrome 93+, Firefox 93+, Safari 15.4+.
 
 ```ts
 import { listTimezones } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { listTimezones } from 'helpers4/date';
 ```
 
 ## Signature

@@ -21,6 +21,8 @@ instead of collapsing to their shared keys.
 
 ```ts
 import type { Prettify } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { Prettify } from 'helpers4/type';
 ```
 
 ## Type Definition

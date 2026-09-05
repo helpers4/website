@@ -14,6 +14,8 @@ Converts an HSL(A) color into RGB(A).
 
 ```ts
 import { hslToRgb } from '@helpers4/color';
+// or, from the all-in-one package (same code, one install):
+import { hslToRgb } from 'helpers4/color';
 ```
 
 ## Signature

@@ -18,6 +18,8 @@ Items whose computed key is a prototype-polluting string (`__proto__`,
 
 ```ts
 import { countBy } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { countBy } from 'helpers4/array';
 ```
 
 ## Signature

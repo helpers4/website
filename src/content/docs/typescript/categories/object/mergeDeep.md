@@ -46,6 +46,8 @@ the caller should align their source types. If intentional, cast the result.
 
 ```ts
 import { mergeDeep } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { mergeDeep } from 'helpers4/object';
 ```
 
 ## Signature

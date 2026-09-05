@@ -21,6 +21,8 @@ numbers ≤ ~7.26 billion are treated as seconds, larger as milliseconds.
 
 ```ts
 import { isTimestamp } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isTimestamp } from 'helpers4/guard';
 ```
 
 ## Signature

@@ -14,6 +14,8 @@ Returns a function that passes through truthy data or throws an error.
 
 ```ts
 import { truthyPromiseOrThrow } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { truthyPromiseOrThrow } from 'helpers4/promise';
 ```
 
 ## Signature

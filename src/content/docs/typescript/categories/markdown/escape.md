@@ -20,6 +20,8 @@ with spaces, making the result safe for embedding in a Markdown table cell.
 
 ```ts
 import { escape } from '@helpers4/markdown';
+// or, from the all-in-one package (same code, one install):
+import { escape } from 'helpers4/markdown';
 ```
 
 ## Signature

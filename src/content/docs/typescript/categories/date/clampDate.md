@@ -17,6 +17,8 @@ Returns `null` if any of the inputs is invalid.
 
 ```ts
 import { clampDate } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { clampDate } from 'helpers4/date';
 ```
 
 ## Signature

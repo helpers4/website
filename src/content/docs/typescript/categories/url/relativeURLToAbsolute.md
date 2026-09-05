@@ -14,6 +14,8 @@ Converts a relative URL to an absolute URL using the current document base URI.
 
 ```ts
 import { relativeURLToAbsolute } from '@helpers4/url';
+// or, from the all-in-one package (same code, one install):
+import { relativeURLToAbsolute } from 'helpers4/url';
 ```
 
 ## Signature

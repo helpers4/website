@@ -18,6 +18,8 @@ objects without importing from `node:stream`.
 
 ```ts
 import { isNodeStream } from '@helpers4/node';
+// or, from the all-in-one package (same code, one install):
+import { isNodeStream } from 'helpers4/node';
 ```
 
 ## Signature

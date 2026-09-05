@@ -23,6 +23,8 @@ letter/suffixes/revision.
 
 ```ts
 import { increment } from '@helpers4/version';
+// or, from the all-in-one package (same code, one install):
+import { increment } from 'helpers4/version';
 ```
 
 ## Signature

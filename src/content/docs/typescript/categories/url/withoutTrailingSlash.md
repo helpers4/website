@@ -18,6 +18,8 @@ consistency and to avoid issues with relative paths.
 
 ```ts
 import { withoutTrailingSlash } from '@helpers4/url';
+// or, from the all-in-one package (same code, one install):
+import { withoutTrailingSlash } from 'helpers4/url';
 ```
 
 ## Signature

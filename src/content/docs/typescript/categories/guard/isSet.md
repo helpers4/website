@@ -14,6 +14,8 @@ Checks if a value is a Set instance.
 
 ```ts
 import { isSet } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isSet } from 'helpers4/guard';
 ```
 
 ## Signature

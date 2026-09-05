@@ -14,6 +14,8 @@ Returns a function that passes through falsy data or throws an error.
 
 ```ts
 import { falsyPromiseOrThrow } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { falsyPromiseOrThrow } from 'helpers4/promise';
 ```
 
 ## Signature

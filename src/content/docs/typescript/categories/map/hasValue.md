@@ -15,6 +15,8 @@ Uses `Object.is`-style equality (via `===`, with `NaN` matching `NaN`).
 
 ```ts
 import { hasValue } from '@helpers4/map';
+// or, from the all-in-one package (same code, one install):
+import { hasValue } from 'helpers4/map';
 ```
 
 ## Signature

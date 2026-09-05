@@ -17,6 +17,8 @@ argument order is reversed (e.g. passing a binary callback to `reduce`).
 
 ```ts
 import { flip } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { flip } from 'helpers4/function';
 ```
 
 ## Signature

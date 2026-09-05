@@ -25,6 +25,8 @@ flattened (`{ 'a.b': 1 }` and `{ a: { b: 1 } }` both produce `{ 'a.b': 1 }`).
 
 ```ts
 import { flatten } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { flatten } from 'helpers4/object';
 ```
 
 ## Signature

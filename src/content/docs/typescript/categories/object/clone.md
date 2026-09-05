@@ -21,6 +21,8 @@ uses, so the two stay consistent for types neither one special-cases.
 
 ```ts
 import { clone } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { clone } from 'helpers4/object';
 ```
 
 ## Signature

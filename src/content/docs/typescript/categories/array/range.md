@@ -15,6 +15,8 @@ If only one argument is provided, it generates numbers from 0 to that value.
 
 ```ts
 import { range } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { range } from 'helpers4/array';
 ```
 
 ## Signature

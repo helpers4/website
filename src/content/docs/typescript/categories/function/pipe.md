@@ -17,6 +17,8 @@ The inverse of compose, which applies functions right-to-left.
 
 ```ts
 import { pipe } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { pipe } from 'helpers4/function';
 ```
 
 ## Signature

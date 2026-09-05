@@ -23,6 +23,8 @@ input into a guaranteed type (or a safe fallback).
 
 ```ts
 import { ensureDate } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { ensureDate } from 'helpers4/date';
 ```
 
 ## Signature

@@ -16,6 +16,8 @@ When called with a count, returns an array of up to `count` random elements samp
 
 ```ts
 import { sample } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { sample } from 'helpers4/array';
 ```
 
 ## Signature

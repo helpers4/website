@@ -14,6 +14,8 @@ Creates a new Set containing only the values for which the predicate returns tru
 
 ```ts
 import { filter } from '@helpers4/set';
+// or, from the all-in-one package (same code, one install):
+import { filter } from 'helpers4/set';
 ```
 
 ## Signature

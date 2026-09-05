@@ -17,6 +17,8 @@ not the key. On a tie, the earliest element with that key wins.
 
 ```ts
 import { minBy } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { minBy } from 'helpers4/array';
 ```
 
 ## Signature

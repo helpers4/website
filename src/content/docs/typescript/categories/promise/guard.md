@@ -15,6 +15,8 @@ Works with both synchronous and asynchronous functions.
 
 ```ts
 import { guard } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { guard } from 'helpers4/promise';
 ```
 
 ## Signature

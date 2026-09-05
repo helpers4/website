@@ -17,6 +17,8 @@ Distinct from isAsyncGeneratorFunction: this predicate targets the
 
 ```ts
 import { isAsyncGenerator } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isAsyncGenerator } from 'helpers4/guard';
 ```
 
 ## Signature

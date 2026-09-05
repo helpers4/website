@@ -14,6 +14,8 @@ Checks if at least one entry of a Map satisfies the predicate. Short-circuits on
 
 ```ts
 import { some } from '@helpers4/map';
+// or, from the all-in-one package (same code, one install):
+import { some } from 'helpers4/map';
 ```
 
 ## Signature

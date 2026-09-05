@@ -15,6 +15,8 @@ The protocol part of the URL is not modified.
 
 ```ts
 import { cleanPath } from '@helpers4/url';
+// or, from the all-in-one package (same code, one install):
+import { cleanPath } from 'helpers4/url';
 ```
 
 ## Signature

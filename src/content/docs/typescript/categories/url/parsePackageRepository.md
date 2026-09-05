@@ -24,6 +24,8 @@ be matched to any recognised format.
 
 ```ts
 import { parsePackageRepository } from '@helpers4/url';
+// or, from the all-in-one package (same code, one install):
+import { parsePackageRepository } from 'helpers4/url';
 ```
 
 ## Signature

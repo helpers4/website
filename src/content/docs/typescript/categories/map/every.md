@@ -14,6 +14,8 @@ Checks if every entry of a Map satisfies the predicate. Short-circuits on the fi
 
 ```ts
 import { every } from '@helpers4/map';
+// or, from the all-in-one package (same code, one install):
+import { every } from 'helpers4/map';
 ```
 
 ## Signature

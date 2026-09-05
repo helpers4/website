@@ -23,6 +23,8 @@ declarations into the surrounding rule.
 
 ```ts
 import { isCssColor } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isCssColor } from 'helpers4/guard';
 ```
 
 ## Signature

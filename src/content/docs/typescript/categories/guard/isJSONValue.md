@@ -19,6 +19,8 @@ reason, instead of recursing forever.
 
 ```ts
 import { isJSONValue } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isJSONValue } from 'helpers4/guard';
 ```
 
 ## Signature

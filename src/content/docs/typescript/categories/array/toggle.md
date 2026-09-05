@@ -19,6 +19,8 @@ instead — useful for toggling objects by id rather than by reference.
 
 ```ts
 import { toggle } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { toggle } from 'helpers4/array';
 ```
 
 ## Signature

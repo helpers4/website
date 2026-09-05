@@ -14,6 +14,8 @@ Wraps a promise to reject with a `TimeoutError` if it does not resolve within th
 
 ```ts
 import { timeout } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { timeout } from 'helpers4/promise';
 ```
 
 ## Signature

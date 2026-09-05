@@ -14,6 +14,8 @@ Return a value or throw an error if null or undefined.
 
 ```ts
 import { returnOrThrowError } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { returnOrThrowError } from 'helpers4/function';
 ```
 
 ## Signature

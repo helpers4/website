@@ -15,6 +15,8 @@ Follows shields.io color conventions: brightgreen >= 100, green >= 90, yellow >=
 
 ```ts
 import { DEFAULT_PERCENTAGE_TIERS } from '@helpers4/ci';
+// or, from the all-in-one package (same code, one install):
+import { DEFAULT_PERCENTAGE_TIERS } from 'helpers4/ci';
 ```
 
 ## Source

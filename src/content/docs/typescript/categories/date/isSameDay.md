@@ -16,6 +16,8 @@ Accepts any DateLike input (Date, timestamp, or date string).
 
 ```ts
 import { isSameDay } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { isSameDay } from 'helpers4/date';
 ```
 
 ## Signature

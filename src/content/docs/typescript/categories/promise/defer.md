@@ -19,6 +19,8 @@ removal, or any "undo" logic that must run even on failure.
 
 ```ts
 import { defer } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { defer } from 'helpers4/promise';
 ```
 
 ## Signature

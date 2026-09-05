@@ -22,6 +22,8 @@ A zero duration returns `"0s"` (or `"0m"` / `"0h"` depending on `minUnit`).
 
 ```ts
 import { formatDuration } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { formatDuration } from 'helpers4/date';
 ```
 
 ## Signature

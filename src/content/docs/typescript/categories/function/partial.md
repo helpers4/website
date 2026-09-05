@@ -15,6 +15,8 @@ accepts the remaining arguments.
 
 ```ts
 import { partial } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { partial } from 'helpers4/function';
 ```
 
 ## Signature

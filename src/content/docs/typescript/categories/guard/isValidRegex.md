@@ -14,6 +14,8 @@ Checks if a string is a valid regex pattern.
 
 ```ts
 import { isValidRegex } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isValidRegex } from 'helpers4/guard';
 ```
 
 ## Signature

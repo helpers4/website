@@ -19,6 +19,8 @@ matched literally.
 
 ```ts
 import { escapeRegExp } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { escapeRegExp } from 'helpers4/string';
 ```
 
 ## Signature

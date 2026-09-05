@@ -15,6 +15,8 @@ Numbers embedded in strings are compared numerically: "W2" < "W11" < "W20".
 
 ```ts
 import { sortStringNaturalAscFn } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { sortStringNaturalAscFn } from 'helpers4/array';
 ```
 
 ## Examples

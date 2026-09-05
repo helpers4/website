@@ -16,6 +16,8 @@ Returns a new array without mutating the original.
 
 ```ts
 import { shuffle } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { shuffle } from 'helpers4/array';
 ```
 
 ## Signature

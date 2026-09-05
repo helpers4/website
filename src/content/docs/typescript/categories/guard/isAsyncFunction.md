@@ -16,6 +16,8 @@ Returns `true` for any function declared with `async`.
 
 ```ts
 import { isAsyncFunction } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isAsyncFunction } from 'helpers4/guard';
 ```
 
 ## Signature

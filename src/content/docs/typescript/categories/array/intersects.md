@@ -15,6 +15,8 @@ Simple helper that check if two lists shared at least an item in common.
 
 ```ts
 import { intersects } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { intersects } from 'helpers4/array';
 ```
 
 ## Signature

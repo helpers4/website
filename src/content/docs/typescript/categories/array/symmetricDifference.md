@@ -16,6 +16,8 @@ exactly one of the two arrays (in either, but not both).
 
 ```ts
 import { symmetricDifference } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { symmetricDifference } from 'helpers4/array';
 ```
 
 ## Signature

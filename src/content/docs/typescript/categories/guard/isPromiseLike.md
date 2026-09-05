@@ -18,6 +18,8 @@ Follows the Promise/A+ specification for thenables.
 
 ```ts
 import { isPromiseLike } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isPromiseLike } from 'helpers4/guard';
 ```
 
 ## Signature

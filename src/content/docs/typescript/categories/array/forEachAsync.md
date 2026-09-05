@@ -17,6 +17,8 @@ results — this only exists to signal that intent clearly, same as the sync
 
 ```ts
 import { forEachAsync } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { forEachAsync } from 'helpers4/array';
 ```
 
 ## Signature

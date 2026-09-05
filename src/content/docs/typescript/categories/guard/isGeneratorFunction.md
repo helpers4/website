@@ -17,6 +17,8 @@ not the iterator it produces when called.
 
 ```ts
 import { isGeneratorFunction } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isGeneratorFunction } from 'helpers4/guard';
 ```
 
 ## Signature

@@ -19,6 +19,8 @@ this helper reuses it internally rather than re-implementing the parse/catch its
 
 ```ts
 import { isJSON } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isJSON } from 'helpers4/guard';
 ```
 
 ## Signature

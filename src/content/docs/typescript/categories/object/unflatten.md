@@ -20,6 +20,8 @@ rejected (same prototype-pollution guard as `set`).
 
 ```ts
 import { unflatten } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { unflatten } from 'helpers4/object';
 ```
 
 ## Signature

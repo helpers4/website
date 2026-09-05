@@ -17,6 +17,8 @@ with one decimal place, unless `integerBelowFirstUnit` is set.
 
 ```ts
 import { formatSize } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { formatSize } from 'helpers4/number';
 ```
 
 ## Signature

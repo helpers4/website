@@ -14,6 +14,8 @@ Creates a throttled function that only invokes func at most once per every wait 
 
 ```ts
 import { throttle } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { throttle } from 'helpers4/function';
 ```
 
 ## Signature

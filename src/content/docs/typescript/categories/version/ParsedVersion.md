@@ -17,6 +17,8 @@ scheme, e.g. when writing scheme-agnostic code like stringify or isPrerelease.
 
 ```ts
 import type { ParsedVersion } from '@helpers4/version';
+// or, from the all-in-one package (same code, one install):
+import type { ParsedVersion } from 'helpers4/version';
 ```
 
 ## Type Definition

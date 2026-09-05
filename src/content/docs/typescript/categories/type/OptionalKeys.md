@@ -14,6 +14,8 @@ Extracts the optional keys of an object type `T`.
 
 ```ts
 import type { OptionalKeys } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { OptionalKeys } from 'helpers4/type';
 ```
 
 ## Type Definition

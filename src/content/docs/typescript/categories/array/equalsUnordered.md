@@ -25,6 +25,8 @@ from this category.
 
 ```ts
 import { equalsUnordered } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { equalsUnordered } from 'helpers4/array';
 ```
 
 ## Signature

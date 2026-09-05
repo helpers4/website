@@ -23,6 +23,8 @@ with one permit.
 
 ```ts
 import { createSemaphore } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { createSemaphore } from 'helpers4/promise';
 ```
 
 ## Signature

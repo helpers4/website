@@ -19,6 +19,8 @@ a `body` and an optional trailing `footer` block (lines matching
 
 ```ts
 import { parseConventionalCommit } from '@helpers4/commit';
+// or, from the all-in-one package (same code, one install):
+import { parseConventionalCommit } from 'helpers4/commit';
 ```
 
 ## Signature

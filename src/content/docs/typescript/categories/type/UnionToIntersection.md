@@ -17,6 +17,8 @@ function parameter to collapse the union into an intersection.
 
 ```ts
 import type { UnionToIntersection } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { UnionToIntersection } from 'helpers4/type';
 ```
 
 ## Type Definition

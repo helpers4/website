@@ -16,6 +16,8 @@ Primitive types: `string`, `number`, `boolean`, `bigint`, `symbol`, `null`, `und
 
 ```ts
 import { isPrimitive } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isPrimitive } from 'helpers4/guard';
 ```
 
 ## Signature

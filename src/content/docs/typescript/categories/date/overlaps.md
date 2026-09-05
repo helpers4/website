@@ -18,6 +18,8 @@ Returns `false` if any date is invalid.
 
 ```ts
 import { overlaps } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { overlaps } from 'helpers4/date';
 ```
 
 ## Signature

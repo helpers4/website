@@ -17,6 +17,8 @@ implementing the iterable protocol.
 
 ```ts
 import { isIterable } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isIterable } from 'helpers4/guard';
 ```
 
 ## Signature

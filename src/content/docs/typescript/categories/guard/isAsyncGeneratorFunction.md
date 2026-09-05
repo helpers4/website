@@ -17,6 +17,8 @@ not the async iterator it produces when called.
 
 ```ts
 import { isAsyncGeneratorFunction } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isAsyncGeneratorFunction } from 'helpers4/guard';
 ```
 
 ## Signature

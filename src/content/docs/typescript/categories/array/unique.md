@@ -15,6 +15,8 @@ Removes duplicate values from an array.
 
 ```ts
 import { unique } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { unique } from 'helpers4/array';
 ```
 
 ## Signature

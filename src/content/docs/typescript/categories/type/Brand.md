@@ -24,6 +24,8 @@ const toUserId = (s: string): UserId => s as UserId;
 
 ```ts
 import type { Brand } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { Brand } from 'helpers4/type';
 ```
 
 ## Type Definition

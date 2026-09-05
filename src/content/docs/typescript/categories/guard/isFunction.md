@@ -14,6 +14,8 @@ Checks if a value is a function.
 
 ```ts
 import { isFunction } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isFunction } from 'helpers4/guard';
 ```
 
 ## Signature

@@ -18,6 +18,8 @@ unavailable; this function returns `false` in that case.
 
 ```ts
 import { isSharedArrayBuffer } from '@helpers4/node';
+// or, from the all-in-one package (same code, one install):
+import { isSharedArrayBuffer } from 'helpers4/node';
 ```
 
 ## Signature

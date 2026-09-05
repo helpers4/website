@@ -24,6 +24,8 @@ Returns `false` if the input is invalid.
 
 ```ts
 import { isBusinessDay } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { isBusinessDay } from 'helpers4/date';
 ```
 
 ## Signature

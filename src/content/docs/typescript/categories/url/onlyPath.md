@@ -20,6 +20,8 @@ For example, all these parameters will return `/path`:
 
 ```ts
 import { onlyPath } from '@helpers4/url';
+// or, from the all-in-one package (same code, one install):
+import { onlyPath } from 'helpers4/url';
 ```
 
 ## Signature

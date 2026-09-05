@@ -14,6 +14,8 @@ Produces a union of all value types of an object type `T`.
 
 ```ts
 import type { ValueOf } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { ValueOf } from 'helpers4/type';
 ```
 
 ## Type Definition

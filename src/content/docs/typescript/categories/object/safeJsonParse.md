@@ -17,6 +17,8 @@ parsing edge-cases resolve to `null` or the provided `fallback`.
 
 ```ts
 import { safeJsonParse } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { safeJsonParse } from 'helpers4/object';
 ```
 
 ## Signature

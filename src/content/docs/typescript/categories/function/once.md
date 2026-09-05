@@ -18,6 +18,8 @@ allow the original function to be called again.
 
 ```ts
 import { once } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { once } from 'helpers4/function';
 ```
 
 ## Signature

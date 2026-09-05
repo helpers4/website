@@ -17,6 +17,8 @@ in function signatures or generic constraints.
 
 ```ts
 import type { Nullable } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { Nullable } from 'helpers4/type';
 ```
 
 ## Type Definition

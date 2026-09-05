@@ -16,6 +16,8 @@ chronologically sortable while retaining randomness.
 
 ```ts
 import { uuid7 } from '@helpers4/id';
+// or, from the all-in-one package (same code, one install):
+import { uuid7 } from 'helpers4/id';
 ```
 
 ## Signature

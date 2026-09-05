@@ -21,6 +21,8 @@ being treated as a break point (e.g. gluing a number to its unit).
 
 ```ts
 import { trimEnd } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { trimEnd } from 'helpers4/string';
 ```
 
 ## Signature

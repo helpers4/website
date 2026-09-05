@@ -14,6 +14,8 @@ Returns a function that logs data to the console and passes it through.
 
 ```ts
 import { consoleLogPromise } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { consoleLogPromise } from 'helpers4/promise';
 ```
 
 ## Signature

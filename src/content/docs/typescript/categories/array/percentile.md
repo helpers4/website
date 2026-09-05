@@ -15,6 +15,8 @@ the closest ranks. Returns `NaN` for an empty array. Does not mutate the input a
 
 ```ts
 import { percentile } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { percentile } from 'helpers4/array';
 ```
 
 ## Signature

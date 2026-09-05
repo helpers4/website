@@ -16,6 +16,8 @@ Returns the difference between two arrays (items in first array but not in secon
 
 ```ts
 import { difference } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { difference } from 'helpers4/array';
 ```
 
 ## Signature

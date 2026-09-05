@@ -14,6 +14,8 @@ Groups the entries of a Map by a derived key and counts how many fall into each 
 
 ```ts
 import { countBy } from '@helpers4/map';
+// or, from the all-in-one package (same code, one install):
+import { countBy } from 'helpers4/map';
 ```
 
 ## Signature

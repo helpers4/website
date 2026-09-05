@@ -16,6 +16,8 @@ Numbers embedded in strings are compared numerically: "W20" > "W11" > "W2".
 
 ```ts
 import { sortStringNaturalDescInsensitiveFn } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { sortStringNaturalDescInsensitiveFn } from 'helpers4/array';
 ```
 
 ## Examples

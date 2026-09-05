@@ -28,6 +28,8 @@ align with other string helpers.
 
 ```ts
 import { truncate } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { truncate } from 'helpers4/string';
 ```
 
 ## Signature

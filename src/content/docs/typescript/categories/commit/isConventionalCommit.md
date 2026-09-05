@@ -17,6 +17,8 @@ Only the first line is inspected — body and footer are ignored.
 
 ```ts
 import { isConventionalCommit } from '@helpers4/commit';
+// or, from the all-in-one package (same code, one install):
+import { isConventionalCommit } from 'helpers4/commit';
 ```
 
 ## Signature

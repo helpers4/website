@@ -21,6 +21,8 @@ release, and a revision isn't a prerelease of anything, it's a rebuild of the sa
 
 ```ts
 import { isPrerelease } from '@helpers4/version';
+// or, from the all-in-one package (same code, one install):
+import { isPrerelease } from 'helpers4/version';
 ```
 
 ## Signature

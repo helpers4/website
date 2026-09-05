@@ -19,6 +19,8 @@ Returns `null` if the input date is invalid.
 
 ```ts
 import { timeAgo } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { timeAgo } from 'helpers4/date';
 ```
 
 ## Signature

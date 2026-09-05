@@ -24,6 +24,8 @@ reads or requests), use parallelSettle instead, which takes functions
 
 ```ts
 import { settle } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { settle } from 'helpers4/promise';
 ```
 
 ## Signature

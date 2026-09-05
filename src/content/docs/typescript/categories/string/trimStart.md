@@ -21,6 +21,8 @@ being treated as a break point.
 
 ```ts
 import { trimStart } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { trimStart } from 'helpers4/string';
 ```
 
 ## Signature

@@ -16,6 +16,8 @@ Returns `false` for `NaN`, `0`, positive numbers, and non-number types.
 
 ```ts
 import { isNegative } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { isNegative } from 'helpers4/number';
 ```
 
 ## Signature

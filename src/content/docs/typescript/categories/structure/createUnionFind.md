@@ -25,6 +25,8 @@ so object identity for objects, value equality for primitives.
 
 ```ts
 import { createUnionFind } from '@helpers4/structure';
+// or, from the all-in-one package (same code, one install):
+import { createUnionFind } from 'helpers4/structure';
 ```
 
 ## Signature

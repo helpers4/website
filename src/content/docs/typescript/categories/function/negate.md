@@ -14,6 +14,8 @@ Creates a function that negates the result of `predicate`.
 
 ```ts
 import { negate } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { negate } from 'helpers4/function';
 ```
 
 ## Signature

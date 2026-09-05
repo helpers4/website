@@ -14,6 +14,8 @@ Creates a sort function for objects by number property.
 
 ```ts
 import { createSortByNumberFn } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { createSortByNumberFn } from 'helpers4/array';
 ```
 
 ## Signature

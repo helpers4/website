@@ -16,6 +16,8 @@ Useful as a default transform, in function composition, or as a placeholder mapp
 
 ```ts
 import { identity } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { identity } from 'helpers4/function';
 ```
 
 ## Signature

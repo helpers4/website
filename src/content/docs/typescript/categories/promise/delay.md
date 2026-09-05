@@ -14,6 +14,8 @@ Creates a promise that resolves after specified delay
 
 ```ts
 import { delay } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { delay } from 'helpers4/promise';
 ```
 
 ## Signature

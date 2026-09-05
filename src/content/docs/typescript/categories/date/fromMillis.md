@@ -18,6 +18,8 @@ input is always treated as milliseconds.
 
 ```ts
 import { fromMillis } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { fromMillis } from 'helpers4/date';
 ```
 
 ## Signature

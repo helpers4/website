@@ -15,6 +15,8 @@ objects, array elements, and tuple positions.
 
 ```ts
 import type { DeepWritable } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { DeepWritable } from 'helpers4/type';
 ```
 
 ## Type Definition

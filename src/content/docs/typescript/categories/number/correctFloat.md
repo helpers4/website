@@ -27,6 +27,8 @@ binary representation rather than correcting drift.
 
 ```ts
 import { correctFloat } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { correctFloat } from 'helpers4/number';
 ```
 
 ## Signature

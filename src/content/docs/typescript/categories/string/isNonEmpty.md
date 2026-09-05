@@ -18,6 +18,8 @@ Use `isNonEmpty(value?.trim())` if you need to exclude blank strings.
 
 ```ts
 import { isNonEmpty } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { isNonEmpty } from 'helpers4/string';
 ```
 
 ## Signature

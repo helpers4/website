@@ -14,6 +14,8 @@ Checks if a value is a valid property key: `string`, `number`, or `symbol`.
 
 ```ts
 import { isPropertyKey } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isPropertyKey } from 'helpers4/guard';
 ```
 
 ## Signature

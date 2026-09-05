@@ -22,6 +22,8 @@ ${buildStatusTable(jobs)}
 
 ```ts
 import { buildStatusTable } from '@helpers4/ci';
+// or, from the all-in-one package (same code, one install):
+import { buildStatusTable } from 'helpers4/ci';
 ```
 
 ## Signature

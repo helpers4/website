@@ -15,6 +15,8 @@ Calculates the sum of numbers derived from each item of an array via an iteratee
 
 ```ts
 import { sumBy } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { sumBy } from 'helpers4/array';
 ```
 
 ## Signature

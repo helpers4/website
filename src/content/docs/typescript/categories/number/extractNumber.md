@@ -21,6 +21,8 @@ Returns `undefined` if no number can be found.
 
 ```ts
 import { extractNumber } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { extractNumber } from 'helpers4/number';
 ```
 
 ## Signature

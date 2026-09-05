@@ -21,6 +21,8 @@ order-independent comparison use equalsUnordered.
 
 ```ts
 import { equalsShallow } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { equalsShallow } from 'helpers4/array';
 ```
 
 ## Signature

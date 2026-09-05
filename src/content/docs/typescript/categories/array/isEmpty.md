@@ -15,6 +15,8 @@ Checks if an array is empty (has no elements).
 
 ```ts
 import { isEmpty } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { isEmpty } from 'helpers4/array';
 ```
 
 ## Signature

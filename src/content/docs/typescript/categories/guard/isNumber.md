@@ -17,6 +17,8 @@ to increase user-friendliness.
 
 ```ts
 import { isNumber } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isNumber } from 'helpers4/guard';
 ```
 
 ## Signature

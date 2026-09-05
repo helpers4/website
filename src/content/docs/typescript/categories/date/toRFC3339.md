@@ -16,6 +16,8 @@ RFC 3339 is a profile of ISO 8601, but without milliseconds by default
 
 ```ts
 import { toRFC3339 } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { toRFC3339 } from 'helpers4/date';
 ```
 
 ## Signature

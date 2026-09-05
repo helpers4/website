@@ -14,6 +14,8 @@ Checks if a value is an Error instance.
 
 ```ts
 import { isError } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isError } from 'helpers4/guard';
 ```
 
 ## Signature

@@ -14,6 +14,8 @@ Converts a string into a URL-friendly slug.
 
 ```ts
 import { slugify } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { slugify } from 'helpers4/string';
 ```
 
 ## Signature

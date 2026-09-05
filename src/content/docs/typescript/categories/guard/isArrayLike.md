@@ -18,6 +18,8 @@ they have a `length` (arity), as they are not considered array-like in practice.
 
 ```ts
 import { isArrayLike } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isArrayLike } from 'helpers4/guard';
 ```
 
 ## Signature
