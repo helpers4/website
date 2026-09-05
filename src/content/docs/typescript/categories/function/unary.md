@@ -20,6 +20,8 @@ arguments is passed directly to `Array.prototype.map`:
 
 ```ts
 import { unary } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { unary } from 'helpers4/function';
 ```
 
 ## Signature

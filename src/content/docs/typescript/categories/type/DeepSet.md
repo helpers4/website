@@ -18,6 +18,8 @@ When a key in `Path` is absent from the corresponding level of `T`, that level
 
 ```ts
 import type { DeepSet } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { DeepSet } from 'helpers4/type';
 ```
 
 ## Type Definition

@@ -15,6 +15,8 @@ Handles camelCase, kebab-case, snake_case, spaces, and mixed formats.
 
 ```ts
 import { pascalCase } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { pascalCase } from 'helpers4/string';
 ```
 
 ## Signature

@@ -19,6 +19,8 @@ five entities that function produces, not the full HTML entity set (no
 
 ```ts
 import { unescapeHtml } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { unescapeHtml } from 'helpers4/string';
 ```
 
 ## Signature

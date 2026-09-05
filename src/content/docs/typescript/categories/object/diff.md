@@ -29,6 +29,8 @@ For a one-level boolean check see equalsShallow from this category.
 
 ```ts
 import { diff } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { diff } from 'helpers4/object';
 ```
 
 ## Signature

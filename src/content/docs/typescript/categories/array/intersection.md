@@ -16,6 +16,8 @@ in both arrays.
 
 ```ts
 import { intersection } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { intersection } from 'helpers4/array';
 ```
 
 ## Signature

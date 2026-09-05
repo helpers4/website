@@ -15,6 +15,8 @@ Chunks an array into smaller arrays of specified size.
 
 ```ts
 import { chunk } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { chunk } from 'helpers4/array';
 ```
 
 ## Signature

@@ -18,6 +18,8 @@ The inverse operation of applying all arguments at once:
 
 ```ts
 import { curry } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { curry } from 'helpers4/function';
 ```
 
 ## Signature

@@ -17,6 +17,8 @@ Use as a type-safe filter callback to remove `null`/`undefined` from arrays.
 
 ```ts
 import { isDefined } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isDefined } from 'helpers4/guard';
 ```
 
 ## Signature

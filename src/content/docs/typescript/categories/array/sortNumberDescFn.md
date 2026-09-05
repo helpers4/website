@@ -14,6 +14,8 @@ Sort numbers in descending order
 
 ```ts
 import { sortNumberDescFn } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { sortNumberDescFn } from 'helpers4/array';
 ```
 
 ## Source

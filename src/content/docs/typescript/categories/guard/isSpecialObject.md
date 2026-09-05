@@ -15,6 +15,8 @@ Special objects include: Date, Function, Promise, Observable, RegExp, Error, Map
 
 ```ts
 import { isSpecialObject } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isSpecialObject } from 'helpers4/guard';
 ```
 
 ## Signature

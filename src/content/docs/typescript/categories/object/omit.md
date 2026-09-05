@@ -14,6 +14,8 @@ Creates a new object without the specified keys.
 
 ```ts
 import { omit } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { omit } from 'helpers4/object';
 ```
 
 ## Signature

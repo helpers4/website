@@ -15,6 +15,8 @@ Checks if an array is non-empty (has at least one element).
 
 ```ts
 import { isNonEmpty } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { isNonEmpty } from 'helpers4/array';
 ```
 
 ## Signature

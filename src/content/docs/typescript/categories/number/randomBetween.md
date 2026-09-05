@@ -14,6 +14,8 @@ Generates a random number between min and max (inclusive)
 
 ```ts
 import { randomBetween } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { randomBetween } from 'helpers4/number';
 ```
 
 ## Signature

@@ -16,6 +16,8 @@ of throwing.
 
 ```ts
 import { safeFetch } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { safeFetch } from 'helpers4/promise';
 ```
 
 ## Signature

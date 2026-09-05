@@ -20,6 +20,8 @@ DOM-emulating Node test environment.
 
 ```ts
 import { isBrowser } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isBrowser } from 'helpers4/guard';
 ```
 
 ## Signature

@@ -19,6 +19,8 @@ Uses `SameValueZero` equality (same as `Array.prototype.includes`).
 
 ```ts
 import { without } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { without } from 'helpers4/array';
 ```
 
 ## Signature

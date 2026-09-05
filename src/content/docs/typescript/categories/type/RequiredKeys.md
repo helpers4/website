@@ -14,6 +14,8 @@ Extracts the required (non-optional) keys of an object type `T`.
 
 ```ts
 import type { RequiredKeys } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { RequiredKeys } from 'helpers4/type';
 ```
 
 ## Type Definition

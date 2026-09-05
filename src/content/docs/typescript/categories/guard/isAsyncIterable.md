@@ -18,6 +18,8 @@ are **not** async iterables.
 
 ```ts
 import { isAsyncIterable } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isAsyncIterable } from 'helpers4/guard';
 ```
 
 ## Signature

@@ -19,6 +19,8 @@ makes the actual return type unambiguous.
 
 ```ts
 import { toMapByKey } from '@helpers4/map';
+// or, from the all-in-one package (same code, one install):
+import { toMapByKey } from 'helpers4/map';
 ```
 
 ## Signature

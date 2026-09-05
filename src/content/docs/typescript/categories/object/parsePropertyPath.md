@@ -25,6 +25,8 @@ since real-world callers tend to reuse a small, fixed set of literal paths.
 
 ```ts
 import { parsePropertyPath } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { parsePropertyPath } from 'helpers4/object';
 ```
 
 ## Signature

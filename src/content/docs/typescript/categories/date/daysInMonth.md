@@ -19,6 +19,8 @@ Returns `NaN` if the month is out of range.
 
 ```ts
 import { daysInMonth } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { daysInMonth } from 'helpers4/date';
 ```
 
 ## Signature

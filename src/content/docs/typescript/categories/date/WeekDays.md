@@ -15,6 +15,8 @@ convention. Use these instead of raw numbers for readability.
 
 ```ts
 import { WeekDays } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { WeekDays } from 'helpers4/date';
 ```
 
 ## Examples

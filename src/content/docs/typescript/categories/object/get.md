@@ -30,6 +30,8 @@ Symbol keys are only reachable via the key-array form.
 
 ```ts
 import { get } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { get } from 'helpers4/object';
 ```
 
 ## Signature

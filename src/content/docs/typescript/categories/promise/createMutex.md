@@ -21,6 +21,8 @@ sure only one in-flight token-refresh call happens at a time while others wait f
 
 ```ts
 import { createMutex } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { createMutex } from 'helpers4/promise';
 ```
 
 ## Signature

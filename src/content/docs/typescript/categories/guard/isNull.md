@@ -14,6 +14,8 @@ Checks if a value is `null`.
 
 ```ts
 import { isNull } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isNull } from 'helpers4/guard';
 ```
 
 ## Signature

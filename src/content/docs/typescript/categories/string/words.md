@@ -19,6 +19,8 @@ treated as word tokens.
 
 ```ts
 import { words } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { words } from 'helpers4/string';
 ```
 
 ## Signature

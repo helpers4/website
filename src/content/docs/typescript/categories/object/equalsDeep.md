@@ -21,6 +21,8 @@ For a one-level boolean check use equalsShallow.
 
 ```ts
 import { equalsDeep } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { equalsDeep } from 'helpers4/object';
 ```
 
 ## Signature

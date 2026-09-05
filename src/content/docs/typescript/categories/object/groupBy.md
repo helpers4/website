@@ -20,6 +20,8 @@ Items whose computed key is a prototype-polluting string (`__proto__`,
 
 ```ts
 import { groupBy } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { groupBy } from 'helpers4/object';
 ```
 
 ## Signature

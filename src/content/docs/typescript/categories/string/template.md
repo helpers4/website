@@ -18,6 +18,8 @@ regex-based. Nested expressions and logic are intentionally out of scope.
 
 ```ts
 import { template } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { template } from 'helpers4/string';
 ```
 
 ## Signature

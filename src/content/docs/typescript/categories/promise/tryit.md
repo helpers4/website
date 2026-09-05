@@ -15,6 +15,8 @@ Useful for avoiding try/catch blocks and handling errors in a functional style.
 
 ```ts
 import { tryit } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { tryit } from 'helpers4/promise';
 ```
 
 ## Signature

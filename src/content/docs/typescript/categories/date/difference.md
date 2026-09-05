@@ -20,6 +20,8 @@ if you need a whole-number day count.
 
 ```ts
 import { difference } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { difference } from 'helpers4/date';
 ```
 
 ## Signature

@@ -17,6 +17,8 @@ Pairs with sum for aggregate operations.
 
 ```ts
 import { mean } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { mean } from 'helpers4/array';
 ```
 
 ## Signature

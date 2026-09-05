@@ -17,6 +17,8 @@ of `formatSize` in the same `format*` family.
 
 ```ts
 import { formatCompact } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { formatCompact } from 'helpers4/number';
 ```
 
 ## Signature

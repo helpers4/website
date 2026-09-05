@@ -35,6 +35,8 @@ Gentoo's `components` array can be any length.
 
 ```ts
 import { incrementPrerelease } from '@helpers4/version';
+// or, from the all-in-one package (same code, one install):
+import { incrementPrerelease } from 'helpers4/version';
 ```
 
 ## Signature

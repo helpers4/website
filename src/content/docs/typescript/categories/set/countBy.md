@@ -14,6 +14,8 @@ Groups the values of a Set by a derived key and counts how many fall into each g
 
 ```ts
 import { countBy } from '@helpers4/set';
+// or, from the all-in-one package (same code, one install):
+import { countBy } from 'helpers4/set';
 ```
 
 ## Signature

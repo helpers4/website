@@ -18,6 +18,8 @@ below 1 — fully opaque colors format as the plain 6-digit `#rrggbb`.
 
 ```ts
 import { rgbToHex } from '@helpers4/color';
+// or, from the all-in-one package (same code, one install):
+import { rgbToHex } from 'helpers4/color';
 ```
 
 ## Signature

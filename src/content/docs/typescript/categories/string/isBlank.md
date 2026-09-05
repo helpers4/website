@@ -25,6 +25,8 @@ not spaces. Strip them explicitly if needed:
 
 ```ts
 import { isBlank } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { isBlank } from 'helpers4/string';
 ```
 
 ## Signature

@@ -14,6 +14,8 @@ Creates a sort function for objects by date property.
 
 ```ts
 import { createSortByDateFn } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { createSortByDateFn } from 'helpers4/array';
 ```
 
 ## Signature

@@ -15,6 +15,8 @@ Format: YYYY-MM-DDTHH:mm:ss.sssZ
 
 ```ts
 import { toISO8601 } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { toISO8601 } from 'helpers4/date';
 ```
 
 ## Signature

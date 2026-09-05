@@ -15,6 +15,8 @@ leading `#` is optional) into its RGB(A) channels.
 
 ```ts
 import { hexToRgb } from '@helpers4/color';
+// or, from the all-in-one package (same code, one install):
+import { hexToRgb } from 'helpers4/color';
 ```
 
 ## Signature

@@ -17,6 +17,8 @@ Values are coerced with `Boolean()` before comparing, so `null`, `undefined`,
 
 ```ts
 import { createSortByBooleanFn } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { createSortByBooleanFn } from 'helpers4/array';
 ```
 
 ## Signature

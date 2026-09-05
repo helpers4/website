@@ -14,6 +14,8 @@ Creates a new Map with the same keys but with each value transformed by a functi
 
 ```ts
 import { mapValues } from '@helpers4/map';
+// or, from the all-in-one package (same code, one install):
+import { mapValues } from 'helpers4/map';
 ```
 
 ## Signature

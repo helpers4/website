@@ -16,6 +16,8 @@ Useful as a default callback, placeholder, or to explicitly ignore a value.
 
 ```ts
 import { noop } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { noop } from 'helpers4/function';
 ```
 
 ## Signature

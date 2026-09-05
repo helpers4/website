@@ -22,6 +22,8 @@ alone accepts registered symbols too, which actually throw at `WeakMap.prototype
 
 ```ts
 import { isWeakMapKey } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isWeakMapKey } from 'helpers4/guard';
 ```
 
 ## Signature

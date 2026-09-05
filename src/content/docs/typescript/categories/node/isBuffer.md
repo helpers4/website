@@ -21,6 +21,8 @@ Useful for filtering or type-narrowing in a functional pipeline:
 
 ```ts
 import { isBuffer } from '@helpers4/node';
+// or, from the all-in-one package (same code, one install):
+import { isBuffer } from 'helpers4/node';
 ```
 
 ## Signature

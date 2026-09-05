@@ -16,6 +16,8 @@ Returns `false` if any of the inputs is invalid.
 
 ```ts
 import { isWithinRange } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { isWithinRange } from 'helpers4/date';
 ```
 
 ## Signature

@@ -15,6 +15,8 @@ Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from a
 
 ```ts
 import { compact } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { compact } from 'helpers4/array';
 ```
 
 ## Signature

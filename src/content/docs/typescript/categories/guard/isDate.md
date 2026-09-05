@@ -17,6 +17,8 @@ Use `date/isValid` to also validate that the Date is not `Invalid Date`.
 
 ```ts
 import { isDate } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isDate } from 'helpers4/guard';
 ```
 
 ## Signature

@@ -17,6 +17,8 @@ to `Symbol.toStringTag` for environments without Temporal (e.g. browsers).
 
 ```ts
 import { isTemporalZonedDateTime } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isTemporalZonedDateTime } from 'helpers4/guard';
 ```
 
 ## Signature

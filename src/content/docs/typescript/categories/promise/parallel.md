@@ -17,6 +17,8 @@ negative) is clamped to `1` (fully sequential) rather than rejected.
 
 ```ts
 import { parallel } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { parallel } from 'helpers4/promise';
 ```
 
 ## Signature

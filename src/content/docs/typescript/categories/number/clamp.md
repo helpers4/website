@@ -14,6 +14,8 @@ Clamps a number between min and max values
 
 ```ts
 import { clamp } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { clamp } from 'helpers4/number';
 ```
 
 ## Signature

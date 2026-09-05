@@ -19,6 +19,8 @@ Returns `null` if the input is invalid.
 
 ```ts
 import { addMonths } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { addMonths } from 'helpers4/date';
 ```
 
 ## Signature

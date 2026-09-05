@@ -14,6 +14,8 @@ Retries a promise-returning function up to maxAttempts times
 
 ```ts
 import { retry } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { retry } from 'helpers4/promise';
 ```
 
 ## Signature

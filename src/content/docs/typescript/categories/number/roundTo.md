@@ -14,6 +14,8 @@ Rounds a number to specified decimal places
 
 ```ts
 import { roundTo } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { roundTo } from 'helpers4/number';
 ```
 
 ## Signature

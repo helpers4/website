@@ -23,6 +23,8 @@ Parses a version string into its components, according to the given `scheme`.
 
 ```ts
 import { parse } from '@helpers4/version';
+// or, from the all-in-one package (same code, one install):
+import { parse } from 'helpers4/version';
 ```
 
 ## Signature

@@ -17,6 +17,8 @@ years which must also be divisible by 400.
 
 ```ts
 import { isLeapYear } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { isLeapYear } from 'helpers4/date';
 ```
 
 ## Signature

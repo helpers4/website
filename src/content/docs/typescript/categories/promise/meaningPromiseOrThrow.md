@@ -15,6 +15,8 @@ Data is considered meaningless if it is null, undefined, empty string, empty obj
 
 ```ts
 import { meaningPromiseOrThrow } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { meaningPromiseOrThrow } from 'helpers4/promise';
 ```
 
 ## Signature

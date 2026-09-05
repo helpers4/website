@@ -18,6 +18,8 @@ key-to-value relationship in the result.
 
 ```ts
 import { resolveRecord } from '@helpers4/promise';
+// or, from the all-in-one package (same code, one install):
+import { resolveRecord } from 'helpers4/promise';
 ```
 
 ## Signature

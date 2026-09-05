@@ -17,6 +17,8 @@ Useful for filtering or type-narrowing in a functional pipeline:
 
 ```ts
 import { isArrayBuffer } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isArrayBuffer } from 'helpers4/guard';
 ```
 
 ## Signature

@@ -17,6 +17,8 @@ first key are broken by the second key, then the third, and so on.
 
 ```ts
 import { createSortByNaturalFn } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { createSortByNaturalFn } from 'helpers4/array';
 ```
 
 ## Signature

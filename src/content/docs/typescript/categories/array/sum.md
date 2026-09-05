@@ -15,6 +15,8 @@ Calculates the sum of an array of numbers.
 
 ```ts
 import { sum } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { sum } from 'helpers4/array';
 ```
 
 ## Signature

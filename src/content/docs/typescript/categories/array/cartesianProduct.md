@@ -17,6 +17,8 @@ in lexicographic order relative to the input order.
 
 ```ts
 import { cartesianProduct } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { cartesianProduct } from 'helpers4/array';
 ```
 
 ## Signature

@@ -18,6 +18,8 @@ Pairs with sumBy for aggregate operations.
 
 ```ts
 import { meanBy } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { meanBy } from 'helpers4/array';
 ```
 
 ## Signature

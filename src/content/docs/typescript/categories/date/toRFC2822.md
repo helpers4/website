@@ -16,6 +16,8 @@ Used in email headers (Date field) and HTTP headers
 
 ```ts
 import { toRFC2822 } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { toRFC2822 } from 'helpers4/date';
 ```
 
 ## Signature

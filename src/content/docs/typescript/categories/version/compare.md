@@ -25,6 +25,8 @@ from SemVer: a `-r` revision is *not* a prerelease and sorts *above* the base ve
 
 ```ts
 import { compare } from '@helpers4/version';
+// or, from the all-in-one package (same code, one install):
+import { compare } from 'helpers4/version';
 ```
 
 ## Signature

@@ -17,6 +17,8 @@ Use this when sending a date to a backend API that expects seconds
 
 ```ts
 import { toSeconds } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { toSeconds } from 'helpers4/date';
 ```
 
 ## Signature

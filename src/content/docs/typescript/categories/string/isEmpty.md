@@ -17,6 +17,8 @@ empty. Use `isEmpty(value?.trim())` if you need to treat blank strings as empty.
 
 ```ts
 import { isEmpty } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { isEmpty } from 'helpers4/string';
 ```
 
 ## Signature

@@ -19,6 +19,8 @@ silently skipped, same as the rest of `@helpers4/object`.
 
 ```ts
 import { camelCaseKeys } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { camelCaseKeys } from 'helpers4/object';
 ```
 
 ## Signature

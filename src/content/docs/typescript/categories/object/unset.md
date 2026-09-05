@@ -22,6 +22,8 @@ it to `undefined`, which would keep the key present.
 
 ```ts
 import { unset } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { unset } from 'helpers4/object';
 ```
 
 ## Signature

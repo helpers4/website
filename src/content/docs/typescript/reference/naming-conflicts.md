@@ -147,13 +147,19 @@ O.compact({ a: 1, b: null });
 Prefer named `as` imports for maximum tree-shaking compatibility with all bundlers, including older Webpack 4 configurations.
 :::
 
-## Why not a single unified package?
+## What about a single unified package?
 
-The `@helpers4/all` bundle does export every category. Inside a single module context, the category name is not part of the export, so **the last `export *` wins** when two categories export the same name.
+Two "install everything" options exist, and neither reintroduces the naming collision:
 
-This means you cannot safely `import { compact } from '@helpers4/all'` if both `array` and `object` export `compact` — the result is undefined behavior depending on module bundler internals.
+- **`@helpers4/all`** is a documentation-only bundle: it lists every category as a `peerDependency` but ships no code of its own, so there is no flat module where two same-named exports could collide — you still install and import each `@helpers4/<category>` package directly.
+- **`helpers4`** (added in v3.1.0) installs every category as a real dependency in one `npm install helpers4`, but keeps the per-category split at the import site: each category is reachable only at its own subpath (`helpers4/array`, `helpers4/object`, …). There is no top-level `import ... from 'helpers4'` — since only the subpaths resolve, `compact` from `array` and `compact` from `object` never share a module and can never collide.
 
-**Always use per-category packages** (`@helpers4/array`, `@helpers4/object`, …) when you need conflicting helpers. They are the canonical import source.
+Both forms are equivalent — `helpers4/<category>` re-exports `@helpers4/<category>` verbatim, so the same `as` rename above works no matter which one you installed:
+
+```ts
+import { compact as compact4array } from 'helpers4/array';
+import { compact as compact4object } from 'helpers4/object';
+```
 
 ## Design rationale
 

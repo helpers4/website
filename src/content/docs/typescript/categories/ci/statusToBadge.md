@@ -21,6 +21,8 @@ Maps a CI/CD job status to an inline code badge string.
 
 ```ts
 import { statusToBadge } from '@helpers4/ci';
+// or, from the all-in-one package (same code, one install):
+import { statusToBadge } from 'helpers4/ci';
 ```
 
 ## Signature

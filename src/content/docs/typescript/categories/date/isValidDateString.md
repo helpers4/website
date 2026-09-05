@@ -21,6 +21,8 @@ and any string that produces an Invalid Date.
 
 ```ts
 import { isValidDateString } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { isValidDateString } from 'helpers4/date';
 ```
 
 ## Signature

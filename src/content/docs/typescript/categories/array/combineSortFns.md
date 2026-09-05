@@ -21,6 +21,8 @@ cannot express, since that coerces every key to the same comparison type.
 
 ```ts
 import { combineSortFns } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { combineSortFns } from 'helpers4/array';
 ```
 
 ## Signature

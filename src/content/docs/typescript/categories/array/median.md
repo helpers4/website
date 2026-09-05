@@ -19,6 +19,8 @@ its sort/interpolation logic.
 
 ```ts
 import { median } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { median } from 'helpers4/array';
 ```
 
 ## Signature

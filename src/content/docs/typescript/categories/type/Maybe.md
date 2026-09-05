@@ -14,6 +14,8 @@ Type for values that can be T, undefined, or null.
 
 ```ts
 import type { Maybe } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { Maybe } from 'helpers4/type';
 ```
 
 ## Type Definition

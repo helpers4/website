@@ -20,6 +20,8 @@ Returns `null` if the input is invalid.
 
 ```ts
 import { startOf } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { startOf } from 'helpers4/date';
 ```
 
 ## Signature

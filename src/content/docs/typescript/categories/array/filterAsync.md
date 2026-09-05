@@ -19,6 +19,8 @@ call may already be in flight by the time an earlier one resolves.
 
 ```ts
 import { filterAsync } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { filterAsync } from 'helpers4/array';
 ```
 
 ## Signature

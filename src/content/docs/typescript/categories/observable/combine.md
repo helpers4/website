@@ -18,6 +18,8 @@ operator.
 
 ```ts
 import { combine } from '@helpers4/observable';
+// or, from the all-in-one package (same code, one install):
+import { combine } from 'helpers4/observable';
 ```
 
 ## Signature

@@ -14,6 +14,8 @@ Returns the first value of a Map whose entry satisfies the predicate, in inserti
 
 ```ts
 import { findValue } from '@helpers4/map';
+// or, from the all-in-one package (same code, one install):
+import { findValue } from 'helpers4/map';
 ```
 
 ## Signature

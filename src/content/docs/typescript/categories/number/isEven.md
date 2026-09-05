@@ -16,6 +16,8 @@ Returns `false` for non-numbers, non-integers, `NaN`, `Infinity`, and odd intege
 
 ```ts
 import { isEven } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { isEven } from 'helpers4/number';
 ```
 
 ## Signature

@@ -17,6 +17,8 @@ objects be considered duplicates if `keyFn` derives the same key for both.
 
 ```ts
 import { uniqueBy } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { uniqueBy } from 'helpers4/array';
 ```
 
 ## Signature

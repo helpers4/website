@@ -18,6 +18,8 @@ Uses duck-typing: returns `true` for any object with both `.subscribe()` and
 
 ```ts
 import { isObservable } from '@helpers4/observable';
+// or, from the all-in-one package (same code, one install):
+import { isObservable } from 'helpers4/observable';
 ```
 
 ## Signature

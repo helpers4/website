@@ -20,6 +20,8 @@ identically.
 
 ```ts
 import { select } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { select } from 'helpers4/array';
 ```
 
 ## Signature

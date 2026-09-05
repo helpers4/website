@@ -16,6 +16,8 @@ Pass `{ lowercaseRest: false }` to only uppercase the first character.
 
 ```ts
 import { capitalize } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { capitalize } from 'helpers4/string';
 ```
 
 ## Signature

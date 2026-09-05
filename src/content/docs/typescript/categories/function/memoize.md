@@ -19,6 +19,8 @@ correctly distinguished from `null`. Arguments that are not JSON-serializable
 
 ```ts
 import { memoize } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { memoize } from 'helpers4/function';
 ```
 
 ## Signature

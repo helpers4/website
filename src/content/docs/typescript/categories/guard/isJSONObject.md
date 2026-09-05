@@ -15,6 +15,8 @@ Checks whether a value is a plain object whose every own value is a valid JSON v
 
 ```ts
 import { isJSONObject } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isJSONObject } from 'helpers4/guard';
 ```
 
 ## Signature

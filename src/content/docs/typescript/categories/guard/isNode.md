@@ -20,6 +20,8 @@ from a DOM-emulating Node test environment.
 
 ```ts
 import { isNode } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isNode } from 'helpers4/guard';
 ```
 
 ## Signature

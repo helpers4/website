@@ -14,6 +14,8 @@ Returns the first key of a Map whose entry satisfies the predicate, in insertion
 
 ```ts
 import { findKey } from '@helpers4/map';
+// or, from the all-in-one package (same code, one install):
+import { findKey } from 'helpers4/map';
 ```
 
 ## Signature

@@ -14,6 +14,8 @@ Sort strings in descending order
 
 ```ts
 import { sortStringDescFn } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { sortStringDescFn } from 'helpers4/array';
 ```
 
 ## Source

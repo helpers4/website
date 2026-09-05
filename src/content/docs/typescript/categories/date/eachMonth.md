@@ -19,6 +19,8 @@ Returns an empty array if either input is invalid.
 
 ```ts
 import { eachMonth } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { eachMonth } from 'helpers4/date';
 ```
 
 ## Signature

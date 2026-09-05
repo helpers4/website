@@ -22,6 +22,8 @@ Note: if two different keys map to the same output key the last one wins
 
 ```ts
 import { map } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { map } from 'helpers4/object';
 ```
 
 ## Signature

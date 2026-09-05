@@ -20,6 +20,8 @@ use `createSortByNumberFn` for numeric properties.
 
 ```ts
 import { createSortByStringFn } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { createSortByStringFn } from 'helpers4/array';
 ```
 
 ## Signature

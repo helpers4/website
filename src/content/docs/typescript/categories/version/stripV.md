@@ -14,6 +14,8 @@ Strip the leading "v" from a version string if it exists.
 
 ```ts
 import { stripV } from '@helpers4/version';
+// or, from the all-in-one package (same code, one install):
+import { stripV } from 'helpers4/version';
 ```
 
 ## Signature

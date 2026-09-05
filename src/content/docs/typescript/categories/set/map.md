@@ -15,6 +15,8 @@ same result, duplicates collapse — the returned Set may be smaller than the in
 
 ```ts
 import { map } from '@helpers4/set';
+// or, from the all-in-one package (same code, one install):
+import { map } from 'helpers4/set';
 ```
 
 ## Signature

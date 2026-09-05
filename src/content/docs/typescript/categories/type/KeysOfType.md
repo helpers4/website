@@ -17,6 +17,8 @@ optional `string` property still counts as a `string` key.
 
 ```ts
 import type { KeysOfType } from '@helpers4/type';
+// or, from the all-in-one package (same code, one install):
+import type { KeysOfType } from 'helpers4/type';
 ```
 
 ## Type Definition

@@ -19,6 +19,8 @@ already-camelCase identifier containing an acronym is not left untouched.
 
 ```ts
 import { camelCase } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { camelCase } from 'helpers4/string';
 ```
 
 ## Signature

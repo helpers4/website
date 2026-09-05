@@ -18,6 +18,8 @@ Linearly interpolates between `start` and `end` by the factor `t`.
 
 ```ts
 import { lerp } from '@helpers4/number';
+// or, from the all-in-one package (same code, one install):
+import { lerp } from 'helpers4/number';
 ```
 
 ## Signature

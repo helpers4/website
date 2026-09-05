@@ -23,6 +23,8 @@ notation. Useful for display-facing structures (form labels, table headers), not
 
 ```ts
 import { titleCaseKeys } from '@helpers4/object';
+// or, from the all-in-one package (same code, one install):
+import { titleCaseKeys } from 'helpers4/object';
 ```
 
 ## Signature

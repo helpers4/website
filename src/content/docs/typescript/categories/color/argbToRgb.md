@@ -16,6 +16,8 @@ The alpha byte (top 8 bits) is read but discarded — the result is always opaqu
 
 ```ts
 import { argbToRgb } from '@helpers4/color';
+// or, from the all-in-one package (same code, one install):
+import { argbToRgb } from 'helpers4/color';
 ```
 
 ## Signature

@@ -20,6 +20,8 @@ protected spans (URLs, emails, HTML) and atomic numeric values (`-0.1%`,
 
 ```ts
 import { injectWordBreaks } from '@helpers4/string';
+// or, from the all-in-one package (same code, one install):
+import { injectWordBreaks } from 'helpers4/string';
 ```
 
 ## Signature

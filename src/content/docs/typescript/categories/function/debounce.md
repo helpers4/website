@@ -14,6 +14,8 @@ Creates a debounced function that delays invoking func until after delay millise
 
 ```ts
 import { debounce } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { debounce } from 'helpers4/function';
 ```
 
 ## Signature

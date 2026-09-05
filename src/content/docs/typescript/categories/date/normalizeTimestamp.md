@@ -14,6 +14,8 @@ Converts a timestamp to JavaScript milliseconds format
 
 ```ts
 import { normalizeTimestamp } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { normalizeTimestamp } from 'helpers4/date';
 ```
 
 ## Signature

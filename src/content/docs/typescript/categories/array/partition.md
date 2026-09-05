@@ -17,6 +17,8 @@ the second group contains the rest.
 
 ```ts
 import { partition } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { partition } from 'helpers4/array';
 ```
 
 ## Signature

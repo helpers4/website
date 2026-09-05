@@ -17,6 +17,8 @@ Returns `false` for arrays, Date, Map, Set, RegExp, class instances, etc.
 
 ```ts
 import { isPlainObject } from '@helpers4/guard';
+// or, from the all-in-one package (same code, one install):
+import { isPlainObject } from 'helpers4/guard';
 ```
 
 ## Signature

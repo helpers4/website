@@ -16,6 +16,8 @@ Returns a new array with the first item matching `predicate` replaced by
 
 ```ts
 import { replaceOrAppend } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { replaceOrAppend } from 'helpers4/array';
 ```
 
 ## Signature

@@ -29,6 +29,8 @@ factory used to create the initial cache is called again to do that.
 
 ```ts
 import { createCachedResolver } from '@helpers4/function';
+// or, from the all-in-one package (same code, one install):
+import { createCachedResolver } from 'helpers4/function';
 ```
 
 ## Signature

@@ -17,6 +17,8 @@ Use this when you need a plain number from a `DateLike` value
 
 ```ts
 import { toMillis } from '@helpers4/date';
+// or, from the all-in-one package (same code, one install):
+import { toMillis } from 'helpers4/date';
 ```
 
 ## Signature

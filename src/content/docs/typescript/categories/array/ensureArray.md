@@ -18,6 +18,8 @@ to that depth (like `Array.prototype.flat(depth)`).
 
 ```ts
 import { ensureArray } from '@helpers4/array';
+// or, from the all-in-one package (same code, one install):
+import { ensureArray } from 'helpers4/array';
 ```
 
 ## Signature

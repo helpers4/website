@@ -21,6 +21,8 @@ Maps a CI/CD job status to an emoji icon.
 
 ```ts
 import { statusToIcon } from '@helpers4/ci';
+// or, from the all-in-one package (same code, one install):
+import { statusToIcon } from 'helpers4/ci';
 ```
 
 ## Signature
