@@ -3,7 +3,7 @@ title: "statusToBadge"
 sidebar:
   label: "statusToBadge"
 description: "Maps a CI/CD job status to an inline code badge string."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Maps a CI/CD job status to an inline code badge string.

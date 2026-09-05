@@ -3,7 +3,7 @@ title: "escapeRegExp"
 sidebar:
   label: "escapeRegExp"
 description: "Escapes regular expression metacharacters (`."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Escapes regular expression metacharacters (`. * + ? ^ $ { } ( ) | [ ] \`)

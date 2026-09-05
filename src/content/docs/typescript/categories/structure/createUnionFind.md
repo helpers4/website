@@ -3,7 +3,7 @@ title: "createUnionFind"
 sidebar:
   label: "createUnionFind"
 description: "Creates a disjoint-set (union-find) structure: tracks a partition of items into non-overlapping sets, merging two sets…"
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Creates a disjoint-set (union-find) structure: tracks a partition of items into

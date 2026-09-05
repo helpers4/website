@@ -3,7 +3,7 @@ title: "isArrayLike"
 sidebar:
   label: "isArrayLike"
 description: "Checks if a value is array-like: has a non-negative integer `length` property."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Checks if a value is array-like: has a non-negative integer `length` property.

@@ -3,7 +3,7 @@ title: "sumBy"
 sidebar:
   label: "sumBy"
 description: "Calculates the sum of numbers derived from each item of an array via an iteratee."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Calculates the sum of numbers derived from each item of an array via an iteratee.

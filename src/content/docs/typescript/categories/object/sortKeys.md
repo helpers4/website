@@ -3,7 +3,7 @@ title: "sortKeys"
 sidebar:
   label: "sortKeys"
 description: "Creates a new object with the same entries as the input, but with its own keys sorted."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Creates a new object with the same entries as the input, but with its own keys sorted.

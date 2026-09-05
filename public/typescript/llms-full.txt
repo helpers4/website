@@ -1,7 +1,7 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.0.9 — License: LGPL-3.0-or-later
+> Version: 3.1.0 — License: LGPL-3.0-or-later
 
 ## About
 
@@ -36,6 +36,10 @@ pnpm add @helpers4/type
 pnpm add @helpers4/url
 pnpm add @helpers4/version
 ```
+
+Prefer everything in one install instead? Use the `helpers4` package (`npm install
+helpers4`) and import via `helpers4/<category>` — real dependencies, no peerDependencies
+to install by hand.
 
 ## All Available Functions
 

@@ -3,7 +3,7 @@ title: "inRange"
 sidebar:
   label: "inRange"
 description: "Checks whether a number falls within `[min, max]` (both inclusive by default)."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Checks whether a number falls within `[min, max]` (both inclusive by default).

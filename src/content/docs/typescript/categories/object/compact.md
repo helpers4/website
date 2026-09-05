@@ -3,7 +3,7 @@ title: "compact"
 sidebar:
   label: "compact"
 description: "Removes all entries with falsy values (`false`, `null`, `undefined`, `0`, `\"\"`, `NaN`) from an object."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Removes all entries with falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an object.

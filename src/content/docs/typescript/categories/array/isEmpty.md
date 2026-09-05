@@ -3,7 +3,7 @@ title: "isEmpty"
 sidebar:
   label: "isEmpty"
 description: "Checks if an array is empty (has no elements)."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Checks if an array is empty (has no elements).

@@ -3,7 +3,7 @@ title: "compose"
 sidebar:
   label: "compose"
 description: "Composes functions right-to-left: `compose(f, g)(x)` is equivalent to `f(g(x))`."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Composes functions right-to-left: `compose(f, g)(x)` is equivalent to `f(g(x))`.

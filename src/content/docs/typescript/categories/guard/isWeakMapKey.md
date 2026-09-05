@@ -3,7 +3,7 @@ title: "isWeakMapKey"
 sidebar:
   label: "isWeakMapKey"
 description: "Checks whether a value can be used as a key in a `WeakMap` (or a `WeakSet` member / `WeakRef` target) — an object, a fu…"
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Checks whether a value can be used as a key in a `WeakMap` (or a `WeakSet` member / `WeakRef`

@@ -3,7 +3,7 @@ title: "getTimezoneOffset"
 sidebar:
   label: "getTimezoneOffset"
 description: "Returns the UTC offset **in minutes** for the given IANA timezone at a specific point in time."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Returns the UTC offset **in minutes** for the given IANA timezone

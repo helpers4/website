@@ -3,7 +3,7 @@ title: "DeepSet"
 sidebar:
   label: "DeepSet"
 description: "Produces the type of `T` after replacing the value at `Path` with `V`."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Produces the type of `T` after replacing the value at `Path` with `V`.

@@ -3,7 +3,7 @@ title: "hexToRgb"
 sidebar:
   label: "hexToRgb"
 description: "Parses a hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa` — the leading `#` is optional) into its RGB(A) chann…"
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Parses a hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa` — the

@@ -3,7 +3,7 @@ title: "isLength"
 sidebar:
   label: "isLength"
 description: "Checks whether a value is a valid array-like `length`: a non-negative safe integer (`0 <= value <= Number.MAX_SAFE_INTE…"
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Checks whether a value is a valid array-like `length`: a non-negative safe integer

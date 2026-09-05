@@ -6,7 +6,7 @@ sidebar:
   order: 2
 ---
 
-Current published version: **v3.0.9**. This page groups helpers by the version that
+Current published version: **v3.1.0**. This page groups helpers by the version that
 *first introduced* them — a release with no new helpers (bug fixes, docs, internal changes only)
 gets no section of its own here. For the full release-by-release history, see
 [CHANGELOG.md](https://github.com/helpers4/typescript/blob/main/CHANGELOG.md) on GitHub.

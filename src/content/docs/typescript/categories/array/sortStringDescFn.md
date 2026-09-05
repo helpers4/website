@@ -3,7 +3,7 @@ title: "sortStringDescFn"
 sidebar:
   label: "sortStringDescFn"
 description: "Sort strings in descending order"
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Sort strings in descending order

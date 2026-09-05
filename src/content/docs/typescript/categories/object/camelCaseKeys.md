@@ -3,7 +3,7 @@ title: "camelCaseKeys"
 sidebar:
   label: "camelCaseKeys"
 description: "Recursively transforms every key of a plain object (including keys nested inside arrays and nested objects) to camelCas…"
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Recursively transforms every key of a plain object (including keys nested inside arrays and

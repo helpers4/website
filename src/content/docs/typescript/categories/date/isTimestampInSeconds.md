@@ -3,7 +3,7 @@ title: "isTimestampInSeconds"
 sidebar:
   label: "isTimestampInSeconds"
 description: "Checks if a timestamp is likely in seconds (Java/Unix style) vs milliseconds (JavaScript style)"
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Checks if a timestamp is likely in seconds (Java/Unix style) vs milliseconds (JavaScript style)

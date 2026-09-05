@@ -3,7 +3,7 @@ title: "debounce"
 sidebar:
   label: "debounce"
 description: "Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time…"
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time the debounced function was invoked

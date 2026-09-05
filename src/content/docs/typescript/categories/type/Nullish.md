@@ -3,7 +3,7 @@ title: "Nullish"
 sidebar:
   label: "Nullish"
 description: "Adds `null` and `undefined` to a type (`T | null | undefined`)."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Adds `null` and `undefined` to a type (`T | null | undefined`).

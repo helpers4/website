@@ -3,7 +3,7 @@ title: "truncate"
 sidebar:
   label: "truncate"
 description: "Truncates a string to `maxLength` characters, appending an ellipsis when cut."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Truncates a string to `maxLength` characters, appending an ellipsis when cut.

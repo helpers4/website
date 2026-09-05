@@ -3,7 +3,7 @@ title: "isSpecialObject"
 sidebar:
   label: "isSpecialObject"
 description: "Determines if a value is a special object that should not have its properties compared deeply."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Determines if a value is a special object that should not have its properties compared deeply.

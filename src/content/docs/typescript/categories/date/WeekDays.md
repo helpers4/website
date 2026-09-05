@@ -3,7 +3,7 @@ title: "WeekDays"
 sidebar:
   label: "WeekDays"
 description: "Named day-of-week constants following the JavaScript `Date.getDay()` convention."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Named day-of-week constants following the JavaScript `Date.getDay()`

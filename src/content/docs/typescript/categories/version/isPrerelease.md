@@ -3,7 +3,7 @@ title: "isPrerelease"
 sidebar:
   label: "isPrerelease"
 description: "Returns `true` when the version string has a prerelease suffix, according to the given `scheme`."
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Returns `true` when the version string has a prerelease suffix, according to the given

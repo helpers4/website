@@ -3,7 +3,7 @@ title: "countBy"
 sidebar:
   label: "countBy"
 description: "Groups the elements of an array by the key returned by `keyFn` and returns a record mapping each key to the number of m…"
-version: "3.0.9"
+version: "3.1.0"
 ---
 
 Groups the elements of an array by the key returned by `keyFn` and returns a
