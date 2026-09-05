@@ -15,4 +15,5 @@ Utility functions for working with node operations.
 | [`isNodeStream`](./isnodestream/) | Checks if a value is a Node\.js stream \(has a \`\.pipe\(\)\` method\)\. |
 | [`isSharedArrayBuffer`](./issharedarraybuffer/) | Checks if a value is a \`SharedArrayBuffer\` instance\. |
 | [`safeReadJsonFile`](./safereadjsonfile/) | Reads a file and parses its contents as JSON, returning \`null\` \(or a fallback\) on any failure — a missing/unreadable fi… |
+| [`withTempDir`](./withtempdir/) | Creates a fresh temporary directory under the OS temp root, runs \`fn\` with its path, and always removes it \(recursively… |
 

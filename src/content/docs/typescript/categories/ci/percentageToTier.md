@@ -3,7 +3,7 @@ title: "percentageToTier"
 sidebar:
   label: "percentageToTier"
 description: "Maps a numeric percentage to a tier (icon, color, label) using configurable thresholds."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Maps a numeric percentage to a tier (icon, color, label) using configurable thresholds.

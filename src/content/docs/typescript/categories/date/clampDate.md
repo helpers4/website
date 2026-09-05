@@ -3,7 +3,7 @@ title: "clampDate"
 sidebar:
   label: "clampDate"
 description: "Clamps a date to a [min, max] range."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Clamps a date to a [min, max] range.

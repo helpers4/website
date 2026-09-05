@@ -3,7 +3,7 @@ title: "compare"
 sidebar:
   label: "compare"
 description: "Comparison of two dates."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Comparison of two dates.

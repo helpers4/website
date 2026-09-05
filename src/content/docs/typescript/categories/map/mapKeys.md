@@ -3,7 +3,7 @@ title: "mapKeys"
 sidebar:
   label: "mapKeys"
 description: "Creates a new Map with the same values but with each key transformed by a function."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Creates a new Map with the same values but with each key transformed by a function.

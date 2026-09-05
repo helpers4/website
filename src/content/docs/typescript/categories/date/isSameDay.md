@@ -3,7 +3,7 @@ title: "isSameDay"
 sidebar:
   label: "isSameDay"
 description: "Checks if two dates are the same day."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Checks if two dates are the same day.

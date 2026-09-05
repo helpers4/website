@@ -3,7 +3,7 @@ title: "omit"
 sidebar:
   label: "omit"
 description: "Creates a new object without the specified keys."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Creates a new object without the specified keys.

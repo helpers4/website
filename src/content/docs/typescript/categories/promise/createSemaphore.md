@@ -3,7 +3,7 @@ title: "createSemaphore"
 sidebar:
   label: "createSemaphore"
 description: "Creates a semaphore limiting concurrent access to `permits` holders at a time, queueing excess `acquire()` callers in F…"
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Creates a semaphore limiting concurrent access to `permits` holders at a time, queueing

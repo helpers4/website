@@ -3,7 +3,7 @@ title: "isObservable"
 sidebar:
   label: "isObservable"
 description: "Checks if a value is an RxJS Observable or any compatible observable."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Checks if a value is an RxJS Observable or any compatible observable.

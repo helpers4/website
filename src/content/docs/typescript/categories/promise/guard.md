@@ -3,7 +3,7 @@ title: "guard"
 sidebar:
   label: "guard"
 description: "Wraps a function so that if it throws, a default value is returned instead of propagating the error."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Wraps a function so that if it throws, a default value is returned instead of propagating the error.

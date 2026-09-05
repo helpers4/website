@@ -10,7 +10,7 @@ Production-ready TypeScript utility functions — modular, strictly typed, exhau
 ## Quick Links
 
 - **[Get Started](./getting-started)** — Installation and first import
-- **[Browse Categories](./categories/array)** — 323 helpers across 21 categories
+- **[Browse Categories](./categories/array)** — 329 helpers across 21 categories
 - **[AI & LLM Support](./reference/ai-support)** — DeepWiki Q&A, `llms.txt`, full machine-readable reference
 - **[GitHub](https://github.com/helpers4/typescript)** · **[npm: helpers4](https://www.npmjs.com/package/helpers4)** · **[npm: @helpers4/all](https://www.npmjs.com/package/@helpers4/all)** · **[License (LGPL-3.0)](./legal/license)**
 
@@ -40,7 +40,7 @@ zero logic changes for anyone using the replacements below.
 | **New `helpers4` package** | Install every category in one step (`npm install helpers4`) and import via `helpers4/<category>` — real dependencies, same code as installing `@helpers4/<category>` packages individually, no naming collisions. See [Getting Started](./getting-started/#installation) |
 | **New `color` category** | `hexToRgb`, `rgbToHex`, `hslToRgb`, `rgbToHsl`, `argbToRgb`, plus `isCssColor` in `guard` |
 | **25+ new helpers** | `clone`, `flatten`/`unflatten`, `pickBy`/`omitBy`/`unset`/`update`, `parsePropertyPath`, `replaceOrAppend`, `toggle`, `symmetricDifference`, `dedent`, `removeDiacritics`, `unescapeHtml`, `escapeRegExp`, `parseDuration`, `unary`, `isWeakMap`/`isWeakSet`/`isSet`, and more |
-| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v3.1.0) |
+| **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v3.1.1) |
 | **Property-based tests** | Invariants validated against thousands of random inputs (fast-check) |
 | **Contract tests** | Formal behavioral guarantees for each function |
 | **Boundary & security tests** | Edge values and security-sensitive inputs (prototype pollution, injections) |

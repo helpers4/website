@@ -3,7 +3,7 @@ title: "isDate"
 sidebar:
   label: "isDate"
 description: "Checks if a value is a Date instance."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Checks if a value is a Date instance.

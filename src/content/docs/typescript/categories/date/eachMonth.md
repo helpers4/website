@@ -3,7 +3,7 @@ title: "eachMonth"
 sidebar:
   label: "eachMonth"
 description: "Returns an array of `Date` objects for the first day of each month from `start` to `end` (inclusive)."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Returns an array of `Date` objects for the first day of each month

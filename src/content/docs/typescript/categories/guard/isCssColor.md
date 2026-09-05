@@ -3,7 +3,7 @@ title: "isCssColor"
 sidebar:
   label: "isCssColor"
 description: "Checks whether a value is a syntactically-safe, plain CSS color: a hex color (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`),…"
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Checks whether a value is a syntactically-safe, plain CSS color: a hex color

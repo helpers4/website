@@ -3,7 +3,7 @@ title: "parallel"
 sidebar:
   label: "parallel"
 description: "Runs an array of async functions with a concurrency limit."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Runs an array of async functions with a concurrency limit.

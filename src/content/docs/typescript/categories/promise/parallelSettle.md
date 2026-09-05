@@ -3,7 +3,7 @@ title: "parallelSettle"
 sidebar:
   label: "parallelSettle"
 description: "Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first…"
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Runs an array of async functions with a concurrency limit, partitioning the outcomes

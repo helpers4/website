@@ -3,7 +3,7 @@ title: "slugify"
 sidebar:
   label: "slugify"
 description: "Converts a string into a URL-friendly slug."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Converts a string into a URL-friendly slug.

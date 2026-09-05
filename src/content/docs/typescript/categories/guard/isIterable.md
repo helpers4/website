@@ -3,7 +3,7 @@ title: "isIterable"
 sidebar:
   label: "isIterable"
 description: "Checks if a value is iterable (has a `Symbol.iterator` method)."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Checks if a value is iterable (has a `Symbol.iterator` method).

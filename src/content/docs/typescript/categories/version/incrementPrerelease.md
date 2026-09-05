@@ -3,7 +3,7 @@ title: "incrementPrerelease"
 sidebar:
   label: "incrementPrerelease"
 description: "Increments the prerelease portion of a version, according to the given `scheme` — the semantics `npm version prerelease…"
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Increments the prerelease portion of a version, according to the given `scheme` — the

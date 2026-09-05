@@ -3,7 +3,7 @@ title: "unset"
 sidebar:
   label: "unset"
 description: "Removes the value at a dot/bracket-notation path or explicit key array, mutating the object in place."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Removes the value at a dot/bracket-notation path or explicit key array,

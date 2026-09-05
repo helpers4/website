@@ -3,7 +3,7 @@ title: "isAsyncGeneratorFunction"
 sidebar:
   label: "isAsyncGeneratorFunction"
 description: "Checks if a value is an async generator function (an `async function*` declaration or expression)."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Checks if a value is an async generator function (an `async function*` declaration or expression).

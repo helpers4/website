@@ -3,7 +3,7 @@ title: "timeAgo"
 sidebar:
   label: "timeAgo"
 description: "Formats a date as a human-readable relative time string."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Formats a date as a human-readable relative time string.

@@ -3,7 +3,7 @@ title: "leadingSentence"
 sidebar:
   label: "leadingSentence"
 description: "Extracts the leading sentence from a string."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Extracts the leading sentence from a string.

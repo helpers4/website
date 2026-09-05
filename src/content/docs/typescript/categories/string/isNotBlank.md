@@ -3,7 +3,7 @@ title: "isNotBlank"
 sidebar:
   label: "isNotBlank"
 description: "Checks if a string is not blank — non-empty and contains at least one non-whitespace character."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Checks if a string is not blank — non-empty and contains at least one

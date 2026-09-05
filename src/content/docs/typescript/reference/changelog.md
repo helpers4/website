@@ -6,12 +6,23 @@ sidebar:
   order: 2
 ---
 
-Current published version: **v3.1.0**. This page groups helpers by the version that
+Current published version: **v3.1.1**. This page groups helpers by the version that
 *first introduced* them — a release with no new helpers (bug fixes, docs, internal changes only)
 gets no section of its own here. For the full release-by-release history, see
 [CHANGELOG.md](https://github.com/helpers4/typescript/blob/main/CHANGELOG.md) on GitHub.
 
-## v3.0.8 *(latest with new helpers)*
+## v3.1.1 *(latest with new helpers)*
+
+| Function | Category | Description |
+|----------|----------|-------------|
+| [`findMap`](../categories/array/findmap/) | [array](../categories/array/) | Returns the first non\-\`undefined\` result of mapping \`fn\` over \`array\`, short\-circuiting as soon as one is found\. Similar to \`array\.map\(fn\)\.find\(v => v \!== undefined\)\`, but doesn't map \(or call \`fn\` on\) the remaining items once a match is found\.  \`null\` and \`undefined\` are treated as empty arrays and return \`undefined\`\. |
+| [`globToRegExp`](../categories/string/globtoregexp/) | [string](../categories/string/) | Compiles a simple glob pattern into a \`RegExp\` that matches the whole string: \`\*\` matches any sequence of UTF\-16 code units \(including none\), \`?\` matches exactly one UTF\-16 code unit\. Everything else is matched literally\.  This is not a full shell/minimatch glob — no brace expansion, character classes, or path\-separator\-aware \`\*\*\`, just the two textbook wildcards\. Like the rest of this library, lengths are counted in UTF\-16 code units: \`?\` matches one code unit, not one Unicode code point, so it matches only half of a surrogate pair \(e\.g\. an emoji outside the Basic Multilingual Plane\)\. |
+| [`levenshteinDistance`](../categories/string/levenshteindistance/) | [string](../categories/string/) | Levenshtein edit distance between two strings — the minimum number of single\-character insertions, deletions, or substitutions needed to turn \`a\` into \`b\`\. |
+| [`levenshteinSimilarity`](../categories/string/levenshteinsimilarity/) | [string](../categories/string/) | Normalized Levenshtein similarity between two strings, in \`\[0, 1\]\` — \`1\` means identical, \`0\` means completely dissimilar relative to the longer string's length\. A convenience wrapper around levenshteinDistance for scoring/ranking use cases\. |
+| [`unorderedPairKey`](../categories/string/unorderedpairkey/) | [string](../categories/string/) | Builds a canonical, order\-independent key for an unordered pair of strings — the same result for \`\(a, b\)\` and \`\(b, a\)\`\. Useful for deduplicating unordered relationships \(edges, matched pairs, \.\.\.\) using a \`Set\`/\`Map\` keyed by string\. |
+| [`withTempDir`](../categories/node/withtempdir/) | [node](../categories/node/) | Creates a fresh temporary directory under the OS temp root, runs \`fn\` with its path, and always removes it \(recursively\) afterward — including when \`fn\` throws\. |
+
+## v3.0.8
 
 | Function | Category | Description |
 |----------|----------|-------------|

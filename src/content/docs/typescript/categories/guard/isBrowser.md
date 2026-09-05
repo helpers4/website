@@ -3,7 +3,7 @@ title: "isBrowser"
 sidebar:
   label: "isBrowser"
 description: "Checks whether the code is currently running in a browser-like environment (`window` and `window.document` both defined…"
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Checks whether the code is currently running in a browser-like environment

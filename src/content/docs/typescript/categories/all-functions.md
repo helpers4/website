@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**323** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**329** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -95,6 +95,7 @@ sidebar:
 | `find / findIndex` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
 | [`findKey`](../map/findkey/) | [map](../map/) | Returns the first key of a Map whose entry satisfies the predicate, in insertion order\. |
 | `findKey / findValue` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.entries().find(([k, v]) => pred(v, k))?.[0 or 1]` *(ES2025 (Iterator Helpers))* |
+| [`findMap`](../array/findmap/) | [array](../array/) | Returns the first non\-\`undefined\` result of mapping \`fn\` over \`array\`, short\-circuiting as soon as one is found\. |
 | [`findValue`](../map/findvalue/) | [map](../map/) | Returns the first value of a Map whose entry satisfies the predicate, in insertion order\. |
 | [`flatten`](../object/flatten/) | [object](../object/) | Flattens a nested object into a single\-level object whose keys are the dot\-notation path to each leaf value\. |
 | `flatten / flat` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.flat(depth?)` *(ES2019)* |
@@ -112,6 +113,7 @@ sidebar:
 | [`fromSeconds`](../date/fromseconds/) | [date](../date/) | Creates a \`Date\` from a timestamp in \*\*seconds\*\*\. |
 | [`get`](../object/get/) | [object](../object/) | Gets a value from an object using a dot/bracket\-notated path or explicit key array\. |
 | [`getTimezoneOffset`](../date/gettimezoneoffset/) | [date](../date/) | Returns the UTC offset \*\*in minutes\*\* for the given IANA timezone at a specific point in time\. |
+| [`globToRegExp`](../string/globtoregexp/) | [string](../string/) | Compiles a simple glob pattern into a \`RegExp\` that matches the whole string: \`\*\` matches any sequence of UTF\-16 code u… |
 | `groupBy` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `Map.groupBy(map.entries(), ([k, v]) => groupFn(v, k))` *(ES2024)* |
 | [`groupBy`](../object/groupby/) | [object](../object/) | Groups an array of items by a key derived from each item\. |
 | `groupBy` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Map.groupBy(set.values(), fn)` *(ES2024)* |
@@ -232,6 +234,8 @@ sidebar:
 | `last` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
 | [`leadingSentence`](../string/leadingsentence/) | [string](../string/) | Extracts the leading sentence from a string\. |
 | [`lerp`](../number/lerp/) | [number](../number/) | Linearly interpolates between \`start\` and \`end\` by the factor \`t\`\. |
+| [`levenshteinDistance`](../string/levenshteindistance/) | [string](../string/) | Levenshtein edit distance between two strings — the minimum number of single\-character insertions, deletions, or substi… |
+| [`levenshteinSimilarity`](../string/levenshteinsimilarity/) | [string](../string/) | Normalized Levenshtein similarity between two strings, in \`\[0, 1\]\` — \`1\` means identical, \`0\` means completely dissimil… |
 | `lighten / darken` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `color-mix(in oklch, <color> <percent>, white\|black)` *(CSS Color 5 (Baseline widely available since 2023 — Chrome 111, Firefox 113, Safari 16.2))* |
 | [`listTimezones`](../date/listtimezones/) | [date](../date/) | Returns the list of IANA timezone identifiers supported by the runtime\. |
 | [`map`](../object/map/) | [object](../object/) | Transforms the values and/or keys of a plain object in a single pass\. |
@@ -379,6 +383,7 @@ sidebar:
 | [`UnionToIntersection`](../type/uniontointersection/) | [type](../type/) | Converts a union type to an intersection type: \`A \| B \| C\` → \`A & B & C\`\. |
 | [`unique`](../array/unique/) | [array](../array/) | Removes duplicate values from an array\. |
 | [`uniqueBy`](../array/uniqueby/) | [array](../array/) | Removes duplicate items from an array, using a derived key instead of value equality\. |
+| [`unorderedPairKey`](../string/unorderedpairkey/) | [string](../string/) | Builds a canonical, order\-independent key for an unordered pair of strings — the same result for \`\(a, b\)\` and \`\(b, a\)\`\. |
 | [`unset`](../object/unset/) | [object](../object/) | Removes the value at a dot/bracket\-notation path or explicit key array, mutating the object in place\. |
 | `until / since (difference)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.prototype.until(other) / .since(other)` *(Temporal (Stage 3))* |
 | [`unzip`](../array/unzip/) | [array](../array/) | Splits an array of tuples into separate arrays, one per position\. |
@@ -392,6 +397,7 @@ sidebar:
 | [`withoutLeadingSlash`](../url/withoutleadingslash/) | [url](../url/) | Removes the leading slash \`/\` from the given URL if it is present\. |
 | [`withoutTrailingSlash`](../url/withouttrailingslash/) | [url](../url/) | Removes the trailing slash \`/\` from the given URL if it is present\. |
 | `withResolvers` | [promise](../promise/) | <span class="badge badge--secondary">native JS</span> `Promise.withResolvers()` *(ES2024)* |
+| [`withTempDir`](../node/withtempdir/) | [node](../node/) | Creates a fresh temporary directory under the OS temp root, runs \`fn\` with its path, and always removes it \(recursively… |
 | [`withTrailingSlash`](../url/withtrailingslash/) | [url](../url/) | Adds a trailing slash \`/\` to the given URL if it is not already present\. |
 | [`words`](../string/words/) | [string](../string/) | Splits a string into an array of words\. |
 | [`zip`](../array/zip/) | [array](../array/) | Combines multiple arrays element\-by\-element into an array of tuples\. |

@@ -3,7 +3,7 @@ title: "intersection"
 sidebar:
   label: "intersection"
 description: "Compute the intersection of two arrays, meaning the elements that are present in both arrays."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Compute the intersection of two arrays, meaning the elements that are present

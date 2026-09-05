@@ -3,7 +3,7 @@ title: "countBy"
 sidebar:
   label: "countBy"
 description: "Groups the values of a Set by a derived key and counts how many fall into each group."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Groups the values of a Set by a derived key and counts how many fall into each group.

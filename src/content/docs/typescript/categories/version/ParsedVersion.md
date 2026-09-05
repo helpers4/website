@@ -3,7 +3,7 @@ title: "ParsedVersion"
 sidebar:
   label: "ParsedVersion"
 description: "A version parsed according to SemVer 2.0.0 — alias of ParsedSemVerVersion, kept under this name for backward compatibil…"
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 A version parsed according to SemVer 2.0.0 — alias of ParsedSemVerVersion, kept under

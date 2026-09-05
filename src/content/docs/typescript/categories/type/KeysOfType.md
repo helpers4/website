@@ -3,7 +3,7 @@ title: "KeysOfType"
 sidebar:
   label: "KeysOfType"
 description: "Extracts the keys of `T` whose values extend `V`."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Extracts the keys of `T` whose values extend `V`.

@@ -3,7 +3,7 @@ title: "safeReadJsonFile"
 sidebar:
   label: "safeReadJsonFile"
 description: "Reads a file and parses its contents as JSON, returning `null` (or a fallback) on any failure — a missing/unreadable fi…"
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Reads a file and parses its contents as JSON, returning `null` (or a

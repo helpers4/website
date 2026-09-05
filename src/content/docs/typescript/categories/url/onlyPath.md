@@ -3,7 +3,7 @@ title: "onlyPath"
 sidebar:
   label: "onlyPath"
 description: "Extract only the path from an URI with optional query and fragments."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Extract only the path from an URI with optional query and fragments.

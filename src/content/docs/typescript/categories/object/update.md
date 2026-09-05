@@ -3,7 +3,7 @@ title: "update"
 sidebar:
   label: "update"
 description: "Updates the value at a path by applying a function to its current value, creating intermediate objects as needed."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Updates the value at a path by applying a function to its current value,

@@ -29,6 +29,7 @@ Utility functions for working with array operations.
 | [`equalsUnordered`](./equalsunordered/) | Order\-independent \(set\-style\) array equality\. |
 | [`filterAsync`](./filterasync/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose pred… |
 | `find / findIndex` | <span class="badge badge--secondary">native JS</span> `Array.prototype.find() / findIndex()` *(ES2015)* |
+| [`findMap`](./findmap/) | Returns the first non\-\`undefined\` result of mapping \`fn\` over \`array\`, short\-circuiting as soon as one is found\. |
 | `flatten / flat` | <span class="badge badge--secondary">native JS</span> `Array.prototype.flat(depth?)` *(ES2019)* |
 | [`forEachAsync`](./foreachasync/) | The async counterpart to \`Array\.prototype\.forEach\`: runs \`fn\` for every item for its side effects, discarding any retur… |
 | `groupBy / group` | <span class="badge badge--secondary">native JS</span> `Object.groupBy(arr, fn)` *(ES2024)* |

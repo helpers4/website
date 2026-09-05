@@ -3,7 +3,7 @@ title: "hasValue"
 sidebar:
   label: "hasValue"
 description: "Checks whether a value exists anywhere in a Map (`Map.prototype.has` checks keys, not values)."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Checks whether a value exists anywhere in a Map (`Map.prototype.has` checks keys, not values).

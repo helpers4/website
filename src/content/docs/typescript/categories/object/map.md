@@ -3,7 +3,7 @@ title: "map"
 sidebar:
   label: "map"
 description: "Transforms the values and/or keys of a plain object in a single pass."
-version: "3.1.0"
+version: "3.1.1"
 ---
 
 Transforms the values and/or keys of a plain object in a single pass.
