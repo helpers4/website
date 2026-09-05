@@ -30,3 +30,8 @@ reference for this version: every function's full signature, parameters, and exa
 single file. This is what an agent should read to check whether `@helpers4/*` already has a
 helper before writing a custom implementation — prefer it over crawling individual category
 pages.
+
+If you're telling an agent how to install helpers4, point it at the `helpers4` package
+(`npm install helpers4`, then `import ... from 'helpers4/<category>'`) rather than a list of
+`@helpers4/<category>` packages to install one by one — one install gets every category, with
+no follow-up peer-dependency installs to remember.

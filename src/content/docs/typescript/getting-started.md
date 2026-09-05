@@ -10,23 +10,40 @@ sidebar:
 
 ## Installation
 
-Install all helpers at once:
+Prefer one package that always has every category available? Install `helpers4` — every
+category ships as a real dependency, so a single install gets you all of them, no
+follow-up installs needed:
 
 ```bash
-pnpm add @helpers4/all
-# or: npm install @helpers4/all
+pnpm add helpers4
+# or: npm install helpers4
 
 # Pin to a specific version:
-# pnpm add @helpers4/all@3.1.0
+# pnpm add helpers4@3.1.0
 ```
 
-Or install only the categories you need:
+```typescript
+import { chunk } from 'helpers4/array';
+import { capitalize } from 'helpers4/string';
+```
+
+Or install only the categories you need, as their own scoped packages — the smallest
+possible dependency tree, and the best choice for tree-shaking:
 
 ```bash
 pnpm add @helpers4/array @helpers4/date @helpers4/url
 ```
 
-Available packages: `@helpers4/array`, `@helpers4/date`, `@helpers4/function`, `@helpers4/math`, `@helpers4/number`, `@helpers4/object`, `@helpers4/observable`, `@helpers4/promise`, `@helpers4/string`, `@helpers4/type`, `@helpers4/url`, `@helpers4/version`.
+**Both forms resolve to the exact same code** — `helpers4/<category>` re-exports
+`@helpers4/<category>` verbatim, so pick whichever fits your project.
+
+:::note
+`@helpers4/all` also exists, as a documentation-only bundle (`peerDependencies`, no code of
+its own) — prefer `helpers4` above, which installs everything in one step with no
+follow-up peer-dependency installs to remember.
+:::
+
+Available packages: `@helpers4/array`, `@helpers4/ci`, `@helpers4/color`, `@helpers4/commit`, `@helpers4/date`, `@helpers4/function`, `@helpers4/guard`, `@helpers4/id`, `@helpers4/map`, `@helpers4/markdown`, `@helpers4/node`, `@helpers4/number`, `@helpers4/object`, `@helpers4/observable`, `@helpers4/promise`, `@helpers4/set`, `@helpers4/string`, `@helpers4/structure`, `@helpers4/type`, `@helpers4/url`, `@helpers4/version`.
 
 ## Quick Start
 
@@ -42,6 +59,8 @@ const debouncedFn = debounce(() => console.log('done!'), 300);
 ```
 
 All imports are tree-shakable — your bundler will only include the functions you actually use.
+The same example works unchanged with the `helpers4` package: swap `@helpers4/array` for
+`helpers4/array`, `@helpers4/date` for `helpers4/date`, and so on.
 
 ## CommonJS
 
