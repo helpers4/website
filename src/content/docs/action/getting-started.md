@@ -12,17 +12,12 @@ GitHub Actions enables you to create custom workflows that run automatically on 
 
 ## Available Actions
 
-### Conventional Commits Validator
-
-Validate commit messages against the [Conventional Commits](https://www.conventionalcommits.org/) specification.
-
-**Features:**
-- ✅ Enforce commit message format
-- ✅ Custom error messages
-- ✅ Scope validation
-- ✅ Type enforcement
-
-[Full Documentation →](./actions/conventional-commits/)
+| Action | Description |
+|--------|-------------|
+| [conventional-commits](./actions/conventional-commits/) | Validate commit messages against the [Conventional Commits](https://www.conventionalcommits.org/) specification |
+| [dispatch-with-fallback](./actions/dispatch-with-fallback/) | Dispatch a `repository_dispatch` event via a GitHub App token, with an optional fallback identity retried on failure |
+| [pr-status-comment](./actions/pr-status-comment/) | Post or update a single sticky PR comment summarizing job statuses as a table |
+| [setup-pnpm](./actions/setup-pnpm/) | Set up Node.js + pnpm, optionally installing dependencies |
 
 ## Quick Start
 
