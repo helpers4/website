@@ -12,7 +12,7 @@ Production-ready TypeScript utility functions — modular, strictly typed, exhau
 - **[Get Started](./getting-started)** — Installation and first import
 - **[Browse Categories](./categories/array)** — 323 helpers across 21 categories
 - **[AI & LLM Support](./reference/ai-support)** — DeepWiki Q&A, `llms.txt`, full machine-readable reference
-- **[GitHub](https://github.com/helpers4/typescript)** · **[npm](https://www.npmjs.com/package/@helpers4/all)** · **[License (LGPL-3.0)](./legal/license)**
+- **[GitHub](https://github.com/helpers4/typescript)** · **[npm: helpers4](https://www.npmjs.com/package/helpers4)** · **[npm: @helpers4/all](https://www.npmjs.com/package/@helpers4/all)** · **[License (LGPL-3.0)](./legal/license)**
 
 ## What is helpers4?
 
@@ -37,6 +37,7 @@ zero logic changes for anyone using the replacements below.
 |---|---|
 | **⚠️ Breaking: `type` → `guard`** | Runtime type guards (`isString`, `isArray`, `isDefined`, …) moved to a new `@helpers4/guard` package; `@helpers4/type` now only holds compile-time-only utility types. See the [migration guide](https://github.com/helpers4/typescript/blob/main/MIGRATION.md) |
 | **⚠️ Breaking: 6 removed aliases** | `deepMerge`/`deepClone`/`daysDifference`/`safeDate`/`dateToISOString`/`type.isEmpty` — all had a direct replacement since v1.9.0/v2.0.0, see the [migration guide](https://github.com/helpers4/typescript/blob/main/MIGRATION.md) for the full table |
+| **New `helpers4` package** | Install every category in one step (`npm install helpers4`) and import via `helpers4/<category>` — real dependencies, same code as installing `@helpers4/<category>` packages individually, no naming collisions. See [Getting Started](./getting-started/#installation) |
 | **New `color` category** | `hexToRgb`, `rgbToHex`, `hslToRgb`, `rgbToHsl`, `argbToRgb`, plus `isCssColor` in `guard` |
 | **25+ new helpers** | `clone`, `flatten`/`unflatten`, `pickBy`/`omitBy`/`unset`/`update`, `parsePropertyPath`, `replaceOrAppend`, `toggle`, `symmetricDifference`, `dedent`, `removeDiacritics`, `unescapeHtml`, `escapeRegExp`, `parseDuration`, `unary`, `isWeakMap`/`isWeakSet`/`isSet`, and more |
 | **Mutation testing** | >90% score — tests verified to catch regressions, not just execute — [dashboard](https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/v3.1.0) |

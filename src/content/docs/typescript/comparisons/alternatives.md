@@ -33,6 +33,13 @@ helpers4's values for each column.
 | <span class="cell-regular">Modular</span> | split into independent packages, install only what you use |
 | <span class="cell-regular">Monolith</span> | one package containing everything |
 
+helpers4 also ships a single **`helpers4`** package (since v3.1.0) for teams that want a
+monolith-style one-line install without losing the modular split: every category is a real
+dependency, reachable only at its own subpath (`helpers4/array`, `helpers4/object`, …) — so
+it gets the "one install" convenience of a monolith while keeping helpers4's category-scoped
+tree-shaking and its immunity to cross-category name collisions. See
+[Getting Started](../getting-started/#installation).
+
 ## helpers4 vs Radashi
 
 [Radashi](https://radashi.js.org) (~130 functions, the maintained fork of Radash) is a lean,
