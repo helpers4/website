@@ -3,7 +3,7 @@ title: "identity"
 sidebar:
   label: "identity"
 description: "Returns the given value unchanged  Useful as a default transform, in function composition, or as a placeholder mapper."
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Returns the given value unchanged

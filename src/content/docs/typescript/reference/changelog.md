@@ -6,12 +6,21 @@ sidebar:
   order: 2
 ---
 
-Current published version: **v3.1.1**. This page groups helpers by the version that
+Current published version: **v3.1.2**. This page groups helpers by the version that
 *first introduced* them — a release with no new helpers (bug fixes, docs, internal changes only)
 gets no section of its own here. For the full release-by-release history, see
 [CHANGELOG.md](https://github.com/helpers4/typescript/blob/main/CHANGELOG.md) on GitHub.
 
-## v3.1.1 *(latest with new helpers)*
+## v3.1.2 *(latest with new helpers)*
+
+| Function | Category | Description |
+|----------|----------|-------------|
+| [`agree`](../categories/license/agree/) | [license](../categories/license/) | Whether two raw license strings agree closely enough to count as "no real conflict" — true when their family sets share at least one real \(known\) family, or when either side is entirely unknown \(e\.g\. \`"custom"\`/\`"unknown"\`\) — a vague claim is never itself evidence of disagreement\. Only two \*different\*, both\-known family sets \(e\.g\. \`bsd\` vs \`apache\`\) count as a real conflict\. |
+| [`excerpt`](../categories/string/excerpt/) | [string](../categories/string/) | Derives a short, readable excerpt from a longer text — for a card/header/preview where a full paragraph doesn't fit\. Unlike truncate \(a mechanical cut at exactly \`maxLength\`\), this prefers to cut at the end of a whole sentence \(\`\.\`, \`\!\`, or \`?\`\) when one fits within \`maxLength\`, even if that leaves the result shorter than the limit\. Only when no sentence fits does it fall back to the last whole word before the limit — it never returns partial\-word text\.  Known limitation: the sentence\-boundary check is a simple heuristic \(punctuation followed by whitespace or the end of the text\) — it doesn't special\-case abbreviations \("Mr\."\) or decimal numbers \("3\.14"\), which can be misread as a sentence end\. |
+| [`families`](../categories/license/families/) | [license](../categories/license/) | Groups a raw, possibly compound license string into its coarse family set — e\.g\. \`"GPL\-3\.0\-or\-later AND LGPL\-3\.0\-or\-later"\` yields \`\{"gpl", "lgpl"\}\`\. Two sources reporting the same real license under different notation \(\`"GPL3"\` vs \`"GPL\-3\.0\-or\-later"\`, \`"GPL"\` vs \`"GPL2"\`\) yield the same family, so they read as agreeing rather than conflicting\.  Proprietary/custom/unknown tokens all collapse to a single shared unknown\-family sentinel rather than each becoming their own one\-off family, so a batch of otherwise\-identical \`"custom:<vendor>"\` strings don't look like dozens of distinct disagreeing licenses\. Use isKnown to check whether any real \(non\-sentinel\) family was found\. |
+| [`isKnown`](../categories/license/isknown/) | [license](../categories/license/) | Whether a raw license string resolves to at least one recognized family — \`false\` for an empty string, a purely non\-informative claim \(\`"custom"\`, \`"unknown"\`, \`"LicenseRef\-EULA"\`, \.\.\.\), or a compound expression where every token is non\-informative\. |
+
+## v3.1.1
 
 | Function | Category | Description |
 |----------|----------|-------------|

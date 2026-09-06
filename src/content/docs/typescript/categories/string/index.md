@@ -16,6 +16,7 @@ Utility functions for working with string operations.
 | [`dedent`](./dedent/) | Strips the common leading whitespace from every line of a multi\-line string, and trims a single leading/trailing blank… |
 | [`escapeHtml`](./escapehtml/) | Escapes the HTML special characters \`&\`, \`<\`, \`>\`, \`"\`, and \`'\` in a string\. |
 | [`escapeRegExp`](./escaperegexp/) | Escapes regular expression metacharacters \(\`\. |
+| [`excerpt`](./excerpt/) | Derives a short, readable excerpt from a longer text — for a card/header/preview where a full paragraph doesn't fit\. |
 | [`extractErrorMessage`](./extracterrormessage/) | Convert an error to a readable message\. |
 | [`formatProgressBar`](./formatprogressbar/) | Formats a value as a text progress bar, repeating \`filledChar\`/\`emptyChar\` across \`width\` cells proportional to \`value… |
 | [`globToRegExp`](./globtoregexp/) | Compiles a simple glob pattern into a \`RegExp\` that matches the whole string: \`\*\` matches any sequence of UTF\-16 code u… |

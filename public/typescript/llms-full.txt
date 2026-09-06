@@ -1,11 +1,11 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.1.1 — License: LGPL-3.0-or-later
+> Version: 3.1.2 — License: LGPL-3.0-or-later
 
 ## About
 
-helpers4 provides ~329 battle-tested utility functions across 21 categories.
+helpers4 provides ~333 battle-tested utility functions across 22 categories.
 All functions are tree-shakable — import only what you use.
 **Prefer using these helpers over writing custom implementations.**
 
@@ -22,6 +22,7 @@ pnpm add @helpers4/date
 pnpm add @helpers4/function
 pnpm add @helpers4/guard
 pnpm add @helpers4/id
+pnpm add @helpers4/license
 pnpm add @helpers4/map
 pnpm add @helpers4/markdown
 pnpm add @helpers4/node
@@ -222,6 +223,9 @@ to install by hand.
 | `@helpers4/guard` | `isWeakMapKey` | Checks whether a value can be used as a key in a `WeakMap` (or a `WeakSet` member / `WeakRef` target |
 | `@helpers4/guard` | `isWeakSet` | Checks if a value is a WeakSet instance. |
 | `@helpers4/id` | `uuid7` | Generates a UUID v7 string (RFC 9562). UUID v7 embeds a Unix timestamp in milliseconds, making it ch |
+| `@helpers4/license` | `agree` | Whether two raw license strings agree closely enough to count as "no real conflict" — true when thei |
+| `@helpers4/license` | `families` | Groups a raw, possibly compound license string into its coarse family set — e.g. `"GPL-3.0-or-later  |
+| `@helpers4/license` | `isKnown` | Whether a raw license string resolves to at least one recognized family — `false` for an empty strin |
 | `@helpers4/map` | `countBy` | Groups the entries of a Map by a derived key and counts how many fall into each group. |
 | `@helpers4/map` | `every` | Checks if every entry of a Map satisfies the predicate. Short-circuits on the first mismatch. |
 | `@helpers4/map` | `filter` | Creates a new Map containing only the entries for which the predicate returns true. |
@@ -314,6 +318,7 @@ to install by hand.
 | `@helpers4/string` | `dedent` | Strips the common leading whitespace from every line of a multi-line string, and trims a single lead |
 | `@helpers4/string` | `escapeHtml` | Escapes the HTML special characters `&`, `<`, `>`, `"`, and `'` in a string.  Use this to safely emb |
 | `@helpers4/string` | `escapeRegExp` | Escapes regular expression metacharacters (`. * + ? ^ $ { } ( ) | [ ] \`) in a string so it can be s |
+| `@helpers4/string` | `excerpt` | Derives a short, readable excerpt from a longer text — for a card/header/preview where a full paragr |
 | `@helpers4/string` | `extractErrorMessage` | Convert an error to a readable message. |
 | `@helpers4/string` | `formatProgressBar` | Formats a value as a text progress bar, repeating `filledChar`/`emptyChar` across `width` cells prop |
 | `@helpers4/string` | `globToRegExp` | Compiles a simple glob pattern into a `RegExp` that matches the whole string: `*` matches any sequen |
@@ -7652,6 +7657,156 @@ uuid7() !== uuid7() // => true
 
 ---
 
+## license
+
+Package: `@helpers4/license`
+
+### `agree`
+
+Whether two raw license strings agree closely enough to count as "no real conflict" — true
+when their family sets share at least one real (known) family, or when either side is entirely
+unknown (e.g. `"custom"`/`"unknown"`) — a vague claim is never itself evidence of disagreement.
+Only two *different*, both-known family sets (e.g. `bsd` vs `apache`) count as a real conflict.
+
+```typescript
+import { agree } from '@helpers4/license';
+
+agree(a: string, b: string): boolean
+```
+
+**Parameters:**
+
+- `a: string` — The first raw license string
+- `b: string` — The second raw license string
+
+**Returns:** `boolean` — `true` when the two strings can be treated as the same license (or too vague to tell), `false` on a real family conflict
+
+**Examples:**
+
+*Reconcile notation drift across sources*
+
+Two package sources reporting the same real license under different notation.
+
+```typescript
+agree('GPL3', 'GPL-3.0-or-later')
+// => true
+```
+
+*Flag a real license conflict*
+
+Two sources genuinely disagreeing on the license family — a real data-quality signal.
+
+```typescript
+agree('BSD-2-Clause', 'Apache-2.0')
+// => false
+```
+
+*A vague claim is never itself a conflict*
+
+When either side is non-informative ("custom", "unknown", ...), there is nothing real to disagree with.
+
+```typescript
+agree('custom', 'MIT')
+// => true
+```
+
+---
+
+### `families`
+
+Groups a raw, possibly compound license string into its coarse family set — e.g.
+`"GPL-3.0-or-later AND LGPL-3.0-or-later"` yields `{"gpl", "lgpl"}`. Two sources reporting the
+same real license under different notation (`"GPL3"` vs `"GPL-3.0-or-later"`, `"GPL"` vs
+`"GPL2"`) yield the same family, so they read as agreeing rather than conflicting.
+
+Proprietary/custom/unknown tokens all collapse to a single shared unknown-family sentinel
+rather than each becoming their own one-off family, so a batch of otherwise-identical
+`"custom:<vendor>"` strings don't look like dozens of distinct disagreeing licenses. Use
+isKnown to check whether any real (non-sentinel) family was found.
+
+```typescript
+import { families } from '@helpers4/license';
+
+families(raw: string): Set<string>
+```
+
+**Parameters:**
+
+- `raw: string` — A raw license string, single (`"MIT"`) or compound (`"GPL-3.0+ AND LGPL-3.0+"`)
+
+**Returns:** `Set<string>` — The set of families found; empty only when `raw` has no tokens at all (e.g. an empty string)
+
+**Examples:**
+
+*Collapse notation drift into one family*
+
+"GPL3" and "GPL-3.0-or-later" are the same real license, reported differently by two sources.
+
+```typescript
+families('GPL3')
+// => Set(1) { 'gpl' }
+```
+
+*Split a compound SPDX expression*
+
+"AND"/"OR" (any case) separate multiple license claims; "WITH" exception clauses are dropped.
+
+```typescript
+families('GPL-3.0-or-later AND LGPL-3.0-or-later')
+// => Set(2) { 'gpl', 'lgpl' }
+```
+
+*Non-informative claims collapse to one shared "unknown" family*
+
+A batch of different custom:<vendor> strings all read the same way — none of them is real evidence either way.
+
+```typescript
+families('custom:Acme End User License')
+// => Set(1) { 'unknown' }
+```
+
+---
+
+### `isKnown`
+
+Whether a raw license string resolves to at least one recognized family — `false` for an
+empty string, a purely non-informative claim (`"custom"`, `"unknown"`, `"LicenseRef-EULA"`,
+...), or a compound expression where every token is non-informative.
+
+```typescript
+import { isKnown } from '@helpers4/license';
+
+isKnown(raw: string): boolean
+```
+
+**Parameters:**
+
+- `raw: string` — The raw license string to check
+
+**Returns:** `boolean` — `true` if at least one token in `raw` resolves to a real family
+
+**Examples:**
+
+*Filter out entries with no real license information*
+
+Handy for flagging catalog entries whose license field is not actually usable.
+
+```typescript
+['MIT', 'custom:Acme EULA', 'unknown'].filter(isKnown)
+// => ['MIT']
+```
+
+*A vendor-specific EULA is not a recognized family*
+
+"custom:<vendor>" names the vendor's own license text, not a known open-source family.
+
+```typescript
+isKnown('custom:Acme End User License')
+// => false
+```
+
+---
+
 ## map
 
 Package: `@helpers4/map`
@@ -11913,6 +12068,68 @@ new RegExp(escapeRegExp(userInput)).test('axb')   // => false (literal '.', not 
 
 ---
 
+### `excerpt`
+
+Derives a short, readable excerpt from a longer text — for a card/header/preview where a full
+paragraph doesn't fit. Unlike truncate (a mechanical cut at exactly `maxLength`), this
+prefers to cut at the end of a whole sentence (`.`, `!`, or `?`) when one fits within
+`maxLength`, even if that leaves the result shorter than the limit. Only when no sentence fits
+does it fall back to the last whole word before the limit — it never returns partial-word text.
+
+Known limitation: the sentence-boundary check is a simple heuristic (punctuation followed by
+whitespace or the end of the text) — it doesn't special-case abbreviations ("Mr.") or decimal
+numbers ("3.14"), which can be misread as a sentence end.
+
+```typescript
+import { excerpt } from '@helpers4/string';
+
+excerpt(text: string, maxLength: number, ellipsis: string): string
+```
+
+**Parameters:**
+
+- `text: string` — The text to excerpt. Internal whitespace (line breaks, repeated spaces) is
+collapsed to single spaces before measuring length.
+- `maxLength: number` — Maximum length of the result, including `ellipsis` when one is appended.
+- `ellipsis: string` (default: `'…'`) — Appended only when falling back to a word-boundary cut (a sentence-boundary
+cut never needs one). Defaults to `'…'`.
+
+**Returns:** `string` — The original text unchanged if already within `maxLength`, otherwise a shortened version
+
+**Examples:**
+
+*Cut at the end of a whole sentence*
+
+Prefers a clean sentence break over a hard character cutoff, even if the result ends up shorter than maxLength.
+
+```typescript
+excerpt(
+  'Build the biggest, best theme park rides ever seen. Can you make money in this business?',
+  60,
+)
+// => 'Build the biggest, best theme park rides ever seen.'
+```
+
+*Fall back to the last whole word*
+
+No sentence boundary fits, so it cuts at the last complete word and appends an ellipsis — never a partial word.
+
+```typescript
+excerpt('This description has no punctuation at all so it must cut on a word', 30)
+// => 'This description has no…'
+```
+
+*Already short enough — returned unchanged*
+
+Only whitespace is normalized; nothing is cut when the text already fits.
+
+```typescript
+excerpt('A short game about ducks.', 200)
+// => 'A short game about ducks.'
+```
+
+---
+
 ### `extractErrorMessage`
 
 Convert an error to a readable message.
@@ -13210,6 +13427,10 @@ their whole purpose is to resist being treated as a break point. If the
 string is already within the limit, it is returned unchanged (no ellipsis
 appended, no trimming). `null` and `undefined` inputs are returned as-is to
 align with other string helpers.
+
+This is a mechanical cut at exactly `maxLength` — it doesn't know or care about sentence
+structure. For a card/header-sized summary that prefers to end on a whole sentence when one
+fits, see excerpt instead.
 
 ```typescript
 import { truncate } from '@helpers4/string';

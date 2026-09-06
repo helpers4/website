@@ -3,7 +3,7 @@ title: "unzip"
 sidebar:
   label: "unzip"
 description: "Splits an array of tuples into separate arrays, one per position."
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Splits an array of tuples into separate arrays, one per position.

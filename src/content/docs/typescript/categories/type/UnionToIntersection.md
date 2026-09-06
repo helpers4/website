@@ -3,7 +3,7 @@ title: "UnionToIntersection"
 sidebar:
   label: "UnionToIntersection"
 description: "Converts a union type to an intersection type: `A | B | C` → `A & B & C`."
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Converts a union type to an intersection type: `A | B | C` → `A & B & C`.

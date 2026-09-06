@@ -3,7 +3,7 @@ title: "unorderedPairKey"
 sidebar:
   label: "unorderedPairKey"
 description: "Builds a canonical, order-independent key for an unordered pair of strings — the same result for `(a, b)` and `(b, a)`."
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Builds a canonical, order-independent key for an unordered pair of strings — the same result

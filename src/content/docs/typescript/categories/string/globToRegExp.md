@@ -3,7 +3,7 @@ title: "globToRegExp"
 sidebar:
   label: "globToRegExp"
 description: "Compiles a simple glob pattern into a `RegExp` that matches the whole string: `*` matches any sequence of UTF-16 code u…"
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Compiles a simple glob pattern into a `RegExp` that matches the whole string: `*` matches any

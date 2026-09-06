@@ -3,7 +3,7 @@ title: "truncate"
 sidebar:
   label: "truncate"
 description: "Truncates a string to `maxLength` characters, appending an ellipsis when cut."
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Truncates a string to `maxLength` characters, appending an ellipsis when cut.
@@ -21,6 +21,10 @@ their whole purpose is to resist being treated as a break point. If the
 string is already within the limit, it is returned unchanged (no ellipsis
 appended, no trimming). `null` and `undefined` inputs are returned as-is to
 align with other string helpers.
+
+This is a mechanical cut at exactly `maxLength` — it doesn't know or care about sentence
+structure. For a card/header-sized summary that prefers to end on a whole sentence when one
+fits, see excerpt instead.
 
 > Available since v2.0.0
 

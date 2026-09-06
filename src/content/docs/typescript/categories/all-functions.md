@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**329** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**333** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -16,6 +16,7 @@ sidebar:
 | [`addDays`](../date/adddays/) | [date](../date/) | Adds days to a date\. |
 | [`addMonths`](../date/addmonths/) | [date](../date/) | Adds months to a date\. |
 | [`addYears`](../date/addyears/) | [date](../date/) | Adds years to a date\. |
+| [`agree`](../license/agree/) | [license](../license/) | Whether two raw license strings agree closely enough to count as "no real conflict" — true when their family sets share… |
 | [`analyzeCommits`](../commit/analyzecommits/) | [commit](../commit/) | Analyses a list of commits to suggest a semantic version bump\. |
 | [`argbToRgb`](../color/argbtorgb/) | [color](../color/) | Converts a 32\-bit packed ARGB integer \(as used by e\.g\. |
 | [`Brand`](../type/brand/) | [type](../type/) | Brands a base type \`T\` with a phantom tag \`B\` to create a nominal type\. |
@@ -85,10 +86,12 @@ sidebar:
 | [`escapeHtml`](../string/escapehtml/) | [string](../string/) | Escapes the HTML special characters \`&\`, \`<\`, \`>\`, \`"\`, and \`'\` in a string\. |
 | [`escapeRegExp`](../string/escaperegexp/) | [string](../string/) | Escapes regular expression metacharacters \(\`\. |
 | [`every`](../map/every/) | [map](../map/) | Checks if every entry of a Map satisfies the predicate\. |
+| [`excerpt`](../string/excerpt/) | [string](../string/) | Derives a short, readable excerpt from a longer text — for a card/header/preview where a full paragraph doesn't fit\. |
 | [`extractErrorMessage`](../string/extracterrormessage/) | [string](../string/) | Convert an error to a readable message\. |
 | [`extractNumber`](../number/extractnumber/) | [number](../number/) | Extracts the first number embedded anywhere in a string, or passes through a \`number\`\. |
 | [`extractPureURI`](../url/extractpureuri/) | [url](../url/) | Extracts the pure URI from a URL by removing query parameters and fragments\. |
 | [`falsyPromiseOrThrow`](../promise/falsypromiseorthrow/) | [promise](../promise/) | Returns a function that passes through falsy data or throws an error\. |
+| [`families`](../license/families/) | [license](../license/) | Groups a raw, possibly compound license string into its coarse family set — e\.g\. |
 | [`filter`](../map/filter/) | [map](../map/) | Creates a new Map containing only the entries for which the predicate returns true\. |
 | [`filter`](../set/filter/) | [set](../set/) | Creates a new Set containing only the values for which the predicate returns true\. |
 | [`filterAsync`](../array/filterasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose pred… |
@@ -173,6 +176,7 @@ sidebar:
 | [`isJSONArray`](../guard/isjsonarray/) | [guard](../guard/) | Checks whether a value is an array whose every element is a valid JSON value \(see isJSONValue\)\. |
 | [`isJSONObject`](../guard/isjsonobject/) | [guard](../guard/) | Checks whether a value is a plain object whose every own value is a valid JSON value \(see isJSONValue\)\. |
 | [`isJSONValue`](../guard/isjsonvalue/) | [guard](../guard/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`,… |
+| [`isKnown`](../license/isknown/) | [license](../license/) | Whether a raw license string resolves to at least one recognized family — \`false\` for an empty string, a purely non\-inf… |
 | [`isLeapYear`](../date/isleapyear/) | [date](../date/) | Returns \`true\` if the given year is a leap year\. |
 | [`isLength`](../guard/islength/) | [guard](../guard/) | Checks whether a value is a valid array\-like \`length\`: a non\-negative safe integer \(\`0 <= value <= Number\.MAX\_SAFE\_INTE… |
 | `isLight / isDark (pick a readable text color)` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `contrast-color(<color>)` *(CSS Color 6 (Baseline newly available since April 2026 — Chrome 147, Firefox 146, Safari 26.0))* |

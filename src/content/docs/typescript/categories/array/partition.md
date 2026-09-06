@@ -3,7 +3,7 @@ title: "partition"
 sidebar:
   label: "partition"
 description: "Splits an array into two groups based on a predicate function."
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Splits an array into two groups based on a predicate function.

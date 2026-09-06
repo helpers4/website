@@ -3,7 +3,7 @@ title: "isSet"
 sidebar:
   label: "isSet"
 description: "Checks if a value is a Set instance."
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Checks if a value is a Set instance.

@@ -3,7 +3,7 @@ title: "isNegative"
 sidebar:
   label: "isNegative"
 description: "Checks if a value is a number less than 0."
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Checks if a value is a number less than 0.

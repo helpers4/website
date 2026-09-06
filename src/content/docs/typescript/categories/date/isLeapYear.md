@@ -3,7 +3,7 @@ title: "isLeapYear"
 sidebar:
   label: "isLeapYear"
 description: "Returns `true` if the given year is a leap year."
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Returns `true` if the given year is a leap year.

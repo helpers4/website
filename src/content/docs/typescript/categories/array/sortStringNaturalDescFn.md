@@ -3,7 +3,7 @@ title: "sortStringNaturalDescFn"
 sidebar:
   label: "sortStringNaturalDescFn"
 description: "Sort strings in descending order using natural (human-friendly) ordering."
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Sort strings in descending order using natural (human-friendly) ordering.

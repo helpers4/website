@@ -3,7 +3,7 @@ title: "withTempDir"
 sidebar:
   label: "withTempDir"
 description: "Creates a fresh temporary directory under the OS temp root, runs `fn` with its path, and always removes it (recursively…"
-version: "3.1.1"
+version: "3.1.2"
 ---
 
 Creates a fresh temporary directory under the OS temp root, runs `fn` with its path, and
