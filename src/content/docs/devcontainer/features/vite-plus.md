@@ -6,6 +6,11 @@ sidebar:
 
 Complete Vite+ unified toolchain setup with the `vp` CLI, integrating Vite, Vitest, Oxlint, Oxfmt, Rolldown, tsdown, and Vite Task into a single development experience with VS Code extensions pre-configured.
 
+> **Also included automatically:** helpers4's self-heal mechanism, working on both local and
+> cloud containers. It does its best to fix broken paths and a missing commit-signing key, with
+> nothing to set up on your end. It comes from this feature's dependency on `helpers4-common` —
+> you never need to add that feature yourself.
+
 ## Features
 
 - **Vite+ CLI (`vp`)**: Unified toolchain installed via the official installer
@@ -196,7 +201,7 @@ Combine with other features for a complete development environment:
   "features": {
     "ghcr.io/helpers4/devcontainer/vite-plus:1": {},
     "ghcr.io/helpers4/devcontainer/package-auto-install:1": {},
-    "ghcr.io/helpers4/devcontainer/local-mounts:1": {},
+    "ghcr.io/helpers4/devcontainer/dotfiles-sync:1": {},
     "ghcr.io/helpers4/devcontainer/shell-history-per-project:1": {},
     "ghcr.io/helpers4/devcontainer/git-absorb:1": {}
   }
@@ -272,6 +277,8 @@ Run `vp migrate` in your project root or see the [migration guide](https://vitep
 
 ## Version History
 
+- **v1.2.0**: Documentation only, no functional change — mentions that `helpers4-common`'s
+  automatic git-config self-heal (see above) now comes along with this feature.
 - **v1.1.0**: Switched from an inline copy of `helpers4-common`'s bootstrap (user detection, apt
   helpers) to a direct `dependsOn` on the `helpers4-common` feature — no behavior change, just a
   single source of truth for that logic instead of a copy every feature had to keep in sync.

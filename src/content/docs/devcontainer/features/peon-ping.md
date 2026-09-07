@@ -8,6 +8,11 @@ Installs [peon-ping](https://peonping.com/) and the [Peon Pet](https://marketpla
 
 Supports **Claude Code**, **GitHub Copilot**, **Cursor**, **OpenAI Codex**, and [many more IDEs](https://github.com/PeonPing/peon-ping#multi-ide-support).
 
+> **Also included automatically:** helpers4's self-heal mechanism, working on both local and
+> cloud containers. It does its best to fix broken paths and a missing commit-signing key, with
+> nothing to set up on your end. It comes from this feature's dependency on `helpers4-common` —
+> you never need to add that feature yourself.
+
 ## Features
 
 - **Sound notifications**: Warcraft, StarCraft, Portal, Zelda and 165+ sound packs
@@ -203,6 +208,8 @@ peon packs list           # List installed packs
 
 ## Version History
 
+- **v1.2.0**: Documentation only, no functional change — mentions that `helpers4-common`'s
+  automatic git-config self-heal (see above) now comes along with this feature.
 - **v1.1.0**: Switched from an inline copy of `helpers4-common`'s bootstrap (user detection, apt
   helpers) to a direct `dependsOn` on the `helpers4-common` feature — no behavior change, just a
   single source of truth for that logic instead of a copy every feature had to keep in sync.

@@ -6,7 +6,7 @@ sidebar:
 
 Syncs local Git, SSH, GPG, npm, and yarn config files into the devcontainer. Optionally syncs cloud credentials (AWS, kube, Docker) and SSH private key files — opt-in only. Works on macOS, Linux, Windows (WSL and native), GitHub Codespaces, Gitpod, and DevPod. Uses a **merge strategy** for established files and a **copy-if-absent** strategy for new ones — never overwrites existing values, safe alongside cloud platform native auth and GPG signing.
 
-> **Recommended**: if you use this feature, disable VS Code's own automatic `.gitconfig` copy (`"dev.containers.copyGitConfig": false`, a client-side VS Code setting — not something a `devcontainer.json` can control). VS Code's copy runs earlier and writes every key verbatim; this feature's merge only fills in whatever's still absent by the time it runs, so with both active, VS Code's raw copy silently wins for every key it touched and this feature's smarter merge does nothing for those. Either way, [`helpers4-common`](../helpers4-common)'s automatic git-config self-heal (every helpers4 consumer gets it, unconditionally) repairs host-specific paths left over by whichever one actually wrote them.
+> **Recommended**: if you use this feature, disable VS Code's own automatic `.gitconfig` copy (`"dev.containers.copyGitConfig": false`, a client-side VS Code setting — not something a `devcontainer.json` can control). VS Code's copy runs earlier and writes every key verbatim; this feature's merge only fills in whatever's still absent by the time it runs, so with both active, VS Code's raw copy silently wins for every key it touched and this feature's smarter merge does nothing for those. Either way, this feature's dependency on [`helpers4-common`](../helpers4-common) means its self-heal mechanism is already working in the background — it does its best to fix broken paths and a missing commit-signing key left over by whichever one actually wrote them, with nothing to set up on your end.
 
 ## Usage
 
@@ -307,6 +307,9 @@ ssh-add -l
 
 ## Version History
 
+- **v1.2.0**: Documentation only, no functional change — description now mentions
+  `helpers4-common`'s automatic git-config self-heal alongside the existing "Recommended" note
+  above.
 - **v1.1.0**: SSH private/public key file copying is now opt-in (`syncSshKeys`, default `false`)
   — `~/.ssh/config` and `known_hosts` still always sync (agent forwarding doesn't provide
   either), but actual key files no longer land on the container's filesystem unless explicitly

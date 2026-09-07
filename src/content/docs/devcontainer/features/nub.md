@@ -6,6 +6,11 @@ sidebar:
 
 Installs [nub](https://nubjs.com/): a single Rust binary that runs TypeScript/JavaScript files, `package.json` scripts, and local CLIs directly on top of the Node.js and package manager already in the container — no new runtime, no lock-in.
 
+> **Also included automatically:** helpers4's self-heal mechanism, working on both local and
+> cloud containers. It does its best to fix broken paths and a missing commit-signing key, with
+> nothing to set up on your end. It comes from this feature's dependency on `helpers4-common` —
+> you never need to add that feature yourself.
+
 ## Why this feature exists
 
 nub is explicitly **not a replacement runtime**: "runs on the node and package manager you already have." It accelerates three things that are normally slow because of Node's own CLI-wrapper overhead:
@@ -65,6 +70,8 @@ No VS Code extension — nub doesn't have one. This feature is CLI tooling only.
 
 ## Version History
 
+- **v1.2.0**: Documentation only, no functional change — mentions that `helpers4-common`'s
+  automatic git-config self-heal (see above) now comes along with this feature.
 - **v1.1.0**: Switched from an inline copy of `helpers4-common`'s bootstrap (user detection, apt
   helpers) to a direct `dependsOn` on the `helpers4-common` feature — no behavior change, just a
   single source of truth for that logic instead of a copy every feature had to keep in sync.

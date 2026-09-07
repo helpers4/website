@@ -8,6 +8,11 @@ This DevContainer feature installs [`bws`](https://github.com/bitwarden/sdk-sm),
 
 This is deliberately **not** a general Bitwarden feature: it installs `bws` (Secrets Manager) only, not `bw` (the password-vault CLI, which needs an interactive login/session model this feature doesn't address). If you need the vault CLI, look for a dedicated `bw` feature instead.
 
+> **Also included automatically:** helpers4's self-heal mechanism, working on both local and
+> cloud containers. It does its best to fix broken paths and a missing commit-signing key, with
+> nothing to set up on your end. It comes from this feature's dependency on `helpers4-common` —
+> you never need to add that feature yourself.
+
 ## Usage
 
 Add this feature to your `devcontainer.json`, and pass your Secrets Manager machine account access token through as an environment variable:
@@ -50,3 +55,9 @@ Set `BWS_ACCESS_TOKEN` via `containerEnv`/`remoteEnv` (sourced from a host env v
 The binary is downloaded straight from the matching `bws-<arch>-unknown-linux-musl-<version>.zip` GitHub release asset, its SHA-256 checksum verified against Bitwarden's own published checksums file, then extracted to `/usr/local/bin/bws`. The musl build is used (statically linked) so it runs regardless of the base image's libc.
 
 Supported architectures: `x86_64` and `aarch64`/`arm64` (e.g. Oracle Cloud Ampere A1). This feature only ever runs inside the Linux container being built — never on the host — so unlike `bws`'s own multi-OS releases, there's no Darwin/Windows case to detect here.
+
+## Version History
+
+- **v1.2.0**: Documentation only, no functional change — mentions that `helpers4-common`'s
+  automatic git-config self-heal (see above) comes along with this feature.
+- **v1.0.0**: Initial release.

@@ -6,6 +6,11 @@ sidebar:
 
 Core development environment with Git integration, GitHub Copilot, Markdown support, and essential editor enhancements. Perfect base for all development projects.
 
+> **Also included automatically:** helpers4's self-heal mechanism, working on both local and
+> cloud containers. It does its best to fix broken paths and a missing commit-signing key, with
+> nothing to set up on your end. It comes from this feature's dependency on `helpers4-common` —
+> you never need to add that feature yourself.
+
 ## Features
 
 - **Git Integration**: History, graph visualization, PR support, conventional commits
@@ -71,7 +76,7 @@ That's it! All extensions and settings are applied automatically.
         "ghcr.io/helpers4/devcontainer/essential-dev:1": {},
         "ghcr.io/helpers4/devcontainer/typescript-dev:1": {},
         "ghcr.io/helpers4/devcontainer/package-auto-install:1": {},
-        "ghcr.io/helpers4/devcontainer/local-mounts:1": {}
+        "ghcr.io/helpers4/devcontainer/dotfiles-sync:1": {}
     }
 }
 ```
@@ -86,7 +91,7 @@ That's it! All extensions and settings are applied automatically.
         "ghcr.io/helpers4/devcontainer/typescript-dev:1": {},
         "ghcr.io/helpers4/devcontainer/package-auto-install:1": {},
         "ghcr.io/helpers4/devcontainer/git-absorb:1": {},
-        "ghcr.io/helpers4/devcontainer/local-mounts:1": {}
+        "ghcr.io/helpers4/devcontainer/dotfiles-sync:1": {}
     }
 }
 ```
@@ -118,7 +123,11 @@ All shells are automatically detected and configured when available.
 
 **Code Formatters**
 - Oxc/Prettier - Use `vite-plus` feature instead
-- Biome - Dedicated feature available
 
 **Testing**
 - Vitest - Use `vite-plus` feature instead
+
+## Version History
+
+- **v1.2.0**: Documentation only, no functional change — mentions that `helpers4-common`'s
+  automatic git-config self-heal (see above) comes along with this feature.

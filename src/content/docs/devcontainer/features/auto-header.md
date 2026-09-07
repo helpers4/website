@@ -6,6 +6,11 @@ sidebar:
 
 Automatically configures VS Code with customizable file headers based on your project's license, company, and team information.
 
+> **Also included automatically:** helpers4's self-heal mechanism, working on both local and
+> cloud containers. It does its best to fix broken paths and a missing commit-signing key, with
+> nothing to set up on your end. It comes from this feature's dependency on `helpers4-common` —
+> you never need to add that feature yourself.
+
 ## Features
 
 ✨ **Two header styles**:
@@ -32,7 +37,7 @@ If you use a minimal base image (e.g. `ubuntu:latest`), add `common-utils` first
 {
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {},
-    "ghcr.io/helpers4/devcontainer/auto-header:latest": { ... }
+    "ghcr.io/helpers4/devcontainer/auto-header:1": { ... }
   }
 }
 ```
@@ -46,7 +51,7 @@ Add to your `.devcontainer/devcontainer.json`:
 ```json
 {
   "features": {
-    "ghcr.io/helpers4/devcontainer/auto-header:latest": {
+    "ghcr.io/helpers4/devcontainer/auto-header:1": {
       "projectName": "my-awesome-project",
       "license": "MIT",
       "company": "Acme Corp",
@@ -69,7 +74,7 @@ This generates headers like:
 ```json
 {
   "features": {
-    "ghcr.io/helpers4/devcontainer/auto-header:latest": {
+    "ghcr.io/helpers4/devcontainer/auto-header:1": {
       "headerType": "custom",
       "projectName": "my-awesome-project",
       "customHeaderLines": "/**\n * @project my-awesome-project\n * @author Team\n * @license MIT\n */"
@@ -110,7 +115,7 @@ This command:
 ```json
 {
   "features": {
-    "ghcr.io/helpers4/devcontainer/auto-header:latest": {
+    "ghcr.io/helpers4/devcontainer/auto-header:1": {
       "projectName": "helpers4-typescript",
       "license": "LGPL-3.0",
       "company": "helpers4",
@@ -126,7 +131,7 @@ This command:
 ```json
 {
   "features": {
-    "ghcr.io/helpers4/devcontainer/auto-header:latest": {
+    "ghcr.io/helpers4/devcontainer/auto-header:1": {
       "projectName": "enterprise-app",
       "license": "Apache-2.0",
       "company": "ACME Industries",
@@ -141,7 +146,7 @@ This command:
 ```json
 {
   "features": {
-    "ghcr.io/helpers4/devcontainer/auto-header:latest": {
+    "ghcr.io/helpers4/devcontainer/auto-header:1": {
       "headerType": "custom",
       "projectName": "my-lib",
       "license": "LGPL-3.0-or-later",
@@ -181,7 +186,7 @@ Add `postCreateCommand` to auto-initialize:
 ```json
 {
   "features": {
-    "ghcr.io/helpers4/devcontainer/auto-header:latest": {
+    "ghcr.io/helpers4/devcontainer/auto-header:1": {
       "projectName": "my-project",
       "license": "MIT"
     }
@@ -271,6 +276,8 @@ Licensed under LGPL-3.0 - see LICENSE file for details
 
 ## Version History
 
+- **v1.2.0**: Documentation only, no functional change — mentions that `helpers4-common`'s
+  automatic git-config self-heal (see above) now comes along with this feature.
 - **v1.1.0**: Switched from an inline copy of `helpers4-common`'s bootstrap (user detection, apt
   helpers) to a direct `dependsOn` on the `helpers4-common` feature — no behavior change, just a
   single source of truth for that logic instead of a copy every feature had to keep in sync.

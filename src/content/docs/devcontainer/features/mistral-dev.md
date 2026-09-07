@@ -10,6 +10,11 @@ by Mistral out of the box. Credentials and configuration persist in a Docker
 named volume linked into the container — they survive all rebuilds, including
 `--no-cache`, and GitHub Codespaces.
 
+> **Also included automatically:** helpers4's self-heal mechanism, working on both local and
+> cloud containers. It does its best to fix broken paths and a missing commit-signing key, with
+> nothing to set up on your end. It comes from this feature's dependency on `helpers4-common` —
+> you never need to add that feature yourself.
+
 ## Example Usage
 
 ```jsonc
@@ -98,6 +103,8 @@ When `installCli: true`, the `vibe` command is installed at build time via `uv`
 
 ## Version History
 
+- **v1.2.0**: Documentation only, no functional change — mentions that `helpers4-common`'s
+  automatic git-config self-heal (see above) now comes along with this feature.
 - **v1.1.0**: Switched from an inline copy of `helpers4-common`'s bootstrap (user detection, apt
   helpers) to a direct `dependsOn` on the `helpers4-common` feature — no behavior change, just a
   single source of truth for that logic instead of a copy every feature had to keep in sync.

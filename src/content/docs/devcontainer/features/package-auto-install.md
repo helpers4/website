@@ -6,6 +6,11 @@ sidebar:
 
 Automatically detects and runs npm/yarn/pnpm install in non-interactive mode after container creation.
 
+> **Also included automatically:** helpers4's self-heal mechanism, working on both local and
+> cloud containers. It does its best to fix broken paths and a missing commit-signing key, with
+> nothing to set up on your end. It comes from this feature's dependency on `helpers4-common` —
+> you never need to add that feature yourself.
+
 ## Features
 
 - **Automatic detection**: Detects package manager based on lockfile (pnpm-lock.yaml, yarn.lock, package-lock.json)
@@ -157,7 +162,8 @@ For any IDE that does not have a parseable workspace file (Zed, Neovim, etc.) or
 `directories` takes precedence over both `workingDirectory` and `autoDiscover`.
 
 ## How It Works
-Corepack Support (Node 24+)
+
+### Corepack Support (Node 24+)
 
 If your `package.json` contains a `packageManager` field (e.g., `"packageManager": "pnpm@9.0.0"`):
 
@@ -166,9 +172,9 @@ If your `package.json` contains a `packageManager` field (e.g., `"packageManager
 3. Enables corepack with `corepack enable`
 4. Corepack then automatically installs and uses the exact package manager version specified
 
-This is particularly important for Node 24+ where corepack is no longer included by default.
+Node 24+ dropped corepack from the default install, so this step is what makes the
+`packageManager` field still work there without you installing corepack yourself.
 
-### 
 ### Package Manager Detection
 
 The feature detects the package manager in this order:
@@ -244,6 +250,8 @@ You can manually run the installation script:
 
 ## Version History
 
+- **v1.2.0**: Documentation only, no functional change — mentions that `helpers4-common`'s
+  automatic git-config self-heal (see above) now comes along with this feature.
 - **v1.1.0**: Switched from an inline copy of `helpers4-common`'s bootstrap (user detection, apt
   helpers) to a direct `dependsOn` on the `helpers4-common` feature — no behavior change, just a
   single source of truth for that logic instead of a copy every feature had to keep in sync.
