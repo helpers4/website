@@ -1,5 +1,5 @@
 ---
-title: "pnpm Store (pnpm-store)"
+title: "pnpm Store (shared)"
 sidebar:
   order: 17
 ---

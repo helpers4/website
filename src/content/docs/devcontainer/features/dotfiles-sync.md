@@ -1,5 +1,5 @@
 ---
-title: "Dotfiles Sync (dotfiles-sync)"
+title: "Dotfiles Sync"
 sidebar:
   order: 7
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Nub — Fast TypeScript/Node Toolchain (nub)"
+title: "Nub — Fast TypeScript/Node Toolchain"
 sidebar:
   order: 13
 ---

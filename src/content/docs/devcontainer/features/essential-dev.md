@@ -1,5 +1,5 @@
 ---
-title: "Essential Development Environment (essential-dev)"
+title: "Essential Development Environment"
 sidebar:
   order: 8
 ---

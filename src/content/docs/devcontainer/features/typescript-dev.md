@@ -1,5 +1,5 @@
 ---
-title: "TypeScript Development Environment (typescript-dev)"
+title: "TypeScript Development Environment"
 sidebar:
   order: 19
 ---
