@@ -4,6 +4,8 @@ sidebar:
   order: 10
 ---
 
+> Code name: `github-dev`
+
 Installs the **GitHub CLI (`gh`)** and the essential GitHub VS Code **platform** extensions (Pull Requests & Issues, GitHub Actions, RemoteHub). Automatically authenticates `gh` if a token is available in the environment.
 
 > **AI assistant:** For GitHub Copilot Chat and the shared commit-message / PR-description generation instructions, use [`copilot-dev`](../copilot-dev) alongside this feature.

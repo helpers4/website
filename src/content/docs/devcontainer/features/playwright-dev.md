@@ -4,6 +4,8 @@ sidebar:
   order: 16
 ---
 
+> Code name: `playwright-dev`
+
 OS-level dependencies for headless Chromium, Firefox, and WebKit, a browser-binary cache shared across rebuilds via a Docker named volume, and the official Playwright Test VS Code extension — pre-configured so `npx playwright test` and `npx playwright install` just work, without re-downloading browsers on every rebuild.
 
 > **Also included automatically:** helpers4's self-heal mechanism, working on both local and

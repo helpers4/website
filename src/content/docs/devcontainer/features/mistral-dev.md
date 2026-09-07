@@ -4,6 +4,8 @@ sidebar:
   order: 12
 ---
 
+> Code name: `mistral-dev`
+
 Installs the [Mistral Vibe](https://docs.mistral.ai/vibe/code/overview) IDE extension
 across supported editors so every devcontainer gets AI-assisted coding powered
 by Mistral out of the box. Credentials and configuration persist in a Docker

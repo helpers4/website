@@ -4,6 +4,8 @@ sidebar:
   order: 5
 ---
 
+> Code name: `cline-dev`
+
 Installs the [Cline](https://cline.bot) AI coding agent extension for VS Code
 and Cursor, and optionally the `cline` CLI.
 

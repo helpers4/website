@@ -4,6 +4,8 @@ sidebar:
   order: 14
 ---
 
+> Code name: `package-auto-install`
+
 Automatically detects and runs npm/yarn/pnpm install in non-interactive mode after container creation.
 
 > **Also included automatically:** helpers4's self-heal mechanism, working on both local and
