@@ -15,6 +15,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { createSortByStringFn } from 'helpers4/array';
 import { escape } from 'helpers4/markdown';
+import { safeReadJsonFile } from 'helpers4/node';
 import { capitalize, leadingSentence, truncate } from 'helpers4/string';
 import { compare } from 'helpers4/version';
 
@@ -58,14 +59,14 @@ if (!fs.existsSync(buildPath)) {
 // Read bundle metadata (contains mutationDashboardUrl and runtimes for the current release).
 // Read before the wipe below — archiveStableIfMajorBump() needs LIBRARY_VERSION to decide
 // whether the outgoing docs/<product>/ content needs to be archived first.
-const buildMeta = readJson(path.join(buildPath, 'all', 'meta', 'build.json')) ?? {};
+const buildMeta = safeReadJsonFile(path.join(buildPath, 'all', 'meta', 'build.json')) ?? {};
 const FALLBACK_MUTATION_DASHBOARD_URL =
   `https://dashboard.stryker-mutator.io/reports/github.com/helpers4/typescript/${SOURCE_BRANCH}`;
 const MUTATION_DASHBOARD_URL =
   buildMeta.mutationDashboardUrl ?? FALLBACK_MUTATION_DASHBOARD_URL;
 const RUNTIMES = buildMeta.runtimes ?? { node: '>=24.0.0', deno: 'compatible', bun: 'compatible' };
 const LIBRARY_VERSION = buildMeta.version
-  ?? readJson(path.join(typescriptRepoPath, 'package.json'))?.version
+  ?? safeReadJsonFile(path.join(typescriptRepoPath, 'package.json'))?.version
   ?? '0.0.0-snapshot';
 
 // If DOCS_TARGET is the stable root slot (e.g. "typescript", not "typescript/next") and this
@@ -78,14 +79,6 @@ if (fs.existsSync(docsOutputPath)) {
   fs.rmSync(docsOutputPath, { recursive: true });
 }
 fs.mkdirSync(docsOutputPath, { recursive: true });
-
-function readJson(filePath) {
-  try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-  } catch {
-    return null;
-  }
-}
 
 // For plain-text table cells (prose: descriptions, param docs) — full Markdown escaping
 // so stray `_`/`*`/etc. in a sentence don't get misinterpreted as formatting.
@@ -156,7 +149,7 @@ try {
   const nameConflicts = (() => {
     const nameToCategories = {};
     for (const cat of categories) {
-      const api = readJson(path.join(buildPath, cat, 'meta', 'api.json'));
+      const api = safeReadJsonFile(path.join(buildPath, cat, 'meta', 'api.json'));
       if (!api?.functions) continue;
       for (const fn of api.functions) {
         if (!nameToCategories[fn.name]) nameToCategories[fn.name] = [];
@@ -175,10 +168,10 @@ try {
     const categoryDir = path.join(docsOutputPath, category);
     fs.mkdirSync(categoryDir, { recursive: true });
 
-    const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
-    const examples = readJson(path.join(buildPath, category, 'meta', 'examples.json'));
-    const licenses = readJson(path.join(buildPath, category, 'meta', 'licenses.json'));
-    const natives = readJson(path.join(buildPath, category, 'meta', 'native-alternatives.json'));
+    const api = safeReadJsonFile(path.join(buildPath, category, 'meta', 'api.json'));
+    const examples = safeReadJsonFile(path.join(buildPath, category, 'meta', 'examples.json'));
+    const licenses = safeReadJsonFile(path.join(buildPath, category, 'meta', 'licenses.json'));
+    const natives = safeReadJsonFile(path.join(buildPath, category, 'meta', 'native-alternatives.json'));
 
     if (!api) {
       console.warn(`  ⚠ No api.json for ${category}, skipping`);
@@ -450,7 +443,7 @@ function generateLegalDocs(categories) {
   const depMap = new Map(); // name → { dep, categories: string[] }
 
   for (const category of categories) {
-    const licenses = readJson(path.join(buildPath, category, 'meta', 'licenses.json'));
+    const licenses = safeReadJsonFile(path.join(buildPath, category, 'meta', 'licenses.json'));
     if (licenses?.dependencies) {
       for (const dep of licenses.dependencies) {
         if (!depMap.has(dep.name)) {
@@ -505,7 +498,7 @@ function generateAllFunctionsPage(categories) {
   let nativeCount = 0;
 
   for (const category of categories) {
-    const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
+    const api = safeReadJsonFile(path.join(buildPath, category, 'meta', 'api.json'));
     if (!api?.functions) continue;
 
     for (const fn of (api.functions || []).filter(fn => fn.kind === 'function' || fn.kind === 'variable' || fn.kind === 'type' || fn.kind === 'interface')) {
@@ -515,7 +508,7 @@ function generateAllFunctionsPage(categories) {
       });
     }
 
-    const natives = readJson(path.join(buildPath, category, 'meta', 'native-alternatives.json'));
+    const natives = safeReadJsonFile(path.join(buildPath, category, 'meta', 'native-alternatives.json'));
     for (const n of (natives?.functions || [])) {
       rows.push({
         sortKey: n.name.toLowerCase(),
@@ -697,7 +690,7 @@ function generateChangelogPage(categories) {
   const byVersion = {};
 
   for (const category of categories) {
-    const api = readJson(path.join(buildPath, category, 'meta', 'api.json'));
+    const api = safeReadJsonFile(path.join(buildPath, category, 'meta', 'api.json'));
     if (!api?.functions) continue;
 
     for (const fn of (api.functions || []).filter(fn => fn.kind === 'function' || fn.kind === 'variable' || fn.kind === 'type' || fn.kind === 'interface')) {
@@ -1046,7 +1039,7 @@ function copyLlmsFullText() {
 }
 
 function readVersionsManifest() {
-  return readJson(VERSIONS_MANIFEST_PATH) ?? {};
+  return safeReadJsonFile(VERSIONS_MANIFEST_PATH) ?? {};
 }
 
 function writeVersionsManifest(manifest) {
