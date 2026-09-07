@@ -1,5 +1,5 @@
 ---
-title: "git-absorb"
+title: "git absorb — Automatic Fixup Commits"
 sidebar:
   order: 9
 ---

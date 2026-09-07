@@ -1,5 +1,5 @@
 ---
-title: "GitHub Copilot Development Environment (copilot-dev)"
+title: "GitHub Copilot Development Environment"
 sidebar:
   order: 6
 ---

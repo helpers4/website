@@ -1,5 +1,5 @@
 ---
-title: "GitHub Development Environment (github-dev)"
+title: "GitHub Development Environment"
 sidebar:
   order: 10
 ---

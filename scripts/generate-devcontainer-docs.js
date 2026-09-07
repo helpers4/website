@@ -21,6 +21,14 @@ const docsOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'devcontaine
 const deprecatedOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'devcontainer', 'deprecated');
 const deprecatedSourcePath = path.join(devcontainerRepoPath, 'deprecated');
 
+function readJson(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  } catch {
+    return null;
+  }
+}
+
 console.log('📚 Generating DevContainer feature documentation...\n');
 
 // Check if devcontainer repo exists
@@ -73,6 +81,7 @@ try {
 
   for (const [index, feature] of activeFeatures.entries()) {
     const featureReadme = path.join(featuresPath, feature, 'README.md');
+    const featureManifest = path.join(featuresPath, feature, 'devcontainer-feature.json');
     const docsPath = path.join(docsOutputPath, `${feature}.md`);
 
     if (fs.existsSync(featureReadme)) {
@@ -81,12 +90,21 @@ try {
       // Strip HTML license comment if present
       content = content.replace(/^<!--[\s\S]*?-->\n\n?/, '');
 
-      // Extract H1 for frontmatter title and remove it from the body
+      // Extract H1 to remove it from the body — Starlight already renders the frontmatter
+      // title as the page heading, so a duplicate H1 in the body would show twice.
       const h1Match = content.match(/^# (.+)$/m);
-      const title = h1Match ? h1Match[1].trim() : feature;
       if (h1Match) {
         content = content.replace(/^# .+\n?/m, '').replace(/^\n/, '');
       }
+
+      // Title (and sidebar label, since none is set below) comes from the feature's own
+      // "name" — the Dev Container Feature spec's canonical display name — rather than the
+      // README's H1, so the two can never drift apart into inconsistent sidebar labels.
+      // Falls back to the H1 text, then the feature id, only if "name" is somehow missing.
+      const manifestName = fs.existsSync(featureManifest)
+        ? readJson(featureManifest)?.name
+        : undefined;
+      const title = manifestName || (h1Match ? h1Match[1].trim() : feature);
 
       // Fix cross-feature relative links for the website:
       // ../featureName/README.md → ../featureName/

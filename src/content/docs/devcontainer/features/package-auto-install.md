@@ -1,5 +1,5 @@
 ---
-title: "Automatic Package Installation (package-auto-install)"
+title: "Automatic Package Installation"
 sidebar:
   order: 14
 ---

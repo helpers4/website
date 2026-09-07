@@ -1,5 +1,5 @@
 ---
-title: "Mistral Vibe Development Environment (mistral-dev)"
+title: "Mistral Vibe Development Environment"
 sidebar:
   order: 12
 ---

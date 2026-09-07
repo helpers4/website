@@ -1,5 +1,5 @@
 ---
-title: "Angular Development Environment (angular-dev)"
+title: "Angular Development Environment"
 sidebar:
   order: 1
 ---

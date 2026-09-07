@@ -1,5 +1,5 @@
 ---
-title: "Cline Development Environment (cline-dev)"
+title: "Cline Development Environment"
 sidebar:
   order: 5
 ---

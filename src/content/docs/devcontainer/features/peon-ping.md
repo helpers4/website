@@ -1,5 +1,5 @@
 ---
-title: "Peon Ping — AI Agent Sound Notifications (peon-ping)"
+title: "Peon Ping — AI Agent Sound Notifications"
 sidebar:
   order: 15
 ---

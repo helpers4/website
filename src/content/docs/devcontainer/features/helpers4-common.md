@@ -1,5 +1,5 @@
 ---
-title: "helpers4-common"
+title: "helpers4 Common Library"
 sidebar:
   order: 11
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Vite+ Development Environment (vite-plus)"
+title: "Vite+ Development Environment"
 sidebar:
   order: 20
 ---

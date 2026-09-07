@@ -1,5 +1,5 @@
 ---
-title: "Playwright Development Environment (playwright-dev)"
+title: "Playwright Development Environment"
 sidebar:
   order: 16
 ---

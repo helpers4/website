@@ -1,5 +1,5 @@
 ---
-title: "Claude Code Development Environment (claude-dev)"
+title: "Claude Code Development Environment"
 sidebar:
   order: 4
 ---
