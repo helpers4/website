@@ -13,6 +13,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { safeReadJsonFile } from 'helpers4/node';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
@@ -20,14 +21,6 @@ const devcontainerRepoPath = path.join(rootDir, '..', 'devcontainer');
 const docsOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'devcontainer', 'features');
 const deprecatedOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'devcontainer', 'deprecated');
 const deprecatedSourcePath = path.join(devcontainerRepoPath, 'deprecated');
-
-function readJson(filePath) {
-  try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-  } catch {
-    return null;
-  }
-}
 
 console.log('📚 Generating DevContainer feature documentation...\n');
 
@@ -102,7 +95,7 @@ try {
       // README's H1, so the two can never drift apart into inconsistent sidebar labels.
       // Falls back to the H1 text, then the feature id, only if "name" is somehow missing.
       const manifestName = fs.existsSync(featureManifest)
-        ? readJson(featureManifest)?.name
+        ? safeReadJsonFile(featureManifest)?.name
         : undefined;
       const title = manifestName || (h1Match ? h1Match[1].trim() : feature);
 
