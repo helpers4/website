@@ -4,6 +4,8 @@ sidebar:
   order: 8
 ---
 
+> Code name: `essential-dev`
+
 Core development environment with Git integration, GitHub Copilot, Markdown support, and essential editor enhancements. Perfect base for all development projects.
 
 > **Also included automatically:** helpers4's self-heal mechanism, working on both local and
