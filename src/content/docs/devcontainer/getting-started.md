@@ -89,6 +89,13 @@ and options.
 Retired features (e.g. `local-mounts`) are kept for reference under [Deprecated](./deprecated/local-mounts/) — don't install them in new projects.
 :::
 
+## Automatic Extras
+
+Most of the features above also fix a class of container-specific problems automatically —
+like a Git config value copied from your host that doesn't resolve inside the container.
+Nothing to install or configure — see [Automatic Extras](./reference/automatic-extras/) for
+what runs and which features include it.
+
 ## Combining Features
 
 Mix multiple features for your perfect environment:

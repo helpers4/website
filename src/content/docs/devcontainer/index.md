@@ -14,17 +14,11 @@ Plug-and-play development container features — consistent environments, zero s
 
 ## Available Features
 
-| Feature | Description |
-|---------|-------------|
-| [essential-dev](./features/essential-dev) | Git visualization, editor enhancements, Markdown |
-| [typescript-dev](./features/typescript-dev) | TypeScript/JS dev with import management |
-| [angular-dev](./features/angular-dev) | Angular dev, port 4200 forwarding |
-| [vite-plus](./features/vite-plus) | Vite development setup |
-| [package-auto-install](./features/package-auto-install) | Auto-detect and install packages |
-| [git-absorb](./features/git-absorb) | `git absorb` from GitHub releases |
-| [shell-history-per-project](./features/shell-history-per-project) | Persistent shell history per project |
-| [dotfiles-sync](./features/dotfiles-sync) | Sync local Git/SSH/GPG/npm config |
-| [peon-ping](./features/peon-ping) | Health check endpoint |
+20 features covering AI coding agents, editor & Git tooling, language toolchains, caching, and
+secrets — see the full list, grouped by purpose, on [Getting Started](./getting-started/#available-features).
+
+Most of them also come with [Automatic Extras](./reference/automatic-extras/) — container-specific
+fixes (like a Git config value copied from your host) applied with nothing to configure.
 
 ## Installation
 
