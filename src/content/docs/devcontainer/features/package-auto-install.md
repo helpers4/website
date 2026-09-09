@@ -1,7 +1,7 @@
 ---
 title: "Automatic Package Installation"
 sidebar:
-  order: 14
+  order: 15
 ---
 
 > Code name: `package-auto-install`

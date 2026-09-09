@@ -1,7 +1,7 @@
 ---
 title: "TypeScript Development Environment"
 sidebar:
-  order: 19
+  order: 20
 ---
 
 > Code name: `typescript-dev`

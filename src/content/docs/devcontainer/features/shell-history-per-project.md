@@ -1,7 +1,7 @@
 ---
 title: "Shell History Per Project"
 sidebar:
-  order: 18
+  order: 19
 ---
 
 > Code name: `shell-history-per-project`
