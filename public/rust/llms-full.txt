@@ -1,0 +1,1023 @@
+# helpers4 (Rust) — full reference, version 0.0.2
+
+> Every public item of the `helpers4` crate with its signature, documentation and examples.
+> The examples are doctests that run in the crate's CI: treat them as verified usage.
+> Import through the module path; names repeat across modules on purpose.
+
+## Module `array` (Cargo feature `array`)
+
+Helpers for slices and `Vec`s that the standard library does not provide.
+
+Inputs are borrowed slices and results are new `Vec`s: nothing is mutated. Membership-based
+helpers require `Eq + Hash`.
+
+### array::cartesian_product
+
+```rust
+pub fn cartesian_product<A: Clone, B: Clone>(a: &[A], b: &[B]) -> Vec<(A, B)>
+```
+
+Returns every pair `(x, y)` with `x` from `a` and `y` from `b`, in row-major order.
+
+For more than two inputs, nest the calls.
+
+#### Examples
+
+```rust
+use helpers4::array::cartesian_product;
+
+assert_eq!(
+    cartesian_product(&[1, 2], &['a', 'b']),
+    vec![(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')]
+);
+```
+
+### array::count_by
+
+```rust
+pub fn count_by<T, K: Eq + Hash>(items: &[T], mut key: impl FnMut(&T) -> K) -> HashMap<K, usize>
+```
+
+Counts the elements of `items` per key returned by `key`.
+
+#### Examples
+
+```rust
+use helpers4::array::count_by;
+
+let counts = count_by(&[1, 2, 3, 4, 5], |n| if n % 2 == 0 { "even" } else { "odd" });
+assert_eq!(counts["odd"], 3);
+assert_eq!(counts["even"], 2);
+```
+
+### array::difference
+
+```rust
+pub fn difference<T: Clone + Eq + Hash>(a: &[T], b: &[T]) -> Vec<T>
+```
+
+Returns the elements of `a` that are not in `b`, in `a`'s order.
+
+Duplicates in `a` are kept: only membership in `b` decides whether an element stays.
+
+#### Examples
+
+```rust
+use helpers4::array::difference;
+
+assert_eq!(difference(&[1, 2, 3, 2], &[2]), vec![1, 3]);
+assert_eq!(difference(&[1, 1, 2], &[3]), vec![1, 1, 2]);
+```
+
+### array::equals_unordered
+
+```rust
+pub fn equals_unordered<T: Eq + Hash>(a: &[T], b: &[T]) -> bool
+```
+
+Returns `true` when `a` and `b` hold the same elements the same number of times, in any order.
+
+Use it for collections where order is meaningless (tags, ids). For positional equality,
+compare the slices with `==`.
+
+#### Examples
+
+```rust
+use helpers4::array::equals_unordered;
+
+assert!(equals_unordered(&[1, 2, 2, 3], &[3, 2, 1, 2]));
+assert!(!equals_unordered(&[1, 2, 2], &[1, 1, 2]));
+```
+
+### array::group_by
+
+```rust
+pub fn group_by<T: Clone, K: Eq + Hash>(
+    items: &[T],
+    mut key: impl FnMut(&T) -> K,
+) -> HashMap<K, Vec<T>>
+```
+
+Groups the elements of `items` by the key returned by `key`.
+
+Within each group, elements keep their original order. The order of the groups themselves is
+unspecified (`HashMap`).
+
+#### Examples
+
+```rust
+use helpers4::array::group_by;
+
+let groups = group_by(&[1, 2, 3, 4, 5], |n| n % 2 == 0);
+assert_eq!(groups[&true], vec![2, 4]);
+assert_eq!(groups[&false], vec![1, 3, 5]);
+```
+
+### array::intersection
+
+```rust
+pub fn intersection<T: Clone + Eq + Hash>(a: &[T], b: &[T]) -> Vec<T>
+```
+
+Returns the elements of `a` that also appear in `b`, in `a`'s order.
+
+Duplicates in `a` are kept: only membership in `b` decides whether an element stays.
+
+#### Examples
+
+```rust
+use helpers4::array::intersection;
+
+assert_eq!(intersection(&[1, 2, 3, 2], &[2, 3, 4]), vec![2, 3, 2]);
+assert_eq!(intersection(&[1], &[2]), Vec::<i32>::new());
+```
+
+### array::intersects
+
+```rust
+pub fn intersects<T: Eq + Hash>(a: &[T], b: &[T]) -> bool
+```
+
+Returns `true` when `a` and `b` share at least one element.
+
+#### Examples
+
+```rust
+use helpers4::array::intersects;
+
+assert!(intersects(&[1, 2, 3], &[3, 4]));
+assert!(!intersects(&[1, 2], &[3, 4]));
+```
+
+### array::symmetric_difference
+
+```rust
+pub fn symmetric_difference<T: Clone + Eq + Hash>(a: &[T], b: &[T]) -> Vec<T>
+```
+
+Returns the elements present in exactly one of `a` and `b`.
+
+The result is the elements of `a` missing from `b` (in `a`'s order), followed by the elements
+of `b` missing from `a` (in `b`'s order). Duplicates are kept.
+
+#### Examples
+
+```rust
+use helpers4::array::symmetric_difference;
+
+assert_eq!(symmetric_difference(&[1, 2, 3], &[2, 3, 4]), vec![1, 4]);
+```
+
+### array::unique
+
+```rust
+pub fn unique<T: Clone + Eq + Hash>(items: &[T]) -> Vec<T>
+```
+
+Removes duplicate values, keeping the first occurrence of each and the original order.
+
+#### Examples
+
+```rust
+use helpers4::array::unique;
+
+assert_eq!(unique(&[1, 2, 1, 3, 2]), vec![1, 2, 3]);
+assert_eq!(unique::<i32>(&[]), Vec::<i32>::new());
+```
+
+### array::unique_by
+
+```rust
+pub fn unique_by<T: Clone, K: Eq + Hash>(items: &[T], mut key: impl FnMut(&T) -> K) -> Vec<T>
+```
+
+Removes elements whose `key` was already seen, keeping the first of each key in order.
+
+#### Examples
+
+```rust
+use helpers4::array::unique_by;
+
+let words = ["apple", "avocado", "banana", "blueberry", "cherry"];
+assert_eq!(
+    unique_by(&words, |w| w.chars().next()),
+    vec!["apple", "banana", "cherry"]
+);
+```
+
+## Module `cache` (Cargo feature `cache`)
+
+Caches and stores whose entries expire. The clock is always passed in, never read.
+
+### cache::ExpiringMap
+
+```rust
+pub struct ExpiringMap<K, V, T = u64> { /* private fields */ }
+```
+
+A map whose entries expire, with the clock passed in by the caller.
+
+Nothing here reads a clock, so it is trivially testable and works with any timestamp: pass
+unix seconds (`u64`, e.g. the `exp` of a token), milliseconds, or an `Instant`. An entry is
+live while `now < expires_at`. Expired entries are dropped lazily: every write sweeps them, so
+the map only grows with the entries inserted inside one lifetime window (a replay-protection
+store keyed by token id, a cache of pending challenges, ...).
+
+The sweep is skipped in constant time while nothing can have expired yet, and is a single pass
+otherwise. `len` counts entries still stored, expired or not, until the next write sweeps them:
+call `evict_expired` first when comparing it to a threshold.
+
+There is **no capacity bound**. If the keys come from untrusted input and their lifetimes are
+long, the number of live entries is only limited by the insert rate times the lifetime: bound
+it yourself (reject or rate-limit inserts) when that matters.
+
+#### Examples
+
+```rust
+use helpers4::cache::ExpiringMap;
+
+let mut seen: ExpiringMap<&str, (), u64> = ExpiringMap::new();
+let now = 1_000;
+
+// First use of a token id, valid until t = 1_060: accepted.
+assert!(seen.insert_if_absent("jti-1", (), 1_060, now));
+// The same id again while it is live: a replay.
+assert!(!seen.insert_if_absent("jti-1", (), 1_060, now + 10));
+// Once it has expired it can be used (and remembered) again.
+assert!(seen.insert_if_absent("jti-1", (), 1_200, 1_060));
+```
+
+#### ExpiringMap::new
+
+```rust
+pub fn new() -> Self
+```
+
+Creates an empty map.
+
+#### ExpiringMap::len
+
+```rust
+pub fn len(&self) -> usize
+```
+
+The number of stored entries, including expired ones that no write has swept yet.
+
+#### ExpiringMap::is_empty
+
+```rust
+pub fn is_empty(&self) -> bool
+```
+
+Whether nothing is stored (see `len`).
+
+#### ExpiringMap::clear
+
+```rust
+pub fn clear(&mut self)
+```
+
+Removes every entry, expired or not.
+
+#### ExpiringMap::insert
+
+```rust
+pub fn insert(&mut self, key: K, value: V, expires_at: T, now: T) -> Option<V>
+```
+
+Stores `value` under `key` until `expires_at`, replacing any live entry, and returns the
+replaced value. Expired entries are swept first. An `expires_at` that is not after `now`
+expires immediately.
+
+#### ExpiringMap::insert_if_absent
+
+```rust
+pub fn insert_if_absent(&mut self, key: K, value: V, expires_at: T, now: T) -> bool
+```
+
+Stores `value` under `key` only if there is no live entry for it, and returns whether it
+did. This is the replay check: `false` means the key was already seen and is still live.
+Expired entries are swept first.
+
+#### ExpiringMap::get
+
+```rust
+pub fn get(&self, key: &K, now: T) -> Option<&V>
+```
+
+The live value under `key`, or `None` if absent or expired at `now`.
+
+#### ExpiringMap::contains_key
+
+```rust
+pub fn contains_key(&self, key: &K, now: T) -> bool
+```
+
+Whether there is a live entry under `key` at `now`.
+
+#### ExpiringMap::remove
+
+```rust
+pub fn remove(&mut self, key: &K, now: T) -> Option<V>
+```
+
+Removes `key` and returns its value if it was still live at `now`.
+
+#### ExpiringMap::evict_expired
+
+```rust
+pub fn evict_expired(&mut self, now: T) -> usize
+```
+
+Drops every entry that has expired at `now` and returns how many. Writes do this already;
+call it directly to release memory while nothing is being written.
+
+### cache::ExpiringSet
+
+```rust
+pub type ExpiringSet<K, T = u64> = ExpiringMap<K, (), T>
+```
+
+A set whose members expire: an `ExpiringMap` without values.
+
+## Module `env` (Cargo feature `env`)
+
+Dotenv (`.env`) helpers working on plain text: no file or process-environment access, so
+they are deterministic and easy to test. Read the file yourself, edit the content here, and
+write it back.
+
+### env::InvalidKeyError
+
+```rust
+pub struct InvalidKeyError { /* private fields */ }
+```
+
+The variable name passed to `set` is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
+
+#### InvalidKeyError::key
+
+```rust
+pub fn key(&self) -> &str
+```
+
+The rejected name.
+
+### env::get
+
+```rust
+pub fn get(content: &str, key: &str) -> Option<String>
+```
+
+Returns the value of `key` in dotenv `content`, or `None` when it is not assigned.
+
+When a key is assigned more than once the last assignment wins, like a shell sourcing the
+file. See `parse` for the accepted syntax.
+
+#### Examples
+
+```rust
+use helpers4::env::get;
+
+let content = "HOST=localhost\nPORT=80\nPORT=8080\n";
+assert_eq!(get(content, "PORT").as_deref(), Some("8080"));
+assert_eq!(get(content, "MISSING"), None);
+```
+
+### env::parse
+
+```rust
+pub fn parse(content: &str) -> Vec<(String, String)>
+```
+
+Parses dotenv `content` into `(key, value)` pairs, in file order.
+
+Blank lines, `#` comments and lines that are not valid `KEY=value` assignments are skipped.
+Supported: an optional `export ` prefix, bare values (a `#` after whitespace starts a
+comment), `"double quoted"` values with `\n \r \t \" \\` escapes and `'single quoted'`
+literals. Values are single-line. A key assigned twice appears twice.
+
+#### Examples
+
+```rust
+use helpers4::env::parse;
+
+let vars = parse("# comment\nHOST=localhost\nexport NAME=\"my app\"  # trailing\n");
+assert_eq!(
+    vars,
+    vec![
+        ("HOST".to_string(), "localhost".to_string()),
+        ("NAME".to_string(), "my app".to_string()),
+    ]
+);
+```
+
+### env::remove
+
+```rust
+pub fn remove(content: &str, key: &str) -> String
+```
+
+Removes every assignment of `key` from dotenv `content` and returns the new content.
+
+Comments, blank lines and other variables are left untouched. Removing a key that is not
+assigned returns the content unchanged.
+
+#### Examples
+
+```rust
+use helpers4::env::remove;
+
+assert_eq!(remove("A=1\nB=2\nA=3\n", "A"), "B=2\n");
+```
+
+### env::set
+
+```rust
+pub fn set(content: &str, key: &str, value: &str) -> Result<String, InvalidKeyError>
+```
+
+Sets `key` to `value` in dotenv `content` and returns the new content.
+
+The first existing assignment of `key` is replaced in place and any later ones are dropped;
+when there is none, a new line is appended. Every other line (comments, blank lines, other
+variables) is left untouched, and the replaced line keeps its line ending. `value` is quoted
+and escaped only when needed, so `get` reads it back exactly.
+
+#### Errors
+
+Returns `InvalidKeyError` when `key` is not `[A-Za-z_][A-Za-z0-9_]*`.
+
+#### Examples
+
+```rust
+use helpers4::env::set;
+
+let updated = set("# config\nHOST=old\nPORT=80\n", "HOST", "example.com")?;
+assert_eq!(updated, "# config\nHOST=example.com\nPORT=80\n");
+
+assert_eq!(set("A=1\n", "B", "two words")?, "A=1\nB=\"two words\"\n");
+```
+
+## Module `hex` (Cargo feature `hex`)
+
+Hexadecimal encoding and decoding with typed errors.
+
+Decoding accepts either case and rejects anything that is not pairs of hex digits, so trim
+whitespace and strip `0x` prefixes before calling it.
+
+### hex::decode
+
+```rust
+pub fn decode(hex: &str) -> Result<Vec<u8>, DecodeError>
+```
+
+Decodes a hexadecimal string (either case) into bytes.
+
+The string must be made of digit pairs only: surrounding whitespace, a `0x` prefix or
+separators are errors, so trim or strip them first.
+
+#### Errors
+
+`DecodeError::OddLength` for an odd number of characters, `DecodeError::InvalidChar` for
+a character that is not a hex digit.
+
+#### Examples
+
+```rust
+use helpers4::hex::decode;
+
+assert_eq!(decode("DeadBeef")?, vec![0xde, 0xad, 0xbe, 0xef]);
+assert!(decode("abc").is_err());
+```
+
+### hex::decode_array
+
+```rust
+pub fn decode_array<const N: usize>(hex: &str) -> Result<[u8; N], DecodeError>
+```
+
+Decodes a hexadecimal string into a fixed-size array, e.g. a 32-byte key from 64 hex digits.
+
+#### Errors
+
+Same as `decode_to_slice`: the string must have exactly `2 * N`
+hex digits.
+
+#### Examples
+
+```rust
+use helpers4::hex::decode_array;
+
+let key: [u8; 4] = decode_array("deadbeef")?;
+assert_eq!(key, [0xde, 0xad, 0xbe, 0xef]);
+assert!(decode_array::<4>("dead").is_err());
+```
+
+### hex::decode_to_slice
+
+```rust
+pub fn decode_to_slice(hex: &str, out: &mut [u8]) -> Result<(), DecodeError>
+```
+
+Decodes a hexadecimal string into `out`, which must be exactly half as long as the string.
+
+Nothing is allocated; on error `out` may be partially written.
+
+#### Errors
+
+`DecodeError::OddLength`, `DecodeError::InvalidLength` when the string does not match
+`out.len() * 2`, or `DecodeError::InvalidChar`.
+
+#### Examples
+
+```rust
+use helpers4::hex::decode_to_slice;
+
+let mut buf = [0u8; 2];
+decode_to_slice("beef", &mut buf)?;
+assert_eq!(buf, [0xbe, 0xef]);
+```
+
+### hex::encode
+
+```rust
+pub fn encode(bytes: &[u8]) -> String
+```
+
+Encodes `bytes` as lowercase hexadecimal.
+
+#### Examples
+
+```rust
+use helpers4::hex::encode;
+
+assert_eq!(encode(&[0xde, 0xad, 0xbe, 0xef]), "deadbeef");
+assert_eq!(encode(&[]), "");
+```
+
+### hex::encode_upper
+
+```rust
+pub fn encode_upper(bytes: &[u8]) -> String
+```
+
+Encodes `bytes` as uppercase hexadecimal.
+
+#### Examples
+
+```rust
+use helpers4::hex::encode_upper;
+
+assert_eq!(encode_upper(&[0xde, 0xad, 0xbe, 0xef]), "DEADBEEF");
+```
+
+### hex::DecodeError
+
+```rust
+#[non_exhaustive]
+pub enum DecodeError {
+    /// The string has an odd number of characters.
+    OddLength,
+    /// The string does not match the requested output size.
+    InvalidLength {
+        /// Expected number of hex characters (twice the output size).
+        expected: usize,
+        /// Actual number of hex characters.
+        actual: usize,
+    },
+    /// A character that is not a hexadecimal digit.
+    InvalidChar {
+        /// Byte offset of the character in the input.
+        index: usize,
+        /// The offending character.
+        found: char,
+    },
+}
+```
+
+Why a string could not be decoded as hexadecimal.
+
+## Module `http` (Cargo feature `http`)
+
+HTTP header value helpers on plain text: no dependency on an HTTP crate.
+
+### http::bearer_token
+
+```rust
+pub fn bearer_token(header: &str) -> Option<&str>
+```
+
+Extracts the token from an `Authorization: Bearer <token>` header value.
+
+Follows RFC 7235 and RFC 6750: the scheme name is case-insensitive, it is followed by one or
+more spaces, and the token is a non-empty `b64token` (letters, digits and `-` `.` `_` `~` `+`
+`/`, optionally ending with `=` padding). Leading and trailing spaces or tabs around the whole
+value are ignored. Anything else, including another scheme or an empty token, gives `None`.
+
+Only the syntax is checked: whether the token is valid is up to the caller.
+
+#### Examples
+
+```rust
+use helpers4::http::bearer_token;
+
+assert_eq!(bearer_token("Bearer abc.def-123"), Some("abc.def-123"));
+assert_eq!(bearer_token("bearer   abc"), Some("abc"));
+assert_eq!(bearer_token("Basic dXNlcjpwYXNz"), None);
+assert_eq!(bearer_token("Bearer "), None);
+```
+
+## Module `net` (Cargo feature `net`)
+
+Network helpers on `std::net` and plain text: no I/O, no resolution.
+
+### net::HostnameError
+
+```rust
+#[non_exhaustive]
+pub enum HostnameError {
+    /// The string is empty.
+    Empty,
+    /// The name is longer than 253 octets (not counting an optional trailing dot).
+    TooLong,
+    /// A label is empty: a leading dot, two consecutive dots, or a lone `"."`.
+    EmptyLabel,
+    /// A label is longer than 63 octets.
+    LabelTooLong,
+    /// A character other than an ASCII letter, digit or hyphen.
+    InvalidChar {
+        /// Byte offset of the character in the input.
+        index: usize,
+        /// The offending character.
+        found: char,
+    },
+    /// A label starts or ends with a hyphen.
+    HyphenEdge,
+    /// The last label is a number (`127.1`, `2130706433`, `0x7f`): URL parsers read such a name as
+    /// an IPv4 address, not as a hostname.
+    NumericLastLabel,
+}
+```
+
+Why a string is not a valid hostname (see `is_valid_hostname`).
+
+### net::is_public_ip
+
+```rust
+pub fn is_public_ip(ip: IpAddr) -> bool
+```
+
+Returns `true` when `ip` is a globally reachable unicast address, `false` for everything
+that is loopback, private, link-local, shared, documentation, reserved or otherwise not on the
+public internet.
+
+It is meant as the address check of an SSRF guard (a server that fetches user-supplied URLs).
+The guarantee is one-sided: **no address that the IANA special-purpose registries mark as not
+globally reachable is reported public**. Where a block is refused as a whole and the registry
+carves a reachable piece out of it, the whole block is refused on purpose.
+
+- **IPv4** is refused when it falls in any block of the IANA IPv4 special-purpose registry
+  that is not globally reachable: `0.0.0.0/8`, `10.0.0.0/8`, `100.64.0.0/10` (shared address
+  space, e.g. carrier-grade NAT and Tailscale), `127.0.0.0/8`, `169.254.0.0/16` (link-local,
+  including the cloud metadata address), `172.16.0.0/12`, `192.0.0.0/24` (including the two
+  anycast addresses `192.0.0.9` and `192.0.0.10` that the registry lists as reachable),
+  `192.0.2.0/24`, `192.88.99.0/24`, `192.168.0.0/16`, `198.18.0.0/15`, `198.51.100.0/24`,
+  `203.0.113.0/24`, and `224.0.0.0/3` (multicast, reserved and broadcast).
+- **IPv6** is only accepted inside the global unicast space `2000::/3`, minus `2001::/23`
+  (IETF assignments, including Teredo), `2001:db8::/32` and `3fff::/20` (documentation, RFC
+  9637) and `2002::/16` (6to4). Loopback, unspecified, unique-local, link-local, multicast and
+  the deprecated IPv4-compatible `::a.b.c.d` form are all outside `2000::/3`. Everything else
+  inside `2000::/3` is accepted, **including blocks IANA holds in reserve** (`2d00::/8` to
+  `3e00::/8`, `3f00::/9` to `3ffe::/16`): nothing is routed there today, and IANA keeps
+  allocating out of this space, so a block delegated tomorrow must not start failing the guard.
+- **Embedded IPv4** is judged by the IPv4 rules: an IPv4-mapped address (`::ffff:a.b.c.d`) and
+  an address under the NAT64 well-known prefix (`64:ff9b::/96`) are public exactly when the
+  IPv4 address inside is. 6to4 addresses are refused outright.
+
+#### What this check cannot know
+
+This is only one half of an SSRF defence.
+
+- **The address that is really used.** Resolve the name once, validate that address, and
+  connect to it (not to the name again, which invites DNS rebinding), and validate every
+  redirect target the same way.
+- **What is not an IP literal to `std`.** Spellings such as `2130706433`, `0x7f.1` or
+  `127.1` do not parse as an `IpAddr`, yet a URL parser reads them as `127.0.0.1`. Parse the
+  URL first and pass the address it produces here (see also
+  `is_valid_hostname`, which rejects them).
+- **Provider-specific addresses inside a public range.** A registry cannot say that, for
+  example, Azure's wire server `168.63.129.16` is internal: it is reported public.
+
+#### Examples
+
+```rust
+use helpers4::net::is_public_ip;
+
+assert!(is_public_ip("8.8.8.8".parse().unwrap()));
+assert!(is_public_ip("2606:4700:4700::1111".parse().unwrap()));
+
+assert!(!is_public_ip("169.254.169.254".parse().unwrap())); // cloud metadata
+assert!(!is_public_ip("::1".parse().unwrap()));
+assert!(!is_public_ip("::ffff:10.0.0.1".parse().unwrap())); // private, in IPv6 clothes
+```
+
+### net::is_valid_hostname
+
+```rust
+pub fn is_valid_hostname(hostname: &str) -> Result<(), HostnameError>
+```
+
+Checks that `hostname` is a valid hostname (RFC 1035 and RFC 1123, ASCII only).
+
+The rules: at most 253 octets, not counting one optional trailing dot; labels of 1 to 63
+octets made of ASCII letters, digits and hyphens; no label starts or ends with a hyphen. A
+label may start with a digit, but the **last** label may not be a number (decimal like `1`, or
+hexadecimal like `0x7f`): RFC 1123 section 2.1 keeps the top-level label alphabetic so that a
+hostname is never mistaken for an address, and URL parsers do read `127.1`, `2130706433` or
+`0x7f000001` as `127.0.0.1`. Underscores are refused (they are not hostname characters), and so
+are non-ASCII characters: convert an internationalized name to its `xn--` form first.
+
+This checks syntax only. It is not an SSRF check: a name that passes can still resolve to a
+private address. To guard a server that fetches user-supplied URLs, parse the URL first, then
+check the address you will actually connect to with
+`is_public_ip`.
+
+#### Errors
+
+A `HostnameError` naming the first rule that fails.
+
+#### Examples
+
+```rust
+use helpers4::net::{is_valid_hostname, HostnameError};
+
+assert!(is_valid_hostname("example.com").is_ok());
+assert!(is_valid_hostname("localhost.").is_ok());
+assert_eq!(is_valid_hostname("-bad.example"), Err(HostnameError::HyphenEdge));
+assert_eq!(is_valid_hostname("a..b"), Err(HostnameError::EmptyLabel));
+assert_eq!(is_valid_hostname("127.0.0.1"), Err(HostnameError::NumericLastLabel));
+```
+
+## Module `string` (Cargo feature `string`)
+
+String manipulation and formatting helpers.
+
+### string::camel_case
+
+```rust
+pub fn camel_case(s: &str) -> String
+```
+
+Converts `s` to `camelCase`.
+
+Words are split on any non-alphanumeric character and on case boundaries; an embedded run
+of capitals is an acronym, so only its last letter starts the next word (`userID` becomes
+`userId`).
+
+#### Examples
+
+```rust
+use helpers4::string::camel_case;
+
+assert_eq!(camel_case("hello-world"), "helloWorld");
+assert_eq!(camel_case("user_name"), "userName");
+assert_eq!(camel_case("userID"), "userId");
+assert_eq!(camel_case(""), "");
+```
+
+### string::capitalize
+
+```rust
+pub fn capitalize(s: &str) -> String
+```
+
+Uppercases the first character of `s` and leaves the rest untouched.
+
+Unicode-aware: a character whose uppercase form is several characters
+(`ß` -> `SS`) is expanded accordingly.
+
+#### Examples
+
+```rust
+use helpers4::string::capitalize;
+
+assert_eq!(capitalize("hello world"), "Hello world");
+assert_eq!(capitalize(""), "");
+```
+
+### string::dedent
+
+```rust
+pub fn dedent(s: &str) -> String
+```
+
+Strips the indentation shared by every non-blank line of `s`, and drops one leading and one
+trailing blank line.
+
+Lets a multi-line string literal be indented with the surrounding code without that
+indentation leaking into the value. Indentation is counted in whitespace characters, and
+lines are split on `'\n'` only (a `'\r'` stays on its line).
+
+#### Examples
+
+```rust
+use helpers4::string::dedent;
+
+assert_eq!(dedent("\n    Hello\n      World\n"), "Hello\n  World");
+assert_eq!(dedent("  a\n  b"), "a\nb");
+```
+
+### string::escape_html
+
+```rust
+pub fn escape_html(s: &str) -> Cow<'_, str>
+```
+
+Escapes the HTML special characters `&`, `<`, `>`, `"` and `'`.
+
+Returns the input borrowed, without allocating, when there is nothing to escape. Use it to
+embed untrusted text in HTML text nodes or quoted attribute values.
+
+#### Examples
+
+```rust
+use helpers4::string::escape_html;
+
+assert_eq!(
+    escape_html("<script>alert(\"xss\")</script>"),
+    "&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;"
+);
+assert_eq!(escape_html("It's a <test> & more"), "It&#39;s a &lt;test&gt; &amp; more");
+assert_eq!(escape_html("plain"), "plain");
+```
+
+### string::kebab_case
+
+```rust
+pub fn kebab_case(s: &str) -> String
+```
+
+Converts `s` to `kebab-case`.
+
+Splits words the same way as `camel_case`.
+
+#### Examples
+
+```rust
+use helpers4::string::kebab_case;
+
+assert_eq!(kebab_case("helloWorld"), "hello-world");
+assert_eq!(kebab_case("user_name"), "user-name");
+assert_eq!(kebab_case(""), "");
+```
+
+### string::pascal_case
+
+```rust
+pub fn pascal_case(s: &str) -> String
+```
+
+Converts `s` to `PascalCase`.
+
+Splits words the same way as `camel_case`.
+
+#### Examples
+
+```rust
+use helpers4::string::pascal_case;
+
+assert_eq!(pascal_case("hello-world"), "HelloWorld");
+assert_eq!(pascal_case("user_name"), "UserName");
+assert_eq!(pascal_case(""), "");
+```
+
+### string::slugify
+
+```rust
+pub fn slugify(s: &str) -> String
+```
+
+Converts `s` into a lowercase, hyphen-separated slug safe for URLs.
+
+Letters and digits (Unicode included) are kept and lowercased, apostrophes are dropped, and
+every other run of characters becomes a single hyphen; leading and trailing hyphens are
+never produced. Diacritics are **not** stripped: `"café"` stays `"café"`.
+
+#### Examples
+
+```rust
+use helpers4::string::slugify;
+
+assert_eq!(slugify("Hello World!"), "hello-world");
+assert_eq!(slugify("  It's  a --- test "), "its-a-test");
+assert_eq!(slugify("!!!"), "");
+```
+
+### string::snake_case
+
+```rust
+pub fn snake_case(s: &str) -> String
+```
+
+Converts `s` to `snake_case`.
+
+Splits words the same way as `camel_case`.
+
+#### Examples
+
+```rust
+use helpers4::string::snake_case;
+
+assert_eq!(snake_case("helloWorld"), "hello_world");
+assert_eq!(snake_case("Hello World"), "hello_world");
+assert_eq!(snake_case(""), "");
+```
+
+### string::truncate
+
+```rust
+pub fn truncate(s: &str, max_chars: usize, suffix: &str) -> String
+```
+
+Shortens `s` to at most `max_chars` characters, ending with `suffix` when it was cut.
+
+The suffix counts toward the limit. Lengths are in Unicode scalar values (`char`s), not
+grapheme clusters. If the suffix alone does not fit, the first `max_chars` characters of the
+suffix are returned.
+
+#### Examples
+
+```rust
+use helpers4::string::truncate;
+
+assert_eq!(truncate("Hello, world", 8, "..."), "Hello...");
+assert_eq!(truncate("short", 8, "..."), "short");
+assert_eq!(truncate("Hello", 2, "..."), "..");
+```
+
+## Module `time` (Cargo feature `time`)
+
+Time helpers. Reading the clock is explicit and fallible: a clock set before 1970 is an error, not `0`.
+
+### time::ClockError
+
+```rust
+pub struct ClockError { /* private fields */ }
+```
+
+The system clock is set before the Unix epoch (1970-01-01T00:00:00Z).
+
+Returned instead of a silent `0`: an expiry comparison against `0` would treat every token as
+still valid.
+
+#### ClockError::behind
+
+```rust
+pub fn behind(&self) -> Duration
+```
+
+How far before the epoch the clock is.
+
+### time::unix_now
+
+```rust
+pub fn unix_now() -> Result<u64, ClockError>
+```
+
+The current time as whole seconds since the Unix epoch.
+
+#### Errors
+
+`ClockError` when the system clock is set before 1970. Do not turn that into `0`: a token
+expiry checked against `0` would look valid forever.
+
+#### Examples
+
+```rust
+use helpers4::time::unix_now;
+
+let now = unix_now()?;
+assert!(now > 1_700_000_000); // after November 2023
+```
+
+### time::unix_now_millis
+
+```rust
+pub fn unix_now_millis() -> Result<u64, ClockError>
+```
+
+The current time as milliseconds since the Unix epoch.
+
+The value saturates at `u64::MAX`, which is some 584 million years away.
+
+#### Errors
+
+`ClockError` when the system clock is set before 1970 (see `unix_now`).
+
+#### Examples
+
+```rust
+use helpers4::time::unix_now_millis;
+
+assert!(unix_now_millis()? > 1_700_000_000_000);
+```
