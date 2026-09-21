@@ -4,5 +4,5 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
 
-export const TOPICS = ['typescript', 'devcontainer', 'action'] as const;
+export const TOPICS = ['typescript', 'rust', 'devcontainer', 'action'] as const;
 export type Topic = (typeof TOPICS)[number];

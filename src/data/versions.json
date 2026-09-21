@@ -25,6 +25,14 @@
       "version": "1.1.0"
     }
   ],
+  "rust": [
+    {
+      "slug": "rust",
+      "label": "latest",
+      "role": "latest",
+      "version": "0.0.2"
+    }
+  ],
   "devcontainer": [
     {
       "slug": "devcontainer",

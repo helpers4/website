@@ -95,6 +95,33 @@ export default defineConfig({
         starlightSidebarTopics([
           ...typescriptTopics,
           {
+            label: 'Rust',
+            link: '/rust/',
+            icon: 'seti:rust',
+            items: [
+              { slug: 'rust' },
+              { slug: 'rust/getting-started' },
+              { label: 'Modules', items: [{ autogenerate: { directory: 'rust/modules' } }] },
+              {
+                label: 'Reference',
+                items: [
+                  { autogenerate: { directory: 'rust/reference' } },
+                  {
+                    label: 'docs.rs ↗',
+                    link: 'https://docs.rs/helpers4',
+                    attrs: { target: '_blank', rel: 'noopener' },
+                  },
+                  {
+                    label: 'crates.io ↗',
+                    link: 'https://crates.io/crates/helpers4',
+                    attrs: { target: '_blank', rel: 'noopener' },
+                  },
+                ],
+              },
+              { label: 'Legal', items: [{ autogenerate: { directory: 'rust/legal' } }] },
+            ],
+          },
+          {
             label: 'Dev Container',
             link: '/devcontainer/',
             icon: 'seti:docker',
