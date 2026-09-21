@@ -29,5 +29,5 @@ Import path: `helpers4::cache`.
 
 | Item | What it does |
 | --- | --- |
-| [`ExpiringMap`](./expiringmap/) | A map whose entries expire, with the clock passed in by the caller. |
-| [`ExpiringSet`](./expiringset/) | A set whose members expire: an `ExpiringMap` without values. |
+| [`ExpiringMap`](/rust/modules/cache/expiringmap/) | A map whose entries expire, with the clock passed in by the caller. |
+| [`ExpiringSet`](/rust/modules/cache/expiringset/) | A set whose members expire: an `ExpiringMap` without values. |

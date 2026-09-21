@@ -29,6 +29,6 @@ Import path: `helpers4::net`.
 
 | Item | What it does |
 | --- | --- |
-| [`HostnameError`](./hostnameerror/) | Why a string is not a valid hostname (see `is_valid_hostname`). |
-| [`is_public_ip`](./is_public_ip/) | Returns `true` when `ip` is a globally reachable unicast address, `false` for everything that is loopback, private, link-local, shared, documentation, reserved or otherwise not on the public internet. |
-| [`is_valid_hostname`](./is_valid_hostname/) | Checks that `hostname` is a valid hostname (RFC 1035 and RFC 1123, ASCII only). |
+| [`HostnameError`](/rust/modules/net/hostnameerror/) | Why a string is not a valid hostname (see `is_valid_hostname`). |
+| [`is_public_ip`](/rust/modules/net/is_public_ip/) | Returns `true` when `ip` is a globally reachable unicast address, `false` for everything that is loopback, private, link-local, shared, documentation, reserved or otherwise not on the public internet. |
+| [`is_valid_hostname`](/rust/modules/net/is_valid_hostname/) | Checks that `hostname` is a valid hostname (RFC 1035 and RFC 1123, ASCII only). |

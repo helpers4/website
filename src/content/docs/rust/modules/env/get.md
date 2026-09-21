@@ -8,7 +8,7 @@ sidebar:
 Returns the value of `key` in dotenv `content`, or `None` when it is not assigned.
 
 When a key is assigned more than once the last assignment wins, like a shell sourcing the
-file. See [`parse`](../parse/) for the accepted syntax.
+file. See [`parse`](/rust/modules/env/parse/) for the accepted syntax.
 
 ## Import
 

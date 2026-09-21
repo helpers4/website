@@ -44,7 +44,7 @@ pub fn decode_array<const N: usize>(hex: &str) -> Result<[u8; N], DecodeError>
 
 ## Errors
 
-Same as [`decode_to_slice`](../decode_to_slice/): the string must have exactly `2 * N`
+Same as [`decode_to_slice`](/rust/modules/hex/decode_to_slice/): the string must have exactly `2 * N`
 hex digits.
 
 ## Examples

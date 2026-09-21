@@ -296,9 +296,7 @@ function makeLinker(modules) {
     const name = [segments.at(-1), segments[0]].find((candidate) => home.has(candidate)) ?? segments.at(-1);
     const owner = home.get(name);
     if (!owner) return code;
-    const same = owner === page.module;
-    const base = { item: same ? '..' : `../../${owner}`, module: same ? '.' : `../${owner}`, overview: `./${owner}` }[page.kind];
-    return `[${code}](${base}/${pageSlug(name)}/)`;
+    return `[${code}](/rust/modules/${owner}/${pageSlug(name)}/)`;
   };
 }
 
@@ -519,7 +517,7 @@ function itemPage(mod, item, linker, cargo) {
 function modulePage(mod, index, linker, cargo) {
   const link = linker({ module: mod.name, kind: 'module' }, 'page');
   const rows = mod.items
-    .map((item) => `| [\`${item.name}\`](./${pageSlug(item.name)}/) | ${cell(inline(firstSentence(item.doc)))} |`)
+    .map((item) => `| [\`${item.name}\`](/rust/modules/${mod.name}/${pageSlug(item.name)}/) | ${cell(inline(firstSentence(item.doc)))} |`)
     .join('\n');
   return (
     frontmatter({
@@ -548,7 +546,7 @@ function modulePage(mod, index, linker, cargo) {
 
 function overviewPage(modules, cargo) {
   const rows = modules
-    .map((m) => `| [\`${m.name}\`](./${m.name}/) | \`${m.name}\` | ${cell(inline(firstSentence(m.doc)))} | ${m.items.length} |`)
+    .map((m) => `| [\`${m.name}\`](/rust/modules/${m.name}/) | \`${m.name}\` | ${cell(inline(firstSentence(m.doc)))} | ${m.items.length} |`)
     .join('\n');
   return (
     frontmatter({

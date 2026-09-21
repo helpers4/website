@@ -18,7 +18,7 @@ are non-ASCII characters: convert an internationalized name to its `xn--` form f
 This checks syntax only. It is not an SSRF check: a name that passes can still resolve to a
 private address. To guard a server that fetches user-supplied URLs, parse the URL first, then
 check the address you will actually connect to with
-[`is_public_ip`](../is_public_ip/).
+[`is_public_ip`](/rust/modules/net/is_public_ip/).
 
 ## Import
 
@@ -57,7 +57,7 @@ pub fn is_valid_hostname(hostname: &str) -> Result<(), HostnameError>
 
 ## Errors
 
-A [`HostnameError`](../hostnameerror/) naming the first rule that fails.
+A [`HostnameError`](/rust/modules/net/hostnameerror/) naming the first rule that fails.
 
 ## Examples
 

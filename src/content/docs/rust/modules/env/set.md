@@ -10,7 +10,7 @@ Sets `key` to `value` in dotenv `content` and returns the new content.
 The first existing assignment of `key` is replaced in place and any later ones are dropped;
 when there is none, a new line is appended. Every other line (comments, blank lines, other
 variables) is left untouched, and the replaced line keeps its line ending. `value` is quoted
-and escaped only when needed, so [`get`](../get/) reads it back exactly.
+and escaped only when needed, so [`get`](/rust/modules/env/get/) reads it back exactly.
 
 ## Import
 
@@ -51,7 +51,7 @@ pub fn set(content: &str, key: &str, value: &str) -> Result<String, InvalidKeyEr
 
 ## Errors
 
-Returns [`InvalidKeyError`](../invalidkeyerror/) when `key` is not `[A-Za-z_][A-Za-z0-9_]*`.
+Returns [`InvalidKeyError`](/rust/modules/env/invalidkeyerror/) when `key` is not `[A-Za-z_][A-Za-z0-9_]*`.
 
 ## Examples
 

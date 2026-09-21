@@ -29,6 +29,6 @@ Import path: `helpers4::time`.
 
 | Item | What it does |
 | --- | --- |
-| [`ClockError`](./clockerror/) | The system clock is set before the Unix epoch (1970-01-01T00:00:00Z). |
-| [`unix_now`](./unix_now/) | The current time as whole seconds since the Unix epoch. |
-| [`unix_now_millis`](./unix_now_millis/) | The current time as milliseconds since the Unix epoch. |
+| [`ClockError`](/rust/modules/time/clockerror/) | The system clock is set before the Unix epoch (1970-01-01T00:00:00Z). |
+| [`unix_now`](/rust/modules/time/unix_now/) | The current time as whole seconds since the Unix epoch. |
+| [`unix_now_millis`](/rust/modules/time/unix_now_millis/) | The current time as milliseconds since the Unix epoch. |

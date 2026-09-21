@@ -29,4 +29,4 @@ Import path: `helpers4::http`.
 
 | Item | What it does |
 | --- | --- |
-| [`bearer_token`](./bearer_token/) | Extracts the token from an `Authorization: Bearer <token>` header value. |
+| [`bearer_token`](/rust/modules/http/bearer_token/) | Extracts the token from an `Authorization: Bearer <token>` header value. |

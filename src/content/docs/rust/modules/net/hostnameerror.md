@@ -5,7 +5,7 @@ sidebar:
   label: "HostnameError"
 ---
 
-Why a string is not a valid hostname (see [`is_valid_hostname`](../is_valid_hostname/)).
+Why a string is not a valid hostname (see [`is_valid_hostname`](/rust/modules/net/is_valid_hostname/)).
 
 ## Import
 

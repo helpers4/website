@@ -90,7 +90,7 @@ This is only one half of an SSRF defence.
 - **What is not an IP literal to `std`.** Spellings such as `2130706433`, `0x7f.1` or
   `127.1` do not parse as an `IpAddr`, yet a URL parser reads them as `127.0.0.1`. Parse the
   URL first and pass the address it produces here (see also
-  [`is_valid_hostname`](../is_valid_hostname/), which rejects them).
+  [`is_valid_hostname`](/rust/modules/net/is_valid_hostname/), which rejects them).
 - **Provider-specific addresses inside a public range.** A registry cannot say that, for
   example, Azure's wire server `168.63.129.16` is internal: it is reported public.
 
