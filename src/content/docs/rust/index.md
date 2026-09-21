@@ -1,5 +1,5 @@
 ---
-title: Helpers 4 Rust
+title: Helpers4 Rust
 sidebar:
   label: Rust
   order: 0
@@ -14,9 +14,9 @@ General-purpose Rust helpers — one crate, one module per category, zero third-
 - **[AI & LLM Support](./reference/ai-support/)** — `llms.txt` and the full machine-readable reference
 - **[crates.io](https://crates.io/crates/helpers4)** · **[docs.rs](https://docs.rs/helpers4)** · **[GitHub](https://github.com/helpers4/rust)** · **[License (LGPL-3.0)](./legal/license/)**
 
-## What is helpers4 for Rust?
+## What is helpers4?
 
-A collection of small, well-tested helpers to stop rewriting the same utility code across every project: text, slices, hexadecimal, `.env` files, expiring caches, network address checks, HTTP header values, the system clock. It is the Rust counterpart of [helpers4 for TypeScript](/typescript/), with the same philosophy and the same care, adapted to what Rust already does well — helpers that the standard library covers are simply not provided (`chunks`, `partition`, `zip`, …).
+A collection of small, well-tested helpers to stop rewriting the same utility code across every project: text, slices, hexadecimal, `.env` files, expiring caches, network address checks, HTTP header values, the system clock. Helpers that the standard library already covers are simply not provided (`chunks`, `partition`, `zip`, …).
 
 It grew out of code that kept being copied between real projects, then reviewed and hardened until it was worth publishing. See the [philosophy](./reference/philosophy/) for the reasoning.
 

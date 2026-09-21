@@ -54,10 +54,10 @@ Error enums are `#[non_exhaustive]`: new variants can be added without breaking 
 
 ## Names and imports
 
-Names repeat across modules on purpose, so always import through the module path rather than glob-importing a module (`use helpers4::string::*;` would make the next name collision your problem). When two helpers from different modules share a name, rename at the import site with `as`:
+Names repeat across modules on purpose, so always import through the module path rather than glob-importing a module (`use helpers4::string::*;` would make the next name collision your problem). When two helpers from different modules share a name, rename at the import site with `as`, suffixing the module name so the origin stays visible:
 
 ```rust
-use helpers4::string::truncate as truncate_text;
+use helpers4::string::truncate as truncate_string;
 ```
 
 See [Names and imports](./reference/naming-conflicts/) for the list of names that exist in more than one module.
