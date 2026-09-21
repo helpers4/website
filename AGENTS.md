@@ -36,6 +36,7 @@ website/
 │   ├── generate-typescript-docs.js    # JSDoc → Markdown + publishes llms-full.txt
 │   ├── generate-devcontainer-docs.js  # feature READMEs → Markdown
 │   ├── generate-action-docs.js        # action README → Markdown
+│   ├── check-internal-links.mjs       # every internal href of dist/ resolved from its own page URL; exit 1 if any is broken
 │   ├── fix-titles.mjs                 # strip duplicate H1 (Starlight renders title: as h1)
 │   └── sync-from-repos.js            # run all generators
 └── .github/workflows/
@@ -52,8 +53,12 @@ pnpm dev              # localhost:4321
 pnpm build && pnpm preview
 pnpm sync-from-repos  # regenerate all docs (requires sibling repos at ../<name>)
 RUST_REPO_PATH=/path/to/rust pnpm generate-docs:rust  # Rust docs from a specific checkout (e.g. a release tag)
+pnpm test             # unit tests (node --test), e.g. the remark link plugin
+pnpm build && pnpm check:links   # fails on any broken internal link (also run by the PR build job)
 ```
 
 **No duplicate H1:** Starlight renders `title:` frontmatter as `<h1>` — content body must not start with `# Heading`. Enforced by `fix-titles.mjs`.
 
 **Pre-1.0 notice (Rust):** `rust/index.md`, `rust/getting-started.md` and the `public/llms.txt` Rust section carry a "Version 0: expect changes" note written by hand — remove it when the crate reaches 1.0. The one on `rust/modules/index.md` and in `llms-full.txt` is generated and goes away by itself (`PRE_1_NOTICE` in `scripts/generate-rust-docs.js`).
+
+**Relative links (`src/lib/remark-file-relative-links.mjs`):** pages are served with a trailing slash, so a link written relative to the Markdown *file* (`../object/compact/`) resolves one level too deep in the browser. The remark plugin, applied to every docs page, tries both readings against the docs pages that exist and rewrites the link to the absolute path that matches (the browser's reading wins; a link matching neither is left as written). Prefer absolute links (`/rust/modules/...`) in new content; the plugin only covers `src/content/docs`, so blog posts must use absolute links. After changing the plugin, clear the Astro content cache (`rm -rf .astro node_modules/.astro dist`) before rebuilding, or the old output is served from cache. `pnpm check:links` is the safety net.
