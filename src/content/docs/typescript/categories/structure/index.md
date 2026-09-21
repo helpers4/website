@@ -1,7 +1,7 @@
 ---
 title: "Structure Helpers"
 sidebar:
-  label: "Structure"
+  label: "≡ Overview"
   order: 0
 ---
 

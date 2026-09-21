@@ -1,7 +1,7 @@
 ---
 title: "Array Helpers"
 sidebar:
-  label: "Array"
+  label: "≡ Overview"
   order: 0
 ---
 

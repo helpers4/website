@@ -1,7 +1,7 @@
 ---
 title: "Url Helpers"
 sidebar:
-  label: "Url"
+  label: "≡ Overview"
   order: 0
 ---
 

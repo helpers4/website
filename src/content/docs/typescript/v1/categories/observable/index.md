@@ -1,7 +1,7 @@
 ---
 title: "Observable Helpers"
 sidebar:
-  label: "Observable"
+  label: "≡ Overview"
   order: 0
 ---
 

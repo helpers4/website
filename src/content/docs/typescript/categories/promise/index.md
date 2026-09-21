@@ -1,7 +1,7 @@
 ---
 title: "Promise Helpers"
 sidebar:
-  label: "Promise"
+  label: "≡ Overview"
   order: 0
 ---
 

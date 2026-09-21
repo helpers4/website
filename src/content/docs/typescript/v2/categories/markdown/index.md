@@ -1,7 +1,7 @@
 ---
 title: "Markdown Helpers"
 sidebar:
-  label: "Markdown"
+  label: "≡ Overview"
   order: 0
 ---
 

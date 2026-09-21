@@ -1,7 +1,7 @@
 ---
 title: "Function Helpers"
 sidebar:
-  label: "Function"
+  label: "≡ Overview"
   order: 0
 ---
 

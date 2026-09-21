@@ -1,7 +1,7 @@
 ---
 title: "Set Helpers"
 sidebar:
-  label: "Set"
+  label: "≡ Overview"
   order: 0
 ---
 

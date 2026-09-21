@@ -1,7 +1,7 @@
 ---
 title: "Id Helpers"
 sidebar:
-  label: "Id"
+  label: "≡ Overview"
   order: 0
 ---
 

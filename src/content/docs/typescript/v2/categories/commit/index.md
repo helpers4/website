@@ -1,7 +1,7 @@
 ---
 title: "Commit Helpers"
 sidebar:
-  label: "Commit"
+  label: "≡ Overview"
   order: 0
 ---
 

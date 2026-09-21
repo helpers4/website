@@ -1,7 +1,7 @@
 ---
 title: "Object Helpers"
 sidebar:
-  label: "Object"
+  label: "≡ Overview"
   order: 0
 ---
 

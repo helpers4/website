@@ -1,7 +1,7 @@
 ---
 title: "License Helpers"
 sidebar:
-  label: "License"
+  label: "≡ Overview"
   order: 0
 ---
 
