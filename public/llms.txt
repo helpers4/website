@@ -25,6 +25,9 @@ General-purpose helpers in one crate (`helpers4`), one module per category, each
 feature of the same name. Zero third-party dependencies by default. Import through the module
 path (`helpers4::string::capitalize`): names repeat across modules on purpose.
 
+Pre-1.0 (`0.x`): the split into modules (Cargo features) may change between releases, and the
+code and security verification is still being extended: pin the exact version.
+
 - [Getting Started](https://helpers4.dev/rust/getting-started/): install and first use
 - [Modules](https://helpers4.dev/rust/modules/): browse every module and helper
 - [Full reference (llms-full.txt)](https://helpers4.dev/rust/llms-full.txt): every item's signature, documentation and examples in one file — the canonical machine-readable reference, prefer this over crawling individual pages
