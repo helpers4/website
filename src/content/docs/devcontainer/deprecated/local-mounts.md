@@ -5,7 +5,7 @@ sidebar:
 deprecated: true
 ---
 
-> ⚠️ **This feature has been removed.** It was renamed and superseded by [`dotfiles-sync`](../src/dotfiles-sync/).
+> ⚠️ **This feature has been removed.** It was renamed and superseded by [`dotfiles-sync`](/devcontainer/features/dotfiles-sync/).
 >
 > Existing images that already pulled `ghcr.io/helpers4/devcontainer/local-mounts:1` keep working from their local cache. New builds referencing this feature will fail to resolve — **you must migrate**.
 
@@ -24,7 +24,7 @@ Replace the feature reference in your `devcontainer.json`:
 
 The `username` option is identical. Runtime behavior is the same, with extra files supported (cargo, pip, yarn, pnpm, gh CLI prefs, …) and opt-in cloud credentials (AWS profiles, kube config, Docker auth, gh OAuth token).
 
-See the [`dotfiles-sync` README](../src/dotfiles-sync/) for full documentation.
+See the [`dotfiles-sync` README](/devcontainer/features/dotfiles-sync/) for full documentation.
 
 ## Why was it renamed?
 
