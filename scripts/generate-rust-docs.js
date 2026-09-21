@@ -209,7 +209,7 @@ function readModules(features) {
 const REPO_URL = 'https://github.com/helpers4/rust';
 
 /** Sidebar label of the overview pages: the mark tells them apart from the helper pages at a glance. */
-const OVERVIEW_LABEL = '📋 Overview';
+const OVERVIEW_LABEL = '≡ Overview';
 
 /** GitHub-style heading slug, as Starlight generates it. */
 function slug(text) {
