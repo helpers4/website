@@ -1,7 +1,7 @@
 ---
 title: "Node Helpers"
 sidebar:
-  label: "Node"
+  label: "≡ Overview"
   order: 0
 ---
 

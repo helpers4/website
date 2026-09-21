@@ -1,7 +1,7 @@
 ---
 title: "String Helpers"
 sidebar:
-  label: "String"
+  label: "≡ Overview"
   order: 0
 ---
 

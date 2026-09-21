@@ -1,7 +1,7 @@
 ---
 title: "Color Helpers"
 sidebar:
-  label: "Color"
+  label: "≡ Overview"
   order: 0
 ---
 

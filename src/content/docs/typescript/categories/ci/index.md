@@ -1,7 +1,7 @@
 ---
 title: "Ci Helpers"
 sidebar:
-  label: "Ci"
+  label: "≡ Overview"
   order: 0
 ---
 

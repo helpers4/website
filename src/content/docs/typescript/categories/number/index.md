@@ -1,7 +1,7 @@
 ---
 title: "Number Helpers"
 sidebar:
-  label: "Number"
+  label: "≡ Overview"
   order: 0
 ---
 

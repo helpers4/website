@@ -1,7 +1,7 @@
 ---
 title: "Type Helpers"
 sidebar:
-  label: "Type"
+  label: "≡ Overview"
   order: 0
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Map Helpers"
 sidebar:
-  label: "Map"
+  label: "≡ Overview"
   order: 0
 ---
 

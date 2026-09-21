@@ -1,7 +1,7 @@
 ---
 title: "Version Helpers"
 sidebar:
-  label: "Version"
+  label: "≡ Overview"
   order: 0
 ---
 

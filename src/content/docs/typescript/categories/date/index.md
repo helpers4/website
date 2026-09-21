@@ -1,7 +1,7 @@
 ---
 title: "Date Helpers"
 sidebar:
-  label: "Date"
+  label: "≡ Overview"
   order: 0
 ---
 

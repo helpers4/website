@@ -1,7 +1,7 @@
 ---
 title: "Guard Helpers"
 sidebar:
-  label: "Guard"
+  label: "≡ Overview"
   order: 0
 ---
 
