@@ -4,6 +4,15 @@ sidebar:
   order: 1
 ---
 
+:::caution[Version 0: expect changes]
+While the crate is at version `0.x`:
+
+- **The split into modules, and so into Cargo features, may change.** A helper can move to another module — and so to another feature to enable — from one release to the next.
+- **The code and security verification will keep improving.** More checks (fuzzing and static analysis, for instance) are planned, and each helper's page says what it guarantees and what it does not.
+
+Pin the exact version and read the [changelog](/rust/reference/changelog/) before upgrading.
+:::
+
 ## Installation
 
 ```sh
@@ -16,7 +25,7 @@ That enables every module. Each module is a Cargo feature of the same name, so t
 cargo add helpers4 --no-default-features --features string,hex
 ```
 
-Every [module page](./modules/) shows the command for its feature and the matching `Cargo.toml` line with the current version. The crate is pre-1.0: pin the exact version and read the [changelog](./reference/changelog/) before upgrading.
+Every [module page](/rust/modules/) shows the command for its feature and the matching `Cargo.toml` line with the current version. The crate is pre-1.0: pin the exact version and read the [changelog](/rust/reference/changelog/) before upgrading.
 
 ## Quick Start
 
@@ -60,7 +69,7 @@ Names repeat across modules on purpose, so always import through the module path
 use helpers4::string::truncate as truncate_string;
 ```
 
-See [Names and imports](./reference/naming-conflicts/) for the list of names that exist in more than one module.
+See [Names and imports](/rust/reference/naming-conflicts/) for the list of names that exist in more than one module.
 
 ## Explicit inputs
 
@@ -78,7 +87,7 @@ Nothing reads the time or the process environment behind your back:
 | `wasm32-unknown-unknown`, `wasm32-wasip1` | ✅ builds | Checked to compile; not run there. `time::unix_now` needs a clock, which `wasm32-unknown-unknown` does not have |
 | `no_std` | ❌ | The crate uses `std` |
 
-The minimum supported Rust version is shown on the [modules overview](./modules/).
+The minimum supported Rust version is shown on the [modules overview](/rust/modules/).
 
 ## Quality Standards
 
@@ -95,14 +104,14 @@ Every helper ships with:
 
 ## Next Steps
 
-- Browse the [Modules](./modules/)
-- Read the [Philosophy](./reference/philosophy/)
+- Browse the [Modules](/rust/modules/)
+- Read the [Philosophy](/rust/reference/philosophy/)
 - View the [GitHub repository](https://github.com/helpers4/rust)
 
 ## Contributing
 
-Found a bug? Want to add a helper? Read [Contributing](./reference/contributing/).
+Found a bug? Want to add a helper? Read [Contributing](/rust/reference/contributing/).
 
 ## License
 
-LGPL-3.0-or-later — see [License](./legal/license/) for a summary and [LICENSE](https://github.com/helpers4/rust/blob/main/LICENSE) for the full text.
+LGPL-3.0-or-later — see [License](/rust/legal/license/) for a summary and [LICENSE](https://github.com/helpers4/rust/blob/main/LICENSE) for the full text.

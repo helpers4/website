@@ -65,7 +65,7 @@ Every public item carries rustdoc with a runnable example, and the pages of this
 
 ## Names may repeat
 
-The same operation on a different kind of data keeps the same name: two modules can each have their own function of that name when the operation differs by data type. Callers always import through the module path, and rename at the import site when they need both — see [Names and imports](./naming-conflicts/).
+The same operation on a different kind of data keeps the same name: two modules can each have their own function of that name when the operation differs by data type. Callers always import through the module path, and rename at the import site when they need both — see [Names and imports](/rust/reference/naming-conflicts/).
 
 ## Pragmatism over theoretical purity
 
@@ -73,4 +73,4 @@ If a rule makes the code worse in a specific case, the rule bends and the reason
 
 ## Open source, genuinely
 
-helpers4 is licensed under the LGPL-3.0-or-later and developed in the open, with changes proposed as pull requests. See [License](../legal/license/) for a practical summary and [Contributing](./contributing/) to take part.
+helpers4 is licensed under the LGPL-3.0-or-later and developed in the open, with changes proposed as pull requests. See [License](/rust/legal/license/) for a practical summary and [Contributing](/rust/reference/contributing/) to take part.

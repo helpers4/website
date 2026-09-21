@@ -211,6 +211,20 @@ const REPO_URL = 'https://github.com/helpers4/rust';
 /** Sidebar label of the overview pages: the mark tells them apart from the helper pages at a glance. */
 const OVERVIEW_LABEL = '≡ Overview';
 
+/** Shown while the crate is at 0.x: the module split and the checks are still moving. */
+const PRE_1_NOTICE = [
+  ':::caution[Version 0: expect changes]',
+  'While the crate is at version `0.x`:',
+  '',
+  '- **The split into modules, and so into Cargo features, may change.** A helper can move to another module — and so to another feature to enable — from one release to the next.',
+  "- **The code and security verification will keep improving.** More checks (fuzzing and static analysis, for instance) are planned, and each helper's page says what it guarantees and what it does not.",
+  '',
+  'Pin the exact version and read the [changelog](/rust/reference/changelog/) before upgrading.',
+  ':::',
+].join('\n');
+
+const isPreOne = (cargo) => cargo.version.startsWith('0.');
+
 /** GitHub-style heading slug, as Starlight generates it. */
 function slug(text) {
   return text.toLowerCase().replaceAll(' ', '-').replace(/[^a-z0-9_-]/g, '');
@@ -543,6 +557,7 @@ function overviewPage(modules, cargo) {
       sidebar: { order: 0, label: OVERVIEW_LABEL },
     }) +
     [
+      ...(isPreOne(cargo) ? [PRE_1_NOTICE, ''] : []),
       `The \`helpers4\` crate is organised in ${modules.length} modules. **Each module is a Cargo feature of the same name**, and all of them are enabled by default (\`cargo add helpers4\`).`,
       '',
       '## Install only what you use',
@@ -629,7 +644,7 @@ function namingPage(modules) {
       : [
           '| Item | Modules |',
           '| --- | --- |',
-          ...conflicts.map(([name, owners]) => `| \`${name}\` | ${owners.map((o) => `[\`${o}\`](../modules/${o}/${pageSlug(name)}/)`).join(', ')} |`),
+          ...conflicts.map(([name, owners]) => `| \`${name}\` | ${owners.map((o) => `[\`${o}\`](/rust/modules/${o}/${pageSlug(name)}/)`).join(', ')} |`),
         ].join('\n');
   return (
     frontmatter({
@@ -680,6 +695,7 @@ function llmsFull(modules, linker, cargo) {
     "> The examples are doctests that run in the crate's CI: treat them as verified usage.",
     '> Import through the module path; names repeat across modules on purpose.',
     '> Each module is a Cargo feature of the same name (`cargo add helpers4 --no-default-features --features <module>`).',
+    ...(isPreOne(cargo) ? ['> Pre-1.0 (0.x): the split into modules (Cargo features) may change between releases, and the verification tooling is still being extended.'] : []),
     '',
   ];
   const sectionMarkdown = (doc, link, level) => {

@@ -55,3 +55,5 @@ RUST_REPO_PATH=/path/to/rust pnpm generate-docs:rust  # Rust docs from a specifi
 ```
 
 **No duplicate H1:** Starlight renders `title:` frontmatter as `<h1>` — content body must not start with `# Heading`. Enforced by `fix-titles.mjs`.
+
+**Pre-1.0 notice (Rust):** `rust/index.md`, `rust/getting-started.md` and the `public/llms.txt` Rust section carry a "Version 0: expect changes" note written by hand — remove it when the crate reaches 1.0. The one on `rust/modules/index.md` and in `llms-full.txt` is generated and goes away by itself (`PRE_1_NOTICE` in `scripts/generate-rust-docs.js`).
