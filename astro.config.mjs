@@ -11,6 +11,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightThemeNova from 'starlight-theme-nova';
 import starlightSidebarTopics from 'starlight-sidebar-topics';
+import remarkFileRelativeLinks from './src/lib/remark-file-relative-links.mjs';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const docsDir = path.join(rootDir, 'src', 'content', 'docs');
@@ -81,6 +82,8 @@ const typescriptTopics = versions.typescript
 
 export default defineConfig({
   site: 'https://helpers4.dev',
+  // Docs links are written relative to the Markdown file; see the plugin for why they are resolved here.
+  markdown: { remarkPlugins: [remarkFileRelativeLinks] },
   integrations: [
     starlight({
       title: 'helpers4',
