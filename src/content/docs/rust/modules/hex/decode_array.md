@@ -57,6 +57,34 @@ assert_eq!(key, [0xde, 0xad, 0xbe, 0xef]);
 assert!(decode_array::<4>("dead").is_err());
 ```
 
+## Error type: DecodeError
+
+Why a string could not be decoded as hexadecimal.
+
+```rust
+use helpers4::hex::DecodeError;
+
+#[non_exhaustive]
+pub enum DecodeError {
+    /// The string has an odd number of characters.
+    OddLength,
+    /// The string does not match the requested output size.
+    InvalidLength {
+        /// Expected number of hex characters (twice the output size).
+        expected: usize,
+        /// Actual number of hex characters.
+        actual: usize,
+    },
+    /// A character that is not a hexadecimal digit.
+    InvalidChar {
+        /// Byte offset of the character in the input.
+        index: usize,
+        /// The offending character.
+        found: char,
+    },
+}
+```
+
 ## Source
 
 [src/hex/decode_array.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/hex/decode_array.rs#L25)

@@ -51,7 +51,7 @@ pub fn set(content: &str, key: &str, value: &str) -> Result<String, InvalidKeyEr
 
 ## Errors
 
-Returns [`InvalidKeyError`](/rust/modules/env/invalidkeyerror/) when `key` is not `[A-Za-z_][A-Za-z0-9_]*`.
+Returns [`InvalidKeyError`](#error-type-invalidkeyerror) when `key` is not `[A-Za-z_][A-Za-z0-9_]*`.
 
 ## Examples
 
@@ -63,6 +63,28 @@ assert_eq!(updated, "# config\nHOST=example.com\nPORT=80\n");
 
 assert_eq!(set("A=1\n", "B", "two words")?, "A=1\nB=\"two words\"\n");
 ```
+
+## Error type: InvalidKeyError
+
+The variable name passed to [`set`](/rust/modules/env/set/) is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
+
+```rust
+use helpers4::env::InvalidKeyError;
+
+pub struct InvalidKeyError { /* private fields */ }
+```
+
+### `InvalidKeyError::key`
+
+```rust
+pub fn key(&self) -> &str
+```
+
+The rejected name.
+
+**Returns**
+
+`&str`
 
 ## Source
 

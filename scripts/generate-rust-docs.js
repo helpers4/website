@@ -187,8 +187,26 @@ function parseModule(name, features) {
   const exports = reexports(source);
   if (exports.length === 0) fail(`src/${name}/mod.rs re-exports nothing`);
   if (!features.includes(name)) fail(`module \`${name}\` has no Cargo feature of the same name`);
-  const items = exports.map(({ file, name: item }) => parseItem(read(`src/${name}/${file}.rs`), item, name, file));
-  return { name, doc, items };
+  const all = exports.map(({ file, name: item }) => parseItem(read(`src/${name}/${file}.rs`), item, name, file));
+  // An error type has no page of its own: it is documented on the page of each helper that returns it.
+  const errors = all.filter(isErrorType);
+  const items = all.filter((item) => !isErrorType(item));
+  for (const error of errors) {
+    error.owners = items.filter((item) => returns(item, error.name)).map((item) => item.name);
+    if (error.owners.length === 0) fail(`${name}::${error.name} is an error type that no public helper returns`);
+  }
+  return { name, doc, items, errors };
+}
+
+/** `FooError` structs and enums: documented on their helpers' pages, not on their own. */
+function isErrorType(item) {
+  return item.kind !== 'fn' && item.kind !== 'type' && item.name.endsWith('Error');
+}
+
+/** Whether a function, or a method of a type, mentions `typeName` in its return type. */
+function returns(item, typeName) {
+  const mentions = (fn) => new RegExp(`->[^{]*\\b${typeName}\\b`).test(fn.signature);
+  return item.kind === 'fn' ? mentions(item) : (item.methods ?? []).some(mentions);
 }
 
 function readModules(features) {
@@ -229,6 +247,10 @@ const isPreOne = (cargo) => cargo.version.startsWith('0.');
 function slug(text) {
   return text.toLowerCase().replaceAll(' ', '-').replace(/[^a-z0-9_-]/g, '');
 }
+
+/** Heading text and anchor of an error type's section on a helper page. */
+const errorHeading = (name) => `Error type: ${name}`;
+const errorAnchor = (name) => slug(errorHeading(name));
 
 /** File name and URL segment of an item's own page: `ExpiringMap` -> `expiringmap`. */
 function pageSlug(name) {
@@ -284,6 +306,9 @@ function splitSections(doc) {
 function makeLinker(modules) {
   const home = new Map();
   for (const m of modules) for (const item of m.items) home.set(item.name, m.name);
+  // An error type lives on the page of the helpers that return it, under its own heading.
+  const errors = new Map();
+  for (const m of modules) for (const error of m.errors) errors.set(error.name, { module: m.name, owners: error.owners });
   return (page, mode) => (text, target) => {
     const code = `\`${text}\``;
     // `Self::method` is a method of the type documented on this very page.
@@ -293,7 +318,12 @@ function makeLinker(modules) {
     if (mode === 'text') return code;
     // `Type::method` and `Type::Variant` point at the type's own page.
     const segments = (target ?? text).split('::');
-    const name = [segments.at(-1), segments[0]].find((candidate) => home.has(candidate)) ?? segments.at(-1);
+    const name = [segments.at(-1), segments[0]].find((candidate) => home.has(candidate) || errors.has(candidate)) ?? segments.at(-1);
+    const error = errors.get(name);
+    if (error) {
+      if (page.item && error.owners.includes(page.item)) return `[${code}](#${errorAnchor(name)})`;
+      return `[${code}](/rust/modules/${error.module}/${pageSlug(error.owners[0])}/#${errorAnchor(name)})`;
+    }
     const owner = home.get(name);
     if (!owner) return code;
     return `[${code}](/rust/modules/${owner}/${pageSlug(name)}/)`;
@@ -489,8 +519,20 @@ function sourceBlock(item, cargo) {
   return ['## Source', '', `[${file}](${REPO_URL}/blob/v${cargo.version}/${file}#L${item.line})`, ''].join('\n');
 }
 
+/** The error type a helper returns, documented in place of a page of its own. */
+function errorSection(error, link, cargo) {
+  const { intro, sections } = splitSections(error.doc);
+  const out = [`## ${errorHeading(error.name)}`, '', convertDoc(intro, link), '', '```rust', `use helpers4::${error.module}::${error.name};`, '', error.signature, '```', ''];
+  for (const section of sections) out.push(`### ${section.title}`, '', convertDoc(section.lines, link), '');
+  for (const method of error.methods ?? []) {
+    const body = callableBody(method, link, { level: 0, cargo });
+    out.push(`### \`${error.name}::${method.name}\``, '', '```rust', method.signature, '```', '', body.intro, '', body.render(false));
+  }
+  return out.join('\n');
+}
+
 function itemPage(mod, item, linker, cargo) {
-  const link = linker({ module: mod.name, kind: 'item' }, 'page');
+  const link = linker({ module: mod.name, kind: 'item', item: item.name }, 'page');
   const description = plain(firstSentence(item.doc));
   const head = frontmatter({ title: item.name, description, sidebar: { label: item.name } });
   const out = [];
@@ -510,6 +552,7 @@ function itemPage(mod, item, linker, cargo) {
       }
     }
   }
+  for (const error of mod.errors.filter((e) => e.owners.includes(item.name))) out.push(errorSection(error, link, cargo));
   out.push(sourceBlock(item, cargo));
   return head + out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
 }
@@ -539,6 +582,20 @@ function modulePage(mod, index, linker, cargo) {
       '| Item | What it does |',
       '| --- | --- |',
       rows,
+      ...(mod.errors.length > 0
+        ? [
+            '',
+            '## Error types',
+            '',
+            'Documented on the page of the helper that returns them.',
+            '',
+            '| Type | Returned by |',
+            '| --- | --- |',
+            ...mod.errors.map(
+              (e) => `| [\`${e.name}\`](/rust/modules/${mod.name}/${pageSlug(e.owners[0])}/#${errorAnchor(e.name)}) | ${e.owners.map((o) => `[\`${o}\`](/rust/modules/${mod.name}/${pageSlug(o)}/)`).join(', ')} |`,
+            ),
+          ]
+        : []),
     ].join('\n') +
     '\n'
   );
@@ -546,7 +603,7 @@ function modulePage(mod, index, linker, cargo) {
 
 function overviewPage(modules, cargo) {
   const rows = modules
-    .map((m) => `| [\`${m.name}\`](/rust/modules/${m.name}/) | \`${m.name}\` | ${cell(inline(firstSentence(m.doc)))} | ${m.items.length} |`)
+    .map((m) => `| [\`${m.name}\`](/rust/modules/${m.name}/) | \`${m.name}\` | ${cell(inline(firstSentence(m.doc)))} | ${m.items.length + m.errors.length} |`)
     .join('\n');
   return (
     frontmatter({
@@ -705,7 +762,7 @@ function llmsFull(modules, linker, cargo) {
   for (const mod of modules) {
     const link = linker({ module: mod.name, kind: 'module' }, 'text');
     out.push(`## Module \`${mod.name}\` (Cargo feature \`${mod.name}\`)`, '', convertDoc(mod.doc, link), '');
-    for (const item of mod.items) {
+    for (const item of [...mod.items, ...mod.errors]) {
       out.push(`### ${mod.name}::${item.name}`, '', '```rust', item.signature, '```', '', sectionMarkdown(item.doc, link, 4), '');
       for (const method of item.methods ?? []) {
         out.push(`#### ${item.name}::${method.name}`, '', '```rust', method.signature, '```', '', sectionMarkdown(method.doc, link, 5), '');
@@ -758,7 +815,8 @@ function main() {
   updateVersions(cargo.version);
 
   const total = modules.reduce((n, m) => n + m.items.length, 0);
-  console.log(`\n✅ ${modules.length} modules, ${total} item pages, version ${cargo.version}`);
+  const errorTypes = modules.reduce((n, m) => n + m.errors.length, 0);
+  console.log(`\n✅ ${modules.length} modules, ${total} item pages, ${errorTypes} error types (on their helpers' pages), version ${cargo.version}`);
 }
 
 try {

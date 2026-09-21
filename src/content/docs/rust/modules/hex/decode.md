@@ -47,7 +47,7 @@ pub fn decode(hex: &str) -> Result<Vec<u8>, DecodeError>
 
 ## Errors
 
-[`DecodeError::OddLength`](/rust/modules/hex/decodeerror/) for an odd number of characters, [`DecodeError::InvalidChar`](/rust/modules/hex/decodeerror/) for
+[`DecodeError::OddLength`](#error-type-decodeerror) for an odd number of characters, [`DecodeError::InvalidChar`](#error-type-decodeerror) for
 a character that is not a hex digit.
 
 ## Examples
@@ -57,6 +57,34 @@ use helpers4::hex::decode;
 
 assert_eq!(decode("DeadBeef")?, vec![0xde, 0xad, 0xbe, 0xef]);
 assert!(decode("abc").is_err());
+```
+
+## Error type: DecodeError
+
+Why a string could not be decoded as hexadecimal.
+
+```rust
+use helpers4::hex::DecodeError;
+
+#[non_exhaustive]
+pub enum DecodeError {
+    /// The string has an odd number of characters.
+    OddLength,
+    /// The string does not match the requested output size.
+    InvalidLength {
+        /// Expected number of hex characters (twice the output size).
+        expected: usize,
+        /// Actual number of hex characters.
+        actual: usize,
+    },
+    /// A character that is not a hexadecimal digit.
+    InvalidChar {
+        /// Byte offset of the character in the input.
+        index: usize,
+        /// The offending character.
+        found: char,
+    },
+}
 ```
 
 ## Source

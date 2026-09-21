@@ -47,8 +47,8 @@ pub fn decode_to_slice(hex: &str, out: &mut [u8]) -> Result<(), DecodeError>
 
 ## Errors
 
-[`DecodeError::OddLength`](/rust/modules/hex/decodeerror/), [`DecodeError::InvalidLength`](/rust/modules/hex/decodeerror/) when the string does not match
-`out.len() * 2`, or [`DecodeError::InvalidChar`](/rust/modules/hex/decodeerror/).
+[`DecodeError::OddLength`](#error-type-decodeerror), [`DecodeError::InvalidLength`](#error-type-decodeerror) when the string does not match
+`out.len() * 2`, or [`DecodeError::InvalidChar`](#error-type-decodeerror).
 
 ## Examples
 
@@ -58,6 +58,34 @@ use helpers4::hex::decode_to_slice;
 let mut buf = [0u8; 2];
 decode_to_slice("beef", &mut buf)?;
 assert_eq!(buf, [0xbe, 0xef]);
+```
+
+## Error type: DecodeError
+
+Why a string could not be decoded as hexadecimal.
+
+```rust
+use helpers4::hex::DecodeError;
+
+#[non_exhaustive]
+pub enum DecodeError {
+    /// The string has an odd number of characters.
+    OddLength,
+    /// The string does not match the requested output size.
+    InvalidLength {
+        /// Expected number of hex characters (twice the output size).
+        expected: usize,
+        /// Actual number of hex characters.
+        actual: usize,
+    },
+    /// A character that is not a hexadecimal digit.
+    InvalidChar {
+        /// Byte offset of the character in the input.
+        index: usize,
+        /// The offending character.
+        found: char,
+    },
+}
 ```
 
 ## Source

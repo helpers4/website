@@ -37,4 +37,11 @@ Import path: `helpers4::hex`.
 | [`decode_to_slice`](/rust/modules/hex/decode_to_slice/) | Decodes a hexadecimal string into `out`, which must be exactly half as long as the string. |
 | [`encode`](/rust/modules/hex/encode/) | Encodes `bytes` as lowercase hexadecimal. |
 | [`encode_upper`](/rust/modules/hex/encode_upper/) | Encodes `bytes` as uppercase hexadecimal. |
-| [`DecodeError`](/rust/modules/hex/decodeerror/) | Why a string could not be decoded as hexadecimal. |
+
+## Error types
+
+Documented on the page of the helper that returns them.
+
+| Type | Returned by |
+| --- | --- |
+| [`DecodeError`](/rust/modules/hex/decode/#error-type-decodeerror) | [`decode`](/rust/modules/hex/decode/), [`decode_array`](/rust/modules/hex/decode_array/), [`decode_to_slice`](/rust/modules/hex/decode_to_slice/) |
