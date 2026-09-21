@@ -15,15 +15,27 @@ export interface RepoStats {
   coverage: number | null;
 }
 
+/**
+ * Anonymous GitHub API calls are limited to 60 an hour per IP, and CI runners share their IPs, so
+ * an unauthenticated build regularly gets a 403 and every star count silently disappears. Pass a
+ * token (GITHUB_TOKEN, which GitHub Actions provides) and the limit is per token instead.
+ */
 async function fetchStars(repoPath: string): Promise<number | null> {
+  const headers: Record<string, string> = { Accept: 'application/vnd.github+json' };
+  const token = process.env.GITHUB_TOKEN;
+  if (token) headers.Authorization = `Bearer ${token}`;
   try {
-    const res = await fetch(`https://api.github.com/repos/${repoPath}`, {
-      headers: { Accept: 'application/vnd.github+json' },
-    });
-    if (!res.ok) return null;
+    const res = await fetch(`https://api.github.com/repos/${repoPath}`, { headers });
+    if (!res.ok) {
+      console.warn(
+        `[repoStats] GitHub stars for ${repoPath}: HTTP ${res.status}${token ? '' : ' (no GITHUB_TOKEN set: anonymous calls are rate-limited)'}`,
+      );
+      return null;
+    }
     const data = (await res.json()) as { stargazers_count?: number };
     return typeof data.stargazers_count === 'number' ? data.stargazers_count : null;
-  } catch {
+  } catch (error) {
+    console.warn(`[repoStats] GitHub stars for ${repoPath}: ${error instanceof Error ? error.message : error}`);
     return null;
   }
 }
