@@ -36,14 +36,14 @@ helpers4 = { version = "0.0.2", default-features = false, features = ["string", 
 
 | Module | Cargo feature | What it covers | Items |
 | --- | --- | --- | --- |
-| [`array`](./array/) | `array` | Helpers for slices and `Vec`s that the standard library does not provide. | 10 |
-| [`cache`](./cache/) | `cache` | Caches and stores whose entries expire. | 2 |
-| [`env`](./env/) | `env` | Dotenv (`.env`) helpers working on plain text: no file or process-environment access, so they are deterministic and easy to test. | 5 |
-| [`hex`](./hex/) | `hex` | Hexadecimal encoding and decoding with typed errors. | 6 |
-| [`http`](./http/) | `http` | HTTP header value helpers on plain text: no dependency on an HTTP crate. | 1 |
-| [`net`](./net/) | `net` | Network helpers on `std::net` and plain text: no I/O, no resolution. | 3 |
-| [`string`](./string/) | `string` | String manipulation and formatting helpers. | 9 |
-| [`time`](./time/) | `time` | Time helpers. | 3 |
+| [`array`](/rust/modules/array/) | `array` | Helpers for slices and `Vec`s that the standard library does not provide. | 10 |
+| [`cache`](/rust/modules/cache/) | `cache` | Caches and stores whose entries expire. | 2 |
+| [`env`](/rust/modules/env/) | `env` | Dotenv (`.env`) helpers working on plain text: no file or process-environment access, so they are deterministic and easy to test. | 5 |
+| [`hex`](/rust/modules/hex/) | `hex` | Hexadecimal encoding and decoding with typed errors. | 6 |
+| [`http`](/rust/modules/http/) | `http` | HTTP header value helpers on plain text: no dependency on an HTTP crate. | 1 |
+| [`net`](/rust/modules/net/) | `net` | Network helpers on `std::net` and plain text: no I/O, no resolution. | 3 |
+| [`string`](/rust/modules/string/) | `string` | String manipulation and formatting helpers. | 9 |
+| [`time`](/rust/modules/time/) | `time` | Time helpers. | 3 |
 
 Import through the module path (`helpers4::string::capitalize`): names can repeat across modules on purpose, so never glob-import a module.
 

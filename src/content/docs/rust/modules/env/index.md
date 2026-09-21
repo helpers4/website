@@ -31,8 +31,8 @@ Import path: `helpers4::env`.
 
 | Item | What it does |
 | --- | --- |
-| [`InvalidKeyError`](./invalidkeyerror/) | The variable name passed to `set` is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`). |
-| [`get`](./get/) | Returns the value of `key` in dotenv `content`, or `None` when it is not assigned. |
-| [`parse`](./parse/) | Parses dotenv `content` into `(key, value)` pairs, in file order. |
-| [`remove`](./remove/) | Removes every assignment of `key` from dotenv `content` and returns the new content. |
-| [`set`](./set/) | Sets `key` to `value` in dotenv `content` and returns the new content. |
+| [`InvalidKeyError`](/rust/modules/env/invalidkeyerror/) | The variable name passed to `set` is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`). |
+| [`get`](/rust/modules/env/get/) | Returns the value of `key` in dotenv `content`, or `None` when it is not assigned. |
+| [`parse`](/rust/modules/env/parse/) | Parses dotenv `content` into `(key, value)` pairs, in file order. |
+| [`remove`](/rust/modules/env/remove/) | Removes every assignment of `key` from dotenv `content` and returns the new content. |
+| [`set`](/rust/modules/env/set/) | Sets `key` to `value` in dotenv `content` and returns the new content. |

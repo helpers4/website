@@ -7,7 +7,7 @@ sidebar:
 
 Converts `s` to `kebab-case`.
 
-Splits words the same way as [`camel_case`](../camel_case/).
+Splits words the same way as [`camel_case`](/rust/modules/string/camel_case/).
 
 ## Import
 

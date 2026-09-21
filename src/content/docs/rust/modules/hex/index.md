@@ -32,9 +32,9 @@ Import path: `helpers4::hex`.
 
 | Item | What it does |
 | --- | --- |
-| [`decode`](./decode/) | Decodes a hexadecimal string (either case) into bytes. |
-| [`decode_array`](./decode_array/) | Decodes a hexadecimal string into a fixed-size array, e.g. |
-| [`decode_to_slice`](./decode_to_slice/) | Decodes a hexadecimal string into `out`, which must be exactly half as long as the string. |
-| [`encode`](./encode/) | Encodes `bytes` as lowercase hexadecimal. |
-| [`encode_upper`](./encode_upper/) | Encodes `bytes` as uppercase hexadecimal. |
-| [`DecodeError`](./decodeerror/) | Why a string could not be decoded as hexadecimal. |
+| [`decode`](/rust/modules/hex/decode/) | Decodes a hexadecimal string (either case) into bytes. |
+| [`decode_array`](/rust/modules/hex/decode_array/) | Decodes a hexadecimal string into a fixed-size array, e.g. |
+| [`decode_to_slice`](/rust/modules/hex/decode_to_slice/) | Decodes a hexadecimal string into `out`, which must be exactly half as long as the string. |
+| [`encode`](/rust/modules/hex/encode/) | Encodes `bytes` as lowercase hexadecimal. |
+| [`encode_upper`](/rust/modules/hex/encode_upper/) | Encodes `bytes` as uppercase hexadecimal. |
+| [`DecodeError`](/rust/modules/hex/decodeerror/) | Why a string could not be decoded as hexadecimal. |

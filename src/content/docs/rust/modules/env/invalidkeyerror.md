@@ -5,7 +5,7 @@ sidebar:
   label: "InvalidKeyError"
 ---
 
-The variable name passed to [`set`](../set/) is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
+The variable name passed to [`set`](/rust/modules/env/set/) is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
 
 ## Import
 

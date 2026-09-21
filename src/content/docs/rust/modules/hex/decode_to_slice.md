@@ -47,8 +47,8 @@ pub fn decode_to_slice(hex: &str, out: &mut [u8]) -> Result<(), DecodeError>
 
 ## Errors
 
-[`DecodeError::OddLength`](../decodeerror/), [`DecodeError::InvalidLength`](../decodeerror/) when the string does not match
-`out.len() * 2`, or [`DecodeError::InvalidChar`](../decodeerror/).
+[`DecodeError::OddLength`](/rust/modules/hex/decodeerror/), [`DecodeError::InvalidLength`](/rust/modules/hex/decodeerror/) when the string does not match
+`out.len() * 2`, or [`DecodeError::InvalidChar`](/rust/modules/hex/decodeerror/).
 
 ## Examples
 

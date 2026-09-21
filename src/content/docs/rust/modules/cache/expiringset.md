@@ -5,7 +5,7 @@ sidebar:
   label: "ExpiringSet"
 ---
 
-A set whose members expire: an [`ExpiringMap`](../expiringmap/) without values.
+A set whose members expire: an [`ExpiringMap`](/rust/modules/cache/expiringmap/) without values.
 
 ## Import
 

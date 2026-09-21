@@ -38,7 +38,7 @@ pub fn unix_now() -> Result<u64, ClockError>
 
 ## Errors
 
-[`ClockError`](../clockerror/) when the system clock is set before 1970. Do not turn that into `0`: a token
+[`ClockError`](/rust/modules/time/clockerror/) when the system clock is set before 1970. Do not turn that into `0`: a token
 expiry checked against `0` would look valid forever.
 
 ## Examples

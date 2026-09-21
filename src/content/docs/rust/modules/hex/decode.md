@@ -47,7 +47,7 @@ pub fn decode(hex: &str) -> Result<Vec<u8>, DecodeError>
 
 ## Errors
 
-[`DecodeError::OddLength`](../decodeerror/) for an odd number of characters, [`DecodeError::InvalidChar`](../decodeerror/) for
+[`DecodeError::OddLength`](/rust/modules/hex/decodeerror/) for an odd number of characters, [`DecodeError::InvalidChar`](/rust/modules/hex/decodeerror/) for
 a character that is not a hex digit.
 
 ## Examples

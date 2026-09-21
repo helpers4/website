@@ -40,7 +40,7 @@ pub fn unix_now_millis() -> Result<u64, ClockError>
 
 ## Errors
 
-[`ClockError`](../clockerror/) when the system clock is set before 1970 (see [`unix_now`](../unix_now/)).
+[`ClockError`](/rust/modules/time/clockerror/) when the system clock is set before 1970 (see [`unix_now`](/rust/modules/time/unix_now/)).
 
 ## Examples
 
