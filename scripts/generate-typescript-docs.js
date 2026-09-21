@@ -540,7 +540,7 @@ function generateAllFunctionsPage(categories) {
 title: "All Functions"
 description: "Complete list of all @helpers4 TypeScript utility functions and native alternatives, by category."
 sidebar:
-  label: "All Functions"
+  label: "${OVERVIEW_LABEL}"
   order: 0
 ---
 

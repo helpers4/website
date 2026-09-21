@@ -2,7 +2,7 @@
 title: "All Functions"
 description: "Complete list of all @helpers4 TypeScript utility functions and native alternatives, by category."
 sidebar:
-  label: "All Functions"
+  label: "≡ Overview"
   order: 0
 ---
 
