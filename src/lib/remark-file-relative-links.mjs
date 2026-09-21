@@ -59,7 +59,8 @@ export function resolveRelativeLink(url, pageFileUrl, isIndex, known = existingP
   const file = isIndex ? `${pageFileUrl}/` : pageFileUrl; // what a link written for the Markdown file means
   const candidates = [directory, file].map((base) => new URL(url, `http://docs.invalid${base}`));
   const match = candidates.find((c) => known.has(key(c.pathname)));
-  return match ? match.pathname + match.search + match.hash : url;
+  // Starlight slugs are lowercase, so a link written in another case is emitted in lowercase.
+  return match ? match.pathname.toLowerCase() + match.search + match.hash : url;
 }
 
 export default function remarkFileRelativeLinks() {
