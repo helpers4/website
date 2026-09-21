@@ -13,11 +13,15 @@
  * declared in `src/<module>/<file>.rs` with its `///` documentation right above it.
  *
  * Output (all generated, never edited by hand):
- * - src/content/docs/rust/modules/index.md          module overview
- * - src/content/docs/rust/modules/<module>.md       one page per module
- * - src/content/docs/rust/reference/changelog.md    CHANGELOG.md of the crate
- * - public/rust/llms-full.txt                        every item in one machine-readable file
- * - src/data/versions.json                           the documented crate version
+ * - src/content/docs/rust/modules/index.md                overview of the modules and their features
+ * - src/content/docs/rust/modules/<module>/index.md       one overview page per module
+ * - src/content/docs/rust/modules/<module>/<item>.md      one page per public function or type
+ * - src/content/docs/rust/reference/changelog.md          CHANGELOG.md of the crate
+ * - src/content/docs/rust/reference/contributing.md       CONTRIBUTING.md of the crate
+ * - src/content/docs/rust/reference/naming-conflicts.md  names that exist in more than one module
+ * - src/content/docs/rust/legal/open-source-libraries.md  the crate's dependencies, from Cargo.toml
+ * - public/rust/llms-full.txt                              every item in one machine-readable file
+ * - src/data/versions.json                                 the documented crate version
  *
  * The crate is read from RUST_REPO_PATH, defaulting to the sibling checkout ../rust. Anything the
  * parser cannot resolve is an error: a page that silently misses an item is worse than a red run.
@@ -33,6 +37,7 @@ const repoPath = path.resolve(process.env.RUST_REPO_PATH ?? path.join(rootDir, '
 const docsDir = path.join(rootDir, 'src', 'content', 'docs', 'rust');
 const modulesDir = path.join(docsDir, 'modules');
 const referenceDir = path.join(docsDir, 'reference');
+const legalDir = path.join(docsDir, 'legal');
 const llmsFullPath = path.join(rootDir, 'public', 'rust', 'llms-full.txt');
 const versionsPath = path.join(rootDir, 'src', 'data', 'versions.json');
 
@@ -126,7 +131,7 @@ function blockEnd(lines, start) {
 function parseFn(lines, index, indent) {
   const line = lines[index].slice(indent);
   const name = line.match(/^pub fn (\w+)/)?.[1];
-  return { kind: 'fn', name, doc: docAbove(lines, index), signature: signatureFrom(lines, index, indent) };
+  return { kind: 'fn', name, doc: docAbove(lines, index), signature: signatureFrom(lines, index, indent), line: index + 1 };
 }
 
 /** The public methods of the `impl` blocks of a type, in source order. */
@@ -143,7 +148,7 @@ function methodsOf(lines, typeName) {
   return methods;
 }
 
-function parseItem(source, name, module) {
+function parseItem(source, name, module, file) {
   const lines = source.split('\n');
   const index = lines.findIndex((line) => new RegExp(`^pub (fn|struct|enum|type) ${name}\\b`).test(line));
   if (index < 0) fail(`${module}: no public declaration of \`${name}\``);
@@ -151,15 +156,15 @@ function parseItem(source, name, module) {
   const doc = docAbove(lines, index);
   if (doc.length === 0) fail(`${module}::${name} has no documentation`);
 
-  if (kind === 'fn') return { ...parseFn(lines, index, 0), module };
+  if (kind === 'fn') return { ...parseFn(lines, index, 0), module, file };
   if (kind === 'type') {
-    return { kind, name, module, doc, signature: signatureFrom(lines, index, 0), methods: [] };
+    return { kind, name, module, file, line: index + 1, doc, signature: signatureFrom(lines, index, 0), methods: [] };
   }
   if (kind === 'enum') {
     const end = blockEnd(lines, index);
     const body = lines.slice(index, end + 1).join('\n');
     const attributes = shownAttributes(lines, index);
-    return { kind, name, module, doc, signature: [...attributes, body].join('\n'), methods: methodsOf(lines, name) };
+    return { kind, name, module, file, line: index + 1, doc, signature: [...attributes, body].join('\n'), methods: methodsOf(lines, name) };
   }
   // struct: the fields are private, so only the header is part of the API
   const header = signatureFrom(lines, index, 0).replace(/\s*\{[\s\S]*$/, '');
@@ -167,6 +172,8 @@ function parseItem(source, name, module) {
     kind,
     name,
     module,
+    file,
+    line: index + 1,
     doc,
     signature: `${header} { /* private fields */ }`,
     methods: methodsOf(lines, name),
@@ -180,7 +187,7 @@ function parseModule(name, features) {
   const exports = reexports(source);
   if (exports.length === 0) fail(`src/${name}/mod.rs re-exports nothing`);
   if (!features.includes(name)) fail(`module \`${name}\` has no Cargo feature of the same name`);
-  const items = exports.map(({ file, name: item }) => parseItem(read(`src/${name}/${file}.rs`), item, name));
+  const items = exports.map(({ file, name: item }) => parseItem(read(`src/${name}/${file}.rs`), item, name, file));
   return { name, doc, items };
 }
 
@@ -199,9 +206,16 @@ function readModules(features) {
 // Markdown
 // ---------------------------------------------------------------------------------------------
 
+const REPO_URL = 'https://github.com/helpers4/rust';
+
 /** GitHub-style heading slug, as Starlight generates it. */
 function slug(text) {
   return text.toLowerCase().replaceAll(' ', '-').replace(/[^a-z0-9_-]/g, '');
+}
+
+/** File name and URL segment of an item's own page: `ExpiringMap` -> `expiringmap`. */
+function pageSlug(name) {
+  return name.toLowerCase();
 }
 
 function firstSentence(doc) {
@@ -215,36 +229,67 @@ function firstSentence(doc) {
   return (cut >= 0 ? text.slice(0, cut + 1) : text).trim();
 }
 
+/** Intra-doc links flattened to plain code, keeping the code formatting: for table cells and lists. */
+function inline(text) {
+  return text.replace(/\[`([^`]+)`\]\([\w:]+\)|\[`([^`]+)`\]/g, (_, a, b) => `\`${a ?? b}\``);
+}
+
+/** Links and backticks removed, for places that only take plain text (frontmatter descriptions). */
+function plain(text) {
+  return text.replace(/\[`([^`]+)`\]\([\w:]+\)|\[`([^`]+)`\]/g, (_, a, b) => a ?? b).replace(/`/g, '');
+}
+
+/** Splits rustdoc lines into the introduction and its `# Title` sections. */
+function splitSections(doc) {
+  const intro = [];
+  const sections = [];
+  let current = null;
+  let inFence = false;
+  for (const line of doc) {
+    if (/^```/.test(line)) inFence = !inFence;
+    const heading = !inFence && line.match(/^# (.+)$/);
+    if (heading) {
+      current = { title: heading[1].trim(), lines: [] };
+      sections.push(current);
+      continue;
+    }
+    (current ? current.lines : intro).push(line);
+  }
+  return { intro, sections };
+}
+
 /**
- * Knows every documented name so that intra-doc links (`[`name`]`, `[`name`](super::name)`,
- * `[`name`](Self::name)`) become real anchors, or plain code when the target is not ours (std
- * types such as `IpAddr`).
+ * Knows every documented item so that intra-doc links (`[`name`]`, `[`name`](super::name)`,
+ * `[`Type::method`](Self::method)`) become links to the item's page, or plain code when the
+ * target is not ours (std types such as `IpAddr`). `page` says where the link is written from,
+ * because the pages sit at different depths: `{ module, kind: 'item' | 'module' | 'overview' }`.
  */
 function makeLinker(modules) {
   const home = new Map();
   for (const m of modules) for (const item of m.items) home.set(item.name, m.name);
-  return (currentModule, mode) => (text, target) => {
+  return (page, mode) => (text, target) => {
+    const code = `\`${text}\``;
     // `Self::method` is a method of the type documented on this very page.
     if (target?.startsWith('Self::')) {
-      const method = target.slice('Self::'.length);
-      return mode === 'text' ? `\`${text}\`` : `[\`${text}\`](#${slug(method)})`;
+      return mode === 'text' ? code : `[${code}](#${slug(target.slice('Self::'.length))})`;
     }
-    // `Type::method` and `Type::Variant` point at the type's own section.
+    if (mode === 'text') return code;
+    // `Type::method` and `Type::Variant` point at the type's own page.
     const segments = (target ?? text).split('::');
     const name = [segments.at(-1), segments[0]].find((candidate) => home.has(candidate)) ?? segments.at(-1);
-    const code = `\`${text}\``;
-    if (mode === 'text') return code;
     const owner = home.get(name);
     if (!owner) return code;
-    return owner === currentModule ? `[${code}](#${slug(name)})` : `[${code}](../${owner}/#${slug(name)})`;
+    const same = owner === page.module;
+    const base = { item: same ? '..' : `../../${owner}`, module: same ? '.' : `../${owner}`, overview: `./${owner}` }[page.kind];
+    return `[${code}](${base}/${pageSlug(name)}/)`;
   };
 }
 
 /**
- * rustdoc Markdown to site Markdown: demote headings under the item heading, hide the `# `
- * lines of doctests, tag bare fences as Rust and resolve intra-doc links.
+ * rustdoc Markdown to site Markdown: hide the `# ` lines of doctests, tag bare fences as Rust and
+ * resolve intra-doc links. Headings never reach here: `splitSections` took them out.
  */
-function convertDoc(doc, link, { headingLevel }) {
+function convertDoc(doc, link) {
   const out = [];
   let inFence = false;
   for (const line of doc) {
@@ -257,11 +302,6 @@ function convertDoc(doc, link, { headingLevel }) {
     if (inFence) {
       if (line === '#' || line.startsWith('# ')) continue; // hidden doctest line
       out.push(line.startsWith('##') ? line.slice(1) : line); // `##` escapes a literal `#`
-      continue;
-    }
-    const heading = line.match(/^(#{1,6}) (.*)$/);
-    if (heading) {
-      out.push(`${'#'.repeat(headingLevel)} ${heading[2]}`);
       continue;
     }
     out.push(
@@ -287,38 +327,210 @@ function frontmatter(fields) {
   return `${lines.join('\n')}\n`;
 }
 
-function itemSection(item, link, cargo) {
-  const parts = [`## \`${item.name}\``, '', '```rust', item.signature, '```', ''];
-  parts.push(convertDoc(item.doc, link, { headingLevel: 3 }), '');
-  if (item.methods?.length > 0) {
-    parts.push('### Methods', '');
-    for (const method of item.methods) {
-      parts.push(`#### \`${method.name}\``, '', '```rust', method.signature, '```', '');
-      parts.push(convertDoc(method.doc, link, { headingLevel: 5 }), '');
+// ---------------------------------------------------------------------------------------------
+// Signatures: parameters and return type
+// ---------------------------------------------------------------------------------------------
+
+/** Splits on the commas that are not inside `<>`, `()`, `[]` or `{}`. */
+function splitTopLevel(text) {
+  const parts = [];
+  let depth = 0;
+  let current = '';
+  for (const ch of text) {
+    if ('<([{'.includes(ch)) depth += 1;
+    else if ('>)]}'.includes(ch) && !(ch === '>' && current.endsWith('-'))) depth -= 1;
+    if (ch === ',' && depth === 0) {
+      parts.push(current.trim());
+      current = '';
+      continue;
+    }
+    current += ch;
+  }
+  if (current.trim()) parts.push(current.trim());
+  return parts;
+}
+
+/** `{ params: [{ name, type }], returns }` of a function signature. */
+function parseSignature(signature, name) {
+  const flat = signature.replace(/\s+/g, ' ');
+  let i = flat.indexOf(`fn ${name}`) + `fn ${name}`.length;
+  let depth = 0;
+  for (; i < flat.length; i += 1) {
+    if (flat[i] === '<') depth += 1;
+    else if (flat[i] === '>' && flat[i - 1] !== '-') depth -= 1;
+    else if (flat[i] === '(' && depth === 0) break;
+  }
+  let close = i;
+  for (let d = 0; close < flat.length; close += 1) {
+    if (flat[close] === '(') d += 1;
+    if (flat[close] === ')' && (d -= 1) === 0) break;
+  }
+  const params = splitTopLevel(flat.slice(i + 1, close))
+    .filter((p) => !/^(&(mut )?)?self\b/.test(p))
+    .map((p) => {
+      const at = p.indexOf(':');
+      return { name: p.slice(0, at).replace(/^mut /, '').trim(), type: p.slice(at + 1).trim() };
+    });
+  const returns = flat.slice(close + 1).match(/^\s*->\s*(.+?)(?:\s+where\b.*)?$/)?.[1] ?? '()';
+  return { params, returns: returns.trim() };
+}
+
+/** Descriptions from an optional `# Arguments` section: "- `name` - what it is". */
+function argumentDescriptions(sections) {
+  const map = new Map();
+  const section = sections.find((s) => s.title === 'Arguments');
+  let last = null;
+  for (const line of section?.lines ?? []) {
+    const bullet = line.match(/^[-*]\s+`([^`]+)`\s*[:–—-]?\s*(.*)$/);
+    if (bullet) {
+      last = bullet[1];
+      map.set(last, bullet[2].trim());
+    } else if (last && line.trim() !== '') {
+      map.set(last, `${map.get(last)} ${line.trim()}`.trim());
     }
   }
-  return parts.join('\n');
+  return map;
+}
+
+function cell(text) {
+  return text.replaceAll('|', '\\|');
+}
+
+// ---------------------------------------------------------------------------------------------
+// Pages
+// ---------------------------------------------------------------------------------------------
+
+function installBlock(module, cargo) {
+  const status = cargo.defaults.includes(module) ? 'enabled by default' : 'opt-in';
+  return [
+    `Cargo feature \`${module}\` (${status}). To compile only this module:`,
+    '',
+    '```sh',
+    `cargo add helpers4 --no-default-features --features ${module}`,
+    '```',
+    '',
+    'or in `Cargo.toml`:',
+    '',
+    '```toml',
+    '[dependencies]',
+    `helpers4 = { version = "${cargo.version}", default-features = false, features = ["${module}"] }`,
+    '```',
+  ].join('\n');
+}
+
+function parametersTable(params, descriptions) {
+  if (params.length === 0) return '';
+  // The Description column only appears when the source documents its parameters (`# Arguments`).
+  if (descriptions.size === 0) {
+    return ['| Parameter | Type |', '| --- | --- |', ...params.map((p) => `| \`${p.name}\` | \`${cell(p.type)}\` |`)].join('\n');
+  }
+  const rows = params.map((p) => `| \`${p.name}\` | \`${cell(p.type)}\` | ${cell(descriptions.get(p.name) ?? '')} |`);
+  return ['| Parameter | Type | Description |', '| --- | --- | --- |', ...rows].join('\n');
+}
+
+const KNOWN_SECTIONS = new Set(['Arguments', 'Returns', 'Errors', 'Panics', 'Examples']);
+
+/**
+ * The body shared by function pages and by the methods of a type page: signature, parameters,
+ * returns, errors, panics, examples and any other section, at heading level `level`.
+ * `titled` false (methods) uses bold labels instead of headings, to keep the table of contents short.
+ */
+function callableBody(fn, link, { level, cargo }) {
+  const { intro, sections } = splitSections(fn.doc);
+  const { params, returns } = parseSignature(fn.signature, fn.name);
+  const descriptions = argumentDescriptions(sections);
+  const heading = (title) => (level === 0 ? `**${title}**` : `${'#'.repeat(level)} ${title}`);
+  const out = [];
+  const returnsSection = sections.find((s) => s.title === 'Returns');
+  const returnsText = returnsSection ? convertDoc(returnsSection.lines, link) : '';
+  return {
+    intro: convertDoc(intro, link),
+    signature: fn.signature,
+    render(withSignature) {
+      if (withSignature) out.push(heading('Signature'), '', '```rust', fn.signature, '```', '');
+      if (params.length > 0) out.push(heading('Parameters'), '', parametersTable(params, descriptions), '');
+      const hint = !returnsText && level === 2 && returns.startsWith('Result<') && sections.some((s) => s.title === 'Errors') ? ' — `Ok` on success, otherwise an `Err`: see [Errors](#errors).' : '';
+      out.push(heading('Returns'), '', `\`${returns}\`${returnsText ? ` — ${returnsText}` : hint}`, '');
+      for (const title of ['Errors', 'Panics']) {
+        const section = sections.find((s) => s.title === title);
+        if (section) out.push(heading(title), '', convertDoc(section.lines, link), '');
+      }
+      const examples = sections.find((s) => s.title === 'Examples');
+      if (examples) out.push(heading('Examples'), '', convertDoc(examples.lines, link), '');
+      for (const section of sections.filter((s) => !KNOWN_SECTIONS.has(s.title))) {
+        out.push(heading(section.title), '', convertDoc(section.lines, link), '');
+      }
+      return out.join('\n');
+    },
+  };
+}
+
+function importBlock(item, cargo) {
+  return [`## Import`, '', '```rust', `use helpers4::${item.module}::${item.name};`, '```', '', installBlock(item.module, cargo), ''].join('\n');
+}
+
+function seeAlso(mod, item, link) {
+  const siblings = mod.items.filter((other) => other.name !== item.name);
+  if (siblings.length === 0) return '';
+  const lines = siblings.map((other) => `- ${link(other.name)} — ${inline(firstSentence(other.doc))}`);
+  return ['## More in this module', '', ...lines, ''].join('\n');
+}
+
+function sourceBlock(item, cargo) {
+  const file = `src/${item.module}/${item.file}.rs`;
+  return ['## Source', '', `[${file}](${REPO_URL}/blob/v${cargo.version}/${file}#L${item.line})`, ''].join('\n');
+}
+
+function itemPage(mod, item, linker, cargo) {
+  const link = linker({ module: mod.name, kind: 'item' }, 'page');
+  const description = plain(firstSentence(item.doc));
+  const head = frontmatter({ title: item.name, description, sidebar: { label: item.name } });
+  const out = [];
+  if (item.kind === 'fn') {
+    const body = callableBody(item, link, { level: 2, cargo });
+    out.push(body.intro, '', importBlock(item, cargo), body.render(true));
+  } else {
+    const { intro, sections } = splitSections(item.doc);
+    out.push(convertDoc(intro, link), '', importBlock(item, cargo));
+    out.push('## Definition', '', '```rust', item.signature, '```', '');
+    for (const section of sections) out.push(`## ${section.title}`, '', convertDoc(section.lines, link), '');
+    if (item.methods.length > 0) {
+      out.push('## Methods', '');
+      for (const method of item.methods) {
+        const body = callableBody(method, link, { level: 0, cargo });
+        out.push(`### \`${method.name}\``, '', '```rust', method.signature, '```', '', body.intro, '', body.render(false));
+      }
+    }
+  }
+  out.push(seeAlso(mod, item, link), sourceBlock(item, cargo));
+  return head + out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
 }
 
 function modulePage(mod, index, linker, cargo) {
-  const link = linker(mod.name, 'page');
-  const description = firstSentence(mod.doc).replace(/`/g, '');
-  const summary = mod.items
-    .map((item) => `| [\`${item.name}\`](#${slug(item.name)}) | ${firstSentence(item.doc).replaceAll('|', '\\|').replace(/\[`([^`]+)`\]\([\w:]+\)|\[`([^`]+)`\]/g, (_, a, b) => `\`${a ?? b}\``)} |`)
+  const link = linker({ module: mod.name, kind: 'module' }, 'page');
+  const rows = mod.items
+    .map((item) => `| [\`${item.name}\`](./${pageSlug(item.name)}/) | ${cell(inline(firstSentence(item.doc)))} |`)
     .join('\n');
-  const enabled = cargo.defaults.includes(mod.name) ? 'enabled by default' : 'opt-in';
   return (
-    frontmatter({ title: mod.name, description, sidebar: { order: index + 1 } }) +
+    frontmatter({
+      title: mod.name,
+      description: plain(firstSentence(mod.doc)),
+      sidebar: { label: 'Overview', order: 0 },
+    }) +
     [
-      convertDoc(mod.doc, link, { headingLevel: 2 }),
+      convertDoc(mod.doc, link),
       '',
-      `Cargo feature \`${mod.name}\` (${enabled}) · import path \`helpers4::${mod.name}\``,
+      '## Install',
+      '',
+      installBlock(mod.name, cargo),
+      '',
+      `Import path: \`helpers4::${mod.name}\`.`,
+      '',
+      '## Items',
       '',
       '| Item | What it does |',
       '| --- | --- |',
-      summary,
-      '',
-      mod.items.map((item) => itemSection(item, link, cargo)).join('\n'),
+      rows,
     ].join('\n') +
     '\n'
   );
@@ -326,7 +538,7 @@ function modulePage(mod, index, linker, cargo) {
 
 function overviewPage(modules, cargo) {
   const rows = modules
-    .map((m) => `| [\`${m.name}\`](./${m.name}/) | ${firstSentence(m.doc).replaceAll('|', '\\|').replace(/`/g, '')} | ${m.items.length} |`)
+    .map((m) => `| [\`${m.name}\`](./${m.name}/) | \`${m.name}\` | ${cell(inline(firstSentence(m.doc)))} | ${m.items.length} |`)
     .join('\n');
   return (
     frontmatter({
@@ -335,18 +547,30 @@ function overviewPage(modules, cargo) {
       sidebar: { order: 0, label: 'Overview' },
     }) +
     [
-      `The \`helpers4\` crate has ${modules.length} modules, each behind a Cargo feature of the same name. All of them are enabled by default; take only what you use with:`,
+      `The \`helpers4\` crate is organised in ${modules.length} modules. **Each module is a Cargo feature of the same name**, and all of them are enabled by default (\`cargo add helpers4\`).`,
+      '',
+      '## Install only what you use',
+      '',
+      'Turn the default features off and name the modules you want:',
+      '',
+      '```sh',
+      'cargo add helpers4 --no-default-features --features string,hex',
+      '```',
+      '',
+      'or in `Cargo.toml`:',
       '',
       '```toml',
       '[dependencies]',
-      'helpers4 = { version = "0", default-features = false, features = ["string", "hex"] }',
+      `helpers4 = { version = "${cargo.version}", default-features = false, features = ["string", "hex"] }`,
       '```',
       '',
-      '| Module | What it covers | Items |',
-      '| --- | --- | --- |',
+      '## Modules',
+      '',
+      '| Module | Cargo feature | What it covers | Items |',
+      '| --- | --- | --- | --- |',
       rows,
       '',
-      'Import through the module path (`helpers4::string::capitalize`): names repeat across modules on purpose, so never glob-import a module.',
+      'Import through the module path (`helpers4::string::capitalize`): names can repeat across modules on purpose, so never glob-import a module.',
       '',
       `Documented version: **${cargo.version}**${cargo.msrv ? `. Minimum supported Rust version: **${cargo.msrv}**` : ''}.`,
     ].join('\n') +
@@ -360,22 +584,121 @@ function changelogPage() {
   return frontmatter({ title: 'Changelog', sidebar: { order: 2 } }) + content.trimEnd() + '\n';
 }
 
+/** CONTRIBUTING.md with its relative links pointed at the repository at the release tag. */
+function contributingPage(cargo) {
+  let content = read('CONTRIBUTING.md').replace(/^<!--[\s\S]*?-->\n\n?/, '').replace(/^# .+\n+/, '');
+  content = content.replace(/\]\((?!https?:|#|mailto:)([^)]+)\)/g, (_, target) => `](${REPO_URL}/blob/v${cargo.version}/${target.replace(/^\.\//, '')})`);
+  return frontmatter({ title: 'Contributing', sidebar: { order: 3 } }) + content.trimEnd() + '\n';
+}
+
+function dependencyList(toml, section) {
+  const body = toml.match(new RegExp(`^\\[${section}\\]\\n([\\s\\S]*?)(?:\\n\\[|(?![\\s\\S]))`, 'm'))?.[1] ?? '';
+  return [...body.matchAll(/^([a-z0-9_-]+)\s*=\s*(?:"([^"]+)"|\{[^}]*version\s*=\s*"([^"]+)"[^}]*\})/gm)].map((m) => ({ name: m[1], version: m[2] ?? m[3] }));
+}
+
+function librariesPage() {
+  const toml = read('Cargo.toml');
+  const runtime = dependencyList(toml, 'dependencies');
+  const dev = dependencyList(toml, 'dev-dependencies');
+  const list = (deps) => deps.map((d) => `- [\`${d.name}\`](https://crates.io/crates/${d.name}) \`${d.version}\``).join('\n');
+  return (
+    frontmatter({ title: 'Open-source libraries', sidebar: { label: 'Open-source libraries' } }) +
+    [
+      '## Runtime dependencies',
+      '',
+      runtime.length === 0
+        ? 'The `helpers4` crate has **no third-party runtime dependencies**: nothing but the Rust standard library ends up in your build. A module that needs one in the future gets its own Cargo feature, and the dependency is optional.'
+        : `These crates are compiled into your build:\n\n${list(runtime)}`,
+      '',
+      '## Development dependencies',
+      '',
+      'Used to test and benchmark the crate. They are **not** part of what you download when you depend on `helpers4`.',
+      '',
+      list(dev),
+    ].join('\n') +
+    '\n'
+  );
+}
+
+/** Which public names exist in more than one module: generated, so it is always accurate. */
+function namingPage(modules) {
+  const byName = new Map();
+  for (const mod of modules) {
+    for (const item of mod.items) byName.set(item.name, [...(byName.get(item.name) ?? []), mod.name]);
+  }
+  const conflicts = [...byName].filter(([, owners]) => owners.length > 1).sort(([a], [b]) => a.localeCompare(b));
+  const table =
+    conflicts.length === 0
+      ? 'No two public items share a name yet. The rule below applies as soon as one does.'
+      : [
+          '| Item | Modules |',
+          '| --- | --- |',
+          ...conflicts.map(([name, owners]) => `| \`${name}\` | ${owners.map((o) => `[\`${o}\`](../modules/${o}/${pageSlug(name)}/)`).join(', ')} |`),
+        ].join('\n');
+  return (
+    frontmatter({
+      title: 'Names and imports',
+      description: 'The same name can exist in several modules. This page explains how to import them.',
+      sidebar: { label: 'Names and imports', order: 4 },
+    }) +
+    [
+      'helpers4 is one crate with one module per category. A deliberate consequence is that **the same function name can exist in several modules** when the operation makes sense for different kinds of data: merging them into one generic function would make the types less precise and the behavior harder to predict.',
+      '',
+      '## Names that exist in more than one module',
+      '',
+      '*Generated from the documented version, so it always matches it.*',
+      '',
+      table,
+      '',
+      '## Importing',
+      '',
+      'Import through the module path, and do not glob-import a module (`use helpers4::string::*;`): the next name collision would then be yours to debug.',
+      '',
+      '```rust',
+      'use helpers4::string::capitalize;',
+      '',
+      'assert_eq!(capitalize("hello"), "Hello");',
+      '```',
+      '',
+      '## Resolving a conflict',
+      '',
+      'When you need two helpers with the same name in one file, rename at the import site with `as`. A suffix naming the module keeps them apart at a glance:',
+      '',
+      '```rust',
+      'use helpers4::string::truncate as truncate_text;',
+      '',
+      'assert_eq!(truncate_text("A very long title", 10, "..."), "A very ...");',
+      '```',
+      '',
+      'The same applies to a name that also exists in the standard library or in another crate you use.',
+    ].join('\n') +
+    '\n'
+  );
+}
+
 function llmsFull(modules, linker, cargo) {
   const out = [
     `# helpers4 (Rust) — full reference, version ${cargo.version}`,
     '',
     '> Every public item of the `helpers4` crate with its signature, documentation and examples.',
-    '> The examples are doctests that run in the crate\'s CI: treat them as verified usage.',
+    "> The examples are doctests that run in the crate's CI: treat them as verified usage.",
     '> Import through the module path; names repeat across modules on purpose.',
+    '> Each module is a Cargo feature of the same name (`cargo add helpers4 --no-default-features --features <module>`).',
     '',
   ];
+  const sectionMarkdown = (doc, link, level) => {
+    const { intro, sections } = splitSections(doc);
+    const parts = [convertDoc(intro, link)];
+    for (const section of sections) parts.push(`${'#'.repeat(level)} ${section.title}`, '', convertDoc(section.lines, link));
+    return parts.join('\n\n');
+  };
   for (const mod of modules) {
-    const link = linker(mod.name, 'text');
-    out.push(`## Module \`${mod.name}\` (Cargo feature \`${mod.name}\`)`, '', convertDoc(mod.doc, link, { headingLevel: 3 }), '');
+    const link = linker({ module: mod.name, kind: 'module' }, 'text');
+    out.push(`## Module \`${mod.name}\` (Cargo feature \`${mod.name}\`)`, '', convertDoc(mod.doc, link), '');
     for (const item of mod.items) {
-      out.push(`### ${mod.name}::${item.name}`, '', '```rust', item.signature, '```', '', convertDoc(item.doc, link, { headingLevel: 4 }), '');
+      out.push(`### ${mod.name}::${item.name}`, '', '```rust', item.signature, '```', '', sectionMarkdown(item.doc, link, 4), '');
       for (const method of item.methods ?? []) {
-        out.push(`#### ${item.name}::${method.name}`, '', '```rust', method.signature, '```', '', convertDoc(method.doc, link, { headingLevel: 5 }), '');
+        out.push(`#### ${item.name}::${method.name}`, '', '```rust', method.signature, '```', '', sectionMarkdown(method.doc, link, 5), '');
       }
     }
   }
@@ -407,19 +730,25 @@ function main() {
   const modules = readModules(cargo.features);
   const linker = makeLinker(modules);
 
-  // Regenerate the whole generated directories: a removed module must not leave a stale page.
+  // Regenerate the whole generated directory: a removed item must not leave a stale page.
   fs.rmSync(modulesDir, { recursive: true, force: true });
   writeFile(path.join(modulesDir, 'index.md'), overviewPage(modules, cargo));
   modules.forEach((mod, index) => {
-    writeFile(path.join(modulesDir, `${mod.name}.md`), modulePage(mod, index, linker, cargo));
-    console.log(`  ✓ ${mod.name} (${mod.items.length} items)`);
+    writeFile(path.join(modulesDir, mod.name, 'index.md'), modulePage(mod, index, linker, cargo));
+    for (const item of mod.items) {
+      writeFile(path.join(modulesDir, mod.name, `${pageSlug(item.name)}.md`), itemPage(mod, item, linker, cargo));
+    }
+    console.log(`  ✓ ${mod.name} (${mod.items.length} pages)`);
   });
   writeFile(path.join(referenceDir, 'changelog.md'), changelogPage());
+  writeFile(path.join(referenceDir, 'contributing.md'), contributingPage(cargo));
+  writeFile(path.join(referenceDir, 'naming-conflicts.md'), namingPage(modules));
+  writeFile(path.join(legalDir, 'open-source-libraries.md'), librariesPage());
   writeFile(llmsFullPath, llmsFull(modules, linker, cargo));
   updateVersions(cargo.version);
 
   const total = modules.reduce((n, m) => n + m.items.length, 0);
-  console.log(`\n✅ ${modules.length} modules, ${total} items, version ${cargo.version}`);
+  console.log(`\n✅ ${modules.length} modules, ${total} item pages, version ${cargo.version}`);
 }
 
 try {

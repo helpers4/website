@@ -101,7 +101,7 @@ export default defineConfig({
             items: [
               { slug: 'rust' },
               { slug: 'rust/getting-started' },
-              { label: 'Modules', items: [{ autogenerate: { directory: 'rust/modules' } }] },
+              { label: 'Modules', items: [{ autogenerate: { directory: 'rust/modules', collapsed: true } }] },
               {
                 label: 'Reference',
                 items: [

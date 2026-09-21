@@ -14,9 +14,12 @@ website/
 │   │                  #   pre-monorepo archive with no generator source — hand-authored on
 │   │                  #   purpose, see src/data/versions.json)
 │   ├── rust/
-│   │   ├── modules/    # ⚠ GENERATED — do not edit by hand (one page per module + overview)
-│   │   ├── reference/changelog.md  # ⚠ GENERATED — copy of the crate's CHANGELOG.md
-│   │   └── index.md, getting-started.md, legal/  # hand-authored
+│   │   ├── modules/            # ⚠ GENERATED — overview + modules/<module>/index.md and one
+│   │   │                       #   page per public item (modules/<module>/<item>.md)
+│   │   ├── reference/          # changelog.md, contributing.md, naming-conflicts.md are ⚠ GENERATED;
+│   │   │                       #   philosophy.md and ai-support.md are hand-authored
+│   │   ├── legal/              # open-source-libraries.md is ⚠ GENERATED; license.md is hand-authored
+│   │   └── index.md, getting-started.md  # hand-authored
 │   ├── devcontainer/  # ⚠ GENERATED — do not edit by hand
 │   └── action/        # ⚠ GENERATED — do not edit by hand
 ├── public/
@@ -28,7 +31,8 @@ website/
 │                                # version slot (typescript/, typescript/next/, typescript/vN/ —
 │                                # same DOCS_TARGET as the doc tree it sits next to)
 ├── scripts/
-│   ├── generate-rust-docs.js          # crate source (/// docs) → Markdown + public/rust/llms-full.txt
+│   ├── generate-rust-docs.js          # crate source (/// docs, Cargo.toml, CHANGELOG, CONTRIBUTING) → Markdown
+│   │                                  #   pages + public/rust/llms-full.txt; RUST_REPO_PATH points at a checkout
 │   ├── generate-typescript-docs.js    # JSDoc → Markdown + publishes llms-full.txt
 │   ├── generate-devcontainer-docs.js  # feature READMEs → Markdown
 │   ├── generate-action-docs.js        # action README → Markdown
