@@ -2,7 +2,7 @@
 title: "http"
 description: "HTTP header value helpers on plain text: no dependency on an HTTP crate."
 sidebar:
-  label: "📋 Overview"
+  label: "≡ Overview"
   order: 0
 ---
 

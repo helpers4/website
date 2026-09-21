@@ -2,7 +2,7 @@
 title: "time"
 description: "Time helpers."
 sidebar:
-  label: "📋 Overview"
+  label: "≡ Overview"
   order: 0
 ---
 
