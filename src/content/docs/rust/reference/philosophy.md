@@ -6,7 +6,7 @@ sidebar:
   order: 1
 ---
 
-helpers4 for Rust is a collection of helpers built around a few firm convictions. This page explains the reasoning behind our design decisions, so you know what to expect and what we expect from contributions.
+helpers4 is a collection of Rust helpers built around a few firm convictions. This page explains the reasoning behind our design decisions, so you know what to expect and what we expect from contributions.
 
 ## One thing, done well
 
