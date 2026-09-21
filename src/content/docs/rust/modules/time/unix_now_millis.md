@@ -40,7 +40,7 @@ pub fn unix_now_millis() -> Result<u64, ClockError>
 
 ## Errors
 
-[`ClockError`](/rust/modules/time/clockerror/) when the system clock is set before 1970 (see [`unix_now`](/rust/modules/time/unix_now/)).
+[`ClockError`](#error-type-clockerror) when the system clock is set before 1970 (see [`unix_now`](/rust/modules/time/unix_now/)).
 
 ## Examples
 
@@ -49,6 +49,31 @@ use helpers4::time::unix_now_millis;
 
 assert!(unix_now_millis()? > 1_700_000_000_000);
 ```
+
+## Error type: ClockError
+
+The system clock is set before the Unix epoch (1970-01-01T00:00:00Z).
+
+Returned instead of a silent `0`: an expiry comparison against `0` would treat every token as
+still valid.
+
+```rust
+use helpers4::time::ClockError;
+
+pub struct ClockError { /* private fields */ }
+```
+
+### `ClockError::behind`
+
+```rust
+pub fn behind(&self) -> Duration
+```
+
+How far before the epoch the clock is.
+
+**Returns**
+
+`Duration`
 
 ## Source
 

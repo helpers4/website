@@ -408,22 +408,6 @@ Dotenv (`.env`) helpers working on plain text: no file or process-environment ac
 they are deterministic and easy to test. Read the file yourself, edit the content here, and
 write it back.
 
-### env::InvalidKeyError
-
-```rust
-pub struct InvalidKeyError { /* private fields */ }
-```
-
-The variable name passed to `set` is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
-
-#### InvalidKeyError::key
-
-```rust
-pub fn key(&self) -> &str
-```
-
-The rejected name.
-
 ### env::get
 
 ```rust
@@ -519,6 +503,22 @@ assert_eq!(updated, "# config\nHOST=example.com\nPORT=80\n");
 
 assert_eq!(set("A=1\n", "B", "two words")?, "A=1\nB=\"two words\"\n");
 ```
+
+### env::InvalidKeyError
+
+```rust
+pub struct InvalidKeyError { /* private fields */ }
+```
+
+The variable name passed to `set` is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
+
+#### InvalidKeyError::key
+
+```rust
+pub fn key(&self) -> &str
+```
+
+The rejected name.
 
 ## Module `hex` (Cargo feature `hex`)
 
@@ -693,36 +693,6 @@ assert_eq!(bearer_token("Bearer "), None);
 
 Network helpers on `std::net` and plain text: no I/O, no resolution.
 
-### net::HostnameError
-
-```rust
-#[non_exhaustive]
-pub enum HostnameError {
-    /// The string is empty.
-    Empty,
-    /// The name is longer than 253 octets (not counting an optional trailing dot).
-    TooLong,
-    /// A label is empty: a leading dot, two consecutive dots, or a lone `"."`.
-    EmptyLabel,
-    /// A label is longer than 63 octets.
-    LabelTooLong,
-    /// A character other than an ASCII letter, digit or hyphen.
-    InvalidChar {
-        /// Byte offset of the character in the input.
-        index: usize,
-        /// The offending character.
-        found: char,
-    },
-    /// A label starts or ends with a hyphen.
-    HyphenEdge,
-    /// The last label is a number (`127.1`, `2130706433`, `0x7f`): URL parsers read such a name as
-    /// an IPv4 address, not as a hostname.
-    NumericLastLabel,
-}
-```
-
-Why a string is not a valid hostname (see `is_valid_hostname`).
-
 ### net::is_public_ip
 
 ```rust
@@ -819,6 +789,36 @@ assert_eq!(is_valid_hostname("-bad.example"), Err(HostnameError::HyphenEdge));
 assert_eq!(is_valid_hostname("a..b"), Err(HostnameError::EmptyLabel));
 assert_eq!(is_valid_hostname("127.0.0.1"), Err(HostnameError::NumericLastLabel));
 ```
+
+### net::HostnameError
+
+```rust
+#[non_exhaustive]
+pub enum HostnameError {
+    /// The string is empty.
+    Empty,
+    /// The name is longer than 253 octets (not counting an optional trailing dot).
+    TooLong,
+    /// A label is empty: a leading dot, two consecutive dots, or a lone `"."`.
+    EmptyLabel,
+    /// A label is longer than 63 octets.
+    LabelTooLong,
+    /// A character other than an ASCII letter, digit or hyphen.
+    InvalidChar {
+        /// Byte offset of the character in the input.
+        index: usize,
+        /// The offending character.
+        found: char,
+    },
+    /// A label starts or ends with a hyphen.
+    HyphenEdge,
+    /// The last label is a number (`127.1`, `2130706433`, `0x7f`): URL parsers read such a name as
+    /// an IPv4 address, not as a hostname.
+    NumericLastLabel,
+}
+```
+
+Why a string is not a valid hostname (see `is_valid_hostname`).
 
 ## Module `number` (Cargo feature `number`)
 
@@ -1278,25 +1278,6 @@ assert_eq!(unescape_html("&unknown;"), "&unknown;");
 
 Time helpers. Reading the clock is explicit and fallible: a clock set before 1970 is an error, not `0`.
 
-### time::ClockError
-
-```rust
-pub struct ClockError { /* private fields */ }
-```
-
-The system clock is set before the Unix epoch (1970-01-01T00:00:00Z).
-
-Returned instead of a silent `0`: an expiry comparison against `0` would treat every token as
-still valid.
-
-#### ClockError::behind
-
-```rust
-pub fn behind(&self) -> Duration
-```
-
-How far before the epoch the clock is.
-
 ### time::unix_now
 
 ```rust
@@ -1340,3 +1321,22 @@ use helpers4::time::unix_now_millis;
 
 assert!(unix_now_millis()? > 1_700_000_000_000);
 ```
+
+### time::ClockError
+
+```rust
+pub struct ClockError { /* private fields */ }
+```
+
+The system clock is set before the Unix epoch (1970-01-01T00:00:00Z).
+
+Returned instead of a silent `0`: an expiry comparison against `0` would treat every token as
+still valid.
+
+#### ClockError::behind
+
+```rust
+pub fn behind(&self) -> Duration
+```
+
+How far before the epoch the clock is.
