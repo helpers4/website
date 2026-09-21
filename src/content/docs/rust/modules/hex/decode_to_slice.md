@@ -60,14 +60,6 @@ decode_to_slice("beef", &mut buf)?;
 assert_eq!(buf, [0xbe, 0xef]);
 ```
 
-## More in this module
-
-- [`decode`](../decode/) — Decodes a hexadecimal string (either case) into bytes.
-- [`decode_array`](../decode_array/) — Decodes a hexadecimal string into a fixed-size array, e.g.
-- [`encode`](../encode/) — Encodes `bytes` as lowercase hexadecimal.
-- [`encode_upper`](../encode_upper/) — Encodes `bytes` as uppercase hexadecimal.
-- [`DecodeError`](../decodeerror/) — Why a string could not be decoded as hexadecimal.
-
 ## Source
 
 [src/hex/decode_to_slice.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/hex/decode_to_slice.rs#L27)

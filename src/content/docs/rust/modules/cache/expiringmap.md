@@ -234,10 +234,6 @@ call it directly to release memory while nothing is being written.
 
 `usize`
 
-## More in this module
-
-- [`ExpiringSet`](../expiringset/) — A set whose members expire: an `ExpiringMap` without values.
-
 ## Source
 
 [src/cache/expiring_map.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/cache/expiring_map.rs#L41)

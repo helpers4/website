@@ -46,13 +46,6 @@ The rejected name.
 
 `&str`
 
-## More in this module
-
-- [`get`](../get/) — Returns the value of `key` in dotenv `content`, or `None` when it is not assigned.
-- [`parse`](../parse/) — Parses dotenv `content` into `(key, value)` pairs, in file order.
-- [`remove`](../remove/) — Removes every assignment of `key` from dotenv `content` and returns the new content.
-- [`set`](../set/) — Sets `key` to `value` in dotenv `content` and returns the new content.
-
 ## Source
 
 [src/env/error.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/env/error.rs#L9)

@@ -32,10 +32,6 @@ helpers4 = { version = "0.0.2", default-features = false, features = ["cache"] }
 pub type ExpiringSet<K, T = u64> = ExpiringMap<K, (), T>
 ```
 
-## More in this module
-
-- [`ExpiringMap`](../expiringmap/) — A map whose entries expire, with the clock passed in by the caller.
-
 ## Source
 
 [src/cache/expiring_map.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/cache/expiring_map.rs#L54)

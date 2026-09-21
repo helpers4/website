@@ -3,7 +3,7 @@ title: "Modules"
 description: "The 8 modules of the helpers4 Rust crate."
 sidebar:
   order: 0
-  label: "Overview"
+  label: "📋 Overview"
 ---
 
 The `helpers4` crate is organised in 8 modules. **Each module is a Cargo feature of the same name**, and all of them are enabled by default (`cargo add helpers4`).

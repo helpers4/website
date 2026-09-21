@@ -2,7 +2,7 @@
 title: "string"
 description: "String manipulation and formatting helpers."
 sidebar:
-  label: "Overview"
+  label: "📋 Overview"
   order: 0
 ---
 

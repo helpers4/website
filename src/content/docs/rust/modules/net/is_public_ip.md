@@ -94,11 +94,6 @@ This is only one half of an SSRF defence.
 - **Provider-specific addresses inside a public range.** A registry cannot say that, for
   example, Azure's wire server `168.63.129.16` is internal: it is reported public.
 
-## More in this module
-
-- [`HostnameError`](../hostnameerror/) — Why a string is not a valid hostname (see `is_valid_hostname`).
-- [`is_valid_hostname`](../is_valid_hostname/) — Checks that `hostname` is a valid hostname (RFC 1035 and RFC 1123, ASCII only).
-
 ## Source
 
 [src/net/is_public_ip.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/net/is_public_ip.rs#L63)
