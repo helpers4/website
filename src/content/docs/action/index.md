@@ -1,5 +1,5 @@
 ---
-title: Helpers 4 GitHub Actions
+title: Helpers4 GitHub Actions
 sidebar:
   label: GitHub Actions
   order: 0
