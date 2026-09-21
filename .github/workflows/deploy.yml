@@ -82,6 +82,8 @@ jobs:
       - name: Build all packages
         env:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          # Authenticates the GitHub API calls that fetch the star counts (see src/lib/repoStats.ts).
+          GITHUB_TOKEN: ${{ github.token }}
         run: pnpm build
 
       - name: Upload artifacts
