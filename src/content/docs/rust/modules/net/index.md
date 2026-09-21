@@ -2,7 +2,7 @@
 title: "net"
 description: "Network helpers on std::net and plain text: no I/O, no resolution."
 sidebar:
-  label: "📋 Overview"
+  label: "≡ Overview"
   order: 0
 ---
 

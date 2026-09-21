@@ -2,7 +2,7 @@
 title: "array"
 description: "Helpers for slices and Vecs that the standard library does not provide."
 sidebar:
-  label: "📋 Overview"
+  label: "≡ Overview"
   order: 0
 ---
 
