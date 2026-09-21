@@ -19,6 +19,7 @@
     "preview": "astro preview",
     "sync": "astro sync",
     "generate-docs:typescript": "node scripts/generate-typescript-docs.js",
+    "generate-docs:rust": "node scripts/generate-rust-docs.js",
     "generate-docs:devcontainer": "node scripts/generate-devcontainer-docs.js",
     "generate-docs:action": "node scripts/generate-action-docs.js",
     "sync-from-repos": "node scripts/sync-from-repos.js",

@@ -5,6 +5,7 @@
  * 
  * Synchronizes documentation from source repositories:
  * - typescript: Generate category docs from helpers/
+ * - rust: Generate module docs from the crate's source
  * - devcontainer: Pull README from features
  * - action: Pull README from actions
  */
@@ -21,6 +22,7 @@ console.log('🔄 Syncing documentation from all repositories...\n');
 
 const generators = [
   { name: 'TypeScript', script: 'generate-typescript-docs.js', cmd: 'pnpm generate-docs:typescript' },
+  { name: 'Rust', script: 'generate-rust-docs.js', cmd: 'pnpm generate-docs:rust' },
   { name: 'DevContainer', script: 'generate-devcontainer-docs.js', cmd: 'pnpm generate-docs:devcontainer' },
   { name: 'Action', script: 'generate-action-docs.js', cmd: 'pnpm generate-docs:action' }
 ];
