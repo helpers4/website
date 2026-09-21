@@ -6,6 +6,15 @@ sidebar:
   label: "≡ Overview"
 ---
 
+:::caution[Version 0: expect changes]
+While the crate is at version `0.x`:
+
+- **The split into modules, and so into Cargo features, may change.** A helper can move to another module — and so to another feature to enable — from one release to the next.
+- **The code and security verification will keep improving.** More checks (fuzzing and static analysis, for instance) are planned, and each helper's page says what it guarantees and what it does not.
+
+Pin the exact version and read the [changelog](/rust/reference/changelog/) before upgrading.
+:::
+
 The `helpers4` crate is organised in 8 modules. **Each module is a Cargo feature of the same name**, and all of them are enabled by default (`cargo add helpers4`).
 
 ## Install only what you use

@@ -4,6 +4,7 @@
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
 > Import through the module path; names repeat across modules on purpose.
 > Each module is a Cargo feature of the same name (`cargo add helpers4 --no-default-features --features <module>`).
+> Pre-1.0 (0.x): the split into modules (Cargo features) may change between releases, and the verification tooling is still being extended.
 
 ## Module `array` (Cargo feature `array`)
 
