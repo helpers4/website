@@ -1,24 +1,9 @@
 ---
-title: "cache"
-description: "Caches and stores whose entries expire."
+title: "ExpiringMap"
+description: "A map whose entries expire, with the clock passed in by the caller."
 sidebar:
-  order: 2
+  label: "ExpiringMap"
 ---
-
-Caches and stores whose entries expire. The clock is always passed in, never read.
-
-Cargo feature `cache` (enabled by default) · import path `helpers4::cache`
-
-| Item | What it does |
-| --- | --- |
-| [`ExpiringMap`](#expiringmap) | A map whose entries expire, with the clock passed in by the caller. |
-| [`ExpiringSet`](#expiringset) | A set whose members expire: an `ExpiringMap` without values. |
-
-## `ExpiringMap`
-
-```rust
-pub struct ExpiringMap<K, V, T = u64> { /* private fields */ }
-```
 
 A map whose entries expire, with the clock passed in by the caller.
 
@@ -36,7 +21,32 @@ There is **no capacity bound**. If the keys come from untrusted input and their 
 long, the number of live entries is only limited by the insert rate times the lifetime: bound
 it yourself (reject or rate-limit inserts) when that matters.
 
-### Examples
+## Import
+
+```rust
+use helpers4::cache::ExpiringMap;
+```
+
+Cargo feature `cache` (enabled by default). To compile only this module:
+
+```sh
+cargo add helpers4 --no-default-features --features cache
+```
+
+or in `Cargo.toml`:
+
+```toml
+[dependencies]
+helpers4 = { version = "0.0.2", default-features = false, features = ["cache"] }
+```
+
+## Definition
+
+```rust
+pub struct ExpiringMap<K, V, T = u64> { /* private fields */ }
+```
+
+## Examples
 
 ```rust
 use helpers4::cache::ExpiringMap;
@@ -52,9 +62,9 @@ assert!(!seen.insert_if_absent("jti-1", (), 1_060, now + 10));
 assert!(seen.insert_if_absent("jti-1", (), 1_200, 1_060));
 ```
 
-### Methods
+## Methods
 
-#### `new`
+### `new`
 
 ```rust
 pub fn new() -> Self
@@ -62,7 +72,11 @@ pub fn new() -> Self
 
 Creates an empty map.
 
-#### `len`
+**Returns**
+
+`Self`
+
+### `len`
 
 ```rust
 pub fn len(&self) -> usize
@@ -70,7 +84,11 @@ pub fn len(&self) -> usize
 
 The number of stored entries, including expired ones that no write has swept yet.
 
-#### `is_empty`
+**Returns**
+
+`usize`
+
+### `is_empty`
 
 ```rust
 pub fn is_empty(&self) -> bool
@@ -78,7 +96,11 @@ pub fn is_empty(&self) -> bool
 
 Whether nothing is stored (see [`len`](#len)).
 
-#### `clear`
+**Returns**
+
+`bool`
+
+### `clear`
 
 ```rust
 pub fn clear(&mut self)
@@ -86,7 +108,11 @@ pub fn clear(&mut self)
 
 Removes every entry, expired or not.
 
-#### `insert`
+**Returns**
+
+`()`
+
+### `insert`
 
 ```rust
 pub fn insert(&mut self, key: K, value: V, expires_at: T, now: T) -> Option<V>
@@ -96,7 +122,20 @@ Stores `value` under `key` until `expires_at`, replacing any live entry, and ret
 replaced value. Expired entries are swept first. An `expires_at` that is not after `now`
 expires immediately.
 
-#### `insert_if_absent`
+**Parameters**
+
+| Parameter | Type |
+| --- | --- |
+| `key` | `K` |
+| `value` | `V` |
+| `expires_at` | `T` |
+| `now` | `T` |
+
+**Returns**
+
+`Option<V>`
+
+### `insert_if_absent`
 
 ```rust
 pub fn insert_if_absent(&mut self, key: K, value: V, expires_at: T, now: T) -> bool
@@ -106,7 +145,20 @@ Stores `value` under `key` only if there is no live entry for it, and returns wh
 did. This is the replay check: `false` means the key was already seen and is still live.
 Expired entries are swept first.
 
-#### `get`
+**Parameters**
+
+| Parameter | Type |
+| --- | --- |
+| `key` | `K` |
+| `value` | `V` |
+| `expires_at` | `T` |
+| `now` | `T` |
+
+**Returns**
+
+`bool`
+
+### `get`
 
 ```rust
 pub fn get(&self, key: &K, now: T) -> Option<&V>
@@ -114,7 +166,18 @@ pub fn get(&self, key: &K, now: T) -> Option<&V>
 
 The live value under `key`, or `None` if absent or expired at `now`.
 
-#### `contains_key`
+**Parameters**
+
+| Parameter | Type |
+| --- | --- |
+| `key` | `&K` |
+| `now` | `T` |
+
+**Returns**
+
+`Option<&V>`
+
+### `contains_key`
 
 ```rust
 pub fn contains_key(&self, key: &K, now: T) -> bool
@@ -122,7 +185,18 @@ pub fn contains_key(&self, key: &K, now: T) -> bool
 
 Whether there is a live entry under `key` at `now`.
 
-#### `remove`
+**Parameters**
+
+| Parameter | Type |
+| --- | --- |
+| `key` | `&K` |
+| `now` | `T` |
+
+**Returns**
+
+`bool`
+
+### `remove`
 
 ```rust
 pub fn remove(&mut self, key: &K, now: T) -> Option<V>
@@ -130,7 +204,18 @@ pub fn remove(&mut self, key: &K, now: T) -> Option<V>
 
 Removes `key` and returns its value if it was still live at `now`.
 
-#### `evict_expired`
+**Parameters**
+
+| Parameter | Type |
+| --- | --- |
+| `key` | `&K` |
+| `now` | `T` |
+
+**Returns**
+
+`Option<V>`
+
+### `evict_expired`
 
 ```rust
 pub fn evict_expired(&mut self, now: T) -> usize
@@ -139,11 +224,20 @@ pub fn evict_expired(&mut self, now: T) -> usize
 Drops every entry that has expired at `now` and returns how many. Writes do this already;
 call it directly to release memory while nothing is being written.
 
-## `ExpiringSet`
+**Parameters**
 
-```rust
-pub type ExpiringSet<K, T = u64> = ExpiringMap<K, (), T>
-```
+| Parameter | Type |
+| --- | --- |
+| `now` | `T` |
 
-A set whose members expire: an [`ExpiringMap`](#expiringmap) without values.
+**Returns**
 
+`usize`
+
+## More in this module
+
+- [`ExpiringSet`](../expiringset/) — A set whose members expire: an `ExpiringMap` without values.
+
+## Source
+
+[src/cache/expiring_map.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/cache/expiring_map.rs#L41)

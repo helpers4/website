@@ -1,0 +1,68 @@
+---
+title: "get"
+description: "Returns the value of key in dotenv content, or None when it is not assigned."
+sidebar:
+  label: "get"
+---
+
+Returns the value of `key` in dotenv `content`, or `None` when it is not assigned.
+
+When a key is assigned more than once the last assignment wins, like a shell sourcing the
+file. See [`parse`](../parse/) for the accepted syntax.
+
+## Import
+
+```rust
+use helpers4::env::get;
+```
+
+Cargo feature `env` (enabled by default). To compile only this module:
+
+```sh
+cargo add helpers4 --no-default-features --features env
+```
+
+or in `Cargo.toml`:
+
+```toml
+[dependencies]
+helpers4 = { version = "0.0.2", default-features = false, features = ["env"] }
+```
+
+## Signature
+
+```rust
+pub fn get(content: &str, key: &str) -> Option<String>
+```
+
+## Parameters
+
+| Parameter | Type |
+| --- | --- |
+| `content` | `&str` |
+| `key` | `&str` |
+
+## Returns
+
+`Option<String>`
+
+## Examples
+
+```rust
+use helpers4::env::get;
+
+let content = "HOST=localhost\nPORT=80\nPORT=8080\n";
+assert_eq!(get(content, "PORT").as_deref(), Some("8080"));
+assert_eq!(get(content, "MISSING"), None);
+```
+
+## More in this module
+
+- [`InvalidKeyError`](../invalidkeyerror/) — The variable name passed to `set` is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
+- [`parse`](../parse/) — Parses dotenv `content` into `(key, value)` pairs, in file order.
+- [`remove`](../remove/) — Removes every assignment of `key` from dotenv `content` and returns the new content.
+- [`set`](../set/) — Sets `key` to `value` in dotenv `content` and returns the new content.
+
+## Source
+
+[src/env/get.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/env/get.rs#L21)

@@ -1,0 +1,34 @@
+---
+title: "time"
+description: "Time helpers."
+sidebar:
+  label: "Overview"
+  order: 0
+---
+
+Time helpers. Reading the clock is explicit and fallible: a clock set before 1970 is an error, not `0`.
+
+## Install
+
+Cargo feature `time` (enabled by default). To compile only this module:
+
+```sh
+cargo add helpers4 --no-default-features --features time
+```
+
+or in `Cargo.toml`:
+
+```toml
+[dependencies]
+helpers4 = { version = "0.0.2", default-features = false, features = ["time"] }
+```
+
+Import path: `helpers4::time`.
+
+## Items
+
+| Item | What it does |
+| --- | --- |
+| [`ClockError`](./clockerror/) | The system clock is set before the Unix epoch (1970-01-01T00:00:00Z). |
+| [`unix_now`](./unix_now/) | The current time as whole seconds since the Unix epoch. |
+| [`unix_now_millis`](./unix_now_millis/) | The current time as milliseconds since the Unix epoch. |

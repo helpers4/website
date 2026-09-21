@@ -3,6 +3,7 @@
 > Every public item of the `helpers4` crate with its signature, documentation and examples.
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
 > Import through the module path; names repeat across modules on purpose.
+> Each module is a Cargo feature of the same name (`cargo add helpers4 --no-default-features --features <module>`).
 
 ## Module `array` (Cargo feature `array`)
 
