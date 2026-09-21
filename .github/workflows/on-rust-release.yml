@@ -1,0 +1,83 @@
+name: On Rust Release
+
+on:
+  repository_dispatch:
+    types: [rust-release]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Rust crate version to regenerate docs for (e.g. 0.0.2 or v0.0.2)"
+        required: true
+        type: string
+
+concurrency:
+  group: website-rust-docs-${{ github.event.client_payload.version || inputs.version || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      NPM_TOKEN_WEB_AWESOME: ${{ secrets.NPM_TOKEN_WEB_AWESOME }}
+      RELEASE_VERSION: ${{ github.event.client_payload.version || inputs.version }}
+    steps:
+      - name: Resolve the release version
+        run: |
+          RELEASE_VERSION="${RELEASE_VERSION#v}"
+          if ! [[ "${RELEASE_VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Missing or malformed release version: '${RELEASE_VERSION}'. Provide client_payload.version (repository_dispatch) or inputs.version (workflow_dispatch)."
+            exit 1
+          fi
+          echo "RELEASE_VERSION=${RELEASE_VERSION}" >> "${GITHUB_ENV}"
+
+      - name: Get Pushinator token
+        id: app_token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.PUSHINATOR_ID }}
+          private-key: ${{ secrets.PUSHINATOR_KEY }}
+
+      - name: Checkout website repo
+        uses: actions/checkout@v7
+        with:
+          token: ${{ steps.app_token.outputs.token }}
+
+      - uses: helpers4/action/setup-pnpm@main
+        with:
+          node-version: "24"
+
+      # The generator only reads files from this checkout: nothing from the crate is executed.
+      - name: Checkout the Rust crate at the release tag
+        uses: actions/checkout@v7
+        with:
+          repository: helpers4/rust
+          ref: v${{ env.RELEASE_VERSION }}
+          path: _rust
+          persist-credentials: false
+
+      - name: Generate Rust docs
+        env:
+          RUST_REPO_PATH: ${{ github.workspace }}/_rust
+        run: node scripts/generate-rust-docs.js
+
+      - name: Commit and push updated docs
+        run: |
+          git config user.name "pushinator[bot]"
+          git config user.email "pushinator[bot]@users.noreply.github.com"
+          git add src/content/docs/rust/ public/rust/ src/data/versions.json
+          git diff --staged --quiet && echo "No changes to commit" && exit 0
+          git commit -m "chore(lib-rust): 🔧 update docs for v${RELEASE_VERSION}"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            if [ "${attempt}" -eq 3 ]; then
+              echo "Failed to push updated docs after ${attempt} attempts"
+              exit 1
+            fi
+            sleep $((attempt * 5))
+          done
