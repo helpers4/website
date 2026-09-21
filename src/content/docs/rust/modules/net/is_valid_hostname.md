@@ -71,11 +71,6 @@ assert_eq!(is_valid_hostname("a..b"), Err(HostnameError::EmptyLabel));
 assert_eq!(is_valid_hostname("127.0.0.1"), Err(HostnameError::NumericLastLabel));
 ```
 
-## More in this module
-
-- [`HostnameError`](../hostnameerror/) — Why a string is not a valid hostname (see `is_valid_hostname`).
-- [`is_public_ip`](../is_public_ip/) — Returns `true` when `ip` is a globally reachable unicast address, `false` for everything that is loopback, private, link-local, shared, documentation, reserved or otherwise not on the public internet.
-
 ## Source
 
 [src/net/is_valid_hostname.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/net/is_valid_hostname.rs#L37)

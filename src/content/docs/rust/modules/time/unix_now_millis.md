@@ -50,11 +50,6 @@ use helpers4::time::unix_now_millis;
 assert!(unix_now_millis()? > 1_700_000_000_000);
 ```
 
-## More in this module
-
-- [`ClockError`](../clockerror/) — The system clock is set before the Unix epoch (1970-01-01T00:00:00Z).
-- [`unix_now`](../unix_now/) — The current time as whole seconds since the Unix epoch.
-
 ## Source
 
 [src/time/unix_now_millis.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/time/unix_now_millis.rs#L26)

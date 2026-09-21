@@ -50,11 +50,6 @@ let now = unix_now()?;
 assert!(now > 1_700_000_000); // after November 2023
 ```
 
-## More in this module
-
-- [`ClockError`](../clockerror/) — The system clock is set before the Unix epoch (1970-01-01T00:00:00Z).
-- [`unix_now_millis`](../unix_now_millis/) — The current time as milliseconds since the Unix epoch.
-
 ## Source
 
 [src/time/unix_now.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/time/unix_now.rs#L26)

@@ -2,7 +2,7 @@
 title: "cache"
 description: "Caches and stores whose entries expire."
 sidebar:
-  label: "Overview"
+  label: "📋 Overview"
   order: 0
 ---
 

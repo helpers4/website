@@ -54,13 +54,6 @@ use helpers4::env::remove;
 assert_eq!(remove("A=1\nB=2\nA=3\n", "A"), "B=2\n");
 ```
 
-## More in this module
-
-- [`InvalidKeyError`](../invalidkeyerror/) — The variable name passed to `set` is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
-- [`get`](../get/) — Returns the value of `key` in dotenv `content`, or `None` when it is not assigned.
-- [`parse`](../parse/) — Parses dotenv `content` into `(key, value)` pairs, in file order.
-- [`set`](../set/) — Sets `key` to `value` in dotenv `content` and returns the new content.
-
 ## Source
 
 [src/env/remove.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/env/remove.rs#L20)

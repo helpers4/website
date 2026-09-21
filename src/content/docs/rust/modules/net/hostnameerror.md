@@ -54,11 +54,6 @@ pub enum HostnameError {
 }
 ```
 
-## More in this module
-
-- [`is_public_ip`](../is_public_ip/) — Returns `true` when `ip` is a globally reachable unicast address, `false` for everything that is loopback, private, link-local, shared, documentation, reserved or otherwise not on the public internet.
-- [`is_valid_hostname`](../is_valid_hostname/) — Checks that `hostname` is a valid hostname (RFC 1035 and RFC 1123, ASCII only).
-
 ## Source
 
 [src/net/error.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/net/error.rs#L10)

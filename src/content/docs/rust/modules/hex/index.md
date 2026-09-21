@@ -2,7 +2,7 @@
 title: "hex"
 description: "Hexadecimal encoding and decoding with typed errors."
 sidebar:
-  label: "Overview"
+  label: "📋 Overview"
   order: 0
 ---
 

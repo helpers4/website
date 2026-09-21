@@ -59,14 +59,6 @@ assert_eq!(decode("DeadBeef")?, vec![0xde, 0xad, 0xbe, 0xef]);
 assert!(decode("abc").is_err());
 ```
 
-## More in this module
-
-- [`decode_array`](../decode_array/) — Decodes a hexadecimal string into a fixed-size array, e.g.
-- [`decode_to_slice`](../decode_to_slice/) — Decodes a hexadecimal string into `out`, which must be exactly half as long as the string.
-- [`encode`](../encode/) — Encodes `bytes` as lowercase hexadecimal.
-- [`encode_upper`](../encode_upper/) — Encodes `bytes` as uppercase hexadecimal.
-- [`DecodeError`](../decodeerror/) — Why a string could not be decoded as hexadecimal.
-
 ## Source
 
 [src/hex/decode.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/hex/decode.rs#L27)

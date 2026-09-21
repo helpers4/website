@@ -64,13 +64,6 @@ assert_eq!(updated, "# config\nHOST=example.com\nPORT=80\n");
 assert_eq!(set("A=1\n", "B", "two words")?, "A=1\nB=\"two words\"\n");
 ```
 
-## More in this module
-
-- [`InvalidKeyError`](../invalidkeyerror/) — The variable name passed to `set` is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
-- [`get`](../get/) — Returns the value of `key` in dotenv `content`, or `None` when it is not assigned.
-- [`parse`](../parse/) — Parses dotenv `content` into `(key, value)` pairs, in file order.
-- [`remove`](../remove/) — Removes every assignment of `key` from dotenv `content` and returns the new content.
-
 ## Source
 
 [src/env/set.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/env/set.rs#L30)

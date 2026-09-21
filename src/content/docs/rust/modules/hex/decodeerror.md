@@ -50,14 +50,6 @@ pub enum DecodeError {
 }
 ```
 
-## More in this module
-
-- [`decode`](../decode/) — Decodes a hexadecimal string (either case) into bytes.
-- [`decode_array`](../decode_array/) — Decodes a hexadecimal string into a fixed-size array, e.g.
-- [`decode_to_slice`](../decode_to_slice/) — Decodes a hexadecimal string into `out`, which must be exactly half as long as the string.
-- [`encode`](../encode/) — Encodes `bytes` as lowercase hexadecimal.
-- [`encode_upper`](../encode_upper/) — Encodes `bytes` as uppercase hexadecimal.
-
 ## Source
 
 [src/hex/error.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/hex/error.rs#L10)

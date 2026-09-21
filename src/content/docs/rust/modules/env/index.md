@@ -2,7 +2,7 @@
 title: "env"
 description: "Dotenv (.env) helpers working on plain text: no file or process-environment access, so they are deterministic and easy to test."
 sidebar:
-  label: "Overview"
+  label: "📋 Overview"
   order: 0
 ---
 

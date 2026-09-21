@@ -56,13 +56,6 @@ assert_eq!(get(content, "PORT").as_deref(), Some("8080"));
 assert_eq!(get(content, "MISSING"), None);
 ```
 
-## More in this module
-
-- [`InvalidKeyError`](../invalidkeyerror/) — The variable name passed to `set` is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
-- [`parse`](../parse/) — Parses dotenv `content` into `(key, value)` pairs, in file order.
-- [`remove`](../remove/) — Removes every assignment of `key` from dotenv `content` and returns the new content.
-- [`set`](../set/) — Sets `key` to `value` in dotenv `content` and returns the new content.
-
 ## Source
 
 [src/env/get.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/env/get.rs#L21)

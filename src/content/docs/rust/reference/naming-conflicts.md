@@ -26,12 +26,12 @@ assert_eq!(capitalize("hello"), "Hello");
 
 ## Resolving a conflict
 
-When you need two helpers with the same name in one file, rename at the import site with `as`. A suffix naming the module keeps them apart at a glance:
+When you need two helpers with the same name in one file, rename at the import site with `as`, suffixing the module name so the origin stays visible:
 
 ```rust
-use helpers4::string::truncate as truncate_text;
+use helpers4::string::truncate as truncate_string;
 
-assert_eq!(truncate_text("A very long title", 10, "..."), "A very ...");
+assert_eq!(truncate_string("A very long title", 10, "..."), "A very ...");
 ```
 
 The same applies to a name that also exists in the standard library or in another crate you use.

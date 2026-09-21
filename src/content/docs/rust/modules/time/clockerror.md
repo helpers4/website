@@ -49,11 +49,6 @@ How far before the epoch the clock is.
 
 `Duration`
 
-## More in this module
-
-- [`unix_now`](../unix_now/) — The current time as whole seconds since the Unix epoch.
-- [`unix_now_millis`](../unix_now_millis/) — The current time as milliseconds since the Unix epoch.
-
 ## Source
 
 [src/time/error.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/time/error.rs#L13)

@@ -62,13 +62,6 @@ assert_eq!(
 );
 ```
 
-## More in this module
-
-- [`InvalidKeyError`](../invalidkeyerror/) — The variable name passed to `set` is not a valid name (`[A-Za-z_][A-Za-z0-9_]*`).
-- [`get`](../get/) — Returns the value of `key` in dotenv `content`, or `None` when it is not assigned.
-- [`remove`](../remove/) — Removes every assignment of `key` from dotenv `content` and returns the new content.
-- [`set`](../set/) — Sets `key` to `value` in dotenv `content` and returns the new content.
-
 ## Source
 
 [src/env/parse.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/env/parse.rs#L28)
