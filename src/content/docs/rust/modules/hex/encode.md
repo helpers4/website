@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.3", default-features = false, features = ["hex"] }
+helpers4 = { version = "0.0.4", default-features = false, features = ["hex"] }
 ```
 
 ## Signature
@@ -53,4 +53,4 @@ assert_eq!(encode(&[]), "");
 
 ## Source
 
-[src/hex/encode.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/hex/encode.rs#L18)
+[src/hex/encode.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/hex/encode.rs#L18)

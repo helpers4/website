@@ -36,7 +36,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.3", default-features = false, features = ["net"] }
+helpers4 = { version = "0.0.4", default-features = false, features = ["net"] }
 ```
 
 ## Signature
@@ -105,4 +105,4 @@ pub enum HostnameError {
 
 ## Source
 
-[src/net/is_valid_hostname.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/net/is_valid_hostname.rs#L37)
+[src/net/is_valid_hostname.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/net/is_valid_hostname.rs#L37)

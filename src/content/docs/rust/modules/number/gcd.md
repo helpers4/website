@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.3", default-features = false, features = ["number"] }
+helpers4 = { version = "0.0.4", default-features = false, features = ["number"] }
 ```
 
 ## Signature
@@ -55,4 +55,4 @@ assert_eq!(gcd(0, 5), 5);
 
 ## Source
 
-[src/number/gcd.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/number/gcd.rs#L17)
+[src/number/gcd.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/number/gcd.rs#L17)

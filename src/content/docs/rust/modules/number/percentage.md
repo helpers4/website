@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.3", default-features = false, features = ["number"] }
+helpers4 = { version = "0.0.4", default-features = false, features = ["number"] }
 ```
 
 ## Signature
@@ -57,4 +57,4 @@ assert_eq!(percentage(1.0, 0.0), None);
 
 ## Source
 
-[src/number/percentage.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/number/percentage.rs#L19)
+[src/number/percentage.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/number/percentage.rs#L19)

@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.3", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert_eq!(groups[&false], vec![1, 3, 5]);
 
 ## Source
 
-[src/array/group_by.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/array/group_by.rs#L22)
+[src/array/group_by.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/group_by.rs#L22)

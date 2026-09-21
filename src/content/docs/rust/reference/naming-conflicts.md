@@ -12,7 +12,9 @@ helpers4 is one crate with one module per category. A deliberate consequence is 
 
 *Generated from the documented version, so it always matches it.*
 
-No two public items share a name yet. The rule below applies as soon as one does.
+| Item | Modules |
+| --- | --- |
+| `parse` | [`duration`](/rust/modules/duration/parse/), [`env`](/rust/modules/env/parse/) |
 
 ## Importing
 

@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.3", default-features = false, features = ["number"] }
+helpers4 = { version = "0.0.4", default-features = false, features = ["number"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert_eq!(round_to(1234.0, 0), 1234.0);
 
 ## Source
 
-[src/number/round_to.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/number/round_to.rs#L23)
+[src/number/round_to.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/number/round_to.rs#L23)

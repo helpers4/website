@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.3", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -55,4 +55,4 @@ assert_eq!(counts["even"], 2);
 
 ## Source
 
-[src/array/count_by.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/array/count_by.rs#L19)
+[src/array/count_by.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/count_by.rs#L19)

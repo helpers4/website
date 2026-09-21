@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.3", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -58,4 +58,4 @@ assert_eq!(
 
 ## Source
 
-[src/array/cartesian_product.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/array/cartesian_product.rs#L19)
+[src/array/cartesian_product.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/cartesian_product.rs#L19)

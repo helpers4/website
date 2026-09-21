@@ -1,4 +1,4 @@
-# helpers4 (Rust) — full reference, version 0.0.3
+# helpers4 (Rust) — full reference, version 0.0.4
 
 > Every public item of the `helpers4` crate with its signature, documentation and examples.
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
@@ -402,6 +402,95 @@ pub type ExpiringSet<K, T = u64> = ExpiringMap<K, (), T>
 
 A set whose members expire: an `ExpiringMap` without values.
 
+## Module `duration` (Cargo feature `duration`)
+
+Parsing and formatting of durations as short human-readable strings (`1h30m`).
+
+The strings use the units `ms`, `s`, `m`, `h`, `d` and `w`. Values are `std::time::Duration`.
+
+### duration::format
+
+```rust
+pub fn format(duration: Duration) -> String
+```
+
+Formats `duration` as a short human-readable string such as `"1h 30m 5s"`.
+
+Uses the units `d`, `h`, `m`, `s` and `ms`, largest first, and skips the ones that are zero. A
+zero duration is `"0s"`. Anything below one millisecond is dropped (truncated, not rounded).
+`parse` reads the result back.
+
+#### Examples
+
+```rust
+use helpers4::duration::format;
+use std::time::Duration;
+
+assert_eq!(format(Duration::from_secs(5405)), "1h 30m 5s");
+assert_eq!(format(Duration::from_millis(1500)), "1s 500ms");
+assert_eq!(format(Duration::ZERO), "0s");
+```
+
+### duration::parse
+
+```rust
+pub fn parse(input: &str) -> Result<Duration, ParseDurationError>
+```
+
+Parses a human-written duration such as `"1h30m"`, `"2d"` or `"500ms"`.
+
+The input is one or more `<integer><unit>` pairs, optionally separated by whitespace, and their
+sum is returned. Units are `ms`, `s`, `m`, `h`, `d` (24 hours) and `w` (7 days), and may
+repeat or come in any order. A bare number, a fraction, a sign or an unknown unit is an error
+with the byte offset where it was found. It is the inverse of `format`.
+
+#### Errors
+
+Returns a `ParseDurationError` when the input is empty, has something other than a number
+where one is expected, a number without a unit, an unknown unit, or a total that does not fit
+in a `Duration`.
+
+#### Examples
+
+```rust
+use helpers4::duration::parse;
+use std::time::Duration;
+
+assert_eq!(parse("1h30m"), Ok(Duration::from_secs(5400)));
+assert_eq!(parse("2d 12h"), Ok(Duration::from_secs(216_000)));
+assert_eq!(parse("1500ms"), Ok(Duration::from_millis(1500)));
+assert!(parse("90").is_err());
+```
+
+### duration::ParseDurationError
+
+```rust
+#[non_exhaustive]
+pub enum ParseDurationError {
+    /// The string is empty or only whitespace.
+    Empty,
+    /// A number was expected but something else was found.
+    ExpectedNumber {
+        /// Byte offset of the offending character in the input.
+        index: usize,
+    },
+    /// A number is not followed by a unit.
+    MissingUnit {
+        /// Byte offset where the unit was expected.
+        index: usize,
+    },
+    /// The unit is not one of `ms`, `s`, `m`, `h`, `d`, `w`.
+    UnknownUnit {
+        /// Byte offset of the unit in the input.
+        index: usize,
+    },
+    /// The total does not fit in a [`Duration`](std::time::Duration).
+    Overflow,
+}
+```
+
+Why a string could not be parsed as a duration.
+
 ## Module `env` (Cargo feature `env`)
 
 Dotenv (`.env`) helpers working on plain text: no file or process-environment access, so
@@ -687,6 +776,81 @@ assert_eq!(bearer_token("Bearer abc.def-123"), Some("abc.def-123"));
 assert_eq!(bearer_token("bearer   abc"), Some("abc"));
 assert_eq!(bearer_token("Basic dXNlcjpwYXNz"), None);
 assert_eq!(bearer_token("Bearer "), None);
+```
+
+## Module `map` (Cargo feature `map`)
+
+Helpers for `HashMap` that the standard library does not provide.
+
+Inputs are borrowed and results are new maps: nothing is mutated.
+
+### map::map_values
+
+```rust
+pub fn map_values<K: Clone + Eq + Hash, V, W, S: BuildHasher>(
+    map: &HashMap<K, V, S>,
+    mut f: impl FnMut(&V) -> W,
+) -> HashMap<K, W>
+```
+
+Returns a new map with the same keys and each value replaced by `f(value)`.
+
+#### Examples
+
+```rust
+use helpers4::map::map_values;
+use std::collections::HashMap;
+
+let prices = HashMap::from([("apple", 2), ("pear", 3)]);
+let doubled = map_values(&prices, |price| price * 2);
+assert_eq!(doubled, HashMap::from([("apple", 4), ("pear", 6)]));
+```
+
+### map::omit
+
+```rust
+pub fn omit<K: Clone + Eq + Hash, V: Clone, S: BuildHasher>(
+    map: &HashMap<K, V, S>,
+    keys: &[K],
+) -> HashMap<K, V>
+```
+
+Returns a new map with the entries of `map` except those whose key is in `keys`.
+
+Keys that are not in `map` are ignored. The complement of `pick`.
+
+#### Examples
+
+```rust
+use helpers4::map::omit;
+use std::collections::HashMap;
+
+let user = HashMap::from([("name", 1), ("email", 2), ("password", 3)]);
+assert_eq!(omit(&user, &["password"]), HashMap::from([("name", 1), ("email", 2)]));
+```
+
+### map::pick
+
+```rust
+pub fn pick<K: Clone + Eq + Hash, V: Clone, S: BuildHasher>(
+    map: &HashMap<K, V, S>,
+    keys: &[K],
+) -> HashMap<K, V>
+```
+
+Returns a new map with only the entries of `map` whose key is in `keys`.
+
+Keys that are not in `map` are ignored.
+
+#### Examples
+
+```rust
+use helpers4::map::pick;
+use std::collections::HashMap;
+
+let user = HashMap::from([("name", 1), ("email", 2), ("password", 3)]);
+let public = pick(&user, &["name", "email", "age"]);
+assert_eq!(public, HashMap::from([("name", 1), ("email", 2)]));
 ```
 
 ## Module `net` (Cargo feature `net`)

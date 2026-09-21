@@ -4,7 +4,7 @@ sidebar:
   order: 3
 ---
 
-Read [AGENTS.md](https://github.com/helpers4/rust/blob/v0.0.3/AGENTS.md) first: it holds the layout, rules and the checks CI runs.
+Read [AGENTS.md](https://github.com/helpers4/rust/blob/v0.0.4/AGENTS.md) first: it holds the layout, rules and the checks CI runs.
 
 ## Adding a helper
 

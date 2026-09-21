@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.3", default-features = false, features = ["hex"] }
+helpers4 = { version = "0.0.4", default-features = false, features = ["hex"] }
 ```
 
 ## Signature
@@ -90,4 +90,4 @@ pub enum DecodeError {
 
 ## Source
 
-[src/hex/decode_to_slice.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/hex/decode_to_slice.rs#L27)
+[src/hex/decode_to_slice.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/hex/decode_to_slice.rs#L27)
