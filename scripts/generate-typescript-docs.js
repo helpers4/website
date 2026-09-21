@@ -30,6 +30,9 @@ const VERSIONS_MANIFEST_PATH = path.join(rootDir, 'src', 'data', 'versions.json'
 // `const` before its declaration line actually executes throws (temporal dead zone), even
 // though the *function* itself is hoisted. Learned this the hard way: it silently broke every
 // major-version release archiving from the moment this file was written until now.
+/** Sidebar label of a category's overview page: the mark tells it apart from the function pages. */
+const OVERVIEW_LABEL = '≡ Overview';
+
 const ARCHIVABLE_ENTRIES = ['categories', 'comparisons', 'legal', 'reference', 'getting-started.md', 'index.md'];
 
 // DOCS_TARGET selects which content/docs/<slug> tree to (re)generate — one slot per
@@ -238,7 +241,7 @@ try {
     const indexMd = `---
 title: "${capitalize(category)} Helpers"
 sidebar:
-  label: "${capitalize(category)}"
+  label: "${OVERVIEW_LABEL}"
   order: 0
 ---
 
