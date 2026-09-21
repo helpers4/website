@@ -18,7 +18,7 @@ overrides:
 
 patchedDependencies:
   '@astrojs/starlight@0.40.0':
-    hash: 7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45
+    hash: 599bdb03dd282c7657baec4132aae245c885c53f963e7650ed30632f4144bc14
     path: patches/@astrojs__starlight@0.40.0.patch
 
 importers:
@@ -27,7 +27,7 @@ importers:
     dependencies:
       '@astrojs/starlight':
         specifier: ^0.40.0
-        version: 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3)
+        version: 0.40.0(patch_hash=599bdb03dd282c7657baec4132aae245c885c53f963e7650ed30632f4144bc14)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3)
       astro:
         specifier: ^7.3.3
         version: 7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0)
@@ -36,10 +36,10 @@ importers:
         version: 3.1.2(@types/node@26.5.1)(rxjs@7.8.2)
       starlight-sidebar-topics:
         specifier: ^0.9.0
-        version: 0.9.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))
+        version: 0.9.0(@astrojs/starlight@0.40.0(patch_hash=599bdb03dd282c7657baec4132aae245c885c53f963e7650ed30632f4144bc14)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))
       starlight-theme-nova:
         specifier: ^0.12.3
-        version: 0.12.3(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3))(satteri@0.10.5)(typescript@5.9.3)
+        version: 0.12.3(@astrojs/starlight@0.40.0(patch_hash=599bdb03dd282c7657baec4132aae245c885c53f963e7650ed30632f4144bc14)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3))(satteri@0.10.5)(typescript@5.9.3)
     devDependencies:
       '@pagefind/default-ui':
         specifier: 1.5.2
@@ -2429,7 +2429,7 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.6.5
 
-  '@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3)':
+  '@astrojs/starlight@0.40.0(patch_hash=599bdb03dd282c7657baec4132aae245c885c53f963e7650ed30632f4144bc14)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3)':
     dependencies:
       '@astrojs/markdown-remark': 7.2.0
       '@astrojs/mdx': 6.0.3(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))
@@ -4725,13 +4725,13 @@ snapshots:
 
   space-separated-tokens@2.0.2: {}
 
-  starlight-sidebar-topics@0.9.0(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0)):
+  starlight-sidebar-topics@0.9.0(@astrojs/starlight@0.40.0(patch_hash=599bdb03dd282c7657baec4132aae245c885c53f963e7650ed30632f4144bc14)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0)):
     dependencies:
-      '@astrojs/starlight': 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3)
+      '@astrojs/starlight': 0.40.0(patch_hash=599bdb03dd282c7657baec4132aae245c885c53f963e7650ed30632f4144bc14)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3)
       astro: 7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0)
       picomatch: 4.0.7
 
-  starlight-theme-nova@0.12.3(@astrojs/starlight@0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3))(satteri@0.10.5)(typescript@5.9.3):
+  starlight-theme-nova@0.12.3(@astrojs/starlight@0.40.0(patch_hash=599bdb03dd282c7657baec4132aae245c885c53f963e7650ed30632f4144bc14)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3))(satteri@0.10.5)(typescript@5.9.3):
     dependencies:
       '@aria-ui/core': 0.2.1
       '@aria-ui/utils': 0.1.7
@@ -4747,7 +4747,7 @@ snapshots:
       satteri-custom-header-id: 0.1.1(satteri@0.10.5)
       shiki-twoslash-renderer: 0.3.5(typescript@5.9.3)
     optionalDependencies:
-      '@astrojs/starlight': 0.40.0(patch_hash=7110e7e60bede98aac802d4a6d19d9cc96b4cce4156b1834e33d792a9436dc45)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3)
+      '@astrojs/starlight': 0.40.0(patch_hash=599bdb03dd282c7657baec4132aae245c885c53f963e7650ed30632f4144bc14)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.1)(jiti@1.21.7)(terser@5.46.0))(typescript@5.9.3)
     transitivePeerDependencies:
       - satteri
       - supports-color
