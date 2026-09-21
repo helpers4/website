@@ -4,14 +4,66 @@ sidebar:
   label: "License (LGPL-3.0)"
 ---
 
-The Rust crate is licensed under the [GNU Lesser General Public License v3.0 or later](https://www.gnu.org/licenses/lgpl-3.0.html) (SPDX: `LGPL-3.0-or-later`), like every **helpers4** project. The [plain-language summary](../../../typescript/legal/license/) written for the TypeScript packages applies here too: using helpers4 in personal, commercial or proprietary projects is allowed, and changes to helpers4 itself that you distribute stay under the LGPL.
+The **helpers4** Rust crate is licensed under the [GNU Lesser General Public License v3.0 or later (LGPL-3.0-or-later)](https://www.gnu.org/licenses/lgpl-3.0.html), like every helpers4 project. Here's a practical summary, including what is specific to Rust.
+
+## What is LGPL-3.0?
+
+LGPL-3.0 is a **weak copyleft** license, mainly designed for libraries. It allows broad use (including commercial use), while requiring that changes to the LGPL-covered code remain under the LGPL when distributed.
+
+## What you **can** do
+
+### As an individual
+
+- ✅ Use helpers4 freely in personal projects
+- ✅ Study, modify, and redistribute the source code
+- ✅ Use it in your portfolio, side projects, or learning exercises
+- ✅ Contribute back to the project
+
+### As a non-profit / NGO
+
+- ✅ Use helpers4 in internal tools and public-facing applications
+- ✅ Modify the code to fit your needs
+- ✅ Distribute software that uses helpers4
+
+### As a company
+
+- ✅ Use helpers4 in proprietary or open-source products
+- ✅ Use helpers4 in internal tools
+- ✅ Run SaaS / network services using helpers4
+
+## What you **must** do
+
+| Requirement | Details |
+|---|---|
+| **Keep notices** | Keep copyright and license notices for LGPL-covered code |
+| **Provide LGPL text** | Include a copy of the LGPL license when distributing |
+| **Publish LGPL modifications** | If you distribute modified LGPL-covered code, provide corresponding source under LGPL |
+| **Allow relinking** | When you distribute a program that includes helpers4, do not block the recipients from replacing helpers4 with a modified version (see below) |
+
+## What you **cannot** do
+
+- ❌ Remove or alter copyright/license notices on LGPL-covered code
+- ❌ Re-license LGPL-covered code as proprietary
+- ❌ Distribute modified LGPL-covered code without preserving LGPL obligations
 
 ## What is specific to Rust
 
-Cargo compiles a dependency into your final binary (static linking). The LGPL-3.0 (section 4, "Combined Works") asks that whoever receives such a binary can replace helpers4 with a modified version and rebuild the combined work. In practice:
+Cargo compiles a dependency into your final binary (**static linking**). The LGPL-3.0 (section 4, "Combined Works") asks that whoever receives such a binary can replace helpers4 with a modified version and rebuild the combined work. In practice:
 
-- **You publish your application's source** (open source, or shared with your customers): nothing more is needed, anyone can rebuild it against another version of helpers4.
-- **You distribute a closed-source binary**: provide what is needed to relink it, for example the object files and build instructions, or otherwise make helpers4 replaceable, and keep the helpers4 license notice with the product.
-- **Your software is only used internally or as a hosted service**: the license conditions are triggered by distributing the binary, not by running it.
+| Your situation | What it means |
+|---|---|
+| **You publish your application's source** (open source, or shared with your customers) | Nothing more is needed: anyone can rebuild it against another version of helpers4 |
+| **You distribute a closed-source binary** | Provide what is needed to relink it (for example the object files and build instructions) or otherwise make helpers4 replaceable, and keep the helpers4 license notice with the product |
+| **Your software is only used internally, or runs as a hosted service** | The conditions are triggered by *distributing* the binary, not by running it |
 
-This is a summary to help you find your way, not legal advice: read the license text, and ask a lawyer if your situation is not clear.
+## In short
+
+> You can use helpers4 in commercial, closed-source, and SaaS contexts. LGPL obligations apply only to the LGPL-covered code and its distributed modifications; for a Rust binary you distribute, they include letting recipients relink it.
+
+## Full license text
+
+The complete license text is available at [gnu.org/licenses/lgpl-3.0](https://www.gnu.org/licenses/lgpl-3.0.html) and in the [LICENSE](https://github.com/helpers4/rust/blob/main/LICENSE) file of the repository.
+
+:::note[Disclaimer]
+This page is a human-readable summary and **not** a substitute for the [full license text](https://www.gnu.org/licenses/lgpl-3.0.html), nor legal advice. If in doubt, refer to the official license or consult legal counsel.
+:::
