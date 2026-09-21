@@ -36,6 +36,12 @@ jobs:
       - name: Build all packages
         run: pnpm build
 
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Check internal links
+        run: pnpm run check:links
+
   lighthouse:
     runs-on: ubuntu-latest
     env:
