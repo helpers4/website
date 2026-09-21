@@ -6,5 +6,6 @@
   "deps",
   "devcontainer",
   "docs",
-  "typescript"
+  "typescript",
+  "rust"
 ]
