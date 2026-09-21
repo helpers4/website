@@ -37,7 +37,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["cache"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["cache"] }
 ```
 
 ## Definition
@@ -236,4 +236,4 @@ call it directly to release memory while nothing is being written.
 
 ## Source
 
-[src/cache/expiring_map.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/cache/expiring_map.rs#L41)
+[src/cache/expiring_map.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/cache/expiring_map.rs#L41)

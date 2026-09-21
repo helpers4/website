@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["env"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["env"] }
 ```
 
 ## Signature
@@ -66,4 +66,4 @@ assert_eq!(set("A=1\n", "B", "two words")?, "A=1\nB=\"two words\"\n");
 
 ## Source
 
-[src/env/set.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/env/set.rs#L30)
+[src/env/set.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/env/set.rs#L30)

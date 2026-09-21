@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["net"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["net"] }
 ```
 
 ## Definition
@@ -56,4 +56,4 @@ pub enum HostnameError {
 
 ## Source
 
-[src/net/error.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/net/error.rs#L10)
+[src/net/error.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/net/error.rs#L10)

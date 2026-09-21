@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["hex"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["hex"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert!(decode_array::<4>("dead").is_err());
 
 ## Source
 
-[src/hex/decode_array.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/hex/decode_array.rs#L25)
+[src/hex/decode_array.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/hex/decode_array.rs#L25)

@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert_eq!(escape_html("plain"), "plain");
 
 ## Source
 
-[src/string/escape_html.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/string/escape_html.rs#L25)
+[src/string/escape_html.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/string/escape_html.rs#L25)

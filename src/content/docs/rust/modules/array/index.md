@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["array"] }
 ```
 
 Import path: `helpers4::array`.
@@ -35,10 +35,13 @@ Import path: `helpers4::array`.
 | [`cartesian_product`](/rust/modules/array/cartesian_product/) | Returns every pair `(x, y)` with `x` from `a` and `y` from `b`, in row-major order. |
 | [`count_by`](/rust/modules/array/count_by/) | Counts the elements of `items` per key returned by `key`. |
 | [`difference`](/rust/modules/array/difference/) | Returns the elements of `a` that are not in `b`, in `a`'s order. |
+| [`duplicates`](/rust/modules/array/duplicates/) | Returns the elements that appear more than once in `items`, each one once, in the order they first appear. |
 | [`equals_unordered`](/rust/modules/array/equals_unordered/) | Returns `true` when `a` and `b` hold the same elements the same number of times, in any order. |
 | [`group_by`](/rust/modules/array/group_by/) | Groups the elements of `items` by the key returned by `key`. |
+| [`interleave`](/rust/modules/array/interleave/) | Alternates the elements of `a` and `b`, starting with `a`; the leftover of the longer slice goes at the end. |
 | [`intersection`](/rust/modules/array/intersection/) | Returns the elements of `a` that also appear in `b`, in `a`'s order. |
 | [`intersects`](/rust/modules/array/intersects/) | Returns `true` when `a` and `b` share at least one element. |
+| [`key_by`](/rust/modules/array/key_by/) | Indexes the elements of `items` by the key returned by `key`. |
 | [`symmetric_difference`](/rust/modules/array/symmetric_difference/) | Returns the elements present in exactly one of `a` and `b`. |
 | [`unique`](/rust/modules/array/unique/) | Removes duplicate values, keeping the first occurrence of each and the original order. |
 | [`unique_by`](/rust/modules/array/unique_by/) | Removes elements whose `key` was already seen, keeping the first of each key in order. |

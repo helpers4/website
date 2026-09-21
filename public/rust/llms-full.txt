@@ -1,4 +1,4 @@
-# helpers4 (Rust) — full reference, version 0.0.2
+# helpers4 (Rust) — full reference, version 0.0.3
 
 > Every public item of the `helpers4` crate with its signature, documentation and examples.
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
@@ -71,6 +71,26 @@ assert_eq!(difference(&[1, 2, 3, 2], &[2]), vec![1, 3]);
 assert_eq!(difference(&[1, 1, 2], &[3]), vec![1, 1, 2]);
 ```
 
+### array::duplicates
+
+```rust
+pub fn duplicates<T: Clone + Eq + Hash>(items: &[T]) -> Vec<T>
+```
+
+Returns the elements that appear more than once in `items`, each one once, in the order they
+first appear.
+
+The counterpart of `unique`: what `unique` keeps, this reports as repeated.
+
+#### Examples
+
+```rust
+use helpers4::array::duplicates;
+
+assert_eq!(duplicates(&[1, 2, 3, 2, 1, 2]), vec![1, 2]);
+assert_eq!(duplicates(&["a", "b", "c"]), Vec::<&str>::new());
+```
+
 ### array::equals_unordered
 
 ```rust
@@ -115,6 +135,24 @@ assert_eq!(groups[&true], vec![2, 4]);
 assert_eq!(groups[&false], vec![1, 3, 5]);
 ```
 
+### array::interleave
+
+```rust
+pub fn interleave<T: Clone>(a: &[T], b: &[T]) -> Vec<T>
+```
+
+Alternates the elements of `a` and `b`, starting with `a`; the leftover of the longer slice
+goes at the end.
+
+#### Examples
+
+```rust
+use helpers4::array::interleave;
+
+assert_eq!(interleave(&[1, 3, 5], &[2, 4, 6]), vec![1, 2, 3, 4, 5, 6]);
+assert_eq!(interleave(&["a", "b", "c"], &["x"]), vec!["a", "x", "b", "c"]);
+```
+
 ### array::intersection
 
 ```rust
@@ -149,6 +187,28 @@ use helpers4::array::intersects;
 
 assert!(intersects(&[1, 2, 3], &[3, 4]));
 assert!(!intersects(&[1, 2], &[3, 4]));
+```
+
+### array::key_by
+
+```rust
+pub fn key_by<T: Clone, K: Eq + Hash>(items: &[T], mut key: impl FnMut(&T) -> K) -> HashMap<K, T>
+```
+
+Indexes the elements of `items` by the key returned by `key`.
+
+When several elements share a key, the last one wins. Use `group_by` to keep
+them all.
+
+#### Examples
+
+```rust
+use helpers4::array::key_by;
+
+let users = [("ann", 1), ("bob", 2), ("cat", 1)];
+let by_id = key_by(&users, |&(_, id)| id);
+assert_eq!(by_id[&2], ("bob", 2));
+assert_eq!(by_id[&1], ("cat", 1));
 ```
 
 ### array::symmetric_difference
@@ -760,6 +820,156 @@ assert_eq!(is_valid_hostname("a..b"), Err(HostnameError::EmptyLabel));
 assert_eq!(is_valid_hostname("127.0.0.1"), Err(HostnameError::NumericLastLabel));
 ```
 
+## Module `number` (Cargo feature `number`)
+
+Numeric helpers that the standard library does not provide.
+
+Floating-point helpers never panic: an input with no meaningful answer (an empty slice, a
+zero total, a `NaN`) gives `None`, and `NaN` or infinite values propagate as usual for `f64`.
+
+### number::gcd
+
+```rust
+pub fn gcd(mut a: u64, mut b: u64) -> u64
+```
+
+Greatest common divisor of `a` and `b`; `gcd(0, 0)` is `0`.
+
+#### Examples
+
+```rust
+use helpers4::number::gcd;
+
+assert_eq!(gcd(12, 18), 6);
+assert_eq!(gcd(7, 13), 1);
+assert_eq!(gcd(0, 5), 5);
+```
+
+### number::lcm
+
+```rust
+pub fn lcm(a: u64, b: u64) -> Option<u64>
+```
+
+Least common multiple of `a` and `b`, or `None` when it does not fit in a `u64`.
+
+`lcm(0, n)` is `0`.
+
+#### Examples
+
+```rust
+use helpers4::number::lcm;
+
+assert_eq!(lcm(4, 6), Some(12));
+assert_eq!(lcm(0, 5), Some(0));
+assert_eq!(lcm(u64::MAX, u64::MAX - 1), None);
+```
+
+### number::lerp
+
+```rust
+pub fn lerp(from: f64, to: f64, t: f64) -> f64
+```
+
+Linear interpolation between `from` and `to`: `from` at `t = 0`, `to` at `t = 1`.
+
+`t` is not clamped, so values outside `0..=1` extrapolate. Written as
+`from * (1 - t) + to * t`, it is exact at both ends.
+
+#### Examples
+
+```rust
+use helpers4::number::lerp;
+
+assert_eq!(lerp(10.0, 20.0, 0.5), 15.0);
+assert_eq!(lerp(0.0, 100.0, 1.0), 100.0);
+assert_eq!(lerp(0.0, 10.0, 1.5), 15.0);
+```
+
+### number::mean
+
+```rust
+pub fn mean(values: &[f64]) -> Option<f64>
+```
+
+Arithmetic mean of `values`, or `None` when it is empty.
+
+`NaN` and infinities propagate as usual for `f64`.
+
+#### Examples
+
+```rust
+use helpers4::number::mean;
+
+assert_eq!(mean(&[1.0, 2.0, 6.0]), Some(3.0));
+assert_eq!(mean(&[]), None);
+```
+
+### number::median
+
+```rust
+pub fn median(values: &[f64]) -> Option<f64>
+```
+
+Median of `values`, or `None` when it is empty or contains a `NaN`.
+
+For an even number of values it is the midpoint of the two middle ones. The input is not
+modified.
+
+#### Examples
+
+```rust
+use helpers4::number::median;
+
+assert_eq!(median(&[3.0, 1.0, 2.0]), Some(2.0));
+assert_eq!(median(&[4.0, 1.0, 3.0, 2.0]), Some(2.5));
+assert_eq!(median(&[]), None);
+```
+
+### number::percentage
+
+```rust
+pub fn percentage(part: f64, total: f64) -> Option<f64>
+```
+
+What percent `part` is of `total`, or `None` when `total` is zero.
+
+The result is not clamped: a `part` larger than `total` gives more than 100.
+
+#### Examples
+
+```rust
+use helpers4::number::percentage;
+
+assert_eq!(percentage(25.0, 200.0), Some(12.5));
+assert_eq!(percentage(3.0, 2.0), Some(150.0));
+assert_eq!(percentage(1.0, 0.0), None);
+```
+
+### number::round_to
+
+```rust
+pub fn round_to(value: f64, decimals: u32) -> f64
+```
+
+Rounds `value` to `decimals` decimal places, half away from zero.
+
+The result is the nearest `f64` to the rounded decimal, so it can still print with more digits
+than requested for some values, and binary representation applies: `1.005` is stored as
+`1.00499999999999989…`, so `round_to(1.005, 2)` is `1.0`. `NaN`, infinities, and values too
+large to scale are returned unchanged.
+
+#### Examples
+
+```rust
+use helpers4::number::round_to;
+
+assert_eq!(round_to(1.23456, 2), 1.23);
+assert_eq!(round_to(2.5, 0), 3.0);
+assert_eq!(round_to(-2.5, 0), -3.0);
+assert_eq!(round_to(1234.0, 0), 1234.0);
+```
+
 ## Module `string` (Cargo feature `string`)
 
 String manipulation and formatting helpers.
@@ -807,6 +1017,26 @@ assert_eq!(capitalize("hello world"), "Hello world");
 assert_eq!(capitalize(""), "");
 ```
 
+### string::constant_case
+
+```rust
+pub fn constant_case(s: &str) -> String
+```
+
+Converts `s` to `CONSTANT_CASE` (also known as `SCREAMING_SNAKE_CASE`).
+
+Splits words the same way as `camel_case`.
+
+#### Examples
+
+```rust
+use helpers4::string::constant_case;
+
+assert_eq!(constant_case("helloWorld"), "HELLO_WORLD");
+assert_eq!(constant_case("max retries"), "MAX_RETRIES");
+assert_eq!(constant_case(""), "");
+```
+
 ### string::dedent
 
 ```rust
@@ -851,6 +1081,27 @@ assert_eq!(
 );
 assert_eq!(escape_html("It's a <test> & more"), "It&#39;s a &lt;test&gt; &amp; more");
 assert_eq!(escape_html("plain"), "plain");
+```
+
+### string::indent
+
+```rust
+pub fn indent(s: &str, prefix: &str) -> String
+```
+
+Prefixes every non-blank line of `s` with `prefix`.
+
+Blank lines (empty or whitespace only) are left untouched, so no trailing whitespace is
+introduced. Lines are split on `'\n'` only, and a trailing newline is preserved. It is the
+inverse of `dedent` for text indented with a fixed prefix.
+
+#### Examples
+
+```rust
+use helpers4::string::indent;
+
+assert_eq!(indent("a\n\nb", "  "), "  a\n\n  b");
+assert_eq!(indent("line\n", "> "), "> line\n");
 ```
 
 ### string::kebab_case
@@ -935,6 +1186,47 @@ assert_eq!(snake_case("Hello World"), "hello_world");
 assert_eq!(snake_case(""), "");
 ```
 
+### string::squish
+
+```rust
+pub fn squish(s: &str) -> String
+```
+
+Trims `s` and collapses every run of whitespace into a single space.
+
+Tabs and line breaks count as whitespace, so a multi-line text becomes one line.
+
+#### Examples
+
+```rust
+use helpers4::string::squish;
+
+assert_eq!(squish("  hello   \n\t world  "), "hello world");
+assert_eq!(squish("   "), "");
+```
+
+### string::title_case
+
+```rust
+pub fn title_case(s: &str) -> String
+```
+
+Capitalizes the first letter of every whitespace-separated word and lowercases the rest.
+
+Whitespace is kept as it is. Only whitespace starts a new word, so `it's` becomes `It's` and
+`well-known` becomes `Well-known`. Use `pascal_case` to also drop the
+separators.
+
+#### Examples
+
+```rust
+use helpers4::string::title_case;
+
+assert_eq!(title_case("the quick brown fox"), "The Quick Brown Fox");
+assert_eq!(title_case("HELLO wORLD"), "Hello World");
+assert_eq!(title_case("it's"), "It's");
+```
+
 ### string::truncate
 
 ```rust
@@ -955,6 +1247,31 @@ use helpers4::string::truncate;
 assert_eq!(truncate("Hello, world", 8, "..."), "Hello...");
 assert_eq!(truncate("short", 8, "..."), "short");
 assert_eq!(truncate("Hello", 2, "..."), "..");
+```
+
+### string::unescape_html
+
+```rust
+pub fn unescape_html(s: &str) -> Cow<'_, str>
+```
+
+Decodes the HTML entities `&amp;`, `&lt;`, `&gt;`, `&quot;`, `&apos;`, `&#39;` and any numeric
+character reference (`&#65;`, `&#x41;`).
+
+It is the inverse of `escape_html`. The text is decoded in a single
+pass, so `&amp;lt;` becomes `&lt;` and not `<`. Anything that is not a known entity, including
+a numeric reference that is not a valid character, is left as it is. Returns the input
+borrowed, without allocating, when it contains no `&`.
+
+#### Examples
+
+```rust
+use helpers4::string::unescape_html;
+
+assert_eq!(unescape_html("&lt;b&gt;Tom &amp; Jerry&lt;/b&gt;"), "<b>Tom & Jerry</b>");
+assert_eq!(unescape_html("&#65;&#x42;"), "AB");
+assert_eq!(unescape_html("&amp;lt;"), "&lt;");
+assert_eq!(unescape_html("&unknown;"), "&unknown;");
 ```
 
 ## Module `time` (Cargo feature `time`)

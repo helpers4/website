@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["time"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["time"] }
 ```
 
 ## Definition
@@ -51,4 +51,4 @@ How far before the epoch the clock is.
 
 ## Source
 
-[src/time/error.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/time/error.rs#L13)
+[src/time/error.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/time/error.rs#L13)

@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["env"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["env"] }
 ```
 
 ## Signature
@@ -64,4 +64,4 @@ assert_eq!(
 
 ## Source
 
-[src/env/parse.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/env/parse.rs#L28)
+[src/env/parse.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/env/parse.rs#L28)

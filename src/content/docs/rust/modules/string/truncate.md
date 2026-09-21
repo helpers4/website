@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert_eq!(truncate("Hello", 2, "..."), "..");
 
 ## Source
 
-[src/string/truncate.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/string/truncate.rs#L21)
+[src/string/truncate.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/string/truncate.rs#L21)

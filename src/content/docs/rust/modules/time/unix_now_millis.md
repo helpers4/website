@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["time"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["time"] }
 ```
 
 ## Signature
@@ -52,4 +52,4 @@ assert!(unix_now_millis()? > 1_700_000_000_000);
 
 ## Source
 
-[src/time/unix_now_millis.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/time/unix_now_millis.rs#L26)
+[src/time/unix_now_millis.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/time/unix_now_millis.rs#L26)

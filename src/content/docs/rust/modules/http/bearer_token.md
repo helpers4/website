@@ -30,7 +30,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.2", default-features = false, features = ["http"] }
+helpers4 = { version = "0.0.3", default-features = false, features = ["http"] }
 ```
 
 ## Signature
@@ -62,4 +62,4 @@ assert_eq!(bearer_token("Bearer "), None);
 
 ## Source
 
-[src/http/bearer_token.rs](https://github.com/helpers4/rust/blob/v0.0.2/src/http/bearer_token.rs#L25)
+[src/http/bearer_token.rs](https://github.com/helpers4/rust/blob/v0.0.3/src/http/bearer_token.rs#L25)
