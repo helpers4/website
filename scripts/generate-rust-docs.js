@@ -208,6 +208,9 @@ function readModules(features) {
 
 const REPO_URL = 'https://github.com/helpers4/rust';
 
+/** Sidebar label of the overview pages: the mark tells them apart from the helper pages at a glance. */
+const OVERVIEW_LABEL = '📋 Overview';
+
 /** GitHub-style heading slug, as Starlight generates it. */
 function slug(text) {
   return text.toLowerCase().replaceAll(' ', '-').replace(/[^a-z0-9_-]/g, '');
@@ -469,13 +472,6 @@ function importBlock(item, cargo) {
   return [`## Import`, '', '```rust', `use helpers4::${item.module}::${item.name};`, '```', '', installBlock(item.module, cargo), ''].join('\n');
 }
 
-function seeAlso(mod, item, link) {
-  const siblings = mod.items.filter((other) => other.name !== item.name);
-  if (siblings.length === 0) return '';
-  const lines = siblings.map((other) => `- ${link(other.name)} — ${inline(firstSentence(other.doc))}`);
-  return ['## More in this module', '', ...lines, ''].join('\n');
-}
-
 function sourceBlock(item, cargo) {
   const file = `src/${item.module}/${item.file}.rs`;
   return ['## Source', '', `[${file}](${REPO_URL}/blob/v${cargo.version}/${file}#L${item.line})`, ''].join('\n');
@@ -502,7 +498,7 @@ function itemPage(mod, item, linker, cargo) {
       }
     }
   }
-  out.push(seeAlso(mod, item, link), sourceBlock(item, cargo));
+  out.push(sourceBlock(item, cargo));
   return head + out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
 }
 
@@ -515,7 +511,7 @@ function modulePage(mod, index, linker, cargo) {
     frontmatter({
       title: mod.name,
       description: plain(firstSentence(mod.doc)),
-      sidebar: { label: 'Overview', order: 0 },
+      sidebar: { label: OVERVIEW_LABEL, order: 0 },
     }) +
     [
       convertDoc(mod.doc, link),
@@ -544,7 +540,7 @@ function overviewPage(modules, cargo) {
     frontmatter({
       title: 'Modules',
       description: `The ${modules.length} modules of the helpers4 Rust crate.`,
-      sidebar: { order: 0, label: 'Overview' },
+      sidebar: { order: 0, label: OVERVIEW_LABEL },
     }) +
     [
       `The \`helpers4\` crate is organised in ${modules.length} modules. **Each module is a Cargo feature of the same name**, and all of them are enabled by default (\`cargo add helpers4\`).`,
@@ -662,12 +658,12 @@ function namingPage(modules) {
       '',
       '## Resolving a conflict',
       '',
-      'When you need two helpers with the same name in one file, rename at the import site with `as`. A suffix naming the module keeps them apart at a glance:',
+      'When you need two helpers with the same name in one file, rename at the import site with `as`, suffixing the module name so the origin stays visible:',
       '',
       '```rust',
-      'use helpers4::string::truncate as truncate_text;',
+      'use helpers4::string::truncate as truncate_string;',
       '',
-      'assert_eq!(truncate_text("A very long title", 10, "..."), "A very ...");',
+      'assert_eq!(truncate_string("A very long title", 10, "..."), "A very ...");',
       '```',
       '',
       'The same applies to a name that also exists in the standard library or in another crate you use.',
