@@ -23,6 +23,8 @@
     "generate-docs:devcontainer": "node scripts/generate-devcontainer-docs.js",
     "generate-docs:action": "node scripts/generate-action-docs.js",
     "sync-from-repos": "node scripts/sync-from-repos.js",
+    "test": "node --test src/lib/",
+    "check:links": "node scripts/check-internal-links.mjs",
     "clean": "rm -rf dist .astro",
     "reset-hard": "git clean -dfx && git reset --hard && pnpm install"
   },
