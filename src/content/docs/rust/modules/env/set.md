@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["env"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["env"] }
 ```
 
 ## Signature
@@ -39,11 +39,11 @@ pub fn set(content: &str, key: &str, value: &str) -> Result<String, InvalidKeyEr
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `content` | `&str` |
-| `key` | `&str` |
-| `value` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `content` | `&str` | The dotenv text to edit. |
+| `key` | `&str` | The variable name to set. |
+| `value` | `&str` | The value to assign to `key`. |
 
 ## Returns
 
@@ -84,8 +84,8 @@ The rejected name.
 
 **Returns**
 
-`&str`
+`&str` — The rejected variable name.
 
 ## Source
 
-[src/env/set.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/env/set.rs#L30)
+[src/env/set.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/env/set.rs#L36)

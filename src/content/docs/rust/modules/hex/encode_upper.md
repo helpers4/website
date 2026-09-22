@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["hex"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["hex"] }
 ```
 
 ## Signature
@@ -34,9 +34,9 @@ pub fn encode_upper(bytes: &[u8]) -> String
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `bytes` | `&[u8]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `bytes` | `&[u8]` | The bytes to encode. |
 
 ## Returns
 
@@ -52,4 +52,4 @@ assert_eq!(encode_upper(&[0xde, 0xad, 0xbe, 0xef]), "DEADBEEF");
 
 ## Source
 
-[src/hex/encode_upper.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/hex/encode_upper.rs#L17)
+[src/hex/encode_upper.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/hex/encode_upper.rs#L21)

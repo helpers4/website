@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["map"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["map"] }
 ```
 
 ## Signature
@@ -37,10 +37,10 @@ pub fn map_values<K: Clone + Eq + Hash, V, W, S: BuildHasher>(
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `map` | `&HashMap<K, V, S>` |
-| `f` | `impl FnMut(&V) -> W` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `map` | `&HashMap<K, V, S>` | The map to transform. |
+| `f` | `impl FnMut(&V) -> W` | Computes the new value from each old value. |
 
 ## Returns
 
@@ -59,4 +59,4 @@ assert_eq!(doubled, HashMap::from([("apple", 4), ("pear", 6)]));
 
 ## Source
 
-[src/map/map_values.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/map/map_values.rs#L20)
+[src/map/map_values.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/map/map_values.rs#L25)

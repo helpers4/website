@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -36,9 +36,9 @@ pub fn pascal_case(s: &str) -> String
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `s` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `s` | `&str` | The text to convert. |
 
 ## Returns
 
@@ -56,4 +56,4 @@ assert_eq!(pascal_case(""), "");
 
 ## Source
 
-[src/string/pascal_case.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/string/pascal_case.rs#L22)
+[src/string/pascal_case.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/string/pascal_case.rs#L26)

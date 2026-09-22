@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -35,10 +35,10 @@ pub fn interleave<T: Clone>(a: &[T], b: &[T]) -> Vec<T>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `a` | `&[T]` |
-| `b` | `&[T]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `a` | `&[T]` | The slice to take the first, third, … elements from. |
+| `b` | `&[T]` | The slice to take the second, fourth, … elements from. |
 
 ## Returns
 
@@ -55,4 +55,4 @@ assert_eq!(interleave(&["a", "b", "c"], &["x"]), vec!["a", "x", "b", "c"]);
 
 ## Source
 
-[src/array/interleave.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/interleave.rs#L17)
+[src/array/interleave.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/interleave.rs#L22)

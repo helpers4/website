@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -34,10 +34,10 @@ pub fn unique_by<T: Clone, K: Eq + Hash>(items: &[T], mut key: impl FnMut(&T) ->
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `items` | `&[T]` |
-| `key` | `impl FnMut(&T) -> K` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `items` | `&[T]` | The elements to deduplicate. |
+| `key` | `impl FnMut(&T) -> K` | Returns the key that decides which elements are duplicates. |
 
 ## Returns
 
@@ -57,4 +57,4 @@ assert_eq!(
 
 ## Source
 
-[src/array/unique_by.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/unique_by.rs#L21)
+[src/array/unique_by.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/unique_by.rs#L26)

@@ -22,7 +22,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["duration"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["duration"] }
 ```
 
 Import path: `helpers4::duration`.

@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["time"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["time"] }
 ```
 
 ## Signature
@@ -73,8 +73,8 @@ How far before the epoch the clock is.
 
 **Returns**
 
-`Duration`
+`Duration` — How far in the past the system clock reported, relative to the Unix epoch.
 
 ## Source
 
-[src/time/unix_now_millis.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/time/unix_now_millis.rs#L26)
+[src/time/unix_now_millis.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/time/unix_now_millis.rs#L26)

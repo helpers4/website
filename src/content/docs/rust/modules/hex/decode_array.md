@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["hex"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["hex"] }
 ```
 
 ## Signature
@@ -34,9 +34,9 @@ pub fn decode_array<const N: usize>(hex: &str) -> Result<[u8; N], DecodeError>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `hex` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `hex` | `&str` | The hexadecimal string to decode; must encode exactly `N` bytes. |
 
 ## Returns
 
@@ -87,4 +87,4 @@ pub enum DecodeError {
 
 ## Source
 
-[src/hex/decode_array.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/hex/decode_array.rs#L25)
+[src/hex/decode_array.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/hex/decode_array.rs#L29)

@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["number"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["number"] }
 ```
 
 ## Signature
@@ -34,10 +34,10 @@ pub fn gcd(mut a: u64, mut b: u64) -> u64
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `a` | `u64` |
-| `b` | `u64` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `a` | `u64` | The first number. |
+| `b` | `u64` | The second number. |
 
 ## Returns
 
@@ -55,4 +55,4 @@ assert_eq!(gcd(0, 5), 5);
 
 ## Source
 
-[src/number/gcd.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/number/gcd.rs#L17)
+[src/number/gcd.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/number/gcd.rs#L22)

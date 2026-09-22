@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -34,10 +34,10 @@ pub fn intersects<T: Eq + Hash>(a: &[T], b: &[T]) -> bool
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `a` | `&[T]` |
-| `b` | `&[T]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `a` | `&[T]` | The first slice. |
+| `b` | `&[T]` | The second slice. |
 
 ## Returns
 
@@ -54,4 +54,4 @@ assert!(!intersects(&[1, 2], &[3, 4]));
 
 ## Source
 
-[src/array/intersects.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/intersects.rs#L18)
+[src/array/intersects.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/intersects.rs#L23)

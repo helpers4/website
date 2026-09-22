@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["hex"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["hex"] }
 ```
 
 ## Signature
@@ -36,10 +36,10 @@ pub fn decode_to_slice(hex: &str, out: &mut [u8]) -> Result<(), DecodeError>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `hex` | `&str` |
-| `out` | `&mut [u8]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `hex` | `&str` | The hexadecimal string to decode. |
+| `out` | `&mut [u8]` | The buffer to decode into; must be exactly half of `hex`'s length. |
 
 ## Returns
 
@@ -90,4 +90,4 @@ pub enum DecodeError {
 
 ## Source
 
-[src/hex/decode_to_slice.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/hex/decode_to_slice.rs#L27)
+[src/hex/decode_to_slice.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/hex/decode_to_slice.rs#L32)

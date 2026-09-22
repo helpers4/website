@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -40,10 +40,10 @@ pub fn group_by<T: Clone, K: Eq + Hash>(
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `items` | `&[T]` |
-| `key` | `impl FnMut(&T) -> K` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `items` | `&[T]` | The elements to group. |
+| `key` | `impl FnMut(&T) -> K` | Returns the key to group each element under. |
 
 ## Returns
 
@@ -61,4 +61,4 @@ assert_eq!(groups[&false], vec![1, 3, 5]);
 
 ## Source
 
-[src/array/group_by.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/group_by.rs#L22)
+[src/array/group_by.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/group_by.rs#L27)

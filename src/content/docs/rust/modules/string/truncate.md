@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -38,11 +38,11 @@ pub fn truncate(s: &str, max_chars: usize, suffix: &str) -> String
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `s` | `&str` |
-| `max_chars` | `usize` |
-| `suffix` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `s` | `&str` | The text to shorten. |
+| `max_chars` | `usize` | The maximum length of the result, suffix included. |
+| `suffix` | `&str` | Appended when `s` was cut. |
 
 ## Returns
 
@@ -60,4 +60,4 @@ assert_eq!(truncate("Hello", 2, "..."), "..");
 
 ## Source
 
-[src/string/truncate.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/string/truncate.rs#L21)
+[src/string/truncate.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/string/truncate.rs#L27)

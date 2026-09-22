@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -37,9 +37,9 @@ pub fn duplicates<T: Clone + Eq + Hash>(items: &[T]) -> Vec<T>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `items` | `&[T]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `items` | `&[T]` | The elements to scan. |
 
 ## Returns
 
@@ -56,4 +56,4 @@ assert_eq!(duplicates(&["a", "b", "c"]), Vec::<&str>::new());
 
 ## Source
 
-[src/array/duplicates.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/duplicates.rs#L22)
+[src/array/duplicates.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/duplicates.rs#L26)

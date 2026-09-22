@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -34,9 +34,9 @@ pub fn unique<T: Clone + Eq + Hash>(items: &[T]) -> Vec<T>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `items` | `&[T]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `items` | `&[T]` | The elements to deduplicate. |
 
 ## Returns
 
@@ -53,4 +53,4 @@ assert_eq!(unique::<i32>(&[]), Vec::<i32>::new());
 
 ## Source
 
-[src/array/unique.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/unique.rs#L18)
+[src/array/unique.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/unique.rs#L22)

@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["duration"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["duration"] }
 ```
 
 ## Signature
@@ -38,9 +38,9 @@ pub fn format(duration: Duration) -> String
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `duration` | `Duration` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `duration` | `Duration` | The duration to format. |
 
 ## Returns
 
@@ -59,4 +59,4 @@ assert_eq!(format(Duration::ZERO), "0s");
 
 ## Source
 
-[src/duration/format.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/duration/format.rs#L24)
+[src/duration/format.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/duration/format.rs#L28)

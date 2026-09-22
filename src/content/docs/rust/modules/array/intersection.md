@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -36,10 +36,10 @@ pub fn intersection<T: Clone + Eq + Hash>(a: &[T], b: &[T]) -> Vec<T>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `a` | `&[T]` |
-| `b` | `&[T]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `a` | `&[T]` | The first slice. |
+| `b` | `&[T]` | The second slice. |
 
 ## Returns
 
@@ -56,4 +56,4 @@ assert_eq!(intersection(&[1], &[2]), Vec::<i32>::new());
 
 ## Source
 
-[src/array/intersection.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/intersection.rs#L20)
+[src/array/intersection.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/intersection.rs#L25)

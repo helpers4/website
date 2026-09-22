@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -37,10 +37,10 @@ pub fn symmetric_difference<T: Clone + Eq + Hash>(a: &[T], b: &[T]) -> Vec<T>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `a` | `&[T]` |
-| `b` | `&[T]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `a` | `&[T]` | The first slice. |
+| `b` | `&[T]` | The second slice. |
 
 ## Returns
 
@@ -56,4 +56,4 @@ assert_eq!(symmetric_difference(&[1, 2, 3], &[2, 3, 4]), vec![1, 4]);
 
 ## Source
 
-[src/array/symmetric_difference.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/symmetric_difference.rs#L20)
+[src/array/symmetric_difference.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/symmetric_difference.rs#L25)

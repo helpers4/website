@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["number"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["number"] }
 ```
 
 ## Signature
@@ -36,10 +36,10 @@ pub fn lcm(a: u64, b: u64) -> Option<u64>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `a` | `u64` |
-| `b` | `u64` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `a` | `u64` | The first number. |
+| `b` | `u64` | The second number. |
 
 ## Returns
 
@@ -57,4 +57,4 @@ assert_eq!(lcm(u64::MAX, u64::MAX - 1), None);
 
 ## Source
 
-[src/number/lcm.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/number/lcm.rs#L21)
+[src/number/lcm.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/number/lcm.rs#L26)

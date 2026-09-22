@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -39,9 +39,9 @@ pub fn dedent(s: &str) -> String
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `s` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `s` | `&str` | The text to strip the shared indentation from. |
 
 ## Returns
 
@@ -58,4 +58,4 @@ assert_eq!(dedent("  a\n  b"), "a\nb");
 
 ## Source
 
-[src/string/dedent.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/string/dedent.rs#L21)
+[src/string/dedent.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/string/dedent.rs#L25)

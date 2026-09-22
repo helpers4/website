@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["env"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["env"] }
 ```
 
 ## Signature
@@ -37,10 +37,10 @@ pub fn get(content: &str, key: &str) -> Option<String>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `content` | `&str` |
-| `key` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `content` | `&str` | The dotenv text to read. |
+| `key` | `&str` | The variable name to look up. |
 
 ## Returns
 
@@ -58,4 +58,4 @@ assert_eq!(get(content, "MISSING"), None);
 
 ## Source
 
-[src/env/get.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/env/get.rs#L21)
+[src/env/get.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/env/get.rs#L26)

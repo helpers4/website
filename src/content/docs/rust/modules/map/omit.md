@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["map"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["map"] }
 ```
 
 ## Signature
@@ -39,10 +39,10 @@ pub fn omit<K: Clone + Eq + Hash, V: Clone, S: BuildHasher>(
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `map` | `&HashMap<K, V, S>` |
-| `keys` | `&[K]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `map` | `&HashMap<K, V, S>` | The map to filter. |
+| `keys` | `&[K]` | The keys to leave out. |
 
 ## Returns
 
@@ -60,4 +60,4 @@ assert_eq!(omit(&user, &["password"]), HashMap::from([("name", 1), ("email", 2)]
 
 ## Source
 
-[src/map/omit.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/map/omit.rs#L22)
+[src/map/omit.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/map/omit.rs#L27)

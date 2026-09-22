@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -37,10 +37,10 @@ pub fn key_by<T: Clone, K: Eq + Hash>(items: &[T], mut key: impl FnMut(&T) -> K)
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `items` | `&[T]` |
-| `key` | `impl FnMut(&T) -> K` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `items` | `&[T]` | The elements to index. |
+| `key` | `impl FnMut(&T) -> K` | Returns the key to index each element under. |
 
 ## Returns
 
@@ -59,4 +59,4 @@ assert_eq!(by_id[&1], ("cat", 1));
 
 ## Source
 
-[src/array/key_by.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/key_by.rs#L23)
+[src/array/key_by.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/key_by.rs#L28)

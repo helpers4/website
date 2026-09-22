@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["duration"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["duration"] }
 ```
 
 ## Signature
@@ -39,9 +39,9 @@ pub fn parse(input: &str) -> Result<Duration, ParseDurationError>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `input` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `input` | `&str` | The human-written duration, such as `"1h30m"`. |
 
 ## Returns
 
@@ -98,4 +98,4 @@ pub enum ParseDurationError {
 
 ## Source
 
-[src/duration/parse.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/duration/parse.rs#L32)
+[src/duration/parse.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/duration/parse.rs#L36)

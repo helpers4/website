@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["number"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["number"] }
 ```
 
 ## Signature
@@ -37,9 +37,9 @@ pub fn median(values: &[f64]) -> Option<f64>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `values` | `&[f64]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `values` | `&[f64]` | The values to find the median of. |
 
 ## Returns
 
@@ -57,4 +57,4 @@ assert_eq!(median(&[]), None);
 
 ## Source
 
-[src/number/median.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/number/median.rs#L20)
+[src/number/median.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/number/median.rs#L24)

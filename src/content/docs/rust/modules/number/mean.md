@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["number"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["number"] }
 ```
 
 ## Signature
@@ -36,9 +36,9 @@ pub fn mean(values: &[f64]) -> Option<f64>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `values` | `&[f64]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `values` | `&[f64]` | The values to average. |
 
 ## Returns
 
@@ -55,4 +55,4 @@ assert_eq!(mean(&[]), None);
 
 ## Source
 
-[src/number/mean.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/number/mean.rs#L19)
+[src/number/mean.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/number/mean.rs#L23)

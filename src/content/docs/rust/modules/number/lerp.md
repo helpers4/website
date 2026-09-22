@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["number"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["number"] }
 ```
 
 ## Signature
@@ -37,11 +37,11 @@ pub fn lerp(from: f64, to: f64, t: f64) -> f64
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `from` | `f64` |
-| `to` | `f64` |
-| `t` | `f64` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `from` | `f64` | The value at `t = 0`. |
+| `to` | `f64` | The value at `t = 1`. |
+| `t` | `f64` | How far to interpolate between `from` and `to`. |
 
 ## Returns
 
@@ -59,4 +59,4 @@ assert_eq!(lerp(0.0, 10.0, 1.5), 15.0);
 
 ## Source
 
-[src/number/lerp.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/number/lerp.rs#L20)
+[src/number/lerp.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/number/lerp.rs#L26)

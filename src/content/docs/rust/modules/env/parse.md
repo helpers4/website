@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["env"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["env"] }
 ```
 
 ## Signature
@@ -39,9 +39,9 @@ pub fn parse(content: &str) -> Vec<(String, String)>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `content` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `content` | `&str` | The dotenv text to parse. |
 
 ## Returns
 
@@ -64,4 +64,4 @@ assert_eq!(
 
 ## Source
 
-[src/env/parse.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/env/parse.rs#L28)
+[src/env/parse.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/env/parse.rs#L32)

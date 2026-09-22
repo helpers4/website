@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -36,9 +36,9 @@ pub fn squish(s: &str) -> String
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `s` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `s` | `&str` | The text to normalize. |
 
 ## Returns
 
@@ -55,4 +55,4 @@ assert_eq!(squish("   "), "");
 
 ## Source
 
-[src/string/squish.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/string/squish.rs#L18)
+[src/string/squish.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/string/squish.rs#L22)

@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["map"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["map"] }
 ```
 
 ## Signature
@@ -39,10 +39,10 @@ pub fn pick<K: Clone + Eq + Hash, V: Clone, S: BuildHasher>(
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `map` | `&HashMap<K, V, S>` |
-| `keys` | `&[K]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `map` | `&HashMap<K, V, S>` | The map to filter. |
+| `keys` | `&[K]` | The keys to keep. |
 
 ## Returns
 
@@ -61,4 +61,4 @@ assert_eq!(public, HashMap::from([("name", 1), ("email", 2)]));
 
 ## Source
 
-[src/map/pick.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/map/pick.rs#L23)
+[src/map/pick.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/map/pick.rs#L28)

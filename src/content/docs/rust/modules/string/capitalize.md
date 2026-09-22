@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -37,9 +37,9 @@ pub fn capitalize(s: &str) -> String
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `s` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `s` | `&str` | The text to capitalize. |
 
 ## Returns
 
@@ -56,4 +56,4 @@ assert_eq!(capitalize(""), "");
 
 ## Source
 
-[src/string/capitalize.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/string/capitalize.rs#L19)
+[src/string/capitalize.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/string/capitalize.rs#L23)

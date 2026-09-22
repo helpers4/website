@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -36,10 +36,10 @@ pub fn difference<T: Clone + Eq + Hash>(a: &[T], b: &[T]) -> Vec<T>
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `a` | `&[T]` |
-| `b` | `&[T]` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `a` | `&[T]` | The elements to keep from. |
+| `b` | `&[T]` | The elements to remove. |
 
 ## Returns
 
@@ -56,4 +56,4 @@ assert_eq!(difference(&[1, 1, 2], &[3]), vec![1, 1, 2]);
 
 ## Source
 
-[src/array/difference.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/difference.rs#L20)
+[src/array/difference.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/difference.rs#L25)

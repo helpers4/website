@@ -37,7 +37,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["cache"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["cache"] }
 ```
 
 ## Definition
@@ -74,7 +74,7 @@ Creates an empty map.
 
 **Returns**
 
-`Self`
+`Self` — A new, empty `ExpiringMap`.
 
 ### `len`
 
@@ -86,7 +86,7 @@ The number of stored entries, including expired ones that no write has swept yet
 
 **Returns**
 
-`usize`
+`usize` — The number of entries currently stored, including any that have expired but were not evicted yet.
 
 ### `is_empty`
 
@@ -98,7 +98,7 @@ Whether nothing is stored (see [`len`](#len)).
 
 **Returns**
 
-`bool`
+`bool` — `true` when the map stores no entries at all, including expired ones not yet evicted.
 
 ### `clear`
 
@@ -124,16 +124,16 @@ expires immediately.
 
 **Parameters**
 
-| Parameter | Type |
-| --- | --- |
-| `key` | `K` |
-| `value` | `V` |
-| `expires_at` | `T` |
-| `now` | `T` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `key` | `K` | The key to store the value under. |
+| `value` | `V` | The value to store. |
+| `expires_at` | `T` | The point in time at which the entry becomes invisible. |
+| `now` | `T` | The current time, used to evict already-expired entries before inserting. |
 
 **Returns**
 
-`Option<V>`
+`Option<V>` — The previous value for `key`, if there was one and it had not expired yet.
 
 ### `insert_if_absent`
 
@@ -147,16 +147,16 @@ Expired entries are swept first.
 
 **Parameters**
 
-| Parameter | Type |
-| --- | --- |
-| `key` | `K` |
-| `value` | `V` |
-| `expires_at` | `T` |
-| `now` | `T` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `key` | `K` | The key to store the value under. |
+| `value` | `V` | The value to store. |
+| `expires_at` | `T` | The point in time at which the entry becomes invisible. |
+| `now` | `T` | The current time, used to decide whether an existing entry has already expired. |
 
 **Returns**
 
-`bool`
+`bool` — `true` when the value was inserted, `false` when `key` already had a live entry.
 
 ### `get`
 
@@ -168,14 +168,14 @@ The live value under `key`, or `None` if absent or expired at `now`.
 
 **Parameters**
 
-| Parameter | Type |
-| --- | --- |
-| `key` | `&K` |
-| `now` | `T` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `key` | `&K` | The key to look up. |
+| `now` | `T` | The current time, used to decide whether the entry has expired. |
 
 **Returns**
 
-`Option<&V>`
+`Option<&V>` — The value for `key`, or `None` when it is missing or expired.
 
 ### `contains_key`
 
@@ -187,14 +187,14 @@ Whether there is a live entry under `key` at `now`.
 
 **Parameters**
 
-| Parameter | Type |
-| --- | --- |
-| `key` | `&K` |
-| `now` | `T` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `key` | `&K` | The key to look up. |
+| `now` | `T` | The current time, used to decide whether the entry has expired. |
 
 **Returns**
 
-`bool`
+`bool` — `true` when `key` has a live entry.
 
 ### `remove`
 
@@ -206,14 +206,14 @@ Removes `key` and returns its value if it was still live at `now`.
 
 **Parameters**
 
-| Parameter | Type |
-| --- | --- |
-| `key` | `&K` |
-| `now` | `T` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `key` | `&K` | The key to remove. |
+| `now` | `T` | The current time, used to decide whether the entry had already expired. |
 
 **Returns**
 
-`Option<V>`
+`Option<V>` — The removed value, or `None` when there was no live entry for `key`.
 
 ### `evict_expired`
 
@@ -226,14 +226,14 @@ call it directly to release memory while nothing is being written.
 
 **Parameters**
 
-| Parameter | Type |
-| --- | --- |
-| `now` | `T` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `now` | `T` | The current time. |
 
 **Returns**
 
-`usize`
+`usize` — The number of entries removed.
 
 ## Source
 
-[src/cache/expiring_map.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/cache/expiring_map.rs#L41)
+[src/cache/expiring_map.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/cache/expiring_map.rs#L41)

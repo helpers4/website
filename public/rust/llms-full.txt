@@ -1,4 +1,4 @@
-# helpers4 (Rust) — full reference, version 0.0.4
+# helpers4 (Rust) — full reference, version 0.0.5
 
 > Every public item of the `helpers4` crate with its signature, documentation and examples.
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
@@ -23,6 +23,11 @@ Returns every pair `(x, y)` with `x` from `a` and `y` from `b`, in row-major ord
 
 For more than two inputs, nest the calls.
 
+#### Arguments
+
+- `a` - The first slice.
+- `b` - The second slice.
+
 #### Examples
 
 ```rust
@@ -41,6 +46,11 @@ pub fn count_by<T, K: Eq + Hash>(items: &[T], mut key: impl FnMut(&T) -> K) -> H
 ```
 
 Counts the elements of `items` per key returned by `key`.
+
+#### Arguments
+
+- `items` - The elements to count.
+- `key` - Returns the key to count each element under.
 
 #### Examples
 
@@ -62,6 +72,11 @@ Returns the elements of `a` that are not in `b`, in `a`'s order.
 
 Duplicates in `a` are kept: only membership in `b` decides whether an element stays.
 
+#### Arguments
+
+- `a` - The elements to keep from.
+- `b` - The elements to remove.
+
 #### Examples
 
 ```rust
@@ -82,6 +97,10 @@ first appear.
 
 The counterpart of `unique`: what `unique` keeps, this reports as repeated.
 
+#### Arguments
+
+- `items` - The elements to scan.
+
 #### Examples
 
 ```rust
@@ -101,6 +120,11 @@ Returns `true` when `a` and `b` hold the same elements the same number of times,
 
 Use it for collections where order is meaningless (tags, ids). For positional equality,
 compare the slices with `==`.
+
+#### Arguments
+
+- `a` - The first slice.
+- `b` - The second slice.
 
 #### Examples
 
@@ -125,6 +149,11 @@ Groups the elements of `items` by the key returned by `key`.
 Within each group, elements keep their original order. The order of the groups themselves is
 unspecified (`HashMap`).
 
+#### Arguments
+
+- `items` - The elements to group.
+- `key` - Returns the key to group each element under.
+
 #### Examples
 
 ```rust
@@ -143,6 +172,11 @@ pub fn interleave<T: Clone>(a: &[T], b: &[T]) -> Vec<T>
 
 Alternates the elements of `a` and `b`, starting with `a`; the leftover of the longer slice
 goes at the end.
+
+#### Arguments
+
+- `a` - The slice to take the first, third, … elements from.
+- `b` - The slice to take the second, fourth, … elements from.
 
 #### Examples
 
@@ -163,6 +197,11 @@ Returns the elements of `a` that also appear in `b`, in `a`'s order.
 
 Duplicates in `a` are kept: only membership in `b` decides whether an element stays.
 
+#### Arguments
+
+- `a` - The first slice.
+- `b` - The second slice.
+
 #### Examples
 
 ```rust
@@ -179,6 +218,11 @@ pub fn intersects<T: Eq + Hash>(a: &[T], b: &[T]) -> bool
 ```
 
 Returns `true` when `a` and `b` share at least one element.
+
+#### Arguments
+
+- `a` - The first slice.
+- `b` - The second slice.
 
 #### Examples
 
@@ -199,6 +243,11 @@ Indexes the elements of `items` by the key returned by `key`.
 
 When several elements share a key, the last one wins. Use `group_by` to keep
 them all.
+
+#### Arguments
+
+- `items` - The elements to index.
+- `key` - Returns the key to index each element under.
 
 #### Examples
 
@@ -222,6 +271,11 @@ Returns the elements present in exactly one of `a` and `b`.
 The result is the elements of `a` missing from `b` (in `a`'s order), followed by the elements
 of `b` missing from `a` (in `b`'s order). Duplicates are kept.
 
+#### Arguments
+
+- `a` - The first slice.
+- `b` - The second slice.
+
 #### Examples
 
 ```rust
@@ -237,6 +291,10 @@ pub fn unique<T: Clone + Eq + Hash>(items: &[T]) -> Vec<T>
 ```
 
 Removes duplicate values, keeping the first occurrence of each and the original order.
+
+#### Arguments
+
+- `items` - The elements to deduplicate.
 
 #### Examples
 
@@ -254,6 +312,11 @@ pub fn unique_by<T: Clone, K: Eq + Hash>(items: &[T], mut key: impl FnMut(&T) ->
 ```
 
 Removes elements whose `key` was already seen, keeping the first of each key in order.
+
+#### Arguments
+
+- `items` - The elements to deduplicate.
+- `key` - Returns the key that decides which elements are duplicates.
 
 #### Examples
 
@@ -317,6 +380,10 @@ pub fn new() -> Self
 
 Creates an empty map.
 
+##### Returns
+
+A new, empty `ExpiringMap`.
+
 #### ExpiringMap::len
 
 ```rust
@@ -325,6 +392,10 @@ pub fn len(&self) -> usize
 
 The number of stored entries, including expired ones that no write has swept yet.
 
+##### Returns
+
+The number of entries currently stored, including any that have expired but were not evicted yet.
+
 #### ExpiringMap::is_empty
 
 ```rust
@@ -332,6 +403,10 @@ pub fn is_empty(&self) -> bool
 ```
 
 Whether nothing is stored (see `len`).
+
+##### Returns
+
+`true` when the map stores no entries at all, including expired ones not yet evicted.
 
 #### ExpiringMap::clear
 
@@ -351,6 +426,17 @@ Stores `value` under `key` until `expires_at`, replacing any live entry, and ret
 replaced value. Expired entries are swept first. An `expires_at` that is not after `now`
 expires immediately.
 
+##### Arguments
+
+- `key` - The key to store the value under.
+- `value` - The value to store.
+- `expires_at` - The point in time at which the entry becomes invisible.
+- `now` - The current time, used to evict already-expired entries before inserting.
+
+##### Returns
+
+The previous value for `key`, if there was one and it had not expired yet.
+
 #### ExpiringMap::insert_if_absent
 
 ```rust
@@ -361,6 +447,17 @@ Stores `value` under `key` only if there is no live entry for it, and returns wh
 did. This is the replay check: `false` means the key was already seen and is still live.
 Expired entries are swept first.
 
+##### Arguments
+
+- `key` - The key to store the value under.
+- `value` - The value to store.
+- `expires_at` - The point in time at which the entry becomes invisible.
+- `now` - The current time, used to decide whether an existing entry has already expired.
+
+##### Returns
+
+`true` when the value was inserted, `false` when `key` already had a live entry.
+
 #### ExpiringMap::get
 
 ```rust
@@ -368,6 +465,15 @@ pub fn get(&self, key: &K, now: T) -> Option<&V>
 ```
 
 The live value under `key`, or `None` if absent or expired at `now`.
+
+##### Arguments
+
+- `key` - The key to look up.
+- `now` - The current time, used to decide whether the entry has expired.
+
+##### Returns
+
+The value for `key`, or `None` when it is missing or expired.
 
 #### ExpiringMap::contains_key
 
@@ -377,6 +483,15 @@ pub fn contains_key(&self, key: &K, now: T) -> bool
 
 Whether there is a live entry under `key` at `now`.
 
+##### Arguments
+
+- `key` - The key to look up.
+- `now` - The current time, used to decide whether the entry has expired.
+
+##### Returns
+
+`true` when `key` has a live entry.
+
 #### ExpiringMap::remove
 
 ```rust
@@ -384,6 +499,15 @@ pub fn remove(&mut self, key: &K, now: T) -> Option<V>
 ```
 
 Removes `key` and returns its value if it was still live at `now`.
+
+##### Arguments
+
+- `key` - The key to remove.
+- `now` - The current time, used to decide whether the entry had already expired.
+
+##### Returns
+
+The removed value, or `None` when there was no live entry for `key`.
 
 #### ExpiringMap::evict_expired
 
@@ -393,6 +517,14 @@ pub fn evict_expired(&mut self, now: T) -> usize
 
 Drops every entry that has expired at `now` and returns how many. Writes do this already;
 call it directly to release memory while nothing is being written.
+
+##### Arguments
+
+- `now` - The current time.
+
+##### Returns
+
+The number of entries removed.
 
 ### cache::ExpiringSet
 
@@ -420,6 +552,10 @@ Uses the units `d`, `h`, `m`, `s` and `ms`, largest first, and skips the ones th
 zero duration is `"0s"`. Anything below one millisecond is dropped (truncated, not rounded).
 `parse` reads the result back.
 
+#### Arguments
+
+- `duration` - The duration to format.
+
 #### Examples
 
 ```rust
@@ -443,6 +579,10 @@ The input is one or more `<integer><unit>` pairs, optionally separated by whites
 sum is returned. Units are `ms`, `s`, `m`, `h`, `d` (24 hours) and `w` (7 days), and may
 repeat or come in any order. A bare number, a fraction, a sign or an unknown unit is an error
 with the byte offset where it was found. It is the inverse of `format`.
+
+#### Arguments
+
+- `input` - The human-written duration, such as `"1h30m"`.
 
 #### Errors
 
@@ -508,6 +648,11 @@ Returns the value of `key` in dotenv `content`, or `None` when it is not assigne
 When a key is assigned more than once the last assignment wins, like a shell sourcing the
 file. See `parse` for the accepted syntax.
 
+#### Arguments
+
+- `content` - The dotenv text to read.
+- `key` - The variable name to look up.
+
 #### Examples
 
 ```rust
@@ -530,6 +675,10 @@ Blank lines, `#` comments and lines that are not valid `KEY=value` assignments a
 Supported: an optional `export ` prefix, bare values (a `#` after whitespace starts a
 comment), `"double quoted"` values with `\n \r \t \" \\` escapes and `'single quoted'`
 literals. Values are single-line. A key assigned twice appears twice.
+
+#### Arguments
+
+- `content` - The dotenv text to parse.
 
 #### Examples
 
@@ -557,6 +706,11 @@ Removes every assignment of `key` from dotenv `content` and returns the new cont
 Comments, blank lines and other variables are left untouched. Removing a key that is not
 assigned returns the content unchanged.
 
+#### Arguments
+
+- `content` - The dotenv text to edit.
+- `key` - The variable name to remove every assignment of.
+
 #### Examples
 
 ```rust
@@ -577,6 +731,12 @@ The first existing assignment of `key` is replaced in place and any later ones a
 when there is none, a new line is appended. Every other line (comments, blank lines, other
 variables) is left untouched, and the replaced line keeps its line ending. `value` is quoted
 and escaped only when needed, so `get` reads it back exactly.
+
+#### Arguments
+
+- `content` - The dotenv text to edit.
+- `key` - The variable name to set.
+- `value` - The value to assign to `key`.
 
 #### Errors
 
@@ -609,6 +769,10 @@ pub fn key(&self) -> &str
 
 The rejected name.
 
+##### Returns
+
+The rejected variable name.
+
 ## Module `hex` (Cargo feature `hex`)
 
 Hexadecimal encoding and decoding with typed errors.
@@ -626,6 +790,10 @@ Decodes a hexadecimal string (either case) into bytes.
 
 The string must be made of digit pairs only: surrounding whitespace, a `0x` prefix or
 separators are errors, so trim or strip them first.
+
+#### Arguments
+
+- `hex` - The hexadecimal string to decode.
 
 #### Errors
 
@@ -648,6 +816,10 @@ pub fn decode_array<const N: usize>(hex: &str) -> Result<[u8; N], DecodeError>
 ```
 
 Decodes a hexadecimal string into a fixed-size array, e.g. a 32-byte key from 64 hex digits.
+
+#### Arguments
+
+- `hex` - The hexadecimal string to decode; must encode exactly `N` bytes.
 
 #### Errors
 
@@ -674,6 +846,11 @@ Decodes a hexadecimal string into `out`, which must be exactly half as long as t
 
 Nothing is allocated; on error `out` may be partially written.
 
+#### Arguments
+
+- `hex` - The hexadecimal string to decode.
+- `out` - The buffer to decode into; must be exactly half of `hex`'s length.
+
 #### Errors
 
 `DecodeError::OddLength`, `DecodeError::InvalidLength` when the string does not match
@@ -697,6 +874,10 @@ pub fn encode(bytes: &[u8]) -> String
 
 Encodes `bytes` as lowercase hexadecimal.
 
+#### Arguments
+
+- `bytes` - The bytes to encode.
+
 #### Examples
 
 ```rust
@@ -713,6 +894,10 @@ pub fn encode_upper(bytes: &[u8]) -> String
 ```
 
 Encodes `bytes` as uppercase hexadecimal.
+
+#### Arguments
+
+- `bytes` - The bytes to encode.
 
 #### Examples
 
@@ -767,6 +952,10 @@ value are ignored. Anything else, including another scheme or an empty token, gi
 
 Only the syntax is checked: whether the token is valid is up to the caller.
 
+#### Arguments
+
+- `header` - The value of an `Authorization` header.
+
 #### Examples
 
 ```rust
@@ -776,6 +965,106 @@ assert_eq!(bearer_token("Bearer abc.def-123"), Some("abc.def-123"));
 assert_eq!(bearer_token("bearer   abc"), Some("abc"));
 assert_eq!(bearer_token("Basic dXNlcjpwYXNz"), None);
 assert_eq!(bearer_token("Bearer "), None);
+```
+
+## Module `iter` (Cargo feature `iter`)
+
+Helpers for any `Iterator`, not only slices: work on a lazy, single-use or unbounded source.
+
+### iter::chunk
+
+```rust
+pub fn chunk<I: IntoIterator>(iter: I, size: usize) -> Vec<Vec<I::Item>>
+```
+
+Splits `iter` into consecutive chunks of `size` items, the last one possibly shorter.
+
+Unlike [`slice::chunks`](https://doc.rust-lang.org/std/primitive.slice.html#method.chunks),
+this consumes any `IntoIterator`, not just a slice, and owns the items instead of borrowing
+them, so it also works on a lazily-generated or single-use iterator. A `size` of `0` produces
+no chunks at all, since a non-empty chunk cannot hold zero items.
+
+#### Arguments
+
+- `iter` - The items to split.
+- `size` - How many items go in each chunk.
+
+#### Returns
+
+The chunks, in order.
+
+#### Examples
+
+```rust
+use helpers4::iter::chunk;
+
+assert_eq!(chunk(1..=5, 2), vec![vec![1, 2], vec![3, 4], vec![5]]);
+assert_eq!(chunk(Vec::<i32>::new(), 3), Vec::<Vec<i32>>::new());
+assert_eq!(chunk(1..=3, 0), Vec::<Vec<i32>>::new());
+```
+
+### iter::first_duplicate
+
+```rust
+pub fn first_duplicate<T: Eq + Hash + Clone>(iter: impl IntoIterator<Item = T>) -> Option<T>
+```
+
+Returns the first item of `iter` that has already appeared earlier in it, or `None` when
+every item is unique.
+
+Unlike `array::duplicates`, this stops at the first repeat, so it
+works on an infinite or otherwise unbounded iterator instead of requiring an already-collected
+slice.
+
+#### Arguments
+
+- `iter` - The items to scan, in order.
+
+#### Returns
+
+The first repeated item, or `None` when there is none.
+
+#### Examples
+
+```rust
+use helpers4::iter::first_duplicate;
+
+assert_eq!(first_duplicate([1, 2, 3, 2, 1]), Some(2));
+assert_eq!(first_duplicate(["a", "b", "c"]), None);
+```
+
+### iter::min_max
+
+```rust
+pub fn min_max<T: PartialOrd + Copy>(iter: impl IntoIterator<Item = T>) -> Option<(T, T)>
+```
+
+Returns the smallest and largest item of `iter` in one pass, or `None` when it is empty.
+
+Equivalent to calling
+[`.min()`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.min) and
+[`.max()`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.max) separately, but
+only iterates once, so it also works on an iterator that can only be consumed a single time.
+Comparisons follow `T`'s `PartialOrd`: with `f64`, a `NaN` is neither smaller nor larger
+than anything, exactly as `<` and `>` say, so a `NaN` that is never replaced (for instance the
+very first item) stays in the result.
+
+#### Arguments
+
+- `iter` - The items to scan.
+
+#### Returns
+
+`(min, max)`, or `None` when `iter` is empty.
+
+#### Examples
+
+```rust
+use helpers4::iter::min_max;
+
+assert_eq!(min_max(1..=5), Some((1, 5)));
+assert_eq!(min_max([3, 1, 4, 1, 5]), Some((1, 5)));
+assert_eq!(min_max(Vec::<i32>::new()), None);
 ```
 
 ## Module `map` (Cargo feature `map`)
@@ -794,6 +1083,11 @@ pub fn map_values<K: Clone + Eq + Hash, V, W, S: BuildHasher>(
 ```
 
 Returns a new map with the same keys and each value replaced by `f(value)`.
+
+#### Arguments
+
+- `map` - The map to transform.
+- `f` - Computes the new value from each old value.
 
 #### Examples
 
@@ -819,6 +1113,11 @@ Returns a new map with the entries of `map` except those whose key is in `keys`.
 
 Keys that are not in `map` are ignored. The complement of `pick`.
 
+#### Arguments
+
+- `map` - The map to filter.
+- `keys` - The keys to leave out.
+
 #### Examples
 
 ```rust
@@ -841,6 +1140,11 @@ pub fn pick<K: Clone + Eq + Hash, V: Clone, S: BuildHasher>(
 Returns a new map with only the entries of `map` whose key is in `keys`.
 
 Keys that are not in `map` are ignored.
+
+#### Arguments
+
+- `map` - The map to filter.
+- `keys` - The keys to keep.
 
 #### Examples
 
@@ -904,6 +1208,10 @@ This is only one half of an SSRF defence.
 - **Provider-specific addresses inside a public range.** A registry cannot say that, for
   example, Azure's wire server `168.63.129.16` is internal: it is reported public.
 
+#### Arguments
+
+- `ip` - The address to check.
+
 #### Examples
 
 ```rust
@@ -937,6 +1245,10 @@ This checks syntax only. It is not an SSRF check: a name that passes can still r
 private address. To guard a server that fetches user-supplied URLs, parse the URL first, then
 check the address you will actually connect to with
 `is_public_ip`.
+
+#### Arguments
+
+- `hostname` - The hostname to validate.
 
 #### Errors
 
@@ -999,6 +1311,11 @@ pub fn gcd(mut a: u64, mut b: u64) -> u64
 
 Greatest common divisor of `a` and `b`; `gcd(0, 0)` is `0`.
 
+#### Arguments
+
+- `a` - The first number.
+- `b` - The second number.
+
 #### Examples
 
 ```rust
@@ -1018,6 +1335,11 @@ pub fn lcm(a: u64, b: u64) -> Option<u64>
 Least common multiple of `a` and `b`, or `None` when it does not fit in a `u64`.
 
 `lcm(0, n)` is `0`.
+
+#### Arguments
+
+- `a` - The first number.
+- `b` - The second number.
 
 #### Examples
 
@@ -1040,6 +1362,12 @@ Linear interpolation between `from` and `to`: `from` at `t = 0`, `to` at `t = 1`
 `t` is not clamped, so values outside `0..=1` extrapolate. Written as
 `from * (1 - t) + to * t`, it is exact at both ends.
 
+#### Arguments
+
+- `from` - The value at `t = 0`.
+- `to` - The value at `t = 1`.
+- `t` - How far to interpolate between `from` and `to`.
+
 #### Examples
 
 ```rust
@@ -1059,6 +1387,10 @@ pub fn mean(values: &[f64]) -> Option<f64>
 Arithmetic mean of `values`, or `None` when it is empty.
 
 `NaN` and infinities propagate as usual for `f64`.
+
+#### Arguments
+
+- `values` - The values to average.
 
 #### Examples
 
@@ -1080,6 +1412,10 @@ Median of `values`, or `None` when it is empty or contains a `NaN`.
 For an even number of values it is the midpoint of the two middle ones. The input is not
 modified.
 
+#### Arguments
+
+- `values` - The values to find the median of.
+
 #### Examples
 
 ```rust
@@ -1099,6 +1435,11 @@ pub fn percentage(part: f64, total: f64) -> Option<f64>
 What percent `part` is of `total`, or `None` when `total` is zero.
 
 The result is not clamped: a `part` larger than `total` gives more than 100.
+
+#### Arguments
+
+- `part` - The quantity to express as a percentage.
+- `total` - The whole that `part` is a share of.
 
 #### Examples
 
@@ -1122,6 +1463,11 @@ The result is the nearest `f64` to the rounded decimal, so it can still print wi
 than requested for some values, and binary representation applies: `1.005` is stored as
 `1.00499999999999989…`, so `round_to(1.005, 2)` is `1.0`. `NaN`, infinities, and values too
 large to scale are returned unchanged.
+
+#### Arguments
+
+- `value` - The number to round.
+- `decimals` - How many decimal places to keep.
 
 #### Examples
 
@@ -1150,6 +1496,10 @@ Words are split on any non-alphanumeric character and on case boundaries; an emb
 of capitals is an acronym, so only its last letter starts the next word (`userID` becomes
 `userId`).
 
+#### Arguments
+
+- `s` - The text to convert.
+
 #### Examples
 
 ```rust
@@ -1172,6 +1522,10 @@ Uppercases the first character of `s` and leaves the rest untouched.
 Unicode-aware: a character whose uppercase form is several characters
 (`ß` -> `SS`) is expanded accordingly.
 
+#### Arguments
+
+- `s` - The text to capitalize.
+
 #### Examples
 
 ```rust
@@ -1190,6 +1544,10 @@ pub fn constant_case(s: &str) -> String
 Converts `s` to `CONSTANT_CASE` (also known as `SCREAMING_SNAKE_CASE`).
 
 Splits words the same way as `camel_case`.
+
+#### Arguments
+
+- `s` - The text to convert.
 
 #### Examples
 
@@ -1214,6 +1572,10 @@ Lets a multi-line string literal be indented with the surrounding code without t
 indentation leaking into the value. Indentation is counted in whitespace characters, and
 lines are split on `'\n'` only (a `'\r'` stays on its line).
 
+#### Arguments
+
+- `s` - The text to strip the shared indentation from.
+
 #### Examples
 
 ```rust
@@ -1233,6 +1595,10 @@ Escapes the HTML special characters `&`, `<`, `>`, `"` and `'`.
 
 Returns the input borrowed, without allocating, when there is nothing to escape. Use it to
 embed untrusted text in HTML text nodes or quoted attribute values.
+
+#### Arguments
+
+- `s` - The text to escape.
 
 #### Examples
 
@@ -1259,6 +1625,11 @@ Blank lines (empty or whitespace only) are left untouched, so no trailing whites
 introduced. Lines are split on `'\n'` only, and a trailing newline is preserved. It is the
 inverse of `dedent` for text indented with a fixed prefix.
 
+#### Arguments
+
+- `s` - The text to indent.
+- `prefix` - The text to prepend to every non-blank line.
+
 #### Examples
 
 ```rust
@@ -1277,6 +1648,10 @@ pub fn kebab_case(s: &str) -> String
 Converts `s` to `kebab-case`.
 
 Splits words the same way as `camel_case`.
+
+#### Arguments
+
+- `s` - The text to convert.
 
 #### Examples
 
@@ -1297,6 +1672,10 @@ pub fn pascal_case(s: &str) -> String
 Converts `s` to `PascalCase`.
 
 Splits words the same way as `camel_case`.
+
+#### Arguments
+
+- `s` - The text to convert.
 
 #### Examples
 
@@ -1320,6 +1699,10 @@ Letters and digits (Unicode included) are kept and lowercased, apostrophes are d
 every other run of characters becomes a single hyphen; leading and trailing hyphens are
 never produced. Diacritics are **not** stripped: `"café"` stays `"café"`.
 
+#### Arguments
+
+- `s` - The text to convert.
+
 #### Examples
 
 ```rust
@@ -1340,6 +1723,10 @@ Converts `s` to `snake_case`.
 
 Splits words the same way as `camel_case`.
 
+#### Arguments
+
+- `s` - The text to convert.
+
 #### Examples
 
 ```rust
@@ -1359,6 +1746,10 @@ pub fn squish(s: &str) -> String
 Trims `s` and collapses every run of whitespace into a single space.
 
 Tabs and line breaks count as whitespace, so a multi-line text becomes one line.
+
+#### Arguments
+
+- `s` - The text to normalize.
 
 #### Examples
 
@@ -1381,6 +1772,10 @@ Whitespace is kept as it is. Only whitespace starts a new word, so `it's` become
 `well-known` becomes `Well-known`. Use `pascal_case` to also drop the
 separators.
 
+#### Arguments
+
+- `s` - The text to convert.
+
 #### Examples
 
 ```rust
@@ -1402,6 +1797,12 @@ Shortens `s` to at most `max_chars` characters, ending with `suffix` when it was
 The suffix counts toward the limit. Lengths are in Unicode scalar values (`char`s), not
 grapheme clusters. If the suffix alone does not fit, the first `max_chars` characters of the
 suffix are returned.
+
+#### Arguments
+
+- `s` - The text to shorten.
+- `max_chars` - The maximum length of the result, suffix included.
+- `suffix` - Appended when `s` was cut.
 
 #### Examples
 
@@ -1426,6 +1827,10 @@ It is the inverse of `escape_html`. The text is decoded in a single
 pass, so `&amp;lt;` becomes `&lt;` and not `<`. Anything that is not a known entity, including
 a numeric reference that is not a valid character, is left as it is. Returns the input
 borrowed, without allocating, when it contains no `&`.
+
+#### Arguments
+
+- `s` - The text to decode.
 
 #### Examples
 
@@ -1504,3 +1909,110 @@ pub fn behind(&self) -> Duration
 ```
 
 How far before the epoch the clock is.
+
+##### Returns
+
+How far in the past the system clock reported, relative to the Unix epoch.
+
+## Module `validate` (Cargo feature `validate`)
+
+Shape checks for common user-facing formats: pragmatic subsets that catch real mistakes,
+not full grammars. None of them normalizes or parses the value, only checks it.
+
+### validate::is_slug
+
+```rust
+pub fn is_slug(s: &str) -> bool
+```
+
+Checks whether `s` has the shape of an ASCII URL slug: non-empty, made only of lowercase
+ASCII letters, digits and hyphens, with no leading, trailing or doubled hyphen.
+
+This is ASCII-only by design, even though `slugify` keeps Unicode
+letters (`slugify("café")` is `"café"`, which `is_slug` rejects): a slug meant to go
+unescaped in a URL path is conventionally ASCII. For ASCII input, `is_slug(&slugify(s))` is
+`true` whenever `slugify(s)` is not empty.
+
+#### Arguments
+
+- `s` - The text to check.
+
+#### Returns
+
+`true` when `s` already has the shape of a slug.
+
+#### Examples
+
+```rust
+use helpers4::validate::is_slug;
+
+assert!(is_slug("hello-world"));
+assert!(is_slug("v2"));
+assert!(!is_slug("Hello-World"));
+assert!(!is_slug("-leading"));
+assert!(!is_slug("double--hyphen"));
+assert!(!is_slug(""));
+```
+
+### validate::is_uuid
+
+```rust
+pub fn is_uuid(s: &str) -> bool
+```
+
+Checks whether `s` is a UUID in its canonical `8-4-4-4-12` hyphenated hexadecimal form.
+
+Case-insensitive. The variant and version digits are not checked, so this accepts any RFC
+9562 UUID (v1 through v8) as well as the all-zero nil UUID; it only checks the shape.
+
+#### Arguments
+
+- `s` - The text to check.
+
+#### Returns
+
+`true` when `s` has the shape of a UUID.
+
+#### Examples
+
+```rust
+use helpers4::validate::is_uuid;
+
+assert!(is_uuid("550e8400-e29b-41d4-a716-446655440000"));
+assert!(is_uuid("550E8400-E29B-41D4-A716-446655440000"));
+assert!(!is_uuid("550e8400-e29b-41d4-a716-44665544000")); // one digit short
+assert!(!is_uuid("not-a-uuid"));
+```
+
+### validate::is_valid_email
+
+```rust
+pub fn is_valid_email(s: &str) -> bool
+```
+
+Checks a pragmatic subset of RFC 5322 that catches real typos, not a full grammar.
+
+Requires exactly one `@`, a non-empty local part of ASCII letters, digits and `. _ % + -`
+with no leading, trailing or doubled dot, and a domain of at least two dot-separated labels
+(ASCII letters, digits and hyphens, none starting or ending with a hyphen) whose last label
+is letters only. Quoted local parts, comments and internationalized domain names are not
+supported: this is meant to reject obvious mistakes, not to be the final word on deliverability.
+
+#### Arguments
+
+- `s` - The address to check.
+
+#### Returns
+
+`true` when `s` passes the checks above.
+
+#### Examples
+
+```rust
+use helpers4::validate::is_valid_email;
+
+assert!(is_valid_email("jane.doe+list@example.co.uk"));
+assert!(!is_valid_email("no-at-sign"));
+assert!(!is_valid_email("@example.com"));
+assert!(!is_valid_email("jane@localhost"));
+```

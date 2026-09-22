@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["env"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["env"] }
 ```
 
 ## Signature
@@ -37,10 +37,10 @@ pub fn remove(content: &str, key: &str) -> String
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `content` | `&str` |
-| `key` | `&str` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `content` | `&str` | The dotenv text to edit. |
+| `key` | `&str` | The variable name to remove every assignment of. |
 
 ## Returns
 
@@ -56,4 +56,4 @@ assert_eq!(remove("A=1\nB=2\nA=3\n", "A"), "B=2\n");
 
 ## Source
 
-[src/env/remove.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/env/remove.rs#L20)
+[src/env/remove.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/env/remove.rs#L25)

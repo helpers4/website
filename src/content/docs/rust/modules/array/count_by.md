@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.4", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -34,10 +34,10 @@ pub fn count_by<T, K: Eq + Hash>(items: &[T], mut key: impl FnMut(&T) -> K) -> H
 
 ## Parameters
 
-| Parameter | Type |
-| --- | --- |
-| `items` | `&[T]` |
-| `key` | `impl FnMut(&T) -> K` |
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `items` | `&[T]` | The elements to count. |
+| `key` | `impl FnMut(&T) -> K` | Returns the key to count each element under. |
 
 ## Returns
 
@@ -55,4 +55,4 @@ assert_eq!(counts["even"], 2);
 
 ## Source
 
-[src/array/count_by.rs](https://github.com/helpers4/rust/blob/v0.0.4/src/array/count_by.rs#L19)
+[src/array/count_by.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/count_by.rs#L24)
