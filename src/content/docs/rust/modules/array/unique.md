@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -53,4 +53,4 @@ assert_eq!(unique::<i32>(&[]), Vec::<i32>::new());
 
 ## Source
 
-[src/array/unique.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/unique.rs#L22)
+[src/array/unique.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/array/unique.rs#L22)

@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["map"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["map"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert_eq!(omit(&user, &["password"]), HashMap::from([("name", 1), ("email", 2)]
 
 ## Source
 
-[src/map/omit.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/map/omit.rs#L27)
+[src/map/omit.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/map/omit.rs#L27)

@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -55,4 +55,4 @@ assert_eq!(interleave(&["a", "b", "c"], &["x"]), vec!["a", "x", "b", "c"]);
 
 ## Source
 
-[src/array/interleave.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/interleave.rs#L22)
+[src/array/interleave.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/array/interleave.rs#L22)

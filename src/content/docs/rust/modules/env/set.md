@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["env"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["env"] }
 ```
 
 ## Signature
@@ -88,4 +88,4 @@ The rejected name.
 
 ## Source
 
-[src/env/set.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/env/set.rs#L36)
+[src/env/set.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/env/set.rs#L36)

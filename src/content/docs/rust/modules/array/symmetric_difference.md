@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert_eq!(symmetric_difference(&[1, 2, 3], &[2, 3, 4]), vec![1, 4]);
 
 ## Source
 
-[src/array/symmetric_difference.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/array/symmetric_difference.rs#L25)
+[src/array/symmetric_difference.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/array/symmetric_difference.rs#L25)

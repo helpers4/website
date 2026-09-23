@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["iter"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["iter"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert_eq!(chunk(1..=3, 0), Vec::<Vec<i32>>::new());
 
 ## Source
 
-[src/iter/chunk.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/iter/chunk.rs#L30)
+[src/iter/chunk.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/iter/chunk.rs#L30)

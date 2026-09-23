@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["hex"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["hex"] }
 ```
 
 ## Signature
@@ -52,4 +52,4 @@ assert_eq!(encode_upper(&[0xde, 0xad, 0xbe, 0xef]), "DEADBEEF");
 
 ## Source
 
-[src/hex/encode_upper.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/hex/encode_upper.rs#L21)
+[src/hex/encode_upper.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/hex/encode_upper.rs#L21)

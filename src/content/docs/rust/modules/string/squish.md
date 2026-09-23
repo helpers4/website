@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -55,4 +55,4 @@ assert_eq!(squish("   "), "");
 
 ## Source
 
-[src/string/squish.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/string/squish.rs#L22)
+[src/string/squish.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/string/squish.rs#L22)

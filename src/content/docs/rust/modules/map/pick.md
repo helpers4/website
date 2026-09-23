@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["map"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["map"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert_eq!(public, HashMap::from([("name", 1), ("email", 2)]));
 
 ## Source
 
-[src/map/pick.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/map/pick.rs#L28)
+[src/map/pick.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/map/pick.rs#L28)

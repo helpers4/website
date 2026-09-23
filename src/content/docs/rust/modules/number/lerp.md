@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["number"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["number"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(lerp(0.0, 10.0, 1.5), 15.0);
 
 ## Source
 
-[src/number/lerp.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/number/lerp.rs#L26)
+[src/number/lerp.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/number/lerp.rs#L26)

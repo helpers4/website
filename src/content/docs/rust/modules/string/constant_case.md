@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert_eq!(constant_case(""), "");
 
 ## Source
 
-[src/string/constant_case.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/string/constant_case.rs#L25)
+[src/string/constant_case.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/string/constant_case.rs#L25)

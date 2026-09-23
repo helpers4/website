@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["map"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["map"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(doubled, HashMap::from([("apple", 4), ("pear", 6)]));
 
 ## Source
 
-[src/map/map_values.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/map/map_values.rs#L25)
+[src/map/map_values.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/map/map_values.rs#L25)

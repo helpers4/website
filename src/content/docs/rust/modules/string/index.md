@@ -20,7 +20,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["string"] }
 ```
 
 Import path: `helpers4::string`.

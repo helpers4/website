@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["iter"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["iter"] }
 ```
 
 ## Signature
@@ -58,4 +58,4 @@ assert_eq!(first_duplicate(["a", "b", "c"]), None);
 
 ## Source
 
-[src/iter/first_duplicate.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/iter/first_duplicate.rs#L30)
+[src/iter/first_duplicate.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/iter/first_duplicate.rs#L30)

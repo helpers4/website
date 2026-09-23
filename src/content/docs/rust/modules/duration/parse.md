@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["duration"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["duration"] }
 ```
 
 ## Signature
@@ -98,4 +98,4 @@ pub enum ParseDurationError {
 
 ## Source
 
-[src/duration/parse.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/duration/parse.rs#L36)
+[src/duration/parse.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/duration/parse.rs#L36)

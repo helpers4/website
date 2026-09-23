@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(camel_case(""), "");
 
 ## Source
 
-[src/string/camel_case.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/string/camel_case.rs#L29)
+[src/string/camel_case.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/string/camel_case.rs#L29)

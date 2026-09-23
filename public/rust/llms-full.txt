@@ -1,10 +1,319 @@
-# helpers4 (Rust) — full reference, version 0.0.5
+# helpers4 (Rust) — full reference, version 0.0.6
 
 > Every public item of the `helpers4` crate with its signature, documentation and examples.
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
 > Import through the module path; names repeat across modules on purpose.
 > Each module is a Cargo feature of the same name (`cargo add helpers4 --no-default-features --features <module>`).
 > Pre-1.0 (0.x): the split into modules (Cargo features) may change between releases, and the verification tooling is still being extended.
+
+## Module `ansi` (Cargo feature `ansi`)
+
+ANSI escape sequences: remove them from captured output and build styled text.
+
+`strip`, `contains` and `visible_len` deal with text that already has escape sequences (command
+output, logs); `Style` and `Color` build the sequences for colors and attributes. Nothing here
+decides whether a terminal supports colors: that stays with the caller.
+
+### ansi::Color
+
+```rust
+pub enum Color {
+    /// Black.
+    Black,
+    /// Red.
+    Red,
+    /// Green.
+    Green,
+    /// Yellow.
+    Yellow,
+    /// Blue.
+    Blue,
+    /// Magenta.
+    Magenta,
+    /// Cyan.
+    Cyan,
+    /// White (light grey on most terminals).
+    White,
+    /// Bright black (dark grey).
+    BrightBlack,
+    /// Bright red.
+    BrightRed,
+    /// Bright green.
+    BrightGreen,
+    /// Bright yellow.
+    BrightYellow,
+    /// Bright blue.
+    BrightBlue,
+    /// Bright magenta.
+    BrightMagenta,
+    /// Bright cyan.
+    BrightCyan,
+    /// Bright white.
+    BrightWhite,
+    /// A color of the 256-color palette, `0..=255`.
+    Ansi256(u8),
+    /// A true color.
+    Rgb(u8, u8, u8),
+}
+```
+
+A terminal color for `Style`.
+
+The 8 standard colors and their bright variants work everywhere; `Color::Ansi256` and
+`Color::Rgb` need a terminal that supports 256 or true colors.
+
+#### Examples
+
+```rust
+use helpers4::ansi::{Color, Style};
+
+assert_eq!(Style::new().fg(Color::Green).paint("ok"), "\u{1b}[32mok\u{1b}[0m");
+```
+
+### ansi::contains
+
+```rust
+pub fn contains(text: &str) -> bool
+```
+
+Whether `text` contains an ANSI escape character (`ESC`, U+001B).
+
+A cheap check for output that is styled, for instance to decide whether to strip it with
+`strip` before writing it to a file.
+
+#### Arguments
+
+- `text` - The text to check.
+
+#### Returns
+
+`true` when the text has an escape character.
+
+#### Examples
+
+```rust
+use helpers4::ansi::contains;
+
+assert!(contains("\u{1b}[32mok\u{1b}[0m"));
+assert!(!contains("ok"));
+```
+
+### ansi::strip
+
+```rust
+pub fn strip(text: &str) -> Cow<'_, str>
+```
+
+Removes the ANSI escape sequences from `text`, leaving what a terminal would display.
+
+Handles the colors and styles (`ESC [ ... m`) and every other CSI sequence (cursor moves, erase),
+operating system commands such as window titles and hyperlinks (`ESC ] ... BEL` or
+`ESC ] ... ESC \`), and the two-character escapes (`ESC c`, `ESC 7`, `ESC ( B`). A lone
+escape character is dropped, and a sequence cut short at the end of the text is dropped with
+it. Returns the input borrowed, without allocating, when it has no escape character.
+
+#### Arguments
+
+- `text` - The text that may contain escape sequences, such as captured command output.
+
+#### Returns
+
+The text without escape sequences.
+
+#### Examples
+
+```rust
+use helpers4::ansi::strip;
+
+assert_eq!(strip("\u{1b}[1;31merror\u{1b}[0m: it broke"), "error: it broke");
+assert_eq!(strip("plain"), "plain");
+```
+
+### ansi::Style
+
+```rust
+pub struct Style { /* private fields */ }
+```
+
+A text style: colors and attributes, applied to a string with `paint`.
+
+Built by chaining: `Style::new().bold().fg(Color::Red)`. Painting wraps the text in the escape
+sequence for the style and a reset (`ESC [ 0 m`); a style with nothing set returns the text
+unchanged. This only builds the strings: whether to emit colors at all (a terminal, `NO_COLOR`)
+is for the caller to decide.
+
+#### Examples
+
+```rust
+use helpers4::ansi::{strip, Color, Style};
+
+let error = Style::new().bold().fg(Color::Red);
+assert_eq!(error.paint("failed"), "\u{1b}[1;31mfailed\u{1b}[0m");
+assert_eq!(strip(&error.paint("failed")), "failed");
+```
+
+#### Style::new
+
+```rust
+pub fn new() -> Self
+```
+
+An empty style: painting with it changes nothing.
+
+##### Returns
+
+A style with no color and no attribute.
+
+#### Style::fg
+
+```rust
+pub fn fg(mut self, color: Color) -> Self
+```
+
+Sets the text color.
+
+##### Arguments
+
+- `color` - The foreground color.
+
+##### Returns
+
+The style with that text color.
+
+#### Style::bg
+
+```rust
+pub fn bg(mut self, color: Color) -> Self
+```
+
+Sets the background color.
+
+##### Arguments
+
+- `color` - The background color.
+
+##### Returns
+
+The style with that background.
+
+#### Style::bold
+
+```rust
+pub fn bold(mut self) -> Self
+```
+
+Makes the text bold.
+
+##### Returns
+
+The style with bold on.
+
+#### Style::dim
+
+```rust
+pub fn dim(mut self) -> Self
+```
+
+Makes the text dim (faint).
+
+##### Returns
+
+The style with dim on.
+
+#### Style::italic
+
+```rust
+pub fn italic(mut self) -> Self
+```
+
+Makes the text italic.
+
+##### Returns
+
+The style with italic on.
+
+#### Style::underline
+
+```rust
+pub fn underline(mut self) -> Self
+```
+
+Underlines the text.
+
+##### Returns
+
+The style with underline on.
+
+#### Style::strikethrough
+
+```rust
+pub fn strikethrough(mut self) -> Self
+```
+
+Strikes the text through.
+
+##### Returns
+
+The style with strikethrough on.
+
+#### Style::is_plain
+
+```rust
+pub fn is_plain(&self) -> bool
+```
+
+Whether the style does nothing.
+
+##### Returns
+
+`true` for a style with no color and no attribute.
+
+#### Style::paint
+
+```rust
+pub fn paint(&self, text: &str) -> String
+```
+
+Applies the style to `text`.
+
+##### Arguments
+
+- `text` - The text to style.
+
+##### Returns
+
+The text between the style's escape sequence and a reset, or the text unchanged for a plain
+style.
+
+### ansi::visible_len
+
+```rust
+pub fn visible_len(text: &str) -> usize
+```
+
+The number of characters a terminal shows for `text`: its length once escape sequences are
+removed.
+
+Use it to pad or truncate styled text to a column width. It counts `char`s, not display cells,
+so wide characters (CJK, some emoji) count as one and combining marks count too; use a
+width-aware crate when you need exact terminal columns.
+
+#### Arguments
+
+- `text` - The text, possibly containing escape sequences.
+
+#### Returns
+
+The number of visible characters.
+
+#### Examples
+
+```rust
+use helpers4::ansi::visible_len;
+
+assert_eq!(visible_len("\u{1b}[1;31merror\u{1b}[0m"), 5);
+assert_eq!(visible_len("plain"), 5);
+```
 
 ## Module `array` (Cargo feature `array`)
 
@@ -330,6 +639,307 @@ assert_eq!(
 );
 ```
 
+## Module `bytes` (Cargo feature `bytes`)
+
+Helpers for byte slices and sizes that the standard library does not provide.
+
+Reading integers at an offset without panicking, a byte-slice search, a constant-time comparison,
+XOR, and human-readable sizes (`1.5 KiB`) in both directions.
+
+### bytes::constant_time_eq
+
+```rust
+pub fn constant_time_eq(a: &[u8], b: &[u8]) -> bool
+```
+
+Compares two byte slices without stopping at the first difference.
+
+The loop visits every byte and combines the differences with `|`, so the time it takes does
+not depend on where the slices differ, only on their length (a length mismatch returns at
+once, so the length is not secret). This is a best effort: Rust and LLVM give no hard
+guarantee that a compiler will not turn it back into an early exit, so for cryptographic
+code that needs one, use a dedicated crate such as `subtle`.
+
+#### Arguments
+
+- `a` - The first slice.
+- `b` - The second slice.
+
+#### Returns
+
+`true` when both slices have the same length and the same content.
+
+#### Examples
+
+```rust
+use helpers4::bytes::constant_time_eq;
+
+assert!(constant_time_eq(b"secret", b"secret"));
+assert!(!constant_time_eq(b"secret", b"secreT"));
+assert!(!constant_time_eq(b"secret", b"secre"));
+```
+
+### bytes::Endian
+
+```rust
+pub enum Endian {
+    /// Most significant byte first (network order).
+    Big,
+    /// Least significant byte first.
+    Little,
+}
+```
+
+The byte order of a multi-byte integer.
+
+#### Examples
+
+```rust
+use helpers4::bytes::{read_u16, Endian};
+
+let bytes = [0x12, 0x34];
+assert_eq!(read_u16(&bytes, 0, Endian::Big), Some(0x1234));
+assert_eq!(read_u16(&bytes, 0, Endian::Little), Some(0x3412));
+```
+
+### bytes::find
+
+```rust
+pub fn find(haystack: &[u8], needle: &[u8]) -> Option<usize>
+```
+
+The index of the first occurrence of `needle` in `haystack`.
+
+The byte-slice counterpart of `str::find`: the standard library has no subslice search.
+
+#### Arguments
+
+- `haystack` - The bytes to search in.
+- `needle` - The bytes to look for.
+
+#### Returns
+
+The starting index of the first match, `Some(0)` for an empty `needle`, or `None` when there
+is no match.
+
+#### Examples
+
+```rust
+use helpers4::bytes::find;
+
+assert_eq!(find(b"hello world", b"o w"), Some(4));
+assert_eq!(find(b"hello", b"xyz"), None);
+assert_eq!(find(b"hello", b""), Some(0));
+```
+
+### bytes::format_size
+
+```rust
+pub fn format_size(bytes: u64) -> String
+```
+
+Formats a number of bytes with a binary unit and at most one decimal, such as `"1.5 KiB"`.
+
+Units are powers of 1024 (`KiB`, `MiB`, ... `EiB`) and the value is rounded to the nearest
+tenth, so `1023.96 KiB` reads `1 MiB` rather than `1024 KiB`. A `.0` is dropped. Only integer
+arithmetic is used, so the result never depends on floating-point rounding.
+`parse_size` reads it back.
+
+#### Arguments
+
+- `bytes` - The size to format.
+
+#### Returns
+
+The formatted size.
+
+#### Examples
+
+```rust
+use helpers4::bytes::format_size;
+
+assert_eq!(format_size(512), "512 B");
+assert_eq!(format_size(1536), "1.5 KiB");
+assert_eq!(format_size(5 * 1024 * 1024), "5 MiB");
+assert_eq!(format_size(1_048_575), "1 MiB");
+```
+
+### bytes::parse_size
+
+```rust
+pub fn parse_size(input: &str) -> Result<u64, ParseSizeError>
+```
+
+Parses a human-written size such as `"1.5 KiB"`, `"10MB"` or `"512"` into a number of bytes.
+
+The number is a non-negative decimal (a fraction is allowed, at most 18 decimal digits are
+used, and the result is rounded down), optionally followed by whitespace and a unit, matched
+without regard to case:
+
+- none or `B`: bytes;
+- `KiB`, `MiB`, `GiB`, `TiB`, `PiB`, `EiB`, and the single letters `K`, `M`, `G`, `T`, `P`,
+  `E`: powers of 1024;
+- `KB`, `MB`, `GB`, `TB`, `PB`, `EB`: powers of 1000.
+
+`format_size` writes the binary form back.
+
+#### Arguments
+
+- `input` - The size to parse.
+
+#### Errors
+
+Returns a `ParseSizeError` for an empty string, something other than a number where one is
+expected, an unknown unit, or a size that does not fit in a `u64`.
+
+#### Examples
+
+```rust
+use helpers4::bytes::parse_size;
+
+assert_eq!(parse_size("1.5 KiB"), Ok(1536));
+assert_eq!(parse_size("10MB"), Ok(10_000_000));
+assert_eq!(parse_size("512"), Ok(512));
+assert!(parse_size("ten").is_err());
+```
+
+### bytes::read_u16
+
+```rust
+pub fn read_u16(bytes: &[u8], offset: usize, endian: Endian) -> Option<u16>
+```
+
+Reads a `u16` from `bytes` at `offset`, in the given byte order.
+
+#### Arguments
+
+- `bytes` - The buffer to read from.
+- `offset` - The index of the first byte to read.
+- `endian` - The byte order of the value in the buffer.
+
+#### Returns
+
+The value, or `None` when fewer than 2 bytes remain at `offset`.
+
+#### Examples
+
+```rust
+use helpers4::bytes::{read_u16, Endian};
+
+let bytes = [0x12, 0x34];
+assert_eq!(read_u16(&bytes, 0, Endian::Big), Some(0x1234));
+assert_eq!(read_u16(&bytes, 0, Endian::Little), Some(0x3412));
+assert_eq!(read_u16(&bytes, 1, Endian::Big), None);
+```
+
+### bytes::read_u32
+
+```rust
+pub fn read_u32(bytes: &[u8], offset: usize, endian: Endian) -> Option<u32>
+```
+
+Reads a `u32` from `bytes` at `offset`, in the given byte order.
+
+#### Arguments
+
+- `bytes` - The buffer to read from.
+- `offset` - The index of the first byte to read.
+- `endian` - The byte order of the value in the buffer.
+
+#### Returns
+
+The value, or `None` when fewer than 4 bytes remain at `offset`.
+
+#### Examples
+
+```rust
+use helpers4::bytes::{read_u32, Endian};
+
+let bytes = [0x12, 0x34, 0x56, 0x78];
+assert_eq!(read_u32(&bytes, 0, Endian::Big), Some(0x1234_5678));
+assert_eq!(read_u32(&bytes, 0, Endian::Little), Some(0x7856_3412));
+assert_eq!(read_u32(&bytes, 1, Endian::Big), None);
+```
+
+### bytes::read_u64
+
+```rust
+pub fn read_u64(bytes: &[u8], offset: usize, endian: Endian) -> Option<u64>
+```
+
+Reads a `u64` from `bytes` at `offset`, in the given byte order.
+
+#### Arguments
+
+- `bytes` - The buffer to read from.
+- `offset` - The index of the first byte to read.
+- `endian` - The byte order of the value in the buffer.
+
+#### Returns
+
+The value, or `None` when fewer than 8 bytes remain at `offset`.
+
+#### Examples
+
+```rust
+use helpers4::bytes::{read_u64, Endian};
+
+let bytes = [0, 0, 0, 0, 0, 0, 1, 0];
+assert_eq!(read_u64(&bytes, 0, Endian::Big), Some(256));
+assert_eq!(read_u64(&bytes, 0, Endian::Little), Some(0x0001_0000_0000_0000));
+assert_eq!(read_u64(&bytes, 1, Endian::Big), None);
+```
+
+### bytes::xor
+
+```rust
+pub fn xor(a: &[u8], b: &[u8]) -> Option<Vec<u8>>
+```
+
+The bytewise XOR of two slices of the same length.
+
+#### Arguments
+
+- `a` - The first slice.
+- `b` - The second slice.
+
+#### Returns
+
+A new `Vec` whose byte `i` is `a[i] ^ b[i]`, or `None` when the lengths differ.
+
+#### Examples
+
+```rust
+use helpers4::bytes::xor;
+
+assert_eq!(xor(&[0b1100, 0b1010], &[0b1010, 0b1010]), Some(vec![0b0110, 0]));
+assert_eq!(xor(&[1], &[1, 2]), None);
+```
+
+### bytes::ParseSizeError
+
+```rust
+#[non_exhaustive]
+pub enum ParseSizeError {
+    /// The string is empty or only whitespace.
+    Empty,
+    /// A number was expected but something else was found.
+    ExpectedNumber {
+        /// Byte offset of the offending character in the input.
+        index: usize,
+    },
+    /// The unit is not one of the known ones (`B`, `KB`, `KiB`, `K`, ...).
+    UnknownUnit {
+        /// Byte offset of the unit in the input.
+        index: usize,
+    },
+    /// The size does not fit in a `u64`.
+    Overflow,
+}
+```
+
+Why a string could not be parsed as a size.
+
 ## Module `cache` (Cargo feature `cache`)
 
 Caches and stores whose entries expire. The clock is always passed in, never read.
@@ -533,6 +1143,1363 @@ pub type ExpiringSet<K, T = u64> = ExpiringMap<K, (), T>
 ```
 
 A set whose members expire: an `ExpiringMap` without values.
+
+## Module `ci` (Cargo feature `ci`)
+
+Detecting CI environments and reporting pipeline status.
+
+`detect`, `is_ci` and `is_pull_request` take the environment as a lookup function instead of reading it,
+so they are as easy to test as to use (`&|name| std::env::var(name).ok()`). `Status`, `overall` and
+`render_report` turn job results into the Markdown summary of a PR comment.
+
+### ci::detect
+
+```rust
+pub fn detect(get: &dyn Fn(&str) -> Option<String>) -> Option<Provider>
+```
+
+Which CI service the environment belongs to, if any.
+
+The environment is a parameter, not read behind your back: pass a lookup such as
+`&|name| std::env::var(name).ok()`, or a closure over a map in a test. The known services are
+recognized by their own variables (`GITHUB_ACTIONS`, `GITLAB_CI`, `CIRCLECI`, ...); any other
+environment with a truthy `CI` variable is `Provider::Other`. A variable is truthy unless it
+is empty, `0` or `false` (case-insensitive).
+
+#### Arguments
+
+- `get` - Looks a variable up by name.
+
+#### Returns
+
+The `Provider`, or `None` outside CI.
+
+#### Examples
+
+```rust
+use helpers4::ci::{detect, Provider};
+
+let env = |name: &str| (name == "GITHUB_ACTIONS").then(|| "true".to_string());
+assert_eq!(detect(&env), Some(Provider::GitHubActions));
+assert_eq!(detect(&|_: &str| None), None);
+```
+
+### ci::is_ci
+
+```rust
+pub fn is_ci(get: &dyn Fn(&str) -> Option<String>) -> bool
+```
+
+Whether the environment looks like a CI run.
+
+The same as `detect(get).is_some()`. The environment is a parameter: pass
+`&|name| std::env::var(name).ok()` for the real one.
+
+#### Arguments
+
+- `get` - Looks a variable up by name.
+
+#### Returns
+
+`true` when a known CI service, or a truthy `CI` variable, is present.
+
+#### Examples
+
+```rust
+use helpers4::ci::is_ci;
+
+assert!(is_ci(&|name: &str| (name == "CI").then(|| "true".to_string())));
+assert!(!is_ci(&|_: &str| None));
+```
+
+### ci::is_pull_request
+
+```rust
+pub fn is_pull_request(get: &dyn Fn(&str) -> Option<String>) -> bool
+```
+
+Whether the current CI run was triggered by a pull request (or merge request).
+
+It looks at the variable each service sets for that: `GITHUB_EVENT_NAME` (`pull_request` or
+`pull_request_target`), `CI_MERGE_REQUEST_IID` on GitLab, `CIRCLE_PULL_REQUEST`,
+`TRAVIS_PULL_REQUEST`, `BUILDKITE_PULL_REQUEST`, `SYSTEM_PULLREQUEST_PULLREQUESTID` on Azure,
+`BITBUCKET_PR_ID`, `DRONE_PULL_REQUEST`, `APPVEYOR_PULL_REQUEST_NUMBER`, `PULL_REQUEST` on
+Netlify and `VERCEL_GIT_PULL_REQUEST_ID`. Services without a known variable (Jenkins,
+TeamCity, ...) and any environment outside CI give `false`.
+
+#### Arguments
+
+- `get` - Looks a variable up by name.
+
+#### Returns
+
+`true` for a pull request run.
+
+#### Examples
+
+```rust
+use helpers4::ci::is_pull_request;
+
+let env = |name: &str| match name {
+    "GITHUB_ACTIONS" => Some("true".to_string()),
+    "GITHUB_EVENT_NAME" => Some("pull_request".to_string()),
+    _ => None,
+};
+assert!(is_pull_request(&env));
+```
+
+### ci::overall
+
+```rust
+pub fn overall(statuses: &[Status]) -> Status
+```
+
+The single status that sums up several: the worst one wins.
+
+A failure beats everything, then a cancellation, then anything still pending; when everything
+that ran succeeded the result is success, skipped jobs not counting against it. A list where
+every job was skipped, and an empty list, sum up to `Status::Skipped` (nothing ran).
+
+#### Arguments
+
+- `statuses` - The statuses of the jobs.
+
+#### Returns
+
+The overall status.
+
+#### Examples
+
+```rust
+use helpers4::ci::{overall, Status};
+
+assert_eq!(overall(&[Status::Success, Status::Skipped]), Status::Success);
+assert_eq!(overall(&[Status::Success, Status::Failure, Status::Pending]), Status::Failure);
+assert_eq!(overall(&[]), Status::Skipped);
+```
+
+### ci::Provider
+
+```rust
+#[non_exhaustive]
+pub enum Provider {
+    /// GitHub Actions.
+    GitHubActions,
+    /// GitLab CI/CD.
+    GitLabCi,
+    /// CircleCI.
+    CircleCi,
+    /// Travis CI.
+    TravisCi,
+    /// Buildkite.
+    Buildkite,
+    /// Azure Pipelines.
+    AzurePipelines,
+    /// Bitbucket Pipelines.
+    BitbucketPipelines,
+    /// Drone.
+    Drone,
+    /// TeamCity.
+    TeamCity,
+    /// AppVeyor.
+    AppVeyor,
+    /// AWS CodeBuild.
+    AwsCodeBuild,
+    /// Jenkins.
+    Jenkins,
+    /// Netlify builds.
+    Netlify,
+    /// Vercel builds.
+    Vercel,
+    /// Cloudflare Pages builds.
+    CloudflarePages,
+    /// An unrecognized service that sets the conventional `CI` variable.
+    Other,
+}
+```
+
+A continuous-integration service, as recognized by `detect`.
+
+#### Examples
+
+```rust
+use helpers4::ci::Provider;
+
+assert_eq!(Provider::GitHubActions.name(), "GitHub Actions");
+```
+
+#### Provider::name
+
+```rust
+pub fn name(self) -> &'static str
+```
+
+The service name as its vendor writes it.
+
+##### Returns
+
+For instance `"GitHub Actions"`; `"CI"` for `Provider::Other`.
+
+### ci::render_report
+
+```rust
+pub fn render_report(title: &str, jobs: &[(&str, Status)]) -> String
+```
+
+A Markdown summary of a pipeline, ready for a PR comment or a job summary.
+
+One heading with the overall status (the worst of the jobs, see `overall`),
+then a table with one row per job in the order given: its icon, name and status. A `|` in a job
+name is escaped and line breaks in the title or a name become spaces, so nothing can break the
+table. There is no trailing newline.
+
+#### Arguments
+
+- `title` - The heading, such as `"Pull Request Validation"`.
+- `jobs` - The jobs with their status, as `(name, status)`.
+
+#### Returns
+
+The Markdown text.
+
+#### Examples
+
+```rust
+use helpers4::ci::{render_report, Status};
+
+let report = render_report("Validation", &[("build", Status::Success), ("tests", Status::Failure)]);
+assert!(report.starts_with("### \u{274c} Validation"));
+assert!(report.contains("| \u{2705} | build | `success` |"));
+```
+
+### ci::Status
+
+```rust
+pub enum Status {
+    /// Finished without errors.
+    Success,
+    /// Finished with an error, or timed out.
+    Failure,
+    /// Stopped before it finished.
+    Cancelled,
+    /// Not run.
+    Skipped,
+    /// Queued or still running.
+    Pending,
+}
+```
+
+The outcome of a CI job or step.
+
+#### Examples
+
+```rust
+use helpers4::ci::Status;
+
+assert_eq!(Status::from_conclusion("failure"), Some(Status::Failure));
+assert_eq!(Status::Success.icon(), "\u{2705}");
+assert_eq!(Status::Success.label(), "success");
+```
+
+#### Status::from_conclusion
+
+```rust
+pub fn from_conclusion(conclusion: &str) -> Option<Self>
+```
+
+Reads the conclusion names CI services use, ignoring case.
+
+`success`, `passed` and `pass` are `Status::Success`; `failure`, `failed`, `error` and
+`timed_out` are `Status::Failure`; `cancelled` and `canceled` are `Status::Cancelled`;
+`skipped` is `Status::Skipped`; `pending`, `queued`, `in_progress` and `running` are
+`Status::Pending`.
+
+##### Arguments
+
+- `conclusion` - The name, such as `"success"` or `"cancelled"`.
+
+##### Returns
+
+The status, or `None` for a name that is not one of those.
+
+#### Status::icon
+
+```rust
+pub fn icon(self) -> &'static str
+```
+
+An emoji for the status, for a report or a PR comment.
+
+##### Returns
+
+`\u{2705}` for success, `\u{274c}` for failure, `\u{1f6ab}` for cancelled, `\u{23ed}\u{fe0f}` for skipped
+and `\u{23f3}` for pending.
+
+#### Status::label
+
+```rust
+pub fn label(self) -> &'static str
+```
+
+The lower-case name of the status.
+
+##### Returns
+
+`"success"`, `"failure"`, `"cancelled"`, `"skipped"` or `"pending"`.
+
+## Module `color` (Cargo feature `color`)
+
+Colors without a dependency: parsing, hex, HSL, blending and WCAG contrast.
+
+`Rgb` is an 8-bit sRGB color that parses from `#rgb`, `#rrggbb`, `rgb(r, g, b)` or a basic CSS name;
+`Hsl` converts to and from it; `mix` blends two colors; `contrast_ratio` and `best_text_color` answer
+"is this text readable on that background".
+
+### color::best_text_color
+
+```rust
+pub fn best_text_color(background: Rgb) -> Rgb
+```
+
+Picks black or white text, whichever contrasts more with `background`.
+
+Compares the WCAG `contrast_ratio` of both and returns the winner
+(black on a tie), so the text stays as readable as it can be without you choosing a color per
+background by hand.
+
+#### Arguments
+
+- `background` - The color the text will sit on.
+
+#### Returns
+
+Black (`#000000`) or white (`#ffffff`).
+
+#### Examples
+
+```rust
+use helpers4::color::{best_text_color, Rgb};
+
+assert_eq!(best_text_color(Rgb::parse("#ffeb3b")?), Rgb::new(0, 0, 0)); // on yellow
+assert_eq!(best_text_color(Rgb::parse("#0d47a1")?), Rgb::new(255, 255, 255)); // on dark blue
+```
+
+### color::contrast_ratio
+
+```rust
+pub fn contrast_ratio(a: Rgb, b: Rgb) -> f64
+```
+
+The WCAG contrast ratio between two colors, from `1.0` (identical) to `21.0` (black on white).
+
+It is `(L1 + 0.05) / (L2 + 0.05)` where `L1` is the relative luminance of the lighter color
+and `L2` of the darker one, so the order of the arguments does not matter. WCAG 2.x asks for
+at least `4.5` for normal text and `3.0` for large text (level AA), `7.0` and `4.5` for AAA.
+
+#### Arguments
+
+- `a` - One color, for instance the text.
+- `b` - The other color, for instance its background.
+
+#### Returns
+
+The ratio, `1.0..=21.0`.
+
+#### Examples
+
+```rust
+use helpers4::color::{contrast_ratio, Rgb};
+
+let ratio = contrast_ratio(Rgb::new(0, 0, 0), Rgb::new(255, 255, 255));
+assert!((ratio - 21.0).abs() < 1e-9);
+assert!(contrast_ratio(Rgb::parse("#767676")?, Rgb::new(255, 255, 255)) >= 4.5);
+```
+
+### color::Hsl
+
+```rust
+pub struct Hsl { /* private fields */ }
+```
+
+A color as hue, saturation and lightness.
+
+The hue is in degrees, `0.0..360.0`; saturation and lightness are fractions from `0.0` to `1.0`.
+`Hsl::new` brings any input into those ranges. Get one from `Rgb::to_hsl` and go back with
+`Hsl::to_rgb`.
+
+#### Examples
+
+```rust
+use helpers4::color::{Hsl, Rgb};
+
+let teal = Hsl::new(180.0, 1.0, 0.25);
+assert_eq!(teal.to_rgb(), Rgb::new(0, 128, 128));
+assert_eq!(Hsl::new(-90.0, 2.0, -1.0), Hsl::new(270.0, 1.0, 0.0));
+```
+
+#### Hsl::new
+
+```rust
+pub fn new(h: f64, s: f64, l: f64) -> Self
+```
+
+Builds a color, normalizing the values: the hue wraps around 360 degrees, saturation and
+lightness are clamped to `0.0..=1.0`, and a `NaN` counts as `0.0`.
+
+##### Arguments
+
+- `h` - The hue in degrees.
+- `s` - The saturation, `0.0` (grey) to `1.0` (vivid).
+- `l` - The lightness, `0.0` (black) to `1.0` (white).
+
+##### Returns
+
+The normalized color.
+
+#### Hsl::h
+
+```rust
+pub fn h(self) -> f64
+```
+
+The hue in degrees.
+
+##### Returns
+
+A value in `0.0..360.0`.
+
+#### Hsl::s
+
+```rust
+pub fn s(self) -> f64
+```
+
+The saturation.
+
+##### Returns
+
+A value from `0.0` to `1.0`.
+
+#### Hsl::l
+
+```rust
+pub fn l(self) -> f64
+```
+
+The lightness.
+
+##### Returns
+
+A value from `0.0` to `1.0`.
+
+#### Hsl::to_rgb
+
+```rust
+pub fn to_rgb(self) -> Rgb
+```
+
+The nearest 8-bit sRGB color.
+
+##### Returns
+
+The `Rgb` color, each channel rounded to the nearest integer.
+
+### color::mix
+
+```rust
+pub fn mix(a: Rgb, b: Rgb, t: f64) -> Rgb
+```
+
+Blends two colors channel by channel.
+
+`t` is how far to go from `a` to `b`: `0.0` gives `a`, `1.0` gives `b`, `0.5` the midpoint. It
+is clamped to `0.0..=1.0` (a `NaN` counts as `0.0`), and each channel is rounded to the nearest
+integer. The blend happens in sRGB, without gamma correction, like CSS `color-mix(in srgb)`.
+
+#### Arguments
+
+- `a` - The color at `t = 0`.
+- `b` - The color at `t = 1`.
+- `t` - How far from `a` towards `b`, `0.0..=1.0`.
+
+#### Returns
+
+The blended color.
+
+#### Examples
+
+```rust
+use helpers4::color::{mix, Rgb};
+
+let red = Rgb::new(255, 0, 0);
+let blue = Rgb::new(0, 0, 255);
+assert_eq!(mix(red, blue, 0.5), Rgb::new(128, 0, 128));
+assert_eq!(mix(red, blue, 0.0), red);
+```
+
+### color::Rgb
+
+```rust
+pub struct Rgb { /* private fields */ }
+```
+
+An sRGB color with 8 bits per channel.
+
+Built with `Rgb::new` or parsed from text with `Rgb::parse` (`#rgb`, `#rrggbb`,
+`rgb(r, g, b)` or one of the 17 basic CSS color names). `Display` writes the `#rrggbb` form.
+
+#### Examples
+
+```rust
+use helpers4::color::Rgb;
+
+let orange = Rgb::parse("#ff8800")?;
+assert_eq!((orange.r(), orange.g(), orange.b()), (255, 136, 0));
+assert_eq!(orange.to_string(), "#ff8800");
+assert_eq!(Rgb::parse("rgb(0, 128, 255)")?, Rgb::new(0, 128, 255));
+assert_eq!(Rgb::parse("Red")?.to_hex(), "#ff0000");
+```
+
+#### Rgb::new
+
+```rust
+pub fn new(r: u8, g: u8, b: u8) -> Self
+```
+
+Builds a color from its three channels.
+
+##### Arguments
+
+- `r` - Red, `0..=255`.
+- `g` - Green, `0..=255`.
+- `b` - Blue, `0..=255`.
+
+##### Returns
+
+The color.
+
+#### Rgb::parse
+
+```rust
+pub fn parse(text: &str) -> Result<Self, ParseColorError>
+```
+
+Parses a color written as `#rgb`, `#rrggbb`, `rgb(r, g, b)` or a basic CSS color name.
+
+Surrounding whitespace is ignored, hex digits and names are case-insensitive. `#rgb`
+repeats each digit (`#f80` is `#ff8800`). In `rgb(...)` the three whole numbers (`0..=255`)
+may be separated by commas or spaces. The names are the 17 basic CSS keywords: `black`,
+`silver`, `gray`, `white`, `maroon`, `red`, `purple`, `fuchsia`, `green`, `lime`, `olive`,
+`yellow`, `navy`, `blue`, `teal`, `aqua` and `orange`.
+
+##### Arguments
+
+- `text` - The color to parse.
+
+##### Errors
+
+A `ParseColorError` for an empty text, a `#` color with a bad length or digit, a
+malformed or out-of-range `rgb(...)`, or an unknown name.
+
+#### Rgb::r
+
+```rust
+pub fn r(self) -> u8
+```
+
+The red channel.
+
+##### Returns
+
+A value from `0` to `255`.
+
+#### Rgb::g
+
+```rust
+pub fn g(self) -> u8
+```
+
+The green channel.
+
+##### Returns
+
+A value from `0` to `255`.
+
+#### Rgb::b
+
+```rust
+pub fn b(self) -> u8
+```
+
+The blue channel.
+
+##### Returns
+
+A value from `0` to `255`.
+
+#### Rgb::to_hex
+
+```rust
+pub fn to_hex(self) -> String
+```
+
+The `#rrggbb` form, in lower case.
+
+##### Returns
+
+For instance `"#ff8800"`.
+
+#### Rgb::to_hsl
+
+```rust
+pub fn to_hsl(self) -> Hsl
+```
+
+The same color as hue, saturation and lightness.
+
+##### Returns
+
+The `Hsl` value. Converting it back with `Hsl::to_rgb` gives this color again.
+
+#### Rgb::luminance
+
+```rust
+pub fn luminance(self) -> f64
+```
+
+The WCAG relative luminance: `0.0` for black, `1.0` for white.
+
+The channels are linearized from sRGB and weighted by how bright the eye finds each
+(0.2126 red, 0.7152 green, 0.0722 blue).
+
+##### Returns
+
+A value from `0.0` to `1.0`.
+
+#### Rgb::lighten
+
+```rust
+pub fn lighten(self, amount: f64) -> Self
+```
+
+Moves the color towards white.
+
+##### Arguments
+
+- `amount` - How far to go, from `0.0` (unchanged) to `1.0` (white); out-of-range values
+  are clamped.
+
+##### Returns
+
+The lighter color.
+
+#### Rgb::darken
+
+```rust
+pub fn darken(self, amount: f64) -> Self
+```
+
+Moves the color towards black.
+
+##### Arguments
+
+- `amount` - How far to go, from `0.0` (unchanged) to `1.0` (black); out-of-range values
+  are clamped.
+
+##### Returns
+
+The darker color.
+
+### color::ParseColorError
+
+```rust
+#[non_exhaustive]
+pub enum ParseColorError {
+    /// The string is empty or only whitespace.
+    Empty,
+    /// A `#` color that does not have 3 or 6 hexadecimal digits.
+    InvalidLength {
+        /// The number of characters after the `#`.
+        length: usize,
+    },
+    /// A character that is not a hexadecimal digit.
+    InvalidDigit {
+        /// Byte offset of the character in the input.
+        index: usize,
+    },
+    /// An `rgb(...)` that does not hold exactly three whole numbers.
+    InvalidFunction,
+    /// A channel above 255 in `rgb(...)`.
+    OutOfRange,
+    /// Neither a `#hex` color, an `rgb(...)`, nor a known color name.
+    UnknownName,
+}
+```
+
+Why a string could not be parsed as a color.
+
+## Module `commit` (Cargo feature `commit`)
+
+Conventional Commits: parse a message, decide the version bump, validate.
+
+`Commit` parses `type(scope)!: description` with its body and footers, following the
+specification; `Bump` and `bump_for` turn a list of commits into the semantic-version bump they
+call for, `is_valid` is the yes/no shortcut, and `emoji_for` gives the gitmoji of the helpers4
+convention.
+
+### commit::bump_for
+
+```rust
+pub fn bump_for(commits: &[Commit]) -> Bump
+```
+
+The largest version bump called for by any of `commits`.
+
+One breaking change means `Bump::Major`; otherwise a `feat` means `Bump::Minor`, a `fix`
+`Bump::Patch`, and commits of other types (docs, tests, chores) do not bump the version.
+An empty list gives `Bump::None`.
+
+#### Arguments
+
+- `commits` - The parsed commits of a release, in any order.
+
+#### Returns
+
+The bump to apply to the current version.
+
+#### Examples
+
+```rust
+use helpers4::commit::{bump_for, Bump, Commit};
+
+let commits = [
+    Commit::parse("docs: update the readme")?,
+    Commit::parse("fix: handle empty input")?,
+    Commit::parse("feat: add a helper")?,
+];
+assert_eq!(bump_for(&commits), Bump::Minor);
+```
+
+### commit::Bump
+
+```rust
+pub enum Bump {
+    /// Nothing that affects the version (docs, tests, chores...).
+    None,
+    /// A backwards-compatible fix.
+    Patch,
+    /// A backwards-compatible feature.
+    Minor,
+    /// A breaking change.
+    Major,
+}
+```
+
+How much a set of changes raises a semantic version.
+
+Ordered from the smallest to the largest, so `max` of several levels is the one to apply.
+
+#### Examples
+
+```rust
+use helpers4::commit::Bump;
+
+assert!(Bump::Major > Bump::Minor && Bump::Minor > Bump::Patch && Bump::Patch > Bump::None);
+```
+
+### commit::Commit
+
+```rust
+pub struct Commit { /* private fields */ }
+```
+
+A parsed [Conventional Commits 1.0.0](https://www.conventionalcommits.org) message:
+`type(scope)!: description`, then an optional body and optional footers.
+
+The parser follows the specification: the header is `type`, an optional `(scope)`, an optional
+`!` and `: `, then the description; a blank line separates the header from the body; footers
+(`Token: value` or `Token #value`, with the token in words joined by `-` or exactly
+`BREAKING CHANGE`) start at the first such line that follows a blank line and run to the end.
+A commit is breaking when it has the `!` or a `BREAKING CHANGE` footer. Text such as an
+emoji before the description is part of the description.
+
+#### Examples
+
+```rust
+use helpers4::commit::{Bump, Commit};
+
+let commit = Commit::parse("feat(api)!: drop the v1 routes\n\nThey were deprecated.\n\nRefs #42")?;
+assert_eq!(commit.kind(), "feat");
+assert_eq!(commit.scope(), Some("api"));
+assert!(commit.is_breaking());
+assert_eq!(commit.description(), "drop the v1 routes");
+assert_eq!(commit.body(), Some("They were deprecated."));
+assert_eq!(commit.footer("refs"), Some("42"));
+assert_eq!(commit.bump(), Bump::Major);
+```
+
+#### Commit::parse
+
+```rust
+pub fn parse(message: &str) -> Result<Self, ParseCommitError>
+```
+
+Parses a commit message.
+
+##### Arguments
+
+- `message` - The whole message: header, then optionally a blank line, a body and footers.
+
+##### Errors
+
+A `ParseCommitError` when the message is empty, the header does not look like
+`type(scope): description`, or the line after the header is not blank.
+
+#### Commit::kind
+
+```rust
+pub fn kind(&self) -> &str
+```
+
+The commit type as written, such as `"feat"` or `"fix"`.
+
+##### Returns
+
+The type, without the scope or the `!`.
+
+#### Commit::scope
+
+```rust
+pub fn scope(&self) -> Option<&str>
+```
+
+The scope between the parentheses.
+
+##### Returns
+
+The scope, or `None` when there is none.
+
+#### Commit::is_breaking
+
+```rust
+pub fn is_breaking(&self) -> bool
+```
+
+Whether the commit is a breaking change: `!` in the header or a `BREAKING CHANGE` footer.
+
+##### Returns
+
+`true` for a breaking change.
+
+#### Commit::description
+
+```rust
+pub fn description(&self) -> &str
+```
+
+The description after the `: `, trimmed.
+
+##### Returns
+
+The one-line summary.
+
+#### Commit::body
+
+```rust
+pub fn body(&self) -> Option<&str>
+```
+
+The free-form body between the header and the footers.
+
+##### Returns
+
+The body with its line breaks, or `None` when there is none.
+
+#### Commit::footers
+
+```rust
+pub fn footers(&self) -> &[(String, String)]
+```
+
+Every footer, in order, as `(token, value)`.
+
+##### Returns
+
+The footers, such as `("Refs", "42")` or `("BREAKING CHANGE", "the API changed")`.
+
+#### Commit::footer
+
+```rust
+pub fn footer(&self, token: &str) -> Option<&str>
+```
+
+The value of the first footer with the given token, ignoring case.
+
+##### Arguments
+
+- `token` - The footer token, such as `"Refs"` or `"BREAKING CHANGE"`.
+
+##### Returns
+
+The value, or `None` when there is no such footer.
+
+#### Commit::bump
+
+```rust
+pub fn bump(&self) -> Bump
+```
+
+The version bump this commit calls for under Semantic Versioning: `Bump::Major` for a
+breaking change, `Bump::Minor` for `feat`, `Bump::Patch` for `fix`, otherwise
+`Bump::None`. The type is matched ignoring case.
+
+##### Returns
+
+The bump level.
+
+### commit::emoji_for
+
+```rust
+pub fn emoji_for(kind: &str) -> Option<&'static str>
+```
+
+The emoji the helpers4 commit convention puts after the colon for a commit type, such as `✨`
+for `feat` and `🐛` for `fix`.
+
+The type is matched ignoring case. These are the primary emoji of the convention (see
+`commit-convention.json` in the `.dev` repository), one per standard type: `feat`, `fix`,
+`docs`, `refactor`, `test`, `chore`, `perf`, `style`, `ci`, `build` and `revert`.
+
+#### Arguments
+
+- `kind` - The commit type, such as `"feat"`.
+
+#### Returns
+
+The emoji, or `None` for a type the convention does not define.
+
+#### Examples
+
+```rust
+use helpers4::commit::emoji_for;
+
+assert_eq!(emoji_for("feat"), Some("\u{2728}"));
+assert_eq!(emoji_for("FIX"), Some("\u{1f41b}"));
+assert_eq!(emoji_for("wip"), None);
+```
+
+### commit::is_valid
+
+```rust
+pub fn is_valid(message: &str) -> bool
+```
+
+Whether `message` is a valid Conventional Commit.
+
+A shortcut for `Commit::parse(message).is_ok()`, for a commit-msg hook or a CI check that only
+needs a yes or no; use `Commit::parse` to learn what is wrong.
+
+#### Arguments
+
+- `message` - The whole commit message.
+
+#### Returns
+
+`true` when the message parses.
+
+#### Examples
+
+```rust
+use helpers4::commit::is_valid;
+
+assert!(is_valid("fix(parser): handle empty input"));
+assert!(!is_valid("fixed some stuff"));
+```
+
+### commit::ParseCommitError
+
+```rust
+#[non_exhaustive]
+pub enum ParseCommitError {
+    /// The message is empty or only whitespace.
+    Empty,
+    /// The first line has no `type: description` shape (no `:` followed by a space).
+    MissingSeparator,
+    /// The type is empty or has a character outside letters, digits, `-` and `_`.
+    InvalidType,
+    /// The scope in parentheses is empty, contains parentheses, or is not closed.
+    InvalidScope,
+    /// Nothing follows the `: `.
+    EmptyDescription,
+    /// The line after the header is not blank.
+    MissingBlankLine,
+}
+```
+
+Why a commit message is not a valid Conventional Commit.
+
+## Module `date` (Cargo feature `date`)
+
+Calendar dates without time zones: validation, ISO 8601 text, weekdays and day arithmetic.
+
+A `Date` is a plain year-month-day in the proleptic Gregorian calendar, limited to the years
+`0..=9999`. Nothing here reads the clock or knows about time zones: convert a unix time to a day
+count and pass it in.
+
+### date::Date
+
+```rust
+pub struct Date { /* private fields */ }
+```
+
+A calendar date (year, month, day) in the proleptic Gregorian calendar, with no time of day
+and no time zone.
+
+The year is limited to `0..=9999`, so the ISO 8601 form `YYYY-MM-DD` always has four year
+digits. Dates compare chronologically. Being a plain calendar date, it cannot express "now":
+to get today's date, convert a unix time with `Date::from_unix_days` (the current time is
+an input, never read behind your back).
+
+#### Examples
+
+```rust
+use helpers4::date::Date;
+
+let date = Date::new(2026, 9, 23)?;
+assert_eq!(date.to_string(), "2026-09-23");
+assert_eq!(date.add_days(10), Some(Date::new(2026, 10, 3)?));
+assert_eq!("2024-02-29".parse::<Date>(), Date::new(2024, 2, 29));
+```
+
+#### Date::new
+
+```rust
+pub fn new(year: i32, month: u8, day: u8) -> Result<Self, DateError>
+```
+
+Builds a date, checking that it exists.
+
+##### Arguments
+
+- `year` - The year, `0..=9999`.
+- `month` - The month, `1..=12`.
+- `day` - The day of the month, `1` to the length of that month.
+
+##### Errors
+
+`DateError::InvalidYear`, `DateError::InvalidMonth` or `DateError::InvalidDay` when
+the date does not exist (such as February 30th).
+
+#### Date::parse
+
+```rust
+pub fn parse(text: &str) -> Result<Self, DateError>
+```
+
+Parses the ISO 8601 form `YYYY-MM-DD`.
+
+Exactly four year digits, two month digits and two day digits, separated by hyphens: no
+spaces, signs or time of day.
+
+##### Arguments
+
+- `text` - The text to parse.
+
+##### Errors
+
+`DateError::InvalidFormat` when the text does not have that shape, or the errors of
+`Date::new` when it has the shape but names a date that does not exist.
+
+#### Date::year
+
+```rust
+pub fn year(self) -> i32
+```
+
+The year, `0..=9999`.
+
+##### Returns
+
+The year.
+
+#### Date::month
+
+```rust
+pub fn month(self) -> u8
+```
+
+The month, `1..=12`.
+
+##### Returns
+
+The month, `1` for January.
+
+#### Date::day
+
+```rust
+pub fn day(self) -> u8
+```
+
+The day of the month, starting at `1`.
+
+##### Returns
+
+The day of the month.
+
+#### Date::is_leap_year
+
+```rust
+pub fn is_leap_year(self) -> bool
+```
+
+Whether the year of this date is a leap year.
+
+##### Returns
+
+`true` for a date in a leap year.
+
+#### Date::weekday
+
+```rust
+pub fn weekday(self) -> Weekday
+```
+
+The day of the week.
+
+##### Returns
+
+The `Weekday` this date falls on.
+
+#### Date::ordinal
+
+```rust
+pub fn ordinal(self) -> u16
+```
+
+The day of the year: `1` for January 1st, `365` (or `366`) for December 31st.
+
+##### Returns
+
+The ordinal day, `1..=366`.
+
+#### Date::unix_days
+
+```rust
+pub fn unix_days(self) -> i64
+```
+
+The number of days since 1970-01-01 (negative before it).
+
+##### Returns
+
+The day count, the same one `Date::from_unix_days` reads back.
+
+#### Date::from_unix_days
+
+```rust
+pub fn from_unix_days(days: i64) -> Option<Self>
+```
+
+The date `days` days after 1970-01-01 (before it when negative).
+
+##### Arguments
+
+- `days` - The day count since 1970-01-01, for instance `unix_seconds / 86_400` (rounded
+  down) for a UTC date.
+
+##### Returns
+
+The date, or `None` when it falls outside the years `0..=9999`.
+
+#### Date::add_days
+
+```rust
+pub fn add_days(self, days: i64) -> Option<Self>
+```
+
+The date `days` days after this one (before it when negative).
+
+##### Arguments
+
+- `days` - How many days to move.
+
+##### Returns
+
+The new date, or `None` when it falls outside the years `0..=9999`.
+
+#### Date::days_until
+
+```rust
+pub fn days_until(self, other: Self) -> i64
+```
+
+The number of days from this date to `other`.
+
+##### Arguments
+
+- `other` - The date to count to.
+
+##### Returns
+
+Positive when `other` is later, negative when it is earlier, `0` for the same date.
+
+### date::days_in_month
+
+```rust
+pub fn days_in_month(year: i32, month: u8) -> Option<u8>
+```
+
+The number of days in `month` of `year`.
+
+#### Arguments
+
+- `year` - The year, which decides whether February has 28 or 29 days.
+- `month` - The month, `1` (January) to `12` (December).
+
+#### Returns
+
+The number of days, or `None` when `month` is not in `1..=12`.
+
+#### Examples
+
+```rust
+use helpers4::date::days_in_month;
+
+assert_eq!(days_in_month(2024, 2), Some(29));
+assert_eq!(days_in_month(2023, 2), Some(28));
+assert_eq!(days_in_month(2023, 4), Some(30));
+assert_eq!(days_in_month(2023, 13), None);
+```
+
+### date::is_leap_year
+
+```rust
+pub fn is_leap_year(year: i32) -> bool
+```
+
+Whether `year` is a leap year in the Gregorian calendar.
+
+A year is leap when it is divisible by 4, except centuries, which must be divisible by 400:
+2000 and 2024 are leap, 1900 and 2023 are not.
+
+#### Arguments
+
+- `year` - The year to check.
+
+#### Returns
+
+`true` for a leap year.
+
+#### Examples
+
+```rust
+use helpers4::date::is_leap_year;
+
+assert!(is_leap_year(2024));
+assert!(is_leap_year(2000));
+assert!(!is_leap_year(1900));
+assert!(!is_leap_year(2023));
+```
+
+### date::Weekday
+
+```rust
+pub enum Weekday {
+    /// Monday, ISO day 1.
+    Monday,
+    /// Tuesday, ISO day 2.
+    Tuesday,
+    /// Wednesday, ISO day 3.
+    Wednesday,
+    /// Thursday, ISO day 4.
+    Thursday,
+    /// Friday, ISO day 5.
+    Friday,
+    /// Saturday, ISO day 6.
+    Saturday,
+    /// Sunday, ISO day 7.
+    Sunday,
+}
+```
+
+A day of the week, Monday first (ISO 8601).
+
+#### Examples
+
+```rust
+use helpers4::date::{Date, Weekday};
+
+let day = Date::new(2024, 1, 1)?.weekday();
+assert_eq!(day, Weekday::Monday);
+assert_eq!(day.name(), "Monday");
+assert_eq!(day.iso_number(), 1);
+assert!(!day.is_weekend());
+```
+
+#### Weekday::name
+
+```rust
+pub fn name(self) -> &'static str
+```
+
+The English name, such as `"Monday"`.
+
+##### Returns
+
+The capitalized name of the day.
+
+#### Weekday::iso_number
+
+```rust
+pub fn iso_number(self) -> u8
+```
+
+The ISO 8601 number of the day: Monday is `1`, Sunday is `7`.
+
+##### Returns
+
+A number from `1` to `7`.
+
+#### Weekday::is_weekend
+
+```rust
+pub fn is_weekend(self) -> bool
+```
+
+Whether the day is a Saturday or a Sunday.
+
+##### Returns
+
+`true` for the weekend.
+
+### date::DateError
+
+```rust
+#[non_exhaustive]
+pub enum DateError {
+    /// The year is outside the supported range `0..=9999`.
+    InvalidYear {
+        /// The rejected year.
+        year: i32,
+    },
+    /// The month is not in `1..=12`.
+    InvalidMonth {
+        /// The rejected month.
+        month: u8,
+    },
+    /// The day is not in `1..=max` for that month.
+    InvalidDay {
+        /// The rejected day.
+        day: u8,
+        /// The number of days in that month.
+        max: u8,
+    },
+    /// The text is not exactly `YYYY-MM-DD` with ASCII digits.
+    InvalidFormat,
+}
+```
+
+Why a date could not be built or parsed.
 
 ## Module `duration` (Cargo feature `duration`)
 
@@ -772,6 +2739,651 @@ The rejected name.
 ##### Returns
 
 The rejected variable name.
+
+## Module `fs` (Cargo feature `fs`)
+
+File-system helpers: safe writes, missing-file-as-`None`, listing and path checks.
+
+`write_atomic` and `read_to_string_opt` cover the two things `std::fs` makes awkward, `walk` lists a
+tree without following links, and `normalize` / `is_within` handle paths lexically (no I/O, so they
+work for paths that do not exist, and never resolve symbolic links).
+
+### fs::is_within
+
+```rust
+pub fn is_within(base: &Path, path: &Path) -> bool
+```
+
+Whether `path`, taken relative to `base`, stays inside `base`: a guard against path traversal.
+
+A relative `path` is joined to `base` and both are cleaned lexically (see
+`normalize`), so `"a/../../b"` escapes and `"a/../b"` does not; an
+absolute `path` must itself lie under `base`. `base` counts as inside itself. Nothing touches
+the file system, so this does **not** see symbolic links: if the directory can contain links
+an attacker controls, resolve the path with `std::fs::canonicalize` and compare that instead.
+
+#### Arguments
+
+- `base` - The directory that must contain the result.
+- `path` - The path to check, relative to `base` or absolute.
+
+#### Returns
+
+`true` when the cleaned path is `base` or lies under it.
+
+#### Examples
+
+```rust
+use helpers4::fs::is_within;
+use std::path::Path;
+
+let uploads = Path::new("/srv/uploads");
+assert!(is_within(uploads, Path::new("avatars/me.png")));
+assert!(!is_within(uploads, Path::new("../secrets.txt")));
+assert!(!is_within(uploads, Path::new("/etc/passwd")));
+```
+
+### fs::normalize
+
+```rust
+pub fn normalize(path: &Path) -> PathBuf
+```
+
+Cleans a path lexically: drops `.` components and folds `..` into the component before it.
+
+Nothing touches the file system, so this works for paths that do not exist, but symbolic
+links are not resolved (use `std::fs::canonicalize` for that). A `..` at the start of a
+relative path is kept, a `..` right after the root is dropped, and a path that cleans to
+nothing becomes `.`.
+
+#### Arguments
+
+- `path` - The path to clean.
+
+#### Returns
+
+The cleaned path.
+
+#### Examples
+
+```rust
+use helpers4::fs::normalize;
+use std::path::{Path, PathBuf};
+
+assert_eq!(normalize(Path::new("a/./b/../c")), PathBuf::from("a/c"));
+assert_eq!(normalize(Path::new("../a")), PathBuf::from("../a"));
+assert_eq!(normalize(Path::new("a/..")), PathBuf::from("."));
+```
+
+### fs::read_to_string_opt
+
+```rust
+pub fn read_to_string_opt(path: impl AsRef<Path>) -> io::Result<Option<String>>
+```
+
+Reads a whole file as text, giving `None` instead of an error when it does not exist.
+
+Every other failure (permissions, a directory, invalid UTF-8) is still an error: only "not
+found" means "no value".
+
+#### Arguments
+
+- `path` - The file to read.
+
+#### Errors
+
+Any `io::Error` from `std::fs::read_to_string` except `io::ErrorKind::NotFound`.
+
+#### Examples
+
+```rust
+use helpers4::fs::read_to_string_opt;
+
+assert_eq!(read_to_string_opt("/definitely/not/here.txt")?, None);
+```
+
+### fs::walk
+
+```rust
+pub fn walk(dir: impl AsRef<Path>) -> io::Result<Vec<PathBuf>>
+```
+
+Every file below `dir`, at any depth, sorted by path.
+
+Directories themselves are not listed (an empty one contributes nothing), and symbolic links
+are listed as entries but not followed, so a link to a parent directory cannot make the walk
+loop.
+
+#### Arguments
+
+- `dir` - The directory to walk.
+
+#### Errors
+
+An `io::Error` when `dir`, or a directory below it, cannot be read.
+
+#### Examples
+
+```rust
+use helpers4::fs::{walk, write_atomic};
+
+let root = std::env::temp_dir().join("helpers4-walk-doc");
+std::fs::create_dir_all(root.join("sub"))?;
+write_atomic(root.join("a.txt"), "a")?;
+write_atomic(root.join("sub").join("b.txt"), "b")?;
+assert_eq!(walk(&root)?, vec![root.join("a.txt"), root.join("sub").join("b.txt")]);
+```
+
+### fs::write_atomic
+
+```rust
+pub fn write_atomic(path: impl AsRef<Path>, contents: impl AsRef<[u8]>) -> io::Result<()>
+```
+
+Writes `contents` to `path` so that readers see either the old file or the new one, never a
+half-written one.
+
+The data goes to a temporary file in the same directory (so the last step stays on one file
+system), is flushed to disk, and is then renamed over `path`. If anything fails the temporary
+file is removed and `path` is left as it was. The parent directory must exist.
+
+#### Arguments
+
+- `path` - The file to create or replace.
+- `contents` - The bytes to write.
+
+#### Errors
+
+An `io::Error` when `path` has no file name, the temporary file cannot be created or
+written, or the final rename fails (for instance because `path` is a directory).
+
+#### Examples
+
+```rust
+use helpers4::fs::write_atomic;
+
+let path = std::env::temp_dir().join("helpers4-write-atomic-doc.txt");
+write_atomic(&path, "first")?;
+write_atomic(&path, "second")?;
+assert_eq!(std::fs::read_to_string(&path)?, "second");
+```
+
+## Module `function` (Cargo feature `function`)
+
+Helpers around functions: composition, memoization, retrying and rate limiting.
+
+Nothing here sleeps or reads a clock. `retry` and `backoff` leave the waiting to the caller, and
+`TokenBucket` takes the current time as an argument, so all of it is deterministic to test.
+
+### function::backoff
+
+```rust
+pub fn backoff(attempt: u32, base: Duration, max: Duration) -> Duration
+```
+
+The delay before retry number `attempt`, doubling each time up to `max`: exponential backoff.
+
+Attempt `1` waits `base`, attempt `2` waits `2 × base`, attempt `3` `4 × base`, and so on,
+never more than `max`. Attempt `0` is treated like attempt `1`. The arithmetic saturates, so
+a huge attempt number gives `max` instead of overflowing. Nothing sleeps: the caller decides
+what to do with the duration (see `retry`).
+
+#### Arguments
+
+- `attempt` - The number of the attempt that just failed, starting at `1`.
+- `base` - The delay after the first failure.
+- `max` - The longest delay to ever return.
+
+#### Returns
+
+The duration to wait, between `base` and `max` (or `max` alone if `base` is larger).
+
+#### Examples
+
+```rust
+use helpers4::function::backoff;
+use std::time::Duration;
+
+let base = Duration::from_millis(100);
+let max = Duration::from_secs(1);
+assert_eq!(backoff(1, base, max), Duration::from_millis(100));
+assert_eq!(backoff(3, base, max), Duration::from_millis(400));
+assert_eq!(backoff(10, base, max), max);
+```
+
+### function::compose
+
+```rust
+pub fn compose<A, B, C>(outer: impl Fn(B) -> C, inner: impl Fn(A) -> B) -> impl Fn(A) -> C
+```
+
+Combines two functions into one that applies `inner` first and `outer` to its result:
+`compose(outer, inner)(x)` is `outer(inner(x))`, like the mathematical `outer ∘ inner`.
+
+See `pipe` for the same thing written in reading order.
+
+#### Arguments
+
+- `outer` - The function applied last.
+- `inner` - The function applied first.
+
+#### Returns
+
+A function from the input of `inner` to the output of `outer`.
+
+#### Examples
+
+```rust
+use helpers4::function::compose;
+
+let shout = compose(|s: String| s + "!", |s: &str| s.to_uppercase());
+assert_eq!(shout("hello"), "HELLO!");
+```
+
+### function::Memoize
+
+```rust
+pub struct Memoize<A, R, F> { /* private fields */ }
+```
+
+A function whose results are remembered: calling it again with the same argument returns
+the stored result instead of computing it again.
+
+The wrapped function receives the argument by reference and must be deterministic (and free
+of side effects you rely on), since it runs only once per distinct argument. There is no
+size limit: every distinct argument keeps its result until `clear` is called,
+so do not feed it unbounded input.
+
+#### Examples
+
+```rust
+use helpers4::function::Memoize;
+
+let mut square = Memoize::new(|n: &u64| n * n);
+assert_eq!(square.call(12), 144);
+assert_eq!(square.call(12), 144); // served from memory
+assert_eq!(square.len(), 1);
+```
+
+#### Memoize::new
+
+```rust
+pub fn new(func: F) -> Self
+```
+
+Wraps `func`.
+
+##### Arguments
+
+- `func` - The function whose results to remember.
+
+##### Returns
+
+A memoized version of `func` with an empty memory.
+
+#### Memoize::call
+
+```rust
+pub fn call(&mut self, arg: A) -> R
+```
+
+Calls the function with `arg`, or returns the remembered result for that argument.
+
+##### Arguments
+
+- `arg` - The argument to call the function with.
+
+##### Returns
+
+The result for `arg`, computed at most once until `clear`.
+
+#### Memoize::len
+
+```rust
+pub fn len(&self) -> usize
+```
+
+The number of distinct arguments whose result is remembered.
+
+##### Returns
+
+The number of stored results.
+
+#### Memoize::is_empty
+
+```rust
+pub fn is_empty(&self) -> bool
+```
+
+Whether no result is remembered yet.
+
+##### Returns
+
+`true` when nothing is stored.
+
+#### Memoize::clear
+
+```rust
+pub fn clear(&mut self)
+```
+
+Forgets every remembered result.
+
+### function::pipe
+
+```rust
+pub fn pipe<A, B, C>(first: impl Fn(A) -> B, second: impl Fn(B) -> C) -> impl Fn(A) -> C
+```
+
+Combines two functions into one that applies `first` and then `second` to its result:
+`pipe(first, second)(x)` is `second(first(x))`.
+
+The same as `compose` with the arguments in reading order.
+
+#### Arguments
+
+- `first` - The function applied first.
+- `second` - The function applied to the result of `first`.
+
+#### Returns
+
+A function from the input of `first` to the output of `second`.
+
+#### Examples
+
+```rust
+use helpers4::function::pipe;
+
+let shout = pipe(|s: &str| s.to_uppercase(), |s: String| s + "!");
+assert_eq!(shout("hello"), "HELLO!");
+```
+
+### function::retry
+
+```rust
+pub fn retry<T, E>(attempts: u32, mut operation: impl FnMut(u32) -> Result<T, E>) -> Result<T, E>
+```
+
+Runs `operation` until it succeeds, at most `attempts` times, and returns the first success or
+the last error.
+
+`operation` receives the number of the attempt, starting at `1`, so it can wait before a retry
+(for instance with `backoff`) or log it: this helper never sleeps, so it
+works the same in a test as in production. `attempts` of `0` is treated as `1`: an operation
+is always tried once.
+
+#### Arguments
+
+- `attempts` - The most times to run `operation`.
+- `operation` - The work to try, given the attempt number.
+
+#### Errors
+
+The error of the last attempt, when every attempt failed.
+
+#### Examples
+
+```rust
+use helpers4::function::retry;
+
+let result = retry(3, |attempt| if attempt < 3 { Err("not yet") } else { Ok(attempt) });
+assert_eq!(result, Ok(3));
+
+let failed: Result<u32, &str> = retry(2, |_| Err("always"));
+assert_eq!(failed, Err("always"));
+```
+
+### function::TokenBucket
+
+```rust
+pub struct TokenBucket { /* private fields */ }
+```
+
+A token-bucket rate limiter with the clock passed in.
+
+The bucket holds up to `capacity` tokens and gets `refill_per_second` new ones every second.
+Each action takes tokens with `try_acquire`; when there are not enough
+left the action is refused, so bursts up to `capacity` are allowed while the long-run rate
+stays at `refill_per_second`. Nothing here reads a clock: pass the current time in
+milliseconds (any monotonic count works). A time that goes backwards is treated as no time
+having passed.
+
+#### Examples
+
+```rust
+use helpers4::function::TokenBucket;
+
+// A burst of 2, then one more every second.
+let mut bucket = TokenBucket::new(2, 1, 0);
+assert!(bucket.try_acquire(0));
+assert!(bucket.try_acquire(0));
+assert!(!bucket.try_acquire(500));  // half a token is not enough
+assert!(bucket.try_acquire(1_000)); // one full token has come back
+```
+
+#### TokenBucket::new
+
+```rust
+pub fn new(capacity: u32, refill_per_second: u32, now_ms: u64) -> Self
+```
+
+Creates a full bucket.
+
+##### Arguments
+
+- `capacity` - The most tokens the bucket holds, which is also the largest burst.
+- `refill_per_second` - How many tokens are added every second.
+- `now_ms` - The current time in milliseconds.
+
+##### Returns
+
+A bucket holding `capacity` tokens.
+
+#### TokenBucket::try_acquire
+
+```rust
+pub fn try_acquire(&mut self, now_ms: u64) -> bool
+```
+
+Takes one token if there is one.
+
+##### Arguments
+
+- `now_ms` - The current time in milliseconds.
+
+##### Returns
+
+`true` when a token was taken, `false` when the bucket is empty.
+
+#### TokenBucket::try_acquire_n
+
+```rust
+pub fn try_acquire_n(&mut self, now_ms: u64, tokens: u32) -> bool
+```
+
+Takes `tokens` tokens at once if that many are available, and none otherwise.
+
+##### Arguments
+
+- `now_ms` - The current time in milliseconds.
+- `tokens` - How many tokens the action costs.
+
+##### Returns
+
+`true` when the tokens were taken, `false` when there are not enough (nothing is taken).
+
+#### TokenBucket::available
+
+```rust
+pub fn available(&mut self, now_ms: u64) -> u32
+```
+
+How many whole tokens are available right now.
+
+##### Arguments
+
+- `now_ms` - The current time in milliseconds.
+
+##### Returns
+
+The number of tokens that `try_acquire_n` would grant at once.
+
+## Module `future` (Cargo feature `future`)
+
+Runtime-neutral helpers for `Future`s, built on the standard library only.
+
+No reactor, timer or thread pool is involved, so none of it depends on tokio, async-std or any other
+runtime: `block_on` runs a future on the current thread, `join` and `join_all` combine futures on
+one task, and `now_or_never` and `yield_now` are the small building blocks around them.
+
+### future::block_on
+
+```rust
+pub fn block_on<F: Future>(future: F) -> F::Output
+```
+
+Runs `future` to completion on the current thread and returns its output.
+
+A minimal executor with no dependency: it polls the future, and while it is pending parks the
+thread until the future's waker is called. There is no reactor, timer or thread pool, so it
+suits futures that are purely computational or woken by another thread (channels, locks,
+your own `Waker` users). A future that needs a specific runtime (tokio's sockets or timers,
+for instance) must run in that runtime instead, and blocking inside one would deadlock it.
+
+#### Arguments
+
+- `future` - The future to run.
+
+#### Returns
+
+The output of `future`.
+
+#### Examples
+
+```rust
+use helpers4::future::block_on;
+
+let answer = block_on(async { 40 + 2 });
+assert_eq!(answer, 42);
+```
+
+### future::join
+
+```rust
+pub fn join<A: Future, B: Future>(a: A, b: B) -> impl Future<Output = (A::Output, B::Output)>
+```
+
+Runs two futures concurrently and completes with both outputs, once both are done.
+
+Both are polled on every wake-up, so they make progress together on one task; neither is
+started twice or dropped early. It needs no runtime, so it works with `block_on`
+or any executor.
+
+#### Arguments
+
+- `a` - The first future.
+- `b` - The second future.
+
+#### Returns
+
+A future for `(output of a, output of b)`.
+
+#### Examples
+
+```rust
+use helpers4::future::{block_on, join};
+
+let (a, b) = block_on(join(async { 1 }, async { "two" }));
+assert_eq!((a, b), (1, "two"));
+```
+
+### future::join_all
+
+```rust
+pub fn join_all<I>(futures: I) -> impl Future<Output = Vec<<I::Item as Future>::Output>>
+where
+    I: IntoIterator,
+    I::Item: Future,
+```
+
+Runs any number of futures concurrently and completes with all their outputs, in the order the
+futures were given.
+
+Every future still pending is polled on each wake-up, so they progress together on one task. An
+empty input completes at once with an empty `Vec`. Like `join` it needs no
+runtime.
+
+#### Arguments
+
+- `futures` - The futures to run, all of the same type (box them to mix types).
+
+#### Returns
+
+A future for the outputs, in input order.
+
+#### Examples
+
+```rust
+use helpers4::future::{block_on, join_all};
+
+let squares = block_on(join_all((1..=4).map(|n| async move { n * n })));
+assert_eq!(squares, vec![1, 4, 9, 16]);
+```
+
+### future::now_or_never
+
+```rust
+pub fn now_or_never<F: Future>(future: F) -> Option<F::Output>
+```
+
+Polls `future` exactly once and returns its output if it was already ready.
+
+Useful to peek at a future that may have finished (a channel receive, a cached value) without
+waiting for it. The future is dropped if it was not ready, so use it on futures you can
+afford to abandon.
+
+#### Arguments
+
+- `future` - The future to poll once.
+
+#### Returns
+
+`Some(output)` when the first poll completed, `None` when it was still pending.
+
+#### Examples
+
+```rust
+use helpers4::future::now_or_never;
+
+assert_eq!(now_or_never(async { 1 + 1 }), Some(2));
+assert_eq!(now_or_never(std::future::pending::<u32>()), None);
+```
+
+### future::yield_now
+
+```rust
+pub fn yield_now() -> impl Future<Output = ()>
+```
+
+A future that gives other tasks a turn: it is pending once, then completes.
+
+The first poll wakes the task straight away and returns `Pending`, so an executor that runs
+many tasks can schedule the others before resuming this one. Call it inside a long
+computation in an `async` block to keep it from monopolising its thread.
+
+#### Returns
+
+A future that completes on its second poll.
+
+#### Examples
+
+```rust
+use helpers4::future::{block_on, yield_now};
+
+block_on(async {
+    yield_now().await;
+});
+```
 
 ## Module `hex` (Cargo feature `hex`)
 
@@ -1067,6 +3679,328 @@ assert_eq!(min_max([3, 1, 4, 1, 5]), Some((1, 5)));
 assert_eq!(min_max(Vec::<i32>::new()), None);
 ```
 
+## Module `license` (Cargo feature `license`)
+
+SPDX license identifiers and expressions: look a license up, parse `MIT OR Apache-2.0`, check it
+against a policy, write a source header.
+
+`lookup` gives the name and family (`Category`) of about forty common licenses, `normalize`
+updates the deprecated GNU identifiers, `Expression` parses and evaluates SPDX expressions, and
+`header` writes the copyright and `SPDX-License-Identifier` lines. This is information for tooling,
+not legal advice.
+
+### license::Category
+
+```rust
+pub enum Category {
+    /// No restriction beyond keeping the notice (MIT, Apache-2.0, BSD).
+    Permissive,
+    /// Copyright waived or dedicated to the public domain (CC0-1.0, Unlicense).
+    PublicDomain,
+    /// Changes to the licensed files must stay open, but a program that merely uses them need not
+    /// (MPL-2.0, LGPL).
+    WeakCopyleft,
+    /// A program that includes the code must be released under the same license (GPL).
+    StrongCopyleft,
+    /// Like strong copyleft, and it also applies when the program is only offered over a network
+    /// (AGPL, SSPL).
+    NetworkCopyleft,
+}
+```
+
+How a license treats the code that uses it: the main families, from most to least permissive.
+
+#### Examples
+
+```rust
+use helpers4::license::{lookup, Category};
+
+assert_eq!(lookup("MIT").map(|info| info.category()), Some(Category::Permissive));
+assert_eq!(lookup("GPL-3.0-only").map(|info| info.category()), Some(Category::StrongCopyleft));
+```
+
+### license::Expression
+
+```rust
+pub struct Expression { /* private fields */ }
+```
+
+An [SPDX license expression](https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/):
+one license, or several combined with `AND` and `OR`.
+
+The syntax is `MIT`, `GPL-2.0-or-later`, `Apache-2.0 WITH LLVM-exception`, `MIT OR Apache-2.0`
+and `(MIT OR Apache-2.0) AND BSD-3-Clause`, with `WITH` binding tighter than `AND`, and `AND`
+tighter than `OR`. Operators are upper case, and the legacy `MIT/Apache-2.0` of older Cargo
+manifests is read as `OR`. A trailing `+` on an identifier is kept (`GPL-2.0+`). Identifiers
+are only checked for their shape: use `unknown_ids` to find the ones this
+crate does not list. `Display` writes the expression back, with parentheses only where they
+change the meaning.
+
+#### Examples
+
+```rust
+use helpers4::license::Expression;
+
+let expr = Expression::parse("(MIT OR Apache-2.0) AND BSD-3-Clause")?;
+assert_eq!(expr.licenses(), ["MIT", "Apache-2.0", "BSD-3-Clause"]);
+// A policy that allows MIT and BSD-3-Clause is satisfied:
+assert!(expr.is_satisfied_by(&["MIT", "BSD-3-Clause"]));
+// ... one that only allows MIT is not.
+assert!(!expr.is_satisfied_by(&["MIT"]));
+```
+
+#### Expression::parse
+
+```rust
+pub fn parse(text: &str) -> Result<Self, ParseExpressionError>
+```
+
+Parses an SPDX license expression.
+
+##### Arguments
+
+- `text` - The expression, such as `"MIT OR Apache-2.0"`.
+
+##### Errors
+
+A `ParseExpressionError` for an empty expression, one that ends too early, a token in
+the wrong place, a malformed identifier, or an unclosed parenthesis.
+
+#### Expression::licenses
+
+```rust
+pub fn licenses(&self) -> Vec<&str>
+```
+
+The license identifiers used, in order of first appearance, without repeats.
+
+##### Returns
+
+The identifiers as written, without the exceptions after `WITH`.
+
+#### Expression::unknown_ids
+
+```rust
+pub fn unknown_ids(&self) -> Vec<&str>
+```
+
+The identifiers that are neither in this crate's list of licenses (see
+`lookup`) nor a `LicenseRef-` / `DocumentRef-` reference.
+
+##### Returns
+
+The identifiers to double-check: a typo, or a license this crate does not list.
+
+#### Expression::is_satisfied_by
+
+```rust
+pub fn is_satisfied_by(&self, allowed: &[&str]) -> bool
+```
+
+Whether a policy that allows exactly the licenses in `allowed` accepts this expression:
+`OR` needs one side, `AND` needs both, and a `WITH` exception never makes a license less
+acceptable than the license alone.
+
+Identifiers are compared ignoring case and exactly otherwise (`GPL-2.0+` is not
+`GPL-2.0-or-later`; call `normalize` first if that matters).
+
+##### Arguments
+
+- `allowed` - The identifiers the policy accepts.
+
+##### Returns
+
+`true` when the expression can be satisfied with those licenses.
+
+### license::header
+
+```rust
+pub fn header(holder: &str, years: &str, expression: &str) -> String
+```
+
+The two-line source header that carries a copyright notice and an SPDX license identifier.
+
+```text
+Copyright (C) 2025 Jane Doe
+SPDX-License-Identifier: MIT
+```
+
+The text has no comment marker, so prefix each line for the language of the file
+(`// `, `# `, ...). The [REUSE](https://reuse.software) specification and most license
+scanners read exactly these two lines. Nothing is validated: `years` can be `"2025"` or
+`"2020-2025"`, and `expression` any SPDX expression (see
+`Expression`).
+
+#### Arguments
+
+- `holder` - The copyright holder, such as a name or an organization.
+- `years` - The year or range of years of the notice.
+- `expression` - The SPDX license identifier or expression.
+
+#### Returns
+
+The two lines, without a trailing newline.
+
+#### Examples
+
+```rust
+use helpers4::license::header;
+
+let header = header("Jane Doe", "2025", "MIT OR Apache-2.0");
+assert_eq!(header, "Copyright (C) 2025 Jane Doe\nSPDX-License-Identifier: MIT OR Apache-2.0");
+let commented: Vec<String> = header.lines().map(|line| format!("// {line}")).collect();
+assert_eq!(commented[1], "// SPDX-License-Identifier: MIT OR Apache-2.0");
+```
+
+### license::LicenseInfo
+
+```rust
+pub struct LicenseInfo { /* private fields */ }
+```
+
+What is known about one license: its SPDX identifier, its name and its family.
+
+Get it with `lookup`.
+
+#### Examples
+
+```rust
+use helpers4::license::{lookup, Category};
+
+let info = lookup("apache-2.0").unwrap();
+assert_eq!(info.id(), "Apache-2.0");
+assert_eq!(info.name(), "Apache License 2.0");
+assert_eq!(info.category(), Category::Permissive);
+```
+
+#### LicenseInfo::id
+
+```rust
+pub fn id(&self) -> &'static str
+```
+
+The SPDX identifier in its canonical case.
+
+##### Returns
+
+For instance `"Apache-2.0"`.
+
+#### LicenseInfo::name
+
+```rust
+pub fn name(&self) -> &'static str
+```
+
+The full name of the license.
+
+##### Returns
+
+For instance `"Apache License 2.0"`.
+
+#### LicenseInfo::category
+
+```rust
+pub fn category(&self) -> Category
+```
+
+The family the license belongs to.
+
+##### Returns
+
+The `Category`.
+
+### license::lookup
+
+```rust
+pub fn lookup(id: &str) -> Option<LicenseInfo>
+```
+
+What this module knows about the license with SPDX identifier `id`.
+
+The match ignores case (SPDX identifiers are case-insensitive) and accepts the deprecated
+identifiers that are still common (`GPL-3.0`, `LGPL-2.1+`, `AGPL-3.0`, ...), answering with the
+current one (see `normalize`). About forty common licenses are known; for
+any other identifier the answer is `None`, which means "not in this list", not "invalid".
+
+#### Arguments
+
+- `id` - The SPDX identifier, such as `"MIT"` or `"Apache-2.0"`.
+
+#### Returns
+
+The `LicenseInfo`, or `None` for an identifier that is not known.
+
+#### Examples
+
+```rust
+use helpers4::license::{lookup, Category};
+
+assert_eq!(lookup("MPL-2.0").map(|i| i.category()), Some(Category::WeakCopyleft));
+assert_eq!(lookup("gpl-3.0").map(|i| i.id()), Some("GPL-3.0-only"));
+assert_eq!(lookup("Not-A-License"), None);
+```
+
+### license::normalize
+
+```rust
+pub fn normalize(id: &str) -> Option<&'static str>
+```
+
+The current SPDX identifier for a deprecated one.
+
+SPDX split the GNU licenses into `-only` and `-or-later` and retired the bare forms and the
+`+` suffix, but `GPL-3.0` and `LGPL-2.1+` are still what many manifests contain. The match
+ignores case. Identifiers that are not deprecated give `None`.
+
+#### Arguments
+
+- `id` - The identifier to update.
+
+#### Returns
+
+The replacement, such as `"GPL-3.0-only"` for `"GPL-3.0"`, or `None` when `id` is not one of
+the ten deprecated GNU identifiers (`GPL`, `LGPL` and `AGPL`, with and without `+`).
+
+#### Examples
+
+```rust
+use helpers4::license::normalize;
+
+assert_eq!(normalize("GPL-3.0"), Some("GPL-3.0-only"));
+assert_eq!(normalize("GPL-3.0+"), Some("GPL-3.0-or-later"));
+assert_eq!(normalize("MIT"), None);
+```
+
+### license::ParseExpressionError
+
+```rust
+#[non_exhaustive]
+pub enum ParseExpressionError {
+    /// The expression is empty or only whitespace.
+    Empty,
+    /// The expression stops where a license or an operand is expected (`MIT OR`).
+    UnexpectedEnd,
+    /// A token that cannot come here: two licenses in a row, a stray `)`, an operator with
+    /// nothing before it.
+    UnexpectedToken {
+        /// Byte offset of the token in the expression.
+        index: usize,
+    },
+    /// A license identifier with a character outside letters, digits, `.`, `-` and `:`.
+    InvalidIdentifier {
+        /// Byte offset of the identifier in the expression.
+        index: usize,
+    },
+    /// An opening parenthesis that is never closed.
+    UnclosedParenthesis {
+        /// Byte offset of the `(`.
+        index: usize,
+    },
+}
+```
+
+Why a string is not a valid SPDX license expression.
+
 ## Module `map` (Cargo feature `map`)
 
 Helpers for `HashMap` that the standard library does not provide.
@@ -1155,6 +4089,238 @@ use std::collections::HashMap;
 let user = HashMap::from([("name", 1), ("email", 2), ("password", 3)]);
 let public = pick(&user, &["name", "email", "age"]);
 assert_eq!(public, HashMap::from([("name", 1), ("email", 2)]));
+```
+
+## Module `markdown` (Cargo feature `markdown`)
+
+Helpers for writing Markdown safely: escaping, links, code, quotes, tables and heading anchors.
+
+Everything here produces Markdown text; nothing parses it. The functions make untrusted text and
+awkward characters (backticks, pipes, brackets, parentheses) come out literally.
+
+### markdown::blockquote
+
+```rust
+pub fn blockquote(text: &str) -> String
+```
+
+Turns `text` into a Markdown blockquote by prefixing every line with `> `.
+
+Empty lines get a bare `>` (no trailing space), so the quote stays one block. Line breaks are
+kept as they are, including a trailing one, and a quote inside a quote nests naturally
+(`> > text`).
+
+#### Arguments
+
+- `text` - The text to quote, on one or several lines.
+
+#### Returns
+
+The quoted text.
+
+#### Examples
+
+```rust
+use helpers4::markdown::blockquote;
+
+assert_eq!(blockquote("first\n\nsecond"), "> first\n>\n> second");
+```
+
+### markdown::code_block
+
+```rust
+pub fn code_block(code: &str, language: &str) -> String
+```
+
+A fenced code block for `code`, tagged with `language`.
+
+The fence is at least three backticks and one longer than the longest run of backticks in the
+code, so code that itself contains a fence stays inside the block. The result ends with a
+newline and the code keeps its own line breaks (a single trailing newline is not doubled).
+Whitespace and backticks are removed from `language`, which must be a single word (`rust`,
+`sh`, `json`, or empty for none).
+
+#### Arguments
+
+- `code` - The code to show.
+- `language` - The language tag for syntax highlighting, or `""`.
+
+#### Returns
+
+The fenced block, ending with a newline.
+
+#### Examples
+
+```rust
+use helpers4::markdown::code_block;
+
+assert_eq!(code_block("let x = 1;", "rust"), "```rust\nlet x = 1;\n```\n");
+assert_eq!(code_block("```\nnested\n```", ""), "````\n```\nnested\n```\n````\n");
+```
+
+### markdown::escape
+
+```rust
+pub fn escape(text: &str) -> String
+```
+
+Escapes `text` so that Markdown shows it literally instead of interpreting it.
+
+A backslash is put before every character that can start emphasis, code, a link, a tag, a table
+cell or a strikethrough (`` \ ` * _ [ ] < > | ~ & ``), and before the characters that only
+matter at the start of a line: `#`, `+`, `-`, `=`, and the `.` or `)` of `1.` / `1)` list
+markers. Escaping more than strictly needed is harmless (the Markdown spec accepts a backslash before
+any ASCII punctuation) and keeps this predictable. Use it for text you do not control that you
+put into a Markdown document, such as a user name or an error message.
+
+#### Arguments
+
+- `text` - The text to escape, on one or several lines.
+
+#### Returns
+
+The escaped text.
+
+#### Examples
+
+```rust
+use helpers4::markdown::escape;
+
+assert_eq!(escape("*not bold* and [not a link](x)"), "\\*not bold\\* and \\[not a link\\](x)");
+assert_eq!(escape("# not a heading"), "\\# not a heading");
+assert_eq!(escape("1. not a list"), "1\\. not a list");
+```
+
+### markdown::heading_slug
+
+```rust
+pub fn heading_slug(heading: &str) -> String
+```
+
+The anchor GitHub gives to a heading: `"Hello, World!"` becomes `"hello-world"`.
+
+The text is trimmed and lowercased, letters (any language), digits, `-` and `_` are kept, every
+whitespace character becomes a `-` (they are not merged, so `"a  b"` is `"a--b"`), and
+everything else is dropped. Unlike [`slugify`](https://docs.rs/helpers4/latest/helpers4/string/fn.slugify.html)
+it follows GitHub's rules rather than making a tidy slug, so use it to build the `#fragment` of a
+link to a heading. Two headings with the same text get a numeric suffix on GitHub; that part
+needs the whole document and is left to you.
+
+#### Arguments
+
+- `heading` - The text of the heading, without the leading `#`s.
+
+#### Returns
+
+The anchor, without the leading `#`.
+
+#### Examples
+
+```rust
+use helpers4::markdown::heading_slug;
+
+assert_eq!(heading_slug("Hello, World!"), "hello-world");
+assert_eq!(heading_slug("  Getting started (v2)  "), "getting-started-v2");
+assert_eq!(heading_slug("snake_case & kebab-case"), "snake_case--kebab-case");
+```
+
+### markdown::inline_code
+
+```rust
+pub fn inline_code(text: &str) -> String
+```
+
+Wraps `text` in a Markdown code span, using enough backticks for the text to show literally.
+
+The fence is one backtick longer than the longest run of backticks inside, so text with a
+single backtick gets a two-backtick fence, text with two gets three, and so on. When the text
+starts or ends with a backtick, or starts *and* ends with a space, one space of padding is
+added on each side (Markdown strips exactly that) so nothing is lost. Line breaks are not
+handled: Markdown turns them into spaces.
+
+#### Arguments
+
+- `text` - The text to show as code.
+
+#### Returns
+
+The code span, such as `` `cargo test` ``.
+
+#### Examples
+
+```rust
+use helpers4::markdown::inline_code;
+
+assert_eq!(inline_code("cargo test"), "`cargo test`");
+assert_eq!(inline_code("a`b"), "``a`b``");
+assert_eq!(inline_code("`tick`"), "`` `tick` ``");
+```
+
+### markdown::link
+
+```rust
+pub fn link(text: &str, url: &str) -> String
+```
+
+A Markdown link `[text](url)`, with the characters that would break it made safe.
+
+In `text`, backslashes and square brackets are escaped. In `url`, spaces, parentheses, angle
+brackets and line breaks are percent-encoded (`%20`, `%28`, `%29`, `%3C`, `%3E`, `%0A`), so a
+URL such as `https://example.com/a (b)` cannot end the link early. Nothing else in the URL is
+touched, and no link title is written.
+
+#### Arguments
+
+- `text` - The visible text of the link.
+- `url` - The destination.
+
+#### Returns
+
+The link, for instance `[docs](https://helpers4.dev/rust/)`.
+
+#### Examples
+
+```rust
+use helpers4::markdown::link;
+
+assert_eq!(link("docs", "https://helpers4.dev/rust/"), "[docs](https://helpers4.dev/rust/)");
+assert_eq!(link("[1]", "https://x.org/a (b)"), "[\\[1\\]](https://x.org/a%20%28b%29)");
+```
+
+### markdown::table
+
+```rust
+pub fn table<H: AsRef<str>, C: AsRef<str>>(headers: &[H], rows: &[Vec<C>]) -> String
+```
+
+A GitHub-flavored Markdown table.
+
+`headers` gives the columns; each row is padded with empty cells or cut to that many. Cells
+are cleaned so they cannot break the table: `|` becomes `\|` and line breaks become spaces.
+Columns are padded to a common width (at least 3, for the `---` separator) so the source
+lines up, measured in characters. The result has one line per row and ends with a newline;
+no headers give an empty string. Cell text is not otherwise escaped: use
+`escape` on text you do not control.
+
+#### Arguments
+
+- `headers` - The column titles.
+- `rows` - The rows, each a list of cells.
+
+#### Returns
+
+The table.
+
+#### Examples
+
+```rust
+use helpers4::markdown::table;
+
+let out = table(&["Name", "Stars"], &[vec!["typescript", "1"], vec!["rust", "0"]]);
+assert_eq!(
+    out,
+    "| Name       | Stars |\n| ---------- | ----- |\n| typescript | 1     |\n| rust       | 0     |\n"
+);
 ```
 
 ## Module `net` (Cargo feature `net`)
@@ -1478,6 +4644,523 @@ assert_eq!(round_to(1.23456, 2), 1.23);
 assert_eq!(round_to(2.5, 0), 3.0);
 assert_eq!(round_to(-2.5, 0), -3.0);
 assert_eq!(round_to(1234.0, 0), 1234.0);
+```
+
+## Module `secret` (Cargo feature `secret`)
+
+Keeping secrets out of logs: a wrapper that never prints its value, redaction, masking and
+credential detection.
+
+`Secret` hides a value from `Debug` and `Display`; `redact` and `mask` clean text you already have;
+`detect` and `scan` recognize well-known token formats (GitHub, AWS, Slack, Stripe, Google, npm, JWT,
+PEM keys). None of it wipes memory (that needs unsafe code, which this crate forbids).
+
+### secret::detect
+
+```rust
+pub fn detect(token: &str) -> Option<TokenKind>
+```
+
+Recognizes a well-known credential format: the whole of `token` must look like one.
+
+The check is by prefix, alphabet and length (GitHub, AWS, Slack, Stripe, Google, npm, JWT, and
+the header of a PEM private key): no network call, so it says a string *looks like* a token, not
+that it is valid, and it will miss formats it does not know. Use `scan` to
+search a whole text.
+
+#### Arguments
+
+- `token` - The string to check, a single word without surrounding quotes.
+
+#### Returns
+
+The `TokenKind`, or `None` when the string matches no known format.
+
+#### Examples
+
+```rust
+use helpers4::secret::{detect, TokenKind};
+
+assert_eq!(detect("ghp_0123456789abcdefghijklmnopqrstuvwxyz"), Some(TokenKind::GitHub));
+assert_eq!(detect("just-a-word"), None);
+```
+
+### secret::mask
+
+```rust
+pub fn mask(secret: &str, visible: usize) -> String
+```
+
+Hides a secret but for its last few characters, such as `"****************7890"`.
+
+Every character except the last `visible` becomes `*`. To be safe with short secrets, at most a
+quarter of the characters are ever shown, whatever `visible` asks for, so an 8-character
+password shows at most 2. The length of the result equals the length of the secret in characters.
+
+#### Arguments
+
+- `secret` - The value to mask.
+- `visible` - How many trailing characters to keep, at most a quarter of the secret.
+
+#### Returns
+
+The masked value.
+
+#### Examples
+
+```rust
+use helpers4::secret::mask;
+
+assert_eq!(mask("sk-abcdef1234567890", 4), "***************7890");
+assert_eq!(mask("abc", 4), "***"); // too short to show anything
+```
+
+### secret::REDACTED
+
+```rust
+pub const REDACTED: &str = "[REDACTED]"
+```
+
+The text shown in place of a redacted secret.
+
+### secret::redact
+
+```rust
+pub fn redact(text: &str, secrets: &[&str]) -> String
+```
+
+Replaces every occurrence of each of `secrets` in `text` with `[REDACTED]`.
+
+Meant for text that is about to be logged or shown (a command line, an HTTP dump, an error
+message) when you know the secret values. Longer secrets are replaced first, so a secret that
+contains another one is hidden whole. Empty secrets are ignored. Only exact occurrences are
+found: a secret that was transformed (encoded, split over lines) is not.
+
+#### Arguments
+
+- `text` - The text to clean.
+- `secrets` - The values to hide.
+
+#### Returns
+
+The text with every occurrence replaced.
+
+#### Examples
+
+```rust
+use helpers4::secret::redact;
+
+let line = "curl -H 'Authorization: Bearer abc123' https://x.org?key=abc123";
+assert_eq!(
+    redact(line, &["abc123"]),
+    "curl -H 'Authorization: Bearer [REDACTED]' https://x.org?key=[REDACTED]"
+);
+```
+
+### secret::Finding
+
+```rust
+pub struct Finding { /* private fields */ }
+```
+
+One credential found by `scan`.
+
+#### Examples
+
+```rust
+use helpers4::secret::{scan, TokenKind};
+
+let text = "key=AKIAIOSFODNN7EXAMPLE";
+let finding = &scan(text)[0];
+assert_eq!(finding.kind(), TokenKind::AwsAccessKey);
+assert_eq!(&text[finding.start()..finding.end()], "AKIAIOSFODNN7EXAMPLE");
+```
+
+#### Finding::kind
+
+```rust
+pub fn kind(&self) -> TokenKind
+```
+
+The kind of credential.
+
+##### Returns
+
+The recognized `TokenKind`.
+
+#### Finding::start
+
+```rust
+pub fn start(&self) -> usize
+```
+
+The byte offset where the credential starts in the scanned text.
+
+##### Returns
+
+The start, a character boundary.
+
+#### Finding::end
+
+```rust
+pub fn end(&self) -> usize
+```
+
+The byte offset just past the end of the credential.
+
+##### Returns
+
+The end, a character boundary.
+
+### secret::scan
+
+```rust
+pub fn scan(text: &str) -> Vec<Finding>
+```
+
+Finds the well-known credentials in `text`.
+
+The text is cut into words made of letters, digits, `_`, `-` and `.`, and each word is checked
+with `detect`; a PEM private key header line (`-----BEGIN ... PRIVATE KEY-----`)
+is found as a whole line. Quotes, `=`, `:`, spaces and other punctuation around a token are not
+part of it. Like `detect` this is a format check: expect false negatives for formats it does
+not know, and use it as a safety net, not as your only protection.
+
+#### Arguments
+
+- `text` - The text to search, such as a file or a log.
+
+#### Returns
+
+The findings in the order they appear, with their byte ranges in `text`.
+
+#### Examples
+
+```rust
+use helpers4::secret::{scan, TokenKind};
+
+let findings = scan("AWS_KEY=\"AKIAIOSFODNN7EXAMPLE\" # and nothing else");
+assert_eq!(findings.len(), 1);
+assert_eq!(findings[0].kind(), TokenKind::AwsAccessKey);
+```
+
+### secret::Secret
+
+```rust
+pub struct Secret<T> { /* private fields */ }
+```
+
+A value that must not leak through logs, error messages or `{:?}`: printing it shows
+`[REDACTED]` instead of the content.
+
+The only way to read it is the explicit `expose` (or
+`into_inner`), which makes every use of the secret easy to find in a code
+review. It is not `PartialEq`, `Hash` or serializable, so it cannot be compared, used as a key
+or written out by accident. **It does not wipe the memory when dropped**: that needs
+unsafe code, which this crate forbids, so use a dedicated crate such as `zeroize` when a
+value must not linger in memory.
+
+#### Examples
+
+```rust
+use helpers4::secret::Secret;
+
+let token = Secret::new("hunter2".to_string());
+assert_eq!(format!("{token}"), "[REDACTED]");
+assert_eq!(format!("{token:?}"), "Secret([REDACTED])");
+assert_eq!(token.expose(), "hunter2");
+```
+
+#### Secret::new
+
+```rust
+pub fn new(value: T) -> Self
+```
+
+Wraps `value`.
+
+##### Arguments
+
+- `value` - The sensitive value.
+
+##### Returns
+
+The wrapper, which hides the value from `Debug` and `Display`.
+
+#### Secret::expose
+
+```rust
+pub fn expose(&self) -> &T
+```
+
+Borrows the value.
+
+##### Returns
+
+A reference to the wrapped value: the one place where it is read.
+
+#### Secret::into_inner
+
+```rust
+pub fn into_inner(self) -> T
+```
+
+Unwraps the value.
+
+##### Returns
+
+The wrapped value, no longer protected.
+
+### secret::TokenKind
+
+```rust
+#[non_exhaustive]
+pub enum TokenKind {
+    /// A GitHub token: `ghp_`, `gho_`, `ghu_`, `ghs_` or `ghr_` followed by 36 characters, or a
+    /// fine-grained `github_pat_` token.
+    GitHub,
+    /// An AWS access key ID: `AKIA` or `ASIA` followed by 16 upper-case letters or digits.
+    AwsAccessKey,
+    /// A Slack token: `xoxa-`, `xoxb-`, `xoxp-`, `xoxr-` or `xoxs-` followed by a long body.
+    Slack,
+    /// A Stripe secret or restricted key: `sk_live_` or `rk_live_` followed by 24 or more
+    /// letters and digits.
+    Stripe,
+    /// A Google API key: `AIza` followed by 35 characters.
+    GoogleApiKey,
+    /// An npm access token: `npm_` followed by 36 letters and digits.
+    Npm,
+    /// A JSON Web Token: three base64url parts separated by dots, the first starting `eyJ`.
+    Jwt,
+    /// The header line of a PEM private key: `-----BEGIN ... PRIVATE KEY-----`.
+    PrivateKey,
+}
+```
+
+A well-known kind of credential, as recognized by `detect`.
+
+#### Examples
+
+```rust
+use helpers4::secret::{detect, TokenKind};
+
+assert_eq!(detect("AKIAIOSFODNN7EXAMPLE"), Some(TokenKind::AwsAccessKey));
+```
+
+#### TokenKind::name
+
+```rust
+pub fn name(self) -> &'static str
+```
+
+A short human-readable name.
+
+##### Returns
+
+For instance `"GitHub token"` or `"AWS access key"`.
+
+## Module `set` (Cargo feature `set`)
+
+Helpers for `HashSet` that the standard library does not provide.
+
+The standard library already has the pairwise operations (`union`, `intersection`, `difference`, ...);
+these cover what it lacks: combining any number of sets, toggling a member, a stable order, a
+similarity score and the power set. Inputs are borrowed and results are new values.
+
+### set::intersection_all
+
+```rust
+pub fn intersection_all<T: Clone + Eq + Hash, S: BuildHasher>(
+    sets: &[HashSet<T, S>],
+) -> HashSet<T>
+```
+
+The elements that appear in every set of `sets`.
+
+`HashSet::intersection` only combines two sets and returns a lazy iterator; this takes any
+number of sets and returns an owned set. An empty slice gives an empty set (there is no set
+to draw elements from), not "everything".
+
+#### Arguments
+
+- `sets` - The sets to intersect.
+
+#### Returns
+
+A new set with the elements common to all of `sets`.
+
+#### Examples
+
+```rust
+use helpers4::set::intersection_all;
+use std::collections::HashSet;
+
+let a = HashSet::from([1, 2, 3]);
+let b = HashSet::from([2, 3, 4]);
+let c = HashSet::from([3, 5]);
+assert_eq!(intersection_all(&[a, b, c]), HashSet::from([3]));
+```
+
+### set::jaccard
+
+```rust
+pub fn jaccard<T: Eq + Hash, S: BuildHasher>(a: &HashSet<T, S>, b: &HashSet<T, S>) -> f64
+```
+
+The Jaccard similarity of two sets: the size of their intersection over the size of their
+union.
+
+`1.0` means the sets are equal, `0.0` that they share nothing. Two empty sets are equal, so
+they score `1.0`.
+
+#### Arguments
+
+- `a` - The first set.
+- `b` - The second set.
+
+#### Returns
+
+A value between `0.0` and `1.0`.
+
+#### Examples
+
+```rust
+use helpers4::set::jaccard;
+use std::collections::HashSet;
+
+let a = HashSet::from([1, 2, 3]);
+let b = HashSet::from([2, 3, 4]);
+assert_eq!(jaccard(&a, &b), 0.5); // {2, 3} out of {1, 2, 3, 4}
+```
+
+### set::MAX_SUBSET_ITEMS
+
+```rust
+pub const MAX_SUBSET_ITEMS: usize = 16
+```
+
+The most items `subsets` accepts: 2^16 = 65 536 subsets.
+
+### set::subsets
+
+```rust
+pub fn subsets<T: Clone>(items: &[T]) -> Option<Vec<Vec<T>>>
+```
+
+Every subset of `items` (the power set), including the empty one and `items` itself.
+
+Subsets are ordered by the bit pattern that selects them (bit `i` set means `items[i]` is
+in), so the empty subset comes first and `items` itself last, and the elements of each
+subset keep their original order. The number of subsets doubles with every item, so more than
+`MAX_SUBSET_ITEMS` items are refused.
+
+#### Arguments
+
+- `items` - The elements to choose from.
+
+#### Returns
+
+The `2^n` subsets, or `None` when `items` has more than `MAX_SUBSET_ITEMS` elements.
+
+#### Examples
+
+```rust
+use helpers4::set::subsets;
+
+assert_eq!(
+    subsets(&["a", "b"]),
+    Some(vec![vec![], vec!["a"], vec!["b"], vec!["a", "b"]])
+);
+assert_eq!(subsets(&[0; 17]), None);
+```
+
+### set::to_sorted_vec
+
+```rust
+pub fn to_sorted_vec<T: Clone + Ord, S: BuildHasher>(set: &HashSet<T, S>) -> Vec<T>
+```
+
+The elements of `set` as a sorted `Vec`.
+
+A `HashSet` iterates in an unspecified order that changes between runs; use this wherever the
+order is visible (output, snapshots, tests).
+
+#### Arguments
+
+- `set` - The set to list.
+
+#### Returns
+
+The elements in ascending order.
+
+#### Examples
+
+```rust
+use helpers4::set::to_sorted_vec;
+use std::collections::HashSet;
+
+let set = HashSet::from([3, 1, 2]);
+assert_eq!(to_sorted_vec(&set), vec![1, 2, 3]);
+```
+
+### set::toggle
+
+```rust
+pub fn toggle<T: Eq + Hash, S: BuildHasher>(set: &mut HashSet<T, S>, item: T) -> bool
+```
+
+Removes `item` from `set` if it is there, inserts it otherwise.
+
+#### Arguments
+
+- `set` - The set to change.
+- `item` - The element to flip.
+
+#### Returns
+
+`true` when `item` is in the set after the call (it was inserted), `false` when it was removed.
+
+#### Examples
+
+```rust
+use helpers4::set::toggle;
+use std::collections::HashSet;
+
+let mut tags = HashSet::from(["rust"]);
+assert!(toggle(&mut tags, "cli"));   // added
+assert!(!toggle(&mut tags, "rust")); // removed
+assert_eq!(tags, HashSet::from(["cli"]));
+```
+
+### set::union_all
+
+```rust
+pub fn union_all<T: Clone + Eq + Hash, S: BuildHasher>(sets: &[HashSet<T, S>]) -> HashSet<T>
+```
+
+The union of every set in `sets`.
+
+`HashSet::union` only combines two sets and returns a lazy iterator; this takes any number
+of sets and returns an owned set. An empty slice gives an empty set.
+
+#### Arguments
+
+- `sets` - The sets to merge.
+
+#### Returns
+
+A new set with every element that appears in at least one of `sets`.
+
+#### Examples
+
+```rust
+use helpers4::set::union_all;
+use std::collections::HashSet;
+
+let a = HashSet::from([1, 2]);
+let b = HashSet::from([2, 3]);
+let c = HashSet::from([4]);
+assert_eq!(union_all(&[a, b, c]), HashSet::from([1, 2, 3, 4]));
 ```
 
 ## Module `string` (Cargo feature `string`)
@@ -1914,6 +5597,386 @@ How far before the epoch the clock is.
 
 How far in the past the system clock reported, relative to the Unix epoch.
 
+## Module `url` (Cargo feature `url`)
+
+URLs without a dependency: percent-encoding, query strings, a parser and reference resolution.
+
+`percent_encode` / `percent_decode` handle one component, `parse_query` / `build_query` turn a query
+string into pairs and back, `join_path` glues path pieces, and `Url` parses a whole URL (RFC 3986)
+and resolves relative references against it. Malformed input is an error, never a silent fix.
+
+### url::build_query
+
+```rust
+pub fn build_query<I, K, V>(pairs: I) -> String
+where
+    I: IntoIterator<Item = (K, V)>,
+    K: AsRef<str>,
+    V: AsRef<str>,
+```
+
+Builds a query string (`a=1&b=two`) from key-value pairs, percent-encoding both sides.
+
+Pairs keep their order and repeated keys are kept. A space becomes `%20` (not `+`), which every
+URL parser reads back correctly. The result has no leading `?`. It is the inverse of
+`parse_query`.
+
+#### Arguments
+
+- `pairs` - The keys and values, anything that iterates over `(key, value)` of string-likes.
+
+#### Returns
+
+The encoded query string, empty when there are no pairs.
+
+#### Examples
+
+```rust
+use helpers4::url::build_query;
+
+assert_eq!(build_query([("q", "rust lang"), ("page", "2")]), "q=rust%20lang&page=2");
+assert_eq!(build_query(Vec::<(&str, &str)>::new()), "");
+```
+
+### url::join_path
+
+```rust
+pub fn join_path(base: &str, segment: &str) -> String
+```
+
+Joins two pieces of a URL or path with exactly one `/` between them.
+
+Trailing slashes of `base` and leading slashes of `segment` are trimmed first, so
+`"a/"` + `"/b"`, `"a"` + `"b"` and `"a//"` + `"b"` all give `"a/b"`. Nothing is encoded or
+resolved: use `Url::join` to resolve a reference against a base URL, and
+`percent_encode` for a segment that may contain reserved characters.
+
+#### Arguments
+
+- `base` - The first part, such as `"https://api.example.com/v1/"`.
+- `segment` - The part to append, such as `"/users"`.
+
+#### Returns
+
+The two parts joined by a single `/`.
+
+#### Examples
+
+```rust
+use helpers4::url::join_path;
+
+assert_eq!(join_path("https://api.example.com/v1/", "/users"), "https://api.example.com/v1/users");
+assert_eq!(join_path("a", "b"), "a/b");
+```
+
+### url::parse_query
+
+```rust
+pub fn parse_query(query: &str) -> Result<Vec<(String, String)>, PercentDecodeError>
+```
+
+Parses a query string (`a=1&b=two`) into its key-value pairs, decoded, in order.
+
+A leading `?` is ignored. Pairs are separated by `&`; empty pairs are skipped; a pair without
+`=` has an empty value; only the first `=` splits key from value. Repeated keys are all kept.
+Both keys and values are decoded the way HTML forms are: `+` is a space and `%XX` is a byte.
+
+#### Arguments
+
+- `query` - The query string, with or without the leading `?`.
+
+#### Errors
+
+A `PercentDecodeError` for an invalid escape in a key or a value (its `index` is a byte
+offset within that key or value).
+
+#### Examples
+
+```rust
+use helpers4::url::parse_query;
+
+assert_eq!(
+    parse_query("?q=rust+lang&page=2&flag")?,
+    vec![
+        ("q".to_string(), "rust lang".to_string()),
+        ("page".to_string(), "2".to_string()),
+        ("flag".to_string(), String::new()),
+    ]
+);
+```
+
+### url::Url
+
+```rust
+pub struct Url { /* private fields */ }
+```
+
+A parsed URL: `scheme://userinfo@host:port/path?query#fragment`.
+
+The parts are kept as written (not percent-decoded), except that the scheme and the host are
+lowercased, which URLs treat as case-insensitive. Any part but the scheme and the path may be
+absent. `Display` writes the URL back, so a normalized URL round-trips. This is a general
+RFC 3986 parser, not the WHATWG one: it does not know special schemes, punycode, or percent-
+encode for you (see `percent_encode`), and it rejects spaces and
+control characters instead of fixing them.
+
+#### Examples
+
+```rust
+use helpers4::url::Url;
+
+let url = Url::parse("https://Example.com:8443/a/b?x=1#top")?;
+assert_eq!(url.scheme(), "https");
+assert_eq!(url.host(), Some("example.com"));
+assert_eq!(url.port(), Some(8443));
+assert_eq!(url.path(), "/a/b");
+assert_eq!(url.query(), Some("x=1"));
+assert_eq!(url.fragment(), Some("top"));
+assert_eq!(url.join("../c")?.to_string(), "https://example.com:8443/c");
+```
+
+#### Url::parse
+
+```rust
+pub fn parse(input: &str) -> Result<Self, UrlError>
+```
+
+Parses an absolute URL.
+
+##### Arguments
+
+- `input` - The URL, which must start with a scheme (`https:`, `mailto:`, `file:`, ...).
+
+##### Errors
+
+A `UrlError` for a space or control character, a missing or invalid scheme, a malformed
+host, or a port that is not a number from 0 to 65535.
+
+#### Url::join
+
+```rust
+pub fn join(&self, reference: &str) -> Result<Self, UrlError>
+```
+
+Resolves `reference` against this URL, as a browser resolves a link on a page (RFC 3986,
+section 5).
+
+The reference may be absolute (`https://other.example/`), start with `//` (keep the
+scheme), a path (`/a`, `b`, `../c`), only a query (`?x=1`) or only a fragment (`#top`).
+`.` and `..` segments are resolved.
+
+##### Arguments
+
+- `reference` - The URL reference to resolve.
+
+##### Errors
+
+The same `UrlError`s as `Url::parse`, for the reference.
+
+#### Url::scheme
+
+```rust
+pub fn scheme(&self) -> &str
+```
+
+The scheme, lowercase, such as `"https"`.
+
+##### Returns
+
+The scheme without the colon.
+
+#### Url::userinfo
+
+```rust
+pub fn userinfo(&self) -> Option<&str>
+```
+
+The user information before the `@`, such as `"user:password"`.
+
+##### Returns
+
+The raw user information, or `None` when the URL has none.
+
+#### Url::host
+
+```rust
+pub fn host(&self) -> Option<&str>
+```
+
+The host, lowercase, with the brackets of an IPv6 literal (`"[::1]"`).
+
+##### Returns
+
+The host, `Some("")` for an empty authority (`file:///etc`), or `None` when the URL has no
+authority at all (`mailto:a@b.c`).
+
+#### Url::port
+
+```rust
+pub fn port(&self) -> Option<u16>
+```
+
+The port written in the URL.
+
+##### Returns
+
+The port, or `None` when the URL does not name one.
+
+#### Url::port_or_default
+
+```rust
+pub fn port_or_default(&self) -> Option<u16>
+```
+
+The port to connect to: the one in the URL, or the default of a well-known scheme.
+
+##### Returns
+
+The explicit port, else `80` for `http` and `ws`, `443` for `https` and `wss`, `21` for
+`ftp`, and `None` for any other scheme.
+
+#### Url::path
+
+```rust
+pub fn path(&self) -> &str
+```
+
+The path, as written; possibly empty.
+
+##### Returns
+
+The path, starting with `/` when the URL has an authority and a path.
+
+#### Url::query
+
+```rust
+pub fn query(&self) -> Option<&str>
+```
+
+The query, without the `?`.
+
+##### Returns
+
+The raw query (see `parse_query` to decode it), or `None`.
+
+#### Url::fragment
+
+```rust
+pub fn fragment(&self) -> Option<&str>
+```
+
+The fragment, without the `#`.
+
+##### Returns
+
+The raw fragment, or `None`.
+
+### url::percent_decode
+
+```rust
+pub fn percent_decode(input: &str) -> Result<Cow<'_, str>, PercentDecodeError>
+```
+
+Decodes the `%XX` escapes of `input`.
+
+Every `%` must be followed by two hexadecimal digits (either case). A `+` stays a `+`: turning
+it into a space is a rule of HTML form encoding, applied by `parse_query`
+and not by URL components in general. Returns the input borrowed when it has no `%`.
+
+#### Arguments
+
+- `input` - The text to decode.
+
+#### Errors
+
+`PercentDecodeError::InvalidEscape` for a `%` not followed by two hex digits, and
+`PercentDecodeError::InvalidUtf8` when the decoded bytes are not valid UTF-8.
+
+#### Examples
+
+```rust
+use helpers4::url::percent_decode;
+
+assert_eq!(percent_decode("caf%C3%A9 %26 more")?, "café & more");
+assert!(percent_decode("100%").is_err());
+```
+
+### url::percent_encode
+
+```rust
+pub fn percent_encode(input: &str) -> Cow<'_, str>
+```
+
+Percent-encodes `input` for use as one URL component: a path segment, a query key or value.
+
+Only the unreserved characters of RFC 3986 (`A-Z a-z 0-9 - . _ ~`) are kept; every other byte,
+including `/`, `?`, `&`, `=`, `+` and every byte of a non-ASCII character, becomes `%XX` in
+upper case. It is stricter than JavaScript's `encodeURIComponent` (which also leaves `! * ' ( )`)
+so the result is safe in any part of a URL. Returns the input borrowed when there is nothing to
+encode.
+
+#### Arguments
+
+- `input` - The text to encode.
+
+#### Returns
+
+The encoded text.
+
+#### Examples
+
+```rust
+use helpers4::url::percent_encode;
+
+assert_eq!(percent_encode("a b&c=d"), "a%20b%26c%3Dd");
+assert_eq!(percent_encode("café"), "caf%C3%A9");
+assert_eq!(percent_encode("safe-text_1.~"), "safe-text_1.~");
+```
+
+### url::PercentDecodeError
+
+```rust
+#[non_exhaustive]
+pub enum PercentDecodeError {
+    /// A `%` that is not followed by two hexadecimal digits.
+    InvalidEscape {
+        /// Byte offset of the `%` in the input that was being decoded.
+        index: usize,
+    },
+    /// The decoded bytes are not valid UTF-8.
+    InvalidUtf8,
+}
+```
+
+Why a string could not be percent-decoded.
+
+### url::UrlError
+
+```rust
+#[non_exhaustive]
+pub enum UrlError {
+    /// A space or control character, which must be percent-encoded.
+    InvalidCharacter {
+        /// Byte offset of the offending character.
+        index: usize,
+    },
+    /// There is no `scheme:` before the first `/`, `?` or `#`.
+    MissingScheme,
+    /// The scheme does not match `ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )`.
+    InvalidScheme {
+        /// Byte offset in the input of the first character that does not fit (`0` when the
+        /// scheme is empty).
+        index: usize,
+    },
+    /// The host is malformed, for instance an IPv6 literal with no closing `]`.
+    InvalidHost,
+    /// The port is not a number from 0 to 65535.
+    InvalidPort,
+}
+```
+
+Why a string could not be parsed as a URL.
+
 ## Module `validate` (Cargo feature `validate`)
 
 Shape checks for common user-facing formats: pragmatic subsets that catch real mistakes,
@@ -2016,3 +6079,377 @@ assert!(!is_valid_email("no-at-sign"));
 assert!(!is_valid_email("@example.com"));
 assert!(!is_valid_email("jane@localhost"));
 ```
+
+## Module `version` (Cargo feature `version`)
+
+Semantic Versioning 2.0.0: parsing, precedence, bumps and Cargo-style requirements.
+
+`Version` is a strict semver version (with a lenient parser for `v1.2`), `VersionReq` a requirement
+such as `^1.2` or `>=1.0, <2.0` using Cargo's rules, and `compare` / `satisfies` are the one-line
+versions for strings. Bad input is a typed error, never a guess.
+
+### version::compare
+
+```rust
+pub fn compare(a: &str, b: &str) -> Result<Ordering, ParseVersionError>
+```
+
+Compares two version strings by semver precedence.
+
+Both are read leniently (see `Version::parse_lenient`: a `v` prefix and missing minor or
+patch are fine), and build metadata is ignored.
+
+#### Arguments
+
+- `a` - The first version.
+- `b` - The second version.
+
+#### Errors
+
+The `ParseVersionError` of whichever string does not parse (the first one if both fail).
+
+#### Examples
+
+```rust
+use helpers4::version::compare;
+use std::cmp::Ordering;
+
+assert_eq!(compare("1.10.0", "1.9.0")?, Ordering::Greater);
+assert_eq!(compare("v2", "2.0.0")?, Ordering::Equal);
+assert_eq!(compare("1.0.0-rc.1", "1.0.0")?, Ordering::Less);
+```
+
+### version::satisfies
+
+```rust
+pub fn satisfies(version: &str, requirement: &str) -> Result<bool, ParseVersionError>
+```
+
+Whether the version `version` satisfies the requirement `requirement`, both given as text.
+
+A shortcut for `Version::parse_lenient`, `VersionReq::parse` and `VersionReq::matches`:
+use those directly to check many versions against one requirement.
+
+#### Arguments
+
+- `version` - The version to check, such as `"1.4.2"`.
+- `requirement` - The requirement, such as `"^1.2"` (see `VersionReq` for the syntax).
+
+#### Errors
+
+The `ParseVersionError` of whichever string does not parse.
+
+#### Examples
+
+```rust
+use helpers4::version::satisfies;
+
+assert!(satisfies("1.4.2", "^1.2")?);
+assert!(!satisfies("2.0.0", "^1.2")?);
+assert!(satisfies("0.3.1", ">=0.3, <0.4")?);
+```
+
+### version::Version
+
+```rust
+pub struct Version { /* private fields */ }
+```
+
+A [Semantic Versioning 2.0.0](https://semver.org) version: `MAJOR.MINOR.PATCH`, optionally
+with a pre-release (`-alpha.1`) and build metadata (`+sha.5114f85`).
+
+`Version::parse` is strict semver; `Version::parse_lenient` also takes `v1.2`. Versions
+order by semver precedence (a pre-release sorts before its release, numeric identifiers
+compare as numbers); build metadata does not count for precedence
+(`precedence`) but breaks ties in `Ord` so that it stays consistent with
+`Eq`.
+
+#### Examples
+
+```rust
+use helpers4::version::Version;
+
+let v = Version::parse("1.4.2-rc.1+build.7")?;
+assert_eq!((v.major(), v.minor(), v.patch()), (1, 4, 2));
+assert_eq!(v.pre(), Some("rc.1"));
+assert!(v < Version::parse("1.4.2")?);
+assert_eq!(v.bump_minor().to_string(), "1.5.0");
+```
+
+#### Version::new
+
+```rust
+pub fn new(major: u64, minor: u64, patch: u64) -> Self
+```
+
+A release version, with no pre-release or build metadata.
+
+##### Arguments
+
+- `major` - The major version.
+- `minor` - The minor version.
+- `patch` - The patch version.
+
+##### Returns
+
+The version `major.minor.patch`.
+
+#### Version::parse
+
+```rust
+pub fn parse(text: &str) -> Result<Self, ParseVersionError>
+```
+
+Parses a strict semver version: exactly `MAJOR.MINOR.PATCH`, then optionally `-PRERELEASE`
+and `+BUILD`. No `v` prefix, no missing parts, no leading zeros in the numbers.
+
+##### Arguments
+
+- `text` - The version to parse.
+
+##### Errors
+
+A `ParseVersionError` naming what is wrong: an empty text, a missing or invalid number,
+a leading zero, or a bad pre-release or build identifier.
+
+#### Version::parse_lenient
+
+```rust
+pub fn parse_lenient(text: &str) -> Result<Self, ParseVersionError>
+```
+
+Parses a version the way people write it: surrounding whitespace and a leading `v` or `V`
+are ignored, and a missing minor or patch is `0` (`"v1.2"` is `1.2.0`, `"3"` is `3.0.0`).
+
+##### Arguments
+
+- `text` - The version to parse.
+
+##### Errors
+
+The same `ParseVersionError`s as `Version::parse`, except that a missing minor or
+patch is not an error.
+
+#### Version::major
+
+```rust
+pub fn major(&self) -> u64
+```
+
+The major version.
+
+##### Returns
+
+The first number.
+
+#### Version::minor
+
+```rust
+pub fn minor(&self) -> u64
+```
+
+The minor version.
+
+##### Returns
+
+The second number.
+
+#### Version::patch
+
+```rust
+pub fn patch(&self) -> u64
+```
+
+The patch version.
+
+##### Returns
+
+The third number.
+
+#### Version::pre
+
+```rust
+pub fn pre(&self) -> Option<&str>
+```
+
+The pre-release identifiers, without the leading `-`.
+
+##### Returns
+
+For instance `Some("alpha.1")`, or `None` for a release.
+
+#### Version::build
+
+```rust
+pub fn build(&self) -> Option<&str>
+```
+
+The build metadata, without the leading `+`.
+
+##### Returns
+
+For instance `Some("sha.5114f85")`, or `None`.
+
+#### Version::is_prerelease
+
+```rust
+pub fn is_prerelease(&self) -> bool
+```
+
+Whether this is a pre-release (it has a `-...` part).
+
+##### Returns
+
+`true` for `1.0.0-alpha`, `false` for `1.0.0`.
+
+#### Version::bump_major
+
+```rust
+pub fn bump_major(&self) -> Self
+```
+
+The next major version: `1.4.2-rc.1` gives `2.0.0`.
+
+##### Returns
+
+A release with the major version incremented and the rest reset. It saturates at
+`u64::MAX` instead of overflowing.
+
+#### Version::bump_minor
+
+```rust
+pub fn bump_minor(&self) -> Self
+```
+
+The next minor version: `1.4.2-rc.1` gives `1.5.0`.
+
+##### Returns
+
+A release with the minor version incremented and the patch reset. It saturates at
+`u64::MAX` instead of overflowing.
+
+#### Version::bump_patch
+
+```rust
+pub fn bump_patch(&self) -> Self
+```
+
+The next patch version: `1.4.2-rc.1` gives `1.4.3`.
+
+##### Returns
+
+A release with the patch version incremented. It saturates at `u64::MAX` instead of
+overflowing.
+
+#### Version::precedence
+
+```rust
+pub fn precedence(&self, other: &Self) -> Ordering
+```
+
+Compares two versions by semver precedence: build metadata is ignored, so `1.0.0+a` and
+`1.0.0+b` are equal here.
+
+##### Arguments
+
+- `other` - The version to compare with.
+
+##### Returns
+
+How this version orders relative to `other`.
+
+### version::VersionReq
+
+```rust
+pub struct VersionReq { /* private fields */ }
+```
+
+A version requirement such as `^1.2`, `>=1.0, <2.0` or `1.*`: which versions are acceptable.
+
+The syntax and the rules are Cargo's. A requirement is comma-separated comparators that must
+all match. Operators: `=`, `>`, `>=`, `<`, `<=`, `~` (tilde: patch-level changes, or minor when
+the patch is omitted), `^` (caret: changes that keep the left-most non-zero number), and none,
+which means caret. `1`, `1.2` and `1.2.3` may be partial; `*`, `x` and `X` are wildcards
+(`1.*`, `1.2.x`, or `*` alone for anything). A pre-release version only matches a
+requirement that names a pre-release of the same `MAJOR.MINOR.PATCH`.
+
+#### Examples
+
+```rust
+use helpers4::version::{Version, VersionReq};
+
+let req = VersionReq::parse("^1.2")?;
+assert!(req.matches(&Version::parse("1.9.0")?));
+assert!(!req.matches(&Version::parse("2.0.0")?));
+assert!(!req.matches(&Version::parse("1.1.9")?));
+
+let range = VersionReq::parse(">=1.0, <1.5")?;
+assert!(range.matches(&Version::parse("1.4.9")?));
+```
+
+#### VersionReq::parse
+
+```rust
+pub fn parse(text: &str) -> Result<Self, ParseVersionError>
+```
+
+Parses a requirement.
+
+##### Arguments
+
+- `text` - The requirement, such as `"^1.2"`, `">=1.0, <2.0"` or `"*"`.
+
+##### Errors
+
+A `ParseVersionError`: `Empty` for an empty text,
+`InvalidComparator` for a malformed comparator
+(unknown operator, a wildcard with an operator other than `=`, a pre-release on a partial
+version, build metadata), or the number and identifier errors of `Version::parse`.
+
+#### VersionReq::matches
+
+```rust
+pub fn matches(&self, version: &Version) -> bool
+```
+
+Whether `version` satisfies every comparator (and the pre-release rule).
+
+##### Arguments
+
+- `version` - The version to check.
+
+##### Returns
+
+`true` when the version is acceptable.
+
+### version::ParseVersionError
+
+```rust
+#[non_exhaustive]
+pub enum ParseVersionError {
+    /// The text is empty or only whitespace.
+    Empty,
+    /// A part is missing: `"1.2"` has no patch.
+    MissingComponent {
+        /// `"minor"` or `"patch"`.
+        component: &'static str,
+    },
+    /// A part is not a number (or does not fit a `u64`).
+    InvalidNumber {
+        /// `"major"`, `"minor"` or `"patch"`.
+        component: &'static str,
+    },
+    /// A number has a leading zero (`"01"`), which semver forbids.
+    LeadingZero {
+        /// `"major"`, `"minor"`, `"patch"` or `"prerelease"` (a numeric identifier).
+        component: &'static str,
+    },
+    /// A pre-release or build identifier is empty or has a character outside `[0-9A-Za-z-]`.
+    InvalidIdentifier,
+    /// A requirement comparator is malformed: unknown operator, a wildcard where it is not
+    /// allowed, a pre-release on a partial version, or build metadata.
+    InvalidComparator,
+}
+```
+
+Why a version or a version requirement could not be parsed.

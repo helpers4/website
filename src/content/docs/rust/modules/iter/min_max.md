@@ -31,7 +31,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.5", default-features = false, features = ["iter"] }
+helpers4 = { version = "0.0.6", default-features = false, features = ["iter"] }
 ```
 
 ## Signature
@@ -62,4 +62,4 @@ assert_eq!(min_max(Vec::<i32>::new()), None);
 
 ## Source
 
-[src/iter/min_max.rs](https://github.com/helpers4/rust/blob/v0.0.5/src/iter/min_max.rs#L32)
+[src/iter/min_max.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/iter/min_max.rs#L32)
