@@ -139,7 +139,6 @@ All features support standard devcontainer.json configuration:
 ## Support
 
 - GitHub Issues: [helpers4/devcontainer](https://github.com/helpers4/devcontainer/issues)
-- Discussions: [GitHub Discussions](https://github.com/helpers4/devcontainer/discussions)
 
 ## License
 

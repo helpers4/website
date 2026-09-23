@@ -12,7 +12,7 @@ This documentation website is built with [Astro](https://astro.build) and [Starl
 | [astro](https://astro.build) | MIT | Site builder the whole site is built on |
 | [@astrojs/starlight](https://starlight.astro.build) | MIT | Documentation site framework, built on Astro |
 | [starlight-sidebar-topics](https://github.com/HiDeoo/starlight-sidebar-topics) | MIT | Splits the sidebar into per-product sections (TypeScript / DevContainer / Actions) |
-| [starlight-theme-nova](https://github.com/HiDeoo/starlight-theme-nova) | MIT | Starlight theme used by this site |
+| [starlight-theme-nova](https://github.com/ocavue/starlight-theme-nova) | MIT | Starlight theme used by this site |
 | [helpers4](https://www.npmjs.com/package/helpers4) | LGPL-3.0-or-later | Used internally by the doc-generation scripts (sorting, markdown escaping, version comparison) |
 
 :::info
