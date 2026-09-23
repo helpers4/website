@@ -38,11 +38,17 @@ jobs:
       - name: Build all packages
         run: pnpm build
 
+      # External links only: the internal ones are checked on every pull request by
+      # `pnpm check:links` (scripts/check-internal-links.mjs). Without the scheme filter, lychee
+      # reads a root-relative link (`/rust/`) as a file and, with the wrong root, reported 236 000
+      # missing files. The root points at the build output for the few file links that remain.
       - name: Link Checker
         id: lychee
         uses: lycheeverse/lychee-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: --config lychee.toml --root-dir "$(pwd)" --no-progress './dist/**/*.html'
+          args: --config lychee.toml --root-dir "$(pwd)/dist" --scheme http --scheme https --no-progress './dist/**/*.html'
           fail: true
 
       - name: Create issue on failure
