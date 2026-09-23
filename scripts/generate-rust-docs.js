@@ -120,7 +120,7 @@ function signatureFrom(lines, start, indent) {
     }
     out.push(line);
   }
-  return out.join('\n');
+  return out.join('\n').trimEnd();
 }
 
 function blockEnd(lines, start) {
@@ -150,14 +150,14 @@ function methodsOf(lines, typeName) {
 
 function parseItem(source, name, module, file) {
   const lines = source.split('\n');
-  const index = lines.findIndex((line) => new RegExp(`^pub (fn|struct|enum|type) ${name}\\b`).test(line));
+  const index = lines.findIndex((line) => new RegExp(`^pub (fn|struct|enum|type|const) ${name}\\b`).test(line));
   if (index < 0) fail(`${module}: no public declaration of \`${name}\``);
-  const kind = lines[index].match(/^pub (fn|struct|enum|type)/)[1];
+  const kind = lines[index].match(/^pub (fn|struct|enum|type|const)/)[1];
   const doc = docAbove(lines, index);
   if (doc.length === 0) fail(`${module}::${name} has no documentation`);
 
   if (kind === 'fn') return { ...parseFn(lines, index, 0), module, file };
-  if (kind === 'type') {
+  if (kind === 'type' || kind === 'const') {
     return { kind, name, module, file, line: index + 1, doc, signature: signatureFrom(lines, index, 0), methods: [] };
   }
   if (kind === 'enum') {
