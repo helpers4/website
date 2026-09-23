@@ -148,7 +148,6 @@ Browse all helpers4 actions on [GitHub Marketplace](https://github.com/marketpla
 ## Support
 
 - GitHub Issues: [helpers4/action](https://github.com/helpers4/action/issues)
-- Discussions: [GitHub Discussions](https://github.com/helpers4/action/discussions)
 
 ## License
 
