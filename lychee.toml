@@ -18,6 +18,15 @@ exclude = [
   '^https?://localhost',
   '^https?://127\.0\.0\.1',
   '^https?://example\.(com|org)',
+  # The site's own absolute URLs (canonical, alternate, sitemap): `pnpm check:links` checks the
+  # internal links of the build, and checking the live site from a build of the next one is noise.
+  '^https://helpers4\.dev',
+  # One "Edit this page" link per docs page and one "Source" link per documented item: about 1 800
+  # distinct github.com URLs, which is what got the run rate limited (429 with a 5 minute backoff,
+  # 40 minutes in all). They are generated from paths the build itself knows.
+  '^https://github\.com/helpers4/[^/]+/(edit|blob|tree)/',
+  # Answers 403 to any automated client, from a browser the page is fine.
+  '^https://openhub\.net/',
 ]
 
 exclude_path = [
