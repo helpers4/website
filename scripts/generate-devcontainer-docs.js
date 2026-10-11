@@ -186,13 +186,14 @@ function fixActiveFeatureLinks(content) {
 
 /**
  * Fix relative links in deprecated feature pages for the website.
- * - ../src/featureName/README.md → ../../features/featureName/
+ * - ../../src/featureName/README.md → ../../features/featureName/
+ *   (also ../src/…, and the folder form …/featureName/ without README.md)
  * - helpers4.dev/dev-container/  → helpers4.dev/devcontainer/ (URL typo fix)
  */
 function fixDeprecatedFeatureLinks(content) {
-  // Links to active features via repo path: (../src/featureName/README.md) → (../../features/featureName/)
+  // Links to active features via repo path: (../../src/featureName/README.md) → (../../features/featureName/)
   content = content.replace(
-    /\]\(\.\.\/src\/([\w-]+)\/README\.md\)/g,
+    /\]\((?:\.\.\/)+src\/([\w-]+)\/(?:README\.md)?\)/g,
     '](../../features/$1/)'
   );
   // URL typo: dev-container → devcontainer
