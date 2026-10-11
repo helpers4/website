@@ -3,7 +3,7 @@ title: "findMap"
 sidebar:
   label: "findMap"
 description: "Returns the first non-`undefined` result of mapping `fn` over `array`, short-circuiting as soon as one is found."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Returns the first non-`undefined` result of mapping `fn` over `array`, short-circuiting as

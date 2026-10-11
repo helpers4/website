@@ -3,7 +3,7 @@ title: "isString"
 sidebar:
   label: "isString"
 description: "Checks if a value is a string."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Checks if a value is a string.

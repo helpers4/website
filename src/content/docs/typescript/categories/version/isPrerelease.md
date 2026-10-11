@@ -3,7 +3,7 @@ title: "isPrerelease"
 sidebar:
   label: "isPrerelease"
 description: "Returns `true` when the version string has a prerelease suffix, according to the given `scheme`."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Returns `true` when the version string has a prerelease suffix, according to the given
@@ -14,6 +14,10 @@ Returns `true` when the version string has a prerelease suffix, according to the
 **`'gentoo'`** — `true` when the last suffix segment is `alpha`/`beta`/`pre`/`rc` (these sort
 below the plain release). A `p` suffix or a `-r` revision don't count — `p` sorts *above* the
 release, and a revision isn't a prerelease of anything, it's a rebuild of the same version.
+
+**`'debian'`** — `true` when the upstream part contains `~`, the Debian convention for a
+version that must sort before the final release (`1.0~rc1`). A `~` in the revision doesn't
+count — `1.0-1~bpo12+1` is a backport of the `1.0` release, not a prerelease of it.
 
 > Available since v2.0.0
 
@@ -78,7 +82,8 @@ isPrerelease(parse('1.0.0'))         // false
 
 A version parsed by parse, in whichever scheme it was parsed as — narrow on the
 `scheme` field to access scheme-specific properties (`major`/`minor`/`patch` for `'semver'`,
-`components`/`letter`/`suffixes`/`revision` for `'gentoo'`).
+`components`/`letter`/`suffixes`/`revision` for `'gentoo'`, `epoch`/`upstream`/`revision` for
+`'debian'`).
 
 Deliberately **not** named `ParsedVersion`: that name has been public API since 2.0.0 for
 the flat SemVer-only shape (`.major`/`.minor`/`.patch` directly, no narrowing needed), and
@@ -87,7 +92,7 @@ reads those fields without narrowing first — a real compatibility break with n
 `MIGRATION.md` entry, since this repo ties breaking changes to major-version bumps.
 
 ```ts
-type AnyParsedVersion = ParsedSemVerVersion | ParsedGentooVersion
+type AnyParsedVersion = ParsedSemVerVersion | ParsedGentooVersion | ParsedDebianVersion
 ```
 
 ### `VersionScheme`
@@ -96,7 +101,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo'
+type VersionScheme = 'semver' | 'gentoo' | 'debian'
 ```
 
 ## Source

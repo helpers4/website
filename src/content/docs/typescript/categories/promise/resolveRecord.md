@@ -3,7 +3,7 @@ title: "resolveRecord"
 sidebar:
   label: "resolveRecord"
 description: "Resolves an array of keys into a record by calling an async mapper for each key."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Resolves an array of keys into a record by calling an async mapper for each key.

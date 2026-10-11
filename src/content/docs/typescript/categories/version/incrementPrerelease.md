@@ -3,7 +3,7 @@ title: "incrementPrerelease"
 sidebar:
   label: "incrementPrerelease"
 description: "Increments the prerelease portion of a version, according to the given `scheme` — the semantics `npm version prerelease…"
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Increments the prerelease portion of a version, according to the given `scheme` — the
@@ -28,6 +28,9 @@ suffix types (`alpha`/`beta`/`pre`/`rc`/`p`), not a free-form string — Portage
 vocabulary is fixed by spec, unlike SemVer's arbitrary prerelease identifiers. No current
 prerelease suffix bumps the last numeric component instead of specifically `patch`, since
 Gentoo's `components` array can be any length.
+
+**`'debian'`** — throws: a Debian upstream version is free-form, with no prerelease counter
+to bump.
 
 > Available since v3.0.1
 
@@ -104,7 +107,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo'
+type VersionScheme = 'semver' | 'gentoo' | 'debian'
 ```
 
 ## Source

@@ -3,7 +3,7 @@ title: "addDays"
 sidebar:
   label: "addDays"
 description: "Adds days to a date."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Adds days to a date.

@@ -3,7 +3,7 @@ title: "falsyPromiseOrThrow"
 sidebar:
   label: "falsyPromiseOrThrow"
 description: "Returns a function that passes through falsy data or throws an error."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Returns a function that passes through falsy data or throws an error.

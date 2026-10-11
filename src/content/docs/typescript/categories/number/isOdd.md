@@ -3,7 +3,7 @@ title: "isOdd"
 sidebar:
   label: "isOdd"
 description: "Checks if a value is an odd integer."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Checks if a value is an odd integer.

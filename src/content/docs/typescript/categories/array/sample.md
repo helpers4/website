@@ -3,7 +3,7 @@ title: "sample"
 sidebar:
   label: "sample"
 description: "Picks one or more random elements from an array."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Picks one or more random elements from an array.

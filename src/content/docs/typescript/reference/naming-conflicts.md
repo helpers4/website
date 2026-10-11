@@ -28,6 +28,8 @@ This is not a bug. `compact` for arrays and `compact` for objects are genuinely 
 | `isEmpty` | [`array`](../categories/array/isempty/), [`object`](../categories/object/isempty/), [`string`](../categories/string/isempty/) |
 | `isNonEmpty` | [`array`](../categories/array/isnonempty/), [`object`](../categories/object/isnonempty/), [`string`](../categories/string/isnonempty/) |
 | `map` | [`object`](../categories/object/map/), [`set`](../categories/set/map/) |
+| `parse` | [`json`](../categories/json/parse/), [`version`](../categories/version/parse/) |
+| `stringify` | [`json`](../categories/json/stringify/), [`version`](../categories/version/stringify/) |
 | `toMapByKey` | [`map`](../categories/map/tomapbykey/), [`set`](../categories/set/tomapbykey/) |
 
 ## Resolving Conflicts
@@ -122,6 +124,20 @@ import { isNonEmpty as isNonEmpty4string } from '@helpers4/string';
 ```ts
 import { map as map4object } from '@helpers4/object';
 import { map as map4set } from '@helpers4/set';
+```
+
+### `parse`
+
+```ts
+import { parse as parse4json } from '@helpers4/json';
+import { parse as parse4version } from '@helpers4/version';
+```
+
+### `stringify`
+
+```ts
+import { stringify as stringify4json } from '@helpers4/json';
+import { stringify as stringify4version } from '@helpers4/version';
 ```
 
 ### `toMapByKey`

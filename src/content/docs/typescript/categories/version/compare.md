@@ -3,7 +3,7 @@ title: "compare"
 sidebar:
   label: "compare"
 description: "Compares two version strings, according to the given `scheme`."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Compares two version strings, according to the given `scheme`.
@@ -18,6 +18,11 @@ Compares two version strings, according to the given `scheme`.
 numeric components, then letter suffix, then suffix segment (`alpha`/`beta`/`pre`/`rc` sort
 below the plain release, `p` sorts above it), then `-r` revision. Note the key difference
 from SemVer: a `-r` revision is *not* a prerelease and sorts *above* the base version.
+
+**`'debian'`** — dpkg/apt ordering (see ParsedDebianVersion): epoch first, then the
+upstream version, then the Debian revision, each compared like dpkg's `verrevcmp` — digit runs
+numerically, everything else character by character with `~` sorting before everything,
+even the end of the string (`1.0~rc1` < `1.0`). Throws a `SyntaxError` on an invalid version.
 
 > Available since v1.9.0
 
@@ -78,6 +83,17 @@ compare('1.2.3', '1.2.3-r1', 'gentoo')
 // => -1
 ```
 
+### Debian: ~ sorts before the release
+
+dpkg ordering: a '~' sorts before everything, even the end of the string, and the epoch before ':' wins over the rest.
+
+```ts
+compare('1.0~rc1-1', '1.0-1', 'debian')
+// => -1
+compare('1:0.9', '2.0', 'debian')
+// => 1
+```
+
 ## Related Types
 
 ### `VersionScheme`
@@ -86,7 +102,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo'
+type VersionScheme = 'semver' | 'gentoo' | 'debian'
 ```
 
 :::caution[Name conflict]

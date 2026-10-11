@@ -3,7 +3,7 @@ title: "isGenerator"
 sidebar:
   label: "isGenerator"
 description: "Checks if a value is a generator object (the result of calling a `function*`)."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Checks if a value is a generator object (the result of calling a `function*`).

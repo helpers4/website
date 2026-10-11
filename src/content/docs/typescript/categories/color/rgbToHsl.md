@@ -3,7 +3,7 @@ title: "rgbToHsl"
 sidebar:
   label: "rgbToHsl"
 description: "Converts an RGB(A) color into HSL(A)."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Converts an RGB(A) color into HSL(A).

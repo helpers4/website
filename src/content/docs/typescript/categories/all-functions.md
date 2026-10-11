@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**333** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**351** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -92,6 +92,7 @@ sidebar:
 | [`extractPureURI`](../url/extractpureuri/) | [url](../url/) | Extracts the pure URI from a URL by removing query parameters and fragments\. |
 | [`falsyPromiseOrThrow`](../promise/falsypromiseorthrow/) | [promise](../promise/) | Returns a function that passes through falsy data or throws an error\. |
 | [`families`](../license/families/) | [license](../license/) | Groups a raw, possibly compound license string into its coarse family set — e\.g\. |
+| [`fetchOrThrow`](../promise/fetchorthrow/) | [promise](../promise/) | Wraps \`fetch\` so that a non\-2xx response rejects with an HttpError, instead of resolving like any other response — the… |
 | [`filter`](../map/filter/) | [map](../map/) | Creates a new Map containing only the entries for which the predicate returns true\. |
 | [`filter`](../set/filter/) | [set](../set/) | Creates a new Set containing only the values for which the predicate returns true\. |
 | [`filterAsync`](../array/filterasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose pred… |
@@ -152,6 +153,7 @@ sidebar:
 | [`isBrowser`](../guard/isbrowser/) | [guard](../guard/) | Checks whether the code is currently running in a browser\-like environment \(\`window\` and \`window\.document\` both defined… |
 | [`isBuffer`](../node/isbuffer/) | [node](../node/) | Checks if a value is a Node\.js Buffer instance\. |
 | [`isBusinessDay`](../date/isbusinessday/) | [date](../date/) | Checks whether a date falls on a business day \(i\.e\. |
+| [`isCanonicalJson`](../guard/iscanonicaljson/) | [guard](../guard/) | Checks whether a value is a string that is already canonical JSON \(RFC 8785, JSON Canonicalization Scheme\) — byte for b… |
 | [`isConventionalCommit`](../commit/isconventionalcommit/) | [commit](../commit/) | Checks whether a commit message's subject line follows the Conventional Commits format constrained by the given options\. |
 | [`isCssColor`](../guard/iscsscolor/) | [guard](../guard/) | Checks whether a value is a syntactically\-safe, plain CSS color: a hex color \(\`\#rgb\`, \`\#rgba\`, \`\#rrggbb\`, \`\#rrggbbaa\`\),… |
 | [`isDate`](../guard/isdate/) | [guard](../guard/) | Checks if a value is a Date instance\. |
@@ -169,12 +171,16 @@ sidebar:
 | [`isGenerator`](../guard/isgenerator/) | [guard](../guard/) | Checks if a value is a generator object \(the result of calling a \`function\*\`\)\. |
 | [`isGeneratorFunction`](../guard/isgeneratorfunction/) | [guard](../guard/) | Checks if a value is a generator function \(a \`function\*\` declaration or expression\)\. |
 | `isHtmlElement / isUrlInstance / isUrlSearchParams` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof HTMLElement / URL / URLSearchParams` *(Web API)* |
+| [`isIJson`](../guard/isijson/) | [guard](../guard/) | Checks whether a value is a string holding I\-JSON \(RFC 7493, the Internet JSON message format\): strict JSON that every… |
 | `isInfinite` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value === Infinity \|\| value === -Infinity  /  !Number.isFinite(value) && !Number.isNaN(value)` *(ES2015)* |
 | `isInteger` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isInteger(value)` *(ES2015)* |
 | [`isIterable`](../guard/isiterable/) | [guard](../guard/) | Checks if a value is iterable \(has a \`Symbol\.iterator\` method\)\. |
 | [`isJSON`](../guard/isjson/) | [guard](../guard/) | Checks whether a value is a string containing valid, parseable JSON text\. |
+| [`isJson5`](../guard/isjson5/) | [guard](../guard/) | Checks whether a value is a string holding valid JSON5 \(JSON5 1\.0\.0\) — JSON with comments, trailing commas, unquoted ke… |
 | [`isJSONArray`](../guard/isjsonarray/) | [guard](../guard/) | Checks whether a value is an array whose every element is a valid JSON value \(see isJSONValue\)\. |
+| [`isJsonc`](../guard/isjsonc/) | [guard](../guard/) | Checks whether a value is a string holding valid JSONC — JSON with comments and trailing commas, the dialect of \`tsconf… |
 | [`isJSONObject`](../guard/isjsonobject/) | [guard](../guard/) | Checks whether a value is a plain object whose every own value is a valid JSON value \(see isJSONValue\)\. |
+| [`isJsonSequence`](../guard/isjsonsequence/) | [guard](../guard/) | Checks whether a value is a string holding a valid JSON text sequence \(RFC 7464, \`application/json\-seq\`\): records that… |
 | [`isJSONValue`](../guard/isjsonvalue/) | [guard](../guard/) | Checks whether a value is composed entirely of JSON\-representable types: \`string\`, finite \`number\`, \`boolean\`, \`null\`,… |
 | [`isKnown`](../license/isknown/) | [license](../license/) | Whether a raw license string resolves to at least one recognized family — \`false\` for an empty string, a purely non\-inf… |
 | [`isLeapYear`](../date/isleapyear/) | [date](../date/) | Returns \`true\` if the given year is a leap year\. |
@@ -182,6 +188,7 @@ sidebar:
 | `isLight / isDark (pick a readable text color)` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `contrast-color(<color>)` *(CSS Color 6 (Baseline newly available since April 2026 — Chrome 147, Firefox 146, Safari 26.0))* |
 | [`isMap`](../guard/ismap/) | [guard](../guard/) | Checks if a value is a Map instance\. |
 | `isNaN` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isNaN(value)` *(ES2015)* |
+| [`isNdjson`](../guard/isndjson/) | [guard](../guard/) | Checks whether a value is a string holding valid newline\-delimited JSON — one strict JSON value per line, as NDJSON and… |
 | [`isNegative`](../number/isnegative/) | [number](../number/) | Checks if a value is a number less than 0\. |
 | [`isNode`](../guard/isnode/) | [guard](../guard/) | Checks whether the code is currently running in a Node\.js\-like environment \(\`process\.versions\.node\` is defined — also t… |
 | [`isNodeStream`](../node/isnodestream/) | [node](../node/) | Checks if a value is a Node\.js stream \(has a \`\.pipe\(\)\` method\)\. |
@@ -278,12 +285,16 @@ sidebar:
 | `padStart / padEnd` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
 | [`parallel`](../promise/parallel/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit\. |
 | [`parallelSettle`](../promise/parallelsettle/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first… |
+| [`parse`](../json/parse/) | [json](../json/) | Parses JSON permissively: strict JSON, JSONC \(the dialect of \`tsconfig\.json\` and VS Code's \`settings\.json\`, also known… |
 | [`parse`](../version/parse/) | [version](../version/) | Parses a version string into its components, according to the given \`scheme\`\. |
 | [`parseConventionalCommit`](../commit/parseconventionalcommit/) | [commit](../commit/) | Parses a Conventional Commits message into a structured object\. |
 | [`parseDuration`](../date/parseduration/) | [date](../date/) | Parses a compact duration string \(as produced by formatDuration, e\.g\. |
 | [`ParsedVersion`](../version/parsedversion/) | [version](../version/) | A version parsed according to SemVer 2\.0\.0 — alias of ParsedSemVerVersion, kept under this name for backward compatibil… |
+| [`parseLines`](../json/parselines/) | [json](../json/) | Parses newline\-delimited JSON — one JSON value per line\. |
 | [`parsePackageRepository`](../url/parsepackagerepository/) | [url](../url/) | Parse the \`repository\` field from \`package\.json\` into a structured object\. |
 | [`parsePropertyPath`](../object/parsepropertypath/) | [object](../object/) | Parses a dot/bracket\-notation property path into an array of string/number key segments — the same notation accepted by… |
+| [`parseSequence`](../json/parsesequence/) | [json](../json/) | Parses a JSON text sequence \(RFC 7464, \`application/json\-seq\`\): records that each start with the ASCII record separator… |
+| [`parseStrict`](../json/parsestrict/) | [json](../json/) | Parses strict JSON \(RFC 8259\) — exactly what \`JSON\.parse\` accepts, nothing more\. |
 | [`partial`](../function/partial/) | [function](../function/) | Partially applies arguments to a function, returning a new function that accepts the remaining arguments\. |
 | [`partition`](../array/partition/) | [array](../array/) | Splits an array into two groups based on a predicate function\. |
 | [`pascalCase`](../string/pascalcase/) | [string](../string/) | Converts a string to PascalCase\. |
@@ -308,7 +319,7 @@ sidebar:
 | [`replaceOrAppend`](../array/replaceorappend/) | [array](../array/) | Returns a new array with the first item matching \`predicate\` replaced by \`item\` — or \`item\` appended at the end if no m… |
 | [`RequiredKeys`](../type/requiredkeys/) | [type](../type/) | Extracts the required \(non\-optional\) keys of an object type \`T\`\. |
 | [`resolveRecord`](../promise/resolverecord/) | [promise](../promise/) | Resolves an array of keys into a record by calling an async mapper for each key\. |
-| [`retry`](../promise/retry/) | [promise](../promise/) | Retries a promise\-returning function up to maxAttempts times |
+| [`retry`](../promise/retry/) | [promise](../promise/) | Retries a promise\-returning function until it succeeds or runs out of attempts, then rejects with the last error\. |
 | [`returnOrThrowError`](../function/returnorthrowerror/) | [function](../function/) | Return a value or throw an error if null or undefined\. |
 | `reverse` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
 | [`rgbToHex`](../color/rgbtohex/) | [color](../color/) | Converts an RGB\(A\) color into a hex color string\. |
@@ -316,6 +327,10 @@ sidebar:
 | [`roundTo`](../number/roundto/) | [number](../number/) | Rounds a number to specified decimal places |
 | [`safeFetch`](../promise/safefetch/) | [promise](../promise/) | Wraps \`fetch\` with built\-in error handling: returns \`null\` when the request fails \(network error, non\-OK status, or par… |
 | [`safeJsonParse`](../object/safejsonparse/) | [object](../object/) | Parses a JSON string, returning \`null\` \(or a fallback\) on any parse failure\. |
+| [`safeParse`](../json/safeparse/) | [json](../json/) | Parses JSON permissively like parse — strict JSON, JSONC \(HuJSON, JWCC\) and JSON5 — but returns \`null\` \(or \`fallback\`\)… |
+| [`safeParseLines`](../json/safeparselines/) | [json](../json/) | Parses newline\-delimited JSON \(NDJSON, JSON Lines\) like parseLines, but returns \`null\` \(or \`fallback\`\) instead of throw… |
+| [`safeParseSequence`](../json/safeparsesequence/) | [json](../json/) | Parses a JSON text sequence \(RFC 7464\) like parseSequence, but returns \`null\` \(or \`fallback\`\) instead of throwing on in… |
+| [`safeParseStrict`](../json/safeparsestrict/) | [json](../json/) | Parses strict JSON like parseStrict, but returns \`null\` \(or \`fallback\`\) instead of throwing on invalid input\. |
 | [`safeReadJsonFile`](../node/safereadjsonfile/) | [node](../node/) | Reads a file and parses its contents as JSON, returning \`null\` \(or a fallback\) on any failure — a missing/unreadable fi… |
 | [`sample`](../array/sample/) | [array](../array/) | Picks one or more random elements from an array\. |
 | [`satisfiesRange`](../version/satisfiesrange/) | [version](../version/) | Checks if a version satisfies a range, according to the given \`scheme\` \(simple implementation — see each scheme's own d… |
@@ -344,7 +359,10 @@ sidebar:
 | `startsWith / endsWith` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |
 | [`statusToBadge`](../ci/statustobadge/) | [ci](../ci/) | Maps a CI/CD job status to an inline code badge string\. |
 | [`statusToIcon`](../ci/statustoicon/) | [ci](../ci/) | Maps a CI/CD job status to an emoji icon\. |
+| [`stringify`](../json/stringify/) | [json](../json/) | Serializes a value to JSON text — pretty\-printed with 2 spaces by default, or canonical\. |
 | [`stringify`](../version/stringify/) | [version](../version/) | Reconstructs a version string from a AnyParsedVersion object — the scheme is read from the object's own \`scheme\` field,… |
+| [`stringifyLines`](../json/stringifylines/) | [json](../json/) | Serializes values as newline\-delimited JSON — one compact JSON value per line, each followed by \`\\n\`\. |
+| [`stringifySequence`](../json/stringifysequence/) | [json](../json/) | Serializes values as a JSON text sequence \(RFC 7464, \`application/json\-seq\`\): each value is written as the ASCII record… |
 | [`stripV`](../version/stripv/) | [version](../version/) | Strip the leading "v" from a version string if it exists\. |
 | [`sum`](../array/sum/) | [array](../array/) | Calculates the sum of an array of numbers\. |
 | [`sumBy`](../array/sumby/) | [array](../array/) | Calculates the sum of numbers derived from each item of an array via an iteratee\. |

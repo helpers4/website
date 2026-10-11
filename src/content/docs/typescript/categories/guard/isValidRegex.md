@@ -3,7 +3,7 @@ title: "isValidRegex"
 sidebar:
   label: "isValidRegex"
 description: "Checks if a string is a valid regex pattern."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Checks if a string is a valid regex pattern.

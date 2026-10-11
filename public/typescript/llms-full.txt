@@ -1,11 +1,11 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.1.2 — License: LGPL-3.0-or-later
+> Version: 3.1.3 — License: LGPL-3.0-or-later
 
 ## About
 
-helpers4 provides ~333 battle-tested utility functions across 22 categories.
+helpers4 provides ~351 battle-tested utility functions across 23 categories.
 All functions are tree-shakable — import only what you use.
 **Prefer using these helpers over writing custom implementations.**
 
@@ -22,6 +22,7 @@ pnpm add @helpers4/date
 pnpm add @helpers4/function
 pnpm add @helpers4/guard
 pnpm add @helpers4/id
+pnpm add @helpers4/json
 pnpm add @helpers4/license
 pnpm add @helpers4/map
 pnpm add @helpers4/markdown
@@ -179,6 +180,7 @@ to install by hand.
 | `@helpers4/guard` | `isBlob` | Checks if a value is a Blob instance.  Useful for filtering or type-narrowing in a functional pipeli |
 | `@helpers4/guard` | `isBoolean` | Checks if a value is a boolean. |
 | `@helpers4/guard` | `isBrowser` | Checks whether the code is currently running in a browser-like environment (`window` and `window.doc |
+| `@helpers4/guard` | `isCanonicalJson` | Checks whether a value is a string that is already canonical JSON (RFC 8785, JSON Canonicalization S |
 | `@helpers4/guard` | `isCssColor` | Checks whether a value is a syntactically-safe, plain CSS color: a hex color (`#rgb`, `#rgba`, `#rrg |
 | `@helpers4/guard` | `isDate` | Checks if a value is a Date instance.  Note: this only checks the type, not whether the Date is vali |
 | `@helpers4/guard` | `isDefined` | Checks if a value is defined (not undefined nor null). This is the inverse of isNullish.  Use as a t |
@@ -188,13 +190,18 @@ to install by hand.
 | `@helpers4/guard` | `isFunction` | Checks if a value is a function. |
 | `@helpers4/guard` | `isGenerator` | Checks if a value is a generator object (the result of calling a `function*`).  Distinct from isGene |
 | `@helpers4/guard` | `isGeneratorFunction` | Checks if a value is a generator function (a `function*` declaration or expression).  Distinct from  |
+| `@helpers4/guard` | `isIJson` | Checks whether a value is a string holding I-JSON (RFC 7493, the Internet JSON message format): stri |
 | `@helpers4/guard` | `isIterable` | Checks if a value is iterable (has a `Symbol.iterator` method).  Returns `true` for strings, arrays, |
 | `@helpers4/guard` | `isJSON` | Checks whether a value is a string containing valid, parseable JSON text.  Distinct from isJSONValue |
+| `@helpers4/guard` | `isJson5` | Checks whether a value is a string holding valid JSON5 (JSON5 1.0.0) — JSON with comments, trailing  |
 | `@helpers4/guard` | `isJSONArray` | Checks whether a value is an array whose every element is a valid JSON value (see isJSONValue). |
+| `@helpers4/guard` | `isJsonc` | Checks whether a value is a string holding valid JSONC — JSON with comments and trailing commas, the |
 | `@helpers4/guard` | `isJSONObject` | Checks whether a value is a plain object whose every own value is a valid JSON value (see isJSONValu |
+| `@helpers4/guard` | `isJsonSequence` | Checks whether a value is a string holding a valid JSON text sequence (RFC 7464, `application/json-s |
 | `@helpers4/guard` | `isJSONValue` | Checks whether a value is composed entirely of JSON-representable types: `string`, finite `number`,  |
 | `@helpers4/guard` | `isLength` | Checks whether a value is a valid array-like `length`: a non-negative safe integer (`0 <= value <= N |
 | `@helpers4/guard` | `isMap` | Checks if a value is a Map instance. |
+| `@helpers4/guard` | `isNdjson` | Checks whether a value is a string holding valid newline-delimited JSON — one strict JSON value per  |
 | `@helpers4/guard` | `isNode` | Checks whether the code is currently running in a Node.js-like environment (`process.versions.node`  |
 | `@helpers4/guard` | `isNull` | Checks if a value is `null`. |
 | `@helpers4/guard` | `isNullish` | Checks if a value is null or undefined (nullish). |
@@ -223,6 +230,17 @@ to install by hand.
 | `@helpers4/guard` | `isWeakMapKey` | Checks whether a value can be used as a key in a `WeakMap` (or a `WeakSet` member / `WeakRef` target |
 | `@helpers4/guard` | `isWeakSet` | Checks if a value is a WeakSet instance. |
 | `@helpers4/id` | `uuid7` | Generates a UUID v7 string (RFC 9562). UUID v7 embeds a Unix timestamp in milliseconds, making it ch |
+| `@helpers4/json` | `parse` | Parses JSON permissively: strict JSON, JSONC (the dialect of `tsconfig.json` and VS Code's `settings |
+| `@helpers4/json` | `parseLines` | Parses newline-delimited JSON — one JSON value per line. Covers both NDJSON (`application/x-ndjson`, |
+| `@helpers4/json` | `parseSequence` | Parses a JSON text sequence (RFC 7464, `application/json-seq`): records that each start with the ASC |
+| `@helpers4/json` | `parseStrict` | Parses strict JSON (RFC 8259) — exactly what `JSON.parse` accepts, nothing more.  **Accepts:** stand |
+| `@helpers4/json` | `safeParse` | Parses JSON permissively like parse — strict JSON, JSONC (HuJSON, JWCC) and JSON5 — but returns `nul |
+| `@helpers4/json` | `safeParseLines` | Parses newline-delimited JSON (NDJSON, JSON Lines) like parseLines, but returns `null` (or `fallback |
+| `@helpers4/json` | `safeParseSequence` | Parses a JSON text sequence (RFC 7464) like parseSequence, but returns `null` (or `fallback`) instea |
+| `@helpers4/json` | `safeParseStrict` | Parses strict JSON like parseStrict, but returns `null` (or `fallback`) instead of throwing on inval |
+| `@helpers4/json` | `stringify` | Serializes a value to JSON text — pretty-printed with 2 spaces by default, or canonical.  **Formatti |
+| `@helpers4/json` | `stringifyLines` | Serializes values as newline-delimited JSON — one compact JSON value per line, each followed by `\n` |
+| `@helpers4/json` | `stringifySequence` | Serializes values as a JSON text sequence (RFC 7464, `application/json-seq`): each value is written  |
 | `@helpers4/license` | `agree` | Whether two raw license strings agree closely enough to count as "no real conflict" — true when thei |
 | `@helpers4/license` | `families` | Groups a raw, possibly compound license string into its coarse family set — e.g. `"GPL-3.0-or-later  |
 | `@helpers4/license` | `isKnown` | Whether a raw license string resolves to at least one recognized family — `false` for an empty strin |
@@ -298,12 +316,13 @@ to install by hand.
 | `@helpers4/promise` | `defer` | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO o |
 | `@helpers4/promise` | `delay` | Creates a promise that resolves after specified delay |
 | `@helpers4/promise` | `falsyPromiseOrThrow` | Returns a function that passes through falsy data or throws an error. |
+| `@helpers4/promise` | `fetchOrThrow` | Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of resolving like any ot |
 | `@helpers4/promise` | `guard` | Wraps a function so that if it throws, a default value is returned instead of propagating the error. |
 | `@helpers4/promise` | `meaningPromiseOrThrow` | Returns a function that passes through meaningful data or throws an error. Data is considered meanin |
 | `@helpers4/promise` | `parallel` | Runs an array of async functions with a concurrency limit. At most `limit` functions will be running |
 | `@helpers4/promise` | `parallelSettle` | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of reje |
 | `@helpers4/promise` | `resolveRecord` | Resolves an array of keys into a record by calling an async mapper for each key. All mapper calls ru |
-| `@helpers4/promise` | `retry` | Retries a promise-returning function up to maxAttempts times |
+| `@helpers4/promise` | `retry` | Retries a promise-returning function until it succeeds or runs out of attempts, then rejects with th |
 | `@helpers4/promise` | `safeFetch` | Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, no |
 | `@helpers4/promise` | `settle` | Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first |
 | `@helpers4/promise` | `timeout` | Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration |
@@ -6050,6 +6069,49 @@ if (isBrowser()) {
 
 ---
 
+### `isCanonicalJson`
+
+Checks whether a value is a string that is already canonical JSON (RFC 8785, JSON
+Canonicalization Scheme) — byte for byte what `stringify(value, 'canonical')` from
+`@helpers4/json` would write for the value it holds.
+
+That means: no whitespace outside strings, object keys sorted by UTF-16 code units, no
+duplicate keys, numbers in their shortest ECMAScript form (`1`, not `1.0` or `1e0`), strings
+with only the escapes `JSON.stringify` uses, and no number beyond what a double holds exactly.
+
+```typescript
+import { isCanonicalJson } from '@helpers4/guard';
+
+isCanonicalJson(value: unknown): value is string
+```
+
+**Parameters:**
+
+- `value: unknown` — The value to check
+
+**Returns:** `value is string` — `true` if `value` is a string in canonical JSON form
+
+**Examples:**
+
+*Check canonical JSON*
+
+Sorted keys, no whitespace, shortest numbers (RFC 8785).
+
+```typescript
+isCanonicalJson('{"a":1,"b":2}') // => true
+```
+
+*Valid JSON is not always canonical*
+
+Unsorted keys, whitespace or 1.0 instead of 1 all fail.
+
+```typescript
+isCanonicalJson('{"b":2,"a":1}') // => false
+isCanonicalJson('1.0')           // => false
+```
+
+---
+
 ### `isCssColor`
 
 Checks whether a value is a syntactically-safe, plain CSS color: a hex color
@@ -6405,6 +6467,55 @@ fns.filter(isGeneratorFunction)
 
 ---
 
+### `isIJson`
+
+Checks whether a value is a string holding I-JSON (RFC 7493, the Internet JSON message
+format): strict JSON that every JSON implementation reads the same way.
+
+On top of strict JSON (see isJSON), I-JSON rejects what `JSON.parse` silently accepts
+but loses or reads inconsistently:
+- duplicate keys in an object (`JSON.parse` keeps the last one; other parsers don't)
+- a string or key holding a lone surrogate (`"\uD800"`) or a Unicode noncharacter (`"\uFFFF"`)
+- a number beyond the range of a double (`1e400`), more precise than a double holds (more than
+  17 significant digits, or a non-zero value that rounds to `0`), or an integer outside
+  +/-(2^53 - 1)
+
+RFC 7493 also recommends (but doesn't require) an object or an array at the top level — this
+guard accepts any value there.
+
+```typescript
+import { isIJson } from '@helpers4/guard';
+
+isIJson(value: unknown): value is string
+```
+
+**Parameters:**
+
+- `value: unknown` — The value to check
+
+**Returns:** `value is string` — `true` if `value` is a string holding I-JSON
+
+**Examples:**
+
+*Check an I-JSON message*
+
+Strict JSON that every implementation reads the same way.
+
+```typescript
+isIJson('{"id":1,"name":"app"}') // => true
+```
+
+*Catch what JSON.parse silently loses*
+
+JSON.parse keeps the last duplicate key and rounds big integers; I-JSON rejects both.
+
+```typescript
+isIJson('{"id":1,"id":2}')  // => false
+isIJson('9007199254740993') // => false
+```
+
+---
+
 ### `isIterable`
 
 Checks if a value is iterable (has a `Symbol.iterator` method).
@@ -6446,9 +6557,11 @@ isIterable(42)             // => false
 Checks whether a value is a string containing valid, parseable JSON text.
 
 Distinct from isJSONValue, which checks an already-parsed runtime value's *shape*
-— this checks a *string* before you parse it. Pairs naturally with `@helpers4/object`'s
-`safeJsonParse`, which is the safe-parse counterpart once you know the string is valid —
+— this checks a *string* before you parse it. Pairs naturally with `@helpers4/json`'s
+`safeParseStrict`, which is the safe-parse counterpart once you know the string is valid —
 this helper reuses it internally rather than re-implementing the parse/catch itself.
+For JSON with comments, see isJsonc; for one value per line, isNdjson; for
+canonical JSON, isCanonicalJson.
 
 ```typescript
 import { isJSON } from '@helpers4/guard';
@@ -6473,6 +6586,49 @@ isJSON('{"a":1}')
 // => true
 isJSON('not json')
 // => false
+```
+
+---
+
+### `isJson5`
+
+Checks whether a value is a string holding valid JSON5 (JSON5 1.0.0) — JSON with comments,
+trailing commas, unquoted keys, single-quoted strings, hexadecimal numbers, `Infinity`/`NaN`
+and more.
+
+JSON5 is a superset of JSONC, itself a superset of JSON, so this is `true` for everything
+isJSON and isJsonc accept. It accepts exactly what `parse` from
+`@helpers4/json` accepts — see there for the full list.
+
+```typescript
+import { isJson5 } from '@helpers4/guard';
+
+isJson5(value: unknown): value is string
+```
+
+**Parameters:**
+
+- `value: unknown` — The value to check
+
+**Returns:** `value is string` — `true` if `value` is a string holding JSON5
+
+**Examples:**
+
+*Check a JSON5 string*
+
+Unquoted keys, single quotes, hexadecimal numbers and trailing commas are JSON5.
+
+```typescript
+isJson5("{ name: 'app', retries: 0x3, }") // => true
+```
+
+*Keys that are not identifiers need quotes*
+
+A dash is not allowed in an unquoted key.
+
+```typescript
+isJson5('{ my-key: 1 }')   // => false
+isJson5('{ "my-key": 1 }') // => true
 ```
 
 ---
@@ -6509,6 +6665,50 @@ isJSONArray([1, undefined])
 
 ---
 
+### `isJsonc`
+
+Checks whether a value is a string holding valid JSONC — JSON with comments and trailing
+commas, the dialect of `tsconfig.json` and VS Code's `settings.json`, also known as HuJSON or
+JWCC (JSON With Commas and Comments).
+
+Strict JSON is valid JSONC too, so this is `true` for everything isJSON accepts, plus
+line and block comments, trailing commas before `}` and `]`, and a leading byte order mark.
+JSON5 syntax isn't JSONC — use isJson5 for that (`parse` from `@helpers4/json` reads
+both).
+
+```typescript
+import { isJsonc } from '@helpers4/guard';
+
+isJsonc(value: unknown): value is string
+```
+
+**Parameters:**
+
+- `value: unknown` — The value to check
+
+**Returns:** `value is string` — `true` if `value` is a string holding JSON or JSONC
+
+**Examples:**
+
+*Check a JSONC string*
+
+Comments and trailing commas are fine; strict JSON is too.
+
+```typescript
+isJsonc('{"a": 1, // note\n}') // => true
+isJsonc('{"a": 1}')             // => true
+```
+
+*JSON5 is not JSONC*
+
+Single quotes and unquoted keys are rejected.
+
+```typescript
+isJsonc("{'a': 1}") // => false
+```
+
+---
+
 ### `isJSONObject`
 
 Checks whether a value is a plain object whose every own value is a valid JSON value
@@ -6537,6 +6737,48 @@ isJSONObject({ a: 1, b: 'two' })
 // => true
 isJSONObject({ a: undefined })
 // => false
+```
+
+---
+
+### `isJsonSequence`
+
+Checks whether a value is a string holding a valid JSON text sequence (RFC 7464,
+`application/json-seq`): records that each start with the record separator (U+001E) and hold
+one complete, strict JSON text.
+
+It accepts exactly what `@helpers4/json`'s `parseSequence` accepts with its default options —
+every record must be valid, including the RFC's check that a top-level number, `true`, `false`
+or `null` is followed by whitespace. An empty string is valid: it holds zero records.
+
+```typescript
+import { isJsonSequence } from '@helpers4/guard';
+
+isJsonSequence(value: unknown): value is string
+```
+
+**Parameters:**
+
+- `value: unknown` — The value to check
+
+**Returns:** `value is string` — `true` if `value` is a string that `parseSequence` from `@helpers4/json` reads without error
+
+**Examples:**
+
+*Check a JSON text sequence*
+
+Records framed by the record separator U+001E.
+
+```typescript
+isJsonSequence('\u001E{"id":1}\n') // => true
+```
+
+*Detect a truncated number*
+
+RFC 7464 treats a top-level number without trailing whitespace as possibly truncated.
+
+```typescript
+isJsonSequence('\u001E12') // => false
 ```
 
 ---
@@ -6634,6 +6876,47 @@ isMap(new Map())           // => true
 isMap(new Map([['a', 1]])) // => true
 isMap({})                  // => false
 ```
+```
+
+---
+
+### `isNdjson`
+
+Checks whether a value is a string holding valid newline-delimited JSON — one strict JSON
+value per line, as NDJSON and JSON Lines (`.jsonl`) both define it.
+
+It accepts exactly what `@helpers4/json`'s `parseLines` accepts with its default options: blank
+lines are tolerated (NDJSON allows them; JSON Lines doesn't), and an empty string is valid — it
+holds zero values.
+
+```typescript
+import { isNdjson } from '@helpers4/guard';
+
+isNdjson(value: unknown): value is string
+```
+
+**Parameters:**
+
+- `value: unknown` — The value to check
+
+**Returns:** `value is string` — `true` if `value` is a string that `parseLines` from `@helpers4/json` reads without error
+
+**Examples:**
+
+*Check newline-delimited JSON*
+
+One strict JSON value per line.
+
+```typescript
+isNdjson('{"id":1}\n{"id":2}\n') // => true
+```
+
+*A value cannot span lines*
+
+Pretty-printed JSON is not NDJSON.
+
+```typescript
+isNdjson('{\n  "id": 1\n}') // => false
 ```
 
 ---
@@ -7653,6 +7936,670 @@ No two calls produce the same value.
 
 ```typescript
 uuid7() !== uuid7() // => true
+```
+
+---
+
+## json
+
+Package: `@helpers4/json`
+
+### `parse`
+
+Parses JSON permissively: strict JSON, JSONC (the dialect of `tsconfig.json` and VS Code's
+`settings.json`, also known as HuJSON or JWCC) and JSON5 — each a superset of the one before.
+
+**Accepts:**
+- everything parseStrict accepts (strict JSON, RFC 8259)
+- comments: `// …` to the end of the line, and `/* … */`
+- one trailing comma after the last item of an object or array
+- object keys without quotes, when they are ECMAScript identifiers (`{ name: 1 }`, `{ $id: 1 }`)
+- strings in single quotes, and in either quote: the escapes `\'`, `\v`, `\0` and `\xHH`, any
+  other escaped character standing for itself, and a backslash before a line break to continue
+  the string on the next line
+- numbers with a leading `+`, a leading or trailing dot (`.5`, `5.`), in hexadecimal (`0x1F`),
+  and `Infinity`, `-Infinity` and `NaN`
+- any Unicode whitespace between tokens, including a leading byte order mark (U+FEFF)
+
+**Rejects:** more than one trailing comma in a row, leading zeros (`01`), octal or binary
+numbers, unquoted keys that aren't identifiers (`{ my-key: 1 }`), raw line breaks inside a
+string, an unterminated comment or string, `undefined`, and more than one value.
+
+**On invalid input:** throws a `SyntaxError` naming the line and column of the first problem.
+
+Strict JSON goes straight to the native `JSON.parse`, and JSONC to `JSON.parse` after its
+comments are blanked out; only text that is neither goes through the JSON5 reader (written for
+helpers4 from the JSON5 1.0.0 specification), so the common cases cost nothing extra.
+
+Values are built as `JSON.parse` builds them: the last of duplicate keys wins, and a
+`__proto__` key is an own property, never the prototype. `NaN` and `Infinity` have no JSON
+representation — stringify writes them as `null`.
+
+```typescript
+import { parse } from '@helpers4/json';
+
+parse<T = unknown>(text: string): T
+```
+
+**Parameters:**
+
+- `text: string` — The JSON, JSONC or JSON5 text to parse
+
+**Returns:** `T` — The parsed value, typed as `T`
+
+**Examples:**
+
+*Parse a config file with comments*
+
+Reads JSONC — the tsconfig.json / settings.json dialect — as well as strict JSON.
+
+```typescript
+parse(`{
+  // where the build goes
+  "outDir": "dist",
+}`)
+// => { outDir: 'dist' }
+```
+
+*Invalid input throws*
+
+The SyntaxError names the line and column of the problem.
+
+```typescript
+parse('{ my-key: 1 }')
+// throws SyntaxError: a key with a dash needs quotes
+```
+
+*Parse JSON5*
+
+Unquoted keys, single quotes, hexadecimal and leading-dot numbers, trailing commas.
+
+```typescript
+parse("{ name: 'app', retries: 0x3, ratio: .5, }")
+// => { name: 'app', retries: 3, ratio: 0.5 }
+```
+
+---
+
+### `parseLines`
+
+Parses newline-delimited JSON — one JSON value per line. Covers both NDJSON
+(`application/x-ndjson`, `.ndjson`) and JSON Lines (`.jsonl`), which are the same format.
+
+**Accepts:**
+- one strict JSON value per line (each line is read like parseStrict)
+- `\n` and `\r\n` line endings
+- a trailing line break after the last value, or none
+- blank lines, skipped by default (see ParseLinesOptions.blankLines)
+- an empty text, which holds zero values
+
+**Rejects:** comments, trailing commas and any other non-strict JSON on a line, a value spread
+over several lines, and a leading byte order mark (JSON Lines forbids it).
+
+**On invalid input:** throws a `SyntaxError` naming the 1-based line number, with the
+original parse error as its `cause` — unless `invalidLines`/`blankLines` say to skip it.
+
+```typescript
+import { parseLines } from '@helpers4/json';
+
+parseLines<T = unknown>(text: string, options: ParseLinesOptions): T[]
+```
+
+**Parameters:**
+
+- `text: string` — The newline-delimited JSON text
+- `options: ParseLinesOptions` (default: `{}`) — How to handle blank and invalid lines — see ParseLinesOptions
+
+**Returns:** `T[]` — The parsed values, in line order, typed as `T[]`
+
+**Examples:**
+
+*Read NDJSON / JSON Lines*
+
+One JSON value per line; a trailing line break is optional.
+
+```typescript
+parseLines('{"id":1}\n{"id":2}\n')
+// => [{ id: 1 }, { id: 2 }]
+```
+
+*Skip a truncated last line*
+
+With invalidLines: "skip", a line cut by a crash is dropped instead of failing the whole parse.
+
+```typescript
+parseLines('{"id":1}\n{"id":', { invalidLines: 'skip' })
+// => [{ id: 1 }]
+```
+
+*Fail on an invalid line by default*
+
+The SyntaxError names the line.
+
+```typescript
+parseLines('1\n{\n3')
+// throws SyntaxError: parseLines: line 2: ...
+```
+
+---
+
+### `parseSequence`
+
+Parses a JSON text sequence (RFC 7464, `application/json-seq`): records that each start with
+the ASCII record separator (RS, U+001E) and hold one JSON text, as written by `jq --seq`.
+
+**Accepts:**
+- one strict JSON value per record (each record is read like parseStrict)
+- JSON values spread over several lines inside a record — unlike parseLines
+- several RS in a row (empty records are ignored, as the RFC's grammar allows)
+- an empty text, which holds zero records
+
+**Rejects (as invalid records):**
+- anything before the first RS
+- a record that isn't strict JSON, or holds only whitespace
+- a top-level number, `true`, `false` or `null` not followed by whitespace — RFC 7464 §2.4
+  requires dropping it, since it may have been truncated
+
+**On invalid input:** throws a `SyntaxError` naming the 1-based record number, with the
+original parse error (if any) as its `cause` — unless `invalidRecords: 'skip'` says to drop it.
+
+```typescript
+import { parseSequence } from '@helpers4/json';
+
+parseSequence<T = unknown>(text: string, options: ParseSequenceOptions): T[]
+```
+
+**Parameters:**
+
+- `text: string` — The JSON text sequence
+- `options: ParseSequenceOptions` (default: `{}`) — How to handle invalid records — see ParseSequenceOptions
+
+**Returns:** `T[]` — The parsed values, in record order, typed as `T[]`
+
+**Examples:**
+
+*Read a JSON text sequence*
+
+Each record starts with the record separator U+001E, as jq --seq writes it.
+
+```typescript
+parseSequence('\u001E{"id":1}\n\u001E{"id":2}\n')
+// => [{ id: 1 }, { id: 2 }]
+```
+
+*Recover from a truncated log*
+
+RFC 7464 recommends skipping invalid records; ask for it with invalidRecords: "skip".
+
+```typescript
+parseSequence('\u001E{"id":1}\n\u001E{"id', { invalidRecords: 'skip' })
+// => [{ id: 1 }]
+```
+
+---
+
+### `parseStrict`
+
+Parses strict JSON (RFC 8259) — exactly what `JSON.parse` accepts, nothing more.
+
+**Accepts:** standard JSON only — double-quoted strings and keys, finite decimal numbers,
+`true`/`false`/`null`, objects and arrays, surrounding whitespace.
+
+**Rejects:** comments, trailing commas, single quotes, unquoted keys, hexadecimal numbers,
+`NaN`/`Infinity`, a leading byte order mark (U+FEFF), and anything else that isn't strict JSON.
+
+**On invalid input:** throws the native `SyntaxError` from `JSON.parse`.
+
+Use it to validate input that must be strict JSON, e.g. an API payload. To also read config
+files with comments or JSON5, use parse. To never throw, use safeParseStrict.
+
+```typescript
+import { parseStrict } from '@helpers4/json';
+
+parseStrict<T = unknown>(text: string): T
+```
+
+**Parameters:**
+
+- `text: string` — The JSON text to parse
+
+**Returns:** `T` — The parsed value, typed as `T`
+
+**Examples:**
+
+*Parse strict JSON*
+
+Exactly what JSON.parse accepts, typed with a generic.
+
+```typescript
+parseStrict<{ id: number }>('{"id":1}')
+// => { id: 1 }
+```
+
+*Reject anything that is not strict JSON*
+
+Comments and trailing commas throw a SyntaxError: use it to validate an API payload.
+
+```typescript
+parseStrict('{"id":1,}')
+// throws SyntaxError
+```
+
+---
+
+### `safeParse`
+
+Parses JSON permissively like parse — strict JSON, JSONC (HuJSON, JWCC) and JSON5 —
+but returns `null` (or `fallback`) instead of throwing on invalid input.
+
+**Accepts / rejects:** exactly what parse does — see there for the full list.
+
+**On invalid input:** returns `fallback` when one is given — even `undefined`, which is told
+apart from an omitted argument — and `null` otherwise. Never throws.
+
+```typescript
+import { safeParse } from '@helpers4/json';
+
+safeParse<T = unknown>(text: string): T | null
+```
+
+**Parameters:**
+
+- `text: string` — The JSON, JSONC or JSON5 text to parse
+
+**Returns:** `T | null` — The parsed value typed as `T`, or `fallback` on invalid input
+
+```typescript
+import { safeParse } from '@helpers4/json';
+
+safeParse<T = unknown, F = T>(text: string, fallback: F): T | F
+```
+
+**Parameters:**
+
+- `text: string` — The JSON, JSONC or JSON5 text to parse
+- `fallback: F` — Value returned on invalid input. Defaults to `null` when omitted.
+
+**Returns:** `T | F` — The parsed value typed as `T`, or `fallback` on invalid input
+
+**Examples:**
+
+*Read JSONC or JSON5 without throwing*
+
+Same parsing as parse, but returns null on invalid input.
+
+```typescript
+safeParse('{"a": 1, /* note */}') // => { a: 1 }
+safeParse('{a: }')                // => null
+```
+
+*Fall back to defaults*
+
+Pass a fallback to get a usable value even when the file is broken.
+
+```typescript
+safeParse('{ broken', {})
+// => {}
+```
+
+---
+
+### `safeParseLines`
+
+Parses newline-delimited JSON (NDJSON, JSON Lines) like parseLines, but returns `null`
+(or `fallback`) instead of throwing on invalid input.
+
+**Accepts / rejects:** exactly what parseLines does, with the same
+ParseLinesOptions.
+
+**On invalid input:** returns `fallback` when one is given — even `undefined`, which is told
+apart from an omitted argument — and `null` otherwise. Never throws. To pass `options` without
+a fallback, pass `null` as the fallback.
+
+```typescript
+import { safeParseLines } from '@helpers4/json';
+
+safeParseLines<T = unknown>(text: string): T[] | null
+```
+
+**Parameters:**
+
+- `text: string` — The newline-delimited JSON text
+
+**Returns:** `T[] | null` — The parsed values typed as `T[]`, or `fallback` on invalid input
+
+```typescript
+import { safeParseLines } from '@helpers4/json';
+
+safeParseLines<T = unknown, F = T[]>(text: string, fallback: F, options?: ParseLinesOptions): F | T[]
+```
+
+**Parameters:**
+
+- `text: string` — The newline-delimited JSON text
+- `fallback: F` — Value returned on invalid input. Defaults to `null` when omitted.
+- `options?: ParseLinesOptions` — How to handle blank and invalid lines — see ParseLinesOptions
+
+**Returns:** `F | T[]` — The parsed values typed as `T[]`, or `fallback` on invalid input
+
+**Examples:**
+
+*Read NDJSON without throwing*
+
+Returns null if any line is invalid.
+
+```typescript
+safeParseLines('1\n2\n') // => [1, 2]
+safeParseLines('1\n{')   // => null
+```
+
+*Options without a fallback*
+
+Pass null as the fallback to give options.
+
+```typescript
+safeParseLines('1\n\n2', null, { blankLines: 'fail' })
+// => null (JSON Lines forbids blank lines)
+```
+
+---
+
+### `safeParseSequence`
+
+Parses a JSON text sequence (RFC 7464) like parseSequence, but returns `null` (or
+`fallback`) instead of throwing on invalid input.
+
+**Accepts / rejects:** exactly what parseSequence does, with the same
+ParseSequenceOptions.
+
+**On invalid input:** returns `fallback` when one is given — even `undefined`, which is told
+apart from an omitted argument — and `null` otherwise. Never throws. To pass `options` without
+a fallback, pass `null` as the fallback.
+
+```typescript
+import { safeParseSequence } from '@helpers4/json';
+
+safeParseSequence<T = unknown>(text: string): T[] | null
+```
+
+**Parameters:**
+
+- `text: string` — The JSON text sequence
+
+**Returns:** `T[] | null` — The parsed values typed as `T[]`, or `fallback` on invalid input
+
+```typescript
+import { safeParseSequence } from '@helpers4/json';
+
+safeParseSequence<T = unknown, F = T[]>(text: string, fallback: F, options?: ParseSequenceOptions): F | T[]
+```
+
+**Parameters:**
+
+- `text: string` — The JSON text sequence
+- `fallback: F` — Value returned on invalid input. Defaults to `null` when omitted.
+- `options?: ParseSequenceOptions` — How to handle invalid records — see ParseSequenceOptions
+
+**Returns:** `F | T[]` — The parsed values typed as `T[]`, or `fallback` on invalid input
+
+**Examples:**
+
+*Read a sequence without throwing*
+
+Returns null if any record is invalid.
+
+```typescript
+safeParseSequence('\u001E1\n') // => [1]
+safeParseSequence('\u001E{\n') // => null
+```
+
+*Provide a fallback*
+
+The fallback is returned on invalid input.
+
+```typescript
+safeParseSequence('\u001E{\n', [])
+// => []
+```
+
+---
+
+### `safeParseStrict`
+
+Parses strict JSON like parseStrict, but returns `null` (or `fallback`) instead of
+throwing on invalid input.
+
+**Accepts / rejects:** exactly what parseStrict does — standard JSON only, no comments,
+no trailing commas, no JSON5 syntax, no leading byte order mark.
+
+**On invalid input:** returns `fallback` when one is given — even `undefined`, which is told
+apart from an omitted argument — and `null` otherwise. Never throws.
+
+```typescript
+import { safeParseStrict } from '@helpers4/json';
+
+safeParseStrict<T = unknown>(text: string): T | null
+```
+
+**Parameters:**
+
+- `text: string` — The JSON text to parse
+
+**Returns:** `T | null` — The parsed value typed as `T`, or `fallback` on invalid input
+
+```typescript
+import { safeParseStrict } from '@helpers4/json';
+
+safeParseStrict<T = unknown, F = T>(text: string, fallback: F): T | F
+```
+
+**Parameters:**
+
+- `text: string` — The JSON text to parse
+- `fallback: F` — Value returned on invalid input. Defaults to `null` when omitted.
+
+**Returns:** `T | F` — The parsed value typed as `T`, or `fallback` on invalid input
+
+**Examples:**
+
+*Parse without throwing*
+
+Returns null instead of throwing on invalid input.
+
+```typescript
+safeParseStrict('{"id":1}')  // => { id: 1 }
+safeParseStrict('{"id":1,}') // => null
+```
+
+*Provide a fallback*
+
+The fallback is returned on invalid input, so the result is never null.
+
+```typescript
+safeParseStrict('oops', { id: 0 })
+// => { id: 0 }
+```
+
+---
+
+### `stringify`
+
+Serializes a value to JSON text — pretty-printed with 2 spaces by default, or canonical.
+
+**Formatting:**
+- default — indented with 2 spaces, like a hand-written config file
+- `{ indent: n }` — indented with `n` spaces (an integer from 0 to 10); `{ indent: 0 }` gives a
+  compact single line, the same as `JSON.stringify(value)`
+- `'canonical'` — canonical JSON (RFC 8785, JSON Canonicalization Scheme): object keys sorted
+  by UTF-16 code units, no whitespace at all, numbers in their shortest ECMAScript form. Two
+  equal values always give the same bytes, so the output can be hashed, signed or compared.
+  Canonical output can't be indented — the RFC fixes every byte.
+
+**Same as `JSON.stringify`:** `toJSON()` is called (a `Date` becomes its ISO string),
+`undefined`, functions and symbols are dropped from objects and become `null` in arrays, and
+`Number`/`String`/`Boolean` objects are unwrapped. Outside `'canonical'`, `NaN` and `±Infinity`
+silently become `null`, as there.
+
+**Throws** instead of returning `undefined` or dropping data silently:
+- a `TypeError` when `value` itself is `undefined`, a function or a symbol
+- a `TypeError` on a circular structure or a `BigInt` (like `JSON.stringify`)
+- with `'canonical'`, a `RangeError` on `NaN`, `±Infinity` or a string with a lone surrogate,
+  which canonical JSON can't hold
+- a `RangeError` when `indent` isn't an integer from 0 to 10
+
+The output is strict JSON, so it is also valid JSONC and JSON5.
+
+```typescript
+import { stringify } from '@helpers4/json';
+
+stringify(value: unknown, formatting: StringifyFormatting): string
+```
+
+**Parameters:**
+
+- `value: unknown` — The value to serialize
+- `formatting: StringifyFormatting` (default: `{}`) — `{ indent }` (default `{ indent: 2 }`) or `'canonical'` — see StringifyFormatting
+
+**Returns:** `string` — The JSON text
+
+**Examples:**
+
+*Pretty-print by default*
+
+Indented with 2 spaces, like a hand-written config file.
+
+```typescript
+stringify({ name: 'app', tags: ['a'] })
+// => '{\n  "name": "app",\n  "tags": [\n    "a"\n  ]\n}'
+```
+
+*Compact output*
+
+indent: 0 gives a single line, like JSON.stringify(value).
+
+```typescript
+stringify({ b: 1, a: 2 }, { indent: 0 })
+// => '{"b":1,"a":2}'
+```
+
+*Canonical JSON (RFC 8785)*
+
+Sorted keys and no whitespace: equal values always give the same bytes, ready to hash or sign.
+
+```typescript
+stringify({ b: 1, a: 2 }, 'canonical')
+// => '{"a":2,"b":1}'
+```
+
+---
+
+### `stringifyLines`
+
+Serializes values as newline-delimited JSON — one compact JSON value per line, each followed
+by `\n`. The output is both NDJSON and JSON Lines (`.jsonl`), which are the same format.
+
+**Formatting:**
+- default — each value compact, like `JSON.stringify(value)`
+- `'canonical'` — each value as canonical JSON (RFC 8785): sorted keys, reproducible bytes, for
+  hashing or diffing logs line by line
+
+Indentation isn't available: a line break inside a value would split it across lines. String
+values can't break a line either — `JSON.stringify` escapes `\n` and `\r` inside them.
+
+**Output:** every value is followed by `\n`, including the last one (NDJSON requires it, and
+JSON Lines recommends it, so files can be concatenated). An empty array gives `''`.
+
+**Throws** a `TypeError` when `values` isn't an array, or when one of them has no JSON
+representation (`undefined`, a function, a symbol, a `BigInt`, a circular structure) — rather
+than writing a line that would read back as something else. With `'canonical'`, also a
+`RangeError` on `NaN`, `±Infinity` or a lone surrogate (see stringify).
+
+```typescript
+import { stringifyLines } from '@helpers4/json';
+
+stringifyLines(values: readonly unknown[], formatting?: "canonical"): string
+```
+
+**Parameters:**
+
+- `values: readonly unknown[]` — The values to write, one per line
+- `formatting?: "canonical"` — `'canonical'` for canonical JSON lines; compact JSON by default
+
+**Returns:** `string` — The newline-delimited JSON text
+
+**Examples:**
+
+*Write NDJSON / JSON Lines*
+
+One compact value per line, each followed by a line break.
+
+```typescript
+stringifyLines([{ id: 1 }, { id: 2 }])
+// => '{"id":1}\n{"id":2}\n'
+```
+
+*Canonical lines*
+
+Each line in canonical form, so a log can be hashed or diffed line by line.
+
+```typescript
+stringifyLines([{ b: 1, a: 2 }], 'canonical')
+// => '{"a":2,"b":1}\n'
+```
+
+---
+
+### `stringifySequence`
+
+Serializes values as a JSON text sequence (RFC 7464, `application/json-seq`): each value is
+written as the ASCII record separator (RS, U+001E), the compact JSON text, then `\n` — the
+exact framing the RFC requires of encoders, as `jq --seq` writes it.
+
+**Formatting:**
+- default — each value compact, like `JSON.stringify(value)`
+- `'canonical'` — each value as canonical JSON (RFC 8785): sorted keys, reproducible bytes
+
+Indentation isn't offered, for symmetry with stringifyLines: the trailing `\n` is what
+lets a reader detect a truncated top-level number, `true`, `false` or `null` (RFC 7464 §2.4).
+
+**Output:** an empty array gives `''`.
+
+**Throws** a `TypeError` when `values` isn't an array, or when one of them has no JSON
+representation (`undefined`, a function, a symbol, a `BigInt`, a circular structure). With
+`'canonical'`, also a `RangeError` on `NaN`, `±Infinity` or a lone surrogate (see
+stringify).
+
+```typescript
+import { stringifySequence } from '@helpers4/json';
+
+stringifySequence(values: readonly unknown[], formatting?: "canonical"): string
+```
+
+**Parameters:**
+
+- `values: readonly unknown[]` — The values to write, one per record
+- `formatting?: "canonical"` — `'canonical'` for canonical JSON records; compact JSON by default
+
+**Returns:** `string` — The JSON text sequence
+
+**Examples:**
+
+*Write a JSON text sequence*
+
+Each value is framed as RS, JSON text, line feed (RFC 7464).
+
+```typescript
+stringifySequence([{ id: 1 }, 2])
+// => '\u001E{"id":1}\n\u001E2\n'
+```
+
+*Canonical records*
+
+Each record in canonical form.
+
+```typescript
+stringifySequence([{ b: 1, a: 2 }], 'canonical')
+// => '\u001E{"a":2,"b":1}\n'
 ```
 
 ---
@@ -11175,6 +12122,52 @@ Promise.resolve('oops').then(falsyPromiseOrThrow('Should be empty'))
 
 ---
 
+### `fetchOrThrow`
+
+Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of
+resolving like any other response — the throwing counterpart to `safeFetch`, for when a
+failed request should fail loud. Network errors reject as `fetch` itself rejects them.
+
+```typescript
+import { fetchOrThrow } from '@helpers4/promise';
+
+fetchOrThrow(input: URL | RequestInfo, init?: RequestInit): Promise<Response>
+```
+
+**Parameters:**
+
+- `input: URL | RequestInfo` — URL or `Request` object passed to `fetch`
+- `init?: RequestInit` — Optional `RequestInit` options passed to `fetch`
+
+**Returns:** `Promise<Response>` — The response, body unread, when its status is 2xx
+
+**Examples:**
+
+*Fail loud on a non-2xx response*
+
+Resolves with the response on success, rejects with an HttpError otherwise.
+
+```typescript
+const response = await fetchOrThrow('https://api.example.com/repo');
+const repo = await response.json();
+```
+
+*Handle a specific status*
+
+HttpError carries the status, the URL and the response, so a caller can branch on it.
+
+```typescript
+try {
+  await fetchOrThrow('https://api.example.com/missing');
+} catch (error) {
+  if (error instanceof HttpError && error.status === 404) {
+    // error.message => 'HTTP 404 Not Found: https://api.example.com/missing'
+  }
+}
+```
+
+---
+
 ### `guard`
 
 Wraps a function so that if it throws, a default value is returned instead of propagating the error.
@@ -11405,19 +12398,37 @@ const stars = await resolveRecord(
 
 ### `retry`
 
-Retries a promise-returning function up to maxAttempts times
+Retries a promise-returning function until it succeeds or runs out of attempts, then rejects
+with the last error.
+
+Takes either `(fn, maxAttempts, delayMs)` for a fixed delay between attempts, or
+`(fn, options)` to only retry some errors or to make the delay grow between attempts — see
+RetryOptions.
 
 ```typescript
 import { retry } from '@helpers4/promise';
 
-retry<T>(fn: function, maxAttempts: number, delayMs: number): Promise<T>
+retry<T>(fn: function, maxAttempts?: number, delayMs?: number): Promise<T>
 ```
 
 **Parameters:**
 
 - `fn: function` — The function to retry
-- `maxAttempts: number` (default: `3`) — Maximum number of attempts
-- `delayMs: number` (default: `1000`) — Delay between attempts in milliseconds
+- `maxAttempts?: number`
+- `delayMs?: number` — Delay between attempts in milliseconds (default `1000`), when `maxAttemptsOrOptions` is a number
+
+**Returns:** `Promise<T>` — Promise that resolves with the result or rejects with the last error
+
+```typescript
+import { retry } from '@helpers4/promise';
+
+retry<T>(fn: function, options: RetryOptions): Promise<T>
+```
+
+**Parameters:**
+
+- `fn: function` — The function to retry
+- `options: RetryOptions`
 
 **Returns:** `Promise<T>` — Promise that resolves with the result or rejects with the last error
 
@@ -11435,6 +12446,36 @@ await retry(() => {
   return Promise.resolve('success');
 }, 3, 10)
 // => 'success' (after 2 failures)
+```
+
+*Exponential backoff*
+
+Pass a function as delayMs to make the wait grow after each failed attempt.
+
+```typescript
+const waits: number[] = [];
+await retry(() => Promise.reject(new Error('down')), {
+  attempts: 4,
+  delayMs: (attempt) => {
+    const ms = 2 ** (attempt - 1); // 1, 2, 4
+    waits.push(ms);
+    return ms;
+  },
+}).catch(() => {});
+// waits => [1, 2, 4]
+```
+
+*Only retry some errors*
+
+shouldRetry rethrows anything it rejects at once, without waiting or retrying.
+
+```typescript
+let attempt = 0;
+await retry(() => {
+  attempt++;
+  return Promise.reject(new Error('invalid input'));
+}, { attempts: 5, delayMs: 10, shouldRetry: (error) => /timeout/.test(String(error)) })
+// => rejects with 'invalid input' after a single attempt
 ```
 
 ---
@@ -14554,6 +15595,11 @@ numeric components, then letter suffix, then suffix segment (`alpha`/`beta`/`pre
 below the plain release, `p` sorts above it), then `-r` revision. Note the key difference
 from SemVer: a `-r` revision is *not* a prerelease and sorts *above* the base version.
 
+**`'debian'`** — dpkg/apt ordering (see ParsedDebianVersion): epoch first, then the
+upstream version, then the Debian revision, each compared like dpkg's `verrevcmp` — digit runs
+numerically, everything else character by character with `~` sorting before everything,
+even the end of the string (`1.0~rc1` < `1.0`). Throws a `SyntaxError` on an invalid version.
+
 ```typescript
 import { compare } from '@helpers4/version';
 
@@ -14598,6 +15644,17 @@ compare('1.2.3', '1.2.3-r1', 'gentoo')
 // => -1
 ```
 
+*Debian: ~ sorts before the release*
+
+dpkg ordering: a '~' sorts before everything, even the end of the string, and the epoch before ':' wins over the rest.
+
+```typescript
+compare('1.0~rc1-1', '1.0-1', 'debian')
+// => -1
+compare('1:0.9', '2.0', 'debian')
+// => 1
+```
+
 ---
 
 ### `increment`
@@ -14612,6 +15669,9 @@ dropping any prerelease/build metadata.
 `patch` → 3rd — Gentoo's `components` array can be any length, but the first three follow
 the same positional convention as SemVer), zeroing everything after it and dropping the
 letter/suffixes/revision.
+
+**`'debian'`** — throws: a Debian upstream version is free-form, with no major/minor/patch
+structure to bump.
 
 ```typescript
 import { increment } from '@helpers4/version';
@@ -14720,6 +15780,9 @@ vocabulary is fixed by spec, unlike SemVer's arbitrary prerelease identifiers. N
 prerelease suffix bumps the last numeric component instead of specifically `patch`, since
 Gentoo's `components` array can be any length.
 
+**`'debian'`** — throws: a Debian upstream version is free-form, with no prerelease counter
+to bump.
+
 ```typescript
 import { incrementPrerelease } from '@helpers4/version';
 
@@ -14812,6 +15875,10 @@ Returns `true` when the version string has a prerelease suffix, according to the
 **`'gentoo'`** — `true` when the last suffix segment is `alpha`/`beta`/`pre`/`rc` (these sort
 below the plain release). A `p` suffix or a `-r` revision don't count — `p` sorts *above* the
 release, and a revision isn't a prerelease of anything, it's a rebuild of the same version.
+
+**`'debian'`** — `true` when the upstream part contains `~`, the Debian convention for a
+version that must sort before the final release (`1.0~rc1`). A `~` in the revision doesn't
+count — `1.0-1~bpo12+1` is a backport of the `1.0` release, not a prerelease of it.
 
 ```typescript
 import { isPrerelease } from '@helpers4/version';
@@ -14906,6 +15973,10 @@ Parses a version string into its components, according to the given `scheme`.
 **`'gentoo'`** — Gentoo/Portage ebuild versions (see ParsedGentooVersion). Throws a
 `SyntaxError` if `version` doesn't match the grammar (unlike `'semver'`, which never throws).
 
+**`'debian'`** — Debian/dpkg versions, `[epoch:]upstream[-revision]` (see
+ParsedDebianVersion). Throws a `SyntaxError` on whitespace, a non-numeric epoch, an
+empty upstream or revision, or a character Debian Policy doesn't allow.
+
 ```typescript
 import { parse } from '@helpers4/version';
 
@@ -14918,7 +15989,7 @@ parse(version: string, scheme?: "semver"): ParsedSemVerVersion
 - `scheme?: "semver"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `ParsedSemVerVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
@@ -14932,7 +16003,21 @@ parse(version: string, scheme: "gentoo"): ParsedGentooVersion
 - `scheme: "gentoo"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `ParsedGentooVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
+
+```typescript
+import { parse } from '@helpers4/version';
+
+parse(version: string, scheme: "debian"): ParsedDebianVersion
+```
+
+**Parameters:**
+
+- `version: string` — Version string to parse
+- `scheme: "debian"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
+
+**Returns:** `ParsedDebianVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
@@ -14946,7 +16031,7 @@ parse(version: string, scheme: VersionScheme): AnyParsedVersion
 - `scheme: VersionScheme` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `AnyParsedVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
@@ -14960,7 +16045,7 @@ parse(version: undefined, scheme?: VersionScheme): undefined
 - `scheme?: VersionScheme` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `undefined` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
@@ -14974,7 +16059,7 @@ parse(version: null, scheme?: VersionScheme): null
 - `scheme?: VersionScheme` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `null` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
 
 **Examples:**
 
@@ -15005,6 +16090,15 @@ parse('1.2.3b_rc1-r2', 'gentoo')
 // => { scheme: 'gentoo', components: [1, 2, 3], letter: 'b', suffixes: [{ type: 'rc', number: 1 }], revision: 2 }
 ```
 
+*Parse a Debian version*
+
+Splits epoch, upstream version and Debian revision the way dpkg does.
+
+```typescript
+parse('1:2.30~rc1-3ubuntu2', 'debian')
+// => { scheme: 'debian', epoch: 1, upstream: '2.30~rc1', revision: '3ubuntu2' }
+```
+
 ---
 
 ### `ParsedVersion`
@@ -15028,6 +16122,12 @@ same major), `~` (tilde, patch updates within the same major.minor), or an exact
 ordering (see compare). `^`/`~` throw: Portage's own atom syntax gives those
 characters different, unrelated meanings, so silently reusing SemVer's semantics for them
 would be actively misleading rather than merely unsupported.
+
+**`'debian'`** — dpkg relation operators, as written in `Depends:` fields: `<<` (strictly
+earlier), `<=`, `=`, `>=`, `>>` (strictly later), or an exact match, compared per dpkg ordering
+(see compare); whitespace after the operator is allowed (`>= 1.0`). The obsolete
+single-character `<`/`>` throw — dpkg reads them as `<=`/`>=`, the opposite of what they look
+like — and so do `^`/`~`.
 
 ```typescript
 import { satisfiesRange } from '@helpers4/version';
@@ -15081,6 +16181,15 @@ satisfiesRange('1.2.3', '>=1.2.0', 'gentoo')
 // => true
 ```
 
+*Debian relation operators*
+
+Uses dpkg's '<<', '<=', '=', '>=' and '>>', as written in a Depends: field.
+
+```typescript
+satisfiesRange('1.0~rc1-1', '<< 1.0', 'debian')
+// => true
+```
+
 ---
 
 ### `stringify`
@@ -15090,7 +16199,8 @@ the object's own `scheme` field, not passed separately (a `ParsedGentooVersion` 
 stringify as Gentoo, so there's nothing to disambiguate).
 
 This is the inverse of parse:
-`stringify(parse(v)) === stripV(v)` for any valid version string `v`, in either scheme.
+`stringify(parse(v)) === stripV(v)` for any valid version string `v`, in any scheme — up to
+canonicalization (a Debian `0:` epoch is dropped, a Gentoo `_beta0` becomes `_beta`).
 
 ```typescript
 import { stringify } from '@helpers4/version';

@@ -3,7 +3,7 @@ title: "satisfiesRange"
 sidebar:
   label: "satisfiesRange"
 description: "Checks if a version satisfies a range, according to the given `scheme` (simple implementation — see each scheme's own d…"
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Checks if a version satisfies a range, according to the given `scheme` (simple
@@ -16,6 +16,12 @@ same major), `~` (tilde, patch updates within the same major.minor), or an exact
 ordering (see compare). `^`/`~` throw: Portage's own atom syntax gives those
 characters different, unrelated meanings, so silently reusing SemVer's semantics for them
 would be actively misleading rather than merely unsupported.
+
+**`'debian'`** — dpkg relation operators, as written in `Depends:` fields: `<<` (strictly
+earlier), `<=`, `=`, `>=`, `>>` (strictly later), or an exact match, compared per dpkg ordering
+(see compare); whitespace after the operator is allowed (`>= 1.0`). The obsolete
+single-character `<`/`>` throw — dpkg reads them as `<=`/`>=`, the opposite of what they look
+like — and so do `^`/`~`.
 
 > Available since v1.9.0
 
@@ -84,6 +90,15 @@ satisfiesRange('1.2.3', '>=1.2.0', 'gentoo')
 // => true
 ```
 
+### Debian relation operators
+
+Uses dpkg's '<<', '<=', '=', '>=' and '>>', as written in a Depends: field.
+
+```ts
+satisfiesRange('1.0~rc1-1', '<< 1.0', 'debian')
+// => true
+```
+
 ## Related Types
 
 ### `VersionScheme`
@@ -92,7 +107,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo'
+type VersionScheme = 'semver' | 'gentoo' | 'debian'
 ```
 
 ## Source

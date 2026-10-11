@@ -3,7 +3,7 @@ title: "parse"
 sidebar:
   label: "parse"
 description: "Parses a version string into its components, according to the given `scheme`."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Parses a version string into its components, according to the given `scheme`.
@@ -16,6 +16,10 @@ Parses a version string into its components, according to the given `scheme`.
 
 **`'gentoo'`** — Gentoo/Portage ebuild versions (see ParsedGentooVersion). Throws a
 `SyntaxError` if `version` doesn't match the grammar (unlike `'semver'`, which never throws).
+
+**`'debian'`** — Debian/dpkg versions, `[epoch:]upstream[-revision]` (see
+ParsedDebianVersion). Throws a `SyntaxError` on whitespace, a non-numeric epoch, an
+empty upstream or revision, or a character Debian Policy doesn't allow.
 
 > Available since v2.0.0
 
@@ -44,7 +48,7 @@ parse(version: string, scheme?: "semver"): ParsedSemVerVersion
 ## Returns
 
 `ParsedSemVerVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
 
 ## Examples
 
@@ -75,7 +79,34 @@ parse('1.2.3b_rc1-r2', 'gentoo')
 // => { scheme: 'gentoo', components: [1, 2, 3], letter: 'b', suffixes: [{ type: 'rc', number: 1 }], revision: 2 }
 ```
 
+### Parse a Debian version
+
+Splits epoch, upstream version and Debian revision the way dpkg does.
+
+```ts
+parse('1:2.30~rc1-3ubuntu2', 'debian')
+// => { scheme: 'debian', epoch: 1, upstream: '2.30~rc1', revision: '3ubuntu2' }
+```
+
 ## Related Types
+
+### `ParsedDebianVersion`
+
+A version parsed according to Debian Policy §5.6.12 (the `Version` field dpkg and apt
+order): `[epoch:]upstream[-revision]`, e.g. `1:2.30~rc1-3ubuntu2`.
+
+The upstream part is kept as a string: Debian puts no structure on it beyond its sort order
+(digit runs compare numerically, `~` sorts before everything), so there's no
+major/minor/patch to extract.
+
+```ts
+interface ParsedDebianVersion {
+  epoch: number;
+  revision: string;
+  scheme: "debian";
+  upstream: string;
+}
+```
 
 ### `ParsedGentooVersion`
 
@@ -122,7 +153,8 @@ interface ParsedSemVerVersion {
 
 A version parsed by parse, in whichever scheme it was parsed as — narrow on the
 `scheme` field to access scheme-specific properties (`major`/`minor`/`patch` for `'semver'`,
-`components`/`letter`/`suffixes`/`revision` for `'gentoo'`).
+`components`/`letter`/`suffixes`/`revision` for `'gentoo'`, `epoch`/`upstream`/`revision` for
+`'debian'`).
 
 Deliberately **not** named `ParsedVersion`: that name has been public API since 2.0.0 for
 the flat SemVer-only shape (`.major`/`.minor`/`.patch` directly, no narrowing needed), and
@@ -131,7 +163,7 @@ reads those fields without narrowing first — a real compatibility break with n
 `MIGRATION.md` entry, since this repo ties breaking changes to major-version bumps.
 
 ```ts
-type AnyParsedVersion = ParsedSemVerVersion | ParsedGentooVersion
+type AnyParsedVersion = ParsedSemVerVersion | ParsedGentooVersion | ParsedDebianVersion
 ```
 
 ### `VersionScheme`
@@ -140,7 +172,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo'
+type VersionScheme = 'semver' | 'gentoo' | 'debian'
 ```
 
 ### `GentooSuffix`
@@ -163,6 +195,17 @@ sorts *above* it — see ParsedGentooVersion.
 ```ts
 type GentooSuffixType = 'alpha' | 'beta' | 'pre' | 'rc' | 'p'
 ```
+
+:::caution[Name conflict]
+A helper named `parse` also exists in [`@helpers4/json`](../json/parse/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { parse as parse4version } from '@helpers4/version';
+import { parse as parse4json } from '@helpers4/json';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
 
 ## Source
 

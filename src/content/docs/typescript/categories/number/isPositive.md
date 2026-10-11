@@ -3,7 +3,7 @@ title: "isPositive"
 sidebar:
   label: "isPositive"
 description: "Checks if a value is a number greater than 0."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Checks if a value is a number greater than 0.

@@ -3,7 +3,7 @@ title: "increment"
 sidebar:
   label: "increment"
 description: "Increments a version, according to the given `scheme`."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Increments a version, according to the given `scheme`.
@@ -16,6 +16,9 @@ dropping any prerelease/build metadata.
 `patch` → 3rd — Gentoo's `components` array can be any length, but the first three follow
 the same positional convention as SemVer), zeroing everything after it and dropping the
 letter/suffixes/revision.
+
+**`'debian'`** — throws: a Debian upstream version is free-form, with no major/minor/patch
+structure to bump.
 
 > Available since v1.9.0
 
@@ -100,7 +103,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo'
+type VersionScheme = 'semver' | 'gentoo' | 'debian'
 ```
 
 ## Source

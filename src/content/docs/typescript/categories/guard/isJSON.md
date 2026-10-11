@@ -3,15 +3,17 @@ title: "isJSON"
 sidebar:
   label: "isJSON"
 description: "Checks whether a value is a string containing valid, parseable JSON text."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Checks whether a value is a string containing valid, parseable JSON text.
 
 Distinct from isJSONValue, which checks an already-parsed runtime value's *shape*
-— this checks a *string* before you parse it. Pairs naturally with `@helpers4/object`'s
-`safeJsonParse`, which is the safe-parse counterpart once you know the string is valid —
+— this checks a *string* before you parse it. Pairs naturally with `@helpers4/json`'s
+`safeParseStrict`, which is the safe-parse counterpart once you know the string is valid —
 this helper reuses it internally rather than re-implementing the parse/catch itself.
+For JSON with comments, see isJsonc; for one value per line, isNdjson; for
+canonical JSON, isCanonicalJson.
 
 > Available since v3.0.3
 

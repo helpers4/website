@@ -3,7 +3,7 @@ title: "withoutTrailingSlash"
 sidebar:
   label: "withoutTrailingSlash"
 description: "Removes the trailing slash `/` from the given URL if it is present."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Removes the trailing slash `/` from the given URL if it is present.

@@ -3,7 +3,7 @@ title: "safeFetch"
 sidebar:
   label: "safeFetch"
 description: "Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, non-OK status, or par…"
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Wraps `fetch` with built-in error handling: returns `null` when the
@@ -76,7 +76,7 @@ Options for safeFetch.
 
 ```ts
 interface SafeFetchOptions {
-  parse?: "text" | "json";
+  parse?: "json" | "text";
 }
 ```
 

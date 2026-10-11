@@ -3,7 +3,7 @@ title: "stripV"
 sidebar:
   label: "stripV"
 description: "Strip the leading \"v\" from a version string if it exists."
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Strip the leading "v" from a version string if it exists.

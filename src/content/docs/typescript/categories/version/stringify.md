@@ -3,7 +3,7 @@ title: "stringify"
 sidebar:
   label: "stringify"
 description: "Reconstructs a version string from a AnyParsedVersion object — the scheme is read from the object's own `scheme` field,…"
-version: "3.1.2"
+version: "3.1.3"
 ---
 
 Reconstructs a version string from a AnyParsedVersion object — the scheme is read from
@@ -11,7 +11,8 @@ the object's own `scheme` field, not passed separately (a `ParsedGentooVersion` 
 stringify as Gentoo, so there's nothing to disambiguate).
 
 This is the inverse of parse:
-`stringify(parse(v)) === stripV(v)` for any valid version string `v`, in either scheme.
+`stringify(parse(v)) === stripV(v)` for any valid version string `v`, in any scheme — up to
+canonicalization (a Debian `0:` epoch is dropped, a Gentoo `_beta0` becomes `_beta`).
 
 > Available since v2.0.0
 
@@ -78,7 +79,8 @@ stringify({ scheme: 'gentoo', components: [1, 2, 3], letter: 'b', suffixes: [{ t
 
 A version parsed by parse, in whichever scheme it was parsed as — narrow on the
 `scheme` field to access scheme-specific properties (`major`/`minor`/`patch` for `'semver'`,
-`components`/`letter`/`suffixes`/`revision` for `'gentoo'`).
+`components`/`letter`/`suffixes`/`revision` for `'gentoo'`, `epoch`/`upstream`/`revision` for
+`'debian'`).
 
 Deliberately **not** named `ParsedVersion`: that name has been public API since 2.0.0 for
 the flat SemVer-only shape (`.major`/`.minor`/`.patch` directly, no narrowing needed), and
@@ -87,8 +89,19 @@ reads those fields without narrowing first — a real compatibility break with n
 `MIGRATION.md` entry, since this repo ties breaking changes to major-version bumps.
 
 ```ts
-type AnyParsedVersion = ParsedSemVerVersion | ParsedGentooVersion
+type AnyParsedVersion = ParsedSemVerVersion | ParsedGentooVersion | ParsedDebianVersion
 ```
+
+:::caution[Name conflict]
+A helper named `stringify` also exists in [`@helpers4/json`](../json/stringify/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { stringify as stringify4version } from '@helpers4/version';
+import { stringify as stringify4json } from '@helpers4/json';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
 
 ## Source
 
