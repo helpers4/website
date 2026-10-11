@@ -63,9 +63,13 @@ function readCargo() {
   if (!version) fail('no version in Cargo.toml');
   const msrv = toml.match(/^rust-version = "([^"]+)"/m)?.[1];
   const features = toml.match(/^\[features\]\n([\s\S]*?)(?:\n\[|(?![\s\S]))/m)?.[1] ?? '';
-  const names = [...features.matchAll(/^([a-z0-9_-]+) = \[[^\]]*\]$/gm)].map((m) => m[1]).filter((n) => n !== 'default');
-  const defaults = toml.match(/^default = \[([^\]]*)\]/m)?.[1].match(/"([^"]+)"/g)?.map((s) => s.replaceAll('"', '')) ?? [];
-  return { version, msrv, features: names, defaults };
+  const quoted = (list) => list.match(/"([^"]+)"/g)?.map((s) => s.replaceAll('"', '')) ?? [];
+  // name → what it enables (`["string", "dep:unicode-normalization"]`)
+  const enables = new Map(
+    [...features.matchAll(/^([a-z0-9_-]+) = \[([^\]]*)\]$/gm)].filter((m) => m[1] !== 'default').map((m) => [m[1], quoted(m[2])]),
+  );
+  const defaults = quoted(toml.match(/^default = \[([^\]]*)\]/m)?.[1] ?? '');
+  return { version, msrv, features: [...enables.keys()], enables, defaults };
 }
 
 /** Lines of a `///` (or `//!`) block, prefix removed. */
@@ -82,8 +86,9 @@ function moduleDoc(source) {
 }
 
 /** `pub use file::Item;` lines, in file order. */
+/** `pub use file::name;` lines, with the sub-feature of a `#[cfg(feature = "…")]` line right above. */
 function reexports(source) {
-  return [...source.matchAll(/^pub use (\w+)::(\w+);$/gm)].map((m) => ({ file: m[1], name: m[2] }));
+  return [...source.matchAll(/^(?:#\[cfg\(feature = "([a-z0-9_-]+)"\)\]\n)?pub use (\w+)::(\w+);$/gm)].map((m) => ({ feature: m[1], file: m[2], name: m[3] }));
 }
 
 /** The `///` block directly above line `index`, skipping attributes. */
@@ -180,14 +185,17 @@ function parseItem(source, name, module, file) {
   };
 }
 
-function parseModule(name, features) {
+function parseModule(name, features, subFeatures) {
   const source = read(`src/${name}/mod.rs`);
   const doc = moduleDoc(source);
   if (doc.length === 0) fail(`src/${name}/mod.rs has no module documentation`);
   const exports = reexports(source);
   if (exports.length === 0) fail(`src/${name}/mod.rs re-exports nothing`);
   if (!features.includes(name)) fail(`module \`${name}\` has no Cargo feature of the same name`);
-  const all = exports.map(({ file, name: item }) => parseItem(read(`src/${name}/${file}.rs`), item, name, file));
+  const all = exports.map(({ feature, file, name: item }) => {
+    if (feature && !subFeatures.includes(feature)) fail(`${name}::${item} is gated on \`${feature}\`, which is not a sub-feature of \`${name}\``);
+    return { ...parseItem(read(`src/${name}/${file}.rs`), item, name, file), feature: feature ?? name };
+  });
   // An error type has no page of its own: it is documented on the page of each helper that returns it.
   const errors = all.filter(isErrorType);
   const items = all.filter((item) => !isErrorType(item));
@@ -195,7 +203,7 @@ function parseModule(name, features) {
     error.owners = items.filter((item) => returns(item, error.name)).map((item) => item.name);
     if (error.owners.length === 0) fail(`${name}::${error.name} is an error type that no public helper returns`);
   }
-  return { name, doc, items, errors };
+  return { name, doc, items, errors, subFeatures };
 }
 
 /** `FooError` structs and enums: documented on their helpers' pages, not on their own. */
@@ -209,15 +217,21 @@ function returns(item, typeName) {
   return item.kind === 'fn' ? mentions(item) : (item.methods ?? []).some(mentions);
 }
 
-function readModules(features) {
+/**
+ * One Cargo feature per module, plus opt-in sub-features named `<module>-<what>` that enable their
+ * module and gate the helpers needing a dependency the rest of the module does without
+ * (`string-diacritics` for `string::remove_diacritics`).
+ */
+function readModules({ features, enables }) {
   const dirs = fs
     .readdirSync(path.join(repoPath, 'src'), { withFileTypes: true })
     .filter((d) => d.isDirectory() && fs.existsSync(path.join(repoPath, 'src', d.name, 'mod.rs')))
     .map((d) => d.name)
     .sort();
-  const missing = features.filter((f) => !dirs.includes(f));
+  const parentOf = (f) => dirs.find((d) => f.startsWith(`${d}-`) && enables.get(f).includes(d));
+  const missing = features.filter((f) => !dirs.includes(f) && !parentOf(f));
   if (missing.length > 0) fail(`Cargo features without a module: ${missing.join(', ')}`);
-  return dirs.map((name) => parseModule(name, features));
+  return dirs.map((name) => parseModule(name, features, features.filter((f) => parentOf(f) === name)));
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -445,7 +459,29 @@ function cell(text) {
 // Pages
 // ---------------------------------------------------------------------------------------------
 
-function installBlock(module, cargo) {
+/** The optional dependencies a feature pulls in (`dep:name`). */
+function addedDependencies(feature, cargo) {
+  return (cargo.enables.get(feature) ?? []).filter((e) => e.startsWith('dep:')).map((e) => `\`${e.slice(4)}\``);
+}
+
+function installBlock(feature, cargo, module = feature) {
+  if (feature !== module) {
+    const deps = addedDependencies(feature, cargo);
+    return [
+      `Cargo feature \`${feature}\` (opt-in): it enables \`${module}\`${deps.length > 0 ? ` and adds the ${deps.join(', ')} dependency` : ''}. On top of the default features:`,
+      '',
+      '```sh',
+      `cargo add helpers4 --features ${feature}`,
+      '```',
+      '',
+      'or with only this module:',
+      '',
+      '```toml',
+      '[dependencies]',
+      `helpers4 = { version = "${cargo.version}", default-features = false, features = ["${feature}"] }`,
+      '```',
+    ].join('\n');
+  }
   const status = cargo.defaults.includes(module) ? 'enabled by default' : 'opt-in';
   return [
     `Cargo feature \`${module}\` (${status}). To compile only this module:`,
@@ -511,7 +547,7 @@ function callableBody(fn, link, { level, cargo }) {
 }
 
 function importBlock(item, cargo) {
-  return [`## Import`, '', '```rust', `use helpers4::${item.module}::${item.name};`, '```', '', installBlock(item.module, cargo), ''].join('\n');
+  return [`## Import`, '', '```rust', `use helpers4::${item.module}::${item.name};`, '```', '', installBlock(item.feature, cargo, item.module), ''].join('\n');
 }
 
 function sourceBlock(item, cargo) {
@@ -575,6 +611,11 @@ function modulePage(mod, index, linker, cargo) {
       '',
       installBlock(mod.name, cargo),
       '',
+      ...mod.subFeatures.flatMap((f) => {
+        const gated = mod.items.filter((item) => item.feature === f).map((item) => `[\`${item.name}\`](/rust/modules/${mod.name}/${pageSlug(item.name)}/)`);
+        const deps = addedDependencies(f, cargo);
+        return [`Opt-in sub-feature \`${f}\`${deps.length > 0 ? ` (adds the ${deps.join(', ')} dependency)` : ''}: ${gated.join(', ')}.`, ''];
+      }),
       `Import path: \`helpers4::${mod.name}\`.`,
       '',
       '## Items',
@@ -603,7 +644,7 @@ function modulePage(mod, index, linker, cargo) {
 
 function overviewPage(modules, cargo) {
   const rows = modules
-    .map((m) => `| [\`${m.name}\`](/rust/modules/${m.name}/) | \`${m.name}\` | ${cell(inline(firstSentence(m.doc)))} | ${m.items.length + m.errors.length} |`)
+    .map((m) => `| [\`${m.name}\`](/rust/modules/${m.name}/) | ${[m.name, ...m.subFeatures].map((f) => `\`${f}\``).join(', ')} | ${cell(inline(firstSentence(m.doc)))} | ${m.items.length + m.errors.length} |`)
     .join('\n');
   return (
     frontmatter({
@@ -614,6 +655,9 @@ function overviewPage(modules, cargo) {
     [
       ...(isPreOne(cargo) ? [PRE_1_NOTICE, ''] : []),
       `The \`helpers4\` crate is organised in ${modules.length} modules. **Each module is a Cargo feature of the same name**, and all of them are enabled by default (\`cargo add helpers4\`).`,
+      ...(modules.some((m) => m.subFeatures.length > 0)
+        ? ['', 'A helper that needs a dependency the rest of its module does without sits behind an opt-in sub-feature named `<module>-<what>` (listed after its module below), so the default features stay dependency-free.']
+        : []),
       '',
       '## Install only what you use',
       '',
@@ -662,11 +706,19 @@ function dependencyList(toml, section) {
   return [...body.matchAll(/^([a-z0-9_-]+)\s*=\s*(?:"([^"]+)"|\{[^}]*version\s*=\s*"([^"]+)"[^}]*\})/gm)].map((m) => ({ name: m[1], version: m[2] ?? m[3] }));
 }
 
-function librariesPage() {
+function librariesPage(cargo) {
   const toml = read('Cargo.toml');
   const runtime = dependencyList(toml, 'dependencies');
   const dev = dependencyList(toml, 'dev-dependencies');
-  const list = (deps) => deps.map((d) => `- [\`${d.name}\`](https://crates.io/crates/${d.name}) \`${d.version}\``).join('\n');
+  const gatedBy = (dep) => cargo.features.filter((f) => cargo.enables.get(f).includes(`dep:${dep}`));
+  const list = (deps) =>
+    deps
+      .map((d) => {
+        const features = gatedBy(d.name);
+        const when = features.length > 0 ? ` — optional, only with the ${features.map((f) => `\`${f}\``).join(', ')} feature` : '';
+        return `- [\`${d.name}\`](https://crates.io/crates/${d.name}) \`${d.version}\`${when}`;
+      })
+      .join('\n');
   return (
     frontmatter({ title: 'Open-source libraries', sidebar: { label: 'Open-source libraries' } }) +
     [
@@ -674,7 +726,9 @@ function librariesPage() {
       '',
       runtime.length === 0
         ? 'The `helpers4` crate has **no third-party runtime dependencies**: nothing but the Rust standard library ends up in your build. A module that needs one in the future gets its own Cargo feature, and the dependency is optional.'
-        : `These crates are compiled into your build:\n\n${list(runtime)}`,
+        : runtime.every((d) => gatedBy(d.name).length > 0)
+          ? `None with the default features: nothing but the Rust standard library ends up in your build. An opt-in feature can add one:\n\n${list(runtime)}`
+          : `These crates are compiled into your build:\n\n${list(runtime)}`,
       '',
       '## Development dependencies',
       '',
@@ -763,7 +817,8 @@ function llmsFull(modules, linker, cargo) {
     const link = linker({ module: mod.name, kind: 'module' }, 'text');
     out.push(`## Module \`${mod.name}\` (Cargo feature \`${mod.name}\`)`, '', convertDoc(mod.doc, link), '');
     for (const item of [...mod.items, ...mod.errors]) {
-      out.push(`### ${mod.name}::${item.name}`, '', '```rust', item.signature, '```', '', sectionMarkdown(item.doc, link, 4), '');
+      const gate = item.feature && item.feature !== mod.name ? [`Needs the opt-in Cargo feature \`${item.feature}\`.`, ''] : [];
+      out.push(`### ${mod.name}::${item.name}`, '', ...gate, '```rust', item.signature, '```', '', sectionMarkdown(item.doc, link, 4), '');
       for (const method of item.methods ?? []) {
         out.push(`#### ${item.name}::${method.name}`, '', '```rust', method.signature, '```', '', sectionMarkdown(method.doc, link, 5), '');
       }
@@ -794,7 +849,7 @@ function main() {
   if (!fs.existsSync(repoPath)) fail(`the rust repo is not at ${repoPath} (set RUST_REPO_PATH)`);
 
   const cargo = readCargo();
-  const modules = readModules(cargo.features);
+  const modules = readModules(cargo);
   const linker = makeLinker(modules);
 
   // Regenerate the whole generated directory: a removed item must not leave a stale page.
@@ -810,7 +865,7 @@ function main() {
   writeFile(path.join(referenceDir, 'changelog.md'), changelogPage());
   writeFile(path.join(referenceDir, 'contributing.md'), contributingPage(cargo));
   writeFile(path.join(referenceDir, 'naming-conflicts.md'), namingPage(modules));
-  writeFile(path.join(legalDir, 'open-source-libraries.md'), librariesPage());
+  writeFile(path.join(legalDir, 'open-source-libraries.md'), librariesPage(cargo));
   writeFile(llmsFullPath, llmsFull(modules, linker, cargo));
   updateVersions(cargo.version);
 
