@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["commit"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["commit"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert!(!is_valid("fixed some stuff"));
 
 ## Source
 
-[src/commit/is_valid.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/commit/is_valid.rs#L29)
+[src/commit/is_valid.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/commit/is_valid.rs#L29)

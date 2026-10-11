@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["fs"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["fs"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert_eq!(normalize(Path::new("a/..")), PathBuf::from("."));
 
 ## Source
 
-[src/fs/normalize.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/fs/normalize.rs#L34)
+[src/fs/normalize.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/fs/normalize.rs#L34)

@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["commit"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["commit"] }
 ```
 
 ## Definition
@@ -53,4 +53,4 @@ assert!(Bump::Major > Bump::Minor && Bump::Minor > Bump::Patch && Bump::Patch > 
 
 ## Source
 
-[src/commit/bump_level.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/commit/bump_level.rs#L17)
+[src/commit/bump_level.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/commit/bump_level.rs#L17)

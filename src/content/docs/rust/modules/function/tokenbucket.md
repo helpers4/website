@@ -30,7 +30,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["function"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["function"] }
 ```
 
 ## Definition
@@ -131,4 +131,4 @@ How many whole tokens are available right now.
 
 ## Source
 
-[src/function/token_bucket.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/function/token_bucket.rs#L27)
+[src/function/token_bucket.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/function/token_bucket.rs#L27)

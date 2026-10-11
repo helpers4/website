@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["set"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["set"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert_eq!(subsets(&[0; 17]), None);
 
 ## Source
 
-[src/set/subsets.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/set/subsets.rs#L35)
+[src/set/subsets.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/set/subsets.rs#L35)

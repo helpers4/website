@@ -1,4 +1,4 @@
-# helpers4 (Rust) — full reference, version 0.0.6
+# helpers4 (Rust) — full reference, version 0.0.7
 
 > Every public item of the `helpers4` crate with its signature, documentation and examples.
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
@@ -942,7 +942,9 @@ Why a string could not be parsed as a size.
 
 ## Module `cache` (Cargo feature `cache`)
 
-Caches and stores whose entries expire. The clock is always passed in, never read.
+Caches and stores: entries that expire with a passed-in clock (`ExpiringMap`), and a
+capacity-bounded map that evicts by recency instead (`LruCache`). Neither ever reads a
+clock or the system allocator's notion of "recent" behind the caller's back.
 
 ### cache::ExpiringMap
 
@@ -1143,6 +1145,193 @@ pub type ExpiringSet<K, T = u64> = ExpiringMap<K, (), T>
 ```
 
 A set whose members expire: an `ExpiringMap` without values.
+
+### cache::LruCache
+
+```rust
+pub struct LruCache<K, V> { /* private fields */ }
+```
+
+A map bounded to at most `capacity` entries: once full, inserting a new key evicts the least
+recently used one.
+
+"Used" means read with `get` or `get_or_insert_with`,
+or written with `insert`; `contains_key` does not count,
+so checking for a key without reading it never changes what gets evicted next.
+
+Unlike `ExpiringMap`, entries never expire on their own: eviction is
+only ever "the entry nobody has touched in the longest time", driven purely by capacity.
+
+A capacity of `0` is a documented degenerate case, not an error: the cache never stores
+anything, and every `insert` is immediately evicted.
+
+#### Examples
+
+```rust
+use helpers4::cache::LruCache;
+
+let mut cache: LruCache<&str, i32> = LruCache::new(2);
+cache.insert("a", 1);
+cache.insert("b", 2);
+cache.get(&"a"); // touch "a": "b" is now the least recently used
+cache.insert("c", 3); // evicts "b", not "a"
+assert_eq!(cache.get(&"a"), Some(&1));
+assert_eq!(cache.get(&"b"), None);
+assert_eq!(cache.get(&"c"), Some(&3));
+```
+
+#### LruCache::new
+
+```rust
+pub fn new(capacity: usize) -> Self
+```
+
+Creates an empty cache holding at most `capacity` entries.
+
+##### Arguments
+
+- `capacity` - The most entries the cache holds before it starts evicting.
+
+##### Returns
+
+An empty cache.
+
+#### LruCache::get
+
+```rust
+pub fn get(&mut self, key: &K) -> Option<&V>
+```
+
+The live value for `key`, marking it as just used.
+
+##### Arguments
+
+- `key` - The key to look up.
+
+##### Returns
+
+The value for `key`, or `None` when it is not present.
+
+#### LruCache::insert
+
+```rust
+pub fn insert(&mut self, key: K, value: V) -> Option<V>
+```
+
+Inserts `value` under `key`, marking it as just used.
+
+Evicts the least recently used entry first when `key` is new and the cache is already at
+capacity.
+
+##### Arguments
+
+- `key` - The key to insert or update.
+- `value` - The value to store.
+
+##### Returns
+
+The previous value stored under `key`, if any.
+
+#### LruCache::contains_key
+
+```rust
+pub fn contains_key(&self, key: &K) -> bool
+```
+
+Whether `key` has a live entry, without affecting eviction order.
+
+##### Arguments
+
+- `key` - The key to check.
+
+##### Returns
+
+`true` when `key` has a live entry.
+
+#### LruCache::len
+
+```rust
+pub fn len(&self) -> usize
+```
+
+How many entries are currently stored.
+
+##### Returns
+
+The number of live entries, at most `capacity`.
+
+#### LruCache::is_empty
+
+```rust
+pub fn is_empty(&self) -> bool
+```
+
+Whether the cache holds no entries.
+
+##### Returns
+
+`true` when `len` is `0`.
+
+#### LruCache::capacity
+
+```rust
+pub fn capacity(&self) -> usize
+```
+
+The capacity this cache was created with.
+
+##### Returns
+
+The most entries the cache holds before it starts evicting.
+
+#### LruCache::clear
+
+```rust
+pub fn clear(&mut self)
+```
+
+Removes every entry.
+
+#### LruCache::get_or_insert_with
+
+```rust
+pub fn get_or_insert_with(&mut self, key: K, f: impl FnOnce() -> V) -> V
+```
+
+Returns the value for `key`, computing and storing it with `f` first if absent.
+
+Bounded, single-key equivalent of `Memoize`: the same key
+never recomputes while it stays in the cache, but an old key can be evicted to make room.
+With a capacity of `0` the freshly computed value is still returned, but is not retained
+(nothing is, see `new`): the next call recomputes it.
+
+##### Arguments
+
+- `key` - The key to look up.
+- `f` - Computes the value to store when `key` is absent. Not called when `key` is
+  already present.
+
+##### Returns
+
+The value for `key`.
+
+##### Examples
+
+```rust
+use helpers4::cache::LruCache;
+
+let mut calls = 0;
+let mut cache: LruCache<u32, u32> = LruCache::new(4);
+let square = |cache: &mut LruCache<u32, u32>, n: u32, calls: &mut i32| {
+    cache.get_or_insert_with(n, || {
+        *calls += 1;
+        n * n
+    })
+};
+assert_eq!(square(&mut cache, 7, &mut calls), 49);
+assert_eq!(square(&mut cache, 7, &mut calls), 49); // served from the cache
+assert_eq!(calls, 1);
+```
 
 ## Module `ci` (Cargo feature `ci`)
 
@@ -2630,6 +2819,140 @@ assert_eq!(get(content, "PORT").as_deref(), Some("8080"));
 assert_eq!(get(content, "MISSING"), None);
 ```
 
+### env::get_bool
+
+```rust
+pub fn get_bool(content: &str, key: &str, default: bool) -> bool
+```
+
+Returns `key` in dotenv `content` parsed as a boolean, or `default` when it is absent or not
+recognized.
+
+Recognized, case-insensitively: `true`/`false`, `1`/`0`, `yes`/`no`, `on`/`off`.
+
+#### Arguments
+
+- `content` - The dotenv text to read.
+- `key` - The variable name to look up.
+- `default` - Returned when `key` is absent or its value is not one of the recognized words.
+
+#### Returns
+
+The parsed boolean, or `default`.
+
+#### Examples
+
+```rust
+use helpers4::env::get_bool;
+
+let content = "DEBUG=on\nSTRICT=0\n";
+assert!(get_bool(content, "DEBUG", false));
+assert!(!get_bool(content, "STRICT", true));
+assert!(get_bool(content, "MISSING", true));
+```
+
+### env::get_duration
+
+```rust
+pub fn get_duration(content: &str, key: &str, default: Duration) -> Duration
+```
+
+Returns `key` in dotenv `content` parsed as a human-written duration (`"1h30m"`, `"2d"`,
+`"500ms"`), or `default` when it is absent or does not parse.
+
+Sharing this format with the `duration` module's own `parse` does not need that module
+enabled: `env` stands alone, like every module here.
+
+#### Arguments
+
+- `content` - The dotenv text to read.
+- `key` - The variable name to look up.
+- `default` - Returned when `key` is absent or its value does not parse.
+
+#### Returns
+
+The parsed duration, or `default`.
+
+#### Examples
+
+```rust
+use helpers4::env::get_duration;
+use std::time::Duration;
+
+let content = "TIMEOUT=1h30m\nNAME=not-a-duration\n";
+assert_eq!(get_duration(content, "TIMEOUT", Duration::ZERO), Duration::from_secs(5400));
+assert_eq!(get_duration(content, "NAME", Duration::ZERO), Duration::ZERO);
+assert_eq!(get_duration(content, "MISSING", Duration::from_secs(30)), Duration::from_secs(30));
+```
+
+### env::get_int
+
+```rust
+pub fn get_int(content: &str, key: &str, default: i64) -> i64
+```
+
+Returns `key` in dotenv `content` parsed as an integer, or `default` when it is absent or not
+a valid `i64` (a decimal integer, optionally signed; no underscores, no `0x`/`0b` prefixes).
+
+#### Arguments
+
+- `content` - The dotenv text to read.
+- `key` - The variable name to look up.
+- `default` - Returned when `key` is absent or its value does not parse.
+
+#### Returns
+
+The parsed integer, or `default`.
+
+#### Examples
+
+```rust
+use helpers4::env::get_int;
+
+let content = "PORT=8080\nOFFSET=-3\nNAME=not-a-number\n";
+assert_eq!(get_int(content, "PORT", 80), 8080);
+assert_eq!(get_int(content, "OFFSET", 0), -3);
+assert_eq!(get_int(content, "NAME", 0), 0);
+assert_eq!(get_int(content, "MISSING", 80), 80);
+```
+
+### env::get_list
+
+```rust
+pub fn get_list(content: &str, key: &str, separator: char, default: &[&str]) -> Vec<String>
+```
+
+Returns `key` in dotenv `content` split on `separator` into a list, or `default` when it is
+absent.
+
+Each item is trimmed of surrounding whitespace; empty items (a leading, trailing or doubled
+separator) are kept as empty strings rather than dropped, so the item count always matches
+the number of separators plus one.
+
+#### Arguments
+
+- `content` - The dotenv text to read.
+- `key` - The variable name to look up.
+- `separator` - The character that separates items, such as `,`.
+- `default` - Returned when `key` is absent.
+
+#### Returns
+
+The items, in order, or `default`.
+
+#### Examples
+
+```rust
+use helpers4::env::get_list;
+
+let content = "HOSTS=a.example.com, b.example.com,c.example.com\n";
+assert_eq!(
+    get_list(content, "HOSTS", ',', &["localhost"]),
+    vec!["a.example.com", "b.example.com", "c.example.com"]
+);
+assert_eq!(get_list(content, "MISSING", ',', &["localhost"]), vec!["localhost"]);
+```
+
 ### env::parse
 
 ```rust
@@ -3387,10 +3710,113 @@ block_on(async {
 
 ## Module `hex` (Cargo feature `hex`)
 
-Hexadecimal encoding and decoding with typed errors.
+Byte/text encodings with typed errors: hexadecimal, and base64/base32 (RFC 4648).
 
-Decoding accepts either case and rejects anything that is not pairs of hex digits, so trim
-whitespace and strip `0x` prefixes before calling it.
+Hex decoding accepts either case and rejects anything that is not pairs of hex digits, so
+trim whitespace and strip `0x` prefixes before calling it. base64/base32 decoding requires
+`=` padding to a multiple of 4/8 characters and rejects it anywhere but the end.
+
+### hex::base32_decode
+
+```rust
+pub fn base32_decode(s: &str) -> Result<Vec<u8>, Base32DecodeError>
+```
+
+Decodes `s` from base32 (RFC 4648 section 6).
+
+#### Arguments
+
+- `s` - The base32 string to decode, with `=` padding to a multiple of 8 characters.
+
+#### Errors
+
+Returns a `Base32DecodeError` when the length is not a multiple of 8, `=` appears anywhere
+but the end, or a character is not in the base32 alphabet.
+
+#### Examples
+
+```rust
+use helpers4::hex::base32_decode;
+
+assert_eq!(base32_decode("MZXW6YTBOI======").as_deref(), Ok(&b"foobar"[..]));
+assert!(base32_decode("MZXW6YTBOI").is_err()); // not a multiple of 8
+```
+
+### hex::base32_encode
+
+```rust
+pub fn base32_encode(data: &[u8]) -> String
+```
+
+Encodes `data` as base32 (RFC 4648 section 6), with `=` padding.
+
+#### Arguments
+
+- `data` - The bytes to encode.
+
+#### Returns
+
+The base32 string; its length is always a multiple of 8.
+
+#### Examples
+
+```rust
+use helpers4::hex::base32_encode;
+
+assert_eq!(base32_encode(b"foobar"), "MZXW6YTBOI======");
+assert_eq!(base32_encode(b""), "");
+```
+
+### hex::base64_decode
+
+```rust
+pub fn base64_decode(s: &str) -> Result<Vec<u8>, Base64DecodeError>
+```
+
+Decodes `s` from base64 (RFC 4648 section 4).
+
+#### Arguments
+
+- `s` - The base64 string to decode, with `=` padding to a multiple of 4 characters.
+
+#### Errors
+
+Returns a `Base64DecodeError` when the length is not a multiple of 4, `=` appears anywhere
+but the end, or a character is not in the base64 alphabet.
+
+#### Examples
+
+```rust
+use helpers4::hex::base64_decode;
+
+assert_eq!(base64_decode("TWFu").as_deref(), Ok(&b"Man"[..]));
+assert!(base64_decode("TWFu!").is_err()); // not a multiple of 4
+```
+
+### hex::base64_encode
+
+```rust
+pub fn base64_encode(data: &[u8]) -> String
+```
+
+Encodes `data` as base64 (RFC 4648 section 4), with `=` padding.
+
+#### Arguments
+
+- `data` - The bytes to encode.
+
+#### Returns
+
+The base64 string; its length is always a multiple of 4.
+
+#### Examples
+
+```rust
+use helpers4::hex::base64_encode;
+
+assert_eq!(base64_encode(b"any carnal pleas"), "YW55IGNhcm5hbCBwbGVhcw==");
+assert_eq!(base64_encode(b""), "");
+```
 
 ### hex::decode
 
@@ -3518,6 +3944,55 @@ use helpers4::hex::encode_upper;
 
 assert_eq!(encode_upper(&[0xde, 0xad, 0xbe, 0xef]), "DEADBEEF");
 ```
+
+### hex::Base32DecodeError
+
+```rust
+#[non_exhaustive]
+pub enum Base32DecodeError {
+    /// The string's length is not a multiple of 8.
+    InvalidLength {
+        /// Actual number of characters.
+        actual: usize,
+    },
+    /// A `=` padding character appears somewhere other than the end of the string.
+    InvalidPadding,
+    /// A character that is not in the base32 alphabet (`A`-`Z`, `2`-`7`) or a trailing `=`.
+    InvalidChar {
+        /// Byte offset of the character in the input.
+        index: usize,
+        /// The offending character.
+        found: char,
+    },
+}
+```
+
+Why a string could not be decoded as base32.
+
+### hex::Base64DecodeError
+
+```rust
+#[non_exhaustive]
+pub enum Base64DecodeError {
+    /// The string's length is not a multiple of 4.
+    InvalidLength {
+        /// Actual number of characters.
+        actual: usize,
+    },
+    /// A `=` padding character appears somewhere other than the end of the string.
+    InvalidPadding,
+    /// A character that is not in the base64 alphabet (`A`-`Z`, `a`-`z`, `0`-`9`, `+`, `/`) or a
+    /// trailing `=`.
+    InvalidChar {
+        /// Byte offset of the character in the input.
+        index: usize,
+        /// The offending character.
+        found: char,
+    },
+}
+```
+
+Why a string could not be decoded as base64.
 
 ### hex::DecodeError
 
@@ -5296,6 +5771,87 @@ assert_eq!(escape_html("It's a <test> & more"), "It&#39;s a &lt;test&gt; &amp; m
 assert_eq!(escape_html("plain"), "plain");
 ```
 
+### string::escape_regex
+
+```rust
+pub fn escape_regex(s: &str) -> String
+```
+
+Escapes regular expression metacharacters (`. * + ? ^ $ ( ) [ ] { } | \`) in `s` so it can be
+embedded literally in a regex pattern.
+
+This crate has no regex engine of its own; use this before handing `s` to whichever one you
+depend on (`regex`, `fancy-regex`, ...) when it should be matched character-for-character
+instead of as a pattern.
+
+#### Arguments
+
+- `s` - The text to escape.
+
+#### Returns
+
+`s` with every metacharacter preceded by a backslash.
+
+#### Examples
+
+```rust
+use helpers4::string::escape_regex;
+
+assert_eq!(escape_regex("1 + 1 = 2?"), "1 \\+ 1 = 2\\?");
+assert_eq!(escape_regex("plain text"), "plain text");
+```
+
+### string::excerpt
+
+```rust
+pub fn excerpt(text: &str, max_chars: usize, ellipsis: &str) -> String
+```
+
+Derives a short, readable excerpt from a longer text — for a card, header or preview where a
+full paragraph does not fit.
+
+Unlike `truncate` (a mechanical cut at exactly `max_chars`), this prefers to cut at the end
+of a whole sentence (`.`, `!` or `?`) when one fits within `max_chars`, even if that leaves
+the result shorter than the limit. Only when no sentence fits does it fall back to the last
+whole word before the limit — it never returns partial-word text.
+
+Internal whitespace (line breaks, repeated spaces) is collapsed to single spaces first (see
+`squish`).
+
+Known limitation: the sentence-boundary check is a simple heuristic (punctuation followed by
+whitespace or the end of the text) — it does not special-case abbreviations (`"Mr."`) or
+decimal numbers (`"3.14"`), which can be misread as a sentence end.
+
+#### Arguments
+
+- `text` - The text to excerpt.
+- `max_chars` - The maximum length of the result, `ellipsis` included.
+- `ellipsis` - Appended only when falling back to a word-boundary cut (a sentence-boundary
+  cut never needs one).
+
+#### Returns
+
+The original text, squished, unchanged if already within `max_chars`; otherwise a shortened
+version.
+
+#### Examples
+
+```rust
+use helpers4::string::excerpt;
+
+assert_eq!(excerpt("A short game about ducks.", 200, "…"), "A short game about ducks.");
+
+assert_eq!(
+    excerpt("Build the biggest, best theme park ever seen. Can you make money?", 47, "…"),
+    "Build the biggest, best theme park ever seen.",
+);
+
+assert_eq!(
+    excerpt("This description has no punctuation at all so it must cut on a word", 30, "…"),
+    "This description has no…",
+);
+```
+
 ### string::indent
 
 ```rust
@@ -5346,6 +5902,67 @@ assert_eq!(kebab_case("user_name"), "user-name");
 assert_eq!(kebab_case(""), "");
 ```
 
+### string::levenshtein_distance
+
+```rust
+pub fn levenshtein_distance(a: &str, b: &str, case_sensitive: bool) -> usize
+```
+
+The Levenshtein edit distance between `a` and `b`: the fewest single-character insertions,
+deletions or substitutions needed to turn one into the other.
+
+Operates on `char`s (Unicode scalar values), not bytes or grapheme clusters.
+
+#### Arguments
+
+- `a` - The first string.
+- `b` - The second string.
+- `case_sensitive` - Whether the comparison is case-sensitive.
+
+#### Returns
+
+The edit distance; `0` when `a` and `b` are equal (after case-folding when `case_sensitive`
+is `false`).
+
+#### Examples
+
+```rust
+use helpers4::string::levenshtein_distance;
+
+assert_eq!(levenshtein_distance("kitten", "sitting", true), 3);
+assert_eq!(levenshtein_distance("Kitten", "kitten", false), 0);
+```
+
+### string::levenshtein_similarity
+
+```rust
+pub fn levenshtein_similarity(a: &str, b: &str, case_sensitive: bool) -> f64
+```
+
+Normalized `levenshtein_distance` between `a` and `b`, in `[0, 1]`.
+
+`1` means identical, `0` means completely dissimilar relative to the longer string's length.
+A convenience wrapper for scoring or ranking use cases.
+
+#### Arguments
+
+- `a` - The first string.
+- `b` - The second string.
+- `case_sensitive` - Whether the comparison is case-sensitive.
+
+#### Returns
+
+A similarity score between `0` and `1`; `1` when both strings are empty.
+
+#### Examples
+
+```rust
+use helpers4::string::levenshtein_similarity;
+
+assert_eq!(levenshtein_similarity("same", "same", true), 1.0);
+assert!((levenshtein_similarity("kitten", "sitting", true) - 0.571_428_6).abs() < 1e-6);
+```
+
 ### string::pascal_case
 
 ```rust
@@ -5368,6 +5985,41 @@ use helpers4::string::pascal_case;
 assert_eq!(pascal_case("hello-world"), "HelloWorld");
 assert_eq!(pascal_case("user_name"), "UserName");
 assert_eq!(pascal_case(""), "");
+```
+
+### string::remove_diacritics
+
+Needs the opt-in Cargo feature `string-diacritics`.
+
+```rust
+pub fn remove_diacritics(s: &str) -> String
+```
+
+Removes diacritical marks (accents) from `s`, e.g. `"café"` → `"cafe"`.
+
+Works by Unicode-decomposing each character into its base letter plus combining marks
+(`'é'` → `'e'` followed by a combining acute accent), then dropping the marks. Needs the
+`string-diacritics` feature (not `string` alone, and not in `default`): full Unicode
+normalization needs a real decomposition table, unlike the rest of this module, which is
+dependency-free.
+
+#### Arguments
+
+- `s` - The text to strip diacritics from.
+
+#### Returns
+
+`s` with diacritics removed; unchanged if it has none.
+
+#### Examples
+
+```rust
+use helpers4::string::remove_diacritics;
+
+assert_eq!(remove_diacritics("café"), "cafe");
+assert_eq!(remove_diacritics("naïve"), "naive");
+assert_eq!(remove_diacritics("ÉCOLE"), "ECOLE");
+assert_eq!(remove_diacritics("hello"), "hello");
 ```
 
 ### string::slugify
@@ -5524,6 +6176,39 @@ assert_eq!(unescape_html("&lt;b&gt;Tom &amp; Jerry&lt;/b&gt;"), "<b>Tom & Jerry<
 assert_eq!(unescape_html("&#65;&#x42;"), "AB");
 assert_eq!(unescape_html("&amp;lt;"), "&lt;");
 assert_eq!(unescape_html("&unknown;"), "&unknown;");
+```
+
+### string::words
+
+```rust
+pub fn words(s: &str) -> Vec<&str>
+```
+
+Splits `s` into its words, keeping their original casing.
+
+A word ends at any non-alphanumeric character, before an uppercase letter that follows a
+lowercase letter or a digit (`userName`, `v2Beta`), and before the last capital of an
+acronym run (`HTMLParser` gives `HTML`, `Parser`). Use one of the `*_case` helpers instead if
+you want the words lowercased and rejoined.
+
+#### Arguments
+
+- `s` - The text to split.
+
+#### Returns
+
+The words, in order, with no separators or empty entries.
+
+#### Examples
+
+```rust
+use helpers4::string::words;
+
+assert_eq!(words("hello world"), vec!["hello", "world"]);
+assert_eq!(words("camelCaseString"), vec!["camel", "Case", "String"]);
+assert_eq!(words("SCREAMING_SNAKE"), vec!["SCREAMING", "SNAKE"]);
+assert_eq!(words("foo123bar"), vec!["foo123bar"]);
+assert!(words("   ").is_empty());
 ```
 
 ## Module `time` (Cargo feature `time`)

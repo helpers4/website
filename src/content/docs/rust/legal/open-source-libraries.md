@@ -6,7 +6,9 @@ sidebar:
 
 ## Runtime dependencies
 
-The `helpers4` crate has **no third-party runtime dependencies**: nothing but the Rust standard library ends up in your build. A module that needs one in the future gets its own Cargo feature, and the dependency is optional.
+None with the default features: nothing but the Rust standard library ends up in your build. An opt-in feature can add one:
+
+- [`unicode-normalization`](https://crates.io/crates/unicode-normalization) `0.1.3` — optional, only with the `string-diacritics` feature
 
 ## Development dependencies
 

@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["bytes"] }
 ```
 
 ## Signature
@@ -54,4 +54,4 @@ assert_eq!(xor(&[1], &[1, 2]), None);
 
 ## Source
 
-[src/bytes/xor.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/bytes/xor.rs#L25)
+[src/bytes/xor.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/bytes/xor.rs#L25)

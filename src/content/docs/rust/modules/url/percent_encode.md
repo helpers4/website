@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["url"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["url"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert_eq!(percent_encode("safe-text_1.~"), "safe-text_1.~");
 
 ## Source
 
-[src/url/percent_encode.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/url/percent_encode.rs#L33)
+[src/url/percent_encode.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/url/percent_encode.rs#L33)

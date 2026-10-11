@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["bytes"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert_eq!(format_size(1_048_575), "1 MiB");
 
 ## Source
 
-[src/bytes/format_size.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/bytes/format_size.rs#L33)
+[src/bytes/format_size.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/bytes/format_size.rs#L33)

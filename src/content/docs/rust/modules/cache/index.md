@@ -1,12 +1,14 @@
 ---
 title: "cache"
-description: "Caches and stores whose entries expire."
+description: "Caches and stores: entries that expire with a passed-in clock (ExpiringMap), and a capacity-bounded map that evicts by recency instead (LruCache)."
 sidebar:
   label: "≡ Overview"
   order: 0
 ---
 
-Caches and stores whose entries expire. The clock is always passed in, never read.
+Caches and stores: entries that expire with a passed-in clock ([`ExpiringMap`](/rust/modules/cache/expiringmap/)), and a
+capacity-bounded map that evicts by recency instead ([`LruCache`](/rust/modules/cache/lrucache/)). Neither ever reads a
+clock or the system allocator's notion of "recent" behind the caller's back.
 
 ## Install
 
@@ -20,7 +22,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["cache"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["cache"] }
 ```
 
 Import path: `helpers4::cache`.
@@ -31,3 +33,4 @@ Import path: `helpers4::cache`.
 | --- | --- |
 | [`ExpiringMap`](/rust/modules/cache/expiringmap/) | A map whose entries expire, with the clock passed in by the caller. |
 | [`ExpiringSet`](/rust/modules/cache/expiringset/) | A set whose members expire: an `ExpiringMap` without values. |
+| [`LruCache`](/rust/modules/cache/lrucache/) | A map bounded to at most `capacity` entries: once full, inserting a new key evicts the least recently used one. |

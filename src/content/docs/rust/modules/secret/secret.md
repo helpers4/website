@@ -31,7 +31,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["secret"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["secret"] }
 ```
 
 ## Definition
@@ -97,4 +97,4 @@ Unwraps the value.
 
 ## Source
 
-[src/secret/secret_value.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/secret/secret_value.rs#L28)
+[src/secret/secret_value.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/secret/secret_value.rs#L28)

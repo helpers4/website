@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["set"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["set"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert_eq!(jaccard(&a, &b), 0.5); // {2, 3} out of {1, 2, 3, 4}
 
 ## Source
 
-[src/set/jaccard.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/set/jaccard.rs#L35)
+[src/set/jaccard.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/set/jaccard.rs#L35)

@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["ansi"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["ansi"] }
 ```
 
 ## Definition
@@ -82,4 +82,4 @@ assert_eq!(Style::new().fg(Color::Green).paint("ok"), "\u{1b}[32mok\u{1b}[0m");
 
 ## Source
 
-[src/ansi/color.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/ansi/color.rs#L18)
+[src/ansi/color.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/ansi/color.rs#L18)

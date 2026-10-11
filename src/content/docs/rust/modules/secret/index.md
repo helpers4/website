@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["secret"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["secret"] }
 ```
 
 Import path: `helpers4::secret`.

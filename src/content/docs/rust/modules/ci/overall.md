@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["ci"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["ci"] }
 ```
 
 ## Signature
@@ -58,4 +58,4 @@ assert_eq!(overall(&[]), Status::Skipped);
 
 ## Source
 
-[src/ci/overall.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/ci/overall.rs#L31)
+[src/ci/overall.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/ci/overall.rs#L31)

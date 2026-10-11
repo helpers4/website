@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["future"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["future"] }
 ```
 
 ## Signature
@@ -57,4 +57,4 @@ assert_eq!(now_or_never(std::future::pending::<u32>()), None);
 
 ## Source
 
-[src/future/now_or_never.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/future/now_or_never.rs#L30)
+[src/future/now_or_never.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/future/now_or_never.rs#L30)

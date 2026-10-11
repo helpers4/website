@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["fs"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["fs"] }
 ```
 
 ## Signature
@@ -64,4 +64,4 @@ assert_eq!(walk(&root)?, vec![root.join("a.txt"), root.join("sub").join("b.txt")
 
 ## Source
 
-[src/fs/walk.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/fs/walk.rs#L36)
+[src/fs/walk.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/fs/walk.rs#L36)

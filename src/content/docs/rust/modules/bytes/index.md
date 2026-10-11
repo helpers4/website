@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["bytes"] }
 ```
 
 Import path: `helpers4::bytes`.

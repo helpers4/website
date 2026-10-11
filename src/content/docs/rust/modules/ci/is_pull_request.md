@@ -30,7 +30,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["ci"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["ci"] }
 ```
 
 ## Signature
@@ -64,4 +64,4 @@ assert!(is_pull_request(&env));
 
 ## Source
 
-[src/ci/is_pull_request.rs](https://github.com/helpers4/rust/blob/v0.0.6/src/ci/is_pull_request.rs#L38)
+[src/ci/is_pull_request.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/ci/is_pull_request.rs#L38)

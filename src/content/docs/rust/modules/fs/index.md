@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.6", default-features = false, features = ["fs"] }
+helpers4 = { version = "0.0.7", default-features = false, features = ["fs"] }
 ```
 
 Import path: `helpers4::fs`.
