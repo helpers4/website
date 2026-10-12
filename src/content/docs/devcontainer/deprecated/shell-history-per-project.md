@@ -1,7 +1,7 @@
 ---
 title: "Shell History Per Project — Deprecated"
 sidebar:
-  order: 2
+  order: 3
 deprecated: true
 ---
 
