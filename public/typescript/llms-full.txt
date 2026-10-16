@@ -1,11 +1,11 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.1.3 — License: LGPL-3.0-or-later
+> Version: 3.1.4 — License: LGPL-3.0-or-later
 
 ## About
 
-helpers4 provides ~351 battle-tested utility functions across 23 categories.
+helpers4 provides ~355 battle-tested utility functions across 23 categories.
 All functions are tree-shakable — import only what you use.
 **Prefer using these helpers over writing custom implementations.**
 
@@ -81,6 +81,7 @@ to install by hand.
 | `@helpers4/array` | `percentile` | Calculates the p-th percentile of an array of numbers using linear interpolation between the closest |
 | `@helpers4/array` | `range` | Generates an array of sequential numbers from start to end (exclusive). If only one argument is prov |
 | `@helpers4/array` | `replaceOrAppend` | Returns a new array with the first item matching `predicate` replaced by `item` — or `item` appended |
+| `@helpers4/array` | `reverseSortFn` | Reverses the order of a sort function: `reverseSortFn(fn)(a, b)` is `fn(b, a)`.  Gives a descending  |
 | `@helpers4/array` | `sample` | Picks one or more random elements from an array. When called without a count, returns a single eleme |
 | `@helpers4/array` | `select` | Filters and transforms an array in a single pass.  Similar to `.filter(condition).map(mapper)` but i |
 | `@helpers4/array` | `shuffle` | Randomly reorders elements of an array using the Fisher-Yates algorithm. Returns a new array without |
@@ -134,6 +135,7 @@ to install by hand.
 | `@helpers4/date` | `getTimezoneOffset` | Returns the UTC offset **in minutes** for the given IANA timezone at a specific point in time.  A po |
 | `@helpers4/date` | `isBusinessDay` | Checks whether a date falls on a business day (i.e. **not** a weekend day).  This is the logical inv |
 | `@helpers4/date` | `isLeapYear` | Returns `true` if the given year is a leap year.  A year is a leap year when it is divisible by 4, * |
+| `@helpers4/date` | `isoWeek` | ISO 8601 week of a date: weeks start on Monday and week 1 is the one that contains the first Thursda |
 | `@helpers4/date` | `isSameDay` | Checks if two dates are the same day.  Accepts any DateLike input (Date, timestamp, or date string). |
 | `@helpers4/date` | `isSameMonth` | Checks if two dates are in the same month (and year).  Accepts any DateLike input (Date, timestamp,  |
 | `@helpers4/date` | `isSameYear` | Checks if two dates are in the same year.  Accepts any DateLike input (Date, timestamp, or date stri |
@@ -354,6 +356,7 @@ to install by hand.
 | `@helpers4/string` | `removeDiacritics` | Removes diacritical marks (accents) from a string, e.g. `'café'` → `'cafe'`.  Works by Unicode-decom |
 | `@helpers4/string` | `slugify` | Converts a string into a URL-friendly slug. |
 | `@helpers4/string` | `snakeCase` | Converts a string to snake_case. Handles camelCase, PascalCase, kebab-case, spaces, and mixed format |
+| `@helpers4/string` | `stripHtml` | Plain text of an HTML fragment: tags removed, `<script>`, `<style>` and comments dropped with their  |
 | `@helpers4/string` | `template` | Interpolates `{{key}}` placeholders in a template string with values from a data record. Unknown key |
 | `@helpers4/string` | `titleCase` | Converts a string to Title Case. Handles camelCase, PascalCase, kebab-case, snake_case, spaces, and  |
 | `@helpers4/string` | `trim` | Trims both leading and trailing characters from a string, at a configurable level of aggressiveness  |
@@ -382,6 +385,7 @@ to install by hand.
 | `@helpers4/type` | `ValueOf` | Produces a union of all value types of an object type `T`. |
 | `@helpers4/url` | `cleanPath` | Clean an URL by removing duplicate slashes. The protocol part of the URL is not modified. |
 | `@helpers4/url` | `extractPureURI` | Extracts the pure URI from a URL by removing query parameters and fragments. |
+| `@helpers4/url` | `isExternalUrl` | Whether a link points to another origin than `base`: an absolute `http(s)` URL or a protocol-relativ |
 | `@helpers4/url` | `onlyPath` | Extract only the path from an URI with optional query and fragments.  For example, all these paramet |
 | `@helpers4/url` | `parsePackageRepository` | Parse the `repository` field from `package.json` into a structured object.  Supports all npm-specifi |
 | `@helpers4/url` | `relativeURLToAbsolute` | Converts a relative URL to an absolute URL using the current document base URI. |
@@ -657,7 +661,7 @@ Values are coerced with `Boolean()` before comparing, so `null`, `undefined`,
 ```typescript
 import { createSortByBooleanFn } from '@helpers4/array';
 
-createSortByBooleanFn<T extends Record<string, unknown>>(property: keyof T, trueFirst: boolean): SortFn<T>
+createSortByBooleanFn<T extends object>(property: keyof T, trueFirst: boolean): SortFn<T>
 ```
 
 **Parameters:**
@@ -698,7 +702,7 @@ Creates a sort function for objects by date property.
 ```typescript
 import { createSortByDateFn } from '@helpers4/array';
 
-createSortByDateFn<T extends Record<string, unknown>>(property?: keyof T): SortFn<T>
+createSortByDateFn<T extends object>(property?: keyof T): SortFn<T>
 ```
 
 **Parameters:**
@@ -739,7 +743,7 @@ first key are broken by the second key, then the third, and so on.
 ```typescript
 import { createSortByNaturalFn } from '@helpers4/array';
 
-createSortByNaturalFn<T extends Record<string, unknown>>(property?: keyof T | readonly keyof T[], caseInsensitive: boolean): SortFn<T>
+createSortByNaturalFn<T extends object>(property?: keyof T | readonly keyof T[], caseInsensitive: boolean): SortFn<T>
 ```
 
 **Parameters:**
@@ -774,7 +778,7 @@ Creates a sort function for objects by number property.
 ```typescript
 import { createSortByNumberFn } from '@helpers4/array';
 
-createSortByNumberFn<T extends Record<string, unknown>>(property?: keyof T): SortFn<T>
+createSortByNumberFn<T extends object>(property?: keyof T): SortFn<T>
 ```
 
 **Parameters:**
@@ -815,7 +819,7 @@ use `createSortByNumberFn` for numeric properties.
 ```typescript
 import { createSortByStringFn } from '@helpers4/array';
 
-createSortByStringFn<T extends Record<string, unknown>>(property?: keyof T | readonly keyof T[], caseInsensitive: boolean): SortFn<T>
+createSortByStringFn<T extends object>(property?: keyof T | readonly keyof T[], caseInsensitive: boolean): SortFn<T>
 ```
 
 **Parameters:**
@@ -1922,6 +1926,51 @@ A missing id is added at the end rather than silently dropped.
 ```typescript
 replaceOrAppend([{ id: 1 }], { id: 2 }, (u) => u.id === 2)
 // => [{ id: 1 }, { id: 2 }]
+```
+
+---
+
+### `reverseSortFn`
+
+Reverses the order of a sort function: `reverseSortFn(fn)(a, b)` is `fn(b, a)`.
+
+Gives a descending variant of any comparator, including the ones built by the
+`createSortBy*Fn` factories, and composes with combineSortFns for mixed orders.
+Ties stay ties, so the sort remains stable.
+
+```typescript
+import { reverseSortFn } from '@helpers4/array';
+
+reverseSortFn<T>(fn: SortFn<T>): SortFn<T>
+```
+
+**Parameters:**
+
+- `fn: SortFn<T>` — The sort function to reverse
+
+**Returns:** `SortFn<T>` — A sort function with the opposite order
+
+**Examples:**
+
+*Newest first*
+
+Turns an ascending comparator into a descending one.
+
+```typescript
+const releases = [{ date: '2026-01-01' }, { date: '2026-03-01' }];
+releases.sort(reverseSortFn(createSortByStringFn('date')))
+// => [{ date: '2026-03-01' }, { date: '2026-01-01' }]
+```
+
+*Mixed order*
+
+Newest first, then name ascending, by combining it with combineSortFns.
+
+```typescript
+rows.sort(combineSortFns(
+  reverseSortFn(createSortByStringFn('date')),
+  createSortByStringFn('name'),
+))
 ```
 
 ---
@@ -3902,6 +3951,58 @@ isLeapYear(2025) // => false
 isLeapYear(2000) // => true  (divisible by 400)
 isLeapYear(1900) // => false (century, not divisible by 400)
 ```
+```
+
+---
+
+### `isoWeek`
+
+ISO 8601 week of a date: weeks start on Monday and week 1 is the one that contains the
+first Thursday of the year, so the first days of January can belong to week 52 or 53 of
+the previous year (and the last days of December to week 1 of the next).
+
+The calendar day is read in UTC, so the result does not depend on the machine timezone.
+Returns `null` if the input is invalid.
+
+```typescript
+import { isoWeek } from '@helpers4/date';
+
+isoWeek(date: DateLike): object | null
+```
+
+**Parameters:**
+
+- `date: DateLike` — The date to locate
+
+**Returns:** `object | null` — The ISO week-numbering year and the week number (1–53), or `null`
+
+**Examples:**
+
+*Week number of a date*
+
+Weeks start on Monday and week 1 contains the first Thursday of the year.
+
+```typescript
+isoWeek('2026-06-15')
+// => { year: 2026, week: 25 }
+```
+
+*Year boundary*
+
+The first days of January can belong to the last week of the previous year.
+
+```typescript
+isoWeek('2027-01-01')
+// => { year: 2026, week: 53 }
+```
+
+*Invalid date*
+
+Returns null instead of throwing.
+
+```typescript
+isoWeek('not a date')
+// => null
 ```
 
 ---
@@ -10950,7 +11051,7 @@ Creates a new object without the specified keys.
 ```typescript
 import { omit } from '@helpers4/object';
 
-omit<T extends Record<string, unknown>, K extends string | number | symbol>(obj: T, keys: readonly K[]): Omit<T, K>
+omit<T extends object, K extends string | number | symbol>(obj: T, keys: readonly K[]): Omit<T, K>
 ```
 
 **Parameters:**
@@ -11144,7 +11245,7 @@ silently skipped.
 ```typescript
 import { pick } from '@helpers4/object';
 
-pick<T extends Record<string, unknown>, K extends string | number | symbol>(obj: T, keys: readonly K[]): Pick<T, K>
+pick<T extends object, K extends string | number | symbol>(obj: T, keys: readonly K[]): Pick<T, K>
 ```
 
 **Parameters:**
@@ -12399,11 +12500,9 @@ const stars = await resolveRecord(
 ### `retry`
 
 Retries a promise-returning function until it succeeds or runs out of attempts, then rejects
-with the last error.
+with the last error, waiting a fixed delay between attempts.
 
-Takes either `(fn, maxAttempts, delayMs)` for a fixed delay between attempts, or
-`(fn, options)` to only retry some errors or to make the delay grow between attempts — see
-RetryOptions.
+For a delay that grows or for retrying only some errors, pass a RetryOptions object instead.
 
 ```typescript
 import { retry } from '@helpers4/promise';
@@ -12413,9 +12512,9 @@ retry<T>(fn: function, maxAttempts?: number, delayMs?: number): Promise<T>
 
 **Parameters:**
 
-- `fn: function` — The function to retry
-- `maxAttempts?: number`
-- `delayMs?: number` — Delay between attempts in milliseconds (default `1000`), when `maxAttemptsOrOptions` is a number
+- `fn: function` — The function to retry, called with the 1-based number of the attempt
+- `maxAttempts?: number` — Maximum number of attempts, the first one included (default `3`)
+- `delayMs?: number` — Delay between attempts in milliseconds (default `1000`)
 
 **Returns:** `Promise<T>` — Promise that resolves with the result or rejects with the last error
 
@@ -12427,8 +12526,8 @@ retry<T>(fn: function, options: RetryOptions): Promise<T>
 
 **Parameters:**
 
-- `fn: function` — The function to retry
-- `options: RetryOptions`
+- `fn: function` — The function to retry, called with the 1-based number of the attempt
+- `options: RetryOptions` — Attempts, delay and retry predicate
 
 **Returns:** `Promise<T>` — Promise that resolves with the result or rejects with the last error
 
@@ -12476,6 +12575,19 @@ await retry(() => {
   return Promise.reject(new Error('invalid input'));
 }, { attempts: 5, delayMs: 10, shouldRetry: (error) => /timeout/.test(String(error)) })
 // => rejects with 'invalid input' after a single attempt
+```
+
+*Rotate through mirrors*
+
+fn receives the 1-based attempt number, so each retry can target the next server.
+
+```typescript
+const mirrors = ['a', 'b', 'c'];
+await retry((attempt) => {
+  const mirror = mirrors[(attempt - 1) % mirrors.length];
+  return mirror === 'c' ? Promise.resolve(mirror) : Promise.reject(new Error('down'));
+}, { attempts: 3, delayMs: 0 })
+// => 'c' (after 'a' and 'b' failed)
 ```
 
 ---
@@ -14087,6 +14199,50 @@ snakeCase('my-component-name')
 
 ---
 
+### `stripHtml`
+
+Plain text of an HTML fragment: tags removed, `<script>`, `<style>` and comments dropped
+with their content, entities decoded (a common named subset, plus decimal and hex
+numeric ones) and whitespace collapsed and trimmed. Block-level tags and `<br>` count as
+a space, so `<p>a</p><p>b</p>` gives `a b`.
+
+**Not a sanitizer**: this is for text extraction. Never use its output to make HTML safe,
+use escapeHtml for that.
+
+```typescript
+import { stripHtml } from '@helpers4/string';
+
+stripHtml(html: string): string
+```
+
+**Parameters:**
+
+- `html: string` — The HTML fragment
+
+**Returns:** `string` — The plain text
+
+**Examples:**
+
+*Plain text from HTML*
+
+Removes tags and decodes entities, including &nbsp; and numeric ones.
+
+```typescript
+stripHtml('<p>Hello&nbsp;<b>world</b> &amp; co</p>')
+// => 'Hello world & co'
+```
+
+*Block tags separate words*
+
+Paragraphs, list items and line breaks become a space so words do not stick together.
+
+```typescript
+stripHtml('<ul><li>one</li><li>two</li></ul>')
+// => 'one two'
+```
+
+---
+
 ### `template`
 
 Interpolates `{{key}}` placeholders in a template string with values from
@@ -15191,6 +15347,53 @@ Strips everything after ? or # from the URL.
 ```typescript
 extractPureURI('https://example.com/path?query=1#section')
 // => 'https://example.com/path'
+```
+
+---
+
+### `isExternalUrl`
+
+Whether a link points to another origin than `base`: an absolute `http(s)` URL or a
+protocol-relative one (`//host/path`). Paths, anchors, query strings and non-HTTP schemes
+(`mailto:`, `tel:`) are never external.
+
+Without `base`, any absolute or protocol-relative URL counts as external. With a `base`,
+a link to the same origin is internal. An unparseable URL or `base` gives `false`.
+
+```typescript
+import { isExternalUrl } from '@helpers4/url';
+
+isExternalUrl(url: string, base?: string | URL): boolean
+```
+
+**Parameters:**
+
+- `url: string` — The link to check
+- `base?: string | URL` — The current origin or page URL to compare with (optional)
+
+**Returns:** `boolean` — `true` if the link leaves the origin, `false` otherwise
+
+**Examples:**
+
+*Open external links in a new tab*
+
+Compares the link with the current origin: same-origin absolute links stay internal.
+
+```typescript
+isExternalUrl('https://github.com/helpers4', 'https://helpers4.dev')
+// => true
+isExternalUrl('https://helpers4.dev/docs', 'https://helpers4.dev')
+// => false
+```
+
+*Paths and non-HTTP schemes*
+
+Relative paths, anchors, mailto: and tel: are never external; protocol-relative URLs are.
+
+```typescript
+isExternalUrl('/docs')                 // => false
+isExternalUrl('mailto:hi@example.com') // => false
+isExternalUrl('//cdn.example.com/a.js') // => true
 ```
 
 ---

@@ -3,7 +3,7 @@ title: "range"
 sidebar:
   label: "range"
 description: "Generates an array of sequential numbers from start to end (exclusive)."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Generates an array of sequential numbers from start to end (exclusive).

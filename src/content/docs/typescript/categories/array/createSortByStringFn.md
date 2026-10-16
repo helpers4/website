@@ -3,7 +3,7 @@ title: "createSortByStringFn"
 sidebar:
   label: "createSortByStringFn"
 description: "Creates a sort function for objects by one or more string properties."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Creates a sort function for objects by one or more string properties.
@@ -28,7 +28,7 @@ import { createSortByStringFn } from 'helpers4/array';
 
 
 ```ts
-createSortByStringFn<T extends Record<string, unknown>>(property?: keyof T | readonly keyof T[], caseInsensitive: boolean): SortFn<T>
+createSortByStringFn<T extends object>(property?: keyof T | readonly keyof T[], caseInsensitive: boolean): SortFn<T>
 ```
 
 ## Parameters

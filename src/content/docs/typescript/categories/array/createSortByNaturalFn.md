@@ -3,7 +3,7 @@ title: "createSortByNaturalFn"
 sidebar:
   label: "createSortByNaturalFn"
 description: "Creates a sort function for objects by one or more string properties using natural ordering."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Creates a sort function for objects by one or more string properties using
@@ -25,7 +25,7 @@ import { createSortByNaturalFn } from 'helpers4/array';
 
 
 ```ts
-createSortByNaturalFn<T extends Record<string, unknown>>(property?: keyof T | readonly keyof T[], caseInsensitive: boolean): SortFn<T>
+createSortByNaturalFn<T extends object>(property?: keyof T | readonly keyof T[], caseInsensitive: boolean): SortFn<T>
 ```
 
 ## Parameters

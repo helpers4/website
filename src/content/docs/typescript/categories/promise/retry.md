@@ -2,16 +2,14 @@
 title: "retry"
 sidebar:
   label: "retry"
-description: "Retries a promise-returning function until it succeeds or runs out of attempts, then rejects with the last error."
-version: "3.1.3"
+description: "Retries a promise-returning function until it succeeds or runs out of attempts, then rejects with the last error, waiti…"
+version: "3.1.4"
 ---
 
 Retries a promise-returning function until it succeeds or runs out of attempts, then rejects
-with the last error.
+with the last error, waiting a fixed delay between attempts.
 
-Takes either `(fn, maxAttempts, delayMs)` for a fixed delay between attempts, or
-`(fn, options)` to only retry some errors or to make the delay grow between attempts — see
-RetryOptions.
+For a delay that grows or for retrying only some errors, pass a RetryOptions object instead.
 
 > Available since v1.9.0
 
@@ -34,9 +32,9 @@ retry<T>(fn: function, maxAttempts?: number, delayMs?: number): Promise<T>
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `fn` | `function` | The function to retry |
-| `maxAttempts` | `number` |  *(optional)* |
-| `delayMs` | `number` | Delay between attempts in milliseconds \(default \`1000\`\), when \`maxAttemptsOrOptions\` is a number *(optional)* |
+| `fn` | `function` | The function to retry, called with the 1\-based number of the attempt |
+| `maxAttempts` | `number` | Maximum number of attempts, the first one included \(default \`3\`\) *(optional)* |
+| `delayMs` | `number` | Delay between attempts in milliseconds \(default \`1000\`\) *(optional)* |
 
 ## Returns
 
@@ -86,6 +84,19 @@ await retry(() => {
   return Promise.reject(new Error('invalid input'));
 }, { attempts: 5, delayMs: 10, shouldRetry: (error) => /timeout/.test(String(error)) })
 // => rejects with 'invalid input' after a single attempt
+```
+
+### Rotate through mirrors
+
+fn receives the 1-based attempt number, so each retry can target the next server.
+
+```ts
+const mirrors = ['a', 'b', 'c'];
+await retry((attempt) => {
+  const mirror = mirrors[(attempt - 1) % mirrors.length];
+  return mirror === 'c' ? Promise.resolve(mirror) : Promise.reject(new Error('down'));
+}, { attempts: 3, delayMs: 0 })
+// => 'c' (after 'a' and 'b' failed)
 ```
 
 ## Related Types

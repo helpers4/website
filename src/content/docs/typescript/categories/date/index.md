@@ -32,6 +32,7 @@ Utility functions for working with date operations.
 | [`getTimezoneOffset`](./gettimezoneoffset/) | Returns the UTC offset \*\*in minutes\*\* for the given IANA timezone at a specific point in time\. |
 | [`isBusinessDay`](./isbusinessday/) | Checks whether a date falls on a business day \(i\.e\. |
 | [`isLeapYear`](./isleapyear/) | Returns \`true\` if the given year is a leap year\. |
+| [`isoWeek`](./isoweek/) | ISO 8601 week of a date: weeks start on Monday and week 1 is the one that contains the first Thursday of the year, so t… |
 | [`isSameDay`](./issameday/) | Checks if two dates are the same day\. |
 | [`isSameMonth`](./issamemonth/) | Checks if two dates are in the same month \(and year\)\. |
 | [`isSameYear`](./issameyear/) | Checks if two dates are in the same year\. |

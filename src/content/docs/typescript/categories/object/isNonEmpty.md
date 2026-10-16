@@ -3,7 +3,7 @@ title: "isNonEmpty"
 sidebar:
   label: "isNonEmpty"
 description: "Checks if a plain object has at least one own enumerable string-keyed property."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Checks if a plain object has at least one own enumerable string-keyed property.

@@ -3,7 +3,7 @@ title: "isArrayBuffer"
 sidebar:
   label: "isArrayBuffer"
 description: "Checks if a value is an ArrayBuffer instance."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Checks if a value is an ArrayBuffer instance.

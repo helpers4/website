@@ -3,7 +3,7 @@ title: "omitBy"
 sidebar:
   label: "omitBy"
 description: "Creates a new object without the own enumerable entries for which `predicate` returns `true`."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Creates a new object without the own enumerable entries for which

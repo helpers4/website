@@ -53,6 +53,7 @@ Utility functions for working with array operations.
 | [`range`](./range/) | Generates an array of sequential numbers from start to end \(exclusive\)\. |
 | [`replaceOrAppend`](./replaceorappend/) | Returns a new array with the first item matching \`predicate\` replaced by \`item\` — or \`item\` appended at the end if no m… |
 | `reverse` | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
+| [`reverseSortFn`](./reversesortfn/) | Reverses the order of a sort function: \`reverseSortFn\(fn\)\(a, b\)\` is \`fn\(b, a\)\`\. |
 | [`sample`](./sample/) | Picks one or more random elements from an array\. |
 | [`select`](./select/) | Filters and transforms an array in a single pass\. |
 | `select / filterMap` | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |

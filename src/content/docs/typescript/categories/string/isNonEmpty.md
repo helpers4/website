@@ -3,7 +3,7 @@ title: "isNonEmpty"
 sidebar:
   label: "isNonEmpty"
 description: "Checks if a string is non-empty (has at least one character)."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Checks if a string is non-empty (has at least one character).

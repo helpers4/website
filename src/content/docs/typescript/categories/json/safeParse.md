@@ -3,7 +3,7 @@ title: "safeParse"
 sidebar:
   label: "safeParse"
 description: "Parses JSON permissively like parse — strict JSON, JSONC (HuJSON, JWCC) and JSON5 — but returns `null` (or `fallback`)…"
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Parses JSON permissively like parse — strict JSON, JSONC (HuJSON, JWCC) and JSON5 —

@@ -3,7 +3,7 @@ title: "trimEnd"
 sidebar:
   label: "trimEnd"
 description: "Trims trailing characters from a string, at a configurable level of aggressiveness (see TrimMode)."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Trims trailing characters from a string, at a configurable level of

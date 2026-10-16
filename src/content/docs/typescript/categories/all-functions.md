@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**351** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**355** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -164,6 +164,7 @@ sidebar:
 | [`isEmpty`](../string/isempty/) | [string](../string/) | Checks if a string is empty \(\`""\`\), \`null\`, or \`undefined\`\. |
 | [`isError`](../guard/iserror/) | [guard](../guard/) | Checks if a value is an Error instance\. |
 | [`isEven`](../number/iseven/) | [number](../number/) | Checks if a value is an even integer\. |
+| [`isExternalUrl`](../url/isexternalurl/) | [url](../url/) | Whether a link points to another origin than \`base\`: an absolute \`http\(s\)\` URL or a protocol\-relative one \(\`//host/path… |
 | [`isFalsy`](../guard/isfalsy/) | [guard](../guard/) | Checks if a value is falsy \(\`false\`, \`null\`, \`undefined\`, \`0\`, \`""\`, \`NaN\`\)\. |
 | `isFinite / isFiniteNumber` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isFinite(value)` *(ES2015)* |
 | [`isFormData`](../guard/isformdata/) | [guard](../guard/) | Checks if a value is a FormData instance\. |
@@ -201,6 +202,7 @@ sidebar:
 | [`isNumber`](../guard/isnumber/) | [guard](../guard/) | Checks if a value is a number\. |
 | [`isObservable`](../observable/isobservable/) | [observable](../observable/) | Checks if a value is an RxJS Observable or any compatible observable\. |
 | [`isOdd`](../number/isodd/) | [number](../number/) | Checks if a value is an odd integer\. |
+| [`isoWeek`](../date/isoweek/) | [date](../date/) | ISO 8601 week of a date: weeks start on Monday and week 1 is the one that contains the first Thursday of the year, so t… |
 | [`isPlainObject`](../guard/isplainobject/) | [guard](../guard/) | Checks if a value is a plain object\. |
 | [`isPositive`](../number/ispositive/) | [number](../number/) | Checks if a value is a number greater than 0\. |
 | [`isPrerelease`](../version/isprerelease/) | [version](../version/) | Returns \`true\` when the version string has a prerelease suffix, according to the given \`scheme\`\. |
@@ -319,9 +321,10 @@ sidebar:
 | [`replaceOrAppend`](../array/replaceorappend/) | [array](../array/) | Returns a new array with the first item matching \`predicate\` replaced by \`item\` — or \`item\` appended at the end if no m… |
 | [`RequiredKeys`](../type/requiredkeys/) | [type](../type/) | Extracts the required \(non\-optional\) keys of an object type \`T\`\. |
 | [`resolveRecord`](../promise/resolverecord/) | [promise](../promise/) | Resolves an array of keys into a record by calling an async mapper for each key\. |
-| [`retry`](../promise/retry/) | [promise](../promise/) | Retries a promise\-returning function until it succeeds or runs out of attempts, then rejects with the last error\. |
+| [`retry`](../promise/retry/) | [promise](../promise/) | Retries a promise\-returning function until it succeeds or runs out of attempts, then rejects with the last error, waiti… |
 | [`returnOrThrowError`](../function/returnorthrowerror/) | [function](../function/) | Return a value or throw an error if null or undefined\. |
 | `reverse` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
+| [`reverseSortFn`](../array/reversesortfn/) | [array](../array/) | Reverses the order of a sort function: \`reverseSortFn\(fn\)\(a, b\)\` is \`fn\(b, a\)\`\. |
 | [`rgbToHex`](../color/rgbtohex/) | [color](../color/) | Converts an RGB\(A\) color into a hex color string\. |
 | [`rgbToHsl`](../color/rgbtohsl/) | [color](../color/) | Converts an RGB\(A\) color into HSL\(A\)\. |
 | [`roundTo`](../number/roundto/) | [number](../number/) | Rounds a number to specified decimal places |
@@ -363,6 +366,7 @@ sidebar:
 | [`stringify`](../version/stringify/) | [version](../version/) | Reconstructs a version string from a AnyParsedVersion object — the scheme is read from the object's own \`scheme\` field,… |
 | [`stringifyLines`](../json/stringifylines/) | [json](../json/) | Serializes values as newline\-delimited JSON — one compact JSON value per line, each followed by \`\\n\`\. |
 | [`stringifySequence`](../json/stringifysequence/) | [json](../json/) | Serializes values as a JSON text sequence \(RFC 7464, \`application/json\-seq\`\): each value is written as the ASCII record… |
+| [`stripHtml`](../string/striphtml/) | [string](../string/) | Plain text of an HTML fragment: tags removed, \`<script>\`, \`<style>\` and comments dropped with their content, entities d… |
 | [`stripV`](../version/stripv/) | [version](../version/) | Strip the leading "v" from a version string if it exists\. |
 | [`sum`](../array/sum/) | [array](../array/) | Calculates the sum of an array of numbers\. |
 | [`sumBy`](../array/sumby/) | [array](../array/) | Calculates the sum of numbers derived from each item of an array via an iteratee\. |

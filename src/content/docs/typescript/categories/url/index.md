@@ -13,6 +13,7 @@ Utility functions for working with url operations.
 |----------|-------------|
 | [`cleanPath`](./cleanpath/) | Clean an URL by removing duplicate slashes\. |
 | [`extractPureURI`](./extractpureuri/) | Extracts the pure URI from a URL by removing query parameters and fragments\. |
+| [`isExternalUrl`](./isexternalurl/) | Whether a link points to another origin than \`base\`: an absolute \`http\(s\)\` URL or a protocol\-relative one \(\`//host/path… |
 | [`onlyPath`](./onlypath/) | Extract only the path from an URI with optional query and fragments\. |
 | [`parsePackageRepository`](./parsepackagerepository/) | Parse the \`repository\` field from \`package\.json\` into a structured object\. |
 | [`relativeURLToAbsolute`](./relativeurltoabsolute/) | Converts a relative URL to an absolute URL using the current document base URI\. |

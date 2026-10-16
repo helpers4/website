@@ -3,7 +3,7 @@ title: "uniqueBy"
 sidebar:
   label: "uniqueBy"
 description: "Removes duplicate items from an array, using a derived key instead of value equality."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Removes duplicate items from an array, using a derived key instead of value equality.

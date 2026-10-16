@@ -3,7 +3,7 @@ title: "clamp"
 sidebar:
   label: "clamp"
 description: "Clamps a number between min and max values"
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Clamps a number between min and max values

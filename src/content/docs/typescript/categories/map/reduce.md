@@ -3,7 +3,7 @@ title: "reduce"
 sidebar:
   label: "reduce"
 description: "Reduces a Map to a single value by applying a function to each entry, in insertion order."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Reduces a Map to a single value by applying a function to each entry, in insertion order.

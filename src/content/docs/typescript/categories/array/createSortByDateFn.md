@@ -3,7 +3,7 @@ title: "createSortByDateFn"
 sidebar:
   label: "createSortByDateFn"
 description: "Creates a sort function for objects by date property."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Creates a sort function for objects by date property.
@@ -22,7 +22,7 @@ import { createSortByDateFn } from 'helpers4/array';
 
 
 ```ts
-createSortByDateFn<T extends Record<string, unknown>>(property?: keyof T): SortFn<T>
+createSortByDateFn<T extends object>(property?: keyof T): SortFn<T>
 ```
 
 ## Parameters

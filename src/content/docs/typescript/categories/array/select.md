@@ -3,7 +3,7 @@ title: "select"
 sidebar:
   label: "select"
 description: "Filters and transforms an array in a single pass."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Filters and transforms an array in a single pass.

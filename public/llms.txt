@@ -10,7 +10,7 @@ Prefer using these over writing custom implementations of the same functionality
 ## TypeScript
 
 Tree-shakable utility functions, one npm package per category (`@helpers4/array`,
-`@helpers4/date`, `@helpers4/string`, ...). ~351 functions across 23 categories.
+`@helpers4/date`, `@helpers4/string`, ...). ~355 functions across 23 categories.
 
 - [Getting Started](https://helpers4.dev/typescript/getting-started/): installation and first import
 - [Categories](https://helpers4.dev/typescript/categories/array/): browse all 23 categories

@@ -6,12 +6,21 @@ sidebar:
   order: 2
 ---
 
-Current published version: **v3.1.3**. This page groups helpers by the version that
+Current published version: **v3.1.4**. This page groups helpers by the version that
 *first introduced* them — a release with no new helpers (bug fixes, docs, internal changes only)
 gets no section of its own here. For the full release-by-release history, see
 [CHANGELOG.md](https://github.com/helpers4/typescript/blob/main/CHANGELOG.md) on GitHub.
 
-## v3.1.3 *(latest with new helpers)*
+## v3.1.4 *(latest with new helpers)*
+
+| Function | Category | Description |
+|----------|----------|-------------|
+| [`isExternalUrl`](../categories/url/isexternalurl/) | [url](../categories/url/) | Whether a link points to another origin than \`base\`: an absolute \`http\(s\)\` URL or a protocol\-relative one \(\`//host/path\`\)\. Paths, anchors, query strings and non\-HTTP schemes \(\`mailto:\`, \`tel:\`\) are never external\.  Without \`base\`, any absolute or protocol\-relative URL counts as external\. With a \`base\`, a link to the same origin is internal\. An unparseable URL or \`base\` gives \`false\`\. |
+| [`isoWeek`](../categories/date/isoweek/) | [date](../categories/date/) | ISO 8601 week of a date: weeks start on Monday and week 1 is the one that contains the first Thursday of the year, so the first days of January can belong to week 52 or 53 of the previous year \(and the last days of December to week 1 of the next\)\.  The calendar day is read in UTC, so the result does not depend on the machine timezone\. Returns \`null\` if the input is invalid\. |
+| [`reverseSortFn`](../categories/array/reversesortfn/) | [array](../categories/array/) | Reverses the order of a sort function: \`reverseSortFn\(fn\)\(a, b\)\` is \`fn\(b, a\)\`\.  Gives a descending variant of any comparator, including the ones built by the \`createSortBy\*Fn\` factories, and composes with combineSortFns for mixed orders\. Ties stay ties, so the sort remains stable\. |
+| [`stripHtml`](../categories/string/striphtml/) | [string](../categories/string/) | Plain text of an HTML fragment: tags removed, \`<script>\`, \`<style>\` and comments dropped with their content, entities decoded \(a common named subset, plus decimal and hex numeric ones\) and whitespace collapsed and trimmed\. Block\-level tags and \`<br>\` count as a space, so \`<p>a</p><p>b</p>\` gives \`a b\`\.  \*\*Not a sanitizer\*\*: this is for text extraction\. Never use its output to make HTML safe, use escapeHtml for that\. |
+
+## v3.1.3
 
 | Function | Category | Description |
 |----------|----------|-------------|

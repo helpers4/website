@@ -3,7 +3,7 @@ title: "isNdjson"
 sidebar:
   label: "isNdjson"
 description: "Checks whether a value is a string holding valid newline-delimited JSON — one strict JSON value per line, as NDJSON and…"
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Checks whether a value is a string holding valid newline-delimited JSON — one strict JSON

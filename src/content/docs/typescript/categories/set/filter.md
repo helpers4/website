@@ -3,7 +3,7 @@ title: "filter"
 sidebar:
   label: "filter"
 description: "Creates a new Set containing only the values for which the predicate returns true."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Creates a new Set containing only the values for which the predicate returns true.

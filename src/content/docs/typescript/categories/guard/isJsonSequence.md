@@ -3,7 +3,7 @@ title: "isJsonSequence"
 sidebar:
   label: "isJsonSequence"
 description: "Checks whether a value is a string holding a valid JSON text sequence (RFC 7464, `application/json-seq`): records that…"
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Checks whether a value is a string holding a valid JSON text sequence (RFC 7464,

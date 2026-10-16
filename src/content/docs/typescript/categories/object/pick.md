@@ -3,7 +3,7 @@ title: "pick"
 sidebar:
   label: "pick"
 description: "Creates a new object with only the specified keys."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Creates a new object with only the specified keys.
@@ -24,7 +24,7 @@ import { pick } from 'helpers4/object';
 
 
 ```ts
-pick<T extends Record<string, unknown>, K extends string | number | symbol>(obj: T, keys: readonly K[]): Pick<T, K>
+pick<T extends object, K extends string | number | symbol>(obj: T, keys: readonly K[]): Pick<T, K>
 ```
 
 ## Parameters

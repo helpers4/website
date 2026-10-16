@@ -3,7 +3,7 @@ title: "extractNumber"
 sidebar:
   label: "extractNumber"
 description: "Extracts the first number embedded anywhere in a string, or passes through a `number`."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Extracts the first number embedded anywhere in a string, or passes through a `number`.

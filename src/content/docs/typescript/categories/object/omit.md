@@ -3,7 +3,7 @@ title: "omit"
 sidebar:
   label: "omit"
 description: "Creates a new object without the specified keys."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Creates a new object without the specified keys.
@@ -22,7 +22,7 @@ import { omit } from 'helpers4/object';
 
 
 ```ts
-omit<T extends Record<string, unknown>, K extends string | number | symbol>(obj: T, keys: readonly K[]): Omit<T, K>
+omit<T extends object, K extends string | number | symbol>(obj: T, keys: readonly K[]): Omit<T, K>
 ```
 
 ## Parameters

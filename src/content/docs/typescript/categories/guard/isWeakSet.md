@@ -3,7 +3,7 @@ title: "isWeakSet"
 sidebar:
   label: "isWeakSet"
 description: "Checks if a value is a WeakSet instance."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Checks if a value is a WeakSet instance.

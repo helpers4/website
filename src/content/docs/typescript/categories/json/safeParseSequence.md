@@ -3,7 +3,7 @@ title: "safeParseSequence"
 sidebar:
   label: "safeParseSequence"
 description: "Parses a JSON text sequence (RFC 7464) like parseSequence, but returns `null` (or `fallback`) instead of throwing on in…"
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Parses a JSON text sequence (RFC 7464) like parseSequence, but returns `null` (or

@@ -23,7 +23,7 @@ Utility functions for working with promise operations.
 | [`parallel`](./parallel/) | Runs an array of async functions with a concurrency limit\. |
 | [`parallelSettle`](./parallelsettle/) | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first… |
 | [`resolveRecord`](./resolverecord/) | Resolves an array of keys into a record by calling an async mapper for each key\. |
-| [`retry`](./retry/) | Retries a promise\-returning function until it succeeds or runs out of attempts, then rejects with the last error\. |
+| [`retry`](./retry/) | Retries a promise\-returning function until it succeeds or runs out of attempts, then rejects with the last error, waiti… |
 | [`safeFetch`](./safefetch/) | Wraps \`fetch\` with built\-in error handling: returns \`null\` when the request fails \(network error, non\-OK status, or par… |
 | [`settle`](./settle/) | Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first failure, unlike \`P… |
 | [`timeout`](./timeout/) | Wraps a promise to reject with a \`TimeoutError\` if it does not resolve within the specified duration\. |

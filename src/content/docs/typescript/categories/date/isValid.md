@@ -3,7 +3,7 @@ title: "isValid"
 sidebar:
   label: "isValid"
 description: "Checks if a value is a valid Date instance (not `Invalid Date`)."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Checks if a value is a valid Date instance (not `Invalid Date`).

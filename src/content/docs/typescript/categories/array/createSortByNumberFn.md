@@ -3,7 +3,7 @@ title: "createSortByNumberFn"
 sidebar:
   label: "createSortByNumberFn"
 description: "Creates a sort function for objects by number property."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Creates a sort function for objects by number property.
@@ -22,7 +22,7 @@ import { createSortByNumberFn } from 'helpers4/array';
 
 
 ```ts
-createSortByNumberFn<T extends Record<string, unknown>>(property?: keyof T): SortFn<T>
+createSortByNumberFn<T extends object>(property?: keyof T): SortFn<T>
 ```
 
 ## Parameters

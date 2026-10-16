@@ -36,6 +36,7 @@ Utility functions for working with string operations.
 | [`slugify`](./slugify/) | Converts a string into a URL\-friendly slug\. |
 | [`snakeCase`](./snakecase/) | Converts a string to snake\_case\. |
 | `startsWith / endsWith` | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |
+| [`stripHtml`](./striphtml/) | Plain text of an HTML fragment: tags removed, \`<script>\`, \`<style>\` and comments dropped with their content, entities d… |
 | [`template`](./template/) | Interpolates \`\{\{key\}\}\` placeholders in a template string with values from a data record\. |
 | [`titleCase`](./titlecase/) | Converts a string to Title Case\. |
 | [`trim`](./trim/) | Trims both leading and trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |

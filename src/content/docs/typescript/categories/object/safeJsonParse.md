@@ -3,7 +3,7 @@ title: "safeJsonParse"
 sidebar:
   label: "safeJsonParse"
 description: "Parses a JSON string, returning `null` (or a fallback) on any parse failure."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Parses a JSON string, returning `null` (or a fallback) on any parse failure.

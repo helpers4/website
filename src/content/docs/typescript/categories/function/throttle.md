@@ -3,7 +3,7 @@ title: "throttle"
 sidebar:
   label: "throttle"
 description: "Creates a throttled function that only invokes func at most once per every wait milliseconds"
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Creates a throttled function that only invokes func at most once per every wait milliseconds

@@ -3,7 +3,7 @@ title: "createSortByBooleanFn"
 sidebar:
   label: "createSortByBooleanFn"
 description: "Creates a sort function for objects by a boolean property."
-version: "3.1.3"
+version: "3.1.4"
 ---
 
 Creates a sort function for objects by a boolean property.
@@ -25,7 +25,7 @@ import { createSortByBooleanFn } from 'helpers4/array';
 
 
 ```ts
-createSortByBooleanFn<T extends Record<string, unknown>>(property: keyof T, trueFirst: boolean): SortFn<T>
+createSortByBooleanFn<T extends object>(property: keyof T, trueFirst: boolean): SortFn<T>
 ```
 
 ## Parameters
