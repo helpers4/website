@@ -91,7 +91,7 @@ export default defineConfig({
       favicon: '/favicon.svg',
       lastUpdated: true,
       // Starlight emits og:title/description/url, canonical and twitter:card itself; it has no default og:image.
-      head: [{ tag: 'meta', attrs: { property: 'og:image', content: 'https://helpers4.dev/helpers4-logo.png' } }],
+      head: [{ tag: 'meta', attrs: { property: 'og:image', content: 'https://helpers4.dev/og-default.png' } }],
       logo: {
         src: './src/assets/helpers4-logo.png',
         alt: 'helpers4',
