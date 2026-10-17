@@ -20,6 +20,8 @@ export const collections = {
       author: z.string(),
       tags: z.array(z.string()).default([]),
       excerpt: z.string(),
+      // Optional social-preview image (site-relative or absolute URL); falls back to the site default.
+      image: z.string().optional(),
       draft: z.boolean().default(false),
     }),
   }),
