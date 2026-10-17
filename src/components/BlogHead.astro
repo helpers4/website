@@ -19,7 +19,7 @@ interface Props {
   publishedTime?: Date;
 }
 
-const DEFAULT_IMAGE = '/helpers4-logo.png';
+const DEFAULT_IMAGE = '/og-default.png';
 
 const { title, description, path, type = 'website', image, publishedTime } = Astro.props;
 const canonical = new URL(path, Astro.site).href;
