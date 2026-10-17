@@ -1,0 +1,40 @@
+---
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * Shared <head> content for the standalone (non-Starlight) pages: social-sharing tags with
+ * absolute URLs, canonical link, and the blog feed discovery link.
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  /** Page path on the site, e.g. `/blog/` or `/blog/my-post`. */
+  path: string;
+  type?: 'website' | 'article';
+  /** Site-relative or absolute image URL; defaults to the site-wide preview image. */
+  image?: string;
+  publishedTime?: Date;
+}
+
+const DEFAULT_IMAGE = '/helpers4-logo.png';
+
+const { title, description, path, type = 'website', image, publishedTime } = Astro.props;
+const canonical = new URL(path, Astro.site).href;
+const imageUrl = new URL(image ?? DEFAULT_IMAGE, Astro.site).href;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<link rel="alternate" type="application/rss+xml" title="helpers4 blog" href={new URL("/blog/rss.xml", Astro.site).href} />
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="helpers4" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+{publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}

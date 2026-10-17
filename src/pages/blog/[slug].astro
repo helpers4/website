@@ -9,6 +9,7 @@
 
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import BlogHead from '../../components/BlogHead.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -35,19 +36,19 @@ function formatDate(date: Date): string {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{post.data.title} — helpers4</title>
-    <meta name="description" content={post.data.excerpt} />
+    <BlogHead
+      title={`${post.data.title} — helpers4`}
+      description={post.data.excerpt}
+      path={`/blog/${post.id}/`}
+      type="article"
+      image={post.data.image}
+      publishedTime={post.data.date}
+    />
 
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content={post.data.title} />
-    <meta property="og:description" content={post.data.excerpt} />
-    <meta property="og:image" content="/helpers4-logo.png" />
-    <meta property="article:published_time" content={post.data.date.toISOString()} />
   </head>
   <body>
     <div class="page">

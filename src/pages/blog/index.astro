@@ -8,6 +8,7 @@
  */
 
 import { getCollection } from 'astro:content';
+import BlogHead from '../../components/BlogHead.astro';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
@@ -23,18 +24,16 @@ function formatDate(date: Date): string {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog — helpers4</title>
-    <meta name="description" content="The helpers4 blog — updates, releases, and thoughts on open-source developer tooling." />
+    <BlogHead
+      title="Blog — helpers4"
+      description="The helpers4 blog — updates, releases, and thoughts on open-source developer tooling."
+      path="/blog/"
+    />
 
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Blog — helpers4" />
-    <meta property="og:description" content="The helpers4 blog — updates, releases, and thoughts on open-source developer tooling." />
-    <meta property="og:image" content="/helpers4-logo.png" />
   </head>
   <body>
     <div class="page">
