@@ -41,6 +41,7 @@ Utility functions for working with array operations.
 | [`isNonEmpty`](./isnonempty/) | Checks if an array is non\-empty \(has at least one element\)\. |
 | `last` | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(-1)` *(ES2022)* |
 | [`mapAsync`](./mapasync/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, in… |
+| [`mapSettled`](./mapsettled/) | Like mapAsync, but never rejects: each item gets its own result, in the shape of \`Promise\.allSettled\`, so one failure d… |
 | [`max`](./max/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
 | [`maxBy`](./maxby/) | Returns the element of an array with the greatest derived key, computed by \`keyFn\`\. |
 | [`mean`](./mean/) | Calculates the arithmetic mean \(average\) of an array of numbers\. |

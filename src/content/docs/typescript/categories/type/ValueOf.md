@@ -3,7 +3,7 @@ title: "ValueOf"
 sidebar:
   label: "ValueOf"
 description: "Produces a union of all value types of an object type `T`."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Produces a union of all value types of an object type `T`.

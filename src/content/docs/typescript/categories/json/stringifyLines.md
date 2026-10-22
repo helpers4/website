@@ -3,7 +3,7 @@ title: "stringifyLines"
 sidebar:
   label: "stringifyLines"
 description: "Serializes values as newline-delimited JSON — one compact JSON value per line, each followed by `\\n`."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Serializes values as newline-delimited JSON — one compact JSON value per line, each followed

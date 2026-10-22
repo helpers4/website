@@ -3,7 +3,7 @@ title: "findKey"
 sidebar:
   label: "findKey"
 description: "Returns the first key of a Map whose entry satisfies the predicate, in insertion order."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Returns the first key of a Map whose entry satisfies the predicate, in insertion order.

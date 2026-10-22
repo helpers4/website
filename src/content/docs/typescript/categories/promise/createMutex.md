@@ -3,7 +3,7 @@ title: "createMutex"
 sidebar:
   label: "createMutex"
 description: "Creates a mutex: a lock allowing at most one holder at a time, queueing excess `acquire()` callers in FIFO order."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Creates a mutex: a lock allowing at most one holder at a time, queueing excess `acquire()`

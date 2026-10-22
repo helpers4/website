@@ -3,7 +3,7 @@ title: "pipe"
 sidebar:
   label: "pipe"
 description: "Composes functions left-to-right: the output of each function is passed as input to the next."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Composes functions left-to-right: the output of each function is passed as
@@ -32,7 +32,7 @@ pipe<A, B>(fn1: function): function
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `fn1` | `function` |  |
+| `fn1` | `function` | The first function\. The overloads accept up to eight functions in all, passed as \`fn1, fn2, …\`\. |
 
 ## Returns
 

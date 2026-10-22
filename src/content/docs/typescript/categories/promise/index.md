@@ -17,9 +17,11 @@ Utility functions for working with promise operations.
 | [`defer`](./defer/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order \(last register… |
 | [`delay`](./delay/) | Creates a promise that resolves after specified delay |
 | [`falsyPromiseOrThrow`](./falsypromiseorthrow/) | Returns a function that passes through falsy data or throws an error\. |
+| [`fetchJson`](./fetchjson/) | Fetches a URL and returns its parsed JSON body, retrying transient failures\. |
 | [`fetchOrThrow`](./fetchorthrow/) | Wraps \`fetch\` so that a non\-2xx response rejects with an HttpError, instead of resolving like any other response — the… |
 | [`guard`](./guard/) | Wraps a function so that if it throws, a default value is returned instead of propagating the error\. |
 | [`meaningPromiseOrThrow`](./meaningpromiseorthrow/) | Returns a function that passes through meaningful data or throws an error\. |
+| [`paginate`](./paginate/) | Collects every item of a paginated source by requesting pages one after the other, from page 1, until the source runs o… |
 | [`parallel`](./parallel/) | Runs an array of async functions with a concurrency limit\. |
 | [`parallelSettle`](./parallelsettle/) | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first… |
 | [`resolveRecord`](./resolverecord/) | Resolves an array of keys into a record by calling an async mapper for each key\. |

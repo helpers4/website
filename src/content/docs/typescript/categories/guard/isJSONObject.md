@@ -3,7 +3,7 @@ title: "isJSONObject"
 sidebar:
   label: "isJSONObject"
 description: "Checks whether a value is a plain object whose every own value is a valid JSON value (see isJSONValue)."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Checks whether a value is a plain object whose every own value is a valid JSON value

@@ -3,7 +3,7 @@ title: "isFalsy"
 sidebar:
   label: "isFalsy"
 description: "Checks if a value is falsy (`false`, `null`, `undefined`, `0`, `\"\"`, `NaN`)."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Checks if a value is falsy (`false`, `null`, `undefined`, `0`, `""`, `NaN`).

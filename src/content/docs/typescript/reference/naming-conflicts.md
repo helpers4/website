@@ -25,6 +25,10 @@ This is not a bug. `compact` for arrays and `compact` for objects are genuinely 
 | `equalsDeep` | [`array`](../categories/array/equalsdeep/), [`object`](../categories/object/equalsdeep/) |
 | `equalsShallow` | [`array`](../categories/array/equalsshallow/), [`object`](../categories/object/equalsshallow/) |
 | `filter` | [`map`](../categories/map/filter/), [`set`](../categories/set/filter/) |
+| `identity` | [`function`](../categories/function/identity/), [`geometry`](../categories/geometry/identity/) |
+| `intersection` | [`array`](../categories/array/intersection/), [`geometry`](../categories/geometry/intersection/) |
+| `intersects` | [`array`](../categories/array/intersects/), [`geometry`](../categories/geometry/intersects/) |
+| `invert` | [`geometry`](../categories/geometry/invert/), [`object`](../categories/object/invert/) |
 | `isEmpty` | [`array`](../categories/array/isempty/), [`object`](../categories/object/isempty/), [`string`](../categories/string/isempty/) |
 | `isNonEmpty` | [`array`](../categories/array/isnonempty/), [`object`](../categories/object/isnonempty/), [`string`](../categories/string/isnonempty/) |
 | `map` | [`object`](../categories/object/map/), [`set`](../categories/set/map/) |
@@ -101,6 +105,34 @@ import { equalsShallow as equalsShallow4object } from '@helpers4/object';
 ```ts
 import { filter as filter4map } from '@helpers4/map';
 import { filter as filter4set } from '@helpers4/set';
+```
+
+### `identity`
+
+```ts
+import { identity as identity4function } from '@helpers4/function';
+import { identity as identity4geometry } from '@helpers4/geometry';
+```
+
+### `intersection`
+
+```ts
+import { intersection as intersection4array } from '@helpers4/array';
+import { intersection as intersection4geometry } from '@helpers4/geometry';
+```
+
+### `intersects`
+
+```ts
+import { intersects as intersects4array } from '@helpers4/array';
+import { intersects as intersects4geometry } from '@helpers4/geometry';
+```
+
+### `invert`
+
+```ts
+import { invert as invert4geometry } from '@helpers4/geometry';
+import { invert as invert4object } from '@helpers4/object';
 ```
 
 ### `isEmpty`

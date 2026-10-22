@@ -24,8 +24,10 @@ Utility functions for working with date operations.
 | [`eachMonth`](./eachmonth/) | Returns an array of \`Date\` objects for the first day of each month from \`start\` to \`end\` \(inclusive\)\. |
 | [`endOf`](./endof/) | Returns a new \`Date\` set to the \*\*end\*\* of the given unit\. |
 | [`ensureDate`](./ensuredate/) | Safely converts a date\-like value to a valid \`Date\` object, or returns \`null\`\. |
+| [`format`](./format/) | Formats a date as a short label that does not depend on the machine: UTC, English, and \`Jul 27, 2026\` by default\. |
 | [`formatDuration`](./formatduration/) | Formats a duration in milliseconds as a compact human\-readable string\. |
 | [`formatInTimezone`](./formatintimezone/) | Formats a date in a specific IANA timezone using \`Intl\.DateTimeFormat\`\. |
+| [`formatPartial`](./formatpartial/) | Formats a partial ISO date at the precision it was given, in UTC: a year alone is approximate and reads \`c\. |
 | `from (parse temporal string)` | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.from(str) / Temporal.PlainDate.from(str) / etc.` *(Temporal (Stage 3))* |
 | [`fromMillis`](./frommillis/) | Creates a \`Date\` from a timestamp in \*\*milliseconds\*\*\. |
 | [`fromSeconds`](./fromseconds/) | Creates a \`Date\` from a timestamp in \*\*seconds\*\*\. |
@@ -46,6 +48,7 @@ Utility functions for working with date operations.
 | `now (date/time/instant)` | <span class="badge badge--secondary">native JS</span> `Temporal.Now.instant() / .zonedDateTimeISO() / .plainDateISO() / .plainTimeISO()` *(Temporal (Stage 3))* |
 | [`overlaps`](./overlaps/) | Checks whether two date ranges overlap\. |
 | [`parseDuration`](./parseduration/) | Parses a compact duration string \(as produced by formatDuration, e\.g\. |
+| [`parsePartial`](./parsepartial/) | Parses an ISO date that may only be known to the year or the month: \`YYYY\`, \`YYYY\-MM\` or \`YYYY\-MM\-DD\`\. |
 | [`startOf`](./startof/) | Returns a new \`Date\` set to the \*\*start\*\* of the given unit\. |
 | [`timeAgo`](./timeago/) | Formats a date as a human\-readable relative time string\. |
 | [`toISO8601`](./toiso8601/) | Converts a date to ISO 8601 format Format: YYYY\-MM\-DDTHH:mm:ss\.sssZ |

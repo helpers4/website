@@ -3,7 +3,7 @@ title: "parseSequence"
 sidebar:
   label: "parseSequence"
 description: "Parses a JSON text sequence (RFC 7464, `application/json-seq`): records that each start with the ASCII record separator…"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Parses a JSON text sequence (RFC 7464, `application/json-seq`): records that each start with

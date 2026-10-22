@@ -3,7 +3,7 @@ title: "safeParseSequence"
 sidebar:
   label: "safeParseSequence"
 description: "Parses a JSON text sequence (RFC 7464) like parseSequence, but returns `null` (or `fallback`) instead of throwing on in…"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Parses a JSON text sequence (RFC 7464) like parseSequence, but returns `null` (or
@@ -41,7 +41,7 @@ safeParseSequence<T = unknown>(text: string): T[] | null
 
 ## Returns
 
-`T[] | null` — The parsed values typed as `T[]`, or `fallback` on invalid input
+`T[] | null` — The parsed values typed as `T[]`, or `null` on invalid input (pass a `fallback` to get it instead)
 
 ## Examples
 

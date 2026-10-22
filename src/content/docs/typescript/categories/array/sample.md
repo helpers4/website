@@ -3,7 +3,7 @@ title: "sample"
 sidebar:
   label: "sample"
 description: "Picks one or more random elements from an array."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Picks one or more random elements from an array.
@@ -35,7 +35,7 @@ sample<T>(array: readonly T[] | null | undefined): T | undefined
 
 ## Returns
 
-`T | undefined` — A single random element (or `undefined`) when no count is given, or an array of random elements when count is given
+`T | undefined` — A single random element, or `undefined` if the array is empty
 
 ## Examples
 

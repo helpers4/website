@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**355** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**408** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -18,6 +18,8 @@ sidebar:
 | [`addYears`](../date/addyears/) | [date](../date/) | Adds years to a date\. |
 | [`agree`](../license/agree/) | [license](../license/) | Whether two raw license strings agree closely enough to count as "no real conflict" — true when their family sets share… |
 | [`analyzeCommits`](../commit/analyzecommits/) | [commit](../commit/) | Analyses a list of commits to suggest a semantic version bump\. |
+| [`applyToPoint`](../geometry/applytopoint/) | [geometry](../geometry/) | Transforms a point by a matrix\. |
+| [`applyToRect`](../geometry/applytorect/) | [geometry](../geometry/) | Transforms a rectangle by a matrix and returns its bounding box: the smallest axis\-aligned rectangle that contains it\. |
 | [`argbToRgb`](../color/argbtorgb/) | [color](../color/) | Converts a 32\-bit packed ARGB integer \(as used by e\.g\. |
 | [`Brand`](../type/brand/) | [type](../type/) | Brands a base type \`T\` with a phantom tag \`B\` to create a nominal type\. |
 | [`buildConventionalCommitRegex`](../commit/buildconventionalcommitregex/) | [commit](../commit/) | Builds a regular expression matching the \*\*subject line\*\* of a Conventional Commits message\. |
@@ -43,12 +45,18 @@ sidebar:
 | `compare (ordering)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.compare(a, b) / Temporal.Instant.compare(a, b)` *(Temporal (Stage 3))* |
 | [`compose`](../function/compose/) | [function](../function/) | Composes functions right\-to\-left: \`compose\(f, g\)\(x\)\` is equivalent to \`f\(g\(x\)\)\`\. |
 | [`consoleLogPromise`](../promise/consolelogpromise/) | [promise](../promise/) | Returns a function that logs data to the console and passes it through\. |
+| [`contains`](../geometry/contains/) | [geometry](../geometry/) | Whether a point or a rectangle is inside a rectangle\. |
 | [`correctFloat`](../number/correctfloat/) | [number](../number/) | Corrects floating\-point arithmetic errors by rounding to a given number of significant digits\. |
 | [`countBy`](../array/countby/) | [array](../array/) | Groups the elements of an array by the key returned by \`keyFn\` and returns a record mapping each key to the number of m… |
 | [`countBy`](../map/countby/) | [map](../map/) | Groups the entries of a Map by a derived key and counts how many fall into each group\. |
 | [`countBy`](../set/countby/) | [set](../set/) | Groups the values of a Set by a derived key and counts how many fall into each group\. |
+| [`createBackStack`](../structure/createbackstack/) | [structure](../structure/) | Creates a back stack: a stack that always has a current entry \(the one on top\), with the previous ones underneath to go… |
 | [`createCachedResolver`](../function/createcachedresolver/) | [function](../function/) | Creates a lazy, cached resolver: \`resolve\(key\)\` computes and caches \`compute\(key\)\` the first time a given key is seen,… |
+| [`createGlobMatcher`](../string/createglobmatcher/) | [string](../string/) | createMatcher with every string read as a glob \(\`\*\`, \`?\`\): no string is ever taken for a regular expression, so it neve… |
+| [`createMatcher`](../string/creatematcher/) | [string](../string/) | Turns user\-supplied filters \(a setting, a CLI flag, a list of rules\) into one predicate\. |
 | [`createMutex`](../promise/createmutex/) | [promise](../promise/) | Creates a mutex: a lock allowing at most one holder at a time, queueing excess \`acquire\(\)\` callers in FIFO order\. |
+| [`createRegexMatcher`](../string/createregexmatcher/) | [string](../string/) | createMatcher with every string read as the source of a regular expression, without slashes or flags \(\`'^\(Home\|Login\)$'… |
+| [`createSafeMatcher`](../string/createsafematcher/) | [string](../string/) | Like createMatcher, but returns \`null\` instead of throwing when a string pattern is an invalid regular expression, to r… |
 | [`createSemaphore`](../promise/createsemaphore/) | [promise](../promise/) | Creates a semaphore limiting concurrent access to \`permits\` holders at a time, queueing excess \`acquire\(\)\` callers in F… |
 | [`createSortByBooleanFn`](../array/createsortbybooleanfn/) | [array](../array/) | Creates a sort function for objects by a boolean property\. |
 | [`createSortByDateFn`](../array/createsortbydatefn/) | [array](../array/) | Creates a sort function for objects by date property\. |
@@ -56,9 +64,11 @@ sidebar:
 | [`createSortByNumberFn`](../array/createsortbynumberfn/) | [array](../array/) | Creates a sort function for objects by number property\. |
 | [`createSortByStringFn`](../array/createsortbystringfn/) | [array](../array/) | Creates a sort function for objects by one or more string properties\. |
 | [`createUnionFind`](../structure/createunionfind/) | [structure](../structure/) | Creates a disjoint\-set \(union\-find\) structure: tracks a partition of items into non\-overlapping sets, merging two sets… |
+| [`cubicBezier`](../animation/cubicbezier/) | [animation](../animation/) | Builds the easing function of CSS \`cubic\-bezier\(x1, y1, x2, y2\)\`: given the progress of time \(\`0\` to \`1\`\), it returns t… |
 | [`curry`](../function/curry/) | [function](../function/) | Transforms a multi\-argument function into a chain of single\-argument functions \(Haskell\-style currying\)\. |
 | [`daysInMonth`](../date/daysinmonth/) | [date](../date/) | Returns the number of days in the given month of the given year\. |
 | [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time… |
+| [`decodeImage`](../browser/decodeimage/) | [browser](../browser/) | Loads an image and waits until it is decoded, so it can be painted without a flash or a decoding pause \(e\.g\. |
 | [`dedent`](../string/dedent/) | [string](../string/) | Strips the common leading whitespace from every line of a multi\-line string, and trims a single leading/trailing blank… |
 | [`DeepGet`](../type/deepget/) | [type](../type/) | Resolves the value type at a given \`Path\` within \`T\`\. |
 | [`DeepPartial`](../type/deeppartial/) | [type](../type/) | Recursively makes all properties of T optional, including nested objects and array elements\. |
@@ -92,6 +102,7 @@ sidebar:
 | [`extractPureURI`](../url/extractpureuri/) | [url](../url/) | Extracts the pure URI from a URL by removing query parameters and fragments\. |
 | [`falsyPromiseOrThrow`](../promise/falsypromiseorthrow/) | [promise](../promise/) | Returns a function that passes through falsy data or throws an error\. |
 | [`families`](../license/families/) | [license](../license/) | Groups a raw, possibly compound license string into its coarse family set — e\.g\. |
+| [`fetchJson`](../promise/fetchjson/) | [promise](../promise/) | Fetches a URL and returns its parsed JSON body, retrying transient failures\. |
 | [`fetchOrThrow`](../promise/fetchorthrow/) | [promise](../promise/) | Wraps \`fetch\` so that a non\-2xx response rejects with an HttpError, instead of resolving like any other response — the… |
 | [`filter`](../map/filter/) | [map](../map/) | Creates a new Map containing only the entries for which the predicate returns true\. |
 | [`filter`](../set/filter/) | [set](../set/) | Creates a new Set containing only the values for which the predicate returns true\. |
@@ -101,17 +112,26 @@ sidebar:
 | `findKey / findValue` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.entries().find(([k, v]) => pred(v, k))?.[0 or 1]` *(ES2025 (Iterator Helpers))* |
 | [`findMap`](../array/findmap/) | [array](../array/) | Returns the first non\-\`undefined\` result of mapping \`fn\` over \`array\`, short\-circuiting as soon as one is found\. |
 | [`findValue`](../map/findvalue/) | [map](../map/) | Returns the first value of a Map whose entry satisfies the predicate, in insertion order\. |
+| [`fit`](../geometry/fit/) | [geometry](../geometry/) | Places content in a box like CSS \`object\-fit\` and \`object\-position\`, e\.g\. |
+| [`fitContain`](../geometry/fitcontain/) | [geometry](../geometry/) | Places content in a box, as large as possible while staying entirely inside the box \(CSS \`object\-fit: contain\`\)\. |
+| [`fitCover`](../geometry/fitcover/) | [geometry](../geometry/) | Places content in a box, as small as possible while covering the whole box \(CSS \`object\-fit: cover\`\)\. |
+| [`fitFill`](../geometry/fitfill/) | [geometry](../geometry/) | Places content in a box, stretched to the box on each axis, without keeping its proportions \(CSS \`object\-fit: fill\`\)\. |
+| [`fitNone`](../geometry/fitnone/) | [geometry](../geometry/) | Places content in a box, at its own size, only positioned \(CSS \`object\-fit: none\`\)\. |
+| [`fitScaleDown`](../geometry/fitscaledown/) | [geometry](../geometry/) | Places content in a box, like fitContain, but never enlarged \(CSS \`object\-fit: scale\-down\`\)\. |
 | [`flatten`](../object/flatten/) | [object](../object/) | Flattens a nested object into a single\-level object whose keys are the dot\-notation path to each leaf value\. |
 | `flatten / flat` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.flat(depth?)` *(ES2019)* |
 | [`flip`](../function/flip/) | [function](../function/) | Creates a function that invokes \`fn\` with the first two arguments swapped\. |
 | `forEach` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `Map.prototype.forEach((value, key, map) => ...)` *(ES2015)* |
 | `forEach` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.forEach((value, value2, set) => ...)` *(ES2015)* |
 | [`forEachAsync`](../array/foreachasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.forEach\`: runs \`fn\` for every item for its side effects, discarding any retur… |
+| [`format`](../date/format/) | [date](../date/) | Formats a date as a short label that does not depend on the machine: UTC, English, and \`Jul 27, 2026\` by default\. |
 | [`formatCompact`](../number/formatcompact/) | [number](../number/) | Formats a number using compact notation \(e\.g\. |
 | [`formatDuration`](../date/formatduration/) | [date](../date/) | Formats a duration in milliseconds as a compact human\-readable string\. |
 | [`formatInTimezone`](../date/formatintimezone/) | [date](../date/) | Formats a date in a specific IANA timezone using \`Intl\.DateTimeFormat\`\. |
+| [`formatPartial`](../date/formatpartial/) | [date](../date/) | Formats a partial ISO date at the precision it was given, in UTC: a year alone is approximate and reads \`c\. |
 | [`formatProgressBar`](../string/formatprogressbar/) | [string](../string/) | Formats a value as a text progress bar, repeating \`filledChar\`/\`emptyChar\` across \`width\` cells proportional to \`value… |
 | [`formatSize`](../number/formatsize/) | [number](../number/) | Format a byte count into a human\-readable string with the appropriate unit\. |
+| [`frameLoop`](../animation/frameloop/) | [animation](../animation/) | Calls \`onFrame\` once per animation frame with the time elapsed since the start, until it returns \`false\` or the loop is… |
 | `from (parse temporal string)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.from(str) / Temporal.PlainDate.from(str) / etc.` *(Temporal (Stage 3))* |
 | [`fromMillis`](../date/frommillis/) | [date](../date/) | Creates a \`Date\` from a timestamp in \*\*milliseconds\*\*\. |
 | [`fromSeconds`](../date/fromseconds/) | [date](../date/) | Creates a \`Date\` from a timestamp in \*\*seconds\*\*\. |
@@ -128,16 +148,23 @@ sidebar:
 | `hasValue` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.values().some(v => Object.is(v, value))` *(ES2025 (Iterator Helpers))* |
 | `head / first` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.at(0)` *(ES2022)* |
 | [`hexToRgb`](../color/hextorgb/) | [color](../color/) | Parses a hex color string \(\`\#rgb\`, \`\#rgba\`, \`\#rrggbb\`, \`\#rrggbbaa\` — the leading \`\#\` is optional\) into its RGB\(A\) chann… |
+| [`hsbToRgb`](../color/hsbtorgb/) | [color](../color/) | Converts an HSB\(A\) color \(also called HSV\), as shown by design tool color pickers, into RGB\(A\)\. |
+| [`hslToCss`](../color/hsltocss/) | [color](../color/) | Formats an HSL\(A\) color as a CSS \`hsl\(\)\` value, in the modern space\-separated syntax\. |
 | [`hslToRgb`](../color/hsltorgb/) | [color](../color/) | Converts an HSL\(A\) color into RGB\(A\)\. |
 | [`identity`](../function/identity/) | [function](../function/) | Returns the given value unchanged  Useful as a default transform, in function composition, or as a placeholder mapper\. |
+| [`identity`](../geometry/identity/) | [geometry](../geometry/) | The matrix that changes nothing\. |
 | `includes` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.includes()` *(ES2016)* |
 | [`increment`](../version/increment/) | [version](../version/) | Increments a version, according to the given \`scheme\`\. |
 | [`incrementPrerelease`](../version/incrementprerelease/) | [version](../version/) | Increments the prerelease portion of a version, according to the given \`scheme\` — the semantics \`npm version prerelease… |
 | [`injectWordBreaks`](../string/injectwordbreaks/) | [string](../string/) | Adds word\-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table c… |
 | [`inRange`](../number/inrange/) | [number](../number/) | Checks whether a number falls within \`\[min, max\]\` \(both inclusive by default\)\. |
+| [`interpolate`](../animation/interpolate/) | [animation](../animation/) | Blends two values of the same shape: every number goes from its value in \`from\` \(\`t = 0\`\) to its value in \`to\` \(\`t = 1\`… |
 | [`intersection`](../array/intersection/) | [array](../array/) | Compute the intersection of two arrays, meaning the elements that are present in both arrays\. |
+| [`intersection`](../geometry/intersection/) | [geometry](../geometry/) | The area two rectangles have in common\. |
 | `intersection` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.intersection()` *(ES2025 (Set methods))* |
 | [`intersects`](../array/intersects/) | [array](../array/) | Simple helper that check if two lists shared at least an item in common\. |
+| [`intersects`](../geometry/intersects/) | [geometry](../geometry/) | Whether two rectangles have an area in common, exactly when intersection returns a rectangle: rectangles that only touc… |
+| [`invert`](../geometry/invert/) | [geometry](../geometry/) | The matrix that undoes \`m\`, e\.g\. |
 | [`invert`](../object/invert/) | [object](../object/) | Returns a new object with keys and values swapped\. |
 | [`isArray`](../guard/isarray/) | [guard](../guard/) | Checks if a value is an array\. |
 | [`isArrayBuffer`](../guard/isarraybuffer/) | [guard](../guard/) | Checks if a value is an ArrayBuffer instance\. |
@@ -164,7 +191,7 @@ sidebar:
 | [`isEmpty`](../string/isempty/) | [string](../string/) | Checks if a string is empty \(\`""\`\), \`null\`, or \`undefined\`\. |
 | [`isError`](../guard/iserror/) | [guard](../guard/) | Checks if a value is an Error instance\. |
 | [`isEven`](../number/iseven/) | [number](../number/) | Checks if a value is an even integer\. |
-| [`isExternalUrl`](../url/isexternalurl/) | [url](../url/) | Whether a link points to another origin than \`base\`: an absolute \`http\(s\)\` URL or a protocol\-relative one \(\`//host/path… |
+| [`isExternal`](../url/isexternal/) | [url](../url/) | Whether a link points to another origin than \`base\`: an absolute \`http\(s\)\` URL or a protocol\-relative one \(\`//host/path… |
 | [`isFalsy`](../guard/isfalsy/) | [guard](../guard/) | Checks if a value is falsy \(\`false\`, \`null\`, \`undefined\`, \`0\`, \`""\`, \`NaN\`\)\. |
 | `isFinite / isFiniteNumber` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `Number.isFinite(value)` *(ES2015)* |
 | [`isFormData`](../guard/isformdata/) | [guard](../guard/) | Checks if a value is a FormData instance\. |
@@ -251,13 +278,17 @@ sidebar:
 | [`levenshteinSimilarity`](../string/levenshteinsimilarity/) | [string](../string/) | Normalized Levenshtein similarity between two strings, in \`\[0, 1\]\` — \`1\` means identical, \`0\` means completely dissimil… |
 | `lighten / darken` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `color-mix(in oklch, <color> <percent>, white\|black)` *(CSS Color 5 (Baseline widely available since 2023 — Chrome 111, Firefox 113, Safari 16.2))* |
 | [`listTimezones`](../date/listtimezones/) | [date](../date/) | Returns the list of IANA timezone identifiers supported by the runtime\. |
+| [`loadFont`](../browser/loadfont/) | [browser](../browser/) | Loads a font and registers it in \`document\.fonts\`, so CSS and canvas can use \`family\` right away\. |
 | [`map`](../object/map/) | [object](../object/) | Transforms the values and/or keys of a plain object in a single pass\. |
 | [`map`](../set/map/) | [set](../set/) | Creates a new Set with each value transformed by a function\. |
 | `map / filter` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `new Set(set.values().map(fn)) / new Set(set.values().filter(fn))` *(ES2025 (Iterator Helpers))* |
 | [`mapAsync`](../array/mapasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.map\`: applies \`fn\` to every item and resolves to an array of the results, in… |
 | [`mapDeep`](../object/mapdeep/) | [object](../object/) | Recursively transforms the keys and/or values of a plain object — the deep counterpart to map, which only transforms th… |
 | [`mapKeys`](../map/mapkeys/) | [map](../map/) | Creates a new Map with the same values but with each key transformed by a function\. |
+| [`mapSettled`](../array/mapsettled/) | [array](../array/) | Like mapAsync, but never rejects: each item gets its own result, in the shape of \`Promise\.allSettled\`, so one failure d… |
 | [`mapValues`](../map/mapvalues/) | [map](../map/) | Creates a new Map with the same keys but with each value transformed by a function\. |
+| [`matchesMedia`](../browser/matchesmedia/) | [browser](../browser/) | Whether the document currently matches a CSS media query\. |
+| [`matrixToCss`](../geometry/matrixtocss/) | [geometry](../geometry/) | Writes a matrix as a CSS \`transform\` or SVG \`transform\` value\. |
 | [`max`](../array/max/) | [array](../array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
 | [`maxBy`](../array/maxby/) | [array](../array/) | Returns the element of an array with the greatest derived key, computed by \`keyFn\`\. |
 | [`Maybe`](../type/maybe/) | [type](../type/) | Type for values that can be T, undefined, or null\. |
@@ -271,12 +302,15 @@ sidebar:
 | [`min`](../array/min/) | [array](../array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
 | `min / max` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `Math.min(...arr) / Math.max(...arr)` *(ES1)* |
 | [`minBy`](../array/minby/) | [array](../array/) | Returns the element of an array with the smallest derived key, computed by \`keyFn\`\. |
+| [`multiply`](../geometry/multiply/) | [geometry](../geometry/) | Multiplies matrices, in the mathematical order: the last one applies first\. |
 | [`negate`](../function/negate/) | [function](../function/) | Creates a function that negates the result of \`predicate\`\. |
 | [`noop`](../function/noop/) | [function](../function/) | A no\-operation function that does nothing and returns \`undefined\`  Useful as a default callback, placeholder, or to exp… |
 | [`normalizeTimestamp`](../date/normalizetimestamp/) | [date](../date/) | Converts a timestamp to JavaScript milliseconds format |
 | `now (date/time/instant)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Now.instant() / .zonedDateTimeISO() / .plainDateISO() / .plainTimeISO()` *(Temporal (Stage 3))* |
 | [`Nullable`](../type/nullable/) | [type](../type/) | Adds \`null\` to a type \(\`T \| null\`\)\. |
 | [`Nullish`](../type/nullish/) | [type](../type/) | Adds \`null\` and \`undefined\` to a type \(\`T \| null \| undefined\`\)\. |
+| [`observeIntersection`](../browser/observeintersection/) | [browser](../browser/) | Calls \`callback\` each time \`element\` enters or leaves the viewport \(or \`options\.root\`\), with an \`IntersectionObserver\`… |
+| [`observeResize`](../browser/observeresize/) | [browser](../browser/) | Calls \`callback\` each time the size of \`element\` changes, with a \`ResizeObserver\` dedicated to it\. |
 | [`omit`](../object/omit/) | [object](../object/) | Creates a new object without the specified keys\. |
 | [`omitBy`](../object/omitby/) | [object](../object/) | Creates a new object without the own enumerable entries for which \`predicate\` returns \`true\`\. |
 | [`OmitByValue`](../type/omitbyvalue/) | [type](../type/) | Constructs a type by omitting all entries of \`T\` whose values extend \`V\`\. |
@@ -285,6 +319,7 @@ sidebar:
 | [`OptionalKeys`](../type/optionalkeys/) | [type](../type/) | Extracts the optional keys of an object type \`T\`\. |
 | [`overlaps`](../date/overlaps/) | [date](../date/) | Checks whether two date ranges overlap\. |
 | `padStart / padEnd` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
+| [`paginate`](../promise/paginate/) | [promise](../promise/) | Collects every item of a paginated source by requesting pages one after the other, from page 1, until the source runs o… |
 | [`parallel`](../promise/parallel/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit\. |
 | [`parallelSettle`](../promise/parallelsettle/) | [promise](../promise/) | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first… |
 | [`parse`](../json/parse/) | [json](../json/) | Parses JSON permissively: strict JSON, JSONC \(the dialect of \`tsconfig\.json\` and VS Code's \`settings\.json\`, also known… |
@@ -292,8 +327,10 @@ sidebar:
 | [`parseConventionalCommit`](../commit/parseconventionalcommit/) | [commit](../commit/) | Parses a Conventional Commits message into a structured object\. |
 | [`parseDuration`](../date/parseduration/) | [date](../date/) | Parses a compact duration string \(as produced by formatDuration, e\.g\. |
 | [`ParsedVersion`](../version/parsedversion/) | [version](../version/) | A version parsed according to SemVer 2\.0\.0 — alias of ParsedSemVerVersion, kept under this name for backward compatibil… |
+| [`parseEasing`](../animation/parseeasing/) | [animation](../animation/) | Reads a CSS easing into an easing function, to play in JavaScript the timing a stylesheet or a design tool export descr… |
 | [`parseLines`](../json/parselines/) | [json](../json/) | Parses newline\-delimited JSON — one JSON value per line\. |
 | [`parsePackageRepository`](../url/parsepackagerepository/) | [url](../url/) | Parse the \`repository\` field from \`package\.json\` into a structured object\. |
+| [`parsePartial`](../date/parsepartial/) | [date](../date/) | Parses an ISO date that may only be known to the year or the month: \`YYYY\`, \`YYYY\-MM\` or \`YYYY\-MM\-DD\`\. |
 | [`parsePropertyPath`](../object/parsepropertypath/) | [object](../object/) | Parses a dot/bracket\-notation property path into an array of string/number key segments — the same notation accepted by… |
 | [`parseSequence`](../json/parsesequence/) | [json](../json/) | Parses a JSON text sequence \(RFC 7464, \`application/json\-seq\`\): records that each start with the ASCII record separator… |
 | [`parseStrict`](../json/parsestrict/) | [json](../json/) | Parses strict JSON \(RFC 8259\) — exactly what \`JSON\.parse\` accepts, nothing more\. |
@@ -307,6 +344,8 @@ sidebar:
 | [`pickBy`](../object/pickby/) | [object](../object/) | Creates a new object with only the own enumerable entries for which \`predicate\` returns \`true\`\. |
 | [`PickByValue`](../type/pickbyvalue/) | [type](../type/) | Constructs a type by picking all entries of \`T\` whose values extend \`V\`\. |
 | [`pipe`](../function/pipe/) | [function](../function/) | Composes functions left\-to\-right: the output of each function is passed as input to the next\. |
+| [`prefersReducedMotion`](../browser/prefersreducedmotion/) | [browser](../browser/) | Whether the user asked the system to reduce motion \(\`prefers\-reduced\-motion: reduce\`\)\. |
+| [`preloadImages`](../browser/preloadimages/) | [browser](../browser/) | Loads and decodes several images with decodeImage, a few at a time, with \`mapSettled\` from \`helpers4/array\`\. |
 | [`Prettify`](../type/prettify/) | [type](../type/) | Flattens an intersection type into a single readable object type\. |
 | [`randomBetween`](../number/randombetween/) | [number](../number/) | Generates a random number between min and max \(inclusive\) |
 | [`randomIntBetween`](../number/randomintbetween/) | [number](../number/) | Generates a random integer between min and max \(inclusive\) |
@@ -325,8 +364,11 @@ sidebar:
 | [`returnOrThrowError`](../function/returnorthrowerror/) | [function](../function/) | Return a value or throw an error if null or undefined\. |
 | `reverse` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.toReversed()` *(ES2023)* |
 | [`reverseSortFn`](../array/reversesortfn/) | [array](../array/) | Reverses the order of a sort function: \`reverseSortFn\(fn\)\(a, b\)\` is \`fn\(b, a\)\`\. |
+| [`rgbToCss`](../color/rgbtocss/) | [color](../color/) | Formats an RGB\(A\) color as a CSS \`rgb\(\)\` value, in the modern space\-separated syntax that every current browser and SVG… |
 | [`rgbToHex`](../color/rgbtohex/) | [color](../color/) | Converts an RGB\(A\) color into a hex color string\. |
+| [`rgbToHsb`](../color/rgbtohsb/) | [color](../color/) | Converts an RGB\(A\) color into HSB\(A\), the model design tools \(Figma, Sketch, XD\) show in their color pickers\. |
 | [`rgbToHsl`](../color/rgbtohsl/) | [color](../color/) | Converts an RGB\(A\) color into HSL\(A\)\. |
+| [`rotate`](../geometry/rotate/) | [geometry](../geometry/) | A matrix that rotates points around the origin\. |
 | [`roundTo`](../number/roundto/) | [number](../number/) | Rounds a number to specified decimal places |
 | [`safeFetch`](../promise/safefetch/) | [promise](../promise/) | Wraps \`fetch\` with built\-in error handling: returns \`null\` when the request fails \(network error, non\-OK status, or par… |
 | [`safeJsonParse`](../object/safejsonparse/) | [object](../object/) | Parses a JSON string, returning \`null\` \(or a fallback\) on any parse failure\. |
@@ -337,11 +379,13 @@ sidebar:
 | [`safeReadJsonFile`](../node/safereadjsonfile/) | [node](../node/) | Reads a file and parses its contents as JSON, returning \`null\` \(or a fallback\) on any failure — a missing/unreadable fi… |
 | [`sample`](../array/sample/) | [array](../array/) | Picks one or more random elements from an array\. |
 | [`satisfiesRange`](../version/satisfiesrange/) | [version](../version/) | Checks if a version satisfies a range, according to the given \`scheme\` \(simple implementation — see each scheme's own d… |
+| [`scale`](../geometry/scale/) | [geometry](../geometry/) | A matrix that scales points from the origin\. |
 | [`select`](../array/select/) | [array](../array/) | Filters and transforms an array in a single pass\. |
 | `select / filterMap` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
 | [`set`](../object/set/) | [object](../object/) | Sets a value in an object at the given path, creating intermediate objects as needed\. |
 | [`settle`](../promise/settle/) | [promise](../promise/) | Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first failure, unlike \`P… |
 | [`shuffle`](../array/shuffle/) | [array](../array/) | Randomly reorders elements of an array using the Fisher\-Yates algorithm\. |
+| [`simplifyPolyline`](../geometry/simplifypolyline/) | [geometry](../geometry/) | Removes the points of a polyline that change its shape by less than \`tolerance\`, with the Ramer–Douglas–Peucker algorit… |
 | [`slugify`](../string/slugify/) | [string](../string/) | Converts a string into a URL\-friendly slug\. |
 | [`snakeCase`](../string/snakecase/) | [string](../string/) | Converts a string to snake\_case\. |
 | [`snakeCaseKeys`](../object/snakecasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to snake\_ca… |
@@ -358,12 +402,15 @@ sidebar:
 | [`sortStringNaturalAscInsensitiveFn`](../array/sortstringnaturalascinsensitivefn/) | [array](../array/) | Sort strings in ascending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` — tr… |
 | [`sortStringNaturalDescFn`](../array/sortstringnaturaldescfn/) | [array](../array/) | Sort strings in descending order using natural \(human\-friendly\) ordering\. |
 | [`sortStringNaturalDescInsensitiveFn`](../array/sortstringnaturaldescinsensitivefn/) | [array](../array/) | Sort strings in descending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` — t… |
+| [`spring`](../animation/spring/) | [animation](../animation/) | Simulates a damped spring going from \`0\` to \`1\`, the curve behind "spring" transitions of design tools, and computes ho… |
 | [`startOf`](../date/startof/) | [date](../date/) | Returns a new \`Date\` set to the \*\*start\*\* of the given unit\. |
 | `startsWith / endsWith` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |
 | [`statusToBadge`](../ci/statustobadge/) | [ci](../ci/) | Maps a CI/CD job status to an inline code badge string\. |
 | [`statusToIcon`](../ci/statustoicon/) | [ci](../ci/) | Maps a CI/CD job status to an emoji icon\. |
+| [`steps`](../animation/steps/) | [animation](../animation/) | Builds the easing function of CSS \`steps\(count, position\)\`: progress moves by jumps instead of continuously, for frame\-… |
 | [`stringify`](../json/stringify/) | [json](../json/) | Serializes a value to JSON text — pretty\-printed with 2 spaces by default, or canonical\. |
 | [`stringify`](../version/stringify/) | [version](../version/) | Reconstructs a version string from a AnyParsedVersion object — the scheme is read from the object's own \`scheme\` field,… |
+| [`stringifyForHtml`](../json/stringifyforhtml/) | [json](../json/) | Serializes a value to compact JSON that is safe to inline in an HTML page, typically in a \`<script type="application/js… |
 | [`stringifyLines`](../json/stringifylines/) | [json](../json/) | Serializes values as newline\-delimited JSON — one compact JSON value per line, each followed by \`\\n\`\. |
 | [`stringifySequence`](../json/stringifysequence/) | [json](../json/) | Serializes values as a JSON text sequence \(RFC 7464, \`application/json\-seq\`\): each value is written as the ASCII record… |
 | [`stripHtml`](../string/striphtml/) | [string](../string/) | Plain text of an HTML fragment: tags removed, \`<script>\`, \`<style>\` and comments dropped with their content, entities d… |
@@ -380,6 +427,7 @@ sidebar:
 | [`timeout`](../promise/timeout/) | [promise](../promise/) | Wraps a promise to reject with a \`TimeoutError\` if it does not resolve within the specified duration\. |
 | [`titleCase`](../string/titlecase/) | [string](../string/) | Converts a string to Title Case\. |
 | [`titleCaseKeys`](../object/titlecasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to Title Ca… |
+| [`toCssLinear`](../animation/tocsslinear/) | [animation](../animation/) | Samples an easing function into a CSS \`linear\(\)\` easing, so any curve \(a spring, a custom bounce\) can be played by CSS… |
 | [`toggle`](../array/toggle/) | [array](../array/) | Returns a new array with \`item\` removed if present, or appended if absent — the common "toggle a selection" pattern\. |
 | `toInt / toFloat` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `parseInt(str, 10) / parseFloat(str)` *(ES1)* |
 | [`toISO8601`](../date/toiso8601/) | [date](../date/) | Converts a date to ISO 8601 format Format: YYYY\-MM\-DDTHH:mm:ss\.sssZ |
@@ -393,6 +441,7 @@ sidebar:
 | [`toSeconds`](../date/toseconds/) | [date](../date/) | Converts a date to a timestamp in \*\*seconds\*\* \(epoch seconds\)\. |
 | `toTemporalInstant` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Date.prototype.toTemporalInstant()` *(Temporal (Stage 3))* |
 | `toZonedDateTime` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.prototype.toZonedDateTimeISO(tz)` *(Temporal (Stage 3))* |
+| [`translate`](../geometry/translate/) | [geometry](../geometry/) | A matrix that moves points by \`\(tx, ty\)\`\. |
 | [`trim`](../string/trim/) | [string](../string/) | Trims both leading and trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |
 | `trim / trimStart / trimEnd` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.trim() / trimStart() / trimEnd()` *(ES2019)* |
 | [`trimEnd`](../string/trimend/) | [string](../string/) | Trims trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |
@@ -400,11 +449,13 @@ sidebar:
 | [`truncate`](../string/truncate/) | [string](../string/) | Truncates a string to \`maxLength\` characters, appending an ellipsis when cut\. |
 | [`truthyPromiseOrThrow`](../promise/truthypromiseorthrow/) | [promise](../promise/) | Returns a function that passes through truthy data or throws an error\. |
 | [`tryit`](../promise/tryit/) | [promise](../promise/) | Wraps a function so it never throws\. |
+| [`tween`](../animation/tween/) | [animation](../animation/) | Animates a value from \`from\` to \`to\` over \`durationMs\`, calling \`onUpdate\` with the blended value at each frame, for wh… |
 | `TypedArrays (isInt8Array, isFloat32Array, ...)` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof Int8Array / Float32Array / ...` *(ES2015)* |
 | [`unary`](../function/unary/) | [function](../function/) | Creates a function that calls \`fn\` with only its first argument, discarding any others\. |
 | [`unescapeHtml`](../string/unescapehtml/) | [string](../string/) | Unescapes the HTML entities \`&amp;\`, \`&lt;\`, \`&gt;\`, \`&quot;\`, and \`&\#39;\` back to \`&\`, \`<\`, \`>\`, \`"\`, and \`'\`\. |
 | [`unflatten`](../object/unflatten/) | [object](../object/) | Rebuilds a nested object from a single\-level object whose keys are dot\-notation paths\. |
 | `union` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `unique([...a, ...b])` *(ES2015)* |
+| [`union`](../geometry/union/) | [geometry](../geometry/) | The smallest rectangle that contains all the given rectangles, e\.g\. |
 | `union` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.union()` *(ES2025 (Set methods))* |
 | [`UnionToIntersection`](../type/uniontointersection/) | [type](../type/) | Converts a union type to an intersection type: \`A \| B \| C\` → \`A & B & C\`\. |
 | [`unique`](../array/unique/) | [array](../array/) | Removes duplicate values from an array\. |
@@ -416,7 +467,9 @@ sidebar:
 | [`update`](../object/update/) | [object](../object/) | Updates the value at a path by applying a function to its current value, creating intermediate objects as needed\. |
 | [`uuid7`](../id/uuid7/) | [id](../id/) | Generates a UUID v7 string \(RFC 9562\)\. |
 | [`ValueOf`](../type/valueof/) | [type](../type/) | Produces a union of all value types of an object type \`T\`\. |
+| [`watchMedia`](../browser/watchmedia/) | [browser](../browser/) | Calls \`listener\` each time a CSS media query starts or stops matching\. |
 | [`WeekDays`](../date/weekdays/) | [date](../date/) | Named day\-of\-week constants following the JavaScript \`Date\.getDay\(\)\` convention\. |
+| [`whenIdle`](../browser/whenidle/) | [browser](../browser/) | Runs \`callback\` when the browser is idle, with \`requestIdleCallback\`, for work that can wait \(prefetching, analytics, w… |
 | `withAlpha (change the alpha channel of an existing color)` | [color](../color/) | <span class="badge badge--secondary">native JS</span> `rgb(from <color> r g b / <alpha>)` *(CSS Color 5 relative color syntax (Baseline widely available since September 2024 — Chrome 119+))* |
 | [`withLeadingSlash`](../url/withleadingslash/) | [url](../url/) | Adds a leading slash \`/\` to the given URL if it is not already present\. |
 | [`without`](../array/without/) | [array](../array/) | Returns a new array with all occurrences of the given values removed\. |

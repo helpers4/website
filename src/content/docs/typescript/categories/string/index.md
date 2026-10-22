@@ -13,6 +13,10 @@ Utility functions for working with string operations.
 |----------|-------------|
 | [`camelCase`](./camelcase/) | Converts a string to camelCase\. |
 | [`capitalize`](./capitalize/) | Capitalizes the first letter of a string\. |
+| [`createGlobMatcher`](./createglobmatcher/) | createMatcher with every string read as a glob \(\`\*\`, \`?\`\): no string is ever taken for a regular expression, so it neve… |
+| [`createMatcher`](./creatematcher/) | Turns user\-supplied filters \(a setting, a CLI flag, a list of rules\) into one predicate\. |
+| [`createRegexMatcher`](./createregexmatcher/) | createMatcher with every string read as the source of a regular expression, without slashes or flags \(\`'^\(Home\|Login\)$'… |
+| [`createSafeMatcher`](./createsafematcher/) | Like createMatcher, but returns \`null\` instead of throwing when a string pattern is an invalid regular expression, to r… |
 | [`dedent`](./dedent/) | Strips the common leading whitespace from every line of a multi\-line string, and trims a single leading/trailing blank… |
 | [`escapeHtml`](./escapehtml/) | Escapes the HTML special characters \`&\`, \`<\`, \`>\`, \`"\`, and \`'\` in a string\. |
 | [`escapeRegExp`](./escaperegexp/) | Escapes regular expression metacharacters \(\`\. |

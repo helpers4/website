@@ -3,7 +3,7 @@ title: "isoWeek"
 sidebar:
   label: "isoWeek"
 description: "ISO 8601 week of a date: weeks start on Monday and week 1 is the one that contains the first Thursday of the year, so t…"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 ISO 8601 week of a date: weeks start on Monday and week 1 is the one that contains the

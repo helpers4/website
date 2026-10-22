@@ -3,7 +3,7 @@ title: "levenshteinSimilarity"
 sidebar:
   label: "levenshteinSimilarity"
 description: "Normalized Levenshtein similarity between two strings, in `[0, 1]` — `1` means identical, `0` means completely dissimil…"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Normalized Levenshtein similarity between two strings, in `[0, 1]` — `1` means identical,

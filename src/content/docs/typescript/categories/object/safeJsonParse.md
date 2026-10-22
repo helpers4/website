@@ -3,7 +3,7 @@ title: "safeJsonParse"
 sidebar:
   label: "safeJsonParse"
 description: "Parses a JSON string, returning `null` (or a fallback) on any parse failure."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Parses a JSON string, returning `null` (or a fallback) on any parse failure.
@@ -36,7 +36,7 @@ safeJsonParse<T>(input: string): T | null
 
 ## Returns
 
-`T | null` — The parsed value typed as `T`, or `fallback` on failure.
+`T | null` — The parsed value typed as `T`, or `null` on failure (pass a `fallback` to get it instead).
 
 ## Examples
 

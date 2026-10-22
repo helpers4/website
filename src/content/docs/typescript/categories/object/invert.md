@@ -3,7 +3,7 @@ title: "invert"
 sidebar:
   label: "invert"
 description: "Returns a new object with keys and values swapped."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Returns a new object with keys and values swapped.
@@ -60,6 +60,17 @@ const LABEL_TO_CODE = invert(STATUS_LABELS);
 
 LABEL_TO_CODE['OK']; // => '200'
 ```
+
+:::caution[Name conflict]
+A helper named `invert` also exists in [`@helpers4/geometry`](../geometry/invert/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { invert as invert4object } from '@helpers4/object';
+import { invert as invert4geometry } from '@helpers4/geometry';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
 
 ## Source
 

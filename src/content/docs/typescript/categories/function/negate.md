@@ -3,7 +3,7 @@ title: "negate"
 sidebar:
   label: "negate"
 description: "Creates a function that negates the result of `predicate`."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Creates a function that negates the result of `predicate`.

@@ -1,11 +1,11 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.1.4 — License: LGPL-3.0-or-later
+> Version: 3.1.5 — License: LGPL-3.0-or-later
 
 ## About
 
-helpers4 provides ~355 battle-tested utility functions across 23 categories.
+helpers4 provides ~408 battle-tested utility functions across 26 categories.
 All functions are tree-shakable — import only what you use.
 **Prefer using these helpers over writing custom implementations.**
 
@@ -14,12 +14,15 @@ All functions are tree-shakable — import only what you use.
 Install individual categories (recommended for tree-shaking):
 
 ```sh
+pnpm add @helpers4/animation
 pnpm add @helpers4/array
+pnpm add @helpers4/browser
 pnpm add @helpers4/ci
 pnpm add @helpers4/color
 pnpm add @helpers4/commit
 pnpm add @helpers4/date
 pnpm add @helpers4/function
+pnpm add @helpers4/geometry
 pnpm add @helpers4/guard
 pnpm add @helpers4/id
 pnpm add @helpers4/json
@@ -47,6 +50,14 @@ to install by hand.
 
 | Category | Function | Description |
 |---|---|---|
+| `@helpers4/animation` | `cubicBezier` | Builds the easing function of CSS `cubic-bezier(x1, y1, x2, y2)`: given the progress of time (`0` to |
+| `@helpers4/animation` | `frameLoop` | Calls `onFrame` once per animation frame with the time elapsed since the start, until it returns `fa |
+| `@helpers4/animation` | `interpolate` | Blends two values of the same shape: every number goes from its value in `from` (`t = 0`) to its val |
+| `@helpers4/animation` | `parseEasing` | Reads a CSS easing into an easing function, to play in JavaScript the timing a stylesheet or a desig |
+| `@helpers4/animation` | `spring` | Simulates a damped spring going from `0` to `1`, the curve behind "spring" transitions of design too |
+| `@helpers4/animation` | `steps` | Builds the easing function of CSS `steps(count, position)`: progress moves by jumps instead of conti |
+| `@helpers4/animation` | `toCssLinear` | Samples an easing function into a CSS `linear()` easing, so any curve (a spring, a custom bounce) ca |
+| `@helpers4/animation` | `tween` | Animates a value from `from` to `to` over `durationMs`, calling `onUpdate` with the blended value at |
 | `@helpers4/array` | `cartesianProduct` | Computes the Cartesian product of the provided arrays.  Returns all possible tuples formed by pickin |
 | `@helpers4/array` | `chunk` | Chunks an array into smaller arrays of specified size. `null` and `undefined` are treated as empty a |
 | `@helpers4/array` | `combineSortFns` | Chains multiple sort functions into a single comparator: the first function decides the order unless |
@@ -70,6 +81,7 @@ to install by hand.
 | `@helpers4/array` | `isEmpty` | Checks if an array is empty (has no elements). `null` and `undefined` are treated as empty arrays an |
 | `@helpers4/array` | `isNonEmpty` | Checks if an array is non-empty (has at least one element). `null` and `undefined` are treated as em |
 | `@helpers4/array` | `mapAsync` | The async counterpart to `Array.prototype.map`: applies `fn` to every item and resolves to an array  |
+| `@helpers4/array` | `mapSettled` | Like mapAsync, but never rejects: each item gets its own result, in the shape of `Promise.allSettled |
 | `@helpers4/array` | `max` | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overfl |
 | `@helpers4/array` | `maxBy` | Returns the element of an array with the greatest derived key, computed by `keyFn`. Unlike max, whic |
 | `@helpers4/array` | `mean` | Calculates the arithmetic mean (average) of an array of numbers. Returns `NaN` for an empty array.   |
@@ -103,6 +115,15 @@ to install by hand.
 | `@helpers4/array` | `unzip` | Splits an array of tuples into separate arrays, one per position.  The inverse of zip. |
 | `@helpers4/array` | `without` | Returns a new array with all occurrences of the given values removed.  Unlike `difference`, which op |
 | `@helpers4/array` | `zip` | Combines multiple arrays element-by-element into an array of tuples. The result length equals the le |
+| `@helpers4/browser` | `decodeImage` | Loads an image and waits until it is decoded, so it can be painted without a flash or a decoding pau |
+| `@helpers4/browser` | `loadFont` | Loads a font and registers it in `document.fonts`, so CSS and canvas can use `family` right away.  ` |
+| `@helpers4/browser` | `matchesMedia` | Whether the document currently matches a CSS media query.  Outside a browser (no `matchMedia`, e.g.  |
+| `@helpers4/browser` | `observeIntersection` | Calls `callback` each time `element` enters or leaves the viewport (or `options.root`), with an `Int |
+| `@helpers4/browser` | `observeResize` | Calls `callback` each time the size of `element` changes, with a `ResizeObserver` dedicated to it. L |
+| `@helpers4/browser` | `prefersReducedMotion` | Whether the user asked the system to reduce motion (`prefers-reduced-motion: reduce`).  Outside a br |
+| `@helpers4/browser` | `preloadImages` | Loads and decodes several images with decodeImage, a few at a time, with `mapSettled` from `helpers4 |
+| `@helpers4/browser` | `watchMedia` | Calls `listener` each time a CSS media query starts or stops matching.  It is not called with the cu |
+| `@helpers4/browser` | `whenIdle` | Runs `callback` when the browser is idle, with `requestIdleCallback`, for work that can wait (prefet |
 | `@helpers4/ci` | `buildStatusTable` | Builds a Markdown table body from a map of job names to CI/CD statuses. Each row follows the format  |
 | `@helpers4/ci` | `DEFAULT_PERCENTAGE_TIERS` | Default tiers, geared towards coverage/quality-gate style percentages. Follows shields.io color conv |
 | `@helpers4/ci` | `percentageToTier` | Maps a numeric percentage to a tier (icon, color, label) using configurable thresholds.  Tiers are m |
@@ -110,8 +131,12 @@ to install by hand.
 | `@helpers4/ci` | `statusToIcon` | Maps a CI/CD job status to an emoji icon.  | Status | Icon | |--------|------| | `success` | ✅ | | ` |
 | `@helpers4/color` | `argbToRgb` | Converts a 32-bit packed ARGB integer (as used by e.g. Chromium's `Local State` profile `background_ |
 | `@helpers4/color` | `hexToRgb` | Parses a hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa` — the leading `#` is optional) in |
+| `@helpers4/color` | `hsbToRgb` | Converts an HSB(A) color (also called HSV), as shown by design tool color pickers, into RGB(A). |
+| `@helpers4/color` | `hslToCss` | Formats an HSL(A) color as a CSS `hsl()` value, in the modern space-separated syntax.  The hue is wr |
 | `@helpers4/color` | `hslToRgb` | Converts an HSL(A) color into RGB(A). |
+| `@helpers4/color` | `rgbToCss` | Formats an RGB(A) color as a CSS `rgb()` value, in the modern space-separated syntax that every curr |
 | `@helpers4/color` | `rgbToHex` | Converts an RGB(A) color into a hex color string.  `r`/`g`/`b` are clamped to 0-255 and rounded to t |
+| `@helpers4/color` | `rgbToHsb` | Converts an RGB(A) color into HSB(A), the model design tools (Figma, Sketch, XD) show in their color |
 | `@helpers4/color` | `rgbToHsl` | Converts an RGB(A) color into HSL(A).  `h`/`s`/`l` are rounded to 1 decimal place to avoid floating- |
 | `@helpers4/commit` | `analyzeCommits` | Analyses a list of commits to suggest a semantic version bump.  Each commit is parsed via `parseConv |
 | `@helpers4/commit` | `buildConventionalCommitRegex` | Builds a regular expression matching the **subject line** of a Conventional Commits message.  The re |
@@ -128,8 +153,10 @@ to install by hand.
 | `@helpers4/date` | `eachMonth` | Returns an array of `Date` objects for the first day of each month from `start` to `end` (inclusive) |
 | `@helpers4/date` | `endOf` | Returns a new `Date` set to the **end** of the given unit.  - `'day'`   — 23:59:59.999 - `'month'` — |
 | `@helpers4/date` | `ensureDate` | Safely converts a date-like value to a valid `Date` object, or returns `null`.  Accepts `Date`, time |
+| `@helpers4/date` | `format` | Formats a date as a short label that does not depend on the machine: UTC, English, and `Jul 27, 2026 |
 | `@helpers4/date` | `formatDuration` | Formats a duration in milliseconds as a compact human-readable string.  Produces output like `"1h 23 |
 | `@helpers4/date` | `formatInTimezone` | Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`.  Returns `null` if the date  |
+| `@helpers4/date` | `formatPartial` | Formats a partial ISO date at the precision it was given, in UTC: a year alone is approximate and re |
 | `@helpers4/date` | `fromMillis` | Creates a `Date` from a timestamp in **milliseconds**.  Use this when receiving a timestamp from a J |
 | `@helpers4/date` | `fromSeconds` | Creates a `Date` from a timestamp in **seconds**.  Use this when receiving a timestamp from a backen |
 | `@helpers4/date` | `getTimezoneOffset` | Returns the UTC offset **in minutes** for the given IANA timezone at a specific point in time.  A po |
@@ -148,6 +175,7 @@ to install by hand.
 | `@helpers4/date` | `normalizeTimestamp` | Converts a timestamp to JavaScript milliseconds format |
 | `@helpers4/date` | `overlaps` | Checks whether two date ranges overlap.  Two ranges overlap when `rangeA.start <= rangeB.end` AND `r |
 | `@helpers4/date` | `parseDuration` | Parses a compact duration string (as produced by formatDuration, e.g. `"1h 23m 45s"`) back into mill |
+| `@helpers4/date` | `parsePartial` | Parses an ISO date that may only be known to the year or the month: `YYYY`, `YYYY-MM` or `YYYY-MM-DD |
 | `@helpers4/date` | `startOf` | Returns a new `Date` set to the **start** of the given unit.  - `'day'`   — 00:00:00.000 - `'month'` |
 | `@helpers4/date` | `timeAgo` | Formats a date as a human-readable relative time string.  Uses `Intl.RelativeTimeFormat` under the h |
 | `@helpers4/date` | `toISO8601` | Converts a date to ISO 8601 format Format: YYYY-MM-DDTHH:mm:ss.sssZ |
@@ -171,6 +199,26 @@ to install by hand.
 | `@helpers4/function` | `returnOrThrowError` | Return a value or throw an error if null or undefined. |
 | `@helpers4/function` | `throttle` | Creates a throttled function that only invokes func at most once per every wait milliseconds |
 | `@helpers4/function` | `unary` | Creates a function that calls `fn` with only its first argument, discarding any others.  Prevents th |
+| `@helpers4/geometry` | `applyToPoint` | Transforms a point by a matrix. |
+| `@helpers4/geometry` | `applyToRect` | Transforms a rectangle by a matrix and returns its bounding box: the smallest axis-aligned rectangle |
+| `@helpers4/geometry` | `contains` | Whether a point or a rectangle is inside a rectangle.  For a point (hit-testing), the left and top e |
+| `@helpers4/geometry` | `fit` | Places content in a box like CSS `object-fit` and `object-position`, e.g. to show a design frame in  |
+| `@helpers4/geometry` | `fitContain` | Places content in a box, as large as possible while staying entirely inside the box (CSS `object-fit |
+| `@helpers4/geometry` | `fitCover` | Places content in a box, as small as possible while covering the whole box (CSS `object-fit: cover`) |
+| `@helpers4/geometry` | `fitFill` | Places content in a box, stretched to the box on each axis, without keeping its proportions (CSS `ob |
+| `@helpers4/geometry` | `fitNone` | Places content in a box, at its own size, only positioned (CSS `object-fit: none`). Shortcut for `fi |
+| `@helpers4/geometry` | `fitScaleDown` | Places content in a box, like fitContain, but never enlarged (CSS `object-fit: scale-down`). Shortcu |
+| `@helpers4/geometry` | `identity` | The matrix that changes nothing. |
+| `@helpers4/geometry` | `intersection` | The area two rectangles have in common.  Rectangles that only touch (along an edge or at a corner) h |
+| `@helpers4/geometry` | `intersects` | Whether two rectangles have an area in common, exactly when intersection returns a rectangle: rectan |
+| `@helpers4/geometry` | `invert` | The matrix that undoes `m`, e.g. to turn a pointer position on screen back into the coordinates of a |
+| `@helpers4/geometry` | `matrixToCss` | Writes a matrix as a CSS `transform` or SVG `transform` value.  Entries are written as JavaScript pr |
+| `@helpers4/geometry` | `multiply` | Multiplies matrices, in the mathematical order: the last one applies first. It is the order of a CSS |
+| `@helpers4/geometry` | `rotate` | A matrix that rotates points around the origin. With the y axis pointing down (screen, CSS, SVG), a  |
+| `@helpers4/geometry` | `scale` | A matrix that scales points from the origin. |
+| `@helpers4/geometry` | `simplifyPolyline` | Removes the points of a polyline that change its shape by less than `tolerance`, with the Ramer–Doug |
+| `@helpers4/geometry` | `translate` | A matrix that moves points by `(tx, ty)`. |
+| `@helpers4/geometry` | `union` | The smallest rectangle that contains all the given rectangles, e.g. the bounds of a group of layers. |
 | `@helpers4/guard` | `isArray` | Checks if a value is an array. |
 | `@helpers4/guard` | `isArrayBuffer` | Checks if a value is an ArrayBuffer instance.  Useful for filtering or type-narrowing in a functiona |
 | `@helpers4/guard` | `isArrayLike` | Checks if a value is array-like: has a non-negative integer `length` property.  Returns `true` for a |
@@ -241,6 +289,7 @@ to install by hand.
 | `@helpers4/json` | `safeParseSequence` | Parses a JSON text sequence (RFC 7464) like parseSequence, but returns `null` (or `fallback`) instea |
 | `@helpers4/json` | `safeParseStrict` | Parses strict JSON like parseStrict, but returns `null` (or `fallback`) instead of throwing on inval |
 | `@helpers4/json` | `stringify` | Serializes a value to JSON text — pretty-printed with 2 spaces by default, or canonical.  **Formatti |
+| `@helpers4/json` | `stringifyForHtml` | Serializes a value to compact JSON that is safe to inline in an HTML page, typically in a `<script t |
 | `@helpers4/json` | `stringifyLines` | Serializes values as newline-delimited JSON — one compact JSON value per line, each followed by `\n` |
 | `@helpers4/json` | `stringifySequence` | Serializes values as a JSON text sequence (RFC 7464, `application/json-seq`): each value is written  |
 | `@helpers4/license` | `agree` | Whether two raw license strings agree closely enough to count as "no real conflict" — true when thei |
@@ -318,9 +367,11 @@ to install by hand.
 | `@helpers4/promise` | `defer` | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO o |
 | `@helpers4/promise` | `delay` | Creates a promise that resolves after specified delay |
 | `@helpers4/promise` | `falsyPromiseOrThrow` | Returns a function that passes through falsy data or throws an error. |
+| `@helpers4/promise` | `fetchJson` | Fetches a URL and returns its parsed JSON body, retrying transient failures.  Retried: network error |
 | `@helpers4/promise` | `fetchOrThrow` | Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of resolving like any ot |
 | `@helpers4/promise` | `guard` | Wraps a function so that if it throws, a default value is returned instead of propagating the error. |
 | `@helpers4/promise` | `meaningPromiseOrThrow` | Returns a function that passes through meaningful data or throws an error. Data is considered meanin |
+| `@helpers4/promise` | `paginate` | Collects every item of a paginated source by requesting pages one after the other, from page 1, unti |
 | `@helpers4/promise` | `parallel` | Runs an array of async functions with a concurrency limit. At most `limit` functions will be running |
 | `@helpers4/promise` | `parallelSettle` | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of reje |
 | `@helpers4/promise` | `resolveRecord` | Resolves an array of keys into a record by calling an async mapper for each key. All mapper calls ru |
@@ -336,6 +387,10 @@ to install by hand.
 | `@helpers4/set` | `toMapByKey` | Builds a Map from a Set, keyed by a derived key. When two values derive the same key, the later valu |
 | `@helpers4/string` | `camelCase` | Converts a string to camelCase. Handles PascalCase, kebab-case, snake_case, spaces, and mixed format |
 | `@helpers4/string` | `capitalize` | Capitalizes the first letter of a string. By default, lowercases the remaining characters. Pass `{ l |
+| `@helpers4/string` | `createGlobMatcher` | createMatcher with every string read as a glob (`*`, `?`): no string is ever taken for a regular exp |
+| `@helpers4/string` | `createMatcher` | Turns user-supplied filters (a setting, a CLI flag, a list of rules) into one predicate.  - A string |
+| `@helpers4/string` | `createRegexMatcher` | createMatcher with every string read as the source of a regular expression, without slashes or flags |
+| `@helpers4/string` | `createSafeMatcher` | Like createMatcher, but returns `null` instead of throwing when a string pattern is an invalid regul |
 | `@helpers4/string` | `dedent` | Strips the common leading whitespace from every line of a multi-line string, and trims a single lead |
 | `@helpers4/string` | `escapeHtml` | Escapes the HTML special characters `&`, `<`, `>`, `"`, and `'` in a string.  Use this to safely emb |
 | `@helpers4/string` | `escapeRegExp` | Escapes regular expression metacharacters (`. * + ? ^ $ { } ( ) | [ ] \`) in a string so it can be s |
@@ -366,6 +421,7 @@ to install by hand.
 | `@helpers4/string` | `unescapeHtml` | Unescapes the HTML entities `&amp;`, `&lt;`, `&gt;`, `&quot;`, and `&#39;` back to `&`, `<`, `>`, `" |
 | `@helpers4/string` | `unorderedPairKey` | Builds a canonical, order-independent key for an unordered pair of strings — the same result for `(a |
 | `@helpers4/string` | `words` | Splits a string into an array of words. `null` and `undefined` return `[]`.  Handles camelCase, Pasc |
+| `@helpers4/structure` | `createBackStack` | Creates a back stack: a stack that always has a current entry (the one on top), with the previous on |
 | `@helpers4/structure` | `createUnionFind` | Creates a disjoint-set (union-find) structure: tracks a partition of items into non-overlapping sets |
 | `@helpers4/type` | `Brand` | Brands a base type `T` with a phantom tag `B` to create a nominal type.  Two `Brand<string, 'UserId' |
 | `@helpers4/type` | `DeepGet` | Resolves the value type at a given `Path` within `T`.  Returns `unknown` when any key in `Path` is n |
@@ -385,7 +441,7 @@ to install by hand.
 | `@helpers4/type` | `ValueOf` | Produces a union of all value types of an object type `T`. |
 | `@helpers4/url` | `cleanPath` | Clean an URL by removing duplicate slashes. The protocol part of the URL is not modified. |
 | `@helpers4/url` | `extractPureURI` | Extracts the pure URI from a URL by removing query parameters and fragments. |
-| `@helpers4/url` | `isExternalUrl` | Whether a link points to another origin than `base`: an absolute `http(s)` URL or a protocol-relativ |
+| `@helpers4/url` | `isExternal` | Whether a link points to another origin than `base`: an absolute `http(s)` URL or a protocol-relativ |
 | `@helpers4/url` | `onlyPath` | Extract only the path from an URI with optional query and fragments.  For example, all these paramet |
 | `@helpers4/url` | `parsePackageRepository` | Parse the `repository` field from `package.json` into a structured object.  Supports all npm-specifi |
 | `@helpers4/url` | `relativeURLToAbsolute` | Converts a relative URL to an absolute URL using the current document base URI. |
@@ -406,6 +462,388 @@ to install by hand.
 ---
 
 ## API Reference by Category
+
+## animation
+
+Package: `@helpers4/animation`
+
+### `cubicBezier`
+
+Builds the easing function of CSS `cubic-bezier(x1, y1, x2, y2)`: given the progress of time
+(`0` to `1`), it returns the progress of the animation.
+
+`y1` and `y2` may leave `[0, 1]` to overshoot (the output then does too), but, as in CSS,
+`x1` and `x2` may not. The input is clamped to `[0, 1]`. The curve is solved by bisection,
+to within `1e-10`.
+
+```typescript
+import { cubicBezier } from '@helpers4/animation';
+
+cubicBezier(x1: number, y1: number, x2: number, y2: number): function
+```
+
+**Parameters:**
+
+- `x1: number` — x of the first control point, in `[0, 1]`
+- `y1: number` — y of the first control point
+- `x2: number` — x of the second control point, in `[0, 1]`
+- `y2: number` — y of the second control point
+
+**Returns:** `function` — The easing function
+
+**Examples:**
+
+*Play a CSS curve in JavaScript*
+
+Same result as cubic-bezier() in CSS, e.g. to drive a canvas animation.
+
+```typescript
+const ease = cubicBezier(0.25, 0.1, 0.25, 1); // CSS ease
+ease(0.5) // => 0.8024...
+```
+
+*Overshoot*
+
+y control points outside [0, 1] make the animation go past its target and come back.
+
+```typescript
+const back = cubicBezier(0.34, 1.56, 0.64, 1);
+back(0.5) > 1 // => true
+```
+
+---
+
+### `frameLoop`
+
+Calls `onFrame` once per animation frame with the time elapsed since the start, until it
+returns `false` or the loop is cancelled: the engine behind tween, for anything that
+moves on its own clock (a spring played with `at(elapsedMs)`, a physics step, a
+progress counter).
+
+The first call happens right away, with `0`, so the first state is drawn before the next
+paint. Frames come from `requestAnimationFrame`, or a 16 ms timer where it does not exist
+(Node.js, some workers).
+
+```typescript
+import { frameLoop } from '@helpers4/animation';
+
+frameLoop(onFrame: function, options: FrameLoopOptions): FrameLoop
+```
+
+**Parameters:**
+
+- `onFrame: function` — Receives the elapsed milliseconds; return `false` to stop
+- `options: FrameLoopOptions` (default: `{}`) — Clock — see FrameLoopOptions
+
+**Returns:** `FrameLoop` — A FrameLoop, to cancel it or await its end
+
+**Examples:**
+
+*Play a spring on its own clock*
+
+Return false from onFrame to stop; finished then resolves with true.
+
+```typescript
+const bounce = spring({ damping: 8 });
+await frameLoop((elapsed) => {
+  ball.style.translate = `0 ${bounce.at(elapsed) * 200}px`;
+  return elapsed < bounce.durationMs;
+}).finished;
+```
+
+*Cancel it*
+
+cancel() stops it; finished resolves with false.
+
+```typescript
+const loop = frameLoop(drawFrame);
+loop.cancel();
+```
+
+---
+
+### `interpolate`
+
+Blends two values of the same shape: every number goes from its value in `from` (`t = 0`) to
+its value in `to` (`t = 1`), with lerp, through arrays and plain objects.
+
+`t` is not clamped, so an easing that overshoots (a spring, a back curve) carries the value
+past `to` and back. Keys and lengths come from `from`; the result is a new value.
+
+```typescript
+import { interpolate } from '@helpers4/animation';
+
+interpolate<T extends Interpolatable>(from: T, to: T, t: number): Interpolated<T>
+```
+
+**Parameters:**
+
+- `from: T` — The value at `t = 0`
+- `to: T` — The value at `t = 1`, with the same shape
+- `t: number` — The progress, usually the output of an easing
+
+**Returns:** `Interpolated<T>` — The blended value
+
+**Examples:**
+
+*Blend a set of properties*
+
+Every number in the structure moves from its start to its end value.
+
+```typescript
+interpolate({ x: 0, y: 100 }, { x: 50, y: 0 }, 0.5) // => { x: 25, y: 50 }
+```
+
+*With an easing*
+
+Pass the eased progress as t; overshooting easings carry the value past the end.
+
+```typescript
+interpolate(0, 100, parseEasing('ease-out')!(0.5)) // => 68.46...
+```
+
+---
+
+### `parseEasing`
+
+Reads a CSS easing into an easing function, to play in JavaScript the timing a stylesheet or a
+design tool export describes. It is the inverse of toCssLinear.
+
+Accepts every CSS `<easing-function>`:
+- the keywords `linear`, `ease`, `ease-in`, `ease-out`, `ease-in-out`, `step-start`, `step-end`;
+- `cubic-bezier(x1, y1, x2, y2)` (see cubicBezier);
+- `steps(count[, position])` (see steps);
+- `linear(0, 0.25 40%, 1)`: points with optional input positions, as CSS fills them in.
+
+Case and extra spaces are ignored. The input is clamped to `[0, 1]`.
+
+```typescript
+import { parseEasing } from '@helpers4/animation';
+
+parseEasing(css: string): function | null
+```
+
+**Parameters:**
+
+- `css: string` — The CSS easing
+
+**Returns:** `function | null` — The easing function, or `null` if `css` is not a valid CSS easing
+
+**Examples:**
+
+*Play an exported CSS easing in JavaScript*
+
+Keywords, cubic-bezier(), steps() and linear() are all read.
+
+```typescript
+parseEasing('ease-out')!(0.5)               // => 0.6846...
+parseEasing('steps(4, jump-start)')!(0.3)   // => 0.5
+parseEasing('linear(0, 0.9 50%, 1)')!(0.25) // => 0.45
+```
+
+*Reject unknown easings*
+
+Anything that is not a CSS easing gives null.
+
+```typescript
+parseEasing('bounce') // => null
+```
+
+---
+
+### `spring`
+
+Simulates a damped spring going from `0` to `1`, the curve behind "spring" transitions of
+design tools, and computes how long it takes to settle.
+
+The motion is solved exactly (under-, critically or over-damped), not by stepping a
+simulation, so `at` can be called at any time, in any order.
+
+```typescript
+import { spring } from '@helpers4/animation';
+
+spring(options: SpringOptions): Spring
+```
+
+**Parameters:**
+
+- `options: SpringOptions` (default: `{}`) — Mass, stiffness, damping, initial velocity — see SpringOptions
+
+**Returns:** `Spring` — A Spring
+
+**Examples:**
+
+*A bouncy transition*
+
+The duration comes from the physics: play it for durationMs.
+
+```typescript
+const bouncy = spring({ stiffness: 300, damping: 15 });
+bouncy.durationMs // => about 900
+bouncy.at(bouncy.durationMs) // => 1
+```
+
+*Drive a frame loop*
+
+at() takes the elapsed time in milliseconds.
+
+```typescript
+const s = spring();
+const start = performance.now();
+requestAnimationFrame(function frame(now) {
+  draw(s.at(now - start));
+  if (now - start < s.durationMs) requestAnimationFrame(frame);
+});
+```
+
+---
+
+### `steps`
+
+Builds the easing function of CSS `steps(count, position)`: progress moves by jumps instead
+of continuously, for frame-by-frame sprites, ticking counters, or a design tool's "instant"
+transition.
+
+The input is clamped to `[0, 1]`, like cubicBezier.
+
+```typescript
+import { steps } from '@helpers4/animation';
+
+steps(count: number, position: StepPosition): function
+```
+
+**Parameters:**
+
+- `count: number` — Number of steps, a positive integer (at least 2 with `'jump-none'`)
+- `position: StepPosition` (default: `'jump-end'`) — Where the jumps happen — see StepPosition. Defaults to `'jump-end'`.
+
+**Returns:** `function` — The easing function
+
+**Examples:**
+
+*A four-frame sprite*
+
+Progress moves by jumps instead of continuously.
+
+```typescript
+const fourFrames = steps(4);
+fourFrames(0.3) // => 0.25
+fourFrames(1)   // => 1
+```
+
+*Jump at the start*
+
+With 'jump-start', the first jump happens right away.
+
+```typescript
+steps(4, 'jump-start')(0.3) // => 0.5
+```
+
+---
+
+### `toCssLinear`
+
+Samples an easing function into a CSS `linear()` easing, so any curve (a spring, a
+custom bounce) can be played by CSS transitions and the Web Animations API, which do not take
+JavaScript functions.
+
+Values are rounded to 4 decimals. More samples follow the curve more closely, in a longer
+string; 32 is smooth for most springs.
+
+```typescript
+import { toCssLinear } from '@helpers4/animation';
+
+toCssLinear(easing: function, samples: number): string
+```
+
+**Parameters:**
+
+- `easing: function` — The easing function over `[0, 1]`
+- `samples: number` (default: `32`) — Number of points, evenly spaced in time, at least `2`. Defaults to `32`.
+
+**Returns:** `string` — A `linear(...)` string
+
+**Examples:**
+
+*Play a spring with the Web Animations API*
+
+Pass the spring duration and its sampled curve.
+
+```typescript
+const s = spring({ damping: 15 });
+element.animate({ opacity: [0, 1] }, { duration: s.durationMs, easing: toCssLinear(s.easing) });
+```
+
+*Any custom curve*
+
+Fewer samples give a shorter string.
+
+```typescript
+toCssLinear((t) => t * t, 5) // => 'linear(0, 0.0625, 0.25, 0.5625, 1)'
+```
+
+---
+
+### `tween`
+
+Animates a value from `from` to `to` over `durationMs`, calling `onUpdate` with the blended
+value at each frame, for what CSS cannot animate: canvas drawing, a scroll position, WebGL
+uniforms, numbers shown as text.
+
+It runs on frameLoop: `onUpdate` is called right away with `from`, then once per
+frame, and last with the value at progress `1` (exactly `to` with the default blending).
+
+```typescript
+import { tween } from '@helpers4/animation';
+
+tween<T, V>(options: TweenOptions<T, V> & object): FrameLoop
+```
+
+**Parameters:**
+
+- `options: TweenOptions<T, V> & object` — Values, duration, easing, blending and callback — see TweenOptions
+
+**Returns:** `FrameLoop` — A Tween, to cancel it or await its end
+
+```typescript
+import { tween } from '@helpers4/animation';
+
+tween<T extends Interpolatable>(options: TweenOptions<T, Interpolated<T>>): FrameLoop
+```
+
+**Parameters:**
+
+- `options: TweenOptions<T, Interpolated<T>>` — Values, duration, easing, blending and callback — see TweenOptions
+
+**Returns:** `FrameLoop` — A Tween, to cancel it or await its end
+
+**Examples:**
+
+*Animate what CSS cannot*
+
+onUpdate receives the interpolated value at each frame, here to draw on a canvas.
+
+```typescript
+await tween({
+  from: { x: 0, opacity: 0 },
+  to: { x: 120, opacity: 1 },
+  durationMs: 400,
+  easing: parseEasing('ease-out')!,
+  onUpdate: ({ x, opacity }) => draw(x, opacity),
+}).finished;
+```
+
+*Cancel a running tween*
+
+finished resolves with false when cancelled before the end.
+
+```typescript
+const counter = tween({ from: 0, to: 1000, durationMs: 2000, onUpdate: (n) => (label.textContent = String(Math.round(n))) });
+counter.cancel();
+await counter.finished // => false
+```
+
+---
 
 ## array
 
@@ -1451,6 +1889,50 @@ await mapAsync(urls, (url) => fetch(url).then(r => r.json()), 2)
 
 ---
 
+### `mapSettled`
+
+Like mapAsync, but never rejects: each item gets its own result, in the shape of
+`Promise.allSettled`, so one failure does not stop or hide the others.
+
+`Promise.allSettled(array.map(fn))` does the same without a concurrency cap; `parallelSettle`
+caps it but splits the results into two lists and loses which item failed. This keeps both:
+the cap, and one result per item in input order.
+
+```typescript
+import { mapSettled } from '@helpers4/array';
+
+mapSettled<T, R>(array: readonly T[], fn: function, concurrency?: number): Promise<PromiseSettledResult<Awaited<R>>[]>
+```
+
+**Parameters:**
+
+- `array: readonly T[]` — The array to map over
+- `fn: function` — Async (or sync) function called with `(item, index)`; a throw counts as a rejection
+- `concurrency?: number` — Maximum number of concurrent calls. Defaults to unlimited.
+
+**Returns:** `Promise<PromiseSettledResult<Awaited<R>>[]>` — One `PromiseSettledResult` per item, in input order
+
+**Examples:**
+
+*Keep going when some calls fail*
+
+Each item gets its own result, like Promise.allSettled.
+
+```typescript
+await mapSettled([1, 2, 3], (n) => (n === 2 ? Promise.reject('no') : n * 10))
+// => [{ status: 'fulfilled', value: 10 }, { status: 'rejected', reason: 'no' }, { status: 'fulfilled', value: 30 }]
+```
+
+*Cap concurrency*
+
+The third argument limits how many calls run at once.
+
+```typescript
+const results = await mapSettled(urls, (url) => fetch(url), 4);
+```
+
+---
+
 ### `max`
 
 Returns the maximum value in an array using a loop instead of spread,
@@ -1991,7 +2473,7 @@ sample<T>(array: readonly T[] | null | undefined): T | undefined
 
 - `array: readonly T[] | null | undefined` — The source array to pick from
 
-**Returns:** `T | undefined` — A single random element (or `undefined`) when no count is given, or an array of random elements when count is given
+**Returns:** `T | undefined` — A single random element, or `undefined` if the array is empty
 
 ```typescript
 import { sample } from '@helpers4/array';
@@ -2002,9 +2484,9 @@ sample<T>(array: readonly T[] | null | undefined, count: number): T[]
 **Parameters:**
 
 - `array: readonly T[] | null | undefined` — The source array to pick from
-- `count: number` — Optional number of elements to pick (without replacement)
+- `count: number` — Number of elements to pick
 
-**Returns:** `T[]` — A single random element (or `undefined`) when no count is given, or an array of random elements when count is given
+**Returns:** `T[]` — An array of up to `count` random elements
 
 **Examples:**
 
@@ -2681,6 +3163,383 @@ zip([1, 2, 3], ['x', 'y'])
 
 ---
 
+## browser
+
+Package: `@helpers4/browser`
+
+### `decodeImage`
+
+Loads an image and waits until it is decoded, so it can be painted without a flash or a
+decoding pause (e.g. before swapping screens).
+
+Outside a browser (no `Image`), it rejects with a `TypeError`.
+
+```typescript
+import { decodeImage } from '@helpers4/browser';
+
+decodeImage(src: string): Promise<HTMLImageElement>
+```
+
+**Parameters:**
+
+- `src: string` — The image URL
+
+**Returns:** `Promise<HTMLImageElement>` — The decoded image element
+
+**Examples:**
+
+*Swap screens without a flash*
+
+Insert the image only once it is decoded.
+
+```typescript
+const image = await decodeImage('/screens/home.png');
+container.replaceChildren(image);
+```
+
+*Handle a broken image*
+
+A missing or corrupt image rejects, so it can be replaced by a placeholder.
+
+```typescript
+const image = await decodeImage(url).catch(() => placeholder);
+```
+
+---
+
+### `loadFont`
+
+Loads a font and registers it in `document.fonts`, so CSS and canvas can use `family` right
+away.
+
+`source` is either a URL (wrapped in `url()` for you) or the font file's bytes. Outside a
+browser (no `FontFace`), it rejects with a `TypeError`.
+
+```typescript
+import { loadFont } from '@helpers4/browser';
+
+loadFont(family: string, source: string | BufferSource, descriptors?: FontFaceDescriptors): Promise<FontFace>
+```
+
+**Parameters:**
+
+- `family: string` — The family name CSS will use, e.g. `'Inter'`
+- `source: string | BufferSource` — The font URL, or its bytes
+- `descriptors?: FontFaceDescriptors` — `weight`, `style`, `unicodeRange`, ... as in a CSS `@font-face` rule
+
+**Returns:** `Promise<FontFace>` — The loaded `FontFace`
+
+**Examples:**
+
+*Load a web font before drawing text*
+
+The font is registered in document.fonts, so CSS and canvas can use it right away.
+
+```typescript
+await loadFont('Inter', '/fonts/Inter-Bold.woff2', { weight: '700' });
+context.font = '700 16px Inter';
+```
+
+*Load embedded font bytes*
+
+Pass the bytes of a font file extracted from an archive or a design file.
+
+```typescript
+await loadFont('Embedded', await file.arrayBuffer());
+```
+
+---
+
+### `matchesMedia`
+
+Whether the document currently matches a CSS media query.
+
+Outside a browser (no `matchMedia`, e.g. during server-side rendering), it returns `false`.
+
+```typescript
+import { matchesMedia } from '@helpers4/browser';
+
+matchesMedia(query: string): boolean
+```
+
+**Parameters:**
+
+- `query: string` — A media query, e.g. `'(min-width: 600px)'`
+
+**Returns:** `boolean` — `true` if the query matches now
+
+**Examples:**
+
+*Read a media query*
+
+Returns whether the document matches the query right now.
+
+```typescript
+const dark = matchesMedia('(prefers-color-scheme: dark)');
+```
+
+*Safe during server-side rendering*
+
+Without matchMedia (Node.js, a build step), it returns false instead of throwing.
+
+```typescript
+// on the server
+matchesMedia('(min-width: 600px)') // => false
+```
+
+---
+
+### `observeIntersection`
+
+Calls `callback` each time `element` enters or leaves the viewport (or `options.root`), with an
+`IntersectionObserver` dedicated to it: lazy loading, starting an animation when it becomes
+visible, pausing a video when it scrolls away. Like `IntersectionObserver` itself, it is also
+called once soon after it starts observing.
+
+Without `IntersectionObserver`, it does nothing and returns a function that does nothing.
+
+```typescript
+import { observeIntersection } from '@helpers4/browser';
+
+observeIntersection(element: Element, callback: function, options?: IntersectionObserverInit): function
+```
+
+**Parameters:**
+
+- `element: Element` — The element to observe
+- `callback: function` — Receives the `IntersectionObserverEntry` of `element` (`entry.isIntersecting`, `entry.intersectionRatio`, ...)
+- `options?: IntersectionObserverInit` — `root`, `rootMargin` and `threshold`, as for `IntersectionObserver`
+
+**Returns:** `function` — A function that stops observing
+
+**Examples:**
+
+*Play a video only while visible*
+
+The callback receives the IntersectionObserverEntry of the element.
+
+```typescript
+const stop = observeIntersection(video, (entry) => (entry.isIntersecting ? video.play() : video.pause()));
+```
+
+*Lazy-load once*
+
+Stop observing from the callback after the first load; rootMargin starts loading early.
+
+```typescript
+const stop = observeIntersection(image, (entry) => {
+  if (!entry.isIntersecting) return;
+  image.src = image.dataset.src!;
+  stop();
+}, { rootMargin: '200px' });
+```
+
+---
+
+### `observeResize`
+
+Calls `callback` each time the size of `element` changes, with a `ResizeObserver` dedicated to
+it. Like `ResizeObserver` itself, it is also called once soon after it starts observing.
+
+To limit how often it runs, wrap the callback with `debounce` or `throttle` from
+`helpers4/function`. Without `ResizeObserver`, it does nothing and returns a function that
+does nothing.
+
+```typescript
+import { observeResize } from '@helpers4/browser';
+
+observeResize(element: Element, callback: function): function
+```
+
+**Parameters:**
+
+- `element: Element` — The element to observe
+- `callback: function` — Receives the `ResizeObserverEntry` of `element`
+
+**Returns:** `function` — A function that stops observing
+
+**Examples:**
+
+*Redraw when an element is resized*
+
+The callback receives the ResizeObserverEntry of the element.
+
+```typescript
+const stop = observeResize(canvas, (entry) => redraw(entry.contentRect));
+```
+
+*Limit how often it runs*
+
+Compose with debounce from helpers4/function instead of an option.
+
+```typescript
+const stop = observeResize(frame, debounce(() => fitToViewport(), 100));
+```
+
+---
+
+### `prefersReducedMotion`
+
+Whether the user asked the system to reduce motion (`prefers-reduced-motion: reduce`).
+
+Outside a browser, it returns `false`. To react to changes, use
+`watchMedia('(prefers-reduced-motion: reduce)', listener)`.
+
+```typescript
+import { prefersReducedMotion } from '@helpers4/browser';
+
+prefersReducedMotion(): boolean
+```
+
+**Returns:** `boolean` — `true` if animations should be reduced or removed
+
+**Examples:**
+
+*Skip an animation*
+
+Use a zero duration when the user asked to reduce motion.
+
+```typescript
+const duration = prefersReducedMotion() ? 0 : 300;
+```
+
+*React to changes*
+
+Combine with watchMedia to follow the setting while the page is open.
+
+```typescript
+watchMedia('(prefers-reduced-motion: reduce)', (reduce) => player.setAnimations(!reduce));
+```
+
+---
+
+### `preloadImages`
+
+Loads and decodes several images with decodeImage, a few at a time, with
+`mapSettled` from `helpers4/array`.
+
+It never rejects: an image that fails does not stop the others, and its result says why.
+
+```typescript
+import { preloadImages } from '@helpers4/browser';
+
+preloadImages(urls: readonly string[], options: PreloadImagesOptions): Promise<PromiseSettledResult<HTMLImageElement>[]>
+```
+
+**Parameters:**
+
+- `urls: readonly string[]` — The image URLs
+- `options: PreloadImagesOptions` (default: `{}`) — Concurrency — see PreloadImagesOptions
+
+**Returns:** `Promise<PromiseSettledResult<HTMLImageElement>[]>` — One result per URL, in the same order
+
+**Examples:**
+
+*Preload the next screens*
+
+Each URL gets its own result, like Promise.allSettled: a broken image does not stop the others.
+
+```typescript
+const results = await preloadImages(['/screens/a.png', '/screens/b.png']);
+const failed = results.filter((result) => result.status === 'rejected');
+```
+
+*Limit concurrent downloads*
+
+concurrency caps how many images load at the same time (6 by default).
+
+```typescript
+await preloadImages(thumbnails, { concurrency: 2 });
+```
+
+---
+
+### `watchMedia`
+
+Calls `listener` each time a CSS media query starts or stops matching.
+
+It is not called with the current value: read it with matchesMedia. Outside a browser
+(no `matchMedia`), it does nothing and returns a function that does nothing.
+
+```typescript
+import { watchMedia } from '@helpers4/browser';
+
+watchMedia(query: string, listener: function): function
+```
+
+**Parameters:**
+
+- `query: string` — A media query, e.g. `'(prefers-reduced-motion: reduce)'`
+- `listener: function` — Receives whether the query matches after the change
+
+**Returns:** `function` — A function that stops watching
+
+**Examples:**
+
+*Follow the color scheme*
+
+The listener runs each time the query starts or stops matching.
+
+```typescript
+const stop = watchMedia('(prefers-color-scheme: dark)', (dark) => {
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+});
+```
+
+*Stop watching*
+
+Call the returned function, e.g. when a component is removed.
+
+```typescript
+const stop = watchMedia('(min-width: 600px)', relayout);
+// later
+stop();
+```
+
+---
+
+### `whenIdle`
+
+Runs `callback` when the browser is idle, with `requestIdleCallback`, for work that can wait
+(prefetching, analytics, warming a cache).
+
+Where `requestIdleCallback` does not exist (Safari, Node.js), it falls back to `setTimeout`,
+so the callback still runs, after the current task.
+
+```typescript
+import { whenIdle } from '@helpers4/browser';
+
+whenIdle(callback: function, options: WhenIdleOptions): function
+```
+
+**Parameters:**
+
+- `callback: function` — The work to run
+- `options: WhenIdleOptions` (default: `{}`) — Timeout — see WhenIdleOptions
+
+**Returns:** `function` — A function that cancels the callback if it has not run yet
+
+**Examples:**
+
+*Defer non-urgent work*
+
+Runs when the browser is idle, or after the timeout at the latest.
+
+```typescript
+whenIdle(() => preloadImages(nextScreens), { timeout: 2000 });
+```
+
+*Cancel it*
+
+The returned function cancels the callback if it has not run yet.
+
+```typescript
+const cancel = whenIdle(warmCache);
+cancel();
+```
+
+---
+
 ## ci
 
 Package: `@helpers4/ci`
@@ -2948,6 +3807,84 @@ hexToRgb('not-a-color')
 
 ---
 
+### `hsbToRgb`
+
+Converts an HSB(A) color (also called HSV), as shown by design tool color pickers, into
+RGB(A).
+
+```typescript
+import { hsbToRgb } from '@helpers4/color';
+
+hsbToRgb(color: HsbColor): RgbColor
+```
+
+**Parameters:**
+
+- `color: HsbColor` — The color to convert: `h` in degrees (any value, wrapped into 0-360), `s`/`b`
+  in 0-100, `a` defaults to 1 (opaque) when omitted.
+
+**Returns:** `RgbColor` — The equivalent RGB(A) color, channels rounded to integers in 0-255
+
+**Examples:**
+
+*Convert a design tool color*
+
+From the HSB values of a color picker to RGB.
+
+```typescript
+hsbToRgb({ h: 0, s: 100, b: 100 }) // => { r: 255, g: 0, b: 0, a: 1 }
+```
+
+*Darker shade*
+
+Lower the brightness to darken without changing the hue.
+
+```typescript
+hsbToRgb({ h: 120, s: 100, b: 50 }) // => { r: 0, g: 128, b: 0, a: 1 }
+```
+
+---
+
+### `hslToCss`
+
+Formats an HSL(A) color as a CSS `hsl()` value, in the modern space-separated syntax.
+
+The hue is wrapped into 0-360, saturation and lightness are clamped to 0-100, all three rounded
+to 1 decimal place; alpha is clamped to 0-1, rounded to 3 decimals, and left out when the color
+is opaque.
+
+```typescript
+import { hslToCss } from '@helpers4/color';
+
+hslToCss(color: HslColor): string
+```
+
+**Parameters:**
+
+- `color: HslColor` — The color to format. `a` defaults to 1 (opaque) when omitted.
+
+**Returns:** `string` — `hsl(h s% l%)`, or `hsl(h s% l% / a)` when translucent
+
+**Examples:**
+
+*Opaque color*
+
+The alpha is left out.
+
+```typescript
+hslToCss({ h: 210, s: 100, l: 50 }) // => 'hsl(210 100% 50%)'
+```
+
+*Translucent color with a negative hue*
+
+The hue is wrapped into 0-360 and the alpha comes after a slash.
+
+```typescript
+hslToCss({ h: -30, s: 80, l: 40, a: 0.25 }) // => 'hsl(330 80% 40% / 0.25)'
+```
+
+---
+
 ### `hslToRgb`
 
 Converts an HSL(A) color into RGB(A).
@@ -2984,6 +3921,46 @@ Negative or out-of-range hues are normalized before conversion.
 ```typescript
 hslToRgb({ h: -360, s: 100, l: 50 })
 // => { r: 255, g: 0, b: 0, a: 1 }  (same as h: 0)
+```
+
+---
+
+### `rgbToCss`
+
+Formats an RGB(A) color as a CSS `rgb()` value, in the modern space-separated syntax that
+every current browser and SVG renderer reads.
+
+Channels are clamped to 0-255 and rounded; alpha is clamped to 0-1, rounded to 3 decimals, and
+left out when the color is opaque.
+
+```typescript
+import { rgbToCss } from '@helpers4/color';
+
+rgbToCss(color: RgbColor): string
+```
+
+**Parameters:**
+
+- `color: RgbColor` — The color to format. `a` defaults to 1 (opaque) when omitted.
+
+**Returns:** `string` — `rgb(r g b)`, or `rgb(r g b / a)` when translucent
+
+**Examples:**
+
+*Opaque color*
+
+The alpha is left out.
+
+```typescript
+rgbToCss({ r: 255, g: 128, b: 0 }) // => 'rgb(255 128 0)'
+```
+
+*Translucent color*
+
+The alpha comes after a slash.
+
+```typescript
+rgbToCss({ r: 255, g: 128, b: 0, a: 0.5 }) // => 'rgb(255 128 0 / 0.5)'
 ```
 
 ---
@@ -3026,6 +4003,46 @@ A non-opaque color formats as an 8-digit #rrggbbaa string.
 ```typescript
 rgbToHex({ r: 0, g: 255, b: 0, a: 0.5 })
 // => '#00ff0080'
+```
+
+---
+
+### `rgbToHsb`
+
+Converts an RGB(A) color into HSB(A), the model design tools (Figma, Sketch, XD) show in their
+color pickers. Unlike HSL lightness, brightness `100` is the pure color, not white.
+
+`h`/`s`/`b` are rounded to 1 decimal place to avoid floating-point noise.
+
+```typescript
+import { rgbToHsb } from '@helpers4/color';
+
+rgbToHsb(color: RgbColor): HsbColor
+```
+
+**Parameters:**
+
+- `color: RgbColor` — The color to convert. `r`/`g`/`b` are expected in 0-255,
+  `a` defaults to 1 (opaque) when omitted.
+
+**Returns:** `HsbColor` — The equivalent HSB(A) color: `h` in 0-360, `s`/`b` in 0-100
+
+**Examples:**
+
+*Show a color like a design tool picker*
+
+Pure colors have a brightness of 100.
+
+```typescript
+rgbToHsb({ r: 255, g: 0, b: 0 }) // => { h: 0, s: 100, b: 100, a: 1 }
+```
+
+*White versus HSL*
+
+White is saturation 0 and brightness 100 (HSL would say lightness 100).
+
+```typescript
+rgbToHsb({ r: 255, g: 255, b: 255 }) // => { h: 0, s: 0, b: 100, a: 1 }
 ```
 
 ---
@@ -3690,6 +4707,46 @@ ensureDate('invalid')              // => null
 
 ---
 
+### `format`
+
+Formats a date as a short label that does not depend on the machine: UTC, English, and
+`Jul 27, 2026` by default. A shorthand for
+`formatInTimezone(date, 'UTC', { locale, formatOptions })`.
+
+`formatOptions` replaces the default format rather than extending it, so
+`{ month: 'short', day: 'numeric' }` gives `Jul 27` with no year.
+
+Returns `null` if the date or the locale is invalid.
+
+```typescript
+import { format } from '@helpers4/date';
+
+format(date: DateLike, formatOptions: DateTimeFormatOptions, locale: string): string | null
+```
+
+**Parameters:**
+
+- `date: DateLike` — The date to format
+- `formatOptions: DateTimeFormatOptions` (default: `DEFAULT_FORMAT`) — `Intl.DateTimeFormat` options (default: day, short month, year)
+- `locale: string` (default: `'en'`) — BCP 47 locale tag (default: `'en'`)
+
+**Returns:** `string | null` — The formatted date, or `null`
+
+**Examples:**
+
+*format*
+
+```typescript
+```ts
+format('2026-07-27')                                   // => 'Jul 27, 2026'
+format('2026-07-27', { month: 'short', day: 'numeric' }) // => 'Jul 27'
+format('2026-07-27', undefined, 'fr')                  // => '27 juil. 2026'
+format('nope')                                         // => null
+```
+```
+
+---
+
 ### `formatDuration`
 
 Formats a duration in milliseconds as a compact human-readable string.
@@ -3767,6 +4824,60 @@ formatInTimezone('2025-01-19T12:00:00Z', 'Europe/Paris', {
 })
 // => "19 janvier 2025, 13:00"
 ```
+```
+
+---
+
+### `formatPartial`
+
+Formats a partial ISO date at the precision it was given, in UTC: a year alone is
+approximate and reads `c. 2008`, a month `Mar 2008` and a full day `Mar 9, 2008`.
+
+Month names and their order follow `locale`. The marker before a year alone does not: see
+FormatPartialOptions.
+
+Returns `null` when parsePartial would, or when the locale is invalid.
+
+```typescript
+import { formatPartial } from '@helpers4/date';
+
+formatPartial(input: string, options: FormatPartialOptions): string | null
+```
+
+**Parameters:**
+
+- `input: string` — A `YYYY`, `YYYY-MM` or `YYYY-MM-DD` string
+- `options: FormatPartialOptions` (default: `{}`) — Locale and approximate-year marker — see FormatPartialOptions
+
+**Returns:** `string | null` — The label, or `null`
+
+**Examples:**
+
+*Label at the known precision*
+
+An approximate year reads "c. 2008", a month "Mar 2008", a day "Mar 9, 2008".
+
+```typescript
+formatPartial('2008')       // => 'c. 2008'
+formatPartial('2008-03')    // => 'Mar 2008'
+formatPartial('2008-03-09') // => 'Mar 9, 2008'
+```
+
+*Another language*
+
+The locale sets the month names; the marker for a year alone is a word, so you give it.
+
+```typescript
+formatPartial('2008', { locale: 'fr', approximate: 'vers' }) // => 'vers 2008'
+formatPartial('2008-03-09', { locale: 'fr' })                // => '9 mars 2008'
+```
+
+*Invalid input*
+
+Returns null instead of a wrong label.
+
+```typescript
+formatPartial('2008-13') // => null
 ```
 
 ---
@@ -4418,6 +5529,52 @@ parseDuration('not a duration')
 
 ---
 
+### `parsePartial`
+
+Parses an ISO date that may only be known to the year or the month: `YYYY`, `YYYY-MM` or
+`YYYY-MM-DD`. A partial date is anchored in the middle of its period, so it sorts and
+charts sensibly next to full dates:
+
+- `YYYY` → July 1st of that year
+- `YYYY-MM` → the 15th of that month
+- `YYYY-MM-DD` → that day
+
+All dates are at 00:00:00.000 UTC. Returns `null` for anything else, including a month or day
+that does not exist (`2025-13`, `2025-02-30`).
+
+```typescript
+import { parsePartial } from '@helpers4/date';
+
+parsePartial(input: string): PartialDate | null
+```
+
+**Parameters:**
+
+- `input: string` — A `YYYY`, `YYYY-MM` or `YYYY-MM-DD` string
+
+**Returns:** `PartialDate | null` — The anchored date with its precision, or `null`
+
+**Examples:**
+
+*Year and month only*
+
+A partial date is anchored in the middle of its period so it sorts next to full dates.
+
+```typescript
+parsePartial('2008')    // => { date: 2008-07-01, precision: 'year' }
+parsePartial('2008-03') // => { date: 2008-03-15, precision: 'month' }
+```
+
+*Invalid input*
+
+A month or day that does not exist gives null.
+
+```typescript
+parsePartial('2008-02-30') // => null
+```
+
+---
+
 ### `startOf`
 
 Returns a new `Date` set to the **start** of the given unit.
@@ -4540,6 +5697,26 @@ RFC 2822 is used in email and HTTP headers.
 ```typescript
 toRFC2822(new Date('2025-01-19T12:30:00Z'))
 // => 'Sun, 19 Jan 2025 12:30:00 +0000'
+```
+
+*Stable short label*
+
+UTC and English by default, so the label is the same on every machine.
+
+```typescript
+format('2026-07-27')
+// => 'Jul 27, 2026'
+```
+
+*Custom fields and locale*
+
+The options replace the default format; the locale is the third argument.
+
+```typescript
+format('2026-07-27', { month: 'short', day: 'numeric' })
+// => 'Jul 27'
+format('2026-07-27', undefined, 'fr')
+// => '27 juil. 2026'
 ```
 
 ---
@@ -4707,7 +5884,7 @@ compose<A, B>(fn1: function): function
 
 **Parameters:**
 
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 
 **Returns:** `function` — A function that applies `fns` in reverse order
 
@@ -4720,7 +5897,7 @@ compose<A, B, C>(fn2: function, fn1: function): function
 **Parameters:**
 
 - `fn2: function`
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 
 **Returns:** `function` — A function that applies `fns` in reverse order
 
@@ -4734,7 +5911,7 @@ compose<A, B, C, D>(fn3: function, fn2: function, fn1: function): function
 
 - `fn3: function`
 - `fn2: function`
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 
 **Returns:** `function` — A function that applies `fns` in reverse order
 
@@ -4749,7 +5926,7 @@ compose<A, B, C, D, E>(fn4: function, fn3: function, fn2: function, fn1: functio
 - `fn4: function`
 - `fn3: function`
 - `fn2: function`
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 
 **Returns:** `function` — A function that applies `fns` in reverse order
 
@@ -4765,7 +5942,7 @@ compose<A, B, C, D, E, F>(fn5: function, fn4: function, fn3: function, fn2: func
 - `fn4: function`
 - `fn3: function`
 - `fn2: function`
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 
 **Returns:** `function` — A function that applies `fns` in reverse order
 
@@ -4782,7 +5959,7 @@ compose<A, B, C, D, E, F, G>(fn6: function, fn5: function, fn4: function, fn3: f
 - `fn4: function`
 - `fn3: function`
 - `fn2: function`
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 
 **Returns:** `function` — A function that applies `fns` in reverse order
 
@@ -4800,7 +5977,7 @@ compose<A, B, C, D, E, F, G, H>(fn7: function, fn6: function, fn5: function, fn4
 - `fn4: function`
 - `fn3: function`
 - `fn2: function`
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 
 **Returns:** `function` — A function that applies `fns` in reverse order
 
@@ -4819,7 +5996,7 @@ compose<A, B, C, D, E, F, G, H, I>(fn8: function, fn7: function, fn6: function, 
 - `fn4: function`
 - `fn3: function`
 - `fn2: function`
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 
 **Returns:** `function` — A function that applies `fns` in reverse order
 
@@ -5339,7 +6516,7 @@ partial<A, R>(fn: function, a: A): function
 **Parameters:**
 
 - `fn: function` — The function to partially apply
-- `a: A`
+- `a: A` — The first argument to pre-fill. The overloads accept up to three pre-filled arguments (`a`, `b`, `c`).
 
 **Returns:** `function` — A function waiting for the remaining arguments
 
@@ -5352,7 +6529,7 @@ partial<A, B, R>(fn: function, a: A): function
 **Parameters:**
 
 - `fn: function` — The function to partially apply
-- `a: A`
+- `a: A` — The first argument to pre-fill. The overloads accept up to three pre-filled arguments (`a`, `b`, `c`).
 
 **Returns:** `function` — A function waiting for the remaining arguments
 
@@ -5365,7 +6542,7 @@ partial<A, B, C, R>(fn: function, a: A): function
 **Parameters:**
 
 - `fn: function` — The function to partially apply
-- `a: A`
+- `a: A` — The first argument to pre-fill. The overloads accept up to three pre-filled arguments (`a`, `b`, `c`).
 
 **Returns:** `function` — A function waiting for the remaining arguments
 
@@ -5378,7 +6555,7 @@ partial<A, B, C, R>(fn: function, a: A, b: B): function
 **Parameters:**
 
 - `fn: function` — The function to partially apply
-- `a: A`
+- `a: A` — The first argument to pre-fill. The overloads accept up to three pre-filled arguments (`a`, `b`, `c`).
 - `b: B`
 
 **Returns:** `function` — A function waiting for the remaining arguments
@@ -5392,7 +6569,7 @@ partial<A, B, C, D, R>(fn: function, a: A): function
 **Parameters:**
 
 - `fn: function` — The function to partially apply
-- `a: A`
+- `a: A` — The first argument to pre-fill. The overloads accept up to three pre-filled arguments (`a`, `b`, `c`).
 
 **Returns:** `function` — A function waiting for the remaining arguments
 
@@ -5405,7 +6582,7 @@ partial<A, B, C, D, R>(fn: function, a: A, b: B): function
 **Parameters:**
 
 - `fn: function` — The function to partially apply
-- `a: A`
+- `a: A` — The first argument to pre-fill. The overloads accept up to three pre-filled arguments (`a`, `b`, `c`).
 - `b: B`
 
 **Returns:** `function` — A function waiting for the remaining arguments
@@ -5419,7 +6596,7 @@ partial<A, B, C, D, R>(fn: function, a: A, b: B, c: C): function
 **Parameters:**
 
 - `fn: function` — The function to partially apply
-- `a: A`
+- `a: A` — The first argument to pre-fill. The overloads accept up to three pre-filled arguments (`a`, `b`, `c`).
 - `b: B`
 - `c: C`
 
@@ -5469,7 +6646,7 @@ pipe<A, B>(fn1: function): function
 
 **Parameters:**
 
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 
 **Returns:** `function` — A function that applies `fns` in order
 
@@ -5481,7 +6658,7 @@ pipe<A, B, C>(fn1: function, fn2: function): function
 
 **Parameters:**
 
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 - `fn2: function`
 
 **Returns:** `function` — A function that applies `fns` in order
@@ -5494,7 +6671,7 @@ pipe<A, B, C, D>(fn1: function, fn2: function, fn3: function): function
 
 **Parameters:**
 
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 - `fn2: function`
 - `fn3: function`
 
@@ -5508,7 +6685,7 @@ pipe<A, B, C, D, E>(fn1: function, fn2: function, fn3: function, fn4: function):
 
 **Parameters:**
 
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 - `fn2: function`
 - `fn3: function`
 - `fn4: function`
@@ -5523,7 +6700,7 @@ pipe<A, B, C, D, E, F>(fn1: function, fn2: function, fn3: function, fn4: functio
 
 **Parameters:**
 
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 - `fn2: function`
 - `fn3: function`
 - `fn4: function`
@@ -5539,7 +6716,7 @@ pipe<A, B, C, D, E, F, G>(fn1: function, fn2: function, fn3: function, fn4: func
 
 **Parameters:**
 
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 - `fn2: function`
 - `fn3: function`
 - `fn4: function`
@@ -5556,7 +6733,7 @@ pipe<A, B, C, D, E, F, G, H>(fn1: function, fn2: function, fn3: function, fn4: f
 
 **Parameters:**
 
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 - `fn2: function`
 - `fn3: function`
 - `fn4: function`
@@ -5574,7 +6751,7 @@ pipe<A, B, C, D, E, F, G, H, I>(fn1: function, fn2: function, fn3: function, fn4
 
 **Parameters:**
 
-- `fn1: function`
+- `fn1: function` — The first function. The overloads accept up to eight functions in all, passed as `fn1, fn2, …`.
 - `fn2: function`
 - `fn3: function`
 - `fn4: function`
@@ -5729,6 +6906,795 @@ Useful whenever a callback slot passes more arguments than the function should s
 const double = unary((n: number, factor?: number) => n * (factor ?? 2));
 double(21)
 // => 42
+```
+
+---
+
+## geometry
+
+Package: `@helpers4/geometry`
+
+### `applyToPoint`
+
+Transforms a point by a matrix.
+
+```typescript
+import { applyToPoint } from '@helpers4/geometry';
+
+applyToPoint(m: Matrix, p: Point): Point
+```
+
+**Parameters:**
+
+- `m: Matrix` — The matrix
+- `p: Point` — The point
+
+**Returns:** `Point` — The transformed point
+
+**Examples:**
+
+*Transform a point*
+
+x' = a·x + c·y + e, y' = b·x + d·y + f.
+
+```typescript
+applyToPoint({ a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }, { x: 1, y: 1 }) // => { x: 9, y: 12 }
+```
+
+*With a helper matrix*
+
+Any matrix built by translate, scale, rotate or multiply.
+
+```typescript
+applyToPoint(translate(10, 5), { x: 1, y: 1 }) // => { x: 11, y: 6 }
+```
+
+---
+
+### `applyToRect`
+
+Transforms a rectangle by a matrix and returns its bounding box: the smallest axis-aligned
+rectangle that contains it. After a rotation or a skew, the box is larger than the rectangle.
+
+```typescript
+import { applyToRect } from '@helpers4/geometry';
+
+applyToRect(m: Matrix, r: Rect): Rect
+```
+
+**Parameters:**
+
+- `m: Matrix` — The matrix
+- `r: Rect` — The rectangle
+
+**Returns:** `Rect` — The bounding box of the transformed rectangle
+
+**Examples:**
+
+*Bounds of a scaled layer*
+
+The bounding box of the transformed rectangle.
+
+```typescript
+applyToRect(scale(2), { x: 1, y: 1, width: 2, height: 3 }) // => { x: 2, y: 2, width: 4, height: 6 }
+```
+
+*Bounds of a rotated layer*
+
+After a rotation, the box is larger than the rectangle.
+
+```typescript
+applyToRect(rotate(Math.PI / 4), { x: 0, y: 0, width: 1, height: 1 }).width // => √2
+```
+
+---
+
+### `contains`
+
+Whether a point or a rectangle is inside a rectangle.
+
+For a point (hit-testing), the left and top edges are inside and the right and bottom ones are
+not, so a point on the edge between two adjacent rectangles hits exactly one of them. A
+rectangle is inside when it does not stick out: it may touch any edge.
+
+```typescript
+import { contains } from '@helpers4/geometry';
+
+contains(r: Rect, target: Point | Rect): boolean
+```
+
+**Parameters:**
+
+- `r: Rect` — The containing rectangle
+- `target: Point | Rect` — A point, or a rectangle
+
+**Returns:** `boolean` — `true` if `target` is inside `r`
+
+**Examples:**
+
+*Hit-test a click*
+
+Shared edges hit once: the right and bottom edges are outside.
+
+```typescript
+const hit = hotspots.find((zone) => contains(zone, { x: event.offsetX, y: event.offsetY }));
+```
+
+*Is a layer fully on screen?*
+
+A rectangle is inside when it does not stick out.
+
+```typescript
+contains(viewport, layerBounds)
+```
+
+---
+
+### `fit`
+
+Places content in a box like CSS `object-fit` and `object-position`, e.g. to show a design
+frame in a viewport of another size.
+
+The result is the matrix from content coordinates to box coordinates: its `a` and `d` are
+the scales, `e` and `f` the position of the content's top-left corner. Combine it with
+multiply, map points with applyToPoint, or write it with matrixToCss.
+Sizes are expected to be positive.
+
+```typescript
+import { fit } from '@helpers4/geometry';
+
+fit(content: Size, box: Size, options: FitOptions): Matrix
+```
+
+**Parameters:**
+
+- `content: Size` — The size of the content
+- `box: Size` — The size of the box
+- `options: FitOptions` (default: `{}`) — Mode and alignment — see FitOptions
+
+**Returns:** `Matrix` — The content-to-box matrix
+
+**Examples:**
+
+*Show a frame in a viewport*
+
+contain (the default) keeps the whole frame visible, centered.
+
+```typescript
+fit({ width: 200, height: 100 }, { width: 100, height: 100 })
+// => { a: 0.5, b: 0, c: 0, d: 0.5, e: 0, f: 25 }
+```
+
+*Cover, aligned to the left*
+
+Like object-fit: cover; object-position: left.
+
+```typescript
+fit({ width: 200, height: 100 }, { width: 100, height: 100 }, { mode: 'cover', align: { x: 0 } })
+// => { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 }
+```
+
+---
+
+### `fitContain`
+
+Places content in a box, as large as possible while staying entirely inside the box (CSS `object-fit: contain`). Shortcut for `fit(content, box, { mode: 'contain', align })`.
+
+```typescript
+import { fitContain } from '@helpers4/geometry';
+
+fitContain(content: Size, box: Size, align?: FitAlign): Matrix
+```
+
+**Parameters:**
+
+- `content: Size` — The size of the content
+- `box: Size` — The size of the box
+- `align?: FitAlign` — Where to place it, centered by default — see FitAlign
+
+**Returns:** `Matrix` — The content-to-box matrix (`a`/`d` scales, `e`/`f` position)
+
+**Examples:**
+
+*Centered*
+
+Same as fit(content, box, { mode: 'contain' }).
+
+```typescript
+fitContain({ width: 200, height: 100 }, { width: 100, height: 100 })
+// => { a: 0.5, b: 0, c: 0, d: 0.5, e: 0, f: 25 }
+```
+
+*Aligned to the top-left corner*
+
+The third argument is the alignment, like CSS object-position.
+
+```typescript
+fitContain({ width: 200, height: 100 }, { width: 100, height: 100 }, { x: 0, y: 0 })
+```
+
+---
+
+### `fitCover`
+
+Places content in a box, as small as possible while covering the whole box (CSS `object-fit: cover`). Shortcut for `fit(content, box, { mode: 'cover', align })`.
+
+```typescript
+import { fitCover } from '@helpers4/geometry';
+
+fitCover(content: Size, box: Size, align?: FitAlign): Matrix
+```
+
+**Parameters:**
+
+- `content: Size` — The size of the content
+- `box: Size` — The size of the box
+- `align?: FitAlign` — Where to place it, centered by default — see FitAlign
+
+**Returns:** `Matrix` — The content-to-box matrix (`a`/`d` scales, `e`/`f` position)
+
+**Examples:**
+
+*Centered*
+
+Same as fit(content, box, { mode: 'cover' }).
+
+```typescript
+fitCover({ width: 200, height: 100 }, { width: 100, height: 100 })
+// => { a: 1, b: 0, c: 0, d: 1, e: -50, f: 0 }
+```
+
+*Aligned to the top-left corner*
+
+The third argument is the alignment, like CSS object-position.
+
+```typescript
+fitCover({ width: 200, height: 100 }, { width: 100, height: 100 }, { x: 0, y: 0 })
+```
+
+---
+
+### `fitFill`
+
+Places content in a box, stretched to the box on each axis, without keeping its proportions (CSS `object-fit: fill`). Shortcut for `fit(content, box, { mode: 'fill', align })`.
+
+```typescript
+import { fitFill } from '@helpers4/geometry';
+
+fitFill(content: Size, box: Size, align?: FitAlign): Matrix
+```
+
+**Parameters:**
+
+- `content: Size` — The size of the content
+- `box: Size` — The size of the box
+- `align?: FitAlign` — Where to place it, centered by default — see FitAlign
+
+**Returns:** `Matrix` — The content-to-box matrix (`a`/`d` scales, `e`/`f` position)
+
+**Examples:**
+
+*Centered*
+
+Same as fit(content, box, { mode: 'fill' }).
+
+```typescript
+fitFill({ width: 200, height: 100 }, { width: 100, height: 100 })
+// => { a: 0.5, b: 0, c: 0, d: 1, e: 0, f: 0 }
+```
+
+*Aligned to the top-left corner*
+
+The third argument is the alignment, like CSS object-position.
+
+```typescript
+fitFill({ width: 200, height: 100 }, { width: 100, height: 100 }, { x: 0, y: 0 })
+```
+
+---
+
+### `fitNone`
+
+Places content in a box, at its own size, only positioned (CSS `object-fit: none`). Shortcut for `fit(content, box, { mode: 'none', align })`.
+
+```typescript
+import { fitNone } from '@helpers4/geometry';
+
+fitNone(content: Size, box: Size, align?: FitAlign): Matrix
+```
+
+**Parameters:**
+
+- `content: Size` — The size of the content
+- `box: Size` — The size of the box
+- `align?: FitAlign` — Where to place it, centered by default — see FitAlign
+
+**Returns:** `Matrix` — The content-to-box matrix (`a`/`d` scales, `e`/`f` position)
+
+**Examples:**
+
+*Centered*
+
+Same as fit(content, box, { mode: 'none' }).
+
+```typescript
+fitNone({ width: 200, height: 100 }, { width: 100, height: 100 })
+// => { a: 1, b: 0, c: 0, d: 1, e: -50, f: 0 }
+```
+
+*Aligned to the top-left corner*
+
+The third argument is the alignment, like CSS object-position.
+
+```typescript
+fitNone({ width: 200, height: 100 }, { width: 100, height: 100 }, { x: 0, y: 0 })
+```
+
+---
+
+### `fitScaleDown`
+
+Places content in a box, like fitContain, but never enlarged (CSS `object-fit: scale-down`). Shortcut for `fit(content, box, { mode: 'scale-down', align })`.
+
+```typescript
+import { fitScaleDown } from '@helpers4/geometry';
+
+fitScaleDown(content: Size, box: Size, align?: FitAlign): Matrix
+```
+
+**Parameters:**
+
+- `content: Size` — The size of the content
+- `box: Size` — The size of the box
+- `align?: FitAlign` — Where to place it, centered by default — see FitAlign
+
+**Returns:** `Matrix` — The content-to-box matrix (`a`/`d` scales, `e`/`f` position)
+
+**Examples:**
+
+*Centered*
+
+Same as fit(content, box, { mode: 'scale-down' }).
+
+```typescript
+fitScaleDown({ width: 200, height: 100 }, { width: 100, height: 100 })
+// => { a: 0.5, b: 0, c: 0, d: 0.5, e: 0, f: 25 }
+```
+
+*Aligned to the top-left corner*
+
+The third argument is the alignment, like CSS object-position.
+
+```typescript
+fitScaleDown({ width: 200, height: 100 }, { width: 100, height: 100 }, { x: 0, y: 0 })
+```
+
+---
+
+### `identity`
+
+The matrix that changes nothing.
+
+```typescript
+import { identity } from '@helpers4/geometry';
+
+identity(): Matrix
+```
+
+**Returns:** `Matrix` — `{ a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 }`
+
+**Examples:**
+
+*Start from no transformation*
+
+The identity leaves every point where it is.
+
+```typescript
+applyToPoint(identity(), { x: 3, y: 4 }) // => { x: 3, y: 4 }
+```
+
+*Neutral element of multiply*
+
+Multiplying by the identity returns the same transformation.
+
+```typescript
+multiply(identity(), translate(5, 0)) // => translate(5, 0)
+```
+
+---
+
+### `intersection`
+
+The area two rectangles have in common.
+
+Rectangles that only touch (along an edge or at a corner) have no area in common.
+
+```typescript
+import { intersection } from '@helpers4/geometry';
+
+intersection(a: Rect, b: Rect): Rect | undefined
+```
+
+**Parameters:**
+
+- `a: Rect` — A rectangle
+- `b: Rect` — Another rectangle
+
+**Returns:** `Rect | undefined` — The overlapping rectangle, or `undefined` when they do not overlap
+
+**Examples:**
+
+*Visible part of a layer*
+
+Intersect a layer with the viewport.
+
+```typescript
+intersection({ x: 0, y: 0, width: 10, height: 10 }, { x: 5, y: 5, width: 10, height: 10 })
+// => { x: 5, y: 5, width: 5, height: 5 }
+```
+
+*Touching rectangles*
+
+Sharing an edge is not overlapping.
+
+```typescript
+intersection({ x: 0, y: 0, width: 10, height: 10 }, { x: 10, y: 0, width: 10, height: 10 }) // => undefined
+```
+
+---
+
+### `intersects`
+
+Whether two rectangles have an area in common, exactly when intersection returns
+a rectangle: rectangles that only touch do not, and neither does an empty (zero width or
+height) rectangle.
+
+```typescript
+import { intersects } from '@helpers4/geometry';
+
+intersects(a: Rect, b: Rect): boolean
+```
+
+**Parameters:**
+
+- `a: Rect` — A rectangle
+- `b: Rect` — Another rectangle
+
+**Returns:** `boolean` — `true` if they have an area in common
+
+**Examples:**
+
+*Is a layer on screen?*
+
+True when the rectangles have an area in common.
+
+```typescript
+intersects(layer, viewport)
+```
+
+*Touching is not overlapping*
+
+Adjacent rectangles do not intersect.
+
+```typescript
+intersects({ x: 0, y: 0, width: 10, height: 10 }, { x: 10, y: 0, width: 10, height: 10 }) // => false
+```
+
+---
+
+### `invert`
+
+The matrix that undoes `m`, e.g. to turn a pointer position on screen back into the
+coordinates of a transformed layer.
+
+A matrix that flattens the plane onto a line or a point (determinant `0`, like `scale(0)`)
+cannot be undone. There is no tolerance: a nearly flat matrix is inverted, with very large
+values, as long as they stay finite.
+
+```typescript
+import { invert } from '@helpers4/geometry';
+
+invert(m: Matrix): Matrix | undefined
+```
+
+**Parameters:**
+
+- `m: Matrix` — The matrix to invert
+
+**Returns:** `Matrix | undefined` — The inverse, or `undefined` when `m` cannot be inverted
+
+**Examples:**
+
+*Pointer position in a layer*
+
+Invert the layer transform to map screen coordinates back into the layer.
+
+```typescript
+const layer = multiply(translate(100, 50), scale(2));
+applyToPoint(invert(layer)!, { x: 120, y: 70 }) // => { x: 10, y: 10 }
+```
+
+*Not invertible*
+
+A matrix that flattens the plane cannot be undone.
+
+```typescript
+invert(scale(0)) // => undefined
+```
+
+---
+
+### `matrixToCss`
+
+Writes a matrix as a CSS `transform` or SVG `transform` value.
+
+Entries are written as JavaScript prints them, without rounding; non-finite entries give a
+value CSS rejects.
+
+```typescript
+import { matrixToCss } from '@helpers4/geometry';
+
+matrixToCss(m: Matrix): string
+```
+
+**Parameters:**
+
+- `m: Matrix` — The matrix
+
+**Returns:** `string` — `matrix(a, b, c, d, e, f)`
+
+**Examples:**
+
+*Write a CSS transform*
+
+The six entries in CSS and SVG order.
+
+```typescript
+matrixToCss({ a: 2, b: 0, c: 0, d: 2, e: 10, f: -5 }) // => 'matrix(2, 0, 0, 2, 10, -5)'
+```
+
+*Fit a frame into a viewport*
+
+Combine with fitContain to scale an element with CSS.
+
+```typescript
+element.style.transform = matrixToCss(fitContain(frame, viewport));
+```
+
+---
+
+### `multiply`
+
+Multiplies matrices, in the mathematical order: the last one applies first. It is the order of
+a CSS `transform` list, so `multiply(translate(10, 0), rotate(r))` is
+`transform: translate(10px) rotate(r)`: rotate, then translate.
+
+In other words, `applyToPoint(multiply(m1, m2), p)` equals
+`applyToPoint(m1, applyToPoint(m2, p))`.
+
+```typescript
+import { multiply } from '@helpers4/geometry';
+
+multiply(matrices: readonly Matrix[]): Matrix
+```
+
+**Parameters:**
+
+- `matrices: readonly Matrix[]` — The matrices, outermost first
+
+**Returns:** `Matrix` — Their product, or the identity for none
+
+**Examples:**
+
+*Same order as a CSS transform list*
+
+The last matrix applies first: here, scale then translate.
+
+```typescript
+// transform: translate(10px, 0) scale(2)
+applyToPoint(multiply(translate(10, 0), scale(2)), { x: 1, y: 1 }) // => { x: 12, y: 2 }
+```
+
+*Scale around a point*
+
+Move the point to the origin, scale, move it back.
+
+```typescript
+const m = multiply(translate(50, 50), scale(2), translate(-50, -50));
+applyToPoint(m, { x: 60, y: 50 }) // => { x: 70, y: 50 }
+```
+
+---
+
+### `rotate`
+
+A matrix that rotates points around the origin. With the y axis pointing down (screen, CSS,
+SVG), a positive angle turns clockwise, like CSS `rotate()`.
+
+```typescript
+import { rotate } from '@helpers4/geometry';
+
+rotate(radians: number): Matrix
+```
+
+**Parameters:**
+
+- `radians: number` — The angle, in radians
+
+**Returns:** `Matrix` — The rotation matrix
+
+**Examples:**
+
+*Quarter turn*
+
+With y pointing down, a positive angle turns clockwise, like CSS rotate().
+
+```typescript
+applyToPoint(rotate(Math.PI / 2), { x: 1, y: 0 }) // => { x: 0, y: 1 } (rounded)
+```
+
+*Degrees*
+
+Convert degrees to radians first.
+
+```typescript
+rotate((45 * Math.PI) / 180)
+```
+
+---
+
+### `scale`
+
+A matrix that scales points from the origin.
+
+```typescript
+import { scale } from '@helpers4/geometry';
+
+scale(sx: number, sy: number): Matrix
+```
+
+**Parameters:**
+
+- `sx: number` — Horizontal factor
+- `sy: number` (default: `sx`) — Vertical factor, `sx` by default
+
+**Returns:** `Matrix` — The scaling matrix
+
+**Examples:**
+
+*Uniform scale*
+
+One factor scales both axes.
+
+```typescript
+applyToPoint(scale(2), { x: 3, y: 4 }) // => { x: 6, y: 8 }
+```
+
+*Flip vertically*
+
+A negative factor mirrors the axis.
+
+```typescript
+applyToPoint(scale(1, -1), { x: 3, y: 4 }) // => { x: 3, y: -4 }
+```
+
+---
+
+### `simplifyPolyline`
+
+Removes the points of a polyline that change its shape by less than `tolerance`, with the
+Ramer–Douglas–Peucker algorithm: each removed point is at most `tolerance` away from the
+simplified line. It shrinks map outlines or traced paths by orders of magnitude while keeping
+their look.
+
+The first and last points are always kept. With a `tolerance` of `0`, only points exactly on a
+straight line are removed. It is iterative, so very long polylines do not overflow the stack.
+
+```typescript
+import { simplifyPolyline } from '@helpers4/geometry';
+
+simplifyPolyline(points: readonly Point[], tolerance: number): Point[]
+```
+
+**Parameters:**
+
+- `points: readonly Point[]` — The polyline
+- `tolerance: number` — The maximum distance between a removed point and the result, in the units of the points
+
+**Returns:** `Point[]` — The kept points, in their original order
+
+**Examples:**
+
+*Drop a nearly straight point*
+
+A point closer than the tolerance to the simplified line is removed.
+
+```typescript
+simplifyPolyline([{ x: 0, y: 0 }, { x: 1, y: 0.1 }, { x: 2, y: 0 }], 0.5)
+// => [{ x: 0, y: 0 }, { x: 2, y: 0 }]
+```
+
+*Shrink a map outline*
+
+Pick the tolerance in the units of the points, e.g. a fraction of a pixel at the final scale.
+
+```typescript
+const outline = simplifyPolyline(border, 0.5);
+```
+
+---
+
+### `translate`
+
+A matrix that moves points by `(tx, ty)`.
+
+```typescript
+import { translate } from '@helpers4/geometry';
+
+translate(tx: number, ty: number): Matrix
+```
+
+**Parameters:**
+
+- `tx: number` — Horizontal offset
+- `ty: number` — Vertical offset
+
+**Returns:** `Matrix` — The translation matrix
+
+**Examples:**
+
+*Move a point*
+
+e and f hold the offset.
+
+```typescript
+applyToPoint(translate(10, 5), { x: 1, y: 1 }) // => { x: 11, y: 6 }
+```
+
+*Negative offsets*
+
+Move up and to the left.
+
+```typescript
+applyToPoint(translate(-1, -1), { x: 0, y: 0 }) // => { x: -1, y: -1 }
+```
+
+---
+
+### `union`
+
+The smallest rectangle that contains all the given rectangles, e.g. the bounds of a group of
+layers.
+
+```typescript
+import { union } from '@helpers4/geometry';
+
+union(rects: readonly Rect[]): Rect | undefined
+```
+
+**Parameters:**
+
+- `rects: readonly Rect[]` — The rectangles
+
+**Returns:** `Rect | undefined` — Their bounding rectangle, or `undefined` for none
+
+**Examples:**
+
+*Bounds of a group*
+
+The smallest rectangle containing every layer.
+
+```typescript
+union([{ x: 0, y: 0, width: 10, height: 10 }, { x: 20, y: 5, width: 10, height: 10 }])
+// => { x: 0, y: 0, width: 30, height: 15 }
+```
+
+*Empty group*
+
+No rectangle, no bounds.
+
+```typescript
+union([]) // => undefined
 ```
 
 ---
@@ -8308,7 +10274,7 @@ safeParse<T = unknown>(text: string): T | null
 
 - `text: string` — The JSON, JSONC or JSON5 text to parse
 
-**Returns:** `T | null` — The parsed value typed as `T`, or `fallback` on invalid input
+**Returns:** `T | null` — The parsed value typed as `T`, or `null` on invalid input (pass a `fallback` to get it instead)
 
 ```typescript
 import { safeParse } from '@helpers4/json';
@@ -8319,7 +10285,7 @@ safeParse<T = unknown, F = T>(text: string, fallback: F): T | F
 **Parameters:**
 
 - `text: string` — The JSON, JSONC or JSON5 text to parse
-- `fallback: F` — Value returned on invalid input. Defaults to `null` when omitted.
+- `fallback: F` — Value returned on invalid input
 
 **Returns:** `T | F` — The parsed value typed as `T`, or `fallback` on invalid input
 
@@ -8367,7 +10333,7 @@ safeParseLines<T = unknown>(text: string): T[] | null
 
 - `text: string` — The newline-delimited JSON text
 
-**Returns:** `T[] | null` — The parsed values typed as `T[]`, or `fallback` on invalid input
+**Returns:** `T[] | null` — The parsed values typed as `T[]`, or `null` on invalid input (pass a `fallback` to get it instead)
 
 ```typescript
 import { safeParseLines } from '@helpers4/json';
@@ -8378,7 +10344,7 @@ safeParseLines<T = unknown, F = T[]>(text: string, fallback: F, options?: ParseL
 **Parameters:**
 
 - `text: string` — The newline-delimited JSON text
-- `fallback: F` — Value returned on invalid input. Defaults to `null` when omitted.
+- `fallback: F` — Value returned on invalid input
 - `options?: ParseLinesOptions` — How to handle blank and invalid lines — see ParseLinesOptions
 
 **Returns:** `F | T[]` — The parsed values typed as `T[]`, or `fallback` on invalid input
@@ -8427,7 +10393,7 @@ safeParseSequence<T = unknown>(text: string): T[] | null
 
 - `text: string` — The JSON text sequence
 
-**Returns:** `T[] | null` — The parsed values typed as `T[]`, or `fallback` on invalid input
+**Returns:** `T[] | null` — The parsed values typed as `T[]`, or `null` on invalid input (pass a `fallback` to get it instead)
 
 ```typescript
 import { safeParseSequence } from '@helpers4/json';
@@ -8438,7 +10404,7 @@ safeParseSequence<T = unknown, F = T[]>(text: string, fallback: F, options?: Par
 **Parameters:**
 
 - `text: string` — The JSON text sequence
-- `fallback: F` — Value returned on invalid input. Defaults to `null` when omitted.
+- `fallback: F` — Value returned on invalid input
 - `options?: ParseSequenceOptions` — How to handle invalid records — see ParseSequenceOptions
 
 **Returns:** `F | T[]` — The parsed values typed as `T[]`, or `fallback` on invalid input
@@ -8486,7 +10452,7 @@ safeParseStrict<T = unknown>(text: string): T | null
 
 - `text: string` — The JSON text to parse
 
-**Returns:** `T | null` — The parsed value typed as `T`, or `fallback` on invalid input
+**Returns:** `T | null` — The parsed value typed as `T`, or `null` on invalid input (pass a `fallback` to get it instead)
 
 ```typescript
 import { safeParseStrict } from '@helpers4/json';
@@ -8497,7 +10463,7 @@ safeParseStrict<T = unknown, F = T>(text: string, fallback: F): T | F
 **Parameters:**
 
 - `text: string` — The JSON text to parse
-- `fallback: F` — Value returned on invalid input. Defaults to `null` when omitted.
+- `fallback: F` — Value returned on invalid input
 
 **Returns:** `T | F` — The parsed value typed as `T`, or `fallback` on invalid input
 
@@ -8590,6 +10556,54 @@ Sorted keys and no whitespace: equal values always give the same bytes, ready to
 ```typescript
 stringify({ b: 1, a: 2 }, 'canonical')
 // => '{"a":2,"b":1}'
+```
+
+---
+
+### `stringifyForHtml`
+
+Serializes a value to compact JSON that is safe to inline in an HTML page, typically in a
+`<script type="application/json">` block or a script assignment.
+
+`<`, `>` and `&` are written as `\u003c`, `\u003e` and `\u0026`, so the text can never close
+the script element (`</script>`), open a comment (`<!--`) or be read as an entity. U+2028 and
+U+2029, valid in JSON but line terminators in some script contexts, are escaped too. These
+characters can only appear inside JSON strings, so the escaped text parses back to exactly the
+same value with `JSON.parse`.
+
+It throws like stringify does (a `TypeError` for `undefined`, a function, a symbol, a
+`BigInt` or a circular structure).
+
+```typescript
+import { stringifyForHtml } from '@helpers4/json';
+
+stringifyForHtml(value: unknown): string
+```
+
+**Parameters:**
+
+- `value: unknown` — The value to serialize
+
+**Returns:** `string` — Compact JSON text with no raw `<`, `>`, `&`, U+2028 or U+2029
+
+**Examples:**
+
+*Inline data in a script block*
+
+A value containing </script> can no longer close the element it is embedded in.
+
+```typescript
+stringifyForHtml({ note: '</script><b>' })
+// => '{"note":"\\u003c/script\\u003e\\u003cb\\u003e"}'
+```
+
+*Same value after parsing*
+
+The escapes are plain JSON escapes: JSON.parse gives back the original value.
+
+```typescript
+JSON.parse(stringifyForHtml({ a: '<&>' })).a
+// => '<&>'
 ```
 
 ---
@@ -9490,7 +11504,7 @@ safeReadJsonFile<T>(filePath: string): T | null
 
 - `filePath: string` — Path to the JSON (or JSONC) file to read.
 
-**Returns:** `T | null` — The parsed value typed as `T`, or `fallback` on failure.
+**Returns:** `T | null` — The parsed value typed as `T`, or `null` on failure (pass a `fallback` to get it instead)
 
 ```typescript
 import { safeReadJsonFile } from '@helpers4/node';
@@ -9500,10 +11514,10 @@ safeReadJsonFile<T>(filePath: string, fallback: T): T
 
 **Parameters:**
 
-- `filePath: string` — Path to the JSON (or JSONC) file to read.
-- `fallback: T` — Value returned on failure. Defaults to `null` when omitted.
+- `filePath: string` — Path to the JSON (or JSONC) file to read
+- `fallback: T` — Value returned on failure
 
-**Returns:** `T` — The parsed value typed as `T`, or `fallback` on failure.
+**Returns:** `T` — The parsed value typed as `T`, or `fallback` on failure
 
 **Examples:**
 
@@ -11417,7 +13431,7 @@ safeJsonParse<T>(input: string): T | null
 
 - `input: string` — The JSON string to parse.
 
-**Returns:** `T | null` — The parsed value typed as `T`, or `fallback` on failure.
+**Returns:** `T | null` — The parsed value typed as `T`, or `null` on failure (pass a `fallback` to get it instead).
 
 ```typescript
 import { safeJsonParse } from '@helpers4/object';
@@ -11428,7 +13442,7 @@ safeJsonParse<T>(input: string, fallback: T): T
 **Parameters:**
 
 - `input: string` — The JSON string to parse.
-- `fallback: T` — Value returned on failure. Defaults to `null` when omitted.
+- `fallback: T` — Value returned on failure.
 
 **Returns:** `T` — The parsed value typed as `T`, or `fallback` on failure.
 
@@ -12223,6 +14237,54 @@ Promise.resolve('oops').then(falsyPromiseOrThrow('Should be empty'))
 
 ---
 
+### `fetchJson`
+
+Fetches a URL and returns its parsed JSON body, retrying transient failures.
+
+Retried: network errors, `5xx` and `429` responses. Not retried, and thrown at once: other
+`4xx` responses, a body that is not valid JSON (a `SyntaxError`) and an aborted request.
+After the last attempt, the last error is thrown: an HttpError (with `status` and
+`url`) for a bad status, or whatever `fetch` rejected with.
+
+Pass a URL or a string: a `Request` with a body cannot be sent twice, so it can't be retried.
+
+```typescript
+import { fetchJson } from '@helpers4/promise';
+
+fetchJson<T>(input: URL | RequestInfo, init?: RequestInit, options: FetchJsonOptions): Promise<T>
+```
+
+**Parameters:**
+
+- `input: URL | RequestInfo` — URL or `Request` object passed to `fetch`
+- `init?: RequestInit` — Optional `RequestInit` options passed to `fetch`
+- `options: FetchJsonOptions` (default: `{}`) — Retry configuration — see FetchJsonOptions
+
+**Returns:** `Promise<T>` — The parsed JSON body
+
+**Examples:**
+
+*Fetch JSON, retrying transient failures*
+
+A 503 is retried; once the server answers, the parsed body is returned.
+
+```typescript
+// the server answers 503, then 200 with { "stars": 42 }
+await fetchJson<{ stars: number }>('https://api.example.com/repo', undefined, { retry: { delayMs: 0 } })
+// => { stars: 42 }
+```
+
+*A 404 is not retried*
+
+Client errors fail at once with an HttpError carrying the status.
+
+```typescript
+await fetchJson('https://api.example.com/missing')
+// throws HttpError { status: 404 } after a single request
+```
+
+---
+
 ### `fetchOrThrow`
 
 Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of
@@ -12357,6 +14419,54 @@ Throws when the value is null, undefined, empty string, empty object, or empty a
 ```typescript
 Promise.resolve({}).then(meaningPromiseOrThrow('Empty!'))
 // throws Error('Empty!')
+```
+
+---
+
+### `paginate`
+
+Collects every item of a paginated source by requesting pages one after the other, from
+page 1, until the source runs out.
+
+It stops after a page that is `null`, empty, or shorter than `pageSize`, or once `maxPages`
+pages were requested. A `null` page is not added to the result. A rejection from
+`fetchPage` rejects the whole call, and the items already collected are lost.
+
+Without `maxPages`, a source that never returns a short or empty page is requested forever,
+so set one for an API you do not control.
+
+```typescript
+import { paginate } from '@helpers4/promise';
+
+paginate<T>(fetchPage: function, options: PaginateOptions): Promise<T[]>
+```
+
+**Parameters:**
+
+- `fetchPage: function` — Returns the items of a page, given its 1-based number, or `null` for no data
+- `options: PaginateOptions` (default: `{}`) — Page size and page limit — see PaginateOptions
+
+**Returns:** `Promise<T[]>` — All the items, in page order
+
+**Examples:**
+
+*Collect every page*
+
+Pages are requested in order until one is shorter than pageSize.
+
+```typescript
+const all = [1, 2, 3, 4, 5];
+await paginate((page) => Promise.resolve(all.slice((page - 1) * 2, page * 2)), { pageSize: 2 })
+// => [1, 2, 3, 4, 5] (3 requests)
+```
+
+*Cap the number of pages*
+
+maxPages protects against a source that never runs out.
+
+```typescript
+await paginate((page) => Promise.resolve([page]), { maxPages: 3 })
+// => [1, 2, 3]
 ```
 
 ---
@@ -13086,6 +15196,172 @@ Use { lowercaseRest: false } to preserve the original casing of the remaining ch
 ```typescript
 capitalize('hELLO', { lowercaseRest: false })
 // => 'HELLO'
+```
+
+---
+
+### `createGlobMatcher`
+
+createMatcher with every string read as a glob (`*`, `?`): no string is ever taken
+for a regular expression, so it never throws. The right choice for paths and file names.
+
+```typescript
+import { createGlobMatcher } from '@helpers4/string';
+
+createGlobMatcher(pattern: MatcherPattern | readonly MatcherPattern[], options: Omit<MatcherOptions, "syntax">): function
+```
+
+**Parameters:**
+
+- `pattern: MatcherPattern | readonly MatcherPattern[]` — A pattern, or an array of patterns and `!` exclusions
+- `options: Omit<MatcherOptions, "syntax">` (default: `{}`) — Case sensitivity
+
+**Returns:** `function` — A function telling whether a string matches
+
+**Examples:**
+
+*Filter paths*
+
+Strings are always globs, so a path is never taken for a regular expression.
+
+```typescript
+const isSource = createGlobMatcher(['/src/*.ts', '!*.test.ts']);
+isSource('/src/index.ts')      // => true
+isSource('/src/index.test.ts') // => false
+```
+
+*Ignore case*
+
+caseSensitive: false matches letters of any case.
+
+```typescript
+createGlobMatcher('*.FIG', { caseSensitive: false })('a.fig') // => true
+```
+
+---
+
+### `createMatcher`
+
+Turns user-supplied filters (a setting, a CLI flag, a list of rules) into one predicate.
+
+- A string is a glob, or a regular expression — see MatcherOptions.syntax.
+- A `RegExp` is used as is, except that its `g` and `y` flags are dropped: they make
+  `test()` depend on the previous call.
+- A function is called as is.
+- An array matches when one of its patterns matches and none of its exclusions does. An
+  exclusion is a string starting with `!` (`'!draft-*'`); write `'\\!'` for a pattern that really
+  starts with `!`. The order does not matter. An array with only exclusions matches everything
+  else, and an empty array matches everything (no filter).
+
+```typescript
+import { createMatcher } from '@helpers4/string';
+
+createMatcher(pattern: MatcherPattern | readonly MatcherPattern[], options: MatcherOptions): function
+```
+
+**Parameters:**
+
+- `pattern: MatcherPattern | readonly MatcherPattern[]` — A pattern, or an array of patterns and exclusions
+- `options: MatcherOptions` (default: `{}`) — Syntax of string patterns and case sensitivity — see MatcherOptions
+
+**Returns:** `function` — A function telling whether a string matches
+
+**Examples:**
+
+*Filter names with globs, regular expressions and exclusions*
+
+An array matches when one pattern matches and no ! exclusion does.
+
+```typescript
+const isScreen = createMatcher(['Screen *', '/^(Home|Login)$/', '!* (old)']);
+isScreen('Screen 2')       // => true
+isScreen('Login')          // => true
+isScreen('Screen 2 (old)') // => false
+```
+
+*Paths only*
+
+With syntax 'glob', a pattern like /usr/lib/img is never read as a regular expression.
+
+```typescript
+createMatcher('/usr/lib/*', { syntax: 'glob' })('/usr/lib/img') // => true
+```
+
+---
+
+### `createRegexMatcher`
+
+createMatcher with every string read as the source of a regular expression, without
+slashes or flags (`'^(Home|Login)$'`): for a setting documented as "a regular expression".
+
+```typescript
+import { createRegexMatcher } from '@helpers4/string';
+
+createRegexMatcher(pattern: MatcherPattern | readonly MatcherPattern[], options: Omit<MatcherOptions, "syntax">): function
+```
+
+**Parameters:**
+
+- `pattern: MatcherPattern | readonly MatcherPattern[]` — A pattern, or an array of patterns and `!` exclusions
+- `options: Omit<MatcherOptions, "syntax">` (default: `{}`) — Case sensitivity (adds the `i` flag when `false`)
+
+**Returns:** `function` — A function telling whether a string matches
+
+**Examples:**
+
+*A setting documented as a regular expression*
+
+The string is the source, without slashes.
+
+```typescript
+createRegexMatcher('^(Home|Login)$')('Login') // => true
+```
+
+*Ignore case*
+
+caseSensitive: false adds the i flag.
+
+```typescript
+createRegexMatcher('^icon-\\d+$', { caseSensitive: false })('Icon-42') // => true
+```
+
+---
+
+### `createSafeMatcher`
+
+Like createMatcher, but returns `null` instead of throwing when a string pattern is an
+invalid regular expression, to report bad user input without a `try`.
+
+```typescript
+import { createSafeMatcher } from '@helpers4/string';
+
+createSafeMatcher(pattern: MatcherPattern | readonly MatcherPattern[], options?: MatcherOptions): function | null
+```
+
+**Parameters:**
+
+- `pattern: MatcherPattern | readonly MatcherPattern[]` — A pattern, or an array of patterns and exclusions
+- `options?: MatcherOptions` — Syntax of string patterns and case sensitivity — see MatcherOptions
+
+**Returns:** `function | null` — A function telling whether a string matches, or `null` for an invalid regular expression
+
+**Examples:**
+
+*Validate a user filter*
+
+An invalid regular expression gives null, to report it without a try.
+
+```typescript
+const matches = createSafeMatcher(input);
+if (!matches) console.error('Invalid filter');
+```
+
+*Use it like createMatcher*
+
+For valid patterns, the result is the same predicate.
+
+```typescript
+createSafeMatcher('*.fig')?.('a.fig') // => true
 ```
 
 ---
@@ -14842,6 +17118,56 @@ toCamel('hello-world'); // => 'helloWorld'
 
 Package: `@helpers4/structure`
 
+### `createBackStack`
+
+Creates a back stack: a stack that always has a current entry (the one on top), with the
+previous ones underneath to go `back` to. The bottom entry is never removed, so there is always
+something to show: screens of a prototype, overlays stacked over a screen (with `null` as the
+initial entry), wizard steps, undo levels.
+
+It does not decide what the next entry is: compute it (with a state machine, a router, ...)
+and `push` it.
+
+```typescript
+import { createBackStack } from '@helpers4/structure';
+
+createBackStack<T>(initial: T, options: BackStackOptions): BackStack<T>
+```
+
+**Parameters:**
+
+- `initial: T` — The first current entry, also the default of BackStack.reset
+- `options: BackStackOptions` (default: `{}`) — Depth limit — see BackStackOptions
+
+**Returns:** `BackStack<T>` — A BackStack
+
+**Examples:**
+
+*Navigate and go back*
+
+push() moves to a new entry; back() returns the entry it left and restores the previous one.
+
+```typescript
+const screens = createBackStack('home');
+screens.push('settings');
+screens.back();  // => 'settings'
+screens.current; // => 'home'
+```
+
+*Bound the stack*
+
+limit caps how many past entries are kept; the oldest are dropped first.
+
+```typescript
+const stack = createBackStack('', { limit: 1 });
+stack.push('a');
+stack.push('ab');
+stack.back(); // => 'ab'
+stack.back(); // => undefined — '' was dropped
+```
+
+---
+
 ### `createUnionFind`
 
 Creates a disjoint-set (union-find) structure: tracks a partition of items into
@@ -15351,7 +17677,7 @@ extractPureURI('https://example.com/path?query=1#section')
 
 ---
 
-### `isExternalUrl`
+### `isExternal`
 
 Whether a link points to another origin than `base`: an absolute `http(s)` URL or a
 protocol-relative one (`//host/path`). Paths, anchors, query strings and non-HTTP schemes
@@ -15361,9 +17687,9 @@ Without `base`, any absolute or protocol-relative URL counts as external. With a
 a link to the same origin is internal. An unparseable URL or `base` gives `false`.
 
 ```typescript
-import { isExternalUrl } from '@helpers4/url';
+import { isExternal } from '@helpers4/url';
 
-isExternalUrl(url: string, base?: string | URL): boolean
+isExternal(url: string, base?: string | URL): boolean
 ```
 
 **Parameters:**
@@ -15380,9 +17706,9 @@ isExternalUrl(url: string, base?: string | URL): boolean
 Compares the link with the current origin: same-origin absolute links stay internal.
 
 ```typescript
-isExternalUrl('https://github.com/helpers4', 'https://helpers4.dev')
+isExternal('https://github.com/helpers4', 'https://helpers4.dev')
 // => true
-isExternalUrl('https://helpers4.dev/docs', 'https://helpers4.dev')
+isExternal('https://helpers4.dev/docs', 'https://helpers4.dev')
 // => false
 ```
 
@@ -15391,9 +17717,9 @@ isExternalUrl('https://helpers4.dev/docs', 'https://helpers4.dev')
 Relative paths, anchors, mailto: and tel: are never external; protocol-relative URLs are.
 
 ```typescript
-isExternalUrl('/docs')                 // => false
-isExternalUrl('mailto:hi@example.com') // => false
-isExternalUrl('//cdn.example.com/a.js') // => true
+isExternal('/docs')                 // => false
+isExternal('mailto:hi@example.com') // => false
+isExternal('//cdn.example.com/a.js') // => true
 ```
 
 ---

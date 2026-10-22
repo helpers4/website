@@ -3,7 +3,7 @@ title: "isTruthy"
 sidebar:
   label: "isTruthy"
 description: "Checks if a value is truthy (not `false`, `null`, `undefined`, `0`, `\"\"`, or `NaN`)."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Checks if a value is truthy (not `false`, `null`, `undefined`, `0`, `""`, or `NaN`).

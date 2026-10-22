@@ -3,7 +3,7 @@ title: "isKnown"
 sidebar:
   label: "isKnown"
 description: "Whether a raw license string resolves to at least one recognized family — `false` for an empty string, a purely non-inf…"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Whether a raw license string resolves to at least one recognized family — `false` for an

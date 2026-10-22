@@ -3,7 +3,7 @@ title: "unary"
 sidebar:
   label: "unary"
 description: "Creates a function that calls `fn` with only its first argument, discarding any others."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Creates a function that calls `fn` with only its first argument, discarding

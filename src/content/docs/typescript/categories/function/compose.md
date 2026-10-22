@@ -3,7 +3,7 @@ title: "compose"
 sidebar:
   label: "compose"
 description: "Composes functions right-to-left: `compose(f, g)(x)` is equivalent to `f(g(x))`."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Composes functions right-to-left: `compose(f, g)(x)` is equivalent to `f(g(x))`.
@@ -31,7 +31,7 @@ compose<A, B>(fn1: function): function
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `fn1` | `function` |  |
+| `fn1` | `function` | The first function\. The overloads accept up to eight functions in all, passed as \`fn1, fn2, …\`\. |
 
 ## Returns
 

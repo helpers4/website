@@ -3,7 +3,7 @@ title: "get"
 sidebar:
   label: "get"
 description: "Gets a value from an object using a dot/bracket-notated path or explicit key array."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Gets a value from an object using a dot/bracket-notated path or explicit key array.

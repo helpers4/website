@@ -3,7 +3,7 @@ title: "formatProgressBar"
 sidebar:
   label: "formatProgressBar"
 description: "Formats a value as a text progress bar, repeating `filledChar`/`emptyChar` across `width` cells proportional to `value…"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Formats a value as a text progress bar, repeating `filledChar`/`emptyChar` across `width`

@@ -20,6 +20,7 @@ Utility functions for working with json operations.
 | [`safeParseSequence`](./safeparsesequence/) | Parses a JSON text sequence \(RFC 7464\) like parseSequence, but returns \`null\` \(or \`fallback\`\) instead of throwing on in… |
 | [`safeParseStrict`](./safeparsestrict/) | Parses strict JSON like parseStrict, but returns \`null\` \(or \`fallback\`\) instead of throwing on invalid input\. |
 | [`stringify`](./stringify/) | Serializes a value to JSON text — pretty\-printed with 2 spaces by default, or canonical\. |
+| [`stringifyForHtml`](./stringifyforhtml/) | Serializes a value to compact JSON that is safe to inline in an HTML page, typically in a \`<script type="application/js… |
 | [`stringifyLines`](./stringifylines/) | Serializes values as newline\-delimited JSON — one compact JSON value per line, each followed by \`\\n\`\. |
 | [`stringifySequence`](./stringifysequence/) | Serializes values as a JSON text sequence \(RFC 7464, \`application/json\-seq\`\): each value is written as the ASCII record… |
 

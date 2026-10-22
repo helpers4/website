@@ -3,7 +3,7 @@ title: "intersection"
 sidebar:
   label: "intersection"
 description: "Compute the intersection of two arrays, meaning the elements that are present in both arrays."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Compute the intersection of two arrays, meaning the elements that are present
@@ -48,6 +48,17 @@ Returns elements present in both arrays.
 intersection([1, 2, 3], [2, 3, 4])
 // => [2, 3]
 ```
+
+:::caution[Name conflict]
+A helper named `intersection` also exists in [`@helpers4/geometry`](../geometry/intersection/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { intersection as intersection4array } from '@helpers4/array';
+import { intersection as intersection4geometry } from '@helpers4/geometry';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
 
 ## Source
 

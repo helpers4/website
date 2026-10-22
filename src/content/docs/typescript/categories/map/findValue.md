@@ -3,7 +3,7 @@ title: "findValue"
 sidebar:
   label: "findValue"
 description: "Returns the first value of a Map whose entry satisfies the predicate, in insertion order."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Returns the first value of a Map whose entry satisfies the predicate, in insertion order.

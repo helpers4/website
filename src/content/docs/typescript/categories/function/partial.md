@@ -3,7 +3,7 @@ title: "partial"
 sidebar:
   label: "partial"
 description: "Partially applies arguments to a function, returning a new function that accepts the remaining arguments."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Partially applies arguments to a function, returning a new function that
@@ -31,7 +31,7 @@ partial<A, R>(fn: function, a: A): function
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `fn` | `function` | The function to partially apply |
-| `a` | `A` |  |
+| `a` | `A` | The first argument to pre\-fill\. The overloads accept up to three pre\-filled arguments \(\`a\`, \`b\`, \`c\`\)\. |
 
 ## Returns
 

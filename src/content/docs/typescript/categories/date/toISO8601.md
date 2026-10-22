@@ -3,7 +3,7 @@ title: "toISO8601"
 sidebar:
   label: "toISO8601"
 description: "Converts a date to ISO 8601 format Format: YYYY-MM-DDTHH:mm:ss.sssZ"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Converts a date to ISO 8601 format
@@ -63,6 +63,26 @@ RFC 2822 is used in email and HTTP headers.
 ```ts
 toRFC2822(new Date('2025-01-19T12:30:00Z'))
 // => 'Sun, 19 Jan 2025 12:30:00 +0000'
+```
+
+### Stable short label
+
+UTC and English by default, so the label is the same on every machine.
+
+```ts
+format('2026-07-27')
+// => 'Jul 27, 2026'
+```
+
+### Custom fields and locale
+
+The options replace the default format; the locale is the third argument.
+
+```ts
+format('2026-07-27', { month: 'short', day: 'numeric' })
+// => 'Jul 27'
+format('2026-07-27', undefined, 'fr')
+// => '27 juil. 2026'
 ```
 
 ## Related Types

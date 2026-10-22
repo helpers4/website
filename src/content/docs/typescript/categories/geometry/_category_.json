@@ -1,0 +1,10 @@
+{
+  "label": "Geometry",
+  "position": 9,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "doc",
+    "id": "categories/geometry/index"
+  }
+}

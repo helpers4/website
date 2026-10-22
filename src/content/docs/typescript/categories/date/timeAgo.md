@@ -3,7 +3,7 @@ title: "timeAgo"
 sidebar:
   label: "timeAgo"
 description: "Formats a date as a human-readable relative time string."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Formats a date as a human-readable relative time string.
@@ -68,7 +68,7 @@ Options for timeAgo.
 interface TimeAgoOptions {
   locale?: string;
   now?: DateLike;
-  numeric?: "always" | "auto";
+  numeric?: "auto" | "always";
 }
 ```
 

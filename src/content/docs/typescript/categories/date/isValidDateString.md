@@ -3,7 +3,7 @@ title: "isValidDateString"
 sidebar:
   label: "isValidDateString"
 description: "Checks whether a string can be parsed into a valid `Date`."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Checks whether a string can be parsed into a valid `Date`.

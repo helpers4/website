@@ -3,7 +3,7 @@ title: "safeParseLines"
 sidebar:
   label: "safeParseLines"
 description: "Parses newline-delimited JSON (NDJSON, JSON Lines) like parseLines, but returns `null` (or `fallback`) instead of throw…"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Parses newline-delimited JSON (NDJSON, JSON Lines) like parseLines, but returns `null`
@@ -41,7 +41,7 @@ safeParseLines<T = unknown>(text: string): T[] | null
 
 ## Returns
 
-`T[] | null` — The parsed values typed as `T[]`, or `fallback` on invalid input
+`T[] | null` — The parsed values typed as `T[]`, or `null` on invalid input (pass a `fallback` to get it instead)
 
 ## Examples
 

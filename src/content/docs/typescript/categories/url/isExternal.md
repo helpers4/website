@@ -1,9 +1,9 @@
 ---
-title: "isExternalUrl"
+title: "isExternal"
 sidebar:
-  label: "isExternalUrl"
+  label: "isExternal"
 description: "Whether a link points to another origin than `base`: an absolute `http(s)` URL or a protocol-relative one (`//host/path…"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Whether a link points to another origin than `base`: an absolute `http(s)` URL or a
@@ -18,16 +18,16 @@ a link to the same origin is internal. An unparseable URL or `base` gives `false
 ## Import
 
 ```ts
-import { isExternalUrl } from '@helpers4/url';
+import { isExternal } from '@helpers4/url';
 // or, from the all-in-one package (same code, one install):
-import { isExternalUrl } from 'helpers4/url';
+import { isExternal } from 'helpers4/url';
 ```
 
 ## Signature
 
 
 ```ts
-isExternalUrl(url: string, base?: string | URL): boolean
+isExternal(url: string, base?: string | URL): boolean
 ```
 
 ## Parameters
@@ -48,9 +48,9 @@ isExternalUrl(url: string, base?: string | URL): boolean
 Compares the link with the current origin: same-origin absolute links stay internal.
 
 ```ts
-isExternalUrl('https://github.com/helpers4', 'https://helpers4.dev')
+isExternal('https://github.com/helpers4', 'https://helpers4.dev')
 // => true
-isExternalUrl('https://helpers4.dev/docs', 'https://helpers4.dev')
+isExternal('https://helpers4.dev/docs', 'https://helpers4.dev')
 // => false
 ```
 
@@ -59,11 +59,11 @@ isExternalUrl('https://helpers4.dev/docs', 'https://helpers4.dev')
 Relative paths, anchors, mailto: and tel: are never external; protocol-relative URLs are.
 
 ```ts
-isExternalUrl('/docs')                 // => false
-isExternalUrl('mailto:hi@example.com') // => false
-isExternalUrl('//cdn.example.com/a.js') // => true
+isExternal('/docs')                 // => false
+isExternal('mailto:hi@example.com') // => false
+isExternal('//cdn.example.com/a.js') // => true
 ```
 
 ## Source
 
-[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/url/isExternalUrl.ts)
+[View source on GitHub](https://github.com/helpers4/typescript/blob/main/helpers/url/isExternal.ts)

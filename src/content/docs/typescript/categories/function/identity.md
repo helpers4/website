@@ -3,7 +3,7 @@ title: "identity"
 sidebar:
   label: "identity"
 description: "Returns the given value unchanged  Useful as a default transform, in function composition, or as a placeholder mapper."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Returns the given value unchanged
@@ -56,6 +56,17 @@ Pass identity where a transform function is required but no transformation is ne
 ```ts
 [1, 2, 3].map(identity); // [1, 2, 3]
 ```
+
+:::caution[Name conflict]
+A helper named `identity` also exists in [`@helpers4/geometry`](../geometry/identity/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { identity as identity4function } from '@helpers4/function';
+import { identity as identity4geometry } from '@helpers4/geometry';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
 
 ## Source
 

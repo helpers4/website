@@ -3,7 +3,7 @@ title: "unflatten"
 sidebar:
   label: "unflatten"
 description: "Rebuilds a nested object from a single-level object whose keys are dot-notation paths."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Rebuilds a nested object from a single-level object whose keys are

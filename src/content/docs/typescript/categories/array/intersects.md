@@ -3,7 +3,7 @@ title: "intersects"
 sidebar:
   label: "intersects"
 description: "Simple helper that check if two lists shared at least an item in common."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Simple helper that check if two lists shared at least an item in common.
@@ -56,6 +56,17 @@ Returns false when no elements are shared.
 intersects([1, 2], [3, 4])
 // => false
 ```
+
+:::caution[Name conflict]
+A helper named `intersects` also exists in [`@helpers4/geometry`](../geometry/intersects/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { intersects as intersects4array } from '@helpers4/array';
+import { intersects as intersects4geometry } from '@helpers4/geometry';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
 
 ## Source
 

@@ -3,7 +3,7 @@ title: "safeReadJsonFile"
 sidebar:
   label: "safeReadJsonFile"
 description: "Reads a file and parses its contents as JSON, returning `null` (or a fallback) on any failure — a missing/unreadable fi…"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Reads a file and parses its contents as JSON, returning `null` (or a
@@ -42,7 +42,7 @@ safeReadJsonFile<T>(filePath: string): T | null
 
 ## Returns
 
-`T | null` — The parsed value typed as `T`, or `fallback` on failure.
+`T | null` — The parsed value typed as `T`, or `null` on failure (pass a `fallback` to get it instead)
 
 ## Examples
 

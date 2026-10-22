@@ -3,7 +3,7 @@ title: "tryit"
 sidebar:
   label: "tryit"
 description: "Wraps a function so it never throws."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Wraps a function so it never throws. Instead, it returns a `[error, result]` tuple.

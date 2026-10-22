@@ -3,7 +3,7 @@ title: "addMonths"
 sidebar:
   label: "addMonths"
 description: "Adds months to a date."
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Adds months to a date.

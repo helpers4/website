@@ -3,7 +3,7 @@ title: "stringify"
 sidebar:
   label: "stringify"
 description: "Reconstructs a version string from a AnyParsedVersion object — the scheme is read from the object's own `scheme` field,…"
-version: "3.1.4"
+version: "3.1.5"
 ---
 
 Reconstructs a version string from a AnyParsedVersion object — the scheme is read from
