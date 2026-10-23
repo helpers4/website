@@ -1,7 +1,7 @@
 ---
 title: "Mistral Vibe Development Environment"
 sidebar:
-  order: 12
+  order: 13
 ---
 
 > Code name: `mistral-dev`

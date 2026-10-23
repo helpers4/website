@@ -1,7 +1,7 @@
 ---
 title: "pnpm Store (shared)"
 sidebar:
-  order: 18
+  order: 19
 ---
 
 > Code name: `pnpm-store`

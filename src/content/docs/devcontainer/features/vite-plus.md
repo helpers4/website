@@ -1,7 +1,7 @@
 ---
 title: "Vite+ Development Environment"
 sidebar:
-  order: 21
+  order: 22
 ---
 
 > Code name: `vite-plus`
