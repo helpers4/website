@@ -3,7 +3,7 @@ title: "toSeconds"
 sidebar:
   label: "toSeconds"
 description: "Converts a date to a timestamp in **seconds** (epoch seconds)."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Converts a date to a timestamp in **seconds** (epoch seconds).

@@ -3,7 +3,7 @@ title: "isRegExp"
 sidebar:
   label: "isRegExp"
 description: "Checks if a value is a RegExp instance."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Checks if a value is a RegExp instance.

@@ -3,7 +3,7 @@ title: "minBy"
 sidebar:
   label: "minBy"
 description: "Returns the element of an array with the smallest derived key, computed by `keyFn`."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Returns the element of an array with the smallest derived key, computed by `keyFn`.

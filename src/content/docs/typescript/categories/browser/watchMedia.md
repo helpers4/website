@@ -3,7 +3,7 @@ title: "watchMedia"
 sidebar:
   label: "watchMedia"
 description: "Calls `listener` each time a CSS media query starts or stops matching."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Calls `listener` each time a CSS media query starts or stops matching.
@@ -25,7 +25,7 @@ import { watchMedia } from 'helpers4/browser';
 
 
 ```ts
-watchMedia(query: string, listener: function): function
+watchMedia(query: string, listener: function, options: WatchMediaOptions): function
 ```
 
 ## Parameters
@@ -34,6 +34,7 @@ watchMedia(query: string, listener: function): function
 |-----------|------|-------------|
 | `query` | `string` | A media query, e\.g\. \`'\(prefers\-reduced\-motion: reduce\)'\` |
 | `listener` | `function` | Receives whether the query matches after the change |
+| `options` | `WatchMediaOptions` | Cancellation — see WatchMediaOptions |
 
 ## Returns
 
@@ -59,6 +60,18 @@ Call the returned function, e.g. when a component is removed.
 const stop = watchMedia('(min-width: 600px)', relayout);
 // later
 stop();
+```
+
+## Related Types
+
+### `WatchMediaOptions`
+
+Options for watchMedia.
+
+```ts
+interface WatchMediaOptions {
+  signal?: AbortSignal;
+}
 ```
 
 ## Source

@@ -3,7 +3,7 @@ title: "toCssLinear"
 sidebar:
   label: "toCssLinear"
 description: "Samples an easing function into a CSS `linear()` easing, so any curve (a spring, a custom bounce) can be played by CSS…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Samples an easing function into a CSS `linear()` easing, so any curve (a spring, a

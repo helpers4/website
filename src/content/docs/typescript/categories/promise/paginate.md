@@ -3,7 +3,7 @@ title: "paginate"
 sidebar:
   label: "paginate"
 description: "Collects every item of a paginated source by requesting pages one after the other, from page 1, until the source runs o…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Collects every item of a paginated source by requesting pages one after the other, from
@@ -14,7 +14,7 @@ pages were requested. A `null` page is not added to the result. A rejection from
 `fetchPage` rejects the whole call, and the items already collected are lost.
 
 Without `maxPages`, a source that never returns a short or empty page is requested forever,
-so set one for an API you do not control.
+so set one for an API you do not control, or a `signal` to stop it.
 
 > Available since v3.1.5
 
@@ -38,7 +38,7 @@ paginate<T>(fetchPage: function, options: PaginateOptions): Promise<T[]>
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `fetchPage` | `function` | Returns the items of a page, given its 1\-based number, or \`null\` for no data |
-| `options` | `PaginateOptions` | Page size and page limit — see PaginateOptions |
+| `options` | `PaginateOptions` | Page size, page limit and cancellation — see PaginateOptions |
 
 ## Returns
 
@@ -75,6 +75,7 @@ Options for paginate.
 interface PaginateOptions {
   maxPages?: number;
   pageSize?: number;
+  signal?: AbortSignal;
 }
 ```
 

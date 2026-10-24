@@ -3,7 +3,7 @@ title: "union"
 sidebar:
   label: "union"
 description: "The smallest rectangle that contains all the given rectangles, e.g."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 The smallest rectangle that contains all the given rectangles, e.g. the bounds of a group of

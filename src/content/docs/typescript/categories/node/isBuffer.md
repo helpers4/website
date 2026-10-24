@@ -3,7 +3,7 @@ title: "isBuffer"
 sidebar:
   label: "isBuffer"
 description: "Checks if a value is a Node.js Buffer instance."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Checks if a value is a Node.js Buffer instance.

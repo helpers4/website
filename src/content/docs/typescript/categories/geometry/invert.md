@@ -3,7 +3,7 @@ title: "invert"
 sidebar:
   label: "invert"
 description: "The matrix that undoes `m`, e.g."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 The matrix that undoes `m`, e.g. to turn a pointer position on screen back into the

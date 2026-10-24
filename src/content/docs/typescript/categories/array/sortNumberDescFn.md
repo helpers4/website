@@ -3,7 +3,7 @@ title: "sortNumberDescFn"
 sidebar:
   label: "sortNumberDescFn"
 description: "Sort numbers in descending order"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Sort numbers in descending order

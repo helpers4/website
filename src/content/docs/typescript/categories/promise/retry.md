@@ -3,7 +3,7 @@ title: "retry"
 sidebar:
   label: "retry"
 description: "Retries a promise-returning function until it succeeds or runs out of attempts, then rejects with the last error, waiti…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Retries a promise-returning function until it succeeds or runs out of attempts, then rejects
@@ -99,6 +99,18 @@ await retry((attempt) => {
 // => 'c' (after 'a' and 'b' failed)
 ```
 
+### Stop retrying
+
+An aborted signal clears the wait between attempts and starts no new one.
+
+```ts
+const controller = new AbortController();
+const result = retry(() => fetchData(), { delayMs: 5000, signal: controller.signal });
+controller.abort('disabled');
+await result
+// rejects with 'disabled', without waiting the 5 s
+```
+
 ## Related Types
 
 ### `RetryOptions`
@@ -110,6 +122,7 @@ interface RetryOptions {
   attempts?: number;
   delayMs?: number | function;
   shouldRetry?: function;
+  signal?: AbortSignal;
 }
 ```
 

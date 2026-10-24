@@ -3,7 +3,7 @@ title: "intersection"
 sidebar:
   label: "intersection"
 description: "The area two rectangles have in common."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 The area two rectangles have in common.

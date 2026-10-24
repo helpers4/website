@@ -3,7 +3,7 @@ title: "delay"
 sidebar:
   label: "delay"
 description: "Creates a promise that resolves after specified delay"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Creates a promise that resolves after specified delay
@@ -22,7 +22,7 @@ import { delay } from 'helpers4/promise';
 
 
 ```ts
-delay<T = void>(ms: number, value?: T): Promise<T>
+delay<T = void>(ms: number, value?: T, options: DelayOptions): Promise<T>
 ```
 
 ## Parameters
@@ -31,10 +31,11 @@ delay<T = void>(ms: number, value?: T): Promise<T>
 |-----------|------|-------------|
 | `ms` | `number` | Milliseconds to delay |
 | `value` | `T` | Optional value to resolve with *(optional)* |
+| `options` | `DelayOptions` | Cancellation — see DelayOptions |
 
 ## Returns
 
-`Promise<T>` — Promise that resolves after delay
+`Promise<T>` — Promise that resolves after delay, or rejects with the signal's reason if aborted first
 
 ## Examples
 
@@ -54,6 +55,30 @@ Optionally resolves with a provided value.
 ```ts
 const result = await delay(100, 'done')
 // => 'done'
+```
+
+### Cancel the wait
+
+An aborted signal clears the timer and rejects with its reason, so nothing is left running on teardown.
+
+```ts
+const controller = new AbortController()
+const wait = delay(5000, undefined, { signal: controller.signal })
+controller.abort('disabled')
+await wait
+// rejects with 'disabled', at once
+```
+
+## Related Types
+
+### `DelayOptions`
+
+Options for delay.
+
+```ts
+interface DelayOptions {
+  signal?: AbortSignal;
+}
 ```
 
 ## Source

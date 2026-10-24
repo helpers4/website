@@ -3,7 +3,7 @@ title: "cubicBezier"
 sidebar:
   label: "cubicBezier"
 description: "Builds the easing function of CSS `cubic-bezier(x1, y1, x2, y2)`: given the progress of time (`0` to `1`), it returns t…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Builds the easing function of CSS `cubic-bezier(x1, y1, x2, y2)`: given the progress of time

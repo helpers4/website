@@ -3,7 +3,7 @@ title: "zip"
 sidebar:
   label: "zip"
 description: "Combines multiple arrays element-by-element into an array of tuples."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Combines multiple arrays element-by-element into an array of tuples.

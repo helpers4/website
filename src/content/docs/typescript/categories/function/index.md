@@ -24,6 +24,6 @@ Utility functions for working with function operations.
 | [`partial`](./partial/) | Partially applies arguments to a function, returning a new function that accepts the remaining arguments\. |
 | [`pipe`](./pipe/) | Composes functions left\-to\-right: the output of each function is passed as input to the next\. |
 | [`returnOrThrowError`](./returnorthrowerror/) | Return a value or throw an error if null or undefined\. |
-| [`throttle`](./throttle/) | Creates a throttled function that only invokes func at most once per every wait milliseconds |
+| [`throttle`](./throttle/) | Creates a throttled function that only invokes func at most once per every wait milliseconds  Call \`cancel\(\)\`, or abort… |
 | [`unary`](./unary/) | Creates a function that calls \`fn\` with only its first argument, discarding any others\. |
 

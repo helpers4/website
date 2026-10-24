@@ -3,7 +3,7 @@ title: "mapSettled"
 sidebar:
   label: "mapSettled"
 description: "Like mapAsync, but never rejects: each item gets its own result, in the shape of `Promise.allSettled`, so one failure d…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Like mapAsync, but never rejects: each item gets its own result, in the shape of
@@ -27,7 +27,7 @@ import { mapSettled } from 'helpers4/array';
 
 
 ```ts
-mapSettled<T, R>(array: readonly T[], fn: function, concurrency?: number): Promise<PromiseSettledResult<Awaited<R>>[]>
+mapSettled<T, R>(array: readonly T[], fn: function, options?: number | AsyncArrayOptions): Promise<PromiseSettledResult<Awaited<R>>[]>
 ```
 
 ## Parameters
@@ -36,7 +36,7 @@ mapSettled<T, R>(array: readonly T[], fn: function, concurrency?: number): Promi
 |-----------|------|-------------|
 | `array` | `readonly T[]` | The array to map over |
 | `fn` | `function` | Async \(or sync\) function called with \`\(item, index\)\`; a throw counts as a rejection |
-| `concurrency` | `number` | Maximum number of concurrent calls\. Defaults to unlimited\. *(optional)* |
+| `options` | `number \| AsyncArrayOptions` | Maximum number of concurrent calls \(defaults to unlimited\), or the options   with a \`signal\` to stop — see AsyncArrayOptions\. An abort is not an outcome: it   rejects the whole call with the signal's reason\. *(optional)* |
 
 ## Returns
 
@@ -59,6 +59,19 @@ The third argument limits how many calls run at once.
 
 ```ts
 const results = await mapSettled(urls, (url) => fetch(url), 4);
+```
+
+## Related Types
+
+### `AsyncArrayOptions`
+
+Options for mapAsync, mapSettled, filterAsync and forEachAsync.
+
+```ts
+interface AsyncArrayOptions {
+  concurrency?: number;
+  signal?: AbortSignal;
+}
 ```
 
 ## Source

@@ -3,7 +3,7 @@ title: "prefersReducedMotion"
 sidebar:
   label: "prefersReducedMotion"
 description: "Whether the user asked the system to reduce motion (`prefers-reduced-motion: reduce`)."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Whether the user asked the system to reduce motion (`prefers-reduced-motion: reduce`).

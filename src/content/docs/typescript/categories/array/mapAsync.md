@@ -3,7 +3,7 @@ title: "mapAsync"
 sidebar:
   label: "mapAsync"
 description: "The async counterpart to `Array.prototype.map`: applies `fn` to every item and resolves to an array of the results, in…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 The async counterpart to `Array.prototype.map`: applies `fn` to every item and resolves to
@@ -33,7 +33,7 @@ import { mapAsync } from 'helpers4/array';
 
 
 ```ts
-mapAsync<T, R>(array: readonly T[], fn: function, concurrency?: number): Promise<R[]>
+mapAsync<T, R>(array: readonly T[], fn: function, options?: number | AsyncArrayOptions): Promise<R[]>
 ```
 
 ## Parameters
@@ -42,7 +42,7 @@ mapAsync<T, R>(array: readonly T[], fn: function, concurrency?: number): Promise
 |-----------|------|-------------|
 | `array` | `readonly T[]` | The array to map over |
 | `fn` | `function` | Async \(or sync\) function called with \`\(item, index\)\` |
-| `concurrency` | `number` | Maximum number of concurrent calls\. Defaults to unlimited\. *(optional)* |
+| `options` | `number \| AsyncArrayOptions` | Maximum number of concurrent calls \(defaults to unlimited\), or the options   with a \`signal\` to stop — see AsyncArrayOptions *(optional)* |
 
 ## Returns
 
@@ -66,6 +66,19 @@ At most `concurrency` calls run at once; the rest queue and wait.
 ```ts
 await mapAsync(urls, (url) => fetch(url).then(r => r.json()), 2)
 // at most 2 concurrent fetch() calls
+```
+
+## Related Types
+
+### `AsyncArrayOptions`
+
+Options for mapAsync, mapSettled, filterAsync and forEachAsync.
+
+```ts
+interface AsyncArrayOptions {
+  concurrency?: number;
+  signal?: AbortSignal;
+}
 ```
 
 ## Source

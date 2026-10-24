@@ -3,7 +3,7 @@ title: "observeIntersection"
 sidebar:
   label: "observeIntersection"
 description: "Calls `callback` each time `element` enters or leaves the viewport (or `options.root`), with an `IntersectionObserver`…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Calls `callback` each time `element` enters or leaves the viewport (or `options.root`), with an
@@ -27,7 +27,7 @@ import { observeIntersection } from 'helpers4/browser';
 
 
 ```ts
-observeIntersection(element: Element, callback: function, options?: IntersectionObserverInit): function
+observeIntersection(element: Element, callback: function, options: ObserveIntersectionOptions): function
 ```
 
 ## Parameters
@@ -36,7 +36,7 @@ observeIntersection(element: Element, callback: function, options?: Intersection
 |-----------|------|-------------|
 | `element` | `Element` | The element to observe |
 | `callback` | `function` | Receives the \`IntersectionObserverEntry\` of \`element\` \(\`entry\.isIntersecting\`, \`entry\.intersectionRatio\`, \.\.\.\) |
-| `options` | `IntersectionObserverInit` | \`root\`, \`rootMargin\` and \`threshold\`, as for \`IntersectionObserver\` *(optional)* |
+| `options` | `ObserveIntersectionOptions` | \`root\`, \`rootMargin\` and \`threshold\`, as for \`IntersectionObserver\`, and a   \`signal\` to stop — see ObserveIntersectionOptions |
 
 ## Returns
 
@@ -62,6 +62,22 @@ const stop = observeIntersection(image, (entry) => {
   image.src = image.dataset.src!;
   stop();
 }, { rootMargin: '200px' });
+```
+
+## Related Types
+
+### `ObserveIntersectionOptions`
+
+Options for observeIntersection: those of `IntersectionObserver`, and a signal.
+
+```ts
+interface ObserveIntersectionOptions {
+  root?: Element | Document | null;
+  rootMargin?: string;
+  scrollMargin?: string;
+  signal?: AbortSignal;
+  threshold?: number | number[];
+}
 ```
 
 ## Source

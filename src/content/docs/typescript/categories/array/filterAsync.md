@@ -3,7 +3,7 @@ title: "filterAsync"
 sidebar:
   label: "filterAsync"
 description: "The async counterpart to `Array.prototype.filter`: runs `predicate` for every item and resolves to the items whose pred…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 The async counterpart to `Array.prototype.filter`: runs `predicate` for every item and
@@ -27,7 +27,7 @@ import { filterAsync } from 'helpers4/array';
 
 
 ```ts
-filterAsync<T>(array: readonly T[], predicate: function, concurrency?: number): Promise<T[]>
+filterAsync<T>(array: readonly T[], predicate: function, options?: number | AsyncArrayOptions): Promise<T[]>
 ```
 
 ## Parameters
@@ -36,7 +36,7 @@ filterAsync<T>(array: readonly T[], predicate: function, concurrency?: number): 
 |-----------|------|-------------|
 | `array` | `readonly T[]` | The array to filter |
 | `predicate` | `function` | Async \(or sync\) predicate called with \`\(item, index\)\` |
-| `concurrency` | `number` | Maximum number of concurrent predicate calls\. Defaults to unlimited\. *(optional)* |
+| `options` | `number \| AsyncArrayOptions` | Maximum number of concurrent predicate calls \(defaults to unlimited\), or the options   with a \`signal\` to stop — see AsyncArrayOptions *(optional)* |
 
 ## Returns
 
@@ -51,6 +51,19 @@ Every predicate call runs concurrently; matches keep their original order.
 ```ts
 await filterAsync(files, (file) => fileExists(file))
 // => only the files that actually exist
+```
+
+## Related Types
+
+### `AsyncArrayOptions`
+
+Options for mapAsync, mapSettled, filterAsync and forEachAsync.
+
+```ts
+interface AsyncArrayOptions {
+  concurrency?: number;
+  signal?: AbortSignal;
+}
 ```
 
 ## Source

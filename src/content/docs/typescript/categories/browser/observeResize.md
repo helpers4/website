@@ -3,7 +3,7 @@ title: "observeResize"
 sidebar:
   label: "observeResize"
 description: "Calls `callback` each time the size of `element` changes, with a `ResizeObserver` dedicated to it."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Calls `callback` each time the size of `element` changes, with a `ResizeObserver` dedicated to
@@ -27,7 +27,7 @@ import { observeResize } from 'helpers4/browser';
 
 
 ```ts
-observeResize(element: Element, callback: function): function
+observeResize(element: Element, callback: function, options: ObserveResizeOptions): function
 ```
 
 ## Parameters
@@ -36,6 +36,7 @@ observeResize(element: Element, callback: function): function
 |-----------|------|-------------|
 | `element` | `Element` | The element to observe |
 | `callback` | `function` | Receives the \`ResizeObserverEntry\` of \`element\` |
+| `options` | `ObserveResizeOptions` | Cancellation — see ObserveResizeOptions |
 
 ## Returns
 
@@ -57,6 +58,18 @@ Compose with debounce from helpers4/function instead of an option.
 
 ```ts
 const stop = observeResize(frame, debounce(() => fitToViewport(), 100));
+```
+
+## Related Types
+
+### `ObserveResizeOptions`
+
+Options for observeResize.
+
+```ts
+interface ObserveResizeOptions {
+  signal?: AbortSignal;
+}
 ```
 
 ## Source

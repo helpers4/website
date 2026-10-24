@@ -3,7 +3,7 @@ title: "tween"
 sidebar:
   label: "tween"
 description: "Animates a value from `from` to `to` over `durationMs`, calling `onUpdate` with the blended value at each frame, for wh…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Animates a value from `from` to `to` over `durationMs`, calling `onUpdate` with the blended
@@ -34,7 +34,7 @@ tween<T, V>(options: TweenOptions<T, V> & object): FrameLoop
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `options` | `TweenOptions<T, V> & object` | Values, duration, easing, blending and callback — see TweenOptions |
+| `options` | `TweenOptions<T, V> & object` | Values, duration, easing, blending, callback and cancellation — see TweenOptions |
 
 ## Returns
 
@@ -91,6 +91,7 @@ interface TweenOptions<T, V> {
   interpolate?: function;
   now?: function;
   onUpdate: function;
+  signal?: AbortSignal;
   to: T;
 }
 ```

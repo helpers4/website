@@ -3,7 +3,7 @@ title: "whenIdle"
 sidebar:
   label: "whenIdle"
 description: "Runs `callback` when the browser is idle, with `requestIdleCallback`, for work that can wait (prefetching, analytics, w…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Runs `callback` when the browser is idle, with `requestIdleCallback`, for work that can wait
@@ -34,7 +34,7 @@ whenIdle(callback: function, options: WhenIdleOptions): function
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `callback` | `function` | The work to run |
-| `options` | `WhenIdleOptions` | Timeout — see WhenIdleOptions |
+| `options` | `WhenIdleOptions` | Timeout and cancellation — see WhenIdleOptions |
 
 ## Returns
 
@@ -67,6 +67,7 @@ Options for whenIdle.
 
 ```ts
 interface WhenIdleOptions {
+  signal?: AbortSignal;
   timeout?: number;
 }
 ```

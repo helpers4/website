@@ -3,7 +3,7 @@ title: "titleCase"
 sidebar:
   label: "titleCase"
 description: "Converts a string to Title Case."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Converts a string to Title Case.

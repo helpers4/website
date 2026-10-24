@@ -3,7 +3,7 @@ title: "parallel"
 sidebar:
   label: "parallel"
 description: "Runs an array of async functions with a concurrency limit."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Runs an array of async functions with a concurrency limit.
@@ -25,7 +25,7 @@ import { parallel } from 'helpers4/promise';
 
 
 ```ts
-parallel<T>(functions: readonly function[], limit: number): Promise<T[]>
+parallel<T>(functions: readonly function[], limit: number, options: ParallelOptions): Promise<T[]>
 ```
 
 ## Parameters
@@ -34,10 +34,12 @@ parallel<T>(functions: readonly function[], limit: number): Promise<T[]>
 |-----------|------|-------------|
 | `functions` | `readonly function[]` | Array of functions that return promises |
 | `limit` | `number` | Maximum number of concurrent executions |
+| `options` | `ParallelOptions` | Cancellation — see ParallelOptions |
 
 ## Returns
 
-`Promise<T[]>` — Promise that resolves with an array of results in the same order as the input
+`Promise<T[]>` — Promise that resolves with an array of results in the same order as the input, or
+  rejects with the signal's reason if aborted first
 
 ## Examples
 
@@ -60,6 +62,18 @@ Setting limit to 1 runs functions one at a time.
 ```ts
 await parallel([fnA, fnB, fnC], 1)
 // Runs fnA, then fnB, then fnC
+```
+
+## Related Types
+
+### `ParallelOptions`
+
+Options for parallel and parallelSettle.
+
+```ts
+interface ParallelOptions {
+  signal?: AbortSignal;
+}
 ```
 
 ## Source

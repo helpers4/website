@@ -3,7 +3,7 @@ title: "isArray"
 sidebar:
   label: "isArray"
 description: "Checks if a value is an array."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Checks if a value is an array.

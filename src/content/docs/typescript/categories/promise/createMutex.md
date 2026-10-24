@@ -3,7 +3,7 @@ title: "createMutex"
 sidebar:
   label: "createMutex"
 description: "Creates a mutex: a lock allowing at most one holder at a time, queueing excess `acquire()` callers in FIFO order."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Creates a mutex: a lock allowing at most one holder at a time, queueing excess `acquire()`
@@ -79,9 +79,9 @@ A mutex created by createMutex.
 
 ```ts
 interface Mutex {
-  acquire(): Promise<Release>;
+  acquire(options?: AcquireOptions): Promise<Release>;
   isLocked(): boolean;
-  run<T>(fn: function): Promise<T>;
+  run<T>(fn: function, options?: AcquireOptions): Promise<T>;
 }
 ```
 

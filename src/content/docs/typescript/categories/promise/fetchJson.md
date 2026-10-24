@@ -3,7 +3,7 @@ title: "fetchJson"
 sidebar:
   label: "fetchJson"
 description: "Fetches a URL and returns its parsed JSON body, retrying transient failures."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Fetches a URL and returns its parsed JSON body, retrying transient failures.
@@ -14,6 +14,8 @@ After the last attempt, the last error is thrown: an HttpError (with `status` an
 `url`) for a bad status, or whatever `fetch` rejected with.
 
 Pass a URL or a string: a `Request` with a body cannot be sent twice, so it can't be retried.
+
+`init.signal` cancels the whole call: the running request, and the wait before the next one.
 
 > Available since v3.1.5
 

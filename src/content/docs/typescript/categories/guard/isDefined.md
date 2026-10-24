@@ -3,7 +3,7 @@ title: "isDefined"
 sidebar:
   label: "isDefined"
 description: "Checks if a value is defined (not undefined nor null)."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Checks if a value is defined (not undefined nor null).

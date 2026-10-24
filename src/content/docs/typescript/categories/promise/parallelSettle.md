@@ -3,7 +3,7 @@ title: "parallelSettle"
 sidebar:
   label: "parallelSettle"
 description: "Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Runs an array of async functions with a concurrency limit, partitioning the outcomes
@@ -29,7 +29,7 @@ import { parallelSettle } from 'helpers4/promise';
 
 
 ```ts
-parallelSettle<T>(functions: readonly function[], concurrency: number): Promise<object>
+parallelSettle<T>(functions: readonly function[], concurrency: number, options: ParallelOptions): Promise<object>
 ```
 
 ## Parameters
@@ -38,6 +38,7 @@ parallelSettle<T>(functions: readonly function[], concurrency: number): Promise<
 |-----------|------|-------------|
 | `functions` | `readonly function[]` | Array of functions that return promises |
 | `concurrency` | `number` | Maximum number of concurrent executions\. \`Infinity\` means no cap; any   other non\-finite or non\-positive value \(\`NaN\`, \`0\`, negative\) is clamped to \`1\` \(fully   sequential\) rather than rejected\. |
+| `options` | `ParallelOptions` | Cancellation — see ParallelOptions\. An abort is not an outcome: it   rejects the whole call with the signal's reason\. |
 
 ## Returns
 
@@ -67,6 +68,18 @@ const { fulfilled, rejected } = await parallelSettle(
   2
 )
 // => { fulfilled: ['a', 'b'], rejected: [] }
+```
+
+## Related Types
+
+### `ParallelOptions`
+
+Options for parallel and parallelSettle.
+
+```ts
+interface ParallelOptions {
+  signal?: AbortSignal;
+}
 ```
 
 ## Source

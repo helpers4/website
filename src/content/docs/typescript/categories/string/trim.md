@@ -3,7 +3,7 @@ title: "trim"
 sidebar:
   label: "trim"
 description: "Trims both leading and trailing characters from a string, at a configurable level of aggressiveness (see TrimMode)."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Trims both leading and trailing characters from a string, at a

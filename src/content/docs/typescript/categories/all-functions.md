@@ -422,7 +422,7 @@ sidebar:
 | `tail` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(1)` *(ES3)* |
 | `take` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(0, n)` *(ES3)* |
 | [`template`](../string/template/) | [string](../string/) | Interpolates \`\{\{key\}\}\` placeholders in a template string with values from a data record\. |
-| [`throttle`](../function/throttle/) | [function](../function/) | Creates a throttled function that only invokes func at most once per every wait milliseconds |
+| [`throttle`](../function/throttle/) | [function](../function/) | Creates a throttled function that only invokes func at most once per every wait milliseconds  Call \`cancel\(\)\`, or abort… |
 | [`timeAgo`](../date/timeago/) | [date](../date/) | Formats a date as a human\-readable relative time string\. |
 | [`timeout`](../promise/timeout/) | [promise](../promise/) | Wraps a promise to reject with a \`TimeoutError\` if it does not resolve within the specified duration\. |
 | [`titleCase`](../string/titlecase/) | [string](../string/) | Converts a string to Title Case\. |

@@ -3,7 +3,7 @@ title: "createSemaphore"
 sidebar:
   label: "createSemaphore"
 description: "Creates a semaphore limiting concurrent access to `permits` holders at a time, queueing excess `acquire()` callers in F…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Creates a semaphore limiting concurrent access to `permits` holders at a time, queueing
@@ -83,15 +83,25 @@ release(); // throws RangeError: this permit was already released
 
 ## Related Types
 
+### `AcquireOptions`
+
+Options for Semaphore.acquire and Semaphore.run, and their Mutex twins.
+
+```ts
+interface AcquireOptions {
+  signal?: AbortSignal;
+}
+```
+
 ### `Semaphore`
 
 A semaphore created by createSemaphore.
 
 ```ts
 interface Semaphore {
-  acquire(): Promise<Release>;
+  acquire(options?: AcquireOptions): Promise<Release>;
   availablePermits(): number;
-  run<T>(fn: function): Promise<T>;
+  run<T>(fn: function, options?: AcquireOptions): Promise<T>;
 }
 ```
 

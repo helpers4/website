@@ -3,7 +3,7 @@ title: "forEachAsync"
 sidebar:
   label: "forEachAsync"
 description: "The async counterpart to `Array.prototype.forEach`: runs `fn` for every item for its side effects, discarding any retur…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 The async counterpart to `Array.prototype.forEach`: runs `fn` for every item for its
@@ -25,7 +25,7 @@ import { forEachAsync } from 'helpers4/array';
 
 
 ```ts
-forEachAsync<T>(array: readonly T[], fn: function, concurrency?: number): Promise<void>
+forEachAsync<T>(array: readonly T[], fn: function, options?: number | AsyncArrayOptions): Promise<void>
 ```
 
 ## Parameters
@@ -34,7 +34,7 @@ forEachAsync<T>(array: readonly T[], fn: function, concurrency?: number): Promis
 |-----------|------|-------------|
 | `array` | `readonly T[]` | The array to iterate |
 | `fn` | `function` | Async \(or sync\) function called with \`\(item, index\)\` |
-| `concurrency` | `number` | Maximum number of concurrent calls\. Defaults to unlimited\. *(optional)* |
+| `options` | `number \| AsyncArrayOptions` | Maximum number of concurrent calls \(defaults to unlimited\), or the options   with a \`signal\` to stop — see AsyncArrayOptions *(optional)* |
 
 ## Returns
 
@@ -49,6 +49,19 @@ Runs fn for its side effects only; at most `concurrency` calls at once.
 ```ts
 await forEachAsync(files, (file) => uploadFile(file), 3)
 // uploads at most 3 files concurrently
+```
+
+## Related Types
+
+### `AsyncArrayOptions`
+
+Options for mapAsync, mapSettled, filterAsync and forEachAsync.
+
+```ts
+interface AsyncArrayOptions {
+  concurrency?: number;
+  signal?: AbortSignal;
+}
 ```
 
 ## Source

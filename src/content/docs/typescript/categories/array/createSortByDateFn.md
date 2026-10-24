@@ -3,7 +3,7 @@ title: "createSortByDateFn"
 sidebar:
   label: "createSortByDateFn"
 description: "Creates a sort function for objects by date property."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Creates a sort function for objects by date property.

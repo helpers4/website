@@ -2,11 +2,14 @@
 title: "throttle"
 sidebar:
   label: "throttle"
-description: "Creates a throttled function that only invokes func at most once per every wait milliseconds"
-version: "3.1.5"
+description: "Creates a throttled function that only invokes func at most once per every wait milliseconds  Call `cancel()`, or abort…"
+version: "3.1.6"
 ---
 
 Creates a throttled function that only invokes func at most once per every wait milliseconds
+
+Call `cancel()`, or abort the `signal`, on teardown: otherwise the trailing call still runs
+after its owner is gone.
 
 > Available since v1.9.0
 
@@ -22,7 +25,7 @@ import { throttle } from 'helpers4/function';
 
 
 ```ts
-throttle<A extends unknown[], R>(func: function, wait: number): function
+throttle<A extends unknown[], R>(func: function, wait: number, options: ThrottleOptions): Throttled<A>
 ```
 
 ## Parameters
@@ -31,10 +34,11 @@ throttle<A extends unknown[], R>(func: function, wait: number): function
 |-----------|------|-------------|
 | `func` | `function` | The function to throttle |
 | `wait` | `number` | The number of milliseconds to throttle invocations to |
+| `options` | `ThrottleOptions` | Cancellation — see ThrottleOptions |
 
 ## Returns
 
-`function` — The throttled function
+`Throttled<A>` — The throttled function, with a `cancel()` method
 
 ## Examples
 
@@ -46,6 +50,41 @@ The throttled function is invoked at most once per wait period.
 const fn = throttle(() => console.log('tick'), 100);
 fn(); // executes immediately
 fn(); // ignored (within wait period)
+```
+
+### Cancel on teardown
+
+An aborted signal, or cancel(), drops the call still waiting, so it never runs after its owner is gone.
+
+```ts
+const controller = new AbortController();
+const fn = throttle(() => console.log('late'), 100, { signal: controller.signal });
+fn();
+fn();
+controller.abort();
+// nothing is logged after the abort
+```
+
+## Related Types
+
+### `Throttled`
+
+A function returned by throttle.
+
+```ts
+interface Throttled<A extends unknown[]> {
+  cancel(): void;
+}
+```
+
+### `ThrottleOptions`
+
+Options for throttle.
+
+```ts
+interface ThrottleOptions {
+  signal?: AbortSignal;
+}
 ```
 
 ## Source

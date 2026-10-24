@@ -3,7 +3,7 @@ title: "frameLoop"
 sidebar:
   label: "frameLoop"
 description: "Calls `onFrame` once per animation frame with the time elapsed since the start, until it returns `false` or the loop is…"
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Calls `onFrame` once per animation frame with the time elapsed since the start, until it
@@ -37,7 +37,7 @@ frameLoop(onFrame: function, options: FrameLoopOptions): FrameLoop
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `onFrame` | `function` | Receives the elapsed milliseconds; return \`false\` to stop |
-| `options` | `FrameLoopOptions` | Clock — see FrameLoopOptions |
+| `options` | `FrameLoopOptions` | Clock and cancellation — see FrameLoopOptions |
 
 ## Returns
 
@@ -86,6 +86,7 @@ Options for frameLoop.
 ```ts
 interface FrameLoopOptions {
   now?: function;
+  signal?: AbortSignal;
 }
 ```
 

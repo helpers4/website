@@ -3,7 +3,7 @@ title: "applyToRect"
 sidebar:
   label: "applyToRect"
 description: "Transforms a rectangle by a matrix and returns its bounding box: the smallest axis-aligned rectangle that contains it."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Transforms a rectangle by a matrix and returns its bounding box: the smallest axis-aligned

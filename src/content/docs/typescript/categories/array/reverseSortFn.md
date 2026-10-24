@@ -3,7 +3,7 @@ title: "reverseSortFn"
 sidebar:
   label: "reverseSortFn"
 description: "Reverses the order of a sort function: `reverseSortFn(fn)(a, b)` is `fn(b, a)`."
-version: "3.1.5"
+version: "3.1.6"
 ---
 
 Reverses the order of a sort function: `reverseSortFn(fn)(a, b)` is `fn(b, a)`.
