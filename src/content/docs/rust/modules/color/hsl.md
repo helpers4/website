@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["color"] }
 ```
 
 ## Definition
@@ -105,6 +105,29 @@ The lightness.
 
 `f64` — A value from `0.0` to `1.0`.
 
+### `to_css`
+
+```rust
+pub fn to_css(self) -> String
+```
+
+The CSS form `hsl(h s% l%)`, in the space-separated syntax every current browser and SVG
+renderer reads: the hue in degrees, saturation and lightness as percentages, all rounded
+to one decimal.
+
+**Returns**
+
+`String` — For instance `"hsl(210 100% 50%)"`.
+
+**Examples**
+
+```rust
+use helpers4::color::Hsl;
+
+assert_eq!(Hsl::new(210.0, 1.0, 0.5).to_css(), "hsl(210 100% 50%)");
+assert_eq!(Hsl::new(359.97, 0.1234, 0.5).to_css(), "hsl(0 12.3% 50%)");
+```
+
 ### `to_rgb`
 
 ```rust
@@ -119,4 +142,4 @@ The nearest 8-bit sRGB color.
 
 ## Source
 
-[src/color/hsl.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/color/hsl.rs#L23)
+[src/color/hsl.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/color/hsl.rs#L24)

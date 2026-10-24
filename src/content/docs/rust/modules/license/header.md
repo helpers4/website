@@ -34,7 +34,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["license"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["license"] }
 ```
 
 ## Signature
@@ -68,4 +68,4 @@ assert_eq!(commented[1], "// SPDX-License-Identifier: MIT OR Apache-2.0");
 
 ## Source
 
-[src/license/header.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/license/header.rs#L39)
+[src/license/header.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/license/header.rs#L39)

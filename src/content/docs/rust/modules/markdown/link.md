@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["markdown"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["markdown"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(link("[1]", "https://x.org/a (b)"), "[\\[1\\]](https://x.org/a%20%28b
 
 ## Source
 
-[src/markdown/link.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/markdown/link.rs#L30)
+[src/markdown/link.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/markdown/link.rs#L30)

@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["future"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["future"] }
 ```
 
 Import path: `helpers4::future`.

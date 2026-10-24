@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["geometry"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["geometry"] }
 ```
 
 ## Definition
@@ -52,6 +52,34 @@ assert_eq!(m.invert().map(|inv| inv.apply(Point::new(12.0, 2.0))), Some(Point::n
 ```
 
 ## Methods
+
+### `rotate`
+
+```rust
+pub fn rotate(radians: f64) -> Self
+```
+
+A rotation around the origin. With the y axis pointing down (screens, CSS, SVG), a
+positive angle turns clockwise, like CSS `rotate()`.
+
+**Parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `radians` | `f64` | The angle, in radians. |
+
+**Returns**
+
+`Self` — The matrix.
+
+**Examples**
+
+```rust
+use helpers4::geometry::{Matrix, Point};
+
+let p = Matrix::rotate(std::f64::consts::FRAC_PI_2).apply(Point::new(1.0, 0.0));
+assert!(p.x.abs() < 1e-12 && (p.y - 1.0).abs() < 1e-12);
+```
 
 ### `multiply`
 
@@ -108,6 +136,29 @@ use helpers4::geometry::Matrix;
 let shift = Matrix::new(1.0, 0.0, 0.0, 1.0, 10.0, 5.0);
 assert_eq!(shift.invert(), Some(Matrix::new(1.0, 0.0, 0.0, 1.0, -10.0, -5.0)));
 assert_eq!(Matrix::new(0.0, 0.0, 0.0, 0.0, 1.0, 1.0).invert(), None);
+```
+
+### `to_css`
+
+```rust
+pub fn to_css(self) -> String
+```
+
+The CSS and SVG `transform` value, `matrix(a, b, c, d, e, f)`.
+
+Entries are written as Rust prints them, without rounding (and `0` for `-0`); a
+non-finite entry gives a value CSS rejects.
+
+**Returns**
+
+`String` — For instance `"matrix(2, 0, 0, 2, 10, -5)"`.
+
+**Examples**
+
+```rust
+use helpers4::geometry::Matrix;
+
+assert_eq!(Matrix::new(2.0, 0.0, 0.0, 2.0, 10.0, -5.0).to_css(), "matrix(2, 0, 0, 2, 10, -5)");
 ```
 
 ### `apply`
@@ -167,4 +218,4 @@ assert_eq!(flip.bounding_box(Rect::new(1.0, 0.0, 2.0, 3.0)), Rect::new(-6.0, 0.0
 
 ## Source
 
-[src/geometry/matrix.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/geometry/matrix.rs#L28)
+[src/geometry/matrix.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/geometry/matrix.rs#L28)

@@ -1,12 +1,12 @@
 ---
 title: "color"
-description: "Colors without a dependency: parsing, hex, HSL, blending and WCAG contrast."
+description: "Colors without a dependency: parsing, hex, CSS output, HSL, alpha, blending and WCAG contrast."
 sidebar:
   label: "≡ Overview"
   order: 0
 ---
 
-Colors without a dependency: parsing, hex, HSL, blending and WCAG contrast.
+Colors without a dependency: parsing, hex, CSS output, HSL, alpha, blending and WCAG contrast.
 
 [`Rgb`](/rust/modules/color/rgb/) is an 8-bit sRGB color that parses from `#rgb`, `#rrggbb`, `rgb(r, g, b)` or a basic CSS name;
 [`Hsl`](/rust/modules/color/hsl/) converts to and from it; `mix` blends two colors; `contrast_ratio` and `best_text_color` answer
@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["color"] }
 ```
 
 Import path: `helpers4::color`.
@@ -38,6 +38,7 @@ Import path: `helpers4::color`.
 | [`Hsl`](/rust/modules/color/hsl/) | A color as hue, saturation and lightness. |
 | [`mix`](/rust/modules/color/mix/) | Blends two colors channel by channel. |
 | [`Rgb`](/rust/modules/color/rgb/) | An sRGB color with 8 bits per channel. |
+| [`Rgba`](/rust/modules/color/rgba/) | An sRGB color with 8 bits per channel and an alpha (opacity) channel. |
 
 ## Error types
 
@@ -45,4 +46,4 @@ Documented on the page of the helper that returns them.
 
 | Type | Returned by |
 | --- | --- |
-| [`ParseColorError`](/rust/modules/color/rgb/#error-type-parsecolorerror) | [`Rgb`](/rust/modules/color/rgb/) |
+| [`ParseColorError`](/rust/modules/color/rgb/#error-type-parsecolorerror) | [`Rgb`](/rust/modules/color/rgb/), [`Rgba`](/rust/modules/color/rgba/) |

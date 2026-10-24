@@ -20,7 +20,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["string"] }
 ```
 
 Opt-in sub-feature `string-diacritics` (adds the `unicode-normalization` dependency): [`remove_diacritics`](/rust/modules/string/remove_diacritics/).
@@ -33,11 +33,13 @@ Import path: `helpers4::string`.
 | --- | --- |
 | [`camel_case`](/rust/modules/string/camel_case/) | Converts `s` to `camelCase`. |
 | [`capitalize`](/rust/modules/string/capitalize/) | Uppercases the first character of `s` and leaves the rest untouched. |
+| [`compare_natural`](/rust/modules/string/compare_natural/) | Compares two strings in natural order: runs of ASCII digits are compared by their numeric value, everything else character by character. |
 | [`constant_case`](/rust/modules/string/constant_case/) | Converts `s` to `CONSTANT_CASE` (also known as `SCREAMING_SNAKE_CASE`). |
 | [`dedent`](/rust/modules/string/dedent/) | Strips the indentation shared by every non-blank line of `s`, and drops one leading and one trailing blank line. |
 | [`escape_html`](/rust/modules/string/escape_html/) | Escapes the HTML special characters `&`, `<`, `>`, `"` and `'`. |
 | [`escape_regex`](/rust/modules/string/escape_regex/) | Escapes regular expression metacharacters (`. |
 | [`excerpt`](/rust/modules/string/excerpt/) | Derives a short, readable excerpt from a longer text — for a card, header or preview where a full paragraph does not fit. |
+| [`GlobSet`](/rust/modules/string/globset/) | A list of glob patterns with exclusions: a string matches when one pattern matches and no exclusion does, like the lines of a `.gitignore` read the other way round. |
 | [`indent`](/rust/modules/string/indent/) | Prefixes every non-blank line of `s` with `prefix`. |
 | [`kebab_case`](/rust/modules/string/kebab_case/) | Converts `s` to `kebab-case`. |
 | [`levenshtein_distance`](/rust/modules/string/levenshtein_distance/) | The Levenshtein edit distance between `a` and `b`: the fewest single-character insertions, deletions or substitutions needed to turn one into the other. |

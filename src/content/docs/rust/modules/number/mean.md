@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["number"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["number"] }
 ```
 
 ## Signature
@@ -55,4 +55,4 @@ assert_eq!(mean(&[]), None);
 
 ## Source
 
-[src/number/mean.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/number/mean.rs#L23)
+[src/number/mean.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/number/mean.rs#L23)

@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["bytes"] }
 ```
 
 ## Definition
@@ -432,4 +432,4 @@ assert_eq!(reader.read_cstr(), None);
 
 ## Source
 
-[src/bytes/byte_reader.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/bytes/byte_reader.rs#L29)
+[src/bytes/byte_reader.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/bytes/byte_reader.rs#L29)

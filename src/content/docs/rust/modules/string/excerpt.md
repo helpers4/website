@@ -36,7 +36,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -78,4 +78,4 @@ assert_eq!(
 
 ## Source
 
-[src/string/excerpt.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/string/excerpt.rs#L53)
+[src/string/excerpt.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/string/excerpt.rs#L53)

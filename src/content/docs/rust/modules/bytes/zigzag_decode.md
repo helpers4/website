@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["bytes"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert_eq!(zigzag_decode(u64::MAX), i64::MIN);
 
 ## Source
 
-[src/bytes/zigzag_decode.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/bytes/zigzag_decode.rs#L27)
+[src/bytes/zigzag_decode.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/bytes/zigzag_decode.rs#L27)

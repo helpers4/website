@@ -30,7 +30,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["version"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["version"] }
 ```
 
 ## Definition
@@ -134,4 +134,4 @@ pub enum ParseVersionError {
 
 ## Source
 
-[src/version/version_req.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/version/version_req.rs#L33)
+[src/version/version_req.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/version/version_req.rs#L33)

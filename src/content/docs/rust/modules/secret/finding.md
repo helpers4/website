@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["secret"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["secret"] }
 ```
 
 ## Definition
@@ -83,4 +83,4 @@ The byte offset just past the end of the credential.
 
 ## Source
 
-[src/secret/scan.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/secret/scan.rs#L20)
+[src/secret/scan.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/secret/scan.rs#L20)

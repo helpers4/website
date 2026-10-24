@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["url"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["url"] }
 ```
 
 ## Signature
@@ -87,4 +87,4 @@ pub enum PercentDecodeError {
 
 ## Source
 
-[src/url/parse_query.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/url/parse_query.rs#L37)
+[src/url/parse_query.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/url/parse_query.rs#L37)

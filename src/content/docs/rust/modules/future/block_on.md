@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["future"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["future"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(answer, 42);
 
 ## Source
 
-[src/future/block_on.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/future/block_on.rs#L43)
+[src/future/block_on.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/future/block_on.rs#L43)

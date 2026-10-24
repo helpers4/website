@@ -30,7 +30,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["url"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["url"] }
 ```
 
 ## Definition
@@ -235,4 +235,4 @@ pub enum UrlError {
 
 ## Source
 
-[src/url/parsed_url.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/url/parsed_url.rs#L34)
+[src/url/parsed_url.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/url/parsed_url.rs#L34)

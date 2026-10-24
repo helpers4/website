@@ -1,10 +1,385 @@
-# helpers4 (Rust) — full reference, version 0.0.8
+# helpers4 (Rust) — full reference, version 0.0.9
 
 > Every public item of the `helpers4` crate with its signature, documentation and examples.
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
 > Import through the module path; names repeat across modules on purpose.
 > Each module is a Cargo feature of the same name (`cargo add helpers4 --no-default-features --features <module>`).
 > Pre-1.0 (0.x): the split into modules (Cargo features) may change between releases, and the verification tooling is still being extended.
+
+## Module `animation` (Cargo feature `animation`)
+
+Animation timing without a framework: `Easing` curves (the CSS keywords, `cubic-bezier()`,
+`steps()` and `linear()`, read from a CSS string or built directly), physical `Spring`s with
+their settling time, and `to_css_linear` to turn any curve into a CSS `linear()`.
+
+The same model as the TypeScript package's `animation` category, for code that computes
+animation values itself (a renderer, a native player, a tool that exports animations).
+
+### animation::Easing
+
+```rust
+pub struct Easing { /* private fields */ }
+```
+
+A timing curve: how the progress of an animation follows the progress of time, from `0.0` to
+`1.0`. The same curves as CSS `animation-timing-function`.
+
+Build one directly (`linear`, `cubic_bezier`,
+`steps`) or read it from a CSS string, e.g. the easing a design tool exported
+(`parse`: keywords, `cubic-bezier()`, `steps()` and `linear()`), then evaluate
+it with `at`.
+
+#### Examples
+
+```rust
+use helpers4::animation::Easing;
+
+let ease_out = Easing::parse("ease-out")?;
+assert!((ease_out.at(0.5) - 0.6846).abs() < 1e-4);
+
+let bouncy = Easing::parse("cubic-bezier(0.34, 1.56, 0.64, 1)")?;
+assert!(bouncy.at(0.5) > 1.0); // overshoots before settling
+```
+
+#### Easing::cubic_bezier
+
+```rust
+pub fn cubic_bezier(x1: f64, y1: f64, x2: f64, y2: f64) -> Option<Self>
+```
+
+The curve of CSS `cubic-bezier(x1, y1, x2, y2)`. The `y` values may leave `0..=1` to
+overshoot; the `x` values may not, as in CSS.
+
+##### Arguments
+
+- `x1` - x of the first control point, `0.0..=1.0`.
+- `y1` - y of the first control point.
+- `x2` - x of the second control point, `0.0..=1.0`.
+- `y2` - y of the second control point.
+
+##### Returns
+
+The easing, or `None` when an `x` is outside `0.0..=1.0` or a value is not finite.
+
+##### Examples
+
+```rust
+use helpers4::animation::Easing;
+
+let ease = Easing::cubic_bezier(0.25, 0.1, 0.25, 1.0);
+assert!(ease.is_some_and(|e| (e.at(0.5) - 0.8024).abs() < 1e-4));
+assert_eq!(Easing::cubic_bezier(1.5, 0.0, 1.0, 1.0), None);
+```
+
+#### Easing::steps
+
+```rust
+pub fn steps(count: u32, position: StepPosition) -> Option<Self>
+```
+
+The curve of CSS `steps(count, position)`: the progress moves by jumps instead of
+continuously, for frame-by-frame sprites, ticking counters or an "instant" transition.
+
+##### Arguments
+
+- `count` - Number of steps, at least `1` (at least `2` with `StepPosition::JumpNone`).
+- `position` - Where the jumps happen.
+
+##### Returns
+
+The easing, or `None` for a `count` that is too small.
+
+##### Examples
+
+```rust
+use helpers4::animation::{Easing, StepPosition};
+
+let frames = Easing::steps(4, StepPosition::JumpEnd);
+assert_eq!(frames.map(|e| e.at(0.6)), Some(0.5));
+assert_eq!(Easing::steps(1, StepPosition::JumpNone), None);
+```
+
+#### Easing::parse
+
+```rust
+pub fn parse(css: &str) -> Result<Self, ParseEasingError>
+```
+
+Reads a CSS easing: `linear`, `ease`, `ease-in`, `ease-out`, `ease-in-out`, `step-start`,
+`step-end`, `cubic-bezier(x1, y1, x2, y2)`, `steps(count[, position])` or
+`linear(0, 0.25 40%, 1)` (points with optional input positions, which CSS fills in).
+
+Case and extra spaces are ignored.
+
+##### Arguments
+
+- `css` - The CSS easing.
+
+##### Returns
+
+The easing.
+
+##### Errors
+
+Returns a `ParseEasingError` for anything that is not a CSS easing, or a known function
+with arguments CSS rejects.
+
+##### Examples
+
+```rust
+use helpers4::animation::Easing;
+
+assert_eq!(Easing::parse("linear(0, 0.9 50%, 1)")?.at(0.25), 0.45);
+assert_eq!(Easing::parse("steps(4, jump-start)")?.at(0.3), 0.5);
+assert!(Easing::parse("bounce").is_err());
+```
+
+#### Easing::at
+
+```rust
+pub fn at(&self, t: f64) -> f64
+```
+
+The progress of the animation at a progress of time.
+
+##### Arguments
+
+- `t` - The progress of time. Clamped to `0.0..=1.0`; a `NaN` counts as `0.0`.
+
+##### Returns
+
+The progress of the animation: `0.0` at the start and `1.0` at the end, possibly outside
+`0.0..=1.0` in between for curves that overshoot.
+
+##### Examples
+
+```rust
+use helpers4::animation::Easing;
+
+let ease = Easing::parse("ease-in-out")?;
+assert_eq!(ease.at(0.0), 0.0);
+assert!((ease.at(0.5) - 0.5).abs() < 1e-9);
+assert_eq!(ease.at(2.0), 1.0);
+```
+
+### animation::Spring
+
+```rust
+pub struct Spring { /* private fields */ }
+```
+
+A damped spring going from `0.0` to `1.0`: the curve behind "spring" transitions of design
+tools, with the time it takes to settle.
+
+The motion is solved exactly (under-, critically or over-damped), not by stepping a
+simulation, so `at` can be called at any time, in any order.
+
+#### Examples
+
+```rust
+use helpers4::animation::Spring;
+
+let bouncy = Spring::new(1.0, 300.0, 15.0, 0.0).expect("valid physics");
+assert_eq!(bouncy.at(0.0), 0.0);
+assert_eq!(bouncy.at(bouncy.duration_ms()), 1.0); // settled
+assert!(bouncy.at(bouncy.duration_ms() * 0.3) > 1.0); // overshoots on the way
+```
+
+#### Spring::new
+
+```rust
+pub fn new(mass: f64, stiffness: f64, damping: f64, initial_velocity: f64) -> Option<Self>
+```
+
+A spring from its physical parameters, as design tools (Figma, Framer, …) expose them.
+
+##### Arguments
+
+- `mass` - Mass of the moving object, `> 0`. `1.0` is typical.
+- `stiffness` - Stiffness of the spring, `> 0`: higher is faster. `100.0` is typical.
+- `damping` - Friction, `> 0`: higher oscillates less. `10.0` is typical.
+- `initial_velocity` - Starting speed toward the target, in progress per second.
+
+##### Returns
+
+The spring, or `None` when a parameter is not finite, or `mass`, `stiffness` or `damping`
+is not positive, or the spring never settles within a finite time.
+
+##### Examples
+
+```rust
+use helpers4::animation::Spring;
+
+assert!(Spring::new(1.0, 100.0, 10.0, 0.0).is_some());
+assert!(Spring::new(0.0, 100.0, 10.0, 0.0).is_none());
+```
+
+#### Spring::duration_ms
+
+```rust
+pub fn duration_ms(&self) -> f64
+```
+
+The time until the spring settles, from which it stays within `0.001` of its target.
+
+##### Returns
+
+Milliseconds, at least `1.0`.
+
+##### Examples
+
+```rust
+use helpers4::animation::Spring;
+
+let spring = Spring::default();
+assert!(spring.duration_ms() > 1000.0 && spring.duration_ms() < 1500.0);
+```
+
+#### Spring::at
+
+```rust
+pub fn at(&self, time_ms: f64) -> f64
+```
+
+The progress at a time: `0.0` at the start, exactly `1.0` from
+`duration_ms` on, and possibly above `1.0` while oscillating.
+
+##### Arguments
+
+- `time_ms` - Milliseconds since the start. A time before the start (or `NaN`) gives `0.0`.
+
+##### Returns
+
+The progress.
+
+##### Examples
+
+```rust
+use helpers4::animation::Spring;
+
+let spring = Spring::default();
+assert_eq!(spring.at(-5.0), 0.0);
+assert_eq!(spring.at(10_000.0), 1.0);
+```
+
+#### Spring::easing
+
+```rust
+pub fn easing(&self, t: f64) -> f64
+```
+
+The same curve as an easing over `0.0..=1.0`: the fraction of
+`duration_ms`, for `to_css_linear` or any
+animation that takes an easing function.
+
+##### Arguments
+
+- `t` - The progress of time, `0.0..=1.0`.
+
+##### Returns
+
+The progress.
+
+##### Examples
+
+```rust
+use helpers4::animation::Spring;
+
+let spring = Spring::default();
+assert_eq!(spring.easing(0.0), 0.0);
+assert_eq!(spring.easing(1.0), 1.0);
+```
+
+### animation::StepPosition
+
+```rust
+pub enum StepPosition {
+    /// The first jump happens at the start (CSS `jump-start`, or `start`).
+    JumpStart,
+    /// The last jump happens at the end, so the first value lasts a whole step (CSS `jump-end`,
+    /// or `end`). The default.
+    #[default]
+    JumpEnd,
+    /// No jump at either end: `0` and `1` are each held for a step (CSS `jump-none`).
+    JumpNone,
+    /// A jump at both ends, so neither `0` nor `1` is held (CSS `jump-both`).
+    JumpBoth,
+}
+```
+
+Where the jumps of a `steps()` easing happen, as in CSS.
+
+#### Examples
+
+```rust
+use helpers4::animation::{Easing, StepPosition};
+
+let four_frames = Easing::steps(4, StepPosition::JumpEnd);
+assert_eq!(four_frames.map(|e| e.at(0.3)), Some(0.25));
+let jump_first = Easing::steps(4, StepPosition::JumpStart);
+assert_eq!(jump_first.map(|e| e.at(0.3)), Some(0.5));
+```
+
+### animation::to_css_linear
+
+```rust
+pub fn to_css_linear(easing: &dyn Fn(f64) -> f64, samples: u32) -> Option<String>
+```
+
+Samples an easing function into a CSS `linear()` easing, so that any curve (a
+`Spring`, a custom bounce) can be played by CSS transitions and the Web
+Animations API, which do not take code.
+
+Values are rounded to 4 decimals. More samples follow the curve more closely, in a longer
+string; 32 is smooth for most springs.
+
+#### Arguments
+
+- `easing` - The easing function over `0.0..=1.0`.
+- `samples` - Number of points, evenly spaced in time, at least `2`.
+
+#### Returns
+
+A `linear(...)` string, or `None` when `samples` is less than `2`.
+
+#### Examples
+
+```rust
+use helpers4::animation::{to_css_linear, Spring};
+
+assert_eq!(
+    to_css_linear(&|t| t * t, 5).as_deref(),
+    Some("linear(0, 0.0625, 0.25, 0.5625, 1)")
+);
+
+let spring = Spring::default();
+let css = to_css_linear(&|t| spring.easing(t), 32);
+assert!(css.is_some_and(|css| css.starts_with("linear(0, ")));
+```
+
+### animation::ParseEasingError
+
+```rust
+#[non_exhaustive]
+pub enum ParseEasingError {
+    /// Neither an easing keyword nor `cubic-bezier()`, `steps()` or `linear()`.
+    UnknownFunction,
+    /// A known function with arguments CSS does not accept (a wrong count, a number out of range,
+    /// a malformed stop).
+    InvalidArguments,
+}
+```
+
+Why a string is not a CSS easing.
+
+#### Examples
+
+```rust
+use helpers4::animation::{Easing, ParseEasingError};
+
+assert_eq!(Easing::parse("bounce"), Err(ParseEasingError::UnknownFunction));
+assert_eq!(Easing::parse("steps(0)"), Err(ParseEasingError::InvalidArguments));
+```
 
 ## Module `ansi` (Cargo feature `ansi`)
 
@@ -320,7 +695,8 @@ assert_eq!(visible_len("plain"), 5);
 Helpers for slices and `Vec`s that the standard library does not provide.
 
 Inputs are borrowed slices and results are new `Vec`s: nothing is mutated. Membership-based
-helpers require `Eq + Hash`.
+helpers require `Eq + Hash`. Shuffling and sampling live in the `random` module, where the
+generator is an argument.
 
 ### array::cartesian_product
 
@@ -569,6 +945,45 @@ assert_eq!(by_id[&2], ("bob", 2));
 assert_eq!(by_id[&1], ("cat", 1));
 ```
 
+### array::replace_or_append
+
+```rust
+pub fn replace_or_append<T: Clone>(
+    items: &[T],
+    item: T,
+    matches: impl FnMut(&T) -> bool,
+) -> Vec<T>
+```
+
+Replaces the first element that matches with `item`, or appends `item` when none does: the
+"upsert into a list" gesture.
+
+#### Arguments
+
+- `items` - The current elements.
+- `item` - The replacement, or the new element.
+- `matches` - Tells which existing element `item` replaces.
+
+#### Returns
+
+A new `Vec`; `items` is not changed.
+
+#### Examples
+
+```rust
+use helpers4::array::replace_or_append;
+
+let users = [(1, "ana"), (2, "bo")];
+assert_eq!(
+    replace_or_append(&users, (1, "Ana"), |u| u.0 == 1),
+    vec![(1, "Ana"), (2, "bo")]
+);
+assert_eq!(
+    replace_or_append(&users, (3, "cy"), |u| u.0 == 3),
+    vec![(1, "ana"), (2, "bo"), (3, "cy")]
+);
+```
+
 ### array::symmetric_difference
 
 ```rust
@@ -591,6 +1006,67 @@ of `b` missing from `a` (in `b`'s order). Duplicates are kept.
 use helpers4::array::symmetric_difference;
 
 assert_eq!(symmetric_difference(&[1, 2, 3], &[2, 3, 4]), vec![1, 4]);
+```
+
+### array::toggle
+
+```rust
+pub fn toggle<T: Clone + PartialEq>(items: &[T], item: T) -> Vec<T>
+```
+
+Removes `item` from `items` if it is there, adds it at the end if it is not: the usual
+"toggle a selection" gesture. Only the first occurrence is removed.
+
+#### Arguments
+
+- `items` - The current elements.
+- `item` - The element to toggle, compared with `==`.
+
+#### Returns
+
+A new `Vec`; `items` is not changed.
+
+#### Examples
+
+```rust
+use helpers4::array::toggle;
+
+assert_eq!(toggle(&[1, 2, 3], 2), vec![1, 3]);
+assert_eq!(toggle(&[1, 3], 2), vec![1, 3, 2]);
+```
+
+### array::toggle_by
+
+```rust
+pub fn toggle_by<T: Clone, K: PartialEq>(
+    items: &[T],
+    item: T,
+    mut key: impl FnMut(&T) -> K,
+) -> Vec<T>
+```
+
+Like `toggle`, but elements are the same when `key` gives the same value:
+toggle objects by id instead of by whole-value equality. Only the first match is removed.
+
+#### Arguments
+
+- `items` - The current elements.
+- `item` - The element to add, or whose key to remove.
+- `key` - Returns the identity to compare.
+
+#### Returns
+
+A new `Vec`; `items` is not changed.
+
+#### Examples
+
+```rust
+use helpers4::array::toggle_by;
+
+let layers = [("a", 1), ("b", 2)];
+// Same id: removed, whatever the other fields hold.
+assert_eq!(toggle_by(&layers, ("x", 1), |layer| layer.1), vec![("b", 2)]);
+assert_eq!(toggle_by(&layers, ("c", 3), |layer| layer.1), vec![("a", 1), ("b", 2), ("c", 3)]);
 ```
 
 ### array::unique
@@ -2085,7 +2561,7 @@ The lower-case name of the status.
 
 ## Module `color` (Cargo feature `color`)
 
-Colors without a dependency: parsing, hex, HSL, blending and WCAG contrast.
+Colors without a dependency: parsing, hex, CSS output, HSL, alpha, blending and WCAG contrast.
 
 `Rgb` is an 8-bit sRGB color that parses from `#rgb`, `#rrggbb`, `rgb(r, g, b)` or a basic CSS name;
 `Hsl` converts to and from it; `mix` blends two colors; `contrast_ratio` and `best_text_color` answer
@@ -2227,6 +2703,29 @@ The lightness.
 ##### Returns
 
 A value from `0.0` to `1.0`.
+
+#### Hsl::to_css
+
+```rust
+pub fn to_css(self) -> String
+```
+
+The CSS form `hsl(h s% l%)`, in the space-separated syntax every current browser and SVG
+renderer reads: the hue in degrees, saturation and lightness as percentages, all rounded
+to one decimal.
+
+##### Returns
+
+For instance `"hsl(210 100% 50%)"`.
+
+##### Examples
+
+```rust
+use helpers4::color::Hsl;
+
+assert_eq!(Hsl::new(210.0, 1.0, 0.5).to_css(), "hsl(210 100% 50%)");
+assert_eq!(Hsl::new(359.97, 0.1234, 0.5).to_css(), "hsl(0 12.3% 50%)");
+```
 
 #### Hsl::to_rgb
 
@@ -2385,6 +2884,27 @@ The `#rrggbb` form, in lower case.
 
 For instance `"#ff8800"`.
 
+#### Rgb::to_css
+
+```rust
+pub fn to_css(self) -> String
+```
+
+The CSS form `rgb(r g b)`, in the space-separated syntax every current browser and SVG
+renderer reads.
+
+##### Returns
+
+For instance `"rgb(255 136 0)"`.
+
+##### Examples
+
+```rust
+use helpers4::color::Rgb;
+
+assert_eq!(Rgb::new(255, 136, 0).to_css(), "rgb(255 136 0)");
+```
+
 #### Rgb::to_hsl
 
 ```rust
@@ -2445,6 +2965,248 @@ Moves the color towards black.
 ##### Returns
 
 The darker color.
+
+### color::Rgba
+
+```rust
+pub struct Rgba { /* private fields */ }
+```
+
+An sRGB color with 8 bits per channel and an alpha (opacity) channel.
+
+`Rgb` is always opaque; `Rgba` adds the alpha of `#rrggbbaa` and `rgb(r g b / a)`. The alpha
+is a `u8` like the other channels: `255` is opaque, `0` fully transparent. `Display` writes
+the `#rrggbb` form when opaque and `#rrggbbaa` otherwise.
+
+#### Examples
+
+```rust
+use helpers4::color::{Rgb, Rgba};
+
+let glass = Rgba::parse("#ff880080")?;
+assert_eq!((glass.r(), glass.g(), glass.b(), glass.a()), (255, 136, 0, 128));
+assert_eq!(glass.to_css(), "rgb(255 136 0 / 0.502)");
+assert_eq!(glass.to_rgb(), Rgb::new(255, 136, 0)); // drops the alpha
+assert_eq!(Rgba::parse("rgb(255 136 0 / 50%)")?.a(), 128);
+```
+
+#### Rgba::new
+
+```rust
+pub fn new(r: u8, g: u8, b: u8, a: u8) -> Self
+```
+
+Builds a color from its four channels.
+
+##### Arguments
+
+- `r` - Red, `0..=255`.
+- `g` - Green, `0..=255`.
+- `b` - Blue, `0..=255`.
+- `a` - Alpha, `0` (transparent) to `255` (opaque).
+
+##### Returns
+
+The color.
+
+##### Examples
+
+```rust
+use helpers4::color::Rgba;
+
+assert_eq!(Rgba::new(255, 0, 0, 255).to_hex(), "#ff0000");
+```
+
+#### Rgba::from_rgb
+
+```rust
+pub fn from_rgb(rgb: Rgb, a: u8) -> Self
+```
+
+Adds an alpha to an opaque color.
+
+##### Arguments
+
+- `rgb` - The color.
+- `a` - Alpha, `0` (transparent) to `255` (opaque).
+
+##### Returns
+
+The color with that alpha.
+
+##### Examples
+
+```rust
+use helpers4::color::{Rgb, Rgba};
+
+assert_eq!(Rgba::from_rgb(Rgb::new(1, 2, 3), 4), Rgba::new(1, 2, 3, 4));
+```
+
+#### Rgba::parse
+
+```rust
+pub fn parse(text: &str) -> Result<Self, ParseColorError>
+```
+
+Parses a color written as `#rgba`, `#rrggbbaa`, `rgb(r g b / a)`, `rgb(r, g, b, a)`,
+`rgba(...)`, or any form `Rgb::parse` reads (which is opaque).
+
+The alpha of a function is a number (`0.5`) or a percentage (`50%`); like in CSS, a value
+outside `0..=1` is clamped. Surrounding whitespace is ignored, and so is case.
+
+##### Arguments
+
+- `text` - The color to parse.
+
+##### Returns
+
+The color.
+
+##### Errors
+
+A `ParseColorError` for an empty text, a `#` color with a bad length or digit, a
+malformed or out-of-range function, or an unknown name.
+
+##### Examples
+
+```rust
+use helpers4::color::Rgba;
+
+assert_eq!(Rgba::parse("#f808")?, Rgba::new(255, 136, 0, 136));
+assert_eq!(Rgba::parse("rgba(0, 0, 0, 0.5)")?, Rgba::new(0, 0, 0, 128));
+assert_eq!(Rgba::parse("red")?, Rgba::new(255, 0, 0, 255));
+```
+
+#### Rgba::r
+
+```rust
+pub fn r(self) -> u8
+```
+
+The red channel.
+
+##### Returns
+
+A value from `0` to `255`.
+
+#### Rgba::g
+
+```rust
+pub fn g(self) -> u8
+```
+
+The green channel.
+
+##### Returns
+
+A value from `0` to `255`.
+
+#### Rgba::b
+
+```rust
+pub fn b(self) -> u8
+```
+
+The blue channel.
+
+##### Returns
+
+A value from `0` to `255`.
+
+#### Rgba::a
+
+```rust
+pub fn a(self) -> u8
+```
+
+The alpha channel.
+
+##### Returns
+
+A value from `0` (transparent) to `255` (opaque).
+
+#### Rgba::opacity
+
+```rust
+pub fn opacity(self) -> f64
+```
+
+The alpha as an opacity.
+
+##### Returns
+
+A value from `0.0` (transparent) to `1.0` (opaque).
+
+##### Examples
+
+```rust
+use helpers4::color::Rgba;
+
+assert_eq!(Rgba::new(0, 0, 0, 255).opacity(), 1.0);
+assert_eq!(Rgba::new(0, 0, 0, 0).opacity(), 0.0);
+```
+
+#### Rgba::to_rgb
+
+```rust
+pub fn to_rgb(self) -> Rgb
+```
+
+The same color without its alpha.
+
+##### Returns
+
+The opaque `Rgb`.
+
+##### Examples
+
+```rust
+use helpers4::color::{Rgb, Rgba};
+
+assert_eq!(Rgba::new(1, 2, 3, 4).to_rgb(), Rgb::new(1, 2, 3));
+```
+
+#### Rgba::to_hex
+
+```rust
+pub fn to_hex(self) -> String
+```
+
+The `#rrggbb` form when opaque, `#rrggbbaa` otherwise, in lower case.
+
+##### Returns
+
+For instance `"#ff8800"` or `"#ff880080"`.
+
+##### Examples
+
+```rust
+use helpers4::color::Rgba;
+
+assert_eq!(Rgba::new(255, 136, 0, 128).to_hex(), "#ff880080");
+```
+
+#### Rgba::to_css
+
+```rust
+pub fn to_css(self) -> String
+```
+
+The CSS form: `rgb(r g b)` when opaque, `rgb(r g b / alpha)` otherwise, with the alpha
+as an opacity rounded to 3 decimals.
+
+##### Returns
+
+For instance `"rgb(255 136 0 / 0.502)"`.
+
+##### Examples
+
+```rust
+use helpers4::color::Rgba;
+
+assert_eq!(Rgba::new(255, 136, 0, 255).to_css(), "rgb(255 136 0)");
+assert_eq!(Rgba::new(255, 136, 0, 0).to_css(), "rgb(255 136 0 / 0)");
+```
 
 ### color::ParseColorError
 
@@ -4160,8 +4922,96 @@ block_on(async {
 2D geometry in `f64`: `Point`, `Rect` and the affine `Matrix`, in the layout of CSS and
 SVG `matrix(a b c d e f)`.
 
-Enough to map between coordinate spaces: multiply transforms, invert one to bring a point
-back, and take the bounding box of a transformed rectangle (hit areas, gradient bounds).
+Enough to map between coordinate spaces: build and multiply transforms, invert one to bring a
+point back, take the bounding box of a transformed rectangle (hit areas, gradient bounds), place
+content in a container like CSS `object-fit` (`fit`), and simplify a polyline.
+
+### geometry::FitAlign
+
+```rust
+pub struct FitAlign { /* private fields */ }
+```
+
+Where `fit` places content in the space left over (or overflowing), as CSS
+`object-position`: `0.0` is left or top, `0.5` centered, `1.0` right or bottom.
+
+#### Examples
+
+```rust
+use helpers4::geometry::FitAlign;
+
+assert_eq!(FitAlign::default(), FitAlign::CENTER);
+assert_eq!(FitAlign::new(0.0, 0.0).x, 0.0);
+```
+
+### geometry::FitMode
+
+```rust
+pub enum FitMode {
+    /// As large as possible while staying entirely inside (bands remain on two sides). The default.
+    #[default]
+    Contain,
+    /// As small as possible while covering the whole container (it overflows on two sides).
+    Cover,
+    /// Stretched to the container on each axis, proportions not kept.
+    Fill,
+    /// Not scaled (CSS `object-fit: none`).
+    Original,
+    /// Like [`Contain`](Self::Contain), but never enlarged.
+    ScaleDown,
+}
+```
+
+How `fit` sizes content in a container, as CSS `object-fit`.
+
+#### Examples
+
+```rust
+use helpers4::geometry::{fit, FitAlign, FitMode, Size};
+
+let frame = Size::new(200.0, 100.0);
+let viewport = Size::new(100.0, 100.0);
+let whole = fit(frame, viewport, FitMode::Contain, FitAlign::CENTER);
+let filled = fit(frame, viewport, FitMode::Cover, FitAlign::CENTER);
+assert_eq!((whole.a, filled.a), (0.5, 1.0));
+```
+
+### geometry::fit
+
+```rust
+pub fn fit(content: Size, container: Size, mode: FitMode, align: FitAlign) -> Matrix
+```
+
+Places content in a container like CSS `object-fit` and `object-position`, e.g. to show a
+design frame in a viewport of another size.
+
+The result is the matrix from content coordinates to container coordinates: `a` and `d` are
+the scales, `e` and `f` the position of the content's top-left corner. Map points with
+`Matrix::apply`, combine it with `Matrix::multiply`, or write it with
+`Matrix::to_css`. Sizes are expected to be positive.
+
+#### Arguments
+
+- `content` - The size of the content.
+- `container` - The size of the container.
+- `mode` - How to size the content.
+- `align` - Where to place it.
+
+#### Returns
+
+The content-to-container matrix.
+
+#### Examples
+
+```rust
+use helpers4::geometry::{fit, FitAlign, FitMode, Matrix, Size};
+
+let m = fit(Size::new(200.0, 100.0), Size::new(100.0, 100.0), FitMode::Contain, FitAlign::CENTER);
+assert_eq!(m, Matrix::new(0.5, 0.0, 0.0, 0.5, 0.0, 25.0));
+
+let left = fit(Size::new(200.0, 100.0), Size::new(100.0, 100.0), FitMode::Cover, FitAlign::new(0.0, 0.5));
+assert_eq!(left, Matrix::new(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)); // cropped on the right
+```
 
 ### geometry::Matrix
 
@@ -4188,6 +5038,32 @@ let shift = Matrix::new(1.0, 0.0, 0.0, 1.0, 10.0, 0.0);
 let m = shift.multiply(scale);
 assert_eq!(m.apply(Point::new(1.0, 1.0)), Point::new(12.0, 2.0));
 assert_eq!(m.invert().map(|inv| inv.apply(Point::new(12.0, 2.0))), Some(Point::new(1.0, 1.0)));
+```
+
+#### Matrix::rotate
+
+```rust
+pub fn rotate(radians: f64) -> Self
+```
+
+A rotation around the origin. With the y axis pointing down (screens, CSS, SVG), a
+positive angle turns clockwise, like CSS `rotate()`.
+
+##### Arguments
+
+- `radians` - The angle, in radians.
+
+##### Returns
+
+The matrix.
+
+##### Examples
+
+```rust
+use helpers4::geometry::{Matrix, Point};
+
+let p = Matrix::rotate(std::f64::consts::FRAC_PI_2).apply(Point::new(1.0, 0.0));
+assert!(p.x.abs() < 1e-12 && (p.y - 1.0).abs() < 1e-12);
 ```
 
 #### Matrix::multiply
@@ -4243,6 +5119,29 @@ use helpers4::geometry::Matrix;
 let shift = Matrix::new(1.0, 0.0, 0.0, 1.0, 10.0, 5.0);
 assert_eq!(shift.invert(), Some(Matrix::new(1.0, 0.0, 0.0, 1.0, -10.0, -5.0)));
 assert_eq!(Matrix::new(0.0, 0.0, 0.0, 0.0, 1.0, 1.0).invert(), None);
+```
+
+#### Matrix::to_css
+
+```rust
+pub fn to_css(self) -> String
+```
+
+The CSS and SVG `transform` value, `matrix(a, b, c, d, e, f)`.
+
+Entries are written as Rust prints them, without rounding (and `0` for `-0`); a
+non-finite entry gives a value CSS rejects.
+
+##### Returns
+
+For instance `"matrix(2, 0, 0, 2, 10, -5)"`.
+
+##### Examples
+
+```rust
+use helpers4::geometry::Matrix;
+
+assert_eq!(Matrix::new(2.0, 0.0, 0.0, 2.0, 10.0, -5.0).to_css(), "matrix(2, 0, 0, 2, 10, -5)");
 ```
 
 #### Matrix::apply
@@ -4351,6 +5250,170 @@ use helpers4::geometry::Rect;
 assert_eq!(Rect::new(1.0, 0.0, 2.0, 0.0).right(), 3.0);
 ```
 
+#### Rect::union
+
+```rust
+pub fn union(&self, other: &Self) -> Self
+```
+
+The smallest rectangle that contains both `self` and `other`.
+
+##### Arguments
+
+- `other` - The other rectangle.
+
+##### Returns
+
+The bounding rectangle.
+
+##### Examples
+
+```rust
+use helpers4::geometry::Rect;
+
+let a = Rect::new(0.0, 0.0, 10.0, 10.0);
+let b = Rect::new(20.0, 5.0, 10.0, 10.0);
+assert_eq!(a.union(&b), Rect::new(0.0, 0.0, 30.0, 15.0));
+```
+
+#### Rect::bounding
+
+```rust
+pub fn bounding(rects: &[Self]) -> Option<Self>
+```
+
+The smallest rectangle that contains all of `rects`, e.g. the bounds of a group of layers.
+
+##### Arguments
+
+- `rects` - The rectangles.
+
+##### Returns
+
+The bounding rectangle, or `None` for no rectangle.
+
+##### Examples
+
+```rust
+use helpers4::geometry::Rect;
+
+let group = [Rect::new(0.0, 0.0, 10.0, 10.0), Rect::new(20.0, 5.0, 10.0, 10.0)];
+assert_eq!(Rect::bounding(&group), Some(Rect::new(0.0, 0.0, 30.0, 15.0)));
+assert_eq!(Rect::bounding(&[]), None);
+```
+
+#### Rect::intersection
+
+```rust
+pub fn intersection(&self, other: &Self) -> Option<Self>
+```
+
+The area `self` and `other` have in common.
+
+Rectangles that only touch (along an edge or at a corner) have no area in common.
+
+##### Arguments
+
+- `other` - The other rectangle.
+
+##### Returns
+
+The overlapping rectangle, or `None` when they do not overlap.
+
+##### Examples
+
+```rust
+use helpers4::geometry::Rect;
+
+let a = Rect::new(0.0, 0.0, 10.0, 10.0);
+assert_eq!(a.intersection(&Rect::new(5.0, 5.0, 10.0, 10.0)), Some(Rect::new(5.0, 5.0, 5.0, 5.0)));
+assert_eq!(a.intersection(&Rect::new(10.0, 0.0, 10.0, 10.0)), None); // only touching
+```
+
+#### Rect::intersects
+
+```rust
+pub fn intersects(&self, other: &Self) -> bool
+```
+
+Whether `self` and `other` have an area in common: exactly when
+`intersection` returns a rectangle (touching rectangles and empty
+ones do not).
+
+##### Arguments
+
+- `other` - The other rectangle.
+
+##### Returns
+
+`true` if they overlap.
+
+##### Examples
+
+```rust
+use helpers4::geometry::Rect;
+
+let a = Rect::new(0.0, 0.0, 10.0, 10.0);
+assert!(a.intersects(&Rect::new(5.0, 5.0, 10.0, 10.0)));
+assert!(!a.intersects(&Rect::new(10.0, 0.0, 10.0, 10.0)));
+```
+
+#### Rect::contains_point
+
+```rust
+pub fn contains_point(&self, point: Point) -> bool
+```
+
+Whether a point is inside the rectangle, for hit-testing.
+
+The left and top edges are inside, the right and bottom ones are not, so a point on the
+edge between two adjacent rectangles hits exactly one of them.
+
+##### Arguments
+
+- `point` - The point to test.
+
+##### Returns
+
+`true` if the point is inside.
+
+##### Examples
+
+```rust
+use helpers4::geometry::{Point, Rect};
+
+let r = Rect::new(0.0, 0.0, 10.0, 10.0);
+assert!(r.contains_point(Point::new(0.0, 5.0)));
+assert!(!r.contains_point(Point::new(10.0, 5.0)));
+```
+
+#### Rect::contains_rect
+
+```rust
+pub fn contains_rect(&self, other: &Self) -> bool
+```
+
+Whether `other` is inside the rectangle: it does not stick out on any side, and may touch
+any edge.
+
+##### Arguments
+
+- `other` - The rectangle to test.
+
+##### Returns
+
+`true` if `other` is entirely inside (or equal to) `self`.
+
+##### Examples
+
+```rust
+use helpers4::geometry::Rect;
+
+let screen = Rect::new(0.0, 0.0, 100.0, 100.0);
+assert!(screen.contains_rect(&Rect::new(10.0, 10.0, 90.0, 90.0)));
+assert!(!screen.contains_rect(&Rect::new(50.0, 50.0, 100.0, 10.0)));
+```
+
 #### Rect::bottom
 
 ```rust
@@ -4369,6 +5432,60 @@ The y coordinate of the bottom edge.
 use helpers4::geometry::Rect;
 
 assert_eq!(Rect::new(0.0, 1.0, 0.0, 2.0).bottom(), 3.0);
+```
+
+### geometry::simplify_polyline
+
+```rust
+pub fn simplify_polyline(points: &[Point], tolerance: f64) -> Option<Vec<Point>>
+```
+
+Removes the points of a polyline that change its shape by less than `tolerance`, with the
+Ramer–Douglas–Peucker algorithm: each removed point is at most `tolerance` away from the
+simplified line. It shrinks map outlines or traced paths by orders of magnitude while keeping
+their look.
+
+The first and last points are always kept. With a `tolerance` of `0.0`, only points exactly on
+a straight line are removed. It is iterative, so very long polylines cannot overflow the stack.
+
+#### Arguments
+
+- `points` - The polyline.
+- `tolerance` - The maximum distance between a removed point and the result, in the units of
+  the points.
+
+#### Returns
+
+The kept points in their original order, or `None` when `tolerance` is negative or `NaN`.
+
+#### Examples
+
+```rust
+use helpers4::geometry::{simplify_polyline, Point};
+
+let line = [Point::new(0.0, 0.0), Point::new(1.0, 0.1), Point::new(2.0, 0.0)];
+assert_eq!(
+    simplify_polyline(&line, 0.5),
+    Some(vec![Point::new(0.0, 0.0), Point::new(2.0, 0.0)])
+);
+assert_eq!(simplify_polyline(&line, -1.0), None);
+```
+
+### geometry::Size
+
+```rust
+pub struct Size { /* private fields */ }
+```
+
+A width and a height.
+
+#### Examples
+
+```rust
+use helpers4::geometry::Size;
+
+let frame = Size::new(390.0, 844.0);
+assert_eq!((frame.width, frame.height), (390.0, 844.0));
 ```
 
 ## Module `hex` (Cargo feature `hex`)
@@ -4715,6 +5832,583 @@ assert_eq!(bearer_token("Bearer abc.def-123"), Some("abc.def-123"));
 assert_eq!(bearer_token("bearer   abc"), Some("abc"));
 assert_eq!(bearer_token("Basic dXNlcjpwYXNz"), None);
 assert_eq!(bearer_token("Bearer "), None);
+```
+
+## Module `id` (Cargo feature `id`)
+
+Unique identifiers without the `uuid` or `ulid` crates: `Uuid` (v4 random, v7 sortable by
+time), `Ulid`, and short URL-safe ids over an `Alphabet`.
+
+Randomness and time are **parameters**: `Uuid::v4(random_bytes)`, `Uuid::v7(unix_millis,
+random_bytes)`, `Ulid::from_parts(unix_millis, random_bytes)` and `short_id(alphabet, len,
+&mut rng)` are pure, so they are testable and work anywhere, `wasm32-unknown-unknown`
+included. With the `random-entropy` feature, `Uuid::new_v4`, `Uuid::new_v7`, `Ulid::new` and
+`new_short_id` take both from the operating system and the clock.
+
+Ids made with a seeded `Rng` are reproducible, not secret.
+
+### id::Alphabet
+
+```rust
+pub struct Alphabet { /* private fields */ }
+```
+
+The characters a short id is made of: between 2 and 256 distinct characters.
+
+Presets cover the common cases; `new` checks a custom set. Every character has
+the same probability in an id, which needs them distinct (a repeated character would be more
+likely) and no more than a byte of randomness can index (256).
+
+#### Examples
+
+```rust
+use helpers4::id::Alphabet;
+
+assert_eq!(Alphabet::numbers().size(), 10);
+assert_eq!(Alphabet::safe().size(), 56); // no 0 O o 1 I l: fine to read aloud or retype
+assert_eq!(Alphabet::new("ACGT")?.size(), 4);
+```
+
+#### Alphabet::new
+
+```rust
+pub fn new(characters: &str) -> Result<Self, AlphabetError>
+```
+
+A custom alphabet.
+
+##### Arguments
+
+- `characters` - The characters, each once, in any order.
+
+##### Returns
+
+The alphabet.
+
+##### Errors
+
+Returns an `AlphabetError` for fewer than 2 characters, more than 256, or a repeated
+character.
+
+##### Examples
+
+```rust
+use helpers4::id::{Alphabet, AlphabetError};
+
+assert!(Alphabet::new("01").is_ok());
+assert_eq!(Alphabet::new("aa"), Err(AlphabetError::Duplicate { character: 'a' }));
+```
+
+#### Alphabet::numbers
+
+```rust
+pub fn numbers() -> Self
+```
+
+The digits `0-9`.
+
+##### Returns
+
+The alphabet.
+
+##### Examples
+
+```rust
+use helpers4::id::Alphabet;
+
+assert_eq!(Alphabet::numbers().size(), 10);
+```
+
+#### Alphabet::lowercase
+
+```rust
+pub fn lowercase() -> Self
+```
+
+The lowercase letters `a-z`.
+
+##### Returns
+
+The alphabet.
+
+##### Examples
+
+```rust
+use helpers4::id::Alphabet;
+
+assert_eq!(Alphabet::lowercase().size(), 26);
+```
+
+#### Alphabet::uppercase
+
+```rust
+pub fn uppercase() -> Self
+```
+
+The uppercase letters `A-Z`.
+
+##### Returns
+
+The alphabet.
+
+##### Examples
+
+```rust
+use helpers4::id::Alphabet;
+
+assert_eq!(Alphabet::uppercase().size(), 26);
+```
+
+#### Alphabet::alphanumeric
+
+```rust
+pub fn alphanumeric() -> Self
+```
+
+Letters and digits, `A-Za-z0-9`.
+
+##### Returns
+
+The alphabet.
+
+##### Examples
+
+```rust
+use helpers4::id::Alphabet;
+
+assert_eq!(Alphabet::alphanumeric().size(), 62);
+```
+
+#### Alphabet::url_safe
+
+```rust
+pub fn url_safe() -> Self
+```
+
+The 64 characters that are safe in a URL path and a file name without escaping:
+`A-Za-z0-9_-`.
+
+##### Returns
+
+The alphabet.
+
+##### Examples
+
+```rust
+use helpers4::id::Alphabet;
+
+assert_eq!(Alphabet::url_safe().size(), 64);
+```
+
+#### Alphabet::safe
+
+```rust
+pub fn safe() -> Self
+```
+
+Letters and digits without the characters that look alike, for ids a person reads or
+types: no `0`, `1`, `O`, `o`, `I` or `l`.
+
+##### Returns
+
+The alphabet, 56 characters.
+
+##### Examples
+
+```rust
+use helpers4::id::Alphabet;
+
+assert_eq!(Alphabet::safe().size(), 56);
+```
+
+#### Alphabet::size
+
+```rust
+pub fn size(&self) -> usize
+```
+
+The number of characters.
+
+##### Returns
+
+A number from 2 to 256.
+
+##### Examples
+
+```rust
+use helpers4::id::Alphabet;
+
+assert_eq!(Alphabet::new("abc")?.size(), 3);
+```
+
+### id::new_short_id
+
+```rust
+pub fn new_short_id(alphabet: &Alphabet, len: usize) -> Result<String, EntropyError>
+```
+
+A short id of `len` characters drawn from an `Alphabet` with the operating system's random
+source, every character equally likely.
+
+Needs the `random-entropy` feature. Bytes that would favor some characters (256 is rarely a
+multiple of the alphabet size) are discarded, not folded with a modulo. The result carries
+`len × log2(size)` bits of randomness: 21 characters of `url_safe` give
+126 bits, as much as a UUID.
+
+#### Arguments
+
+- `alphabet` - The characters to draw from.
+- `len` - The number of characters.
+
+#### Returns
+
+A string of `len` characters.
+
+#### Errors
+
+Returns an `EntropyError` when the operating system cannot provide random bytes.
+
+#### Examples
+
+```rust
+use helpers4::id::{new_short_id, Alphabet};
+
+let id = new_short_id(&Alphabet::url_safe(), 21)?;
+assert_eq!(id.chars().count(), 21);
+```
+
+### id::short_id
+
+```rust
+pub fn short_id(alphabet: &Alphabet, len: usize, rng: &mut Rng) -> String
+```
+
+A short id of `len` characters drawn from an `Alphabet` with a seedable generator, every
+character equally likely.
+
+The same generator state always gives the same id, which makes it right for tests and
+reproducible fixtures, and **wrong for anything secret** (a 64-bit seed can be guessed): use
+`new_short_id` (feature `random-entropy`) for tokens.
+
+#### Arguments
+
+- `alphabet` - The characters to draw from.
+- `len` - The number of characters.
+- `rng` - The generator that decides them.
+
+#### Returns
+
+A string of `len` characters (`len` characters, not bytes, for a non-ASCII alphabet).
+
+#### Examples
+
+```rust
+use helpers4::id::{short_id, Alphabet};
+use helpers4::random::Rng;
+
+let id = short_id(&Alphabet::safe(), 8, &mut Rng::seeded(1));
+assert_eq!(id.chars().count(), 8);
+assert_eq!(id, short_id(&Alphabet::safe(), 8, &mut Rng::seeded(1))); // reproducible
+```
+
+### id::Ulid
+
+```rust
+pub struct Ulid(u128) { /* private fields */ }
+```
+
+A ULID: 128 bits made of a 48-bit millisecond timestamp and 80 random bits, written as 26
+characters of Crockford's base32 (`01ARYZ6S41TSV4RRFFQ69G5FAV`).
+
+Ulids sort by creation time, both as numbers and as text, and are shorter than a UUID. Time
+and randomness are **parameters** of `from_parts`; with the
+`random-entropy` feature, `new` takes them from the system. Ids made in the
+same millisecond are not ordered among themselves (there is no monotonic counter).
+
+#### Examples
+
+```rust
+use helpers4::id::Ulid;
+
+let id = Ulid::from_parts(1_469_918_176_385, [0; 10]);
+assert_eq!(id.to_string(), "01ARYZ6S410000000000000000");
+assert_eq!(id.timestamp_millis(), 1_469_918_176_385);
+assert_eq!(Ulid::parse("01ARYZ6S41TSV4RRFFQ69G5FAV").map(|u| u.timestamp_millis()), Ok(1_469_918_176_385));
+```
+
+#### Ulid::parse
+
+```rust
+pub fn parse(text: &str) -> Result<Self, ParseUlidError>
+```
+
+Reads a ULID from its 26-character form, in upper or lower case. Only the 32 symbols of
+Crockford's base32 are accepted (`I`, `L`, `O` and `U` are not).
+
+##### Arguments
+
+- `text` - The text to read.
+
+##### Returns
+
+The ULID.
+
+##### Errors
+
+Returns a `ParseUlidError` for a length other than 26, a character outside the
+alphabet, or a first character above `7` (the value would not fit in 128 bits).
+
+##### Examples
+
+```rust
+use helpers4::id::Ulid;
+
+let id = Ulid::parse("01aryz6s41tsv4rrffq69g5fav")?;
+assert_eq!(id.to_string(), "01ARYZ6S41TSV4RRFFQ69G5FAV");
+```
+
+#### Ulid::new
+
+```rust
+pub fn new() -> Result<Self, crate::random::EntropyError>
+```
+
+A ULID with the current time from the system clock and random bits from the operating
+system.
+
+Needs the `random-entropy` feature. A clock set before 1970 gives a timestamp of `0`.
+
+##### Returns
+
+The ULID.
+
+##### Errors
+
+Returns an `EntropyError` when the operating system cannot
+provide random bytes.
+
+##### Examples
+
+```rust
+use helpers4::id::Ulid;
+
+let id = Ulid::new()?;
+assert_eq!(id.to_string().len(), 26);
+```
+
+### id::Uuid
+
+```rust
+pub struct Uuid([u8; 16]) { /* private fields */ }
+```
+
+A UUID (RFC 9562): 128 bits, written `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`.
+
+Two kinds can be built here, from randomness and time **you pass in** (see
+`new_v4` and `new_v7`, with the `random-entropy` feature, to
+take them from the system):
+
+- `v4`: 122 random bits, the general-purpose unique id;
+- `v7`: a millisecond timestamp followed by random bits, so ids sort by creation
+  time, which keeps database indexes compact.
+
+`Display` writes the lowercase hyphenated form; `parse` reads it back (and the
+32-digit form without hyphens, in any case).
+
+#### Examples
+
+```rust
+use helpers4::id::Uuid;
+
+let id = Uuid::v4([0xff; 16]); // pass random bytes from your entropy source
+assert_eq!(id.to_string(), "ffffffff-ffff-4fff-bfff-ffffffffffff");
+assert_eq!(id.version(), 4);
+
+let sortable = Uuid::v7(1_700_000_000_000, [0; 10]);
+assert_eq!(sortable.timestamp_millis(), Some(1_700_000_000_000));
+assert_eq!(Uuid::parse(&sortable.to_string()), Ok(sortable));
+```
+
+#### Uuid::parse
+
+```rust
+pub fn parse(text: &str) -> Result<Self, ParseUuidError>
+```
+
+Reads a UUID from text: the hyphenated form `8-4-4-4-12` or 32 digits without hyphens,
+upper or lower case. Braces and `urn:uuid:` prefixes are not accepted.
+
+The version and variant bits are not checked: any 128-bit value is a valid UUID here.
+
+##### Arguments
+
+- `text` - The text to read.
+
+##### Returns
+
+The UUID.
+
+##### Errors
+
+Returns a `ParseUuidError` for a length other than 36 or 32, a character that is not a
+hexadecimal digit, or a hyphen that is not at its place.
+
+##### Examples
+
+```rust
+use helpers4::id::Uuid;
+
+let id = Uuid::parse("123E4567-e89b-12d3-a456-426614174000")?;
+assert_eq!(id.version(), 1);
+assert_eq!(id.to_string(), "123e4567-e89b-12d3-a456-426614174000");
+assert_eq!(Uuid::parse("123e4567e89b12d3a456426614174000"), Ok(id));
+```
+
+#### Uuid::new_v4
+
+```rust
+pub fn new_v4() -> Result<Self, crate::random::EntropyError>
+```
+
+A random (version 4) UUID, with bytes from the operating system.
+
+Needs the `random-entropy` feature.
+
+##### Returns
+
+The UUID.
+
+##### Errors
+
+Returns an `EntropyError` when the operating system cannot
+provide random bytes.
+
+##### Examples
+
+```rust
+use helpers4::id::Uuid;
+
+let id = Uuid::new_v4()?;
+assert_eq!(id.version(), 4);
+```
+
+#### Uuid::new_v7
+
+```rust
+pub fn new_v7() -> Result<Self, crate::random::EntropyError>
+```
+
+A time-sortable (version 7) UUID, with the current time from the system clock and
+random bytes from the operating system.
+
+Needs the `random-entropy` feature. A clock set before 1970 gives a timestamp of `0`.
+
+##### Returns
+
+The UUID.
+
+##### Errors
+
+Returns an `EntropyError` when the operating system cannot
+provide random bytes.
+
+##### Examples
+
+```rust
+use helpers4::id::Uuid;
+
+let id = Uuid::new_v7()?;
+assert_eq!(id.version(), 7);
+assert!(id.timestamp_millis().is_some_and(|ms| ms > 1_700_000_000_000));
+```
+
+### id::AlphabetError
+
+```rust
+pub enum AlphabetError {
+    /// Fewer than 2 characters: an id would carry no information.
+    TooShort {
+        /// Number of characters given.
+        found: usize,
+    },
+    /// More than 256 characters, which a byte of randomness cannot index.
+    TooLong {
+        /// Number of characters given.
+        found: usize,
+    },
+    /// A character appears twice, which would make it more likely than the others.
+    Duplicate {
+        /// The repeated character.
+        character: char,
+    },
+}
+```
+
+Why a string cannot be an `Alphabet`.
+
+#### Examples
+
+```rust
+use helpers4::id::{Alphabet, AlphabetError};
+
+assert_eq!(Alphabet::new("a"), Err(AlphabetError::TooShort { found: 1 }));
+assert_eq!(Alphabet::new("abca"), Err(AlphabetError::Duplicate { character: 'a' }));
+```
+
+### id::ParseUlidError
+
+```rust
+pub enum ParseUlidError {
+    /// The string does not have 26 characters.
+    InvalidLength {
+        /// Length of the input in bytes.
+        found: usize,
+    },
+    /// A byte is not one of the 32 symbols of Crockford's base32.
+    InvalidCharacter {
+        /// Byte offset of the offending byte in the input.
+        index: usize,
+    },
+    /// The first character is above `7`: the value would not fit in 128 bits.
+    Overflow,
+}
+```
+
+Why a string is not a `Ulid`.
+
+#### Examples
+
+```rust
+use helpers4::id::{ParseUlidError, Ulid};
+
+assert_eq!(Ulid::parse("8ZZZZZZZZZZZZZZZZZZZZZZZZZ"), Err(ParseUlidError::Overflow));
+```
+
+### id::ParseUuidError
+
+```rust
+pub enum ParseUuidError {
+    /// The string has neither 36 characters (`8-4-4-4-12`) nor 32 (no hyphens).
+    InvalidLength {
+        /// Length of the input in bytes.
+        found: usize,
+    },
+    /// A byte is not a hexadecimal digit, or a hyphen is not at its place.
+    InvalidCharacter {
+        /// Byte offset of the offending byte in the input.
+        index: usize,
+    },
+}
+```
+
+Why a string is not a `Uuid`.
+
+#### Examples
+
+```rust
+use helpers4::id::{ParseUuidError, Uuid};
+
+assert_eq!(Uuid::parse("not-a-uuid"), Err(ParseUuidError::InvalidLength { found: 10 }));
 ```
 
 ## Module `iter` (Cargo feature `iter`)
@@ -5784,6 +7478,394 @@ assert_eq!(round_to(-2.5, 0), -3.0);
 assert_eq!(round_to(1234.0, 0), 1234.0);
 ```
 
+## Module `random` (Cargo feature `random`)
+
+Randomness without a hidden global generator.
+
+`Rng` is a small seedable generator for work that must be reproducible and testable:
+`shuffle`, `sample` and `choose` take it as an argument, so the same seed always gives
+the same result. It is **not** for secrets: a 64-bit seed can be guessed.
+
+Keys, tokens and anything an attacker must not predict come from the operating system, with
+the `random-entropy` feature (not in `default`, it pulls the `getrandom` crate):
+`random_bytes`, `random_hex`, `random_alphanumeric` and `Rng::from_entropy`. They
+return an `EntropyError` when the system cannot provide bytes, and never fall back to
+weaker randomness. They are not built for `wasm32-unknown-unknown`, which has no default
+entropy source: pass bytes from the host (`crypto.getRandomValues`) to the pure constructors
+of the `id` module instead.
+
+### random::choose
+
+```rust
+pub fn choose<'a, T>(items: &'a [T], rng: &mut Rng) -> Option<&'a T>
+```
+
+Picks one element at random, each with the same probability.
+
+#### Arguments
+
+- `items` - The elements to pick from.
+- `rng` - The generator that decides the pick.
+
+#### Returns
+
+A reference to the chosen element, or `None` when `items` is empty.
+
+#### Examples
+
+```rust
+use helpers4::random::{choose, Rng};
+
+let names = ["ana", "bo", "cy"];
+let pick = choose(&names, &mut Rng::seeded(3));
+assert!(pick.is_some_and(|name| names.contains(name)));
+assert_eq!(choose::<u8>(&[], &mut Rng::seeded(3)), None);
+```
+
+### random::random_alphanumeric
+
+```rust
+pub fn random_alphanumeric(len: usize) -> Result<String, EntropyError>
+```
+
+A random string of letters and digits (`A-Za-z0-9`) from the operating system's random
+source, with every character equally likely.
+
+Needs the `random-entropy` feature. Bytes that would favor some characters are discarded
+rather than folded with a modulo (256 is not a multiple of 62), so a 20-character result
+carries `20 × log2(62)` ≈ 119 bits of randomness.
+
+#### Arguments
+
+- `len` - The number of characters.
+
+#### Returns
+
+A string of `len` characters, or an `EntropyError`.
+
+#### Errors
+
+Returns an `EntropyError` when the operating system cannot provide random bytes.
+
+#### Examples
+
+```rust
+use helpers4::random::random_alphanumeric;
+
+let token = random_alphanumeric(24)?;
+assert_eq!(token.len(), 24);
+assert!(token.chars().all(|c| c.is_ascii_alphanumeric()));
+```
+
+### random::random_bytes
+
+```rust
+pub fn random_bytes(len: usize) -> Result<Vec<u8>, EntropyError>
+```
+
+Random bytes from the operating system, suitable for keys, tokens and salts.
+
+Needs the `random-entropy` feature. It returns an error rather than weaker randomness when
+the system cannot provide bytes.
+
+#### Arguments
+
+- `len` - The number of bytes.
+
+#### Returns
+
+`len` random bytes, or an `EntropyError`.
+
+#### Errors
+
+Returns an `EntropyError` when the operating system cannot provide random bytes.
+
+#### Examples
+
+```rust
+use helpers4::random::random_bytes;
+
+let key = random_bytes(32)?;
+assert_eq!(key.len(), 32);
+```
+
+### random::random_hex
+
+```rust
+pub fn random_hex(byte_len: usize) -> Result<String, EntropyError>
+```
+
+Random bytes from the operating system, written as lowercase hexadecimal: the usual form of
+a master key or a session token (`random_hex(32)` is a 256-bit key in 64 characters).
+
+Needs the `random-entropy` feature.
+
+#### Arguments
+
+- `byte_len` - The number of random bytes; the result has twice as many characters.
+
+#### Returns
+
+`2 * byte_len` characters in `0-9a-f`, or an `EntropyError`.
+
+#### Errors
+
+Returns an `EntropyError` when the operating system cannot provide random bytes.
+
+#### Examples
+
+```rust
+use helpers4::random::random_hex;
+
+let key = random_hex(32)?;
+assert_eq!(key.len(), 64);
+assert!(key.chars().all(|c| c.is_ascii_hexdigit()));
+```
+
+### random::Rng
+
+```rust
+pub struct Rng { /* private fields */ }
+```
+
+A small, fast, seedable pseudo-random generator (SplitMix64): the same seed always gives the
+same sequence, on every platform.
+
+It is meant for reproducible work (tests, procedural content, shuffling with a recorded
+seed) and passed explicitly to `shuffle`, `sample` and
+`choose`. It is **not cryptographically secure**: never derive a key, a
+token or an identifier that must stay secret from it. Use the `random-entropy` feature for
+that.
+
+#### Examples
+
+```rust
+use helpers4::random::Rng;
+
+let mut a = Rng::seeded(42);
+let mut b = Rng::seeded(42);
+assert_eq!(a.next_u64(), b.next_u64()); // same seed, same sequence
+
+let roll = a.below(6).map(|n| n + 1); // 1..=6, without modulo bias
+assert!(matches!(roll, Some(1..=6)));
+```
+
+#### Rng::next_u64
+
+```rust
+pub fn next_u64(&mut self) -> u64
+```
+
+The next 64 random bits.
+
+##### Returns
+
+A `u64` where every bit pattern is equally likely.
+
+##### Examples
+
+```rust
+use helpers4::random::Rng;
+
+let mut rng = Rng::seeded(1);
+assert_eq!(rng.next_u64(), 0x910A_2DEC_8902_5CC1);
+assert_eq!(rng.next_u64(), 0xBEEB_8DA1_658E_EC67);
+```
+
+#### Rng::next_f64
+
+```rust
+pub fn next_f64(&mut self) -> f64
+```
+
+A random number in `[0, 1)`, with 53 bits of precision (every value is a multiple of
+2⁻⁵³).
+
+##### Returns
+
+A value `>= 0.0` and `< 1.0`.
+
+##### Examples
+
+```rust
+use helpers4::random::Rng;
+
+let x = Rng::seeded(7).next_f64();
+assert!((0.0..1.0).contains(&x));
+```
+
+#### Rng::below
+
+```rust
+pub fn below(&mut self, bound: u64) -> Option<u64>
+```
+
+A random integer in `0..bound`, uniformly: values are rejected rather than folded with a
+modulo, which would favor small results when `bound` does not divide 2⁶⁴.
+
+##### Arguments
+
+- `bound` - The exclusive upper bound.
+
+##### Returns
+
+A value `< bound`, or `None` when `bound` is `0` (there is no such value).
+
+##### Examples
+
+```rust
+use helpers4::random::Rng;
+
+let mut rng = Rng::seeded(3);
+assert!(rng.below(10).is_some_and(|n| n < 10));
+assert_eq!(rng.below(1), Some(0));
+assert_eq!(rng.below(0), None);
+```
+
+#### Rng::fill_bytes
+
+```rust
+pub fn fill_bytes(&mut self, dest: &mut [u8])
+```
+
+Fills `dest` with random bytes.
+
+##### Arguments
+
+- `dest` - The buffer to fill.
+
+##### Examples
+
+```rust
+use helpers4::random::Rng;
+
+let mut buf = [0u8; 5];
+Rng::seeded(9).fill_bytes(&mut buf);
+assert_ne!(buf, [0u8; 5]);
+```
+
+#### Rng::from_entropy
+
+```rust
+pub fn from_entropy() -> Result<Self, super::EntropyError>
+```
+
+Starts a generator from a seed drawn from the operating system, for work that must differ
+on every run but needs no secrecy (a random order, a random pick).
+
+Needs the `random-entropy` feature. The generator itself is still not cryptographically
+secure: for keys and tokens, use `random_bytes` directly.
+
+##### Returns
+
+A generator with an unpredictable seed.
+
+##### Errors
+
+Returns an `EntropyError` when the operating system cannot provide
+random bytes.
+
+##### Examples
+
+```rust
+use helpers4::random::{shuffle, Rng};
+
+let mut rng = Rng::from_entropy()?;
+let order = shuffle(&[1, 2, 3], &mut rng);
+assert_eq!(order.len(), 3);
+```
+
+### random::sample
+
+```rust
+pub fn sample<T: Clone>(items: &[T], count: usize, rng: &mut Rng) -> Vec<T>
+```
+
+Picks `count` different elements at random (without replacement), in random order.
+
+Elements are different by position: two equal values in `items` can both be picked. When
+`count` is at least `items.len()`, every element is returned, shuffled.
+
+#### Arguments
+
+- `items` - The elements to pick from.
+- `count` - How many to pick.
+- `rng` - The generator that decides the picks.
+
+#### Returns
+
+A new `Vec` of `min(count, items.len())` elements.
+
+#### Examples
+
+```rust
+use helpers4::random::{sample, Rng};
+
+let winners = sample(&["ana", "bo", "cy", "di", "ed"], 2, &mut Rng::seeded(1));
+assert_eq!(winners.len(), 2);
+assert_ne!(winners[0], winners[1]);
+
+assert_eq!(sample(&[1, 2], 10, &mut Rng::seeded(1)).len(), 2);
+```
+
+### random::shuffle
+
+```rust
+pub fn shuffle<T: Clone>(items: &[T], rng: &mut Rng) -> Vec<T>
+```
+
+Returns the elements in a random order (Fisher–Yates: every permutation is equally likely),
+leaving `items` as it is.
+
+The order depends only on the generator, so the same seed always gives the same result.
+
+#### Arguments
+
+- `items` - The elements to shuffle.
+- `rng` - The generator that decides the order.
+
+#### Returns
+
+A new `Vec` with the same elements in a random order.
+
+#### Examples
+
+```rust
+use helpers4::random::{shuffle, Rng};
+
+let deck = [1, 2, 3, 4, 5];
+let first = shuffle(&deck, &mut Rng::seeded(7));
+let again = shuffle(&deck, &mut Rng::seeded(7));
+assert_eq!(first, again); // reproducible
+
+let mut sorted = first.clone();
+sorted.sort_unstable();
+assert_eq!(sorted, deck); // nothing lost, nothing added
+```
+
+### random::EntropyError
+
+```rust
+pub struct EntropyError(getrandom::Error) { /* private fields */ }
+```
+
+The operating system could not provide random bytes.
+
+Rare, but possible (no entropy source at boot, a sandbox that blocks the system call, an
+unsupported platform). The functions that return it never fall back to weaker randomness: a
+key or a token made from predictable bytes is worse than no key.
+
+#### Examples
+
+```rust
+use helpers4::random::random_bytes;
+
+match random_bytes(16) {
+    Ok(bytes) => assert_eq!(bytes.len(), 16),
+    Err(error) => eprintln!("no randomness available: {error}"),
+}
+```
+
 ## Module `secret` (Cargo feature `secret`)
 
 Keeping secrets out of logs: a wrapper that never prints its value, redaction, masking and
@@ -6356,6 +8438,41 @@ assert_eq!(capitalize("hello world"), "Hello world");
 assert_eq!(capitalize(""), "");
 ```
 
+### string::compare_natural
+
+```rust
+pub fn compare_natural(a: &str, b: &str) -> Ordering
+```
+
+Compares two strings in natural order: runs of ASCII digits are compared by their numeric
+value, everything else character by character. So `"frame 2"` comes before `"frame 10"`,
+where plain text order puts `"frame 10"` first.
+
+Letters compare by code point, so case matters (`"B"` before `"a"`): lowercase both sides
+first for a case-insensitive order. Numbers of any length are compared exactly, without
+converting them to an integer, and two numbers of equal value but different zero padding
+(`"a1"` and `"a01"`) are ordered by padding, fewest zeros first, so only identical strings
+compare as equal.
+
+#### Arguments
+
+- `a` - The first string.
+- `b` - The second string.
+
+#### Returns
+
+How `a` orders against `b`. Usable as a comparator: `names.sort_by(|a, b| compare_natural(a, b))`.
+
+#### Examples
+
+```rust
+use helpers4::string::compare_natural;
+
+let mut frames = ["frame 10", "frame 2", "frame 1"];
+frames.sort_by(|a, b| compare_natural(a, b));
+assert_eq!(frames, ["frame 1", "frame 2", "frame 10"]);
+```
+
 ### string::constant_case
 
 ```rust
@@ -6513,6 +8630,88 @@ assert_eq!(
     excerpt("This description has no punctuation at all so it must cut on a word", 30, "…"),
     "This description has no…",
 );
+```
+
+### string::GlobSet
+
+```rust
+pub struct GlobSet { /* private fields */ }
+```
+
+A list of glob patterns with exclusions: a string matches when one pattern matches and no
+exclusion does, like the lines of a `.gitignore` read the other way round.
+
+Patterns use the `*` and `?` of `match_glob`, which is case-sensitive. A pattern starting
+with `!` is an exclusion; write `\!` for a pattern that really starts with `!`. The order does
+not matter. With no pattern besides exclusions, everything else matches, and an empty set
+matches everything (no filter).
+
+Regular expressions need a dependency this crate does not have; use the `regex` crate for
+those, or the TypeScript package's `createMatcher`.
+
+#### Examples
+
+```rust
+use helpers4::string::GlobSet;
+
+let screens = GlobSet::new(&["Screen *", "Home", "!* (old)"]);
+assert!(screens.is_match("Screen 2"));
+assert!(screens.is_match("Home"));
+assert!(!screens.is_match("Screen 2 (old)")); // excluded
+assert!(!screens.is_match("Settings")); // no pattern matches
+```
+
+#### GlobSet::new
+
+```rust
+pub fn new(patterns: &[&str]) -> Self
+```
+
+Builds a set from patterns, `!` marking the exclusions.
+
+##### Arguments
+
+- `patterns` - The patterns, with `!` before an exclusion and `\!` for a literal `!`.
+
+##### Returns
+
+The set.
+
+##### Examples
+
+```rust
+use helpers4::string::GlobSet;
+
+let set = GlobSet::new(&["*.fig", "!draft-*"]);
+assert!(set.is_match("a.fig"));
+assert!(!set.is_match("draft-a.fig"));
+```
+
+#### GlobSet::is_match
+
+```rust
+pub fn is_match(&self, text: &str) -> bool
+```
+
+Whether `text` matches the set.
+
+##### Arguments
+
+- `text` - The string to test.
+
+##### Returns
+
+`true` if one pattern matches and no exclusion does (or, with no pattern besides
+exclusions, if no exclusion does).
+
+##### Examples
+
+```rust
+use helpers4::string::GlobSet;
+
+assert!(GlobSet::new(&[]).is_match("anything"));
+assert!(GlobSet::new(&["!*.tmp"]).is_match("a.fig"));
+assert!(!GlobSet::new(&["!*.tmp"]).is_match("a.tmp"));
 ```
 
 ### string::indent

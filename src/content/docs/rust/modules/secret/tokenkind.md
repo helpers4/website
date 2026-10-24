@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["secret"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["secret"] }
 ```
 
 ## Definition
@@ -76,4 +76,4 @@ A short human-readable name.
 
 ## Source
 
-[src/secret/token_kind.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/secret/token_kind.rs#L16)
+[src/secret/token_kind.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/secret/token_kind.rs#L16)

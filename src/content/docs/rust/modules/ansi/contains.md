@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["ansi"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["ansi"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert!(!contains("ok"));
 
 ## Source
 
-[src/ansi/contains.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/ansi/contains.rs#L27)
+[src/ansi/contains.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/ansi/contains.rs#L27)

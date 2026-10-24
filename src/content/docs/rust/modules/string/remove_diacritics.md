@@ -29,7 +29,7 @@ or with only this module:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["string-diacritics"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["string-diacritics"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert_eq!(remove_diacritics("hello"), "hello");
 
 ## Source
 
-[src/string/remove_diacritics.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/string/remove_diacritics.rs#L35)
+[src/string/remove_diacritics.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/string/remove_diacritics.rs#L35)

@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["color"] }
 ```
 
 ## Definition
@@ -146,6 +146,27 @@ The `#rrggbb` form, in lower case.
 
 `String` — For instance `"#ff8800"`.
 
+### `to_css`
+
+```rust
+pub fn to_css(self) -> String
+```
+
+The CSS form `rgb(r g b)`, in the space-separated syntax every current browser and SVG
+renderer reads.
+
+**Returns**
+
+`String` — For instance `"rgb(255 136 0)"`.
+
+**Examples**
+
+```rust
+use helpers4::color::Rgb;
+
+assert_eq!(Rgb::new(255, 136, 0).to_css(), "rgb(255 136 0)");
+```
+
 ### `to_hsl`
 
 ```rust
@@ -241,4 +262,4 @@ pub enum ParseColorError {
 
 ## Source
 
-[src/color/rgb.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/color/rgb.rs#L28)
+[src/color/rgb.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/color/rgb.rs#L28)

@@ -9,7 +9,8 @@ sidebar:
 Helpers for slices and `Vec`s that the standard library does not provide.
 
 Inputs are borrowed slices and results are new `Vec`s: nothing is mutated. Membership-based
-helpers require `Eq + Hash`.
+helpers require `Eq + Hash`. Shuffling and sampling live in the `random` module, where the
+generator is an argument.
 
 ## Install
 
@@ -23,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["array"] }
 ```
 
 Import path: `helpers4::array`.
@@ -42,6 +43,9 @@ Import path: `helpers4::array`.
 | [`intersection`](/rust/modules/array/intersection/) | Returns the elements of `a` that also appear in `b`, in `a`'s order. |
 | [`intersects`](/rust/modules/array/intersects/) | Returns `true` when `a` and `b` share at least one element. |
 | [`key_by`](/rust/modules/array/key_by/) | Indexes the elements of `items` by the key returned by `key`. |
+| [`replace_or_append`](/rust/modules/array/replace_or_append/) | Replaces the first element that matches with `item`, or appends `item` when none does: the "upsert into a list" gesture. |
 | [`symmetric_difference`](/rust/modules/array/symmetric_difference/) | Returns the elements present in exactly one of `a` and `b`. |
+| [`toggle`](/rust/modules/array/toggle/) | Removes `item` from `items` if it is there, adds it at the end if it is not: the usual "toggle a selection" gesture. |
+| [`toggle_by`](/rust/modules/array/toggle_by/) | Like `toggle`, but elements are the same when `key` gives the same value: toggle objects by id instead of by whole-value equality. |
 | [`unique`](/rust/modules/array/unique/) | Removes duplicate values, keeping the first occurrence of each and the original order. |
 | [`unique_by`](/rust/modules/array/unique_by/) | Removes elements whose `key` was already seen, keeping the first of each key in order. |

@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -62,4 +62,4 @@ assert!(match_glob("screen *", &"Screen 2".to_lowercase())); // ignore case
 
 ## Source
 
-[src/string/match_glob.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/string/match_glob.rs#L33)
+[src/string/match_glob.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/string/match_glob.rs#L33)

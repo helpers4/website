@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["secret"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["secret"] }
 ```
 
 ## Signature
@@ -58,4 +58,4 @@ assert_eq!(detect("just-a-word"), None);
 
 ## Source
 
-[src/secret/detect.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/secret/detect.rs#L31)
+[src/secret/detect.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/secret/detect.rs#L31)

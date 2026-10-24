@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.8", default-features = false, features = ["future"] }
+helpers4 = { version = "0.0.9", default-features = false, features = ["future"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert_eq!(squares, vec![1, 4, 9, 16]);
 
 ## Source
 
-[src/future/join_all.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/future/join_all.rs#L31)
+[src/future/join_all.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/future/join_all.rs#L31)

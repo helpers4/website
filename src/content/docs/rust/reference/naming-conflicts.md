@@ -17,6 +17,7 @@ helpers4 is one crate with one module per category. A deliberate consequence is 
 | `detect` | [`ci`](/rust/modules/ci/detect/), [`secret`](/rust/modules/secret/detect/) |
 | `normalize` | [`fs`](/rust/modules/fs/normalize/), [`license`](/rust/modules/license/normalize/) |
 | `parse` | [`duration`](/rust/modules/duration/parse/), [`env`](/rust/modules/env/parse/) |
+| `toggle` | [`array`](/rust/modules/array/toggle/), [`set`](/rust/modules/set/toggle/) |
 
 ## Importing
 
