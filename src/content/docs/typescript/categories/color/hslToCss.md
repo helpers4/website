@@ -3,7 +3,7 @@ title: "hslToCss"
 sidebar:
   label: "hslToCss"
 description: "Formats an HSL(A) color as a CSS `hsl()` value, in the modern space-separated syntax."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Formats an HSL(A) color as a CSS `hsl()` value, in the modern space-separated syntax.

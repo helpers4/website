@@ -3,7 +3,7 @@ title: "observeResize"
 sidebar:
   label: "observeResize"
 description: "Calls `callback` each time the size of `element` changes, with a `ResizeObserver` dedicated to it."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Calls `callback` each time the size of `element` changes, with a `ResizeObserver` dedicated to

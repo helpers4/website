@@ -3,7 +3,7 @@ title: "translate"
 sidebar:
   label: "translate"
 description: "A matrix that moves points by `(tx, ty)`."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 A matrix that moves points by `(tx, ty)`.

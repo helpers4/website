@@ -3,7 +3,7 @@ title: "rgbToCss"
 sidebar:
   label: "rgbToCss"
 description: "Formats an RGB(A) color as a CSS `rgb()` value, in the modern space-separated syntax that every current browser and SVG…"
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Formats an RGB(A) color as a CSS `rgb()` value, in the modern space-separated syntax that

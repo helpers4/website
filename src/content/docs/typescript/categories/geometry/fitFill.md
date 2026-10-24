@@ -3,7 +3,7 @@ title: "fitFill"
 sidebar:
   label: "fitFill"
 description: "Places content in a box, stretched to the box on each axis, without keeping its proportions (CSS `object-fit: fill`)."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Places content in a box, stretched to the box on each axis, without keeping its proportions (CSS `object-fit: fill`). Shortcut for `fit(content, box, { mode: 'fill', align })`.

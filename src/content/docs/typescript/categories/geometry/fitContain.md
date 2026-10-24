@@ -3,7 +3,7 @@ title: "fitContain"
 sidebar:
   label: "fitContain"
 description: "Places content in a box, as large as possible while staying entirely inside the box (CSS `object-fit: contain`)."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Places content in a box, as large as possible while staying entirely inside the box (CSS `object-fit: contain`). Shortcut for `fit(content, box, { mode: 'contain', align })`.

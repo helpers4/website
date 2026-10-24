@@ -3,7 +3,7 @@ title: "isFunction"
 sidebar:
   label: "isFunction"
 description: "Checks if a value is a function."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Checks if a value is a function.

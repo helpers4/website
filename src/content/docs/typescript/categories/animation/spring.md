@@ -3,7 +3,7 @@ title: "spring"
 sidebar:
   label: "spring"
 description: "Simulates a damped spring going from `0` to `1`, the curve behind \"spring\" transitions of design tools, and computes ho…"
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Simulates a damped spring going from `0` to `1`, the curve behind "spring" transitions of

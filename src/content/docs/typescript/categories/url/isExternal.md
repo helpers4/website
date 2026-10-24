@@ -3,7 +3,7 @@ title: "isExternal"
 sidebar:
   label: "isExternal"
 description: "Whether a link points to another origin than `base`: an absolute `http(s)` URL or a protocol-relative one (`//host/path…"
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Whether a link points to another origin than `base`: an absolute `http(s)` URL or a

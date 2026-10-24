@@ -3,7 +3,7 @@ title: "families"
 sidebar:
   label: "families"
 description: "Groups a raw, possibly compound license string into its coarse family set — e.g."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Groups a raw, possibly compound license string into its coarse family set — e.g.

@@ -3,7 +3,7 @@ title: "rgbToHex"
 sidebar:
   label: "rgbToHex"
 description: "Converts an RGB(A) color into a hex color string."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Converts an RGB(A) color into a hex color string.

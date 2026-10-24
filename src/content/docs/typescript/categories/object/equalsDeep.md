@@ -3,7 +3,7 @@ title: "equalsDeep"
 sidebar:
   label: "equalsDeep"
 description: "Recursive structural object equality."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Recursive structural object equality.

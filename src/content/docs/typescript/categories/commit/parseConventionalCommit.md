@@ -3,7 +3,7 @@ title: "parseConventionalCommit"
 sidebar:
   label: "parseConventionalCommit"
 description: "Parses a Conventional Commits message into a structured object."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Parses a Conventional Commits message into a structured object.

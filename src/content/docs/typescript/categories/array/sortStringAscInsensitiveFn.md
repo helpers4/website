@@ -3,7 +3,7 @@ title: "sortStringAscInsensitiveFn"
 sidebar:
   label: "sortStringAscInsensitiveFn"
 description: "Sort strings in ascending order (case insensitive)"
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Sort strings in ascending order (case insensitive)

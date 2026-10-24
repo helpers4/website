@@ -3,7 +3,7 @@ title: "cartesianProduct"
 sidebar:
   label: "cartesianProduct"
 description: "Computes the Cartesian product of the provided arrays."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Computes the Cartesian product of the provided arrays.

@@ -3,7 +3,7 @@ title: "tween"
 sidebar:
   label: "tween"
 description: "Animates a value from `from` to `to` over `durationMs`, calling `onUpdate` with the blended value at each frame, for wh…"
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Animates a value from `from` to `to` over `durationMs`, calling `onUpdate` with the blended

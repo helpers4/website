@@ -3,7 +3,7 @@ title: "isTemporalInstant"
 sidebar:
   label: "isTemporalInstant"
 description: "Checks if a value is a `Temporal.Instant`."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Checks if a value is a `Temporal.Instant`.

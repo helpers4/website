@@ -3,7 +3,7 @@ title: "once"
 sidebar:
   label: "once"
 description: "Creates a function that is restricted to be called only once."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Creates a function that is restricted to be called only once.

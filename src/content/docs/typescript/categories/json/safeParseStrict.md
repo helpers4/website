@@ -3,7 +3,7 @@ title: "safeParseStrict"
 sidebar:
   label: "safeParseStrict"
 description: "Parses strict JSON like parseStrict, but returns `null` (or `fallback`) instead of throwing on invalid input."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Parses strict JSON like parseStrict, but returns `null` (or `fallback`) instead of

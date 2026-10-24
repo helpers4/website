@@ -3,7 +3,7 @@ title: "matchesMedia"
 sidebar:
   label: "matchesMedia"
 description: "Whether the document currently matches a CSS media query."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Whether the document currently matches a CSS media query.

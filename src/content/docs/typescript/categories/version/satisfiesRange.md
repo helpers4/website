@@ -3,7 +3,7 @@ title: "satisfiesRange"
 sidebar:
   label: "satisfiesRange"
 description: "Checks if a version satisfies a range, according to the given `scheme` (simple implementation — see each scheme's own d…"
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Checks if a version satisfies a range, according to the given `scheme` (simple

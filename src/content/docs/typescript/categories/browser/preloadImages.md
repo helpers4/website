@@ -3,7 +3,7 @@ title: "preloadImages"
 sidebar:
   label: "preloadImages"
 description: "Loads and decodes several images with decodeImage, a few at a time, with `mapSettled` from `helpers4/array`."
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Loads and decodes several images with decodeImage, a few at a time, with

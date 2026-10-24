@@ -3,7 +3,7 @@ title: "stripHtml"
 sidebar:
   label: "stripHtml"
 description: "Plain text of an HTML fragment: tags removed, `<script>`, `<style>` and comments dropped with their content, entities d…"
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Plain text of an HTML fragment: tags removed, `<script>`, `<style>` and comments dropped

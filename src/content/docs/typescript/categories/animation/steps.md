@@ -3,7 +3,7 @@ title: "steps"
 sidebar:
   label: "steps"
 description: "Builds the easing function of CSS `steps(count, position)`: progress moves by jumps instead of continuously, for frame-…"
-version: "3.1.6"
+version: "3.1.7"
 ---
 
 Builds the easing function of CSS `steps(count, position)`: progress moves by jumps instead
