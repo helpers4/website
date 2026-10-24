@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["secret"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["secret"] }
 ```
 
 ## Signature
@@ -58,4 +58,4 @@ assert_eq!(mask("abc", 4), "***"); // too short to show anything
 
 ## Source
 
-[src/secret/mask.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/secret/mask.rs#L29)
+[src/secret/mask.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/secret/mask.rs#L29)

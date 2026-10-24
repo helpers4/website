@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["date"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["date"] }
 ```
 
 ## Signature
@@ -58,4 +58,4 @@ assert!(!is_leap_year(2023));
 
 ## Source
 
-[src/date/is_leap_year.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/date/is_leap_year.rs#L29)
+[src/date/is_leap_year.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/date/is_leap_year.rs#L29)

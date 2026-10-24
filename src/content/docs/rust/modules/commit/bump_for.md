@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["commit"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["commit"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert_eq!(bump_for(&commits), Bump::Minor);
 
 ## Source
 
-[src/commit/bump_for.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/commit/bump_for.rs#L35)
+[src/commit/bump_for.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/commit/bump_for.rs#L35)

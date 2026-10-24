@@ -1,4 +1,4 @@
-# helpers4 (Rust) — full reference, version 0.0.7
+# helpers4 (Rust) — full reference, version 0.0.8
 
 > Every public item of the `helpers4` crate with its signature, documentation and examples.
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
@@ -643,8 +643,395 @@ assert_eq!(
 
 Helpers for byte slices and sizes that the standard library does not provide.
 
-Reading integers at an offset without panicking, a byte-slice search, a constant-time comparison,
-XOR, and human-readable sizes (`1.5 KiB`) in both directions.
+Reading integers at an offset without panicking, a `ByteReader` cursor for binary formats
+(fixed-size values, LEB128 varints, zigzag, NUL-terminated strings), a byte-slice search, a
+constant-time comparison, XOR, and human-readable sizes (`1.5 KiB`) in both directions.
+
+### bytes::ByteReader
+
+```rust
+pub struct ByteReader<'a> { /* private fields */ }
+```
+
+A cursor over a byte slice, for decoding binary formats: fixed-size integers and floats,
+LEB128 varints (signed ones zigzag-encoded), byte runs and NUL-terminated strings.
+
+Every `read_*` method returns `None` when the data is truncated or invalid, and then leaves
+the position where it was, so `position` is the offset of the read that
+failed: enough to build a precise error in the caller's own error type.
+
+#### Examples
+
+```rust
+use helpers4::bytes::{ByteReader, Endian};
+
+let data = [0x2a, 0xac, 0x02, b'h', b'i', 0, 0x01, 0x00];
+let mut reader = ByteReader::new(&data);
+assert_eq!(reader.read_u8(), Some(42));
+assert_eq!(reader.read_var_u32(), Some(300));
+assert_eq!(reader.read_cstr(), Some("hi"));
+assert_eq!(reader.read_u16(Endian::Little), Some(1));
+assert_eq!(reader.read_u8(), None); // end of data
+assert_eq!(reader.position(), 8);
+```
+
+#### ByteReader::read_u8
+
+```rust
+pub fn read_u8(&mut self) -> Option<u8>
+```
+
+Reads one byte.
+
+##### Returns
+
+The byte, or `None` at the end of the data.
+
+##### Examples
+
+```rust
+use helpers4::bytes::ByteReader;
+
+let mut reader = ByteReader::new(&[7]);
+assert_eq!(reader.read_u8(), Some(7));
+assert_eq!(reader.read_u8(), None);
+```
+
+#### ByteReader::read_bytes
+
+```rust
+pub fn read_bytes(&mut self, len: usize) -> Option<&'a [u8]>
+```
+
+Reads `len` bytes, borrowed from the data (no copy).
+
+##### Arguments
+
+- `len` - The number of bytes.
+
+##### Returns
+
+The bytes, or `None` when fewer than `len` remain.
+
+##### Examples
+
+```rust
+use helpers4::bytes::ByteReader;
+
+let mut reader = ByteReader::new(b"abc");
+assert_eq!(reader.read_bytes(2), Some(&b"ab"[..]));
+assert_eq!(reader.read_bytes(2), None);
+```
+
+#### ByteReader::read_u16
+
+```rust
+pub fn read_u16(&mut self, endian: Endian) -> Option<u16>
+```
+
+Reads a `u16` in the given byte order.
+
+##### Arguments
+
+- `endian` - The byte order of the value.
+
+##### Returns
+
+The value, or `None` when fewer than 2 bytes remain.
+
+##### Examples
+
+```rust
+use helpers4::bytes::{ByteReader, Endian};
+
+assert_eq!(ByteReader::new(&[0x12, 0x34]).read_u16(Endian::Big), Some(0x1234));
+```
+
+#### ByteReader::read_u32
+
+```rust
+pub fn read_u32(&mut self, endian: Endian) -> Option<u32>
+```
+
+Reads a `u32` in the given byte order.
+
+##### Arguments
+
+- `endian` - The byte order of the value.
+
+##### Returns
+
+The value, or `None` when fewer than 4 bytes remain.
+
+##### Examples
+
+```rust
+use helpers4::bytes::{ByteReader, Endian};
+
+assert_eq!(ByteReader::new(&[1, 0, 0, 0]).read_u32(Endian::Little), Some(1));
+```
+
+#### ByteReader::read_u64
+
+```rust
+pub fn read_u64(&mut self, endian: Endian) -> Option<u64>
+```
+
+Reads a `u64` in the given byte order.
+
+##### Arguments
+
+- `endian` - The byte order of the value.
+
+##### Returns
+
+The value, or `None` when fewer than 8 bytes remain.
+
+##### Examples
+
+```rust
+use helpers4::bytes::{ByteReader, Endian};
+
+assert_eq!(ByteReader::new(&[0, 0, 0, 0, 0, 0, 0, 9]).read_u64(Endian::Big), Some(9));
+```
+
+#### ByteReader::read_i16
+
+```rust
+pub fn read_i16(&mut self, endian: Endian) -> Option<i16>
+```
+
+Reads an `i16` (two's complement) in the given byte order.
+
+##### Arguments
+
+- `endian` - The byte order of the value.
+
+##### Returns
+
+The value, or `None` when fewer than 2 bytes remain.
+
+##### Examples
+
+```rust
+use helpers4::bytes::{ByteReader, Endian};
+
+assert_eq!(ByteReader::new(&[0xff, 0xfe]).read_i16(Endian::Big), Some(-2));
+```
+
+#### ByteReader::read_i32
+
+```rust
+pub fn read_i32(&mut self, endian: Endian) -> Option<i32>
+```
+
+Reads an `i32` (two's complement) in the given byte order.
+
+##### Arguments
+
+- `endian` - The byte order of the value.
+
+##### Returns
+
+The value, or `None` when fewer than 4 bytes remain.
+
+##### Examples
+
+```rust
+use helpers4::bytes::{ByteReader, Endian};
+
+assert_eq!(ByteReader::new(&[0xff; 4]).read_i32(Endian::Little), Some(-1));
+```
+
+#### ByteReader::read_i64
+
+```rust
+pub fn read_i64(&mut self, endian: Endian) -> Option<i64>
+```
+
+Reads an `i64` (two's complement) in the given byte order.
+
+##### Arguments
+
+- `endian` - The byte order of the value.
+
+##### Returns
+
+The value, or `None` when fewer than 8 bytes remain.
+
+##### Examples
+
+```rust
+use helpers4::bytes::{ByteReader, Endian};
+
+assert_eq!(ByteReader::new(&[0xff; 8]).read_i64(Endian::Big), Some(-1));
+```
+
+#### ByteReader::read_f32
+
+```rust
+pub fn read_f32(&mut self, endian: Endian) -> Option<f32>
+```
+
+Reads an IEEE 754 `f32` in the given byte order.
+
+##### Arguments
+
+- `endian` - The byte order of the value.
+
+##### Returns
+
+The value, or `None` when fewer than 4 bytes remain.
+
+##### Examples
+
+```rust
+use helpers4::bytes::{ByteReader, Endian};
+
+let bytes = 1.5f32.to_le_bytes();
+assert_eq!(ByteReader::new(&bytes).read_f32(Endian::Little), Some(1.5));
+```
+
+#### ByteReader::read_f64
+
+```rust
+pub fn read_f64(&mut self, endian: Endian) -> Option<f64>
+```
+
+Reads an IEEE 754 `f64` in the given byte order.
+
+##### Arguments
+
+- `endian` - The byte order of the value.
+
+##### Returns
+
+The value, or `None` when fewer than 8 bytes remain.
+
+##### Examples
+
+```rust
+use helpers4::bytes::{ByteReader, Endian};
+
+let bytes = (-0.25f64).to_be_bytes();
+assert_eq!(ByteReader::new(&bytes).read_f64(Endian::Big), Some(-0.25));
+```
+
+#### ByteReader::read_var_u32
+
+```rust
+pub fn read_var_u32(&mut self) -> Option<u32>
+```
+
+Reads an unsigned LEB128 varint of at most 32 bits: 7 bits per byte, least significant
+first, the high bit set on every byte but the last.
+
+Overlong encodings (`0x80 0x00` for `0`) are accepted, as most decoders do.
+
+##### Returns
+
+The value, or `None` when the data ends inside the varint or the value needs more than
+32 bits (a 5th byte above `0x0f`, or a 6th byte).
+
+##### Examples
+
+```rust
+use helpers4::bytes::ByteReader;
+
+assert_eq!(ByteReader::new(&[0xac, 0x02]).read_var_u32(), Some(300));
+assert_eq!(ByteReader::new(&[0xff, 0xff, 0xff, 0xff, 0x0f]).read_var_u32(), Some(u32::MAX));
+assert_eq!(ByteReader::new(&[0xff, 0xff, 0xff, 0xff, 0x1f]).read_var_u32(), None);
+```
+
+#### ByteReader::read_var_u64
+
+```rust
+pub fn read_var_u64(&mut self) -> Option<u64>
+```
+
+Reads an unsigned LEB128 varint of at most 64 bits (up to 10 bytes), like
+`read_var_u32`.
+
+##### Returns
+
+The value, or `None` when the data ends inside the varint or the value needs more than
+64 bits (a 10th byte above `0x01`, or an 11th byte).
+
+##### Examples
+
+```rust
+use helpers4::bytes::ByteReader;
+
+let max = [0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x01];
+assert_eq!(ByteReader::new(&max).read_var_u64(), Some(u64::MAX));
+```
+
+#### ByteReader::read_var_i32
+
+```rust
+pub fn read_var_i32(&mut self) -> Option<i32>
+```
+
+Reads a signed varint: a zigzag-encoded (see `zigzag_decode`) LEB128 varint of at
+most 32 bits.
+
+##### Returns
+
+The value, or `None` as for `read_var_u32`.
+
+##### Examples
+
+```rust
+use helpers4::bytes::ByteReader;
+
+assert_eq!(ByteReader::new(&[0x01]).read_var_i32(), Some(-1));
+assert_eq!(ByteReader::new(&[0x02]).read_var_i32(), Some(1));
+```
+
+#### ByteReader::read_var_i64
+
+```rust
+pub fn read_var_i64(&mut self) -> Option<i64>
+```
+
+Reads a signed varint: a zigzag-encoded (see `zigzag_decode`) LEB128 varint of at
+most 64 bits.
+
+##### Returns
+
+The value, or `None` as for `read_var_u64`.
+
+##### Examples
+
+```rust
+use helpers4::bytes::ByteReader;
+
+assert_eq!(ByteReader::new(&[0x03]).read_var_i64(), Some(-2));
+```
+
+#### ByteReader::read_cstr
+
+```rust
+pub fn read_cstr(&mut self) -> Option<&'a str>
+```
+
+Reads a NUL-terminated UTF-8 string and skips the terminating `0`.
+
+##### Returns
+
+The string without its terminator, borrowed from the data, or `None` when there is no
+`0` byte before the end or the bytes are not valid UTF-8.
+
+##### Examples
+
+```rust
+use helpers4::bytes::ByteReader;
+
+let mut reader = ByteReader::new(b"Frame 1\0\0");
+assert_eq!(reader.read_cstr(), Some("Frame 1"));
+assert_eq!(reader.read_cstr(), Some(""));
+assert_eq!(reader.read_cstr(), None);
+```
 
 ### bytes::constant_time_eq
 
@@ -914,6 +1301,66 @@ use helpers4::bytes::xor;
 
 assert_eq!(xor(&[0b1100, 0b1010], &[0b1010, 0b1010]), Some(vec![0b0110, 0]));
 assert_eq!(xor(&[1], &[1, 2]), None);
+```
+
+### bytes::zigzag_decode
+
+```rust
+pub fn zigzag_decode(value: u64) -> i64
+```
+
+Reverses `zigzag_encode`: `0, 1, 2, 3, 4, ...` become
+`0, -1, 1, -2, 2, ...`.
+
+#### Arguments
+
+- `value` - The zigzag-encoded value.
+
+#### Returns
+
+The signed integer. A value read from a 32-bit varint always fits in an `i32`.
+
+#### Examples
+
+```rust
+use helpers4::bytes::zigzag_decode;
+
+assert_eq!(zigzag_decode(0), 0);
+assert_eq!(zigzag_decode(1), -1);
+assert_eq!(zigzag_decode(2), 1);
+assert_eq!(zigzag_decode(u64::MAX), i64::MIN);
+```
+
+### bytes::zigzag_encode
+
+```rust
+pub fn zigzag_encode(value: i64) -> u64
+```
+
+Maps a signed integer to an unsigned one so that small magnitudes stay small: `0, -1, 1, -2,
+2, ...` become `0, 1, 2, 3, 4, ...`. Varint formats (Protocol Buffers `sint`, Kiwi) encode
+signed values this way before LEB128, so that `-1` takes one byte instead of ten.
+
+The result does not depend on the integer width: an `i32` widened to `i64` encodes to the
+same value as with 32-bit zigzag.
+
+#### Arguments
+
+- `value` - The signed integer.
+
+#### Returns
+
+The zigzag-encoded value; `zigzag_decode` reverses it.
+
+#### Examples
+
+```rust
+use helpers4::bytes::zigzag_encode;
+
+assert_eq!(zigzag_encode(0), 0);
+assert_eq!(zigzag_encode(-1), 1);
+assert_eq!(zigzag_encode(1), 2);
+assert_eq!(zigzag_encode(i64::MIN), u64::MAX);
 ```
 
 ### bytes::ParseSizeError
@@ -3708,6 +4155,222 @@ block_on(async {
 });
 ```
 
+## Module `geometry` (Cargo feature `geometry`)
+
+2D geometry in `f64`: `Point`, `Rect` and the affine `Matrix`, in the layout of CSS and
+SVG `matrix(a b c d e f)`.
+
+Enough to map between coordinate spaces: multiply transforms, invert one to bring a point
+back, and take the bounding box of a transformed rectangle (hit areas, gradient bounds).
+
+### geometry::Matrix
+
+```rust
+pub struct Matrix { /* private fields */ }
+```
+
+A 2D affine transformation (a 2×3 matrix), in the layout of CSS and SVG
+`matrix(a, b, c, d, e, f)`:
+
+```text
+x' = a·x + c·y + e
+y' = b·x + d·y + f
+```
+
+#### Examples
+
+```rust
+use helpers4::geometry::{Matrix, Point};
+
+// Scale by 2, then move by (10, 0): the last matrix of a product applies first.
+let scale = Matrix::new(2.0, 0.0, 0.0, 2.0, 0.0, 0.0);
+let shift = Matrix::new(1.0, 0.0, 0.0, 1.0, 10.0, 0.0);
+let m = shift.multiply(scale);
+assert_eq!(m.apply(Point::new(1.0, 1.0)), Point::new(12.0, 2.0));
+assert_eq!(m.invert().map(|inv| inv.apply(Point::new(12.0, 2.0))), Some(Point::new(1.0, 1.0)));
+```
+
+#### Matrix::multiply
+
+```rust
+pub fn multiply(self, other: Self) -> Self
+```
+
+Multiplies `self` by `other`, in the mathematical order: `other` applies first, then
+`self`, as in a CSS transform list (`transform: self other`).
+
+##### Arguments
+
+- `other` - The transformation applied first.
+
+##### Returns
+
+The product, with `m.multiply(n).apply(p) == m.apply(n.apply(p))` (up to rounding).
+
+##### Examples
+
+```rust
+use helpers4::geometry::{Matrix, Point};
+
+let parent = Matrix::new(1.0, 0.0, 0.0, 1.0, 100.0, 50.0);
+let child = Matrix::new(2.0, 0.0, 0.0, 2.0, 0.0, 0.0);
+// A child layer's point, in the coordinates of the page
+assert_eq!(parent.multiply(child).apply(Point::new(1.0, 1.0)), Point::new(102.0, 52.0));
+```
+
+#### Matrix::invert
+
+```rust
+pub fn invert(self) -> Option<Self>
+```
+
+The matrix that undoes `self`, e.g. to turn a pointer position into the coordinates of a
+transformed layer.
+
+A matrix that flattens the plane onto a line or a point (determinant `0`) cannot be
+undone. There is no tolerance: a nearly flat matrix is inverted, with very large entries,
+as long as they stay finite.
+
+##### Returns
+
+The inverse, or `None` when `self` cannot be inverted (or has a non-finite entry).
+
+##### Examples
+
+```rust
+use helpers4::geometry::Matrix;
+
+let shift = Matrix::new(1.0, 0.0, 0.0, 1.0, 10.0, 5.0);
+assert_eq!(shift.invert(), Some(Matrix::new(1.0, 0.0, 0.0, 1.0, -10.0, -5.0)));
+assert_eq!(Matrix::new(0.0, 0.0, 0.0, 0.0, 1.0, 1.0).invert(), None);
+```
+
+#### Matrix::apply
+
+```rust
+pub fn apply(self, point: Point) -> Point
+```
+
+Transforms a point.
+
+##### Arguments
+
+- `point` - The point to transform.
+
+##### Returns
+
+`(a·x + c·y + e, b·x + d·y + f)`.
+
+##### Examples
+
+```rust
+use helpers4::geometry::{Matrix, Point};
+
+let m = Matrix::new(1.0, 2.0, 3.0, 4.0, 5.0, 6.0);
+assert_eq!(m.apply(Point::new(1.0, 1.0)), Point::new(9.0, 12.0));
+```
+
+#### Matrix::bounding_box
+
+```rust
+pub fn bounding_box(self, rect: Rect) -> Rect
+```
+
+Transforms a rectangle and returns its bounding box: the smallest axis-aligned rectangle
+containing it. After a rotation or a skew, the box is larger than the rectangle.
+
+##### Arguments
+
+- `rect` - The rectangle to transform.
+
+##### Returns
+
+The bounding box of the four transformed corners, with a non-negative size.
+
+##### Examples
+
+```rust
+use helpers4::geometry::{Matrix, Rect};
+
+let flip = Matrix::new(-2.0, 0.0, 0.0, 1.0, 0.0, 0.0);
+assert_eq!(flip.bounding_box(Rect::new(1.0, 0.0, 2.0, 3.0)), Rect::new(-6.0, 0.0, 4.0, 3.0));
+```
+
+### geometry::Point
+
+```rust
+pub struct Point { /* private fields */ }
+```
+
+A point in 2D space.
+
+#### Examples
+
+```rust
+use helpers4::geometry::Point;
+
+let p = Point::new(3.0, 4.0);
+assert_eq!((p.x, p.y), (3.0, 4.0));
+```
+
+### geometry::Rect
+
+```rust
+pub struct Rect { /* private fields */ }
+```
+
+An axis-aligned rectangle: its top-left corner and its size. Width and height are expected
+to be non-negative.
+
+#### Examples
+
+```rust
+use helpers4::geometry::Rect;
+
+let r = Rect::new(10.0, 20.0, 100.0, 50.0);
+assert_eq!((r.right(), r.bottom()), (110.0, 70.0));
+```
+
+#### Rect::right
+
+```rust
+pub fn right(&self) -> f64
+```
+
+The right edge, `x + width`.
+
+##### Returns
+
+The x coordinate of the right edge.
+
+##### Examples
+
+```rust
+use helpers4::geometry::Rect;
+
+assert_eq!(Rect::new(1.0, 0.0, 2.0, 0.0).right(), 3.0);
+```
+
+#### Rect::bottom
+
+```rust
+pub fn bottom(&self) -> f64
+```
+
+The bottom edge, `y + height`.
+
+##### Returns
+
+The y coordinate of the bottom edge.
+
+##### Examples
+
+```rust
+use helpers4::geometry::Rect;
+
+assert_eq!(Rect::new(0.0, 1.0, 0.0, 2.0).bottom(), 3.0);
+```
+
 ## Module `hex` (Cargo feature `hex`)
 
 Byte/text encodings with typed errors: hexadecimal, and base64/base32 (RFC 4648).
@@ -5961,6 +6624,40 @@ use helpers4::string::levenshtein_similarity;
 
 assert_eq!(levenshtein_similarity("same", "same", true), 1.0);
 assert!((levenshtein_similarity("kitten", "sitting", true) - 0.571_428_6).abs() < 1e-6);
+```
+
+### string::match_glob
+
+```rust
+pub fn match_glob(pattern: &str, text: &str) -> bool
+```
+
+Whether `text` matches a simple glob pattern in full: `*` matches any sequence of characters
+(including none), `?` exactly one character, everything else is literal.
+
+It is not a shell glob: no `[...]` classes, `{a,b}` alternatives, escapes or path-aware `**`,
+just the two wildcards. Characters are Unicode scalar values (`char`), so `?` matches a whole
+`é` or emoji. Matching is case-sensitive; lowercase both sides to ignore case. Runs in
+`O(pattern × text)` at worst, without recursion or a regex engine.
+
+#### Arguments
+
+- `pattern` - The glob pattern.
+- `text` - The string to test.
+
+#### Returns
+
+`true` if `text` matches `pattern`.
+
+#### Examples
+
+```rust
+use helpers4::string::match_glob;
+
+assert!(match_glob("*.fig", "design.fig"));
+assert!(match_glob("frame-?", "frame-é"));
+assert!(!match_glob("frame-?", "frame-12"));
+assert!(match_glob("screen *", &"Screen 2".to_lowercase())); // ignore case
 ```
 
 ### string::pascal_case

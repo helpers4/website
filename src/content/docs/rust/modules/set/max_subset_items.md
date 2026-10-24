@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["set"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["set"] }
 ```
 
 ## Definition
@@ -34,4 +34,4 @@ pub const MAX_SUBSET_ITEMS: usize = 16
 
 ## Source
 
-[src/set/subsets.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/set/subsets.rs#L6)
+[src/set/subsets.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/set/subsets.rs#L6)

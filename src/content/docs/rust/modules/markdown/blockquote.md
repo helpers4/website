@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["markdown"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["markdown"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert_eq!(blockquote("first\n\nsecond"), "> first\n>\n> second");
 
 ## Source
 
-[src/markdown/blockquote.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/markdown/blockquote.rs#L27)
+[src/markdown/blockquote.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/markdown/blockquote.rs#L27)

@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["env"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["env"] }
 ```
 
 ## Signature
@@ -62,4 +62,4 @@ assert_eq!(get_duration(content, "MISSING", Duration::from_secs(30)), Duration::
 
 ## Source
 
-[src/env/get_duration.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/env/get_duration.rs#L37)
+[src/env/get_duration.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/env/get_duration.rs#L37)

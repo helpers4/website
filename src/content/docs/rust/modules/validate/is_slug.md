@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["validate"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["validate"] }
 ```
 
 ## Signature
@@ -63,4 +63,4 @@ assert!(!is_slug(""));
 
 ## Source
 
-[src/validate/is_slug.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/validate/is_slug.rs#L34)
+[src/validate/is_slug.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/validate/is_slug.rs#L34)

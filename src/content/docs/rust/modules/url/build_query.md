@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["url"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["url"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert_eq!(build_query(Vec::<(&str, &str)>::new()), "");
 
 ## Source
 
-[src/url/build_query.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/url/build_query.rs#L30)
+[src/url/build_query.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/url/build_query.rs#L30)

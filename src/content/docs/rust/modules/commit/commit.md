@@ -31,7 +31,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["commit"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["commit"] }
 ```
 
 ## Definition
@@ -210,4 +210,4 @@ pub enum ParseCommitError {
 
 ## Source
 
-[src/commit/conventional_commit.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/commit/conventional_commit.rs#L35)
+[src/commit/conventional_commit.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/commit/conventional_commit.rs#L35)

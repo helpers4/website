@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert_eq!(difference(&[1, 1, 2], &[3]), vec![1, 1, 2]);
 
 ## Source
 
-[src/array/difference.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/array/difference.rs#L25)
+[src/array/difference.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/array/difference.rs#L25)

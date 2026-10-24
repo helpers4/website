@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -57,4 +57,4 @@ assert!(!equals_unordered(&[1, 2, 2], &[1, 1, 2]));
 
 ## Source
 
-[src/array/equals_unordered.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/array/equals_unordered.rs#L26)
+[src/array/equals_unordered.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/array/equals_unordered.rs#L26)

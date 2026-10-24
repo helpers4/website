@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["fs"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["fs"] }
 ```
 
 ## Signature
@@ -66,4 +66,4 @@ assert_eq!(std::fs::read_to_string(&path)?, "second");
 
 ## Source
 
-[src/fs/write_atomic.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/fs/write_atomic.rs#L41)
+[src/fs/write_atomic.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/fs/write_atomic.rs#L41)

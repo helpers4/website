@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["secret"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["secret"] }
 ```
 
 ## Definition
@@ -34,4 +34,4 @@ pub const REDACTED: &str = "[REDACTED]"
 
 ## Source
 
-[src/secret/redact.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/secret/redact.rs#L6)
+[src/secret/redact.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/secret/redact.rs#L6)

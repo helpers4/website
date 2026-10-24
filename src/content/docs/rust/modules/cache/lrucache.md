@@ -34,7 +34,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["cache"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["cache"] }
 ```
 
 ## Definition
@@ -228,4 +228,4 @@ assert_eq!(calls, 1);
 
 ## Source
 
-[src/cache/lru_cache.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/cache/lru_cache.rs#L36)
+[src/cache/lru_cache.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/cache/lru_cache.rs#L36)

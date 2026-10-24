@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["ci"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["ci"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert!(report.contains("| \u{2705} | build | `success` |"));
 
 ## Source
 
-[src/ci/render_report.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/ci/render_report.rs#L33)
+[src/ci/render_report.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/ci/render_report.rs#L33)

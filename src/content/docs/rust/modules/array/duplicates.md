@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert_eq!(duplicates(&["a", "b", "c"]), Vec::<&str>::new());
 
 ## Source
 
-[src/array/duplicates.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/array/duplicates.rs#L26)
+[src/array/duplicates.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/array/duplicates.rs#L26)

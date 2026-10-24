@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["fs"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["fs"] }
 ```
 
 ## Signature
@@ -63,4 +63,4 @@ assert!(!is_within(uploads, Path::new("/etc/passwd")));
 
 ## Source
 
-[src/fs/is_within.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/fs/is_within.rs#L37)
+[src/fs/is_within.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/fs/is_within.rs#L37)

@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["bytes"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert!(!constant_time_eq(b"secret", b"secre"));
 
 ## Source
 
-[src/bytes/constant_time_eq.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/bytes/constant_time_eq.rs#L32)
+[src/bytes/constant_time_eq.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/bytes/constant_time_eq.rs#L32)

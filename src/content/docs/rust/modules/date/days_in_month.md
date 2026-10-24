@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["date"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["date"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert_eq!(days_in_month(2023, 13), None);
 
 ## Source
 
-[src/date/days_in_month.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/date/days_in_month.rs#L29)
+[src/date/days_in_month.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/date/days_in_month.rs#L29)

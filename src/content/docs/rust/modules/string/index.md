@@ -20,7 +20,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["string"] }
 ```
 
 Opt-in sub-feature `string-diacritics` (adds the `unicode-normalization` dependency): [`remove_diacritics`](/rust/modules/string/remove_diacritics/).
@@ -42,6 +42,7 @@ Import path: `helpers4::string`.
 | [`kebab_case`](/rust/modules/string/kebab_case/) | Converts `s` to `kebab-case`. |
 | [`levenshtein_distance`](/rust/modules/string/levenshtein_distance/) | The Levenshtein edit distance between `a` and `b`: the fewest single-character insertions, deletions or substitutions needed to turn one into the other. |
 | [`levenshtein_similarity`](/rust/modules/string/levenshtein_similarity/) | Normalized `levenshtein_distance` between `a` and `b`, in `[0, 1]`. |
+| [`match_glob`](/rust/modules/string/match_glob/) | Whether `text` matches a simple glob pattern in full: `*` matches any sequence of characters (including none), `?` exactly one character, everything else is literal. |
 | [`pascal_case`](/rust/modules/string/pascal_case/) | Converts `s` to `PascalCase`. |
 | [`remove_diacritics`](/rust/modules/string/remove_diacritics/) | Removes diacritical marks (accents) from `s`, e.g. |
 | [`slugify`](/rust/modules/string/slugify/) | Converts `s` into a lowercase, hyphen-separated slug safe for URLs. |

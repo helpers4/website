@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["color"] }
 ```
 
 ## Signature
@@ -57,4 +57,4 @@ assert_eq!(best_text_color(Rgb::parse("#0d47a1")?), Rgb::new(255, 255, 255)); //
 
 ## Source
 
-[src/color/best_text_color.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/color/best_text_color.rs#L31)
+[src/color/best_text_color.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/color/best_text_color.rs#L31)

@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["set"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["set"] }
 ```
 
 ## Signature
@@ -62,4 +62,4 @@ assert_eq!(intersection_all(&[a, b, c]), HashSet::from([3]));
 
 ## Source
 
-[src/set/intersection_all.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/set/intersection_all.rs#L34)
+[src/set/intersection_all.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/set/intersection_all.rs#L34)

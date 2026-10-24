@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["bytes"] }
 ```
 
 ## Definition
@@ -49,4 +49,4 @@ assert_eq!(read_u16(&bytes, 0, Endian::Little), Some(0x3412));
 
 ## Source
 
-[src/bytes/endian.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/bytes/endian.rs#L17)
+[src/bytes/endian.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/bytes/endian.rs#L17)

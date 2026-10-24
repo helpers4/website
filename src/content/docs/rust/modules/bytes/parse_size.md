@@ -34,7 +34,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.7", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.8", default-features = false, features = ["bytes"] }
 ```
 
 ## Signature
@@ -97,4 +97,4 @@ pub enum ParseSizeError {
 
 ## Source
 
-[src/bytes/parse_size.rs](https://github.com/helpers4/rust/blob/v0.0.7/src/bytes/parse_size.rs#L39)
+[src/bytes/parse_size.rs](https://github.com/helpers4/rust/blob/v0.0.8/src/bytes/parse_size.rs#L39)
