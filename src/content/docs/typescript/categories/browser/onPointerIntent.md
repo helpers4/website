@@ -3,7 +3,7 @@ title: "onPointerIntent"
 sidebar:
   label: "onPointerIntent"
 description: "Tells a tap from a drag, and hover from touch, on one element: the pointer-event logic every draggable or clickable wid…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Tells a tap from a drag, and hover from touch, on one element: the pointer-event logic every

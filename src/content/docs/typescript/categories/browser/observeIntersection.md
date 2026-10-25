@@ -3,7 +3,7 @@ title: "observeIntersection"
 sidebar:
   label: "observeIntersection"
 description: "Calls `callback` each time `element` enters or leaves the viewport (or `options.root`), with an `IntersectionObserver`…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Calls `callback` each time `element` enters or leaves the viewport (or `options.root`), with an

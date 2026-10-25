@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**422** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**426** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -80,6 +80,7 @@ sidebar:
 | [`DEFAULT_PERCENTAGE_TIERS`](../ci/default_percentage_tiers/) | [ci](../ci/) | Default tiers, geared towards coverage/quality\-gate style percentages\. |
 | [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order \(last register… |
 | [`delay`](../promise/delay/) | [promise](../promise/) | Creates a promise that resolves after specified delay |
+| [`deobfuscate`](../string/deobfuscate/) | [string](../string/) | Reverses obfuscate\. |
 | [`diff`](../object/diff/) | [object](../object/) | Structural object diff\. |
 | [`difference`](../array/difference/) | [array](../array/) | Returns the difference between two arrays \(items in first array but not in second\)\. |
 | [`difference`](../date/difference/) | [date](../date/) | Calculates the difference between two dates in the specified unit\. |
@@ -264,6 +265,7 @@ sidebar:
 | [`isTruthy`](../guard/istruthy/) | [guard](../guard/) | Checks if a value is truthy \(not \`false\`, \`null\`, \`undefined\`, \`0\`, \`""\`, or \`NaN\`\)\. |
 | [`isUndefined`](../guard/isundefined/) | [guard](../guard/) | Checks if a value is \`undefined\`\. |
 | [`isValid`](../date/isvalid/) | [date](../date/) | Checks if a value is a valid Date instance \(not \`Invalid Date\`\)\. |
+| [`isValid`](../version/isvalid/) | [version](../version/) | Whether \`version\` is a valid version in the given \`scheme\`\. |
 | [`isValidDateString`](../date/isvaliddatestring/) | [date](../date/) | Checks whether a string can be parsed into a valid \`Date\`\. |
 | [`isValidRegex`](../guard/isvalidregex/) | [guard](../guard/) | Checks if a string is a valid regex pattern\. |
 | [`isWeakMap`](../guard/isweakmap/) | [guard](../guard/) | Checks if a value is a WeakMap instance\. |
@@ -315,6 +317,7 @@ sidebar:
 | `now (date/time/instant)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Now.instant() / .zonedDateTimeISO() / .plainDateISO() / .plainTimeISO()` *(Temporal (Stage 3))* |
 | [`Nullable`](../type/nullable/) | [type](../type/) | Adds \`null\` to a type \(\`T \| null\`\)\. |
 | [`Nullish`](../type/nullish/) | [type](../type/) | Adds \`null\` and \`undefined\` to a type \(\`T \| null \| undefined\`\)\. |
+| [`obfuscate`](../string/obfuscate/) | [string](../string/) | Hides a text from anything that reads the raw page source: the text is reversed \(by Unicode code point, so emoji stay w… |
 | [`observeIntersection`](../browser/observeintersection/) | [browser](../browser/) | Calls \`callback\` each time \`element\` enters or leaves the viewport \(or \`options\.root\`\), with an \`IntersectionObserver\`… |
 | [`observeResize`](../browser/observeresize/) | [browser](../browser/) | Calls \`callback\` each time the size of \`element\` changes, with a \`ResizeObserver\` dedicated to it\. |
 | [`omit`](../object/omit/) | [object](../object/) | Creates a new object without the specified keys\. |
@@ -412,6 +415,7 @@ sidebar:
 | [`sortStringNaturalAscInsensitiveFn`](../array/sortstringnaturalascinsensitivefn/) | [array](../array/) | Sort strings in ascending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` — tr… |
 | [`sortStringNaturalDescFn`](../array/sortstringnaturaldescfn/) | [array](../array/) | Sort strings in descending order using natural \(human\-friendly\) ordering\. |
 | [`sortStringNaturalDescInsensitiveFn`](../array/sortstringnaturaldescinsensitivefn/) | [array](../array/) | Sort strings in descending natural order, ignoring case \*\*and diacritics\*\* \(\`Intl\.Collator \{ sensitivity: 'base' \}\` — t… |
+| [`sortVersions`](../version/sortversions/) | [version](../version/) | Sorts version strings by version, not by text \(\`1\.10\.0\` after \`1\.9\.0\`\), in the given scheme: the same as \`versions\.sort… |
 | [`spring`](../animation/spring/) | [animation](../animation/) | Simulates a damped spring going from \`0\` to \`1\`, the curve behind "spring" transitions of design tools, and computes ho… |
 | [`startOf`](../date/startof/) | [date](../date/) | Returns a new \`Date\` set to the \*\*start\*\* of the given unit\. |
 | `startsWith / endsWith` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.startsWith() / endsWith()` *(ES2015)* |

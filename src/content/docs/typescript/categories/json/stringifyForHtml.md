@@ -3,7 +3,7 @@ title: "stringifyForHtml"
 sidebar:
   label: "stringifyForHtml"
 description: "Serializes a value to compact JSON that is safe to inline in an HTML page, typically in a `<script type=\"application/js…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Serializes a value to compact JSON that is safe to inline in an HTML page, typically in a

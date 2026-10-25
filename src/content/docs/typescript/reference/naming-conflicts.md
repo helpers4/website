@@ -31,6 +31,7 @@ This is not a bug. `compact` for arrays and `compact` for objects are genuinely 
 | `invert` | [`geometry`](../categories/geometry/invert/), [`object`](../categories/object/invert/) |
 | `isEmpty` | [`array`](../categories/array/isempty/), [`object`](../categories/object/isempty/), [`string`](../categories/string/isempty/) |
 | `isNonEmpty` | [`array`](../categories/array/isnonempty/), [`object`](../categories/object/isnonempty/), [`string`](../categories/string/isnonempty/) |
+| `isValid` | [`date`](../categories/date/isvalid/), [`version`](../categories/version/isvalid/) |
 | `map` | [`object`](../categories/object/map/), [`set`](../categories/set/map/) |
 | `parse` | [`json`](../categories/json/parse/), [`version`](../categories/version/parse/) |
 | `stringify` | [`json`](../categories/json/stringify/), [`version`](../categories/version/stringify/) |
@@ -149,6 +150,13 @@ import { isEmpty as isEmpty4string } from '@helpers4/string';
 import { isNonEmpty as isNonEmpty4array } from '@helpers4/array';
 import { isNonEmpty as isNonEmpty4object } from '@helpers4/object';
 import { isNonEmpty as isNonEmpty4string } from '@helpers4/string';
+```
+
+### `isValid`
+
+```ts
+import { isValid as isValid4date } from '@helpers4/date';
+import { isValid as isValid4version } from '@helpers4/version';
 ```
 
 ### `map`

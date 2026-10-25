@@ -3,7 +3,7 @@ title: "stringifySequence"
 sidebar:
   label: "stringifySequence"
 description: "Serializes values as a JSON text sequence (RFC 7464, `application/json-seq`): each value is written as the ASCII record…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Serializes values as a JSON text sequence (RFC 7464, `application/json-seq`): each value is

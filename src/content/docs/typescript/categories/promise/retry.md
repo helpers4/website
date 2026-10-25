@@ -3,7 +3,7 @@ title: "retry"
 sidebar:
   label: "retry"
 description: "Retries a promise-returning function until it succeeds or runs out of attempts, then rejects with the last error, waiti…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Retries a promise-returning function until it succeeds or runs out of attempts, then rejects

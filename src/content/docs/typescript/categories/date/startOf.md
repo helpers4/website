@@ -3,7 +3,7 @@ title: "startOf"
 sidebar:
   label: "startOf"
 description: "Returns a new `Date` set to the **start** of the given unit."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Returns a new `Date` set to the **start** of the given unit.

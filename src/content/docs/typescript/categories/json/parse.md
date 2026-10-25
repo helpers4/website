@@ -3,7 +3,7 @@ title: "parse"
 sidebar:
   label: "parse"
 description: "Parses JSON permissively: strict JSON, JSONC (the dialect of `tsconfig.json` and VS Code's `settings.json`, also known…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Parses JSON permissively: strict JSON, JSONC (the dialect of `tsconfig.json` and VS Code's

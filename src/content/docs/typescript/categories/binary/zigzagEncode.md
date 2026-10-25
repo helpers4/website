@@ -3,7 +3,7 @@ title: "zigzagEncode"
 sidebar:
   label: "zigzagEncode"
 description: "Maps a signed 64-bit integer to an unsigned one so that values near zero stay small (`0, -1, 1, -2` become `0, 1, 2, 3`…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Maps a signed 64-bit integer to an unsigned one so that values near zero stay small (`0, -1, 1,

@@ -3,7 +3,7 @@ title: "returnOrThrowError"
 sidebar:
   label: "returnOrThrowError"
 description: "Return a value or throw an error if null or undefined."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Return a value or throw an error if null or undefined.

@@ -3,7 +3,7 @@ title: "reflectAttribute"
 sidebar:
   label: "reflectAttribute"
 description: "Defines a property on `element` that is backed by an HTML attribute — what a custom element needs for `<my-card heading…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Defines a property on `element` that is backed by an HTML attribute — what a custom element

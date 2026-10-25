@@ -3,7 +3,7 @@ title: "isValid"
 sidebar:
   label: "isValid"
 description: "Checks if a value is a valid Date instance (not `Invalid Date`)."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Checks if a value is a valid Date instance (not `Invalid Date`).
@@ -49,6 +49,17 @@ isValid(new Date())          // => true
 isValid(new Date('invalid')) // => false
 isValid('2023-01-01')        // => false (not a Date instance)
 ```
+
+:::caution[Name conflict]
+A helper named `isValid` also exists in [`@helpers4/version`](../version/isvalid/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { isValid as isValid4date } from '@helpers4/date';
+import { isValid as isValid4version } from '@helpers4/version';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
 
 ## Source
 

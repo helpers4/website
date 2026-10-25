@@ -3,7 +3,7 @@ title: "safeParseLines"
 sidebar:
   label: "safeParseLines"
 description: "Parses newline-delimited JSON (NDJSON, JSON Lines) like parseLines, but returns `null` (or `fallback`) instead of throw…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Parses newline-delimited JSON (NDJSON, JSON Lines) like parseLines, but returns `null`

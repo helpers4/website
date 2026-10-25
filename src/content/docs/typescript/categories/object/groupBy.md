@@ -3,7 +3,7 @@ title: "groupBy"
 sidebar:
   label: "groupBy"
 description: "Groups an array of items by a key derived from each item."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Groups an array of items by a key derived from each item.

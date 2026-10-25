@@ -3,7 +3,7 @@ title: "throttle"
 sidebar:
   label: "throttle"
 description: "Creates a throttled function that only invokes func at most once per every wait milliseconds  Call `cancel()`, or abort…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Creates a throttled function that only invokes func at most once per every wait milliseconds

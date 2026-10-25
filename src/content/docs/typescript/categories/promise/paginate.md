@@ -3,7 +3,7 @@ title: "paginate"
 sidebar:
   label: "paginate"
 description: "Collects every item of a paginated source by requesting pages one after the other, from page 1, until the source runs o…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Collects every item of a paginated source by requesting pages one after the other, from

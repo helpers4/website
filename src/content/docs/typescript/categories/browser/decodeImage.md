@@ -3,7 +3,7 @@ title: "decodeImage"
 sidebar:
   label: "decodeImage"
 description: "Loads an image and waits until it is decoded, so it can be painted without a flash or a decoding pause (e.g."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Loads an image and waits until it is decoded, so it can be painted without a flash or a

@@ -3,7 +3,7 @@ title: "excerpt"
 sidebar:
   label: "excerpt"
 description: "Derives a short, readable excerpt from a longer text — for a card/header/preview where a full paragraph doesn't fit."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Derives a short, readable excerpt from a longer text — for a card/header/preview where a full

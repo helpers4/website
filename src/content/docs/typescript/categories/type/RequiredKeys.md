@@ -3,7 +3,7 @@ title: "RequiredKeys"
 sidebar:
   label: "RequiredKeys"
 description: "Extracts the required (non-optional) keys of an object type `T`."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Extracts the required (non-optional) keys of an object type `T`.

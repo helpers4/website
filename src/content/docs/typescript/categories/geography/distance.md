@@ -3,7 +3,7 @@ title: "distance"
 sidebar:
   label: "distance"
 description: "Great-circle distance between two WGS84 points, in kilometres (haversine formula, mean Earth radius of 6371 km)."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Great-circle distance between two WGS84 points, in kilometres (haversine formula, mean Earth

@@ -3,7 +3,7 @@ title: "cleanPath"
 sidebar:
   label: "cleanPath"
 description: "Clean an URL by removing duplicate slashes."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Clean an URL by removing duplicate slashes.

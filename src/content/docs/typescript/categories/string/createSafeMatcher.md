@@ -3,7 +3,7 @@ title: "createSafeMatcher"
 sidebar:
   label: "createSafeMatcher"
 description: "Like createMatcher, but returns `null` instead of throwing when a string pattern is an invalid regular expression, to r…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Like createMatcher, but returns `null` instead of throwing when a string pattern is an

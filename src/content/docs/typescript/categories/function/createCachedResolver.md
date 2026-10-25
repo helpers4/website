@@ -3,7 +3,7 @@ title: "createCachedResolver"
 sidebar:
   label: "createCachedResolver"
 description: "Creates a lazy, cached resolver: `resolve(key)` computes and caches `compute(key)` the first time a given key is seen,…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Creates a lazy, cached resolver: `resolve(key)` computes and caches

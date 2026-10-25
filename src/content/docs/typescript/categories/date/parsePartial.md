@@ -3,7 +3,7 @@ title: "parsePartial"
 sidebar:
   label: "parsePartial"
 description: "Parses an ISO date that may only be known to the year or the month: `YYYY`, `YYYY-MM` or `YYYY-MM-DD`."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Parses an ISO date that may only be known to the year or the month: `YYYY`, `YYYY-MM` or

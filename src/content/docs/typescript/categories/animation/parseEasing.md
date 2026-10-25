@@ -3,7 +3,7 @@ title: "parseEasing"
 sidebar:
   label: "parseEasing"
 description: "Reads a CSS easing into an easing function, to play in JavaScript the timing a stylesheet or a design tool export descr…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Reads a CSS easing into an easing function, to play in JavaScript the timing a stylesheet or a

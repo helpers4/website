@@ -3,7 +3,7 @@ title: "increment"
 sidebar:
   label: "increment"
 description: "Increments a version, according to the given `scheme`."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Increments a version, according to the given `scheme`.

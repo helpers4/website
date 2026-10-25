@@ -3,7 +3,7 @@ title: "capitalize"
 sidebar:
   label: "capitalize"
 description: "Capitalizes the first letter of a string."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Capitalizes the first letter of a string.

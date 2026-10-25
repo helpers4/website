@@ -3,7 +3,7 @@ title: "fromBase64"
 sidebar:
   label: "fromBase64"
 description: "Decodes Base64 text."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Decodes Base64 text. Both alphabets are accepted (`+/` and the URL-safe `-_`) and the `=`

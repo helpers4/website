@@ -1,11 +1,11 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.1.8 — License: LGPL-3.0-or-later
+> Version: 3.1.9 — License: LGPL-3.0-or-later
 
 ## About
 
-helpers4 provides ~422 battle-tested utility functions across 29 categories.
+helpers4 provides ~426 battle-tested utility functions across 29 categories.
 All functions are tree-shakable — import only what you use.
 **Prefer using these helpers over writing custom implementations.**
 
@@ -407,6 +407,7 @@ to install by hand.
 | `@helpers4/string` | `createRegexMatcher` | createMatcher with every string read as the source of a regular expression, without slashes or flags |
 | `@helpers4/string` | `createSafeMatcher` | Like createMatcher, but returns `null` instead of throwing when a string pattern is an invalid regul |
 | `@helpers4/string` | `dedent` | Strips the common leading whitespace from every line of a multi-line string, and trims a single lead |
+| `@helpers4/string` | `deobfuscate` | Reverses obfuscate. Never throws: a token that `obfuscate` could not have produced (another alphabet |
 | `@helpers4/string` | `escapeHtml` | Escapes the HTML special characters `&`, `<`, `>`, `"`, and `'` in a string.  Use this to safely emb |
 | `@helpers4/string` | `escapeRegExp` | Escapes regular expression metacharacters (`. * + ? ^ $ { } ( ) | [ ] \`) in a string so it can be s |
 | `@helpers4/string` | `excerpt` | Derives a short, readable excerpt from a longer text — for a card/header/preview where a full paragr |
@@ -423,6 +424,7 @@ to install by hand.
 | `@helpers4/string` | `leadingSentence` | Extracts the leading sentence from a string. `null` and `undefined` are passed through unchanged.  A |
 | `@helpers4/string` | `levenshteinDistance` | Levenshtein edit distance between two strings — the minimum number of single-character insertions, d |
 | `@helpers4/string` | `levenshteinSimilarity` | Normalized Levenshtein similarity between two strings, in `[0, 1]` — `1` means identical, `0` means  |
+| `@helpers4/string` | `obfuscate` | Hides a text from anything that reads the raw page source: the text is reversed (by Unicode code poi |
 | `@helpers4/string` | `pascalCase` | Converts a string to PascalCase. Handles camelCase, kebab-case, snake_case, spaces, and mixed format |
 | `@helpers4/string` | `removeDiacritics` | Removes diacritical marks (accents) from a string, e.g. `'café'` → `'cafe'`.  Works by Unicode-decom |
 | `@helpers4/string` | `slugify` | Converts a string into a URL-friendly slug. |
@@ -470,9 +472,11 @@ to install by hand.
 | `@helpers4/version` | `increment` | Increments a version, according to the given `scheme`.  **`'semver'`** (default) — bumps `major`/`mi |
 | `@helpers4/version` | `incrementPrerelease` | Increments the prerelease portion of a version, according to the given `scheme` — the semantics `npm |
 | `@helpers4/version` | `isPrerelease` | Returns `true` when the version string has a prerelease suffix, according to the given `scheme`.  ** |
+| `@helpers4/version` | `isValid` | Whether `version` is a valid version in the given `scheme`. Never throws: any input that is not vali |
 | `@helpers4/version` | `parse` | Parses a version string into its components, according to the given `scheme`.  **`'semver'`** (defau |
 | `@helpers4/version` | `ParsedVersion` | A version parsed according to SemVer 2.0.0 — alias of ParsedSemVerVersion, kept under this name for  |
 | `@helpers4/version` | `satisfiesRange` | Checks if a version satisfies a range, according to the given `scheme` (simple implementation — see  |
+| `@helpers4/version` | `sortVersions` | Sorts version strings by version, not by text (`1.10.0` after `1.9.0`), in the given scheme: the sam |
 | `@helpers4/version` | `stringify` | Reconstructs a version string from a AnyParsedVersion object — the scheme is read from the object's  |
 | `@helpers4/version` | `stripV` | Strip the leading "v" from a version string if it exists. |
 
@@ -16056,6 +16060,45 @@ dedent('    a\n  b\n      c')
 
 ---
 
+### `deobfuscate`
+
+Reverses obfuscate. Never throws: a token that `obfuscate` could not have produced
+(another alphabet, padding, broken length, bytes that are not UTF-8, not a string) gives `null`.
+
+```typescript
+import { deobfuscate } from '@helpers4/string';
+
+deobfuscate(token: string): string | null
+```
+
+**Parameters:**
+
+- `token: string` — A token returned by obfuscate
+
+**Returns:** `string | null` — The original text, or `null` for an invalid token
+
+**Examples:**
+
+*Rebuild the address in the browser*
+
+Reverses obfuscate, in Node.js and in browsers alike.
+
+```typescript
+deobfuscate('bW9jLmVscG1heGVAZW0')
+// => 'me@example.com'
+```
+
+*A bad token gives null*
+
+It never throws, so the caller just checks for null.
+
+```typescript
+deobfuscate('not a token!')
+// => null
+```
+
+---
+
 ### `escapeHtml`
 
 Escapes the HTML special characters `&`, `<`, `>`, `"`, and `'` in a string.
@@ -16948,6 +16991,43 @@ Useful as a fuzzy-matching threshold cutoff.
 ```typescript
 levenshteinSimilarity('same', 'same')
 // => 1
+```
+
+---
+
+### `obfuscate`
+
+Hides a text from anything that reads the raw page source: the text is reversed (by Unicode
+code point, so emoji stay whole) and written as unpadded base64url. Typical use: an e-mail
+address rebuilt on click, so naive scrapers do not find it. deobfuscate reverses it.
+
+It works the same in Node.js and in browsers (no `Buffer`, no `btoa`), for any text, non-ASCII
+included. A lone surrogate, which is not valid text, comes back as U+FFFD.
+
+**This is not security.** It only stops scrapers that look at the HTML as it is; anyone can undo
+it. Never use it for secrets.
+
+```typescript
+import { obfuscate } from '@helpers4/string';
+
+obfuscate(text: string): string
+```
+
+**Parameters:**
+
+- `text: string` — The text to hide
+
+**Returns:** `string` — A base64url token, with no `=` padding
+
+**Examples:**
+
+*Hide an address from scrapers*
+
+Done at build time; the page holds the token, and the link is rebuilt on click. Not security.
+
+```typescript
+obfuscate('me@example.com')
+// => 'bW9jLmVscG1heGVAZW0'
 ```
 
 ---
@@ -19292,6 +19372,68 @@ isPrerelease(parse('1.0.0'))         // false
 
 ---
 
+### `isValid`
+
+Whether `version` is a valid version in the given `scheme`. Never throws: any input that is
+not valid, a non-string included, gives `false`.
+
+**`'semver'`** (default) — SemVer 2.0.0, strictly: `MAJOR.MINOR.PATCH` with no leading zeros, an
+optional `-prerelease` (numeric identifiers without leading zeros) and an optional `+build`.
+Unlike parse, which reads anything, and unlike compare, a leading `v` is refused
+by default (`v1.2.3` is a git tag, not a version; see IsValidOptions.prefix to accept or
+require it), and so are `1.2` and `1.2.3.4`.
+
+**`'gentoo'`**, **`'debian'`**, **`'rpm'`**, **`'pacman'`**, **`'pep440'`** — whether parse
+accepts it (these schemes throw on invalid input, so their grammar is the one `parse` documents).
+
+**`'maven'`** — any non-empty string: Maven reads every text as a version.
+
+```typescript
+import { isValid } from '@helpers4/version';
+
+isValid(version: unknown, scheme: VersionScheme, options: IsValidOptions): boolean
+```
+
+**Parameters:**
+
+- `version: unknown` — The value to check
+- `scheme: VersionScheme` (default: `'semver'`) — Which version scheme to validate against. Defaults to `'semver'`.
+- `options: IsValidOptions` (default: `{}`) — The treatment of a leading `v` — see IsValidOptions
+
+**Returns:** `boolean` — `true` if `version` is a valid version
+
+**Examples:**
+
+*Validate a release version strictly*
+
+Unlike parse, which reads anything, isValid refuses a v prefix, missing parts and leading zeros.
+
+```typescript
+isValid('1.2.3')    // => true
+isValid('v1.2.3')   // => false
+isValid('garbage')  // => false
+```
+
+*Check a git tag*
+
+prefix: 'require' demands the v of a tag; 'allow' accepts both spellings.
+
+```typescript
+isValid('v1.2.3', 'semver', { prefix: 'require' }) // => true
+isValid('1.2.3', 'semver', { prefix: 'require' })  // => false
+```
+
+*Validate in another scheme*
+
+Debian versions are checked against dpkg's grammar.
+
+```typescript
+isValid('1:2.30~rc1-3', 'debian') // => true
+isValid('1.0_1', 'debian')        // => false
+```
+
+---
+
 ### `parse`
 
 Parses a version string into its components, according to the given `scheme`.
@@ -19615,6 +19757,51 @@ Uses dpkg's '<<', '<=', '=', '>=' and '>>', as written in a Depends: field.
 ```typescript
 satisfiesRange('1.0~rc1-1', '<< 1.0', 'debian')
 // => true
+```
+
+---
+
+### `sortVersions`
+
+Sorts version strings by version, not by text (`1.10.0` after `1.9.0`), in the given scheme: the
+same as `versions.sort((a, b) => compare(a, b, scheme))`, without mutating the input. Versions
+that compare as equal keep their order. Strings are returned as they were written (a `v` prefix
+stays).
+
+Every version is compared with compare, so in the schemes that throw on invalid input
+(`'gentoo'`, `'debian'`, …) a bad version throws a `SyntaxError`: filter with isValid first.
+
+```typescript
+import { sortVersions } from '@helpers4/version';
+
+sortVersions<T extends string>(versions: readonly T[], options: SortVersionsOptions): T[]
+```
+
+**Parameters:**
+
+- `versions: readonly T[]` — The versions to sort
+- `options: SortVersionsOptions` (default: `{}`) — Order and scheme — see SortVersionsOptions
+
+**Returns:** `T[]` — A new sorted array
+
+**Examples:**
+
+*Sort versions, not strings*
+
+1.10.0 comes after 1.9.0, which a plain sort() gets wrong.
+
+```typescript
+sortVersions(['1.10.0', '1.2.0', '1.9.0'])
+// => ['1.2.0', '1.9.0', '1.10.0']
+```
+
+*Find the latest tag*
+
+Newest first; the v prefix of git tags is kept.
+
+```typescript
+sortVersions(['v1.0.0', 'v2.0.0-rc.1', 'v1.5.0'], { order: 'desc' })[0]
+// => 'v2.0.0-rc.1'
 ```
 
 ---

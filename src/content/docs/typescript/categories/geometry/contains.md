@@ -3,7 +3,7 @@ title: "contains"
 sidebar:
   label: "contains"
 description: "Whether a point or a rectangle is inside a rectangle."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Whether a point or a rectangle is inside a rectangle.

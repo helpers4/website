@@ -3,7 +3,7 @@ title: "relativeURLToAbsolute"
 sidebar:
   label: "relativeURLToAbsolute"
 description: "Converts a relative URL to an absolute URL, using `base` when given, or else the current document base URI (and the win…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Converts a relative URL to an absolute URL, using `base` when given, or else the current

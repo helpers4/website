@@ -18,6 +18,7 @@ Utility functions for working with string operations.
 | [`createRegexMatcher`](./createregexmatcher/) | createMatcher with every string read as the source of a regular expression, without slashes or flags \(\`'^\(Home\|Login\)$'… |
 | [`createSafeMatcher`](./createsafematcher/) | Like createMatcher, but returns \`null\` instead of throwing when a string pattern is an invalid regular expression, to r… |
 | [`dedent`](./dedent/) | Strips the common leading whitespace from every line of a multi\-line string, and trims a single leading/trailing blank… |
+| [`deobfuscate`](./deobfuscate/) | Reverses obfuscate\. |
 | [`escapeHtml`](./escapehtml/) | Escapes the HTML special characters \`&\`, \`<\`, \`>\`, \`"\`, and \`'\` in a string\. |
 | [`escapeRegExp`](./escaperegexp/) | Escapes regular expression metacharacters \(\`\. |
 | [`excerpt`](./excerpt/) | Derives a short, readable excerpt from a longer text — for a card/header/preview where a full paragraph doesn't fit\. |
@@ -34,6 +35,7 @@ Utility functions for working with string operations.
 | [`leadingSentence`](./leadingsentence/) | Extracts the leading sentence from a string\. |
 | [`levenshteinDistance`](./levenshteindistance/) | Levenshtein edit distance between two strings — the minimum number of single\-character insertions, deletions, or substi… |
 | [`levenshteinSimilarity`](./levenshteinsimilarity/) | Normalized Levenshtein similarity between two strings, in \`\[0, 1\]\` — \`1\` means identical, \`0\` means completely dissimil… |
+| [`obfuscate`](./obfuscate/) | Hides a text from anything that reads the raw page source: the text is reversed \(by Unicode code point, so emoji stay w… |
 | `padStart / padEnd` | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
 | [`pascalCase`](./pascalcase/) | Converts a string to PascalCase\. |
 | [`removeDiacritics`](./removediacritics/) | Removes diacritical marks \(accents\) from a string, e\.g\. |

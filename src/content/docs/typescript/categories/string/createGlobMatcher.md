@@ -3,7 +3,7 @@ title: "createGlobMatcher"
 sidebar:
   label: "createGlobMatcher"
 description: "createMatcher with every string read as a glob (`*`, `?`): no string is ever taken for a regular expression, so it neve…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 createMatcher with every string read as a glob (`*`, `?`): no string is ever taken

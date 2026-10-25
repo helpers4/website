@@ -6,12 +6,21 @@ sidebar:
   order: 2
 ---
 
-Current published version: **v3.1.8**. This page groups helpers by the version that
+Current published version: **v3.1.9**. This page groups helpers by the version that
 *first introduced* them — a release with no new helpers (bug fixes, docs, internal changes only)
 gets no section of its own here. For the full release-by-release history, see
 [CHANGELOG.md](https://github.com/helpers4/typescript/blob/main/CHANGELOG.md) on GitHub.
 
-## v3.1.8 *(latest with new helpers)*
+## v3.1.9 *(latest with new helpers)*
+
+| Function | Category | Description |
+|----------|----------|-------------|
+| [`deobfuscate`](../categories/string/deobfuscate/) | [string](../categories/string/) | Reverses obfuscate\. Never throws: a token that \`obfuscate\` could not have produced \(another alphabet, padding, broken length, bytes that are not UTF\-8, not a string\) gives \`null\`\. |
+| [`isValid`](../categories/version/isvalid/) | [version](../categories/version/) | Whether \`version\` is a valid version in the given \`scheme\`\. Never throws: any input that is not valid, a non\-string included, gives \`false\`\.  \*\*\`'semver'\`\*\* \(default\) — SemVer 2\.0\.0, strictly: \`MAJOR\.MINOR\.PATCH\` with no leading zeros, an optional \`\-prerelease\` \(numeric identifiers without leading zeros\) and an optional \`\+build\`\. Unlike parse, which reads anything, and unlike compare, a leading \`v\` is refused by default \(\`v1\.2\.3\` is a git tag, not a version; see IsValidOptions\.prefix to accept or require it\), and so are \`1\.2\` and \`1\.2\.3\.4\`\.  \*\*\`'gentoo'\`\*\*, \*\*\`'debian'\`\*\*, \*\*\`'rpm'\`\*\*, \*\*\`'pacman'\`\*\*, \*\*\`'pep440'\`\*\* — whether parse accepts it \(these schemes throw on invalid input, so their grammar is the one \`parse\` documents\)\.  \*\*\`'maven'\`\*\* — any non\-empty string: Maven reads every text as a version\. |
+| [`obfuscate`](../categories/string/obfuscate/) | [string](../categories/string/) | Hides a text from anything that reads the raw page source: the text is reversed \(by Unicode code point, so emoji stay whole\) and written as unpadded base64url\. Typical use: an e\-mail address rebuilt on click, so naive scrapers do not find it\. deobfuscate reverses it\.  It works the same in Node\.js and in browsers \(no \`Buffer\`, no \`btoa\`\), for any text, non\-ASCII included\. A lone surrogate, which is not valid text, comes back as U\+FFFD\.  \*\*This is not security\.\*\* It only stops scrapers that look at the HTML as it is; anyone can undo it\. Never use it for secrets\. |
+| [`sortVersions`](../categories/version/sortversions/) | [version](../categories/version/) | Sorts version strings by version, not by text \(\`1\.10\.0\` after \`1\.9\.0\`\), in the given scheme: the same as \`versions\.sort\(\(a, b\) => compare\(a, b, scheme\)\)\`, without mutating the input\. Versions that compare as equal keep their order\. Strings are returned as they were written \(a \`v\` prefix stays\)\.  Every version is compared with compare, so in the schemes that throw on invalid input \(\`'gentoo'\`, \`'debian'\`, …\) a bad version throws a \`SyntaxError\`: filter with isValid first\. |
+
+## v3.1.8
 
 | Function | Category | Description |
 |----------|----------|-------------|

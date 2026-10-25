@@ -3,7 +3,7 @@ title: "stringify"
 sidebar:
   label: "stringify"
 description: "Serializes a value to JSON text — pretty-printed with 2 spaces by default, or canonical."
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Serializes a value to JSON text — pretty-printed with 2 spaces by default, or canonical.

@@ -3,7 +3,7 @@ title: "simplifyPolyline"
 sidebar:
   label: "simplifyPolyline"
 description: "Removes the points of a polyline that change its shape by less than `tolerance`, with the Ramer–Douglas–Peucker algorit…"
-version: "3.1.8"
+version: "3.1.9"
 ---
 
 Removes the points of a polyline that change its shape by less than `tolerance`, with the
