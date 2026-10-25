@@ -3,7 +3,7 @@ title: "frameLoop"
 sidebar:
   label: "frameLoop"
 description: "Calls `onFrame` once per animation frame with the time elapsed since the start, until it returns `false` or the loop is…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Calls `onFrame` once per animation frame with the time elapsed since the start, until it

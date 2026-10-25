@@ -16,7 +16,7 @@ Utility functions for working with url operations.
 | [`isExternal`](./isexternal/) | Whether a link points to another origin than \`base\`: an absolute \`http\(s\)\` URL or a protocol\-relative one \(\`//host/path… |
 | [`onlyPath`](./onlypath/) | Extract only the path from an URI with optional query and fragments\. |
 | [`parsePackageRepository`](./parsepackagerepository/) | Parse the \`repository\` field from \`package\.json\` into a structured object\. |
-| [`relativeURLToAbsolute`](./relativeurltoabsolute/) | Converts a relative URL to an absolute URL using the current document base URI\. |
+| [`relativeURLToAbsolute`](./relativeurltoabsolute/) | Converts a relative URL to an absolute URL, using \`base\` when given, or else the current document base URI \(and the win… |
 | [`withLeadingSlash`](./withleadingslash/) | Adds a leading slash \`/\` to the given URL if it is not already present\. |
 | [`withoutLeadingSlash`](./withoutleadingslash/) | Removes the leading slash \`/\` from the given URL if it is present\. |
 | [`withoutTrailingSlash`](./withouttrailingslash/) | Removes the trailing slash \`/\` from the given URL if it is present\. |

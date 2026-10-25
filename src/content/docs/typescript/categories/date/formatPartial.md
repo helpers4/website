@@ -3,7 +3,7 @@ title: "formatPartial"
 sidebar:
   label: "formatPartial"
 description: "Formats a partial ISO date at the precision it was given, in UTC: a year alone is approximate and reads `c."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Formats a partial ISO date at the precision it was given, in UTC: a year alone is

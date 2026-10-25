@@ -3,7 +3,7 @@ title: "loadFont"
 sidebar:
   label: "loadFont"
 description: "Loads a font and registers it in `document.fonts`, so CSS and canvas can use `family` right away."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Loads a font and registers it in `document.fonts`, so CSS and canvas can use `family` right

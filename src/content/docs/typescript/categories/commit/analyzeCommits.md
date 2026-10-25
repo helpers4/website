@@ -3,7 +3,7 @@ title: "analyzeCommits"
 sidebar:
   label: "analyzeCommits"
 description: "Analyses a list of commits to suggest a semantic version bump."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Analyses a list of commits to suggest a semantic version bump.

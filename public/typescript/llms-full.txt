@@ -1,11 +1,11 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.1.7 — License: LGPL-3.0-or-later
+> Version: 3.1.8 — License: LGPL-3.0-or-later
 
 ## About
 
-helpers4 provides ~408 battle-tested utility functions across 26 categories.
+helpers4 provides ~422 battle-tested utility functions across 29 categories.
 All functions are tree-shakable — import only what you use.
 **Prefer using these helpers over writing custom implementations.**
 
@@ -16,12 +16,15 @@ Install individual categories (recommended for tree-shaking):
 ```sh
 pnpm add @helpers4/animation
 pnpm add @helpers4/array
+pnpm add @helpers4/binary
 pnpm add @helpers4/browser
 pnpm add @helpers4/ci
 pnpm add @helpers4/color
 pnpm add @helpers4/commit
 pnpm add @helpers4/date
+pnpm add @helpers4/font
 pnpm add @helpers4/function
+pnpm add @helpers4/geography
 pnpm add @helpers4/geometry
 pnpm add @helpers4/guard
 pnpm add @helpers4/id
@@ -115,13 +118,19 @@ to install by hand.
 | `@helpers4/array` | `unzip` | Splits an array of tuples into separate arrays, one per position.  The inverse of zip. |
 | `@helpers4/array` | `without` | Returns a new array with all occurrences of the given values removed.  Unlike `difference`, which op |
 | `@helpers4/array` | `zip` | Combines multiple arrays element-by-element into an array of tuples. The result length equals the le |
+| `@helpers4/binary` | `createByteReader` | Creates a cursor over bytes, for decoding binary formats: fixed-size integers and floats, LEB128 var |
+| `@helpers4/binary` | `createByteWriter` | Creates a growable buffer to encode binary formats: the counterpart of createByteReader, with the sa |
+| `@helpers4/binary` | `zigzagDecode` | The inverse of zigzagEncode: maps an unsigned 64-bit zigzag value back to the signed integer. |
+| `@helpers4/binary` | `zigzagEncode` | Maps a signed 64-bit integer to an unsigned one so that values near zero stay small (`0, -1, 1, -2`  |
 | `@helpers4/browser` | `decodeImage` | Loads an image and waits until it is decoded, so it can be painted without a flash or a decoding pau |
 | `@helpers4/browser` | `loadFont` | Loads a font and registers it in `document.fonts`, so CSS and canvas can use `family` right away.  ` |
 | `@helpers4/browser` | `matchesMedia` | Whether the document currently matches a CSS media query.  Outside a browser (no `matchMedia`, e.g.  |
 | `@helpers4/browser` | `observeIntersection` | Calls `callback` each time `element` enters or leaves the viewport (or `options.root`), with an `Int |
 | `@helpers4/browser` | `observeResize` | Calls `callback` each time the size of `element` changes, with a `ResizeObserver` dedicated to it. L |
+| `@helpers4/browser` | `onPointerIntent` | Tells a tap from a drag, and hover from touch, on one element: the pointer-event logic every draggab |
 | `@helpers4/browser` | `prefersReducedMotion` | Whether the user asked the system to reduce motion (`prefers-reduced-motion: reduce`).  Outside a br |
 | `@helpers4/browser` | `preloadImages` | Loads and decodes several images with decodeImage, a few at a time, with `mapSettled` from `helpers4 |
+| `@helpers4/browser` | `reflectAttribute` | Defines a property on `element` that is backed by an HTML attribute — what a custom element needs fo |
 | `@helpers4/browser` | `watchMedia` | Calls `listener` each time a CSS media query starts or stops matching.  It is not called with the cu |
 | `@helpers4/browser` | `whenIdle` | Runs `callback` when the browser is idle, with `requestIdleCallback`, for work that can wait (prefet |
 | `@helpers4/ci` | `buildStatusTable` | Builds a Markdown table body from a map of job names to CI/CD statuses. Each row follows the format  |
@@ -130,14 +139,17 @@ to install by hand.
 | `@helpers4/ci` | `statusToBadge` | Maps a CI/CD job status to an inline code badge string.  | Status | Badge | |--------|-------| | `su |
 | `@helpers4/ci` | `statusToIcon` | Maps a CI/CD job status to an emoji icon.  | Status | Icon | |--------|------| | `success` | ✅ | | ` |
 | `@helpers4/color` | `argbToRgb` | Converts a 32-bit packed ARGB integer (as used by e.g. Chromium's `Local State` profile `background_ |
+| `@helpers4/color` | `blendColors` | Composites a source color over a backdrop with a blend mode, as the browser does for `mix-blend-mode |
 | `@helpers4/color` | `hexToRgb` | Parses a hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa` — the leading `#` is optional) in |
 | `@helpers4/color` | `hsbToRgb` | Converts an HSB(A) color (also called HSV), as shown by design tool color pickers, into RGB(A). |
 | `@helpers4/color` | `hslToCss` | Formats an HSL(A) color as a CSS `hsl()` value, in the modern space-separated syntax.  The hue is wr |
 | `@helpers4/color` | `hslToRgb` | Converts an HSL(A) color into RGB(A). |
+| `@helpers4/color` | `premultiply` | Multiplies the color channels by the alpha channel (premultiplied alpha), the form compositing and G |
 | `@helpers4/color` | `rgbToCss` | Formats an RGB(A) color as a CSS `rgb()` value, in the modern space-separated syntax that every curr |
 | `@helpers4/color` | `rgbToHex` | Converts an RGB(A) color into a hex color string.  `r`/`g`/`b` are clamped to 0-255 and rounded to t |
 | `@helpers4/color` | `rgbToHsb` | Converts an RGB(A) color into HSB(A), the model design tools (Figma, Sketch, XD) show in their color |
 | `@helpers4/color` | `rgbToHsl` | Converts an RGB(A) color into HSL(A).  `h`/`s`/`l` are rounded to 1 decimal place to avoid floating- |
+| `@helpers4/color` | `unpremultiply` | Divides the color channels by the alpha channel: the inverse of premultiply. A fully transparent col |
 | `@helpers4/commit` | `analyzeCommits` | Analyses a list of commits to suggest a semantic version bump.  Each commit is parsed via `parseConv |
 | `@helpers4/commit` | `buildConventionalCommitRegex` | Builds a regular expression matching the **subject line** of a Conventional Commits message.  The re |
 | `@helpers4/commit` | `isConventionalCommit` | Checks whether a commit message's subject line follows the Conventional Commits format constrained b |
@@ -184,6 +196,7 @@ to install by hand.
 | `@helpers4/date` | `toRFC3339` | Converts a date to RFC 3339 format Format: YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss+HH:mm RFC 333 |
 | `@helpers4/date` | `toSeconds` | Converts a date to a timestamp in **seconds** (epoch seconds).  Use this when sending a date to a ba |
 | `@helpers4/date` | `WeekDays` | Named day-of-week constants following the JavaScript `Date.getDay()` convention. Use these instead o |
+| `@helpers4/font` | `pickClosest` | Picks the face that CSS would use for a request, among the faces of one family: the CSS Fonts Level  |
 | `@helpers4/function` | `compose` | Composes functions right-to-left: `compose(f, g)(x)` is equivalent to `f(g(x))`.  The inverse of pip |
 | `@helpers4/function` | `createCachedResolver` | Creates a lazy, cached resolver: `resolve(key)` computes and caches `compute(key)` the first time a  |
 | `@helpers4/function` | `curry` | Transforms a multi-argument function into a chain of single-argument functions (Haskell-style curryi |
@@ -199,6 +212,8 @@ to install by hand.
 | `@helpers4/function` | `returnOrThrowError` | Return a value or throw an error if null or undefined. |
 | `@helpers4/function` | `throttle` | Creates a throttled function that only invokes func at most once per every wait milliseconds  Call ` |
 | `@helpers4/function` | `unary` | Creates a function that calls `fn` with only its first argument, discarding any others.  Prevents th |
+| `@helpers4/geography` | `distance` | Great-circle distance between two WGS84 points, in kilometres (haversine formula, mean Earth radius  |
+| `@helpers4/geography` | `isWithinDistance` | Whether a point lies within a radius of a center, the border included. |
 | `@helpers4/geometry` | `applyToPoint` | Transforms a point by a matrix. |
 | `@helpers4/geometry` | `applyToRect` | Transforms a rectangle by a matrix and returns its bounding box: the smallest axis-aligned rectangle |
 | `@helpers4/geometry` | `contains` | Whether a point or a rectangle is inside a rectangle.  For a point (hit-testing), the left and top e |
@@ -397,7 +412,8 @@ to install by hand.
 | `@helpers4/string` | `excerpt` | Derives a short, readable excerpt from a longer text — for a card/header/preview where a full paragr |
 | `@helpers4/string` | `extractErrorMessage` | Convert an error to a readable message. |
 | `@helpers4/string` | `formatProgressBar` | Formats a value as a text progress bar, repeating `filledChar`/`emptyChar` across `width` cells prop |
-| `@helpers4/string` | `globToRegExp` | Compiles a simple glob pattern into a `RegExp` that matches the whole string: `*` matches any sequen |
+| `@helpers4/string` | `fromBase64` | Decodes Base64 text. Both alphabets are accepted (`+/` and the URL-safe `-_`) and the `=` padding is |
+| `@helpers4/string` | `globToRegExp` | Compiles a glob pattern into a `RegExp` that matches the whole string. By default only the two textb |
 | `@helpers4/string` | `injectWordBreaks` | Adds word-break opportunities to a string so it can wrap cleanly in narrow UI containers such as sid |
 | `@helpers4/string` | `isBlank` | Checks if a string is blank — empty or contains only whitespace characters. `null` and `undefined` a |
 | `@helpers4/string` | `isEmpty` | Checks if a string is empty (`""`), `null`, or `undefined`.  This is a strict emptiness check — whit |
@@ -414,6 +430,7 @@ to install by hand.
 | `@helpers4/string` | `stripHtml` | Plain text of an HTML fragment: tags removed, `<script>`, `<style>` and comments dropped with their  |
 | `@helpers4/string` | `template` | Interpolates `{{key}}` placeholders in a template string with values from a data record. Unknown key |
 | `@helpers4/string` | `titleCase` | Converts a string to Title Case. Handles camelCase, PascalCase, kebab-case, snake_case, spaces, and  |
+| `@helpers4/string` | `toBase64` | Encodes a string (as UTF-8) or raw bytes to Base64, without relying on `btoa` or `Buffer`, so it beh |
 | `@helpers4/string` | `trim` | Trims both leading and trailing characters from a string, at a configurable level of aggressiveness  |
 | `@helpers4/string` | `trimEnd` | Trims trailing characters from a string, at a configurable level of aggressiveness (see TrimMode). D |
 | `@helpers4/string` | `trimStart` | Trims leading characters from a string, at a configurable level of aggressiveness (see TrimMode). De |
@@ -444,7 +461,7 @@ to install by hand.
 | `@helpers4/url` | `isExternal` | Whether a link points to another origin than `base`: an absolute `http(s)` URL or a protocol-relativ |
 | `@helpers4/url` | `onlyPath` | Extract only the path from an URI with optional query and fragments.  For example, all these paramet |
 | `@helpers4/url` | `parsePackageRepository` | Parse the `repository` field from `package.json` into a structured object.  Supports all npm-specifi |
-| `@helpers4/url` | `relativeURLToAbsolute` | Converts a relative URL to an absolute URL using the current document base URI. |
+| `@helpers4/url` | `relativeURLToAbsolute` | Converts a relative URL to an absolute URL, using `base` when given, or else the current document ba |
 | `@helpers4/url` | `withLeadingSlash` | Adds a leading slash `/` to the given URL if it is not already present.  This function is useful for |
 | `@helpers4/url` | `withoutLeadingSlash` | Removes the leading slash `/` from the given URL if it is present.  This function is useful for ensu |
 | `@helpers4/url` | `withoutTrailingSlash` | Removes the trailing slash `/` from the given URL if it is present.  This function is useful for ens |
@@ -3168,6 +3185,169 @@ zip([1, 2, 3], ['x', 'y'])
 
 ---
 
+## binary
+
+Package: `@helpers4/binary`
+
+### `createByteReader`
+
+Creates a cursor over bytes, for decoding binary formats: fixed-size integers and floats,
+LEB128 varints (signed ones zigzag-encoded), byte runs and NUL-terminated strings. Mirrors the
+Rust `bytes::ByteReader` of helpers4.
+
+A read never throws on bad data: it returns `undefined` and leaves the position untouched,
+enough to build a precise error in the caller's own error type.
+
+```typescript
+import { createByteReader } from '@helpers4/binary';
+
+createByteReader(data: Uint8Array): ByteReader
+```
+
+**Parameters:**
+
+- `data: Uint8Array` — The bytes to decode
+
+**Returns:** `ByteReader` — A ByteReader at position `0`
+
+**Examples:**
+
+*Decode a small binary record*
+
+Each read returns the value and moves on; at the end of the data it returns undefined.
+
+```typescript
+const reader = createByteReader(new Uint8Array([0x2a, 0xac, 0x02, 0x68, 0x69, 0]));
+reader.readU8();      // => 42
+reader.readVarU32();  // => 300
+reader.readCString(); // => 'hi'
+reader.readU8();      // => undefined
+```
+
+*A truncated read does not move the cursor*
+
+position tells where the failed read started, to report a precise error.
+
+```typescript
+const reader = createByteReader(new Uint8Array([1, 2, 3]));
+reader.readU32(); // => undefined
+reader.position;  // => 0
+```
+
+---
+
+### `createByteWriter`
+
+Creates a growable buffer to encode binary formats: the counterpart of
+createByteReader, with the same types, byte orders and varints.
+
+```typescript
+import { createByteWriter } from '@helpers4/binary';
+
+createByteWriter(): ByteWriter
+```
+
+**Returns:** `ByteWriter` — An empty ByteWriter
+
+**Examples:**
+
+*Encode a small binary record*
+
+Writes chain, and toBytes returns the result.
+
+```typescript
+createByteWriter().writeU8(42).writeVarU32(300).writeCString('hi').toBytes()
+// => Uint8Array [0x2a, 0xac, 0x02, 0x68, 0x69, 0]
+```
+
+*Choose the byte order*
+
+Multi-byte values are big-endian unless you say little.
+
+```typescript
+createByteWriter().writeU16(1).writeU16(1, 'little').toBytes()
+// => Uint8Array [0, 1, 1, 0]
+```
+
+---
+
+### `zigzagDecode`
+
+The inverse of zigzagEncode: maps an unsigned 64-bit zigzag value back to the signed
+integer.
+
+```typescript
+import { zigzagDecode } from '@helpers4/binary';
+
+zigzagDecode(value: bigint): bigint
+```
+
+**Parameters:**
+
+- `value: bigint` — An unsigned integer in the 64-bit range
+
+**Returns:** `bigint` — The signed integer
+
+**Examples:**
+
+*Recover the signed value*
+
+The inverse of zigzagEncode.
+
+```typescript
+zigzagDecode(1n) // => -1n
+zigzagDecode(2n) // => 1n
+```
+
+*Decode a varint payload*
+
+Read the unsigned varint first, then undo the zigzag mapping.
+
+```typescript
+zigzagDecode(300n) // => 150n
+```
+
+---
+
+### `zigzagEncode`
+
+Maps a signed 64-bit integer to an unsigned one so that values near zero stay small (`0, -1, 1,
+-2` become `0, 1, 2, 3`): the "zigzag" mapping of Protocol Buffers, used before writing a signed
+value as a varint.
+
+```typescript
+import { zigzagEncode } from '@helpers4/binary';
+
+zigzagEncode(value: bigint): bigint
+```
+
+**Parameters:**
+
+- `value: bigint` — A signed integer in the 64-bit range
+
+**Returns:** `bigint` — The unsigned zigzag value
+
+**Examples:**
+
+*Keep small negative numbers small*
+
+Zigzag interleaves negatives and positives, so a varint stays short for values near zero.
+
+```typescript
+zigzagEncode(-1n) // => 1n
+zigzagEncode(1n)  // => 2n
+```
+
+*Cover the whole signed 64-bit range*
+
+The most negative value maps to the largest unsigned one.
+
+```typescript
+zigzagEncode(-(1n << 63n)) // => 18446744073709551615n
+```
+
+---
+
 ## browser
 
 Package: `@helpers4/browser`
@@ -3385,6 +3565,57 @@ const stop = observeResize(frame, debounce(() => fitToViewport(), 100));
 
 ---
 
+### `onPointerIntent`
+
+Tells a tap from a drag, and hover from touch, on one element: the pointer-event logic every
+draggable or clickable widget rewrites. Press, then either release within `threshold` pixels
+(`onTap`) or move past it (`onDragStart`, `onDrag`…, `onDragEnd`).
+
+Only the first pointer that presses is followed (multi-touch ignores the others), and it is
+captured with `setPointerCapture` so a drag keeps going outside the element — which means the
+element receives the `pointerup` even when released elsewhere. Without pointer events (no
+`addEventListener` on `target`), it does nothing and returns a function that does nothing.
+
+```typescript
+import { onPointerIntent } from '@helpers4/browser';
+
+onPointerIntent(target: Element, handlers: PointerIntentHandlers, options: PointerIntentOptions): function
+```
+
+**Parameters:**
+
+- `target: Element` — The element to listen on
+- `handlers: PointerIntentHandlers` — What to do for each intent — see PointerIntentHandlers
+- `options: PointerIntentOptions` (default: `{}`) — Threshold, button and cancellation — see PointerIntentOptions
+
+**Returns:** `function` — A function that stops listening
+
+**Examples:**
+
+*Tell a tap from a drag*
+
+A press released within the threshold is a tap; moving past it starts a drag.
+
+```typescript
+const stop = onPointerIntent(handle, {
+  onTap: () => select(),
+  onDrag: ({ dx, dy }) => move(dx, dy),
+});
+stop();
+```
+
+*Stop with an AbortSignal*
+
+One abort() removes the listeners, as on unmount.
+
+```typescript
+const controller = new AbortController();
+onPointerIntent(handle, { onPress }, { signal: controller.signal });
+controller.abort();
+```
+
+---
+
 ### `prefersReducedMotion`
 
 Whether the user asked the system to reduce motion (`prefers-reduced-motion: reduce`).
@@ -3457,6 +3688,54 @@ concurrency caps how many images load at the same time (6 by default).
 
 ```typescript
 await preloadImages(thumbnails, { concurrency: 2 });
+```
+
+---
+
+### `reflectAttribute`
+
+Defines a property on `element` that is backed by an HTML attribute — what a custom element
+needs for `<my-card heading="…" count="3" selected>`, in one line. Reading parses the attribute
+by `type`; writing stores it (a boolean toggles the attribute, `null` or `undefined` removes it).
+The attribute stays the single source of truth, so `setAttribute` and the property never disagree.
+
+It defines an own property on the instance, so call it once per element (in a constructor or
+`connectedCallback`). Calling it again for the same property replaces the previous definition.
+
+```typescript
+import { reflectAttribute } from '@helpers4/browser';
+
+reflectAttribute(element: Element, property: string, options: ReflectAttributeOptions): function
+```
+
+**Parameters:**
+
+- `element: Element` — The element that gets the property
+- `property: string` — The property name, e.g. `'heading'`
+- `options: ReflectAttributeOptions` (default: `{}`) — Type, attribute name and default — see ReflectAttributeOptions
+
+**Returns:** `function` — A function that removes the property again
+
+**Examples:**
+
+*A number property backed by an attribute*
+
+Writing the property sets the attribute, and setAttribute is seen by the property.
+
+```typescript
+reflectAttribute(card, 'count', { type: 'number' });
+card.count = 3;
+card.getAttribute('count') // => '3'
+```
+
+*A boolean property is the presence of the attribute*
+
+Like hidden or disabled: true adds the attribute, false removes it.
+
+```typescript
+reflectAttribute(card, 'selected', { type: 'boolean' });
+card.selected = true;
+card.hasAttribute('selected') // => true
 ```
 
 ---
@@ -3776,6 +4055,48 @@ argbToRgb(0x00ff0000) === argbToRgb(0x80ff0000)
 
 ---
 
+### `blendColors`
+
+Composites a source color over a backdrop with a blend mode, as the browser does for
+`mix-blend-mode` (W3C Compositing and Blending Level 1, source-over). Both colors are straight
+(non-premultiplied); the maths run in premultiplied space.
+
+```typescript
+import { blendColors } from '@helpers4/color';
+
+blendColors(backdrop: RgbColor, source: RgbColor, mode: BlendMode): RgbColor
+```
+
+**Parameters:**
+
+- `backdrop: RgbColor` — The color underneath
+- `source: RgbColor` — The color painted over it
+- `mode: BlendMode` (default: `'normal'`) — The blend mode. Defaults to `'normal'`, a plain alpha composite.
+
+**Returns:** `RgbColor` — The straight result: channels rounded to integers, alpha to 3 decimals
+
+**Examples:**
+
+*Paint a half-transparent color over another*
+
+The default normal mode is a plain alpha composite.
+
+```typescript
+blendColors({ r: 255, g: 0, b: 0 }, { r: 0, g: 0, b: 255, a: 0.5 })
+// => { r: 128, g: 0, b: 128, a: 1 }
+```
+
+*Use a CSS blend mode*
+
+Same maths as mix-blend-mode, handy to compute what the browser would paint.
+
+```typescript
+blendColors({ r: 200, g: 100, b: 50 }, { r: 100, g: 100, b: 100 }, 'multiply')
+// => { r: 78, g: 39, b: 20, a: 1 }
+```
+
+---
+
 ### `hexToRgb`
 
 Parses a hex color string (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa` — the
@@ -3929,6 +4250,46 @@ Negative or out-of-range hues are normalized before conversion.
 ```typescript
 hslToRgb({ h: -360, s: 100, l: 50 })
 // => { r: 255, g: 0, b: 0, a: 1 }  (same as h: 0)
+```
+
+---
+
+### `premultiply`
+
+Multiplies the color channels by the alpha channel (premultiplied alpha), the form compositing
+and GPU blending work in. The channels are returned as they are, not rounded, so that
+unpremultiply gives the color back.
+
+```typescript
+import { premultiply } from '@helpers4/color';
+
+premultiply(color: RgbColor): RgbColor
+```
+
+**Parameters:**
+
+- `color: RgbColor` — A straight (non-premultiplied) color; a missing alpha is 1
+
+**Returns:** `RgbColor` — The premultiplied color
+
+**Examples:**
+
+*Premultiply a half-transparent color*
+
+The channels are scaled by the alpha, the form GPU blending and canvas pixels use.
+
+```typescript
+premultiply({ r: 255, g: 100, b: 0, a: 0.5 })
+// => { r: 127.5, g: 50, b: 0, a: 0.5 }
+```
+
+*An opaque color is unchanged*
+
+A missing alpha counts as 1.
+
+```typescript
+premultiply({ r: 10, g: 20, b: 30 })
+// => { r: 10, g: 20, b: 30, a: 1 }
 ```
 
 ---
@@ -4092,6 +4453,45 @@ When r, g, and b are equal, the color is achromatic (s = 0).
 ```typescript
 rgbToHsl({ r: 128, g: 128, b: 128 })
 // => { h: 0, s: 0, l: 50.2, a: 1 }
+```
+
+---
+
+### `unpremultiply`
+
+Divides the color channels by the alpha channel: the inverse of premultiply. A fully
+transparent color has lost its channels, so it comes back as transparent black.
+
+```typescript
+import { unpremultiply } from '@helpers4/color';
+
+unpremultiply(color: RgbColor): RgbColor
+```
+
+**Parameters:**
+
+- `color: RgbColor` — A premultiplied color; a missing alpha is 1
+
+**Returns:** `RgbColor` — The straight (non-premultiplied) color
+
+**Examples:**
+
+*Recover the straight color*
+
+Divides the channels by the alpha, the inverse of premultiply.
+
+```typescript
+unpremultiply({ r: 127.5, g: 50, b: 0, a: 0.5 })
+// => { r: 255, g: 100, b: 0, a: 0.5 }
+```
+
+*A transparent color becomes transparent black*
+
+The channels are lost at alpha 0, so there is nothing to recover.
+
+```typescript
+unpremultiply({ r: 0, g: 0, b: 0, a: 0 })
+// => { r: 0, g: 0, b: 0, a: 0 }
 ```
 
 ---
@@ -5874,6 +6274,58 @@ isWeekend('2025-01-17', [WeekDays.Friday, WeekDays.Saturday])
 
 ---
 
+## font
+
+Package: `@helpers4/font`
+
+### `pickClosest`
+
+Picks the face that CSS would use for a request, among the faces of one family: the CSS Fonts
+Level 4 matching algorithm (§5.2), as a pure function. The stretch is matched first, then the
+style, then the weight; each step keeps only the faces closest to what was asked.
+
+- Stretch: at or below 100, narrower faces first (nearest), then wider ones; above 100, the other way round.
+- Style: `normal` prefers normal, then oblique, then italic; `italic` prefers italic, then oblique, then
+  normal; `oblique` prefers oblique, then italic, then normal.
+- Weight: from 400 to 500, the nearest heavier weight up to 500, then lighter ones, then heavier ones
+  above 500; below 400, lighter first then heavier; above 500, heavier first then lighter.
+
+```typescript
+import { pickClosest } from '@helpers4/font';
+
+pickClosest<T extends FontFaceDescriptor>(faces: readonly T[], wanted: FontFaceDescriptor): T | undefined
+```
+
+**Parameters:**
+
+- `faces: readonly T[]` — The faces of one family, for instance the entries of a font catalogue
+- `wanted: FontFaceDescriptor` (default: `{}`) — What was asked; each missing property is its CSS initial value
+
+**Returns:** `T | undefined` — The closest face, the first one when several are equally close, or `undefined` for no face
+
+**Examples:**
+
+*Pick the face for a weight that is not available*
+
+Above 500, CSS goes to the next heavier face before any lighter one.
+
+```typescript
+const faces = [{ weight: 300 }, { weight: 400 }, { weight: 700 }];
+pickClosest(faces, { weight: 600 })
+// => { weight: 700 }
+```
+
+*Ask for an italic, with a fallback*
+
+Without an italic face, oblique is tried, then normal, as in a browser.
+
+```typescript
+pickClosest([{ weight: 400 }, { weight: 400, style: 'oblique' }], { style: 'italic' })
+// => { weight: 400, style: 'oblique' }
+```
+
+---
+
 ## function
 
 Package: `@helpers4/function`
@@ -6948,6 +7400,95 @@ Useful whenever a callback slot passes more arguments than the function should s
 const double = unary((n: number, factor?: number) => n * (factor ?? 2));
 double(21)
 // => 42
+```
+
+---
+
+## geography
+
+Package: `@helpers4/geography`
+
+### `distance`
+
+Great-circle distance between two WGS84 points, in kilometres (haversine formula, mean Earth
+radius of 6371 km). The Earth is treated as a sphere, so the result can be off by up to about
+0.5% compared to an ellipsoidal model — plenty for "how far is it" and radius checks. Near
+antipodal points the formula loses a little precision (well under a metre).
+
+```typescript
+import { distance } from '@helpers4/geography';
+
+distance(lat1: number, lon1: number, lat2: number, lon2: number): number
+```
+
+**Parameters:**
+
+- `lat1: number` — Latitude of the first point, in degrees
+- `lon1: number` — Longitude of the first point, in degrees
+- `lat2: number` — Latitude of the second point, in degrees
+- `lon2: number` — Longitude of the second point, in degrees
+
+**Returns:** `number` — The distance in kilometres
+
+**Examples:**
+
+*Distance between two cities*
+
+Great-circle distance in kilometres between two latitude/longitude points.
+
+```typescript
+distance(48.8566, 2.3522, 51.5074, -0.1278)
+// => about 343.6 (Paris to London)
+```
+
+*Zero for the same point*
+
+A point is at distance 0 from itself.
+
+```typescript
+distance(10, 20, 10, 20) // => 0
+```
+
+---
+
+### `isWithinDistance`
+
+Whether a point lies within a radius of a center, the border included.
+
+```typescript
+import { isWithinDistance } from '@helpers4/geography';
+
+isWithinDistance(centerLat: number, centerLon: number, radius: number, pointLat: number, pointLon: number): boolean
+```
+
+**Parameters:**
+
+- `centerLat: number` — Latitude of the center, in degrees
+- `centerLon: number` — Longitude of the center, in degrees
+- `radius: number` — The radius in kilometres
+- `pointLat: number` — Latitude of the point, in degrees
+- `pointLon: number` — Longitude of the point, in degrees
+
+**Returns:** `boolean` — `true` when the point is at most `radius` kilometres from the center
+
+**Examples:**
+
+*Is a place near me?*
+
+Radius check in kilometres, border included.
+
+```typescript
+isWithinDistance(48.8566, 2.3522, 5, 48.8606, 2.3376)
+// => true
+```
+
+*Far away*
+
+Paris is not within 5 km of London.
+
+```typescript
+isWithinDistance(48.8566, 2.3522, 5, 51.5074, -0.1278)
+// => false
 ```
 
 ---
@@ -15334,7 +15875,10 @@ createGlobMatcher('*.FIG', { caseSensitive: false })('a.fig') // => true
 
 Turns user-supplied filters (a setting, a CLI flag, a list of rules) into one predicate.
 
-- A string is a glob, or a regular expression — see MatcherOptions.syntax.
+- A string is a glob, or a regular expression — see MatcherOptions.syntax. A `re:` or
+  `glob:` prefix (`'re:^v\\d+$'`, `'glob:*.ts'`) fixes the reading of that one pattern, whatever
+  the syntax option says; to match a string that really starts with one of them, spell it
+  `'glob:re:…'`.
 - A `RegExp` is used as is, except that its `g` and `y` flags are dropped: they make
   `test()` depend on the previous call.
 - A function is called as is.
@@ -15375,6 +15919,16 @@ With syntax 'glob', a pattern like /usr/lib/img is never read as a regular expre
 
 ```typescript
 createMatcher('/usr/lib/*', { syntax: 'glob' })('/usr/lib/img') // => true
+```
+
+*Fix the reading of one pattern with re: or glob:*
+
+A prefix overrides the syntax option for that pattern only, so globs and regular expressions mix freely.
+
+```typescript
+const matches = createMatcher(['glob:src/*', 're:\\.tsx?$', '!re:test']);
+matches('lib/b.ts')      // => true
+matches('lib/b.test.ts') // => false
 ```
 
 ---
@@ -15754,28 +16308,81 @@ formatProgressBar(3, { width: 10, max: 5, filledChar: '#', emptyChar: '-' })
 
 ---
 
+### `fromBase64`
+
+Decodes Base64 text. Both alphabets are accepted (`+/` and the URL-safe `-_`) and the `=`
+padding is optional, so it reads whatever toBase64 wrote, and most Base64 found in the wild.
+
+```typescript
+import { fromBase64 } from '@helpers4/string';
+
+fromBase64(text: string, options: FromBase64Options & object): Uint8Array
+```
+
+**Parameters:**
+
+- `text: string` — The Base64 text, without whitespace
+- `options: FromBase64Options & object` — `{ output: 'bytes' }` to get a `Uint8Array` instead of a string
+
+**Returns:** `Uint8Array` — The decoded text (UTF-8), or the bytes
+
+```typescript
+import { fromBase64 } from '@helpers4/string';
+
+fromBase64(text: string, options?: FromBase64Options): string
+```
+
+**Parameters:**
+
+- `text: string` — The Base64 text, without whitespace
+- `options?: FromBase64Options` — `{ output: 'bytes' }` to get a `Uint8Array` instead of a string
+
+**Returns:** `string` — The decoded text (UTF-8), or the bytes
+
+**Examples:**
+
+*Decode Base64 to text*
+
+Either alphabet is accepted and the padding is optional.
+
+```typescript
+fromBase64('aMOpbGxv')
+// => 'héllo'
+```
+
+*Decode to raw bytes*
+
+Use output: bytes when the payload is not text.
+
+```typescript
+fromBase64('-_8', { output: 'bytes' })
+// => Uint8Array [251, 255]
+```
+
+---
+
 ### `globToRegExp`
 
-Compiles a simple glob pattern into a `RegExp` that matches the whole string: `*` matches any
-sequence of UTF-16 code units (including none), `?` matches exactly one UTF-16 code unit.
-Everything else is matched literally.
+Compiles a glob pattern into a `RegExp` that matches the whole string. By default only the two
+textbook wildcards are special: `*` matches any sequence of UTF-16 code units (including
+none), `?` matches exactly one UTF-16 code unit, and everything else is matched literally.
+Pass `{ extended: true }` for path globs: `{a,b}`, `[abc]` and a `**` that crosses `/` while
+`*` and `?` do not — see GlobOptions.
 
-This is not a full shell/minimatch glob — no brace expansion, character classes, or
-path-separator-aware `**`, just the two textbook wildcards. Like the rest of this library,
-lengths are counted in UTF-16 code units: `?` matches one code unit, not one Unicode code
-point, so it matches only half of a surrogate pair (e.g. an emoji outside the Basic
-Multilingual Plane).
+Like the rest of this library, lengths are counted in UTF-16 code units: `?` matches one code
+unit, not one Unicode code point, so it matches only half of a surrogate pair (e.g. an emoji
+outside the Basic Multilingual Plane).
 
 ```typescript
 import { globToRegExp } from '@helpers4/string';
 
-globToRegExp(pattern: string, caseSensitive: boolean): RegExp
+globToRegExp(pattern: string, options: boolean | GlobOptions): RegExp
 ```
 
 **Parameters:**
 
 - `pattern: string` — The glob pattern to compile
-- `caseSensitive: boolean` (default: `true`) — Whether the resulting `RegExp` is case-sensitive. Defaults to `true`.
+- `options: boolean | GlobOptions` (default: `true`) — Case sensitivity, or GlobOptions. A boolean is the case sensitivity (defaults to `true`).
 
 **Returns:** `RegExp` — A `RegExp` matching strings that satisfy `pattern` in full
 
@@ -15796,6 +16403,16 @@ globToRegExp('*.test.ts').test('helper.test.ts')
 
 ```typescript
 globToRegExp('report-????.csv').test('report-2026.csv')
+// => true
+```
+
+*Path globs with braces and ***
+
+extended: true turns on {a,b}, [abc] and a ** that crosses directories while * stays in one segment.
+
+```typescript
+const isSource = globToRegExp('src/**/*.{ts,tsx}', { extended: true });
+isSource.test('src/ui/App.tsx')
 // => true
 ```
 
@@ -16720,6 +17337,46 @@ Also handles camelCase by splitting on uppercase transitions.
 ```typescript
 titleCase('queryItems')
 // => 'Query Items'
+```
+
+---
+
+### `toBase64`
+
+Encodes a string (as UTF-8) or raw bytes to Base64, without relying on `btoa` or `Buffer`, so it
+behaves the same in a browser, Node.js and GJS.
+
+```typescript
+import { toBase64 } from '@helpers4/string';
+
+toBase64(input: string | Uint8Array<ArrayBufferLike>, options: ToBase64Options): string
+```
+
+**Parameters:**
+
+- `input: string | Uint8Array<ArrayBufferLike>` — The text to encode as UTF-8, or the bytes to encode as they are
+- `options: ToBase64Options` (default: `{}`) — The URL-safe alphabet and the padding — see ToBase64Options
+
+**Returns:** `string` — The Base64 text
+
+**Examples:**
+
+*Encode text as UTF-8 Base64*
+
+Non-ASCII text is encoded as UTF-8 first, so it round-trips with fromBase64.
+
+```typescript
+toBase64('héllo')
+// => 'aMOpbGxv'
+```
+
+*URL-safe variant for tokens and URLs*
+
+Uses - and _ and drops the padding, ready for a query string or a JWT-like token.
+
+```typescript
+toBase64(new Uint8Array([251, 255]), { urlSafe: true })
+// => '-_8'
 ```
 
 ---
@@ -17931,17 +18588,22 @@ parsePackageRepository('gist:11081aaa281')
 
 ### `relativeURLToAbsolute`
 
-Converts a relative URL to an absolute URL using the current document base URI.
+Converts a relative URL to an absolute URL, using `base` when given, or else the current
+document base URI (and the window origin when the document has none).
+
+Works outside a browser as long as `base` is passed; without `base` and without a document it
+throws a `TypeError`, since there is nothing to resolve against.
 
 ```typescript
 import { relativeURLToAbsolute } from '@helpers4/url';
 
-relativeURLToAbsolute(relativeUrl: string): string
+relativeURLToAbsolute(relativeUrl: string, base?: string): string
 ```
 
 **Parameters:**
 
 - `relativeUrl: string` — The relative URL to convert
+- `base?: string` — The URL to resolve against. Defaults to the document base URI.
 
 **Returns:** `string` — The absolute URL
 
@@ -17954,6 +18616,15 @@ Prepends the base URI to a relative path, cleaning duplicate slashes.
 ```typescript
 relativeURLToAbsolute('/api/data')
 // => 'http://localhost/api/data' (depends on document.baseURI)
+```
+
+*Resolve against an explicit base, with no browser*
+
+Pass a base to use it in Node.js or during server-side rendering.
+
+```typescript
+relativeURLToAbsolute('/api/data', 'https://example.com')
+// => 'https://example.com/api/data'
 ```
 
 ---
@@ -18219,6 +18890,22 @@ upstream version, then the Debian revision, each compared like dpkg's `verrevcmp
 numerically, everything else character by character with `~` sorting before everything,
 even the end of the string (`1.0~rc1` < `1.0`). Throws a `SyntaxError` on an invalid version.
 
+**`'rpm'`** — RPM ordering (see ParsedRpmVersion): epoch, then version, then release (when
+both have one), each compared like `rpmvercmp` — numeric and alphabetic segments in turn, a number
+newer than letters, `~` sorting before everything and `^` after the end of the string.
+
+**`'pacman'`** — Arch Linux `vercmp` ordering (see ParsedPacmanVersion): like RPM's, but
+longer separators win and a trailing letter segment sorts below the same version without it.
+
+**`'pep440'`** — PEP 440 ordering (see ParsedPep440Version): epoch, release (`1.0` equals
+`1`), then `dev` < `a` < `b` < `rc` < final < post-release, and local labels last. Every spelling
+PEP 440 accepts is understood. Throws a `SyntaxError` on an invalid version.
+
+**`'maven'`** — Apache Maven's `ComparableVersion` ordering (see ParsedMavenVersion): `.`,
+`-` and every digit/letter switch split the version; `alpha` < `beta` < `milestone` < `rc` <
+`snapshot` < release < `sp`, then unknown qualifiers in lexical order, all after the release;
+`1`, `1.0` and `1-ga` are equal.
+
 ```typescript
 import { compare } from '@helpers4/version';
 
@@ -18291,6 +18978,15 @@ letter/suffixes/revision.
 
 **`'debian'`** — throws: a Debian upstream version is free-form, with no major/minor/patch
 structure to bump.
+
+**`'rpm'`**, **`'pacman'`** — throw: the version is free-form, with no major/minor/patch
+structure to bump.
+
+**`'pep440'`** — bumps the release component at `type`'s position (padding it with zeros up to
+there), zeroing everything after it and dropping the pre/post/dev/local parts; the epoch is kept.
+
+**`'maven'`** — bumps the leading number at `type`'s position (padding with zeros), zeroing the
+numbers after it and dropping every qualifier.
 
 ```typescript
 import { increment } from '@helpers4/version';
@@ -18402,6 +19098,12 @@ Gentoo's `components` array can be any length.
 **`'debian'`** — throws: a Debian upstream version is free-form, with no prerelease counter
 to bump.
 
+**`'rpm'`**, **`'pacman'`**, **`'maven'`** — throw: the version is free-form, with no prerelease counter to bump.
+
+**`'pep440'`** — `prereleaseId` is `a`, `b` or `rc` (or their spellings `alpha`, `beta`, `c`, `pre`,
+`preview`). A version that is not a pre-release gets its patch bumped and starts at `<id>0`
+(`1.2.3` → `1.2.4a0`); the same marker increments its number, another one restarts at `0`.
+
 ```typescript
 import { incrementPrerelease } from '@helpers4/version';
 
@@ -18498,6 +19200,17 @@ release, and a revision isn't a prerelease of anything, it's a rebuild of the sa
 **`'debian'`** — `true` when the upstream part contains `~`, the Debian convention for a
 version that must sort before the final release (`1.0~rc1`). A `~` in the revision doesn't
 count — `1.0-1~bpo12+1` is a backport of the `1.0` release, not a prerelease of it.
+
+**`'rpm'`** — `true` when the version contains `~`, the RPM convention for a version that sorts
+before the final release (`1.0~rc1`).
+
+**`'pacman'`** — `true` when the version has an alphabetic segment after its first number, which
+pacman sorts below the same version without it (`1.0rc1`).
+
+**`'pep440'`** — `true` for an `a`/`b`/`rc` pre-release or a `dev` release, as Python's `packaging` does.
+
+**`'maven'`** — `true` when there is an `alpha`, `beta`, `milestone`, `rc`/`cr` or `snapshot`
+qualifier, all of which sort below the plain release.
 
 ```typescript
 import { isPrerelease } from '@helpers4/version';
@@ -18596,6 +19309,20 @@ Parses a version string into its components, according to the given `scheme`.
 ParsedDebianVersion). Throws a `SyntaxError` on whitespace, a non-numeric epoch, an
 empty upstream or revision, or a character Debian Policy doesn't allow.
 
+**`'rpm'`** — RPM versions, `[epoch:]version[-release]` (see ParsedRpmVersion). Throws a
+`SyntaxError` on whitespace, a non-numeric epoch, an empty version or release, or a character RPM
+does not allow.
+
+**`'pacman'`** — Arch Linux package versions, `[epoch:]pkgver[-pkgrel]` (see
+ParsedPacmanVersion). Throws a `SyntaxError` like `'rpm'`.
+
+**`'pep440'`** — Python PEP 440 versions (see ParsedPep440Version); every spelling is
+normalized (`1.0-ALPHA.2` → `pre: { type: 'a', number: 2 }`). Throws a `SyntaxError` if `version`
+is not a valid PEP 440 version.
+
+**`'maven'`** — Maven versions as `ComparableVersion` reads them (see ParsedMavenVersion).
+Never throws: Maven accepts any text.
+
 ```typescript
 import { parse } from '@helpers4/version';
 
@@ -18608,7 +19335,8 @@ parse(version: string, scheme?: "semver"): ParsedSemVerVersion
 - `scheme?: "semver"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `ParsedSemVerVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
@@ -18622,7 +19350,8 @@ parse(version: string, scheme: "gentoo"): ParsedGentooVersion
 - `scheme: "gentoo"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `ParsedGentooVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
@@ -18636,7 +19365,68 @@ parse(version: string, scheme: "debian"): ParsedDebianVersion
 - `scheme: "debian"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `ParsedDebianVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
+
+```typescript
+import { parse } from '@helpers4/version';
+
+parse(version: string, scheme: "rpm"): ParsedRpmVersion
+```
+
+**Parameters:**
+
+- `version: string` — Version string to parse
+- `scheme: "rpm"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
+
+**Returns:** `ParsedRpmVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
+
+```typescript
+import { parse } from '@helpers4/version';
+
+parse(version: string, scheme: "pacman"): ParsedPacmanVersion
+```
+
+**Parameters:**
+
+- `version: string` — Version string to parse
+- `scheme: "pacman"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
+
+**Returns:** `ParsedPacmanVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
+
+```typescript
+import { parse } from '@helpers4/version';
+
+parse(version: string, scheme: "pep440"): ParsedPep440Version
+```
+
+**Parameters:**
+
+- `version: string` — Version string to parse
+- `scheme: "pep440"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
+
+**Returns:** `ParsedPep440Version` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
+
+```typescript
+import { parse } from '@helpers4/version';
+
+parse(version: string, scheme: "maven"): ParsedMavenVersion
+```
+
+**Parameters:**
+
+- `version: string` — Version string to parse
+- `scheme: "maven"` — Which version scheme to parse `version` as. Defaults to `'semver'`.
+
+**Returns:** `ParsedMavenVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
@@ -18650,7 +19440,8 @@ parse(version: string, scheme: VersionScheme): AnyParsedVersion
 - `scheme: VersionScheme` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `AnyParsedVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
@@ -18664,7 +19455,8 @@ parse(version: undefined, scheme?: VersionScheme): undefined
 - `scheme?: VersionScheme` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `undefined` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
 
 ```typescript
 import { parse } from '@helpers4/version';
@@ -18678,7 +19470,8 @@ parse(version: null, scheme?: VersionScheme): null
 - `scheme?: VersionScheme` — Which version scheme to parse `version` as. Defaults to `'semver'`.
 
 **Returns:** `null` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
 
 **Examples:**
 
@@ -18747,6 +19540,21 @@ earlier), `<=`, `=`, `>=`, `>>` (strictly later), or an exact match, compared pe
 (see compare); whitespace after the operator is allowed (`>= 1.0`). The obsolete
 single-character `<`/`>` throw — dpkg reads them as `<=`/`>=`, the opposite of what they look
 like — and so do `^`/`~`.
+
+**`'rpm'`**, **`'pacman'`** — dependency relations: `<`, `<=`, `=` (or `==`), `>=`, `>` followed by a
+version, or a bare version for an exact match; whitespace after the operator is allowed. Compared
+per RPM / pacman ordering (see compare).
+
+**`'pep440'`** — a PEP 440 specifier set, as in `requirements.txt`: comma-separated clauses that
+must all hold, each one of `==` / `!=` (also with a `.*` prefix, e.g. `==1.2.*`), `<`, `<=`, `>`,
+`>=`, `~=` (compatible release: `~=1.4.5` is `>=1.4.5, ==1.4.*`) or `===` (exact string). Follows
+`packaging`'s rules: `<2.0` does not admit `2.0rc1`, `>2.0` does not admit `2.0.post1`. Pre-releases
+are not excluded otherwise.
+
+**`'maven'`** — a Maven version range: `[1.0,2.0)` (`[`/`]` include a bound, `(`/`)` exclude it, a
+missing bound is open), `[1.5]` for exactly 1.5, several joined by commas for a union
+(`(,1.0],[1.2,)`). A bare version is an exact match (in a POM it would be a soft preference).
+Throws a `SyntaxError` on a malformed range.
 
 ```typescript
 import { satisfiesRange } from '@helpers4/version';
@@ -18819,7 +19627,8 @@ stringify as Gentoo, so there's nothing to disambiguate).
 
 This is the inverse of parse:
 `stringify(parse(v)) === stripV(v)` for any valid version string `v`, in any scheme — up to
-canonicalization (a Debian `0:` epoch is dropped, a Gentoo `_beta0` becomes `_beta`).
+canonicalization (a Debian `0:` epoch is dropped, a Gentoo `_beta0` becomes `_beta`, a PEP 440
+`1.0-ALPHA` becomes `1.0a0`, a Maven `1.0.0` becomes `1`).
 
 ```typescript
 import { stringify } from '@helpers4/version';

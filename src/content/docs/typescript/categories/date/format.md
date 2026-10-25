@@ -3,7 +3,7 @@ title: "format"
 sidebar:
   label: "format"
 description: "Formats a date as a short label that does not depend on the machine: UTC, English, and `Jul 27, 2026` by default."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Formats a date as a short label that does not depend on the machine: UTC, English, and

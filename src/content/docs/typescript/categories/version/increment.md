@@ -3,7 +3,7 @@ title: "increment"
 sidebar:
   label: "increment"
 description: "Increments a version, according to the given `scheme`."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Increments a version, according to the given `scheme`.
@@ -19,6 +19,15 @@ letter/suffixes/revision.
 
 **`'debian'`** — throws: a Debian upstream version is free-form, with no major/minor/patch
 structure to bump.
+
+**`'rpm'`**, **`'pacman'`** — throw: the version is free-form, with no major/minor/patch
+structure to bump.
+
+**`'pep440'`** — bumps the release component at `type`'s position (padding it with zeros up to
+there), zeroing everything after it and dropping the pre/post/dev/local parts; the epoch is kept.
+
+**`'maven'`** — bumps the leading number at `type`'s position (padding with zeros), zeroing the
+numbers after it and dropping every qualifier.
 
 > Available since v1.9.0
 
@@ -103,7 +112,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo' | 'debian'
+type VersionScheme = 'semver' | 'gentoo' | 'debian' | 'rpm' | 'pacman' | 'pep440' | 'maven'
 ```
 
 ## Source

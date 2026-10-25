@@ -3,7 +3,7 @@ title: "map"
 sidebar:
   label: "map"
 description: "Creates a new Set with each value transformed by a function."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Creates a new Set with each value transformed by a function. If two values transform to the

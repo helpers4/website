@@ -3,7 +3,7 @@ title: "parse"
 sidebar:
   label: "parse"
 description: "Parses a version string into its components, according to the given `scheme`."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Parses a version string into its components, according to the given `scheme`.
@@ -20,6 +20,20 @@ Parses a version string into its components, according to the given `scheme`.
 **`'debian'`** — Debian/dpkg versions, `[epoch:]upstream[-revision]` (see
 ParsedDebianVersion). Throws a `SyntaxError` on whitespace, a non-numeric epoch, an
 empty upstream or revision, or a character Debian Policy doesn't allow.
+
+**`'rpm'`** — RPM versions, `[epoch:]version[-release]` (see ParsedRpmVersion). Throws a
+`SyntaxError` on whitespace, a non-numeric epoch, an empty version or release, or a character RPM
+does not allow.
+
+**`'pacman'`** — Arch Linux package versions, `[epoch:]pkgver[-pkgrel]` (see
+ParsedPacmanVersion). Throws a `SyntaxError` like `'rpm'`.
+
+**`'pep440'`** — Python PEP 440 versions (see ParsedPep440Version); every spelling is
+normalized (`1.0-ALPHA.2` → `pre: { type: 'a', number: 2 }`). Throws a `SyntaxError` if `version`
+is not a valid PEP 440 version.
+
+**`'maven'`** — Maven versions as `ComparableVersion` reads them (see ParsedMavenVersion).
+Never throws: Maven accepts any text.
 
 > Available since v2.0.0
 
@@ -48,7 +62,8 @@ parse(version: string, scheme?: "semver"): ParsedSemVerVersion
 ## Returns
 
 `ParsedSemVerVersion` — The parsed version, shaped per `scheme` — ParsedSemVerVersion for `'semver'`,
-ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`.
+ParsedGentooVersion for `'gentoo'`, ParsedDebianVersion for `'debian'`, ParsedRpmVersion for `'rpm'`,
+ParsedPacmanVersion for `'pacman'`, ParsedPep440Version for `'pep440'`, ParsedMavenVersion for `'maven'`.
 
 ## Examples
 
@@ -129,6 +144,73 @@ interface ParsedGentooVersion {
 }
 ```
 
+### `ParsedMavenVersion`
+
+A version parsed the way Apache Maven's `ComparableVersion` reads it: a list of numbers,
+qualifiers and nested lists, split on `.` and `-` and on every switch between digits and
+letters, then normalized (trailing zeros and empty qualifiers dropped, `cr` → `rc`,
+`ga`/`final`/`release` → `''`, `1.0a1` → `[1, [alpha, [1]]]`).
+
+`1.0.0` and `1` parse to the same items, so `stringify` gives Maven's canonical form
+(`1`), not the original text.
+
+```ts
+interface ParsedMavenVersion {
+  items: MavenVersionItem[];
+  scheme: "maven";
+}
+```
+
+### `ParsedPacmanVersion`
+
+A version parsed according to Arch Linux's pacman (libalpm) version format:
+`[epoch:]pkgver[-pkgrel]`, e.g. `1:2.30rc1-3`. Ordering follows `vercmp`: alphanumeric
+segments are compared one by one, numbers above letters, and a trailing letter segment sorts
+below the same version without it (`1.0rc1` < `1.0`).
+
+```ts
+interface ParsedPacmanVersion {
+  epoch: number;
+  release: string;
+  scheme: "pacman";
+  version: string;
+}
+```
+
+### `ParsedPep440Version`
+
+A version parsed according to PEP 440 (Python packaging):
+`[N!]N(.N)*[{a|b|rc}N][.postN][.devN][+local]`, e.g. `1!2.0rc1.post2.dev3+ubuntu.1`. Every
+spelling PEP 440 accepts (`1.0-alpha`, `1.0.RC1`, `v1.0-1`, ...) is normalized when parsing.
+
+```ts
+interface ParsedPep440Version {
+  dev: number | null;
+  epoch: number;
+  local: string | number[];
+  post: number | null;
+  pre: Pep440Prerelease | null;
+  release: number[];
+  scheme: "pep440";
+}
+```
+
+### `ParsedRpmVersion`
+
+A version parsed according to the RPM version format (Fedora, RHEL, openSUSE):
+`[epoch:]version[-release]`, e.g. `1:2.30~rc1-3.fc40`. Ordering follows `rpmvercmp`,
+including its `~` (sorts before everything) and `^` (sorts after the end, before anything
+else) extensions.
+
+```ts
+interface ParsedRpmVersion {
+  epoch: number;
+  release: string;
+  scheme: "rpm";
+  version: string;
+}
+```
+
 ### `ParsedSemVerVersion`
 
 A version parsed according to SemVer 2.0.0 (`MAJOR.MINOR.PATCH[-PRERELEASE][+BUILD]`).
@@ -154,7 +236,8 @@ interface ParsedSemVerVersion {
 A version parsed by parse, in whichever scheme it was parsed as — narrow on the
 `scheme` field to access scheme-specific properties (`major`/`minor`/`patch` for `'semver'`,
 `components`/`letter`/`suffixes`/`revision` for `'gentoo'`, `epoch`/`upstream`/`revision` for
-`'debian'`).
+`'debian'`, `epoch`/`version`/`release` for `'rpm'` and `'pacman'`, `epoch`/`release`/`pre`/`post`/`dev`/`local`
+for `'pep440'`, a normalized `items` list for `'maven'`).
 
 Deliberately **not** named `ParsedVersion`: that name has been public API since 2.0.0 for
 the flat SemVer-only shape (`.major`/`.minor`/`.patch` directly, no narrowing needed), and
@@ -163,7 +246,14 @@ reads those fields without narrowing first — a real compatibility break with n
 `MIGRATION.md` entry, since this repo ties breaking changes to major-version bumps.
 
 ```ts
-type AnyParsedVersion = ParsedSemVerVersion | ParsedGentooVersion | ParsedDebianVersion
+type AnyParsedVersion =
+  | ParsedSemVerVersion
+  | ParsedGentooVersion
+  | ParsedDebianVersion
+  | ParsedRpmVersion
+  | ParsedPacmanVersion
+  | ParsedPep440Version
+  | ParsedMavenVersion
 ```
 
 ### `VersionScheme`
@@ -172,7 +262,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo' | 'debian'
+type VersionScheme = 'semver' | 'gentoo' | 'debian' | 'rpm' | 'pacman' | 'pep440' | 'maven'
 ```
 
 ### `GentooSuffix`
@@ -186,6 +276,17 @@ interface GentooSuffix {
 }
 ```
 
+### `Pep440Prerelease`
+
+A pre-release marker of a PEP 440 version: `a` (alpha), `b` (beta) or `rc` (release candidate).
+
+```ts
+interface Pep440Prerelease {
+  number: number;
+  type: "a" | "b" | "rc";
+}
+```
+
 ### `GentooSuffixType`
 
 One Gentoo/Portage suffix type, in ascending order of precedence: `alpha` and `beta` sort
@@ -194,6 +295,15 @@ sorts *above* it — see ParsedGentooVersion.
 
 ```ts
 type GentooSuffixType = 'alpha' | 'beta' | 'pre' | 'rc' | 'p'
+```
+
+### `MavenVersionItem`
+
+One item of a parsed Maven version: a number, a lowercase qualifier string (`'rc'`, `'sp'`,
+`'sec01'`…), or a nested list started by a `-`.
+
+```ts
+type MavenVersionItem = bigint | string | MavenVersionItem[]
 ```
 
 :::caution[Name conflict]

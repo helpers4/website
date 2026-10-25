@@ -3,7 +3,7 @@ title: "watchMedia"
 sidebar:
   label: "watchMedia"
 description: "Calls `listener` each time a CSS media query starts or stops matching."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Calls `listener` each time a CSS media query starts or stops matching.

@@ -3,7 +3,7 @@ title: "kebabCase"
 sidebar:
   label: "kebabCase"
 description: "Converts a string to kebab-case."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Converts a string to kebab-case.

@@ -3,7 +3,7 @@ title: "formatInTimezone"
 sidebar:
   label: "formatInTimezone"
 description: "Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Formats a date in a specific IANA timezone using `Intl.DateTimeFormat`.

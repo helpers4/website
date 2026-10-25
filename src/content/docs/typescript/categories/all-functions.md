@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**408** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**422** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -21,6 +21,7 @@ sidebar:
 | [`applyToPoint`](../geometry/applytopoint/) | [geometry](../geometry/) | Transforms a point by a matrix\. |
 | [`applyToRect`](../geometry/applytorect/) | [geometry](../geometry/) | Transforms a rectangle by a matrix and returns its bounding box: the smallest axis\-aligned rectangle that contains it\. |
 | [`argbToRgb`](../color/argbtorgb/) | [color](../color/) | Converts a 32\-bit packed ARGB integer \(as used by e\.g\. |
+| [`blendColors`](../color/blendcolors/) | [color](../color/) | Composites a source color over a backdrop with a blend mode, as the browser does for \`mix\-blend\-mode\` \(W3C Compositing… |
 | [`Brand`](../type/brand/) | [type](../type/) | Brands a base type \`T\` with a phantom tag \`B\` to create a nominal type\. |
 | [`buildConventionalCommitRegex`](../commit/buildconventionalcommitregex/) | [commit](../commit/) | Builds a regular expression matching the \*\*subject line\*\* of a Conventional Commits message\. |
 | [`buildStatusTable`](../ci/buildstatustable/) | [ci](../ci/) | Builds a Markdown table body from a map of job names to CI/CD statuses\. |
@@ -51,6 +52,8 @@ sidebar:
 | [`countBy`](../map/countby/) | [map](../map/) | Groups the entries of a Map by a derived key and counts how many fall into each group\. |
 | [`countBy`](../set/countby/) | [set](../set/) | Groups the values of a Set by a derived key and counts how many fall into each group\. |
 | [`createBackStack`](../structure/createbackstack/) | [structure](../structure/) | Creates a back stack: a stack that always has a current entry \(the one on top\), with the previous ones underneath to go… |
+| [`createByteReader`](../binary/createbytereader/) | [binary](../binary/) | Creates a cursor over bytes, for decoding binary formats: fixed\-size integers and floats, LEB128 varints \(signed ones z… |
+| [`createByteWriter`](../binary/createbytewriter/) | [binary](../binary/) | Creates a growable buffer to encode binary formats: the counterpart of createByteReader, with the same types, byte orde… |
 | [`createCachedResolver`](../function/createcachedresolver/) | [function](../function/) | Creates a lazy, cached resolver: \`resolve\(key\)\` computes and caches \`compute\(key\)\` the first time a given key is seen,… |
 | [`createGlobMatcher`](../string/createglobmatcher/) | [string](../string/) | createMatcher with every string read as a glob \(\`\*\`, \`?\`\): no string is ever taken for a regular expression, so it neve… |
 | [`createMatcher`](../string/creatematcher/) | [string](../string/) | Turns user\-supplied filters \(a setting, a CLI flag, a list of rules\) into one predicate\. |
@@ -81,6 +84,7 @@ sidebar:
 | [`difference`](../array/difference/) | [array](../array/) | Returns the difference between two arrays \(items in first array but not in second\)\. |
 | [`difference`](../date/difference/) | [date](../date/) | Calculates the difference between two dates in the specified unit\. |
 | `difference` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Set.prototype.difference()` *(ES2025 (Set methods))* |
+| [`distance`](../geography/distance/) | [geography](../geography/) | Great\-circle distance between two WGS84 points, in kilometres \(haversine formula, mean Earth radius of 6371 km\)\. |
 | `drop` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(n)` *(ES3)* |
 | [`eachDay`](../date/eachday/) | [date](../date/) | Returns an array of \`Date\` objects for each day from \`start\` to \`end\` \(inclusive\)\. |
 | [`eachMonth`](../date/eachmonth/) | [date](../date/) | Returns an array of \`Date\` objects for the first day of each month from \`start\` to \`end\` \(inclusive\)\. |
@@ -133,11 +137,12 @@ sidebar:
 | [`formatSize`](../number/formatsize/) | [number](../number/) | Format a byte count into a human\-readable string with the appropriate unit\. |
 | [`frameLoop`](../animation/frameloop/) | [animation](../animation/) | Calls \`onFrame\` once per animation frame with the time elapsed since the start, until it returns \`false\` or the loop is… |
 | `from (parse temporal string)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.from(str) / Temporal.PlainDate.from(str) / etc.` *(Temporal (Stage 3))* |
+| [`fromBase64`](../string/frombase64/) | [string](../string/) | Decodes Base64 text\. |
 | [`fromMillis`](../date/frommillis/) | [date](../date/) | Creates a \`Date\` from a timestamp in \*\*milliseconds\*\*\. |
 | [`fromSeconds`](../date/fromseconds/) | [date](../date/) | Creates a \`Date\` from a timestamp in \*\*seconds\*\*\. |
 | [`get`](../object/get/) | [object](../object/) | Gets a value from an object using a dot/bracket\-notated path or explicit key array\. |
 | [`getTimezoneOffset`](../date/gettimezoneoffset/) | [date](../date/) | Returns the UTC offset \*\*in minutes\*\* for the given IANA timezone at a specific point in time\. |
-| [`globToRegExp`](../string/globtoregexp/) | [string](../string/) | Compiles a simple glob pattern into a \`RegExp\` that matches the whole string: \`\*\` matches any sequence of UTF\-16 code u… |
+| [`globToRegExp`](../string/globtoregexp/) | [string](../string/) | Compiles a glob pattern into a \`RegExp\` that matches the whole string\. |
 | `groupBy` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `Map.groupBy(map.entries(), ([k, v]) => groupFn(v, k))` *(ES2024)* |
 | [`groupBy`](../object/groupby/) | [object](../object/) | Groups an array of items by a key derived from each item\. |
 | `groupBy` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `Map.groupBy(set.values(), fn)` *(ES2024)* |
@@ -266,6 +271,7 @@ sidebar:
 | [`isWeakMapKey`](../guard/isweakmapkey/) | [guard](../guard/) | Checks whether a value can be used as a key in a \`WeakMap\` \(or a \`WeakSet\` member / \`WeakRef\` target\) — an object, a fu… |
 | [`isWeakSet`](../guard/isweakset/) | [guard](../guard/) | Checks if a value is a WeakSet instance\. |
 | [`isWeekend`](../date/isweekend/) | [date](../date/) | Checks whether a date falls on a weekend day\. |
+| [`isWithinDistance`](../geography/iswithindistance/) | [geography](../geography/) | Whether a point lies within a radius of a center, the border included\. |
 | [`isWithinRange`](../date/iswithinrange/) | [date](../date/) | Checks whether a date falls within a range \(inclusive on both ends\)\. |
 | [`kebabCase`](../string/kebabcase/) | [string](../string/) | Converts a string to kebab\-case\. |
 | [`kebabCaseKeys`](../object/kebabcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to kebab\-ca… |
@@ -316,6 +322,7 @@ sidebar:
 | [`OmitByValue`](../type/omitbyvalue/) | [type](../type/) | Constructs a type by omitting all entries of \`T\` whose values extend \`V\`\. |
 | [`once`](../function/once/) | [function](../function/) | Creates a function that is restricted to be called only once\. |
 | [`onlyPath`](../url/onlypath/) | [url](../url/) | Extract only the path from an URI with optional query and fragments\. |
+| [`onPointerIntent`](../browser/onpointerintent/) | [browser](../browser/) | Tells a tap from a drag, and hover from touch, on one element: the pointer\-event logic every draggable or clickable wid… |
 | [`OptionalKeys`](../type/optionalkeys/) | [type](../type/) | Extracts the optional keys of an object type \`T\`\. |
 | [`overlaps`](../date/overlaps/) | [date](../date/) | Checks whether two date ranges overlap\. |
 | `padStart / padEnd` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
@@ -343,9 +350,11 @@ sidebar:
 | [`pick`](../object/pick/) | [object](../object/) | Creates a new object with only the specified keys\. |
 | [`pickBy`](../object/pickby/) | [object](../object/) | Creates a new object with only the own enumerable entries for which \`predicate\` returns \`true\`\. |
 | [`PickByValue`](../type/pickbyvalue/) | [type](../type/) | Constructs a type by picking all entries of \`T\` whose values extend \`V\`\. |
+| [`pickClosest`](../font/pickclosest/) | [font](../font/) | Picks the face that CSS would use for a request, among the faces of one family: the CSS Fonts Level 4 matching algorith… |
 | [`pipe`](../function/pipe/) | [function](../function/) | Composes functions left\-to\-right: the output of each function is passed as input to the next\. |
 | [`prefersReducedMotion`](../browser/prefersreducedmotion/) | [browser](../browser/) | Whether the user asked the system to reduce motion \(\`prefers\-reduced\-motion: reduce\`\)\. |
 | [`preloadImages`](../browser/preloadimages/) | [browser](../browser/) | Loads and decodes several images with decodeImage, a few at a time, with \`mapSettled\` from \`helpers4/array\`\. |
+| [`premultiply`](../color/premultiply/) | [color](../color/) | Multiplies the color channels by the alpha channel \(premultiplied alpha\), the form compositing and GPU blending work in\. |
 | [`Prettify`](../type/prettify/) | [type](../type/) | Flattens an intersection type into a single readable object type\. |
 | [`randomBetween`](../number/randombetween/) | [number](../number/) | Generates a random number between min and max \(inclusive\) |
 | [`randomIntBetween`](../number/randomintbetween/) | [number](../number/) | Generates a random integer between min and max \(inclusive\) |
@@ -353,7 +362,8 @@ sidebar:
 | [`reduce`](../map/reduce/) | [map](../map/) | Reduces a Map to a single value by applying a function to each entry, in insertion order\. |
 | `reduce / some / every` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.entries().reduce(fn, init) / .some(fn) / .every(fn)` *(ES2025 (Iterator Helpers))* |
 | `reduce / some / every / find` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `set.values().reduce(fn, init) / .some(fn) / .every(fn) / .find(fn)` *(ES2025 (Iterator Helpers))* |
-| [`relativeURLToAbsolute`](../url/relativeurltoabsolute/) | [url](../url/) | Converts a relative URL to an absolute URL using the current document base URI\. |
+| [`reflectAttribute`](../browser/reflectattribute/) | [browser](../browser/) | Defines a property on \`element\` that is backed by an HTML attribute — what a custom element needs for \`<my\-card heading… |
+| [`relativeURLToAbsolute`](../url/relativeurltoabsolute/) | [url](../url/) | Converts a relative URL to an absolute URL, using \`base\` when given, or else the current document base URI \(and the win… |
 | [`removeDiacritics`](../string/removediacritics/) | [string](../string/) | Removes diacritical marks \(accents\) from a string, e\.g\. |
 | [`removeUndefinedNull`](../object/removeundefinednull/) | [object](../object/) | Remove null and undefined values from an object\. |
 | `repeat` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.repeat()` *(ES2015)* |
@@ -427,6 +437,7 @@ sidebar:
 | [`timeout`](../promise/timeout/) | [promise](../promise/) | Wraps a promise to reject with a \`TimeoutError\` if it does not resolve within the specified duration\. |
 | [`titleCase`](../string/titlecase/) | [string](../string/) | Converts a string to Title Case\. |
 | [`titleCaseKeys`](../object/titlecasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to Title Ca… |
+| [`toBase64`](../string/tobase64/) | [string](../string/) | Encodes a string \(as UTF\-8\) or raw bytes to Base64, without relying on \`btoa\` or \`Buffer\`, so it behaves the same in a… |
 | [`toCssLinear`](../animation/tocsslinear/) | [animation](../animation/) | Samples an easing function into a CSS \`linear\(\)\` easing, so any curve \(a spring, a custom bounce\) can be played by CSS… |
 | [`toggle`](../array/toggle/) | [array](../array/) | Returns a new array with \`item\` removed if present, or appended if absent — the common "toggle a selection" pattern\. |
 | `toInt / toFloat` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `parseInt(str, 10) / parseFloat(str)` *(ES1)* |
@@ -461,6 +472,7 @@ sidebar:
 | [`unique`](../array/unique/) | [array](../array/) | Removes duplicate values from an array\. |
 | [`uniqueBy`](../array/uniqueby/) | [array](../array/) | Removes duplicate items from an array, using a derived key instead of value equality\. |
 | [`unorderedPairKey`](../string/unorderedpairkey/) | [string](../string/) | Builds a canonical, order\-independent key for an unordered pair of strings — the same result for \`\(a, b\)\` and \`\(b, a\)\`\. |
+| [`unpremultiply`](../color/unpremultiply/) | [color](../color/) | Divides the color channels by the alpha channel: the inverse of premultiply\. |
 | [`unset`](../object/unset/) | [object](../object/) | Removes the value at a dot/bracket\-notation path or explicit key array, mutating the object in place\. |
 | `until / since (difference)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.prototype.until(other) / .since(other)` *(Temporal (Stage 3))* |
 | [`unzip`](../array/unzip/) | [array](../array/) | Splits an array of tuples into separate arrays, one per position\. |
@@ -479,4 +491,6 @@ sidebar:
 | [`withTempDir`](../node/withtempdir/) | [node](../node/) | Creates a fresh temporary directory under the OS temp root, runs \`fn\` with its path, and always removes it \(recursively… |
 | [`withTrailingSlash`](../url/withtrailingslash/) | [url](../url/) | Adds a trailing slash \`/\` to the given URL if it is not already present\. |
 | [`words`](../string/words/) | [string](../string/) | Splits a string into an array of words\. |
+| [`zigzagDecode`](../binary/zigzagdecode/) | [binary](../binary/) | The inverse of zigzagEncode: maps an unsigned 64\-bit zigzag value back to the signed integer\. |
+| [`zigzagEncode`](../binary/zigzagencode/) | [binary](../binary/) | Maps a signed 64\-bit integer to an unsigned one so that values near zero stay small \(\`0, \-1, 1, \-2\` become \`0, 1, 2, 3\`… |
 | [`zip`](../array/zip/) | [array](../array/) | Combines multiple arrays element\-by\-element into an array of tuples\. |

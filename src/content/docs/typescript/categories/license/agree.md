@@ -3,7 +3,7 @@ title: "agree"
 sidebar:
   label: "agree"
 description: "Whether two raw license strings agree closely enough to count as \"no real conflict\" — true when their family sets share…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Whether two raw license strings agree closely enough to count as "no real conflict" — true

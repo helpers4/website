@@ -3,7 +3,7 @@ title: "some"
 sidebar:
   label: "some"
 description: "Checks if at least one entry of a Map satisfies the predicate."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Checks if at least one entry of a Map satisfies the predicate. Short-circuits on the first match.

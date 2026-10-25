@@ -23,7 +23,8 @@ Utility functions for working with string operations.
 | [`excerpt`](./excerpt/) | Derives a short, readable excerpt from a longer text — for a card/header/preview where a full paragraph doesn't fit\. |
 | [`extractErrorMessage`](./extracterrormessage/) | Convert an error to a readable message\. |
 | [`formatProgressBar`](./formatprogressbar/) | Formats a value as a text progress bar, repeating \`filledChar\`/\`emptyChar\` across \`width\` cells proportional to \`value… |
-| [`globToRegExp`](./globtoregexp/) | Compiles a simple glob pattern into a \`RegExp\` that matches the whole string: \`\*\` matches any sequence of UTF\-16 code u… |
+| [`fromBase64`](./frombase64/) | Decodes Base64 text\. |
+| [`globToRegExp`](./globtoregexp/) | Compiles a glob pattern into a \`RegExp\` that matches the whole string\. |
 | [`injectWordBreaks`](./injectwordbreaks/) | Adds word\-break opportunities to a string so it can wrap cleanly in narrow UI containers such as side panels or table c… |
 | [`isBlank`](./isblank/) | Checks if a string is blank — empty or contains only whitespace characters\. |
 | [`isEmpty`](./isempty/) | Checks if a string is empty \(\`""\`\), \`null\`, or \`undefined\`\. |
@@ -43,6 +44,7 @@ Utility functions for working with string operations.
 | [`stripHtml`](./striphtml/) | Plain text of an HTML fragment: tags removed, \`<script>\`, \`<style>\` and comments dropped with their content, entities d… |
 | [`template`](./template/) | Interpolates \`\{\{key\}\}\` placeholders in a template string with values from a data record\. |
 | [`titleCase`](./titlecase/) | Converts a string to Title Case\. |
+| [`toBase64`](./tobase64/) | Encodes a string \(as UTF\-8\) or raw bytes to Base64, without relying on \`btoa\` or \`Buffer\`, so it behaves the same in a… |
 | [`trim`](./trim/) | Trims both leading and trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |
 | `trim / trimStart / trimEnd` | <span class="badge badge--secondary">native JS</span> `String.prototype.trim() / trimStart() / trimEnd()` *(ES2019)* |
 | [`trimEnd`](./trimend/) | Trims trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |

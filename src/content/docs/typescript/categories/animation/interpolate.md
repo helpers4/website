@@ -3,7 +3,7 @@ title: "interpolate"
 sidebar:
   label: "interpolate"
 description: "Blends two values of the same shape: every number goes from its value in `from` (`t = 0`) to its value in `to` (`t = 1`…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Blends two values of the same shape: every number goes from its value in `from` (`t = 0`) to

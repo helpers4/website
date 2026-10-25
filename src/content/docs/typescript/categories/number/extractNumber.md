@@ -3,7 +3,7 @@ title: "extractNumber"
 sidebar:
   label: "extractNumber"
 description: "Extracts the first number embedded anywhere in a string, or passes through a `number`."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Extracts the first number embedded anywhere in a string, or passes through a `number`.
@@ -72,8 +72,8 @@ Options for extractNumber.
 
 ```ts
 interface ExtractNumberOptions {
-  exponent?: "auto" | "strict" | "ignore";
-  sign?: "auto" | "strict" | "ignore";
+  exponent?: "strict" | "auto" | "ignore";
+  sign?: "strict" | "auto" | "ignore";
 }
 ```
 

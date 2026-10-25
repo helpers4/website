@@ -3,7 +3,7 @@ title: "hsbToRgb"
 sidebar:
   label: "hsbToRgb"
 description: "Converts an HSB(A) color (also called HSV), as shown by design tool color pickers, into RGB(A)."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Converts an HSB(A) color (also called HSV), as shown by design tool color pickers, into

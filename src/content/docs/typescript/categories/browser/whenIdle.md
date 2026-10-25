@@ -3,7 +3,7 @@ title: "whenIdle"
 sidebar:
   label: "whenIdle"
 description: "Runs `callback` when the browser is idle, with `requestIdleCallback`, for work that can wait (prefetching, analytics, w…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Runs `callback` when the browser is idle, with `requestIdleCallback`, for work that can wait

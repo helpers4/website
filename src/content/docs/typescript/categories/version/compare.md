@@ -3,7 +3,7 @@ title: "compare"
 sidebar:
   label: "compare"
 description: "Compares two version strings, according to the given `scheme`."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Compares two version strings, according to the given `scheme`.
@@ -23,6 +23,22 @@ from SemVer: a `-r` revision is *not* a prerelease and sorts *above* the base ve
 upstream version, then the Debian revision, each compared like dpkg's `verrevcmp` — digit runs
 numerically, everything else character by character with `~` sorting before everything,
 even the end of the string (`1.0~rc1` < `1.0`). Throws a `SyntaxError` on an invalid version.
+
+**`'rpm'`** — RPM ordering (see ParsedRpmVersion): epoch, then version, then release (when
+both have one), each compared like `rpmvercmp` — numeric and alphabetic segments in turn, a number
+newer than letters, `~` sorting before everything and `^` after the end of the string.
+
+**`'pacman'`** — Arch Linux `vercmp` ordering (see ParsedPacmanVersion): like RPM's, but
+longer separators win and a trailing letter segment sorts below the same version without it.
+
+**`'pep440'`** — PEP 440 ordering (see ParsedPep440Version): epoch, release (`1.0` equals
+`1`), then `dev` < `a` < `b` < `rc` < final < post-release, and local labels last. Every spelling
+PEP 440 accepts is understood. Throws a `SyntaxError` on an invalid version.
+
+**`'maven'`** — Apache Maven's `ComparableVersion` ordering (see ParsedMavenVersion): `.`,
+`-` and every digit/letter switch split the version; `alpha` < `beta` < `milestone` < `rc` <
+`snapshot` < release < `sp`, then unknown qualifiers in lexical order, all after the release;
+`1`, `1.0` and `1-ga` are equal.
 
 > Available since v1.9.0
 
@@ -102,7 +118,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo' | 'debian'
+type VersionScheme = 'semver' | 'gentoo' | 'debian' | 'rpm' | 'pacman' | 'pep440' | 'maven'
 ```
 
 :::caution[Name conflict]

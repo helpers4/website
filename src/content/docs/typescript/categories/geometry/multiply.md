@@ -3,7 +3,7 @@ title: "multiply"
 sidebar:
   label: "multiply"
 description: "Multiplies matrices, in the mathematical order: the last one applies first."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Multiplies matrices, in the mathematical order: the last one applies first. It is the order of

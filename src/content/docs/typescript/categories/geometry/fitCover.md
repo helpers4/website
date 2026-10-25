@@ -3,7 +3,7 @@ title: "fitCover"
 sidebar:
   label: "fitCover"
 description: "Places content in a box, as small as possible while covering the whole box (CSS `object-fit: cover`)."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Places content in a box, as small as possible while covering the whole box (CSS `object-fit: cover`). Shortcut for `fit(content, box, { mode: 'cover', align })`.

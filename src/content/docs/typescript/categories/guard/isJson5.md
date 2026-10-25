@@ -3,7 +3,7 @@ title: "isJson5"
 sidebar:
   label: "isJson5"
 description: "Checks whether a value is a string holding valid JSON5 (JSON5 1.0.0) — JSON with comments, trailing commas, unquoted ke…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Checks whether a value is a string holding valid JSON5 (JSON5 1.0.0) — JSON with comments,

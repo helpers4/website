@@ -3,7 +3,7 @@ title: "withLeadingSlash"
 sidebar:
   label: "withLeadingSlash"
 description: "Adds a leading slash `/` to the given URL if it is not already present."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Adds a leading slash `/` to the given URL if it is not already present.

@@ -3,7 +3,7 @@ title: "difference"
 sidebar:
   label: "difference"
 description: "Calculates the difference between two dates in the specified unit."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Calculates the difference between two dates in the specified unit.

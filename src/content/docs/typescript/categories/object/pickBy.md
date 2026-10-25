@@ -3,7 +3,7 @@ title: "pickBy"
 sidebar:
   label: "pickBy"
 description: "Creates a new object with only the own enumerable entries for which `predicate` returns `true`."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Creates a new object with only the own enumerable entries for which

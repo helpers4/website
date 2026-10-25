@@ -3,7 +3,7 @@ title: "pipe"
 sidebar:
   label: "pipe"
 description: "Composes functions left-to-right: the output of each function is passed as input to the next."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Composes functions left-to-right: the output of each function is passed as

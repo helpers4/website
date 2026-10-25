@@ -3,7 +3,7 @@ title: "mapSettled"
 sidebar:
   label: "mapSettled"
 description: "Like mapAsync, but never rejects: each item gets its own result, in the shape of `Promise.allSettled`, so one failure d…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Like mapAsync, but never rejects: each item gets its own result, in the shape of

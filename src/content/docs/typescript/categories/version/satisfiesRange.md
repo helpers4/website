@@ -3,7 +3,7 @@ title: "satisfiesRange"
 sidebar:
   label: "satisfiesRange"
 description: "Checks if a version satisfies a range, according to the given `scheme` (simple implementation — see each scheme's own d…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Checks if a version satisfies a range, according to the given `scheme` (simple
@@ -22,6 +22,21 @@ earlier), `<=`, `=`, `>=`, `>>` (strictly later), or an exact match, compared pe
 (see compare); whitespace after the operator is allowed (`>= 1.0`). The obsolete
 single-character `<`/`>` throw — dpkg reads them as `<=`/`>=`, the opposite of what they look
 like — and so do `^`/`~`.
+
+**`'rpm'`**, **`'pacman'`** — dependency relations: `<`, `<=`, `=` (or `==`), `>=`, `>` followed by a
+version, or a bare version for an exact match; whitespace after the operator is allowed. Compared
+per RPM / pacman ordering (see compare).
+
+**`'pep440'`** — a PEP 440 specifier set, as in `requirements.txt`: comma-separated clauses that
+must all hold, each one of `==` / `!=` (also with a `.*` prefix, e.g. `==1.2.*`), `<`, `<=`, `>`,
+`>=`, `~=` (compatible release: `~=1.4.5` is `>=1.4.5, ==1.4.*`) or `===` (exact string). Follows
+`packaging`'s rules: `<2.0` does not admit `2.0rc1`, `>2.0` does not admit `2.0.post1`. Pre-releases
+are not excluded otherwise.
+
+**`'maven'`** — a Maven version range: `[1.0,2.0)` (`[`/`]` include a bound, `(`/`)` exclude it, a
+missing bound is open), `[1.5]` for exactly 1.5, several joined by commas for a union
+(`(,1.0],[1.2,)`). A bare version is an exact match (in a POM it would be a soft preference).
+Throws a `SyntaxError` on a malformed range.
 
 > Available since v1.9.0
 
@@ -107,7 +122,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo' | 'debian'
+type VersionScheme = 'semver' | 'gentoo' | 'debian' | 'rpm' | 'pacman' | 'pep440' | 'maven'
 ```
 
 ## Source

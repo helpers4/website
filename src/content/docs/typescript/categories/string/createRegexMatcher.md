@@ -3,7 +3,7 @@ title: "createRegexMatcher"
 sidebar:
   label: "createRegexMatcher"
 description: "createMatcher with every string read as the source of a regular expression, without slashes or flags (`'^(Home|Login)$'…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 createMatcher with every string read as the source of a regular expression, without
@@ -64,6 +64,7 @@ Options for createMatcher and createSafeMatcher.
 ```ts
 interface MatcherOptions {
   caseSensitive?: boolean;
+  extended?: boolean;
   syntax?: "auto" | "regex" | "glob";
 }
 ```

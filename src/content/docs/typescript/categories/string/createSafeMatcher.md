@@ -3,7 +3,7 @@ title: "createSafeMatcher"
 sidebar:
   label: "createSafeMatcher"
 description: "Like createMatcher, but returns `null` instead of throwing when a string pattern is an invalid regular expression, to r…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Like createMatcher, but returns `null` instead of throwing when a string pattern is an
@@ -65,6 +65,7 @@ Options for createMatcher and createSafeMatcher.
 ```ts
 interface MatcherOptions {
   caseSensitive?: boolean;
+  extended?: boolean;
   syntax?: "auto" | "regex" | "glob";
 }
 ```

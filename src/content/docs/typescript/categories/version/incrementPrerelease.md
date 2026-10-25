@@ -3,7 +3,7 @@ title: "incrementPrerelease"
 sidebar:
   label: "incrementPrerelease"
 description: "Increments the prerelease portion of a version, according to the given `scheme` — the semantics `npm version prerelease…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Increments the prerelease portion of a version, according to the given `scheme` — the
@@ -31,6 +31,12 @@ Gentoo's `components` array can be any length.
 
 **`'debian'`** — throws: a Debian upstream version is free-form, with no prerelease counter
 to bump.
+
+**`'rpm'`**, **`'pacman'`**, **`'maven'`** — throw: the version is free-form, with no prerelease counter to bump.
+
+**`'pep440'`** — `prereleaseId` is `a`, `b` or `rc` (or their spellings `alpha`, `beta`, `c`, `pre`,
+`preview`). A version that is not a pre-release gets its patch bumped and starts at `<id>0`
+(`1.2.3` → `1.2.4a0`); the same marker increments its number, another one restarts at `0`.
 
 > Available since v3.0.1
 
@@ -107,7 +113,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo' | 'debian'
+type VersionScheme = 'semver' | 'gentoo' | 'debian' | 'rpm' | 'pacman' | 'pep440' | 'maven'
 ```
 
 ## Source

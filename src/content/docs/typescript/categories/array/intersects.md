@@ -3,7 +3,7 @@ title: "intersects"
 sidebar:
   label: "intersects"
 description: "Simple helper that check if two lists shared at least an item in common."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Simple helper that check if two lists shared at least an item in common.

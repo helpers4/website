@@ -2,11 +2,15 @@
 title: "relativeURLToAbsolute"
 sidebar:
   label: "relativeURLToAbsolute"
-description: "Converts a relative URL to an absolute URL using the current document base URI."
-version: "3.1.7"
+description: "Converts a relative URL to an absolute URL, using `base` when given, or else the current document base URI (and the win…"
+version: "3.1.8"
 ---
 
-Converts a relative URL to an absolute URL using the current document base URI.
+Converts a relative URL to an absolute URL, using `base` when given, or else the current
+document base URI (and the window origin when the document has none).
+
+Works outside a browser as long as `base` is passed; without `base` and without a document it
+throws a `TypeError`, since there is nothing to resolve against.
 
 > Available since v1.0.0
 
@@ -22,7 +26,7 @@ import { relativeURLToAbsolute } from 'helpers4/url';
 
 
 ```ts
-relativeURLToAbsolute(relativeUrl: string): string
+relativeURLToAbsolute(relativeUrl: string, base?: string): string
 ```
 
 ## Parameters
@@ -30,6 +34,7 @@ relativeURLToAbsolute(relativeUrl: string): string
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `relativeUrl` | `string` | The relative URL to convert |
+| `base` | `string` | The URL to resolve against\. Defaults to the document base URI\. *(optional)* |
 
 ## Returns
 
@@ -44,6 +49,15 @@ Prepends the base URI to a relative path, cleaning duplicate slashes.
 ```ts
 relativeURLToAbsolute('/api/data')
 // => 'http://localhost/api/data' (depends on document.baseURI)
+```
+
+### Resolve against an explicit base, with no browser
+
+Pass a base to use it in Node.js or during server-side rendering.
+
+```ts
+relativeURLToAbsolute('/api/data', 'https://example.com')
+// => 'https://example.com/api/data'
 ```
 
 ## Source

@@ -3,12 +3,15 @@ title: "createMatcher"
 sidebar:
   label: "createMatcher"
 description: "Turns user-supplied filters (a setting, a CLI flag, a list of rules) into one predicate."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Turns user-supplied filters (a setting, a CLI flag, a list of rules) into one predicate.
 
-- A string is a glob, or a regular expression — see MatcherOptions.syntax.
+- A string is a glob, or a regular expression — see MatcherOptions.syntax. A `re:` or
+  `glob:` prefix (`'re:^v\\d+$'`, `'glob:*.ts'`) fixes the reading of that one pattern, whatever
+  the syntax option says; to match a string that really starts with one of them, spell it
+  `'glob:re:…'`.
 - A `RegExp` is used as is, except that its `g` and `y` flags are dropped: they make
   `test()` depend on the previous call.
 - A function is called as is.
@@ -66,6 +69,16 @@ With syntax 'glob', a pattern like /usr/lib/img is never read as a regular expre
 createMatcher('/usr/lib/*', { syntax: 'glob' })('/usr/lib/img') // => true
 ```
 
+### Fix the reading of one pattern with re: or glob:
+
+A prefix overrides the syntax option for that pattern only, so globs and regular expressions mix freely.
+
+```ts
+const matches = createMatcher(['glob:src/*', 're:\\.tsx?$', '!re:test']);
+matches('lib/b.ts')      // => true
+matches('lib/b.test.ts') // => false
+```
+
 ## Related Types
 
 ### `MatcherOptions`
@@ -75,6 +88,7 @@ Options for createMatcher and createSafeMatcher.
 ```ts
 interface MatcherOptions {
   caseSensitive?: boolean;
+  extended?: boolean;
   syntax?: "auto" | "regex" | "glob";
 }
 ```

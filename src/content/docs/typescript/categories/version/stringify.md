@@ -3,7 +3,7 @@ title: "stringify"
 sidebar:
   label: "stringify"
 description: "Reconstructs a version string from a AnyParsedVersion object — the scheme is read from the object's own `scheme` field,…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Reconstructs a version string from a AnyParsedVersion object — the scheme is read from
@@ -12,7 +12,8 @@ stringify as Gentoo, so there's nothing to disambiguate).
 
 This is the inverse of parse:
 `stringify(parse(v)) === stripV(v)` for any valid version string `v`, in any scheme — up to
-canonicalization (a Debian `0:` epoch is dropped, a Gentoo `_beta0` becomes `_beta`).
+canonicalization (a Debian `0:` epoch is dropped, a Gentoo `_beta0` becomes `_beta`, a PEP 440
+`1.0-ALPHA` becomes `1.0a0`, a Maven `1.0.0` becomes `1`).
 
 > Available since v2.0.0
 
@@ -80,7 +81,8 @@ stringify({ scheme: 'gentoo', components: [1, 2, 3], letter: 'b', suffixes: [{ t
 A version parsed by parse, in whichever scheme it was parsed as — narrow on the
 `scheme` field to access scheme-specific properties (`major`/`minor`/`patch` for `'semver'`,
 `components`/`letter`/`suffixes`/`revision` for `'gentoo'`, `epoch`/`upstream`/`revision` for
-`'debian'`).
+`'debian'`, `epoch`/`version`/`release` for `'rpm'` and `'pacman'`, `epoch`/`release`/`pre`/`post`/`dev`/`local`
+for `'pep440'`, a normalized `items` list for `'maven'`).
 
 Deliberately **not** named `ParsedVersion`: that name has been public API since 2.0.0 for
 the flat SemVer-only shape (`.major`/`.minor`/`.patch` directly, no narrowing needed), and
@@ -89,7 +91,14 @@ reads those fields without narrowing first — a real compatibility break with n
 `MIGRATION.md` entry, since this repo ties breaking changes to major-version bumps.
 
 ```ts
-type AnyParsedVersion = ParsedSemVerVersion | ParsedGentooVersion | ParsedDebianVersion
+type AnyParsedVersion =
+  | ParsedSemVerVersion
+  | ParsedGentooVersion
+  | ParsedDebianVersion
+  | ParsedRpmVersion
+  | ParsedPacmanVersion
+  | ParsedPep440Version
+  | ParsedMavenVersion
 ```
 
 :::caution[Name conflict]

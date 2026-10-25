@@ -3,7 +3,7 @@ title: "createBackStack"
 sidebar:
   label: "createBackStack"
 description: "Creates a back stack: a stack that always has a current entry (the one on top), with the previous ones underneath to go…"
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Creates a back stack: a stack that always has a current entry (the one on top), with the

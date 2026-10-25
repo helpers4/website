@@ -3,7 +3,7 @@ title: "isPrerelease"
 sidebar:
   label: "isPrerelease"
 description: "Returns `true` when the version string has a prerelease suffix, according to the given `scheme`."
-version: "3.1.7"
+version: "3.1.8"
 ---
 
 Returns `true` when the version string has a prerelease suffix, according to the given
@@ -18,6 +18,17 @@ release, and a revision isn't a prerelease of anything, it's a rebuild of the sa
 **`'debian'`** — `true` when the upstream part contains `~`, the Debian convention for a
 version that must sort before the final release (`1.0~rc1`). A `~` in the revision doesn't
 count — `1.0-1~bpo12+1` is a backport of the `1.0` release, not a prerelease of it.
+
+**`'rpm'`** — `true` when the version contains `~`, the RPM convention for a version that sorts
+before the final release (`1.0~rc1`).
+
+**`'pacman'`** — `true` when the version has an alphabetic segment after its first number, which
+pacman sorts below the same version without it (`1.0rc1`).
+
+**`'pep440'`** — `true` for an `a`/`b`/`rc` pre-release or a `dev` release, as Python's `packaging` does.
+
+**`'maven'`** — `true` when there is an `alpha`, `beta`, `milestone`, `rc`/`cr` or `snapshot`
+qualifier, all of which sort below the plain release.
 
 > Available since v2.0.0
 
@@ -83,7 +94,8 @@ isPrerelease(parse('1.0.0'))         // false
 A version parsed by parse, in whichever scheme it was parsed as — narrow on the
 `scheme` field to access scheme-specific properties (`major`/`minor`/`patch` for `'semver'`,
 `components`/`letter`/`suffixes`/`revision` for `'gentoo'`, `epoch`/`upstream`/`revision` for
-`'debian'`).
+`'debian'`, `epoch`/`version`/`release` for `'rpm'` and `'pacman'`, `epoch`/`release`/`pre`/`post`/`dev`/`local`
+for `'pep440'`, a normalized `items` list for `'maven'`).
 
 Deliberately **not** named `ParsedVersion`: that name has been public API since 2.0.0 for
 the flat SemVer-only shape (`.major`/`.minor`/`.patch` directly, no narrowing needed), and
@@ -92,7 +104,14 @@ reads those fields without narrowing first — a real compatibility break with n
 `MIGRATION.md` entry, since this repo ties breaking changes to major-version bumps.
 
 ```ts
-type AnyParsedVersion = ParsedSemVerVersion | ParsedGentooVersion | ParsedDebianVersion
+type AnyParsedVersion =
+  | ParsedSemVerVersion
+  | ParsedGentooVersion
+  | ParsedDebianVersion
+  | ParsedRpmVersion
+  | ParsedPacmanVersion
+  | ParsedPep440Version
+  | ParsedMavenVersion
 ```
 
 ### `VersionScheme`
@@ -101,7 +120,7 @@ Identifies which version scheme parse/compare should use to interpret a
 version string. Defaults to `'semver'` everywhere it's accepted.
 
 ```ts
-type VersionScheme = 'semver' | 'gentoo' | 'debian'
+type VersionScheme = 'semver' | 'gentoo' | 'debian' | 'rpm' | 'pacman' | 'pep440' | 'maven'
 ```
 
 ## Source
