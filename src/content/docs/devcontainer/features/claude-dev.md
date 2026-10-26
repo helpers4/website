@@ -40,6 +40,89 @@ With the CLI:
 }
 ```
 
+## Remote Control: drive this devcontainer from your phone or another computer
+
+With `remoteControl: true`, the devcontainer keeps a Claude Code
+[Remote Control](https://code.claude.com/docs/en/remote-control) server running in a background
+tmux session. Open [claude.ai/code](https://claude.ai/code) or the Claude app's **Code** tab and
+start sessions *in this devcontainer* — its repos, tools, MCP servers, hooks and `~/.claude` —
+without a terminal or VS Code window open on it. Code runs here; claude.ai is only the window.
+
+```jsonc
+{
+  "features": {
+    "ghcr.io/helpers4/devcontainer/claude-dev:1": {
+      "remoteControl": true,
+      // Trusts the server's folder for you: its hooks, MCP servers and permission rules apply to
+      // sessions started remotely. Only for code you trust — see "Trusting the folder" below.
+      "remoteControlAutoTrust": true
+    }
+  }
+}
+```
+
+One devcontainer per org (each with its own `~/.claude` volume) gives one server per org; the
+name prefixes every session in the list (the environment label above them is the git
+repository's name — rename the repo to change it), so `baxyz-…` and `tuxery-…` stay apart.
+
+**First start of a devcontainer:** log in from the Claude extension. The server waits for the
+login, answers its one-time "Enable Remote Control?" question itself and starts; from then on it
+comes back on every container start. Log in with a claude.ai account — API keys and
+`claude setup-token` / `CLAUDE_CODE_OAUTH_TOKEN` tokens can't use Remote Control. Until then its
+tmux pane only waits and checks every 30 s, so nothing registers with Remote Control. The login
+and the confirmation live in `~/.claude.json`, which the feature keeps in the `~/.claude` volume
+(`CLAUDE_CONFIG_DIR`), so they survive rebuilds. If the server says it can't determine your
+organization, run `claude auth login` once in a terminal to refresh the account information.
+
+**Trusting the folder** (`remoteControlAutoTrust`). Claude Code asks "Trust this folder?" before
+starting the server, and the Claude extension never answers it for the CLI (it relies on VS
+Code's Workspace Trust). Two ways:
+
+- `remoteControlAutoTrust: true`: the loop answers yes for the server's folder, so nothing is
+  left to do. Trusting means that folder's project settings — hooks, MCP servers, permission
+  rules — apply to every session started from your phone or the web, so only turn it on for
+  code you trust. This is what the examples use.
+- `false` (default): run `claude` once in the folder and accept the question. The server picks it
+  up within 30 s; until then its pane says it isn't trusted.
+
+**Day to day:** `claude-rc status` shows whether it runs, its name, directory and last output;
+`claude-rc stop` / `start` / `restart` do what they say. A stopped server's sessions come back
+with `claude-rc start` for about 4 hours.
+
+**Name** (`remoteControlName`), first non-empty of: the option, `$CLAUDE_RC_NAME` (e.g. in
+`containerEnv`), [`org-workspace`](../org-workspace)'s `org` option, the owner of the
+workspace's `origin` remote, the workspace folder name, the hostname. Set it explicitly when
+the automatic name would reveal something you'd rather not see in a session list.
+
+**Directory** (`remoteControlDir`), where sessions start: the workspace folder, i.e. the one
+you opened in VS Code (trust is per directory, so a parent such as `/workspaces` would be another,
+untrusted one). With `org-workspace`, the sibling repos in `/workspaces` are reachable
+from there but outside the session's starting directory; list them under
+`permissions.additionalDirectories` in `~/.claude/settings.json` if sessions should work in them
+without asking.
+
+**Spawn mode** (`remoteControlSpawn`): `same-dir` (default) lets every session work in the same
+directory — fine across different repos, but two sessions editing the same repo can step on
+each other. `worktree` gives each session its own git worktree; it needs the directory to be a
+git repository, so it falls back to `same-dir` (with a warning) when the directory isn't one.
+
+**Keep in mind:**
+
+- **Transcripts:** while a session is connected, its transcript is stored on Anthropic's
+  servers (execution and files stay here). That's why the option is off by default.
+- **Variables that disable it:** `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`,
+  `DISABLE_GROWTHBOOK`, an `ANTHROPIC_BASE_URL` other than `api.anthropic.com`, or an API key /
+  auth token in the environment. `claude-rc` warns about each at startup.
+  `DISABLE_TELEMETRY` / `DO_NOT_TRACK` are fine on recent Claude Code versions.
+- **One account:** every session shows up in the claude.ai account the devcontainer is logged
+  in with. A devcontainer meant to stay unlinked from your identity needs its own Claude account.
+- **Starts with the devcontainer:** the server is started by `postStartCommand`, i.e. whenever
+  the devcontainer CLI or VS Code starts the container — not by a bare `docker start`. On an
+  always-on host, start devcontainers with `devcontainer up` (e.g. from a systemd unit) so the
+  server comes back after a reboot.
+- **Flags:** settings for the server's sessions (hooks, permissions, sandboxing) belong in
+  `settings.json`, not on the command line — `claude remote-control` refuses most global flags.
+
 ## GitHub Codespaces
 
 Works out of the box. A host bind-mount would not: [GitHub Codespaces doesn't
@@ -62,6 +145,12 @@ convention would silently share one memory/settings bucket under that model.
 |--------|------|---------|-------------|
 | `username` | string | `auto` | Container user that receives the `~/.claude` symlink. `auto` detects vscode/node/codespace/uid-1000, in that order; set an explicit username to override. |
 | `installCli` | boolean | `false` | Install the Claude Code CLI (`claude` command) via the official native installer. |
+| `remoteControl` | boolean | `false` | Keep a Remote Control server running in a background tmux session — see [Remote Control](#remote-control-drive-this-devcontainer-from-your-phone-or-another-computer). Implies `installCli`. |
+| `remoteControlName` | string | `""` | Title of the first session and prefix of every session name. Not the environment label, which is the git repo name. Empty: automatic (see above). |
+| `remoteControlDir` | string | `""` | Directory the server runs in. Empty: the workspace folder (the one you opened in VS Code). |
+| `remoteControlSpawn` | `same-dir` \| `worktree` | `same-dir` | How the server creates sessions. |
+| `remoteControlAutoTrust` | boolean | `false` | Answer yes to "Trust this folder?" for the server's folder — see [Trusting the folder](#remote-control-drive-this-devcontainer-from-your-phone-or-another-computer). Without it, run `claude` once in the folder and accept. |
+| `remoteControlPermissionMode` | string | `""` | Starting permission mode for the server's sessions (e.g. `acceptEdits`, `plan`). Empty: Claude Code's default. |
 
 ## IDE support
 
@@ -87,6 +176,13 @@ convention would silently share one memory/settings bucket under that model.
    at *image build* time (before this volume existed to write into) is added to the volume
    rather than discarded — see the script's own comments for exactly how.
 
+4. **On every start** (`postStartCommand`): `claude-rc start --lifecycle` — a silent no-op
+   unless `remoteControl` is on, in which case it starts the Remote Control loop in a detached
+   tmux session named `claude-rc`. It runs after step 3, so the server only ever reads and
+   writes the persistent `~/.claude`. It never fails the container start: a missing CLI or tmux
+   is a warning. The loop waits for a login, answers the first-run questions by reading the tmux pane ("Enable Remote Control?" → yes; "Trust <dir>?" → yes with `remoteControlAutoTrust`, otherwise no and retried every 30 s until you trust the folder yourself), then restarts `claude remote-control` whenever it
+   exits, backing off up to 5 minutes when it keeps exiting right away.
+
 If `/mnt/h4claude` is not mounted (e.g. a standalone `install.sh` test), the
 script warns and exits cleanly — the container starts normally, just without
 persistence.
@@ -99,11 +195,19 @@ without depending on that user's shell profile already including
 
 ## OS and Architecture Support
 
-- **OS:** any (no OS-level installation — pure IDE configuration)
+- **OS:** any (no OS-level installation — pure IDE configuration). `remoteControl` installs
+  tmux with apt on Debian/Ubuntu images; elsewhere, have tmux in the image.
 - **Architectures:** amd64, arm64
 
 ## Version History
 
+- **v1.4.0**: `CLAUDE_CONFIG_DIR` now points at the volume, so `~/.claude.json` (account, trust)
+  persists too. Added `remoteControl` (off by default) and its `remoteControlName`,
+  `remoteControlDir`, `remoteControlSpawn` and `remoteControlPermissionMode` options: keeps a
+  Claude Code Remote Control server running in a background tmux session, started on every
+  container start, so this devcontainer can be driven from claude.ai/code or the Claude app.
+  New `claude-rc` command (`start`, `login`, `stop`, `restart`, `attach`, `status`). `remoteControl`
+  implies `installCli` and installs tmux.
 - **v1.3.1**: `setup-credentials.sh` now runs via `postCreateCommand` instead of
   `postStartCommand` — the volume is already mounted by container creation (Docker attaches
   mounts before any command runs inside a container, not later), so there's no need to redo
