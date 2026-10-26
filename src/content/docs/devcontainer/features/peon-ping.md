@@ -1,7 +1,7 @@
 ---
 title: "Peon Ping — AI Agent Sound Notifications"
 sidebar:
-  order: 17
+  order: 18
 ---
 
 > Code name: `peon-ping`

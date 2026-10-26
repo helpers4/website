@@ -1,7 +1,7 @@
 ---
 title: "helpers4 Common Library"
 sidebar:
-  order: 11
+  order: 12
 ---
 
 > Code name: `helpers4-common`
