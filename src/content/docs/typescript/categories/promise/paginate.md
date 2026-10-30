@@ -3,7 +3,7 @@ title: "paginate"
 sidebar:
   label: "paginate"
 description: "Collects every item of a paginated source by requesting pages one after the other, from page 1, until the source runs o…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Collects every item of a paginated source by requesting pages one after the other, from
@@ -75,7 +75,7 @@ Options for paginate.
 interface PaginateOptions {
   maxPages?: number;
   pageSize?: number;
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

@@ -3,7 +3,7 @@ title: "isPrimitive"
 sidebar:
   label: "isPrimitive"
 description: "Checks if a value is a JavaScript primitive."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Checks if a value is a JavaScript primitive.

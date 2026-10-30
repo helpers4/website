@@ -3,7 +3,7 @@ title: "sum"
 sidebar:
   label: "sum"
 description: "Calculates the sum of an array of numbers."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Calculates the sum of an array of numbers.

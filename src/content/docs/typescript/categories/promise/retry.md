@@ -3,7 +3,7 @@ title: "retry"
 sidebar:
   label: "retry"
 description: "Retries a promise-returning function until it succeeds or runs out of attempts, then rejects with the last error, waiti…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Retries a promise-returning function until it succeeds or runs out of attempts, then rejects
@@ -122,7 +122,7 @@ interface RetryOptions {
   attempts?: number;
   delayMs?: number | function;
   shouldRetry?: function;
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

@@ -3,7 +3,7 @@ title: "filterAsync"
 sidebar:
   label: "filterAsync"
 description: "The async counterpart to `Array.prototype.filter`: runs `predicate` for every item and resolves to the items whose pred…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 The async counterpart to `Array.prototype.filter`: runs `predicate` for every item and
@@ -62,7 +62,7 @@ Options for mapAsync, mapSettled, filterAsync and forEachAsync.
 ```ts
 interface AsyncArrayOptions {
   concurrency?: number;
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

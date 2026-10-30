@@ -3,7 +3,7 @@ title: "createSemaphore"
 sidebar:
   label: "createSemaphore"
 description: "Creates a semaphore limiting concurrent access to `permits` holders at a time, queueing excess `acquire()` callers in F…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Creates a semaphore limiting concurrent access to `permits` holders at a time, queueing
@@ -89,7 +89,7 @@ Options for Semaphore.acquire and Semaphore.run, and their Mutex twins.
 
 ```ts
 interface AcquireOptions {
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

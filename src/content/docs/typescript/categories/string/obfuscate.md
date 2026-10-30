@@ -3,7 +3,7 @@ title: "obfuscate"
 sidebar:
   label: "obfuscate"
 description: "Hides a text from anything that reads the raw page source: the text is reversed (by Unicode code point, so emoji stay w…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Hides a text from anything that reads the raw page source: the text is reversed (by Unicode

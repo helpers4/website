@@ -3,7 +3,7 @@ title: "isFormData"
 sidebar:
   label: "isFormData"
 description: "Checks if a value is a FormData instance."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Checks if a value is a FormData instance.

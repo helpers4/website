@@ -3,7 +3,7 @@ title: "fetchOrThrow"
 sidebar:
   label: "fetchOrThrow"
 description: "Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of resolving like any other response — the…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of
@@ -24,14 +24,14 @@ import { fetchOrThrow } from 'helpers4/promise';
 
 
 ```ts
-fetchOrThrow(input: URL | RequestInfo, init?: RequestInit): Promise<Response>
+fetchOrThrow(input: RequestInfo | URL, init?: RequestInit): Promise<Response>
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `input` | `URL \| RequestInfo` | URL or \`Request\` object passed to \`fetch\` |
+| `input` | `RequestInfo \| URL` | URL or \`Request\` object passed to \`fetch\` |
 | `init` | `RequestInit` | Optional \`RequestInit\` options passed to \`fetch\` *(optional)* |
 
 ## Returns

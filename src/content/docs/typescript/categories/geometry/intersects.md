@@ -3,7 +3,7 @@ title: "intersects"
 sidebar:
   label: "intersects"
 description: "Whether two rectangles have an area in common, exactly when intersection returns a rectangle: rectangles that only touc…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Whether two rectangles have an area in common, exactly when intersection returns

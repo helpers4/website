@@ -3,7 +3,7 @@ title: "blendColors"
 sidebar:
   label: "blendColors"
 description: "Composites a source color over a backdrop with a blend mode, as the browser does for `mix-blend-mode` (W3C Compositing…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Composites a source color over a backdrop with a blend mode, as the browser does for
@@ -77,8 +77,9 @@ interface RgbColor {
 
 ### `BlendMode`
 
-The separable blend modes of the W3C Compositing and Blending specification, the same ones as
-CSS `mix-blend-mode`.
+The blend modes of the W3C Compositing and Blending specification, the same ones as CSS
+`mix-blend-mode`. The last four (`hue`, `saturation`, `color`, `luminosity`) are non-separable:
+they mix the three channels together instead of one channel at a time.
 
 ```ts
 type BlendMode =
@@ -94,6 +95,10 @@ type BlendMode =
   | 'soft-light'
   | 'difference'
   | 'exclusion'
+  | 'hue'
+  | 'saturation'
+  | 'color'
+  | 'luminosity'
 ```
 
 ## Source

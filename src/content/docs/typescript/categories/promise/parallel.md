@@ -3,7 +3,7 @@ title: "parallel"
 sidebar:
   label: "parallel"
 description: "Runs an array of async functions with a concurrency limit."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Runs an array of async functions with a concurrency limit.
@@ -72,7 +72,7 @@ Options for parallel and parallelSettle.
 
 ```ts
 interface ParallelOptions {
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

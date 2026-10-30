@@ -3,7 +3,7 @@ title: "isNullish"
 sidebar:
   label: "isNullish"
 description: "Checks if a value is null or undefined (nullish)."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Checks if a value is null or undefined (nullish).

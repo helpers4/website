@@ -3,7 +3,7 @@ title: "ensureArray"
 sidebar:
   label: "ensureArray"
 description: "Wraps a value in an array if it is not already one."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Wraps a value in an array if it is not already one.

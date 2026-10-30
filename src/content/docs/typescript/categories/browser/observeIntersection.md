@@ -3,7 +3,7 @@ title: "observeIntersection"
 sidebar:
   label: "observeIntersection"
 description: "Calls `callback` each time `element` enters or leaves the viewport (or `options.root`), with an `IntersectionObserver`…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Calls `callback` each time `element` enters or leaves the viewport (or `options.root`), with an
@@ -75,7 +75,7 @@ interface ObserveIntersectionOptions {
   root?: Element | Document | null;
   rootMargin?: string;
   scrollMargin?: string;
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
   threshold?: number | number[];
 }
 ```

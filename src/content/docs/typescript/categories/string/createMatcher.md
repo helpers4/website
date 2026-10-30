@@ -3,15 +3,16 @@ title: "createMatcher"
 sidebar:
   label: "createMatcher"
 description: "Turns user-supplied filters (a setting, a CLI flag, a list of rules) into one predicate."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Turns user-supplied filters (a setting, a CLI flag, a list of rules) into one predicate.
 
 - A string is a glob, or a regular expression — see MatcherOptions.syntax. A `re:` or
-  `glob:` prefix (`'re:^v\\d+$'`, `'glob:*.ts'`) fixes the reading of that one pattern, whatever
-  the syntax option says; to match a string that really starts with one of them, spell it
-  `'glob:re:…'`.
+  `glob:` prefix (`'re:^v\\d+$'`, `'glob:*.ts'`) fixes the reading of that one pattern when the
+  syntax is `'auto'` (the default); with an explicit `'glob'` or `'regex'` syntax the prefixes
+  are plain text, so createGlobMatcher never reads a regular expression. To match a
+  string that really starts with one of them under `'auto'`, spell it `'glob:re:…'`.
 - A `RegExp` is used as is, except that its `g` and `y` flags are dropped: they make
   `test()` depend on the previous call.
 - A function is called as is.

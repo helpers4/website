@@ -3,7 +3,7 @@ title: "watchMedia"
 sidebar:
   label: "watchMedia"
 description: "Calls `listener` each time a CSS media query starts or stops matching."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Calls `listener` each time a CSS media query starts or stops matching.
@@ -70,7 +70,7 @@ Options for watchMedia.
 
 ```ts
 interface WatchMediaOptions {
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

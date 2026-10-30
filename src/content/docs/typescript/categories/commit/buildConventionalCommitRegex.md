@@ -3,7 +3,7 @@ title: "buildConventionalCommitRegex"
 sidebar:
   label: "buildConventionalCommitRegex"
 description: "Builds a regular expression matching the **subject line** of a Conventional Commits message."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Builds a regular expression matching the **subject line** of a Conventional

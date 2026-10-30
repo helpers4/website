@@ -3,7 +3,7 @@ title: "truthyPromiseOrThrow"
 sidebar:
   label: "truthyPromiseOrThrow"
 description: "Returns a function that passes through truthy data or throws an error."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Returns a function that passes through truthy data or throws an error.

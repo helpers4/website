@@ -3,7 +3,7 @@ title: "scale"
 sidebar:
   label: "scale"
 description: "A matrix that scales points from the origin."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 A matrix that scales points from the origin.

@@ -3,7 +3,7 @@ title: "createByteWriter"
 sidebar:
   label: "createByteWriter"
 description: "Creates a growable buffer to encode binary formats: the counterpart of createByteReader, with the same types, byte orde…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Creates a growable buffer to encode binary formats: the counterpart of

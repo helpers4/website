@@ -8,18 +8,22 @@ sidebar:
 
 # All Functions
 
-**426** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**461** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
+| [`AbortSignalLike`](../type/abortsignallike/) | [type](../type/) | What helpers4 needs of an \`AbortSignal\`: whether it is aborted, why, and a way to listen for the abort\. |
 | `add / subtract (date arithmetic)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.prototype.add(duration) / .subtract(duration)` *(Temporal (Stage 3))* |
 | [`addDays`](../date/adddays/) | [date](../date/) | Adds days to a date\. |
 | [`addMonths`](../date/addmonths/) | [date](../date/) | Adds months to a date\. |
 | [`addYears`](../date/addyears/) | [date](../date/) | Adds years to a date\. |
 | [`agree`](../license/agree/) | [license](../license/) | Whether two raw license strings agree closely enough to count as "no real conflict" — true when their family sets share… |
+| [`AlpineDependency`](../package/alpinedependency/) | [package](../package/) | One package reference of an Alpine \(apk\) \`depends\` list\. |
+| [`AlpineOperator`](../package/alpineoperator/) | [package](../package/) | The operators of an Alpine \(apk\) version constraint, as apk writes them: the five comparisons; |
 | [`analyzeCommits`](../commit/analyzecommits/) | [commit](../commit/) | Analyses a list of commits to suggest a semantic version bump\. |
 | [`applyToPoint`](../geometry/applytopoint/) | [geometry](../geometry/) | Transforms a point by a matrix\. |
 | [`applyToRect`](../geometry/applytorect/) | [geometry](../geometry/) | Transforms a rectangle by a matrix and returns its bounding box: the smallest axis\-aligned rectangle that contains it\. |
+| [`ArchDependency`](../package/archdependency/) | [package](../package/) | One package reference of an Arch Linux \`depends\` array\. |
 | [`argbToRgb`](../color/argbtorgb/) | [color](../color/) | Converts a 32\-bit packed ARGB integer \(as used by e\.g\. |
 | [`blendColors`](../color/blendcolors/) | [color](../color/) | Composites a source color over a backdrop with a blend mode, as the browser does for \`mix\-blend\-mode\` \(W3C Compositing… |
 | [`Brand`](../type/brand/) | [type](../type/) | Brands a base type \`T\` with a phantom tag \`B\` to create a nominal type\. |
@@ -44,9 +48,11 @@ sidebar:
 | [`compare`](../date/compare/) | [date](../date/) | Comparison of two dates\. |
 | [`compare`](../version/compare/) | [version](../version/) | Compares two version strings, according to the given \`scheme\`\. |
 | `compare (ordering)` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.PlainDate.compare(a, b) / Temporal.Instant.compare(a, b)` *(Temporal (Stage 3))* |
+| [`ComparisonOperator`](../package/comparisonoperator/) | [package](../package/) | The operators of an RPM or Arch Linux version constraint\. |
 | [`compose`](../function/compose/) | [function](../function/) | Composes functions right\-to\-left: \`compose\(f, g\)\(x\)\` is equivalent to \`f\(g\(x\)\)\`\. |
 | [`consoleLogPromise`](../promise/consolelogpromise/) | [promise](../promise/) | Returns a function that logs data to the console and passes it through\. |
 | [`contains`](../geometry/contains/) | [geometry](../geometry/) | Whether a point or a rectangle is inside a rectangle\. |
+| [`contrastRatio`](../color/contrastratio/) | [color](../color/) | Computes the WCAG 2 contrast ratio between two colors, from 1 \(identical\) to 21 \(black on white\)\. |
 | [`correctFloat`](../number/correctfloat/) | [number](../number/) | Corrects floating\-point arithmetic errors by rounding to a given number of significant digits\. |
 | [`countBy`](../array/countby/) | [array](../array/) | Groups the elements of an array by the key returned by \`keyFn\` and returns a record mapping each key to the number of m… |
 | [`countBy`](../map/countby/) | [map](../map/) | Groups the entries of a Map by a derived key and counts how many fall into each group\. |
@@ -55,6 +61,7 @@ sidebar:
 | [`createByteReader`](../binary/createbytereader/) | [binary](../binary/) | Creates a cursor over bytes, for decoding binary formats: fixed\-size integers and floats, LEB128 varints \(signed ones z… |
 | [`createByteWriter`](../binary/createbytewriter/) | [binary](../binary/) | Creates a growable buffer to encode binary formats: the counterpart of createByteReader, with the same types, byte orde… |
 | [`createCachedResolver`](../function/createcachedresolver/) | [function](../function/) | Creates a lazy, cached resolver: \`resolve\(key\)\` computes and caches \`compute\(key\)\` the first time a given key is seen,… |
+| [`createFileStore`](../browser/createfilestore/) | [browser](../browser/) | Creates a file store on a named Cache API cache: keep a computed set of files \(a bake, a download, extracted layers\) un… |
 | [`createGlobMatcher`](../string/createglobmatcher/) | [string](../string/) | createMatcher with every string read as a glob \(\`\*\`, \`?\`\): no string is ever taken for a regular expression, so it neve… |
 | [`createMatcher`](../string/creatematcher/) | [string](../string/) | Turns user\-supplied filters \(a setting, a CLI flag, a list of rules\) into one predicate\. |
 | [`createMutex`](../promise/createmutex/) | [promise](../promise/) | Creates a mutex: a lock allowing at most one holder at a time, queueing excess \`acquire\(\)\` callers in FIFO order\. |
@@ -70,6 +77,9 @@ sidebar:
 | [`cubicBezier`](../animation/cubicbezier/) | [animation](../animation/) | Builds the easing function of CSS \`cubic\-bezier\(x1, y1, x2, y2\)\`: given the progress of time \(\`0\` to \`1\`\), it returns t… |
 | [`curry`](../function/curry/) | [function](../function/) | Transforms a multi\-argument function into a chain of single\-argument functions \(Haskell\-style currying\)\. |
 | [`daysInMonth`](../date/daysinmonth/) | [date](../date/) | Returns the number of days in the given month of the given year\. |
+| [`DebianDependency`](../package/debiandependency/) | [package](../package/) | One package reference of a Debian relationship field: \`name\[:arch\] \[\(op version\)\] \[\[archs\]\] \[<profiles>\]\`\. |
+| [`DebianDependencyOptions`](../package/debiandependencyoptions/) | [package](../package/) | Options of the Debian format of parseDependencies\. |
+| [`DebianOperator`](../package/debianoperator/) | [package](../package/) | The operators of a Debian version constraint \(Debian Policy 7\.1\): \`<<\` \(strictly earlier\), \`<=\`, \`=\`, \`>=\` and \`>>\` \(st… |
 | [`debounce`](../function/debounce/) | [function](../function/) | Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time… |
 | [`decodeImage`](../browser/decodeimage/) | [browser](../browser/) | Loads an image and waits until it is decoded, so it can be painted without a flash or a decoding pause \(e\.g\. |
 | [`dedent`](../string/dedent/) | [string](../string/) | Strips the common leading whitespace from every line of a multi\-line string, and trims a single leading/trailing blank… |
@@ -81,6 +91,7 @@ sidebar:
 | [`defer`](../promise/defer/) | [promise](../promise/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order \(last register… |
 | [`delay`](../promise/delay/) | [promise](../promise/) | Creates a promise that resolves after specified delay |
 | [`deobfuscate`](../string/deobfuscate/) | [string](../string/) | Reverses obfuscate\. |
+| [`DependencyConstraint`](../package/dependencyconstraint/) | [package](../package/) | A version constraint such as the \`\(>= 2\.34\)\` of \`libc6 \(>= 2\.34\)\`, with the operator spelled as the format spells it\. |
 | [`diff`](../object/diff/) | [object](../object/) | Structural object diff\. |
 | [`difference`](../array/difference/) | [array](../array/) | Returns the difference between two arrays \(items in first array but not in second\)\. |
 | [`difference`](../date/difference/) | [date](../date/) | Calculates the difference between two dates in the specified unit\. |
@@ -89,6 +100,7 @@ sidebar:
 | `drop` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.slice(n)` *(ES3)* |
 | [`eachDay`](../date/eachday/) | [date](../date/) | Returns an array of \`Date\` objects for each day from \`start\` to \`end\` \(inclusive\)\. |
 | [`eachMonth`](../date/eachmonth/) | [date](../date/) | Returns an array of \`Date\` objects for the first day of each month from \`start\` to \`end\` \(inclusive\)\. |
+| [`ellipsePath`](../geometry/ellipsepath/) | [geometry](../geometry/) | The path of the ellipse that fills a box, as SVG path data: two half\-turn arcs\. |
 | [`endOf`](../date/endof/) | [date](../date/) | Returns a new \`Date\` set to the \*\*end\*\* of the given unit\. |
 | [`ensureArray`](../array/ensurearray/) | [array](../array/) | Wraps a value in an array if it is not already one\. |
 | [`ensureDate`](../date/ensuredate/) | [date](../date/) | Safely converts a date\-like value to a valid \`Date\` object, or returns \`null\`\. |
@@ -134,6 +146,7 @@ sidebar:
 | [`formatDuration`](../date/formatduration/) | [date](../date/) | Formats a duration in milliseconds as a compact human\-readable string\. |
 | [`formatInTimezone`](../date/formatintimezone/) | [date](../date/) | Formats a date in a specific IANA timezone using \`Intl\.DateTimeFormat\`\. |
 | [`formatPartial`](../date/formatpartial/) | [date](../date/) | Formats a partial ISO date at the precision it was given, in UTC: a year alone is approximate and reads \`c\. |
+| [`formatPath`](../geometry/formatpath/) | [geometry](../geometry/) | Writes path commands back as SVG path data: letters and numbers separated by single spaces, numbers rounded to \`precisi… |
 | [`formatProgressBar`](../string/formatprogressbar/) | [string](../string/) | Formats a value as a text progress bar, repeating \`filledChar\`/\`emptyChar\` across \`width\` cells proportional to \`value… |
 | [`formatSize`](../number/formatsize/) | [number](../number/) | Format a byte count into a human\-readable string with the appropriate unit\. |
 | [`frameLoop`](../animation/frameloop/) | [animation](../animation/) | Calls \`onFrame\` once per animation frame with the time elapsed since the start, until it returns \`false\` or the loop is… |
@@ -204,6 +217,7 @@ sidebar:
 | [`isFunction`](../guard/isfunction/) | [guard](../guard/) | Checks if a value is a function\. |
 | [`isGenerator`](../guard/isgenerator/) | [guard](../guard/) | Checks if a value is a generator object \(the result of calling a \`function\*\`\)\. |
 | [`isGeneratorFunction`](../guard/isgeneratorfunction/) | [guard](../guard/) | Checks if a value is a generator function \(a \`function\*\` declaration or expression\)\. |
+| [`isHostname`](../guard/ishostname/) | [guard](../guard/) | Checks whether a value is a syntactically valid DNS hostname \(RFC 952, RFC 1123, RFC 3696 section 2\)\. |
 | `isHtmlElement / isUrlInstance / isUrlSearchParams` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value instanceof HTMLElement / URL / URLSearchParams` *(Web API)* |
 | [`isIJson`](../guard/isijson/) | [guard](../guard/) | Checks whether a value is a string holding I\-JSON \(RFC 7493, the Internet JSON message format\): strict JSON that every… |
 | `isInfinite` | [type](../type/) | <span class="badge badge--secondary">native JS</span> `value === Infinity \|\| value === -Infinity  /  !Number.isFinite(value) && !Number.isNaN(value)` *(ES2015)* |
@@ -296,6 +310,7 @@ sidebar:
 | [`mapSettled`](../array/mapsettled/) | [array](../array/) | Like mapAsync, but never rejects: each item gets its own result, in the shape of \`Promise\.allSettled\`, so one failure d… |
 | [`mapValues`](../map/mapvalues/) | [map](../map/) | Creates a new Map with the same keys but with each value transformed by a function\. |
 | [`matchesMedia`](../browser/matchesmedia/) | [browser](../browser/) | Whether the document currently matches a CSS media query\. |
+| [`matchGlob`](../string/matchglob/) | [string](../string/) | Whether \`text\` matches a glob pattern in full: \`\*\` matches any run of characters, \`?\` exactly one\. |
 | [`matrixToCss`](../geometry/matrixtocss/) | [geometry](../geometry/) | Writes a matrix as a CSS \`transform\` or SVG \`transform\` value\. |
 | [`max`](../array/max/) | [array](../array/) | Returns the maximum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
 | [`maxBy`](../array/maxby/) | [array](../array/) | Returns the element of an array with the greatest derived key, computed by \`keyFn\`\. |
@@ -304,12 +319,15 @@ sidebar:
 | [`meanBy`](../array/meanby/) | [array](../array/) | Calculates the arithmetic mean of numbers derived from each item of an array via an iteratee\. |
 | [`meaningPromiseOrThrow`](../promise/meaningpromiseorthrow/) | [promise](../promise/) | Returns a function that passes through meaningful data or throws an error\. |
 | [`median`](../array/median/) | [array](../array/) | Calculates the median \(middle value\) of an array of numbers\. |
+| [`mediaTypeOf`](../binary/mediatypeof/) | [binary](../binary/) | Finds the media type of an image from its first bytes \(its magic number\), whatever its name says: PNG, JPEG, GIF, WebP,… |
+| [`mediaTypeOfPath`](../binary/mediatypeofpath/) | [binary](../binary/) | Finds the media type of a file from the extension of its path or URL: images, fonts, web documents, scripts and styles,… |
 | [`memoize`](../function/memoize/) | [function](../function/) | Returns a memoized version of the function that caches results\. |
 | `merge (shallow)` | [object](../object/) | <span class="badge badge--secondary">native JS</span> `{ ...a, ...b } or Object.assign({}, a, b)` *(ES2015)* |
 | [`mergeDeep`](../object/mergedeep/) | [object](../object/) | Merges two or more objects deeply, returning a \*\*new\*\* object without mutating any input\. |
 | [`min`](../array/min/) | [array](../array/) | Returns the minimum value in an array using a loop instead of spread, avoiding the call stack overflow that occurs with… |
 | `min / max` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `Math.min(...arr) / Math.max(...arr)` *(ES1)* |
 | [`minBy`](../array/minby/) | [array](../array/) | Returns the element of an array with the smallest derived key, computed by \`keyFn\`\. |
+| [`mixColors`](../color/mixcolors/) | [color](../color/) | Mixes two colors in sRGB, as CSS \`color\-mix\(in srgb, color P%, base\)\` does: \`percent\`% of \`color\` and the rest of \`base… |
 | [`multiply`](../geometry/multiply/) | [geometry](../geometry/) | Multiplies matrices, in the mathematical order: the last one applies first\. |
 | [`negate`](../function/negate/) | [function](../function/) | Creates a function that negates the result of \`predicate\`\. |
 | [`noop`](../function/noop/) | [function](../function/) | A no\-operation function that does nothing and returns \`undefined\`  Useful as a default callback, placeholder, or to exp… |
@@ -335,12 +353,16 @@ sidebar:
 | [`parse`](../json/parse/) | [json](../json/) | Parses JSON permissively: strict JSON, JSONC \(the dialect of \`tsconfig\.json\` and VS Code's \`settings\.json\`, also known… |
 | [`parse`](../version/parse/) | [version](../version/) | Parses a version string into its components, according to the given \`scheme\`\. |
 | [`parseConventionalCommit`](../commit/parseconventionalcommit/) | [commit](../commit/) | Parses a Conventional Commits message into a structured object\. |
+| [`parseDeb822`](../package/parsedeb822/) | [package](../package/) | Parses a deb822 document, the format of Debian \`Packages\`, \`Sources\` and \`Release\` indexes, \`control\` and \`\.dsc\` and \`\.… |
+| [`parseDependencies`](../package/parsedependencies/) | [package](../package/) | Parses the value of a package dependency field \(\`Depends\`, \`Requires\`, \`depends\`, \.\.\.\) into a structure: groups of alte… |
 | [`parseDuration`](../date/parseduration/) | [date](../date/) | Parses a compact duration string \(as produced by formatDuration, e\.g\. |
 | [`ParsedVersion`](../version/parsedversion/) | [version](../version/) | A version parsed according to SemVer 2\.0\.0 — alias of ParsedSemVerVersion, kept under this name for backward compatibil… |
 | [`parseEasing`](../animation/parseeasing/) | [animation](../animation/) | Reads a CSS easing into an easing function, to play in JavaScript the timing a stylesheet or a design tool export descr… |
 | [`parseLines`](../json/parselines/) | [json](../json/) | Parses newline\-delimited JSON — one JSON value per line\. |
 | [`parsePackageRepository`](../url/parsepackagerepository/) | [url](../url/) | Parse the \`repository\` field from \`package\.json\` into a structured object\. |
 | [`parsePartial`](../date/parsepartial/) | [date](../date/) | Parses an ISO date that may only be known to the year or the month: \`YYYY\`, \`YYYY\-MM\` or \`YYYY\-MM\-DD\`\. |
+| [`parsePath`](../geometry/parsepath/) | [geometry](../geometry/) | Parses SVG path data \(the \`d\` attribute\) into commands, as written: the letters keep their case \(absolute or relative\),… |
+| [`parsePatternOrRegExp`](../string/parsepatternorregexp/) | [string](../string/) | Reads a setting that is either a regular expression or a glob: \`/source/flags\` is a regular expression when every flag… |
 | [`parsePropertyPath`](../object/parsepropertypath/) | [object](../object/) | Parses a dot/bracket\-notation property path into an array of string/number key segments — the same notation accepted by… |
 | [`parseSequence`](../json/parsesequence/) | [json](../json/) | Parses a JSON text sequence \(RFC 7464, \`application/json\-seq\`\): records that each start with the ASCII record separator… |
 | [`parseStrict`](../json/parsestrict/) | [json](../json/) | Parses strict JSON \(RFC 8259\) — exactly what \`JSON\.parse\` accepts, nothing more\. |
@@ -348,6 +370,8 @@ sidebar:
 | [`partition`](../array/partition/) | [array](../array/) | Splits an array into two groups based on a predicate function\. |
 | [`pascalCase`](../string/pascalcase/) | [string](../string/) | Converts a string to PascalCase\. |
 | [`pascalCaseKeys`](../object/pascalcasekeys/) | [object](../object/) | Recursively transforms every key of a plain object \(including keys nested inside arrays and nested objects\) to PascalCa… |
+| [`Pep508Dependency`](../package/pep508dependency/) | [package](../package/) | One requirement of a PEP 508 dependency specification\. |
+| [`Pep508Operator`](../package/pep508operator/) | [package](../package/) | The operators of a PEP 440 version specifier, as PEP 508 requirements use them\. |
 | [`percentageToTier`](../ci/percentagetotier/) | [ci](../ci/) | Maps a numeric percentage to a tier \(icon, color, label\) using configurable thresholds\. |
 | [`percentile`](../array/percentile/) | [array](../array/) | Calculates the p\-th percentile of an array of numbers using linear interpolation between the closest ranks\. |
 | [`pick`](../object/pick/) | [object](../object/) | Creates a new object with only the specified keys\. |
@@ -362,15 +386,18 @@ sidebar:
 | [`randomBetween`](../number/randombetween/) | [number](../number/) | Generates a random number between min and max \(inclusive\) |
 | [`randomIntBetween`](../number/randomintbetween/) | [number](../number/) | Generates a random integer between min and max \(inclusive\) |
 | [`range`](../array/range/) | [array](../array/) | Generates an array of sequential numbers from start to end \(exclusive\)\. |
+| [`rectToRect`](../geometry/recttorect/) | [geometry](../geometry/) | The translation and scale that put one rectangle exactly on another, for animating or fitting between two boxes\. |
 | [`reduce`](../map/reduce/) | [map](../map/) | Reduces a Map to a single value by applying a function to each entry, in insertion order\. |
 | `reduce / some / every` | [map](../map/) | <span class="badge badge--secondary">native JS</span> `map.entries().reduce(fn, init) / .some(fn) / .every(fn)` *(ES2025 (Iterator Helpers))* |
 | `reduce / some / every / find` | [set](../set/) | <span class="badge badge--secondary">native JS</span> `set.values().reduce(fn, init) / .some(fn) / .every(fn) / .find(fn)` *(ES2025 (Iterator Helpers))* |
 | [`reflectAttribute`](../browser/reflectattribute/) | [browser](../browser/) | Defines a property on \`element\` that is backed by an HTML attribute — what a custom element needs for \`<my\-card heading… |
+| [`relativeLuminance`](../color/relativeluminance/) | [color](../color/) | Computes the WCAG 2\.x relative luminance of a color: the perceived brightness from 0 \(black\) to 1 \(white\), after linear… |
 | [`relativeURLToAbsolute`](../url/relativeurltoabsolute/) | [url](../url/) | Converts a relative URL to an absolute URL, using \`base\` when given, or else the current document base URI \(and the win… |
 | [`removeDiacritics`](../string/removediacritics/) | [string](../string/) | Removes diacritical marks \(accents\) from a string, e\.g\. |
 | [`removeUndefinedNull`](../object/removeundefinednull/) | [object](../object/) | Remove null and undefined values from an object\. |
 | `repeat` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.repeat()` *(ES2015)* |
 | [`replaceOrAppend`](../array/replaceorappend/) | [array](../array/) | Returns a new array with the first item matching \`predicate\` replaced by \`item\` — or \`item\` appended at the end if no m… |
+| [`requestWorker`](../browser/requestworker/) | [browser](../browser/) | Runs one job in a module worker: starts it, posts the request, relays its progress, resolves with its result and ends i… |
 | [`RequiredKeys`](../type/requiredkeys/) | [type](../type/) | Extracts the required \(non\-optional\) keys of an object type \`T\`\. |
 | [`resolveRecord`](../promise/resolverecord/) | [promise](../promise/) | Resolves an array of keys into a record by calling an async mapper for each key\. |
 | [`retry`](../promise/retry/) | [promise](../promise/) | Retries a promise\-returning function until it succeeds or runs out of attempts, then rejects with the last error, waiti… |
@@ -381,8 +408,11 @@ sidebar:
 | [`rgbToHex`](../color/rgbtohex/) | [color](../color/) | Converts an RGB\(A\) color into a hex color string\. |
 | [`rgbToHsb`](../color/rgbtohsb/) | [color](../color/) | Converts an RGB\(A\) color into HSB\(A\), the model design tools \(Figma, Sketch, XD\) show in their color pickers\. |
 | [`rgbToHsl`](../color/rgbtohsl/) | [color](../color/) | Converts an RGB\(A\) color into HSL\(A\)\. |
+| [`rgbToUnit`](../color/rgbtounit/) | [color](../color/) | Converts an RgbColor \(channels from \`0\` to \`255\`\) into a color whose channels are floats from \`0\` to \`1\`, the way Figma… |
 | [`rotate`](../geometry/rotate/) | [geometry](../geometry/) | A matrix that rotates points around the origin\. |
+| [`roundedRectPath`](../geometry/roundedrectpath/) | [geometry](../geometry/) | The path of a rectangle with a radius per corner, as SVG path data\. |
 | [`roundTo`](../number/roundto/) | [number](../number/) | Rounds a number to specified decimal places |
+| [`RpmDependency`](../package/rpmdependency/) | [package](../package/) | One package reference of an RPM \`Requires\` field\. |
 | [`safeFetch`](../promise/safefetch/) | [promise](../promise/) | Wraps \`fetch\` with built\-in error handling: returns \`null\` when the request fails \(network error, non\-OK status, or par… |
 | [`safeJsonParse`](../object/safejsonparse/) | [object](../object/) | Parses a JSON string, returning \`null\` \(or a fallback\) on any parse failure\. |
 | [`safeParse`](../json/safeparse/) | [json](../json/) | Parses JSON permissively like parse — strict JSON, JSONC \(HuJSON, JWCC\) and JSON5 — but returns \`null\` \(or \`fallback\`\)… |
@@ -397,6 +427,7 @@ sidebar:
 | `select / filterMap` | [array](../array/) | <span class="badge badge--secondary">native JS</span> `Array.prototype.filter().map()` *(ES5)* |
 | [`set`](../object/set/) | [object](../object/) | Sets a value in an object at the given path, creating intermediate objects as needed\. |
 | [`settle`](../promise/settle/) | [promise](../promise/) | Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first failure, unlike \`P… |
+| [`sha256Hex`](../browser/sha256hex/) | [browser](../browser/) | The SHA\-256 digest of some data as a hexadecimal string, optionally cut short: a compact content key, not a security ch… |
 | [`shuffle`](../array/shuffle/) | [array](../array/) | Randomly reorders elements of an array using the Fisher\-Yates algorithm\. |
 | [`simplifyPolyline`](../geometry/simplifypolyline/) | [geometry](../geometry/) | Removes the points of a polyline that change its shape by less than \`tolerance\`, with the Ramer–Douglas–Peucker algorit… |
 | [`slugify`](../string/slugify/) | [string](../string/) | Converts a string into a URL\-friendly slug\. |
@@ -424,6 +455,7 @@ sidebar:
 | [`steps`](../animation/steps/) | [animation](../animation/) | Builds the easing function of CSS \`steps\(count, position\)\`: progress moves by jumps instead of continuously, for frame\-… |
 | [`stringify`](../json/stringify/) | [json](../json/) | Serializes a value to JSON text — pretty\-printed with 2 spaces by default, or canonical\. |
 | [`stringify`](../version/stringify/) | [version](../version/) | Reconstructs a version string from a AnyParsedVersion object — the scheme is read from the object's own \`scheme\` field,… |
+| [`stringifyDependencies`](../package/stringifydependencies/) | [package](../package/) | Writes dependency groups back as a field value, the inverse of parseDependencies; |
 | [`stringifyForHtml`](../json/stringifyforhtml/) | [json](../json/) | Serializes a value to compact JSON that is safe to inline in an HTML page, typically in a \`<script type="application/js… |
 | [`stringifyLines`](../json/stringifylines/) | [json](../json/) | Serializes values as newline\-delimited JSON — one compact JSON value per line, each followed by \`\\n\`\. |
 | [`stringifySequence`](../json/stringifysequence/) | [json](../json/) | Serializes values as a JSON text sequence \(RFC 7464, \`application/json\-seq\`\): each value is written as the ASCII record… |
@@ -444,6 +476,7 @@ sidebar:
 | [`toBase64`](../string/tobase64/) | [string](../string/) | Encodes a string \(as UTF\-8\) or raw bytes to Base64, without relying on \`btoa\` or \`Buffer\`, so it behaves the same in a… |
 | [`toCssLinear`](../animation/tocsslinear/) | [animation](../animation/) | Samples an easing function into a CSS \`linear\(\)\` easing, so any curve \(a spring, a custom bounce\) can be played by CSS… |
 | [`toggle`](../array/toggle/) | [array](../array/) | Returns a new array with \`item\` removed if present, or appended if absent — the common "toggle a selection" pattern\. |
+| [`toHex`](../binary/tohex/) | [binary](../binary/) | Writes bytes as lowercase hexadecimal, two digits per byte\. |
 | `toInt / toFloat` | [number](../number/) | <span class="badge badge--secondary">native JS</span> `parseInt(str, 10) / parseFloat(str)` *(ES1)* |
 | [`toISO8601`](../date/toiso8601/) | [date](../date/) | Converts a date to ISO 8601 format Format: YYYY\-MM\-DDTHH:mm:ss\.sssZ |
 | [`toMapByKey`](../map/tomapbykey/) | [map](../map/) | Builds a Map from an iterable of items, keyed by a derived key\. |
@@ -456,6 +489,7 @@ sidebar:
 | [`toSeconds`](../date/toseconds/) | [date](../date/) | Converts a date to a timestamp in \*\*seconds\*\* \(epoch seconds\)\. |
 | `toTemporalInstant` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Date.prototype.toTemporalInstant()` *(Temporal (Stage 3))* |
 | `toZonedDateTime` | [date](../date/) | <span class="badge badge--secondary">native JS</span> `Temporal.Instant.prototype.toZonedDateTimeISO(tz)` *(Temporal (Stage 3))* |
+| [`transformPath`](../geometry/transformpath/) | [geometry](../geometry/) | Transforms SVG path data by a matrix\. |
 | [`translate`](../geometry/translate/) | [geometry](../geometry/) | A matrix that moves points by \`\(tx, ty\)\`\. |
 | [`trim`](../string/trim/) | [string](../string/) | Trims both leading and trailing characters from a string, at a configurable level of aggressiveness \(see TrimMode\)\. |
 | `trim / trimStart / trimEnd` | [string](../string/) | <span class="badge badge--secondary">native JS</span> `String.prototype.trim() / trimStart() / trimEnd()` *(ES2019)* |
@@ -475,6 +509,7 @@ sidebar:
 | [`UnionToIntersection`](../type/uniontointersection/) | [type](../type/) | Converts a union type to an intersection type: \`A \| B \| C\` → \`A & B & C\`\. |
 | [`unique`](../array/unique/) | [array](../array/) | Removes duplicate values from an array\. |
 | [`uniqueBy`](../array/uniqueby/) | [array](../array/) | Removes duplicate items from an array, using a derived key instead of value equality\. |
+| [`unitToRgb`](../color/unittorgb/) | [color](../color/) | Converts a color whose channels are floats from \`0\` to \`1\` \(as Figma, Sketch and Penpot store them\) into an RgbColor, w… |
 | [`unorderedPairKey`](../string/unorderedpairkey/) | [string](../string/) | Builds a canonical, order\-independent key for an unordered pair of strings — the same result for \`\(a, b\)\` and \`\(b, a\)\`\. |
 | [`unpremultiply`](../color/unpremultiply/) | [color](../color/) | Divides the color channels by the alpha channel: the inverse of premultiply\. |
 | [`unset`](../object/unset/) | [object](../object/) | Removes the value at a dot/bracket\-notation path or explicit key array, mutating the object in place\. |

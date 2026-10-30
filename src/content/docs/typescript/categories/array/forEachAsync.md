@@ -3,7 +3,7 @@ title: "forEachAsync"
 sidebar:
   label: "forEachAsync"
 description: "The async counterpart to `Array.prototype.forEach`: runs `fn` for every item for its side effects, discarding any retur…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 The async counterpart to `Array.prototype.forEach`: runs `fn` for every item for its
@@ -60,7 +60,7 @@ Options for mapAsync, mapSettled, filterAsync and forEachAsync.
 ```ts
 interface AsyncArrayOptions {
   concurrency?: number;
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

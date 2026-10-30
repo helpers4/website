@@ -3,7 +3,7 @@ title: "createRegexMatcher"
 sidebar:
   label: "createRegexMatcher"
 description: "createMatcher with every string read as the source of a regular expression, without slashes or flags (`'^(Home|Login)$'…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 createMatcher with every string read as the source of a regular expression, without

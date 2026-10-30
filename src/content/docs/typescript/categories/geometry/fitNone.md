@@ -3,7 +3,7 @@ title: "fitNone"
 sidebar:
   label: "fitNone"
 description: "Places content in a box, at its own size, only positioned (CSS `object-fit: none`)."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Places content in a box, at its own size, only positioned (CSS `object-fit: none`). Shortcut for `fit(content, box, { mode: 'none', align })`.

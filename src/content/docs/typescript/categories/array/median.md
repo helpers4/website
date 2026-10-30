@@ -3,7 +3,7 @@ title: "median"
 sidebar:
   label: "median"
 description: "Calculates the median (middle value) of an array of numbers."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Calculates the median (middle value) of an array of numbers. For an even-length array,

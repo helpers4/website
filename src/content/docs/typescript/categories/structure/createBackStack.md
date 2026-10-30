@@ -3,7 +3,7 @@ title: "createBackStack"
 sidebar:
   label: "createBackStack"
 description: "Creates a back stack: a stack that always has a current entry (the one on top), with the previous ones underneath to go…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Creates a back stack: a stack that always has a current entry (the one on top), with the
@@ -55,6 +55,18 @@ screens.back();  // => 'settings'
 screens.current; // => 'home'
 ```
 
+### Change the current entry without a step to undo
+
+replace() swaps the current entry and keeps the ones underneath; previous is where back() would go.
+
+```ts
+const screens = createBackStack('home');
+screens.push('menu');
+screens.replace('menu-closed');
+screens.previous; // => 'home'
+screens.back();   // => 'menu-closed'
+```
+
 ### Bound the stack
 
 limit caps how many past entries are kept; the oldest are dropped first.
@@ -77,8 +89,10 @@ A back stack created by createBackStack.
 interface BackStack<T> {
   canGoBack: boolean;
   current: T;
+  previous: T | undefined;
   back(): T | undefined;
   push(value: T): void;
+  replace(value: T): void;
   reset(value?: T): void;
   subscribe(listener: function): function;
 }

@@ -3,7 +3,7 @@ title: "isAsyncIterable"
 sidebar:
   label: "isAsyncIterable"
 description: "Checks if a value implements the async iterable protocol."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Checks if a value implements the async iterable protocol.

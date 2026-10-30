@@ -35,8 +35,10 @@ Utility functions for working with string operations.
 | [`leadingSentence`](./leadingsentence/) | Extracts the leading sentence from a string\. |
 | [`levenshteinDistance`](./levenshteindistance/) | Levenshtein edit distance between two strings — the minimum number of single\-character insertions, deletions, or substi… |
 | [`levenshteinSimilarity`](./levenshteinsimilarity/) | Normalized Levenshtein similarity between two strings, in \`\[0, 1\]\` — \`1\` means identical, \`0\` means completely dissimil… |
+| [`matchGlob`](./matchglob/) | Whether \`text\` matches a glob pattern in full: \`\*\` matches any run of characters, \`?\` exactly one\. |
 | [`obfuscate`](./obfuscate/) | Hides a text from anything that reads the raw page source: the text is reversed \(by Unicode code point, so emoji stay w… |
 | `padStart / padEnd` | <span class="badge badge--secondary">native JS</span> `String.prototype.padStart() / padEnd()` *(ES2017)* |
+| [`parsePatternOrRegExp`](./parsepatternorregexp/) | Reads a setting that is either a regular expression or a glob: \`/source/flags\` is a regular expression when every flag… |
 | [`pascalCase`](./pascalcase/) | Converts a string to PascalCase\. |
 | [`removeDiacritics`](./removediacritics/) | Removes diacritical marks \(accents\) from a string, e\.g\. |
 | `repeat` | <span class="badge badge--secondary">native JS</span> `String.prototype.repeat()` *(ES2015)* |

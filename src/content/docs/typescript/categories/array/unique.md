@@ -3,7 +3,7 @@ title: "unique"
 sidebar:
   label: "unique"
 description: "Removes duplicate values from an array."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Removes duplicate values from an array.

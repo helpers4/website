@@ -3,7 +3,7 @@ title: "clone"
 sidebar:
   label: "clone"
 description: "Creates a shallow copy of a value — one level deep, unlike cloneDeep."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Creates a shallow copy of a value — one level deep, unlike cloneDeep.

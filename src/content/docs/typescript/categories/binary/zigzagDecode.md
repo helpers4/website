@@ -3,7 +3,7 @@ title: "zigzagDecode"
 sidebar:
   label: "zigzagDecode"
 description: "The inverse of zigzagEncode: maps an unsigned 64-bit zigzag value back to the signed integer."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 The inverse of zigzagEncode: maps an unsigned 64-bit zigzag value back to the signed

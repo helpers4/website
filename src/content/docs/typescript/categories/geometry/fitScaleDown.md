@@ -3,7 +3,7 @@ title: "fitScaleDown"
 sidebar:
   label: "fitScaleDown"
 description: "Places content in a box, like fitContain, but never enlarged (CSS `object-fit: scale-down`)."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Places content in a box, like fitContain, but never enlarged (CSS `object-fit: scale-down`). Shortcut for `fit(content, box, { mode: 'scale-down', align })`.

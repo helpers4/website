@@ -3,7 +3,7 @@ title: "removeDiacritics"
 sidebar:
   label: "removeDiacritics"
 description: "Removes diacritical marks (accents) from a string, e.g."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Removes diacritical marks (accents) from a string, e.g. `'café'` → `'cafe'`.

@@ -3,7 +3,7 @@ title: "every"
 sidebar:
   label: "every"
 description: "Checks if every entry of a Map satisfies the predicate."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Checks if every entry of a Map satisfies the predicate. Short-circuits on the first mismatch.

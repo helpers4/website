@@ -3,7 +3,7 @@ title: "isIJson"
 sidebar:
   label: "isIJson"
 description: "Checks whether a value is a string holding I-JSON (RFC 7493, the Internet JSON message format): strict JSON that every…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Checks whether a value is a string holding I-JSON (RFC 7493, the Internet JSON message

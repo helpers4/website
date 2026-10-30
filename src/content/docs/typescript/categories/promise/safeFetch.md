@@ -3,7 +3,7 @@ title: "safeFetch"
 sidebar:
   label: "safeFetch"
 description: "Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, non-OK status, or par…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Wraps `fetch` with built-in error handling: returns `null` when the
@@ -24,14 +24,14 @@ import { safeFetch } from 'helpers4/promise';
 
 
 ```ts
-safeFetch<T>(input: URL | RequestInfo, init?: RequestInit, options: SafeFetchOptions): Promise<T | null>
+safeFetch<T>(input: RequestInfo | URL, init?: RequestInit, options: SafeFetchOptions): Promise<T | null>
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `input` | `URL \| RequestInfo` | URL or \`Request\` object passed to \`fetch\` |
+| `input` | `RequestInfo \| URL` | URL or \`Request\` object passed to \`fetch\` |
 | `init` | `RequestInit` | Optional \`RequestInit\` options passed to \`fetch\` *(optional)* |
 | `options` | `SafeFetchOptions` | Parsing options \(default: \`\{ parse: 'json' \}\`\) |
 

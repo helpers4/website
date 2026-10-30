@@ -3,7 +3,7 @@ title: "toBase64"
 sidebar:
   label: "toBase64"
 description: "Encodes a string (as UTF-8) or raw bytes to Base64, without relying on `btoa` or `Buffer`, so it behaves the same in a…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Encodes a string (as UTF-8) or raw bytes to Base64, without relying on `btoa` or `Buffer`, so it

@@ -3,7 +3,7 @@ title: "delay"
 sidebar:
   label: "delay"
 description: "Creates a promise that resolves after specified delay"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Creates a promise that resolves after specified delay
@@ -77,7 +77,7 @@ Options for delay.
 
 ```ts
 interface DelayOptions {
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

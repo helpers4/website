@@ -11,6 +11,7 @@ Utility functions for working with type operations.
 
 | Function | Description |
 |----------|-------------|
+| [`AbortSignalLike`](./abortsignallike/) | What helpers4 needs of an \`AbortSignal\`: whether it is aborted, why, and a way to listen for the abort\. |
 | [`Brand`](./brand/) | Brands a base type \`T\` with a phantom tag \`B\` to create a nominal type\. |
 | [`DeepGet`](./deepget/) | Resolves the value type at a given \`Path\` within \`T\`\. |
 | [`DeepPartial`](./deeppartial/) | Recursively makes all properties of T optional, including nested objects and array elements\. |

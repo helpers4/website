@@ -3,7 +3,7 @@ title: "fit"
 sidebar:
   label: "fit"
 description: "Places content in a box like CSS `object-fit` and `object-position`, e.g."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Places content in a box like CSS `object-fit` and `object-position`, e.g. to show a design

@@ -3,7 +3,7 @@ title: "camelCase"
 sidebar:
   label: "camelCase"
 description: "Converts a string to camelCase."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Converts a string to camelCase.

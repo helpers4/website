@@ -3,7 +3,7 @@ title: "difference"
 sidebar:
   label: "difference"
 description: "Returns the difference between two arrays (items in first array but not in second)."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Returns the difference between two arrays (items in first array but not in second).

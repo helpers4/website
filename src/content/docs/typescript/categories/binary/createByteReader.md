@@ -3,7 +3,7 @@ title: "createByteReader"
 sidebar:
   label: "createByteReader"
 description: "Creates a cursor over bytes, for decoding binary formats: fixed-size integers and floats, LEB128 varints (signed ones z…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Creates a cursor over bytes, for decoding binary formats: fixed-size integers and floats,

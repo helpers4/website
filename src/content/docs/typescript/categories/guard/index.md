@@ -32,6 +32,7 @@ Utility functions for working with guard operations.
 | [`isFunction`](./isfunction/) | Checks if a value is a function\. |
 | [`isGenerator`](./isgenerator/) | Checks if a value is a generator object \(the result of calling a \`function\*\`\)\. |
 | [`isGeneratorFunction`](./isgeneratorfunction/) | Checks if a value is a generator function \(a \`function\*\` declaration or expression\)\. |
+| [`isHostname`](./ishostname/) | Checks whether a value is a syntactically valid DNS hostname \(RFC 952, RFC 1123, RFC 3696 section 2\)\. |
 | [`isIJson`](./isijson/) | Checks whether a value is a string holding I\-JSON \(RFC 7493, the Internet JSON message format\): strict JSON that every… |
 | [`isIterable`](./isiterable/) | Checks if a value is iterable \(has a \`Symbol\.iterator\` method\)\. |
 | [`isJSON`](./isjson/) | Checks whether a value is a string containing valid, parseable JSON text\. |

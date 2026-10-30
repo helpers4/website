@@ -3,7 +3,7 @@ title: "fetchJson"
 sidebar:
   label: "fetchJson"
 description: "Fetches a URL and returns its parsed JSON body, retrying transient failures."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Fetches a URL and returns its parsed JSON body, retrying transient failures.
@@ -31,14 +31,14 @@ import { fetchJson } from 'helpers4/promise';
 
 
 ```ts
-fetchJson<T>(input: URL | RequestInfo, init?: RequestInit, options: FetchJsonOptions): Promise<T>
+fetchJson<T>(input: RequestInfo | URL, init?: RequestInit, options: FetchJsonOptions): Promise<T>
 ```
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `input` | `URL \| RequestInfo` | URL or \`Request\` object passed to \`fetch\` |
+| `input` | `RequestInfo \| URL` | URL or \`Request\` object passed to \`fetch\` |
 | `init` | `RequestInit` | Optional \`RequestInit\` options passed to \`fetch\` *(optional)* |
 | `options` | `FetchJsonOptions` | Retry configuration — see FetchJsonOptions |
 

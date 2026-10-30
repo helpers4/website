@@ -3,7 +3,7 @@ title: "globToRegExp"
 sidebar:
   label: "globToRegExp"
 description: "Compiles a glob pattern into a `RegExp` that matches the whole string."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Compiles a glob pattern into a `RegExp` that matches the whole string. By default only the two

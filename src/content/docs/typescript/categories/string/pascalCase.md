@@ -3,7 +3,7 @@ title: "pascalCase"
 sidebar:
   label: "pascalCase"
 description: "Converts a string to PascalCase."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Converts a string to PascalCase.

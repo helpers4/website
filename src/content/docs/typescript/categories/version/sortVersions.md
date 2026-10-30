@@ -3,7 +3,7 @@ title: "sortVersions"
 sidebar:
   label: "sortVersions"
 description: "Sorts version strings by version, not by text (`1.10.0` after `1.9.0`), in the given scheme: the same as `versions.sort…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Sorts version strings by version, not by text (`1.10.0` after `1.9.0`), in the given scheme: the

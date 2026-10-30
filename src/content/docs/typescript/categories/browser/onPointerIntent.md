@@ -3,7 +3,7 @@ title: "onPointerIntent"
 sidebar:
   label: "onPointerIntent"
 description: "Tells a tap from a drag, and hover from touch, on one element: the pointer-event logic every draggable or clickable wid…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Tells a tap from a drag, and hover from touch, on one element: the pointer-event logic every
@@ -109,7 +109,7 @@ Options for onPointerIntent.
 ```ts
 interface PointerIntentOptions {
   button?: number;
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
   threshold?: number;
 }
 ```

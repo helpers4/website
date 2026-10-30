@@ -3,7 +3,7 @@ title: "compare"
 sidebar:
   label: "compare"
 description: "Compares two version strings, according to the given `scheme`."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Compares two version strings, according to the given `scheme`.

@@ -3,7 +3,7 @@ title: "rotate"
 sidebar:
   label: "rotate"
 description: "A matrix that rotates points around the origin."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 A matrix that rotates points around the origin. With the y axis pointing down (screen, CSS,

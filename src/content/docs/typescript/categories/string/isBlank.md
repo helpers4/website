@@ -3,7 +3,7 @@ title: "isBlank"
 sidebar:
   label: "isBlank"
 description: "Checks if a string is blank — empty or contains only whitespace characters."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Checks if a string is blank — empty or contains only whitespace characters.

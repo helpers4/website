@@ -3,7 +3,7 @@ title: "mapSettled"
 sidebar:
   label: "mapSettled"
 description: "Like mapAsync, but never rejects: each item gets its own result, in the shape of `Promise.allSettled`, so one failure d…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Like mapAsync, but never rejects: each item gets its own result, in the shape of
@@ -70,7 +70,7 @@ Options for mapAsync, mapSettled, filterAsync and forEachAsync.
 ```ts
 interface AsyncArrayOptions {
   concurrency?: number;
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

@@ -3,7 +3,7 @@ title: "debounce"
 sidebar:
   label: "debounce"
 description: "Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time the debounced function was invoked
@@ -85,7 +85,7 @@ Options for debounce.
 
 ```ts
 interface DebounceOptions {
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

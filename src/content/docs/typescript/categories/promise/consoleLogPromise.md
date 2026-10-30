@@ -3,7 +3,7 @@ title: "consoleLogPromise"
 sidebar:
   label: "consoleLogPromise"
 description: "Returns a function that logs data to the console and passes it through."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Returns a function that logs data to the console and passes it through.

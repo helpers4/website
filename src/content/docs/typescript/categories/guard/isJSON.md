@@ -3,7 +3,7 @@ title: "isJSON"
 sidebar:
   label: "isJSON"
 description: "Checks whether a value is a string containing valid, parseable JSON text."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Checks whether a value is a string containing valid, parseable JSON text.

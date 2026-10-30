@@ -3,7 +3,7 @@ title: "parallelSettle"
 sidebar:
   label: "parallelSettle"
 description: "Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first…"
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Runs an array of async functions with a concurrency limit, partitioning the outcomes
@@ -78,7 +78,7 @@ Options for parallel and parallelSettle.
 
 ```ts
 interface ParallelOptions {
-  signal?: AbortSignal;
+  signal?: AbortSignalLike;
 }
 ```
 

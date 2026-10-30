@@ -3,7 +3,7 @@ title: "isEmpty"
 sidebar:
   label: "isEmpty"
 description: "Checks if a plain object has no own enumerable string-keyed properties."
-version: "3.1.9"
+version: "3.1.10"
 ---
 
 Checks if a plain object has no own enumerable string-keyed properties.
