@@ -40,7 +40,7 @@ pub fn satisfies(version: &str, requirement: &str) -> Result<bool, ParseVersionE
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `version` | `&str` | The version to check, such as `"1.4.2"`. |
-| `requirement` | `&str` | The requirement, such as `"^1.2"` (see [`VersionReq`] for the syntax). |
+| `requirement` | `&str` | The requirement, such as `"^1.2"` (see `VersionReq` for the syntax). |
 
 ## Returns
 

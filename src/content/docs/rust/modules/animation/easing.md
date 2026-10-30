@@ -97,7 +97,7 @@ continuously, for frame-by-frame sprites, ticking counters or an "instant" trans
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `count` | `u32` | Number of steps, at least `1` (at least `2` with [`StepPosition::JumpNone`]). |
+| `count` | `u32` | Number of steps, at least `1` (at least `2` with `StepPosition::JumpNone`). |
 | `position` | `StepPosition` | Where the jumps happen. |
 
 **Returns**

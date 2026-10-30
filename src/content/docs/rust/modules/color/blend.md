@@ -41,7 +41,7 @@ pub fn blend(backdrop: Rgba, source: Rgba, mode: BlendMode) -> Rgba
 | --- | --- | --- |
 | `backdrop` | `Rgba` | The color underneath. |
 | `source` | `Rgba` | The color painted over it. |
-| `mode` | `BlendMode` | The blend mode; [`BlendMode::Normal`] is a plain alpha composite. |
+| `mode` | `BlendMode` | The blend mode; `BlendMode::Normal` is a plain alpha composite. |
 
 ## Returns
 
