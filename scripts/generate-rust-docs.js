@@ -505,7 +505,7 @@ function parametersTable(params, descriptions) {
   if (descriptions.size === 0) {
     return ['| Parameter | Type |', '| --- | --- |', ...params.map((p) => `| \`${p.name}\` | \`${cell(p.type)}\` |`)].join('\n');
   }
-  const rows = params.map((p) => `| \`${p.name}\` | \`${cell(p.type)}\` | ${cell(descriptions.get(p.name) ?? '')} |`);
+  const rows = params.map((p) => `| \`${p.name}\` | \`${cell(p.type)}\` | ${cell(inline(descriptions.get(p.name) ?? ''))} |`);
   return ['| Parameter | Type | Description |', '| --- | --- | --- |', ...rows].join('\n');
 }
 

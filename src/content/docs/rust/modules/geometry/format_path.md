@@ -38,7 +38,7 @@ pub fn format_path(commands: &[PathCommand], precision: usize) -> String
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `commands` | `&[PathCommand]` | The commands, as [`parse_path`](super::parse_path) returns them. |
+| `commands` | `&[PathCommand]` | The commands, as `parse_path` returns them. |
 | `precision` | `usize` | Decimals kept per number; `6` is a good default. |
 
 ## Returns
