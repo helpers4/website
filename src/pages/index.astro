@@ -51,6 +51,14 @@ const PROJECTS: ProjectCardType[] = [
   },
 ];
 
+// Not a code project: no repo, so no star/scorecard/coverage stats.
+const GUIDES_CARD: ProjectCardType = {
+  title: 'Guides',
+  label: 'Guides',
+  description: 'Practical guides drawn from how helpers4 is built — starting with a CI that is secure, fast and readable.',
+  docsHref: '/guides/',
+};
+
 const statsEntries = await Promise.all(
   PROJECTS.map(async (p) => [p.repoPath, await getRepoStats(p.repoPath)] as const),
 );
@@ -148,12 +156,12 @@ const currentYear = new Date().getFullYear();
       </section>
 
       <section class="cards-grid">
-        {PROJECTS.map((project) => (
+        {[...PROJECTS, GUIDES_CARD].map((project) => (
           <ProjectCard
             card={project}
-            stars={starsMap[project.repoPath] ?? null}
-            scorecard={scorecardMap[project.repoPath] ?? null}
-            coverage={coverageMap[project.repoPath] ?? null}
+            stars={(project.repoPath && starsMap[project.repoPath]) ?? null}
+            scorecard={(project.repoPath && scorecardMap[project.repoPath]) ?? null}
+            coverage={(project.repoPath && coverageMap[project.repoPath]) ?? null}
           />
         ))}
       </section>

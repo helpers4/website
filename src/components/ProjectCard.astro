@@ -10,7 +10,8 @@ export interface ProjectCard {
   label: string;
   description: string;
   docsHref: string;
-  repoPath: string;
+  /** Repo whose live stats are shown; omit for cards that are not a code project (e.g. Guides). */
+  repoPath?: string;
 }
 
 interface Props {
@@ -52,6 +53,7 @@ function coverageColor(pct: number): string {
 
   <p class="card-description">{card.description}</p>
 
+  {card.repoPath && (
   <div class="card-stats">
     <span class="stat" title={`${stars ?? '?'} stars on GitHub`}>
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -78,6 +80,7 @@ function coverageColor(pct: number): string {
       </span>
     )}
   </div>
+  )}
 </a>
 
 <style>
