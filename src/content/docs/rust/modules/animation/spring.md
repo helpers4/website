@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["animation"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["animation"] }
 ```
 
 ## Definition
@@ -162,4 +162,4 @@ assert_eq!(spring.easing(1.0), 1.0);
 
 ## Source
 
-[src/animation/spring.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/animation/spring.rs#L25)
+[src/animation/spring.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/animation/spring.rs#L25)

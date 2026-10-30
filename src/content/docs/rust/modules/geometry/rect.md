@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["geometry"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["geometry"] }
 ```
 
 ## Definition
@@ -262,4 +262,4 @@ assert_eq!(Rect::new(0.0, 1.0, 0.0, 2.0).bottom(), 3.0);
 
 ## Source
 
-[src/geometry/rect.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/geometry/rect.rs#L19)
+[src/geometry/rect.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/geometry/rect.rs#L19)

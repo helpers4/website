@@ -1,4 +1,4 @@
-# helpers4 (Rust) — full reference, version 0.0.9
+# helpers4 (Rust) — full reference, version 0.0.10
 
 > Every public item of the `helpers4` crate with its signature, documentation and examples.
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
@@ -1121,7 +1121,8 @@ Helpers for byte slices and sizes that the standard library does not provide.
 
 Reading integers at an offset without panicking, a `ByteReader` cursor for binary formats
 (fixed-size values, LEB128 varints, zigzag, NUL-terminated strings), a byte-slice search, a
-constant-time comparison, XOR, and human-readable sizes (`1.5 KiB`) in both directions.
+constant-time comparison, XOR, human-readable sizes (`1.5 KiB`) in both directions, and the
+media type of an image from its first bytes or of a file from its extension.
 
 ### bytes::ByteReader
 
@@ -1625,6 +1626,63 @@ assert_eq!(format_size(512), "512 B");
 assert_eq!(format_size(1536), "1.5 KiB");
 assert_eq!(format_size(5 * 1024 * 1024), "5 MiB");
 assert_eq!(format_size(1_048_575), "1 MiB");
+```
+
+### bytes::media_type_of
+
+```rust
+pub fn media_type_of(bytes: &[u8]) -> Option<&'static str>
+```
+
+Finds the media type of an image from its first bytes (its magic number), whatever its name
+says: PNG, JPEG, GIF, WebP, AVIF and SVG. SVG has no magic number, so it is recognized as
+text whose first element is `<svg`, possibly after a byte order mark, whitespace, an XML
+declaration, comments or a doctype.
+
+#### Arguments
+
+- `bytes` - The start of the file: 512 bytes are enough for every type but a long SVG prolog.
+
+#### Returns
+
+The media type (`"image/png"`, ...), or `None` when it is none of these.
+
+#### Examples
+
+```rust
+use helpers4::bytes::media_type_of;
+
+assert_eq!(media_type_of(&[0x89, b'P', b'N', b'G', 0x0d, 0x0a, 0x1a, 0x0a]), Some("image/png"));
+assert_eq!(media_type_of(b"<svg xmlns='http://www.w3.org/2000/svg'/>"), Some("image/svg+xml"));
+assert_eq!(media_type_of(b"hello"), None);
+```
+
+### bytes::media_type_of_path
+
+```rust
+pub fn media_type_of_path(path: &str) -> Option<&'static str>
+```
+
+Finds the media type of a file from the extension of its path or URL: images, fonts, web
+documents, scripts and styles, data, audio and video. Case is ignored, and a query string or
+fragment after the path is skipped. Pass it where a server or a blob needs a `Content-Type`.
+
+#### Arguments
+
+- `path` - A file path or URL.
+
+#### Returns
+
+The media type (`"image/webp"`, ...), or `None` for an unknown or missing extension.
+
+#### Examples
+
+```rust
+use helpers4::bytes::media_type_of_path;
+
+assert_eq!(media_type_of_path("layers/a@2x.webp"), Some("image/webp"));
+assert_eq!(media_type_of_path("/fonts/Inter.WOFF2?v=3"), Some("font/woff2"));
+assert_eq!(media_type_of_path("LICENSE"), None);
 ```
 
 ### bytes::parse_size
@@ -2596,6 +2654,95 @@ assert_eq!(best_text_color(Rgb::parse("#ffeb3b")?), Rgb::new(0, 0, 0)); // on ye
 assert_eq!(best_text_color(Rgb::parse("#0d47a1")?), Rgb::new(255, 255, 255)); // on dark blue
 ```
 
+### color::BlendMode
+
+```rust
+#[non_exhaustive]
+pub enum BlendMode {
+    /// The source replaces the backdrop (a plain alpha composite). The default.
+    #[default]
+    Normal,
+    /// Multiplies the channels: always darker.
+    Multiply,
+    /// The inverse of [`Multiply`](Self::Multiply): always lighter.
+    Screen,
+    /// [`Multiply`](Self::Multiply) or [`Screen`](Self::Screen) depending on the backdrop.
+    Overlay,
+    /// The darker of the two, per channel.
+    Darken,
+    /// The lighter of the two, per channel.
+    Lighten,
+    /// Brightens the backdrop to reflect the source.
+    ColorDodge,
+    /// Darkens the backdrop to reflect the source.
+    ColorBurn,
+    /// [`Multiply`](Self::Multiply) or [`Screen`](Self::Screen) depending on the source.
+    HardLight,
+    /// A softer [`HardLight`](Self::HardLight).
+    SoftLight,
+    /// The absolute difference of the two.
+    Difference,
+    /// Like [`Difference`](Self::Difference), with less contrast.
+    Exclusion,
+    /// The hue of the source with the saturation and luminosity of the backdrop.
+    Hue,
+    /// The saturation of the source with the hue and luminosity of the backdrop.
+    Saturation,
+    /// The hue and saturation of the source with the luminosity of the backdrop.
+    Color,
+    /// The luminosity of the source with the hue and saturation of the backdrop.
+    Luminosity,
+}
+```
+
+The blend modes of the W3C Compositing and Blending specification, the same ones as CSS
+`mix-blend-mode`. The last four (`Hue`, `Saturation`,
+`Color`, `Luminosity`) are non-separable: they mix the
+three channels together instead of one channel at a time.
+
+#### Examples
+
+```rust
+use helpers4::color::BlendMode;
+
+assert_eq!(BlendMode::default(), BlendMode::Normal);
+```
+
+### color::blend
+
+```rust
+pub fn blend(backdrop: Rgba, source: Rgba, mode: BlendMode) -> Rgba
+```
+
+Composites a source color over a backdrop with a blend mode, as the browser does for
+`mix-blend-mode` (W3C Compositing and Blending Level 1, source-over). Both colors are straight
+(non-premultiplied); the maths run in premultiplied space and the result is straight again,
+each channel and the alpha rounded to the nearest 8-bit value.
+
+#### Arguments
+
+- `backdrop` - The color underneath.
+- `source` - The color painted over it.
+- `mode` - The blend mode; `BlendMode::Normal` is a plain alpha composite.
+
+#### Returns
+
+The straight result. Transparent black when both colors are fully transparent.
+
+#### Examples
+
+```rust
+use helpers4::color::{blend, BlendMode, Rgba};
+
+let red = Rgba::new(255, 0, 0, 255);
+let half_blue = Rgba::new(0, 0, 255, 128);
+assert_eq!(blend(red, half_blue, BlendMode::Normal), Rgba::new(127, 0, 128, 255));
+
+let orange = Rgba::new(200, 100, 50, 255);
+let gray = Rgba::new(100, 100, 100, 255);
+assert_eq!(blend(orange, gray, BlendMode::Multiply), Rgba::new(78, 39, 20, 255));
+```
+
 ### color::contrast_ratio
 
 ```rust
@@ -2626,6 +2773,95 @@ let ratio = contrast_ratio(Rgb::new(0, 0, 0), Rgb::new(255, 255, 255));
 assert!((ratio - 21.0).abs() < 1e-9);
 assert!(contrast_ratio(Rgb::parse("#767676")?, Rgb::new(255, 255, 255)) >= 4.5);
 ```
+
+### color::Hsb
+
+```rust
+pub struct Hsb { /* private fields */ }
+```
+
+A color as hue, saturation and brightness (also called HSV), the model of design tool color
+pickers. Unlike `Hsl` lightness, brightness `1.0` is the pure color, not white.
+
+The hue is in degrees, `0.0..360.0`; saturation and brightness are fractions from `0.0` to
+`1.0`. `Hsb::new` brings any input into those ranges. Get one from `Rgb::to_hsb` and go
+back with `Hsb::to_rgb`.
+
+#### Examples
+
+```rust
+use helpers4::color::{Hsb, Rgb};
+
+assert_eq!(Hsb::new(0.0, 1.0, 1.0).to_rgb(), Rgb::new(255, 0, 0));
+assert_eq!(Rgb::new(0, 128, 128).to_hsb(), Hsb::new(180.0, 1.0, 128.0 / 255.0));
+```
+
+#### Hsb::new
+
+```rust
+pub fn new(h: f64, s: f64, b: f64) -> Self
+```
+
+Builds a color, normalizing the values: the hue wraps around 360 degrees, saturation and
+brightness are clamped to `0.0..=1.0`, and a `NaN` counts as `0.0`.
+
+##### Arguments
+
+- `h` - The hue in degrees.
+- `s` - The saturation, `0.0` (grey) to `1.0` (vivid).
+- `b` - The brightness, `0.0` (black) to `1.0` (the pure color).
+
+##### Returns
+
+The normalized color.
+
+#### Hsb::h
+
+```rust
+pub fn h(self) -> f64
+```
+
+The hue in degrees.
+
+##### Returns
+
+A value in `0.0..360.0`.
+
+#### Hsb::s
+
+```rust
+pub fn s(self) -> f64
+```
+
+The saturation.
+
+##### Returns
+
+A value from `0.0` to `1.0`.
+
+#### Hsb::b
+
+```rust
+pub fn b(self) -> f64
+```
+
+The brightness.
+
+##### Returns
+
+A value from `0.0` to `1.0`.
+
+#### Hsb::to_rgb
+
+```rust
+pub fn to_rgb(self) -> Rgb
+```
+
+The nearest 8-bit sRGB color.
+
+##### Returns
+
+The `Rgb` color, each channel rounded to the nearest integer.
 
 ### color::Hsl
 
@@ -2772,6 +3008,34 @@ assert_eq!(mix(red, blue, 0.5), Rgb::new(128, 0, 128));
 assert_eq!(mix(red, blue, 0.0), red);
 ```
 
+### color::premultiply
+
+```rust
+pub fn premultiply(color: Rgba) -> Rgba
+```
+
+Multiplies the color channels by the alpha, the form a renderer composites with (a
+translucent color then adds to what is underneath without a further multiplication).
+Channels are rounded to 8 bits, so `unpremultiply` gives back the
+original only approximately for translucent colors, and not at all for alpha `0`.
+
+#### Arguments
+
+- `color` - The straight color.
+
+#### Returns
+
+The premultiplied color, with the same alpha.
+
+#### Examples
+
+```rust
+use helpers4::color::{premultiply, Rgba};
+
+assert_eq!(premultiply(Rgba::new(200, 100, 50, 128)), Rgba::new(100, 50, 25, 128));
+assert_eq!(premultiply(Rgba::new(200, 100, 50, 255)), Rgba::new(200, 100, 50, 255));
+```
+
 ### color::Rgb
 
 ```rust
@@ -2916,6 +3180,28 @@ The same color as hue, saturation and lightness.
 ##### Returns
 
 The `Hsl` value. Converting it back with `Hsl::to_rgb` gives this color again.
+
+#### Rgb::to_hsb
+
+```rust
+pub fn to_hsb(self) -> Hsb
+```
+
+The same color as hue, saturation and brightness (HSB, also called HSV), the model of
+design tool color pickers.
+
+##### Returns
+
+The `Hsb` value. Converting it back with `Hsb::to_rgb` gives this color again.
+
+##### Examples
+
+```rust
+use helpers4::color::{Hsb, Rgb};
+
+assert_eq!(Rgb::new(255, 0, 0).to_hsb(), Hsb::new(0.0, 1.0, 1.0));
+assert_eq!(Rgb::new(10, 10, 10).to_hsb().s(), 0.0);
+```
 
 #### Rgb::luminance
 
@@ -3146,6 +3432,57 @@ assert_eq!(Rgba::new(0, 0, 0, 255).opacity(), 1.0);
 assert_eq!(Rgba::new(0, 0, 0, 0).opacity(), 0.0);
 ```
 
+#### Rgba::from_unit
+
+```rust
+pub fn from_unit(r: f64, g: f64, b: f64, a: f64) -> Self
+```
+
+Builds a color from channels given as floats from `0.0` to `1.0`, the way Figma, Sketch
+and Penpot store them. Each value is clamped to that range (a `NaN` counts as `0.0`) and
+rounded to the nearest 8-bit value.
+
+##### Arguments
+
+- `r` - Red, `0.0` to `1.0`.
+- `g` - Green, `0.0` to `1.0`.
+- `b` - Blue, `0.0` to `1.0`.
+- `a` - Alpha, `0.0` (transparent) to `1.0` (opaque).
+
+##### Returns
+
+The 8-bit color.
+
+##### Examples
+
+```rust
+use helpers4::color::Rgba;
+
+let orange = Rgba::from_unit(1.0, 0.5, 0.0, 0.5);
+assert_eq!(orange, Rgba::new(255, 128, 0, 128));
+assert_eq!(orange.to_hex(), "#ff800080");
+```
+
+#### Rgba::to_unit
+
+```rust
+pub fn to_unit(self) -> [f64; 4]
+```
+
+The channels as floats from `0.0` to `1.0`, the way Figma, Sketch and Penpot store them.
+
+##### Returns
+
+`[r, g, b, a]`.
+
+##### Examples
+
+```rust
+use helpers4::color::Rgba;
+
+assert_eq!(Rgba::new(255, 51, 0, 255).to_unit(), [1.0, 0.2, 0.0, 1.0]);
+```
+
 #### Rgba::to_rgb
 
 ```rust
@@ -3206,6 +3543,33 @@ use helpers4::color::Rgba;
 
 assert_eq!(Rgba::new(255, 136, 0, 255).to_css(), "rgb(255 136 0)");
 assert_eq!(Rgba::new(255, 136, 0, 0).to_css(), "rgb(255 136 0 / 0)");
+```
+
+### color::unpremultiply
+
+```rust
+pub fn unpremultiply(color: Rgba) -> Rgba
+```
+
+Divides the color channels by the alpha, the inverse of `premultiply`.
+A fully transparent color (alpha `0`) holds no color, so it gives transparent black. Channels
+are clamped to 255 and rounded to 8 bits.
+
+#### Arguments
+
+- `color` - The premultiplied color.
+
+#### Returns
+
+The straight color, with the same alpha.
+
+#### Examples
+
+```rust
+use helpers4::color::{unpremultiply, Rgba};
+
+assert_eq!(unpremultiply(Rgba::new(100, 50, 25, 128)), Rgba::new(199, 100, 50, 128));
+assert_eq!(unpremultiply(Rgba::new(9, 9, 9, 0)), Rgba::new(0, 0, 0, 0));
 ```
 
 ### color::ParseColorError
@@ -4272,6 +4636,331 @@ The rejected name.
 
 The rejected variable name.
 
+## Module `font` (Cargo feature `font`)
+
+Fonts without a dependency: CSS font matching, the names design tools give to weights and
+styles, and reading a font file's names, weight and style.
+
+`pick_closest` is CSS Fonts Level 4 matching (§5.2) among the faces of one family, with
+variable faces that cover a weight range. `weight_of_style`, `is_italic`,
+`split_postscript` and `same_family` read the names fonts and design files carry
+(`"Semi Bold Italic"`, `"NeutrifPro-SemiBold"`). `read_font` reads a TrueType, OpenType or
+WOFF file: family (typographic first), PostScript name, weight or `wght` range, style.
+
+### font::FontFace
+
+```rust
+pub struct FontFace { /* private fields */ }
+```
+
+A face of a font family, with the properties CSS font matching compares. A variable face
+covers a weight range.
+
+#### Examples
+
+```rust
+use helpers4::font::{FontFace, FontStyle};
+
+let bold = FontFace::new(700.0, FontStyle::Normal);
+let variable = FontFace::variable(100.0, 900.0, FontStyle::Italic);
+assert_eq!((bold.weight_min, bold.weight_max), (700.0, 700.0));
+assert_eq!((variable.weight_min, variable.weight_max), (100.0, 900.0));
+```
+
+### font::FontInfo
+
+```rust
+pub struct FontInfo { /* private fields */ }
+```
+
+What a font file says about itself, as `read_font` reads it.
+
+#### Examples
+
+```rust
+use helpers4::font::{FontFace, FontInfo, FontStyle};
+
+let info = FontInfo {
+    family: "Inter".to_string(),
+    style: "Bold Italic".to_string(),
+    postscript_name: Some("Inter-BoldItalic".to_string()),
+    weight: 700.0,
+    weight_range: None,
+    italic: true,
+};
+assert_eq!(info.to_face(), FontFace::new(700.0, FontStyle::Italic));
+```
+
+#### FontInfo::to_face
+
+```rust
+pub fn to_face(&self) -> FontFace
+```
+
+The face to give to `pick_closest`: a variable font covers its
+`wght` range, a static one its weight.
+
+##### Returns
+
+The face, italic when the font is.
+
+### font::FontRequest
+
+```rust
+pub struct FontRequest { /* private fields */ }
+```
+
+What a text asks of a family: the properties `pick_closest` matches.
+The default is CSS's initial value: weight 400, normal style, normal width.
+
+#### Examples
+
+```rust
+use helpers4::font::{FontRequest, FontStyle};
+
+let request = FontRequest::default();
+assert_eq!((request.weight, request.style, request.stretch), (400.0, FontStyle::Normal, 100.0));
+assert_eq!(FontRequest::new(600.0, FontStyle::Italic).weight, 600.0);
+```
+
+### font::FontStyle
+
+```rust
+#[non_exhaustive]
+pub enum FontStyle {
+    /// Upright. The default.
+    #[default]
+    Normal,
+    /// A true italic.
+    Italic,
+    /// A slanted upright.
+    Oblique,
+}
+```
+
+The `font-style` of a face or a request. Oblique angles are not compared.
+
+#### Examples
+
+```rust
+use helpers4::font::FontStyle;
+
+assert_eq!(FontStyle::default(), FontStyle::Normal);
+```
+
+### font::is_italic
+
+```rust
+pub fn is_italic(style: &str) -> bool
+```
+
+Whether a style name is italic or oblique, as design tools and font files write it
+(`"Italic"`, `"Semi Bold Italic"`, `"Light Oblique"`). Case is ignored.
+
+#### Arguments
+
+- `style` - The style name.
+
+#### Returns
+
+`true` if the name holds `italic` or `oblique`.
+
+#### Examples
+
+```rust
+use helpers4::font::is_italic;
+
+assert!(is_italic("Semi Bold Italic"));
+assert!(is_italic("OBLIQUE"));
+assert!(!is_italic("Bold"));
+```
+
+### font::pick_closest
+
+```rust
+pub fn pick_closest(faces: &[FontFace], wanted: FontRequest) -> Option<usize>
+```
+
+Picks the face that CSS would use for a request, among the faces of one family: the CSS Fonts
+Level 4 matching algorithm (§5.2), as a pure function. The stretch is matched first, then the
+style, then the weight; each step keeps only the faces closest to what was asked.
+
+- Stretch: at or below 100, narrower faces first (nearest), then wider ones; above 100, the
+  other way round.
+- Style: normal prefers normal, then oblique, then italic; italic prefers italic, then
+  oblique, then normal; oblique prefers oblique, then italic, then normal.
+- Weight: a variable face whose range covers the weight is an exact match. Otherwise, from 400
+  to 500, the nearest heavier weight up to 500, then lighter ones, then heavier ones above
+  500; below 400, lighter first then heavier; above 500, heavier first then lighter. A
+  variable face counts for the bound of its range closest to the weight.
+
+#### Arguments
+
+- `faces` - The faces of one family.
+- `wanted` - What was asked.
+
+#### Returns
+
+The index of the closest face, the first one when several are equally close, or `None` for no
+face.
+
+#### Examples
+
+```rust
+use helpers4::font::{pick_closest, FontFace, FontRequest, FontStyle};
+
+let faces = [
+    FontFace::new(300.0, FontStyle::Normal),
+    FontFace::new(400.0, FontStyle::Normal),
+    FontFace::new(700.0, FontStyle::Normal),
+];
+assert_eq!(pick_closest(&faces, FontRequest::new(600.0, FontStyle::Normal)), Some(2));
+
+let variable = [FontFace::variable(100.0, 900.0, FontStyle::Normal), FontFace::new(600.0, FontStyle::Normal)];
+assert_eq!(pick_closest(&variable, FontRequest::new(450.0, FontStyle::Normal)), Some(0));
+```
+
+### font::read_font
+
+```rust
+pub fn read_font(bytes: &[u8]) -> Result<FontInfo, FontError>
+```
+
+Reads what a font file says about itself: its family (typographic first), style, PostScript
+name, weight or `wght` range and whether it is italic. Reads TrueType and OpenType files
+(`.ttf`, `.otf`), the first font of a collection (`.ttc`) and WOFF files; it does not
+interpret glyphs and does not check checksums.
+
+WOFF2 tables are Brotli-compressed, and this crate has no Brotli decoder: a WOFF2 file is a
+`FontError::UnsupportedWoff2`.
+
+#### Arguments
+
+- `bytes` - The font file.
+
+#### Returns
+
+The `FontInfo`.
+
+#### Errors
+
+A `FontError` for data that is not a supported font, is truncated, or has no `name` table
+or no family name.
+
+#### Examples
+
+```rust
+use helpers4::font::{read_font, FontError};
+
+assert_eq!(read_font(b"not a font"), Err(FontError::UnknownFormat));
+assert_eq!(read_font(b"wOF2...."), Err(FontError::UnsupportedWoff2));
+```
+
+### font::same_family
+
+```rust
+pub fn same_family(a: &str, b: &str) -> bool
+```
+
+Whether two family names are the same family: compared without spaces or case, since design
+files and font files write `"SF Pro"`, `"SFPro"` and `"sf pro"` for one family.
+
+#### Arguments
+
+- `a` - A family name.
+- `b` - Another one.
+
+#### Returns
+
+`true` if the names are equal once spaces are removed and case is ignored.
+
+#### Examples
+
+```rust
+use helpers4::font::same_family;
+
+assert!(same_family("SF Pro", "sfpro"));
+assert!(!same_family("SF Pro", "SF Mono"));
+```
+
+### font::split_postscript
+
+```rust
+pub fn split_postscript(name: &str) -> (&str, &str)
+```
+
+Splits a PostScript font name into family and style at its first hyphen:
+`NeutrifPro-SemiBold` is `NeutrifPro` and `SemiBold`.
+
+#### Arguments
+
+- `name` - The PostScript name.
+
+#### Returns
+
+The family and the style, borrowed from `name`. The style is empty when there is no hyphen.
+
+#### Examples
+
+```rust
+use helpers4::font::split_postscript;
+
+assert_eq!(split_postscript("NeutrifPro-SemiBold"), ("NeutrifPro", "SemiBold"));
+assert_eq!(split_postscript("Helvetica"), ("Helvetica", ""));
+```
+
+### font::weight_of_style
+
+```rust
+pub fn weight_of_style(style: &str) -> f64
+```
+
+The CSS weight a style name stands for, as design tools and font files write it: `Thin` 100,
+`ExtraLight` 200, `Light` 300, `Regular` 400, `Medium` 500, `SemiBold` 600, `Bold` 700,
+`ExtraBold` 800, `Black` 900, `ExtraBlack` 950. Case, spaces, hyphens and underscores are
+ignored (`"Semi Bold Italic"`, `"semi-bold"`, `"SEMIBOLD"`), and so are other words such as
+`Italic` or `Condensed`.
+
+#### Arguments
+
+- `style` - The style name.
+
+#### Returns
+
+The weight, or `400.0` when the name holds no weight word.
+
+#### Examples
+
+```rust
+use helpers4::font::weight_of_style;
+
+assert_eq!(weight_of_style("Semi Bold Italic"), 600.0);
+assert_eq!(weight_of_style("Black"), 900.0);
+assert_eq!(weight_of_style("Italic"), 400.0);
+```
+
+### font::FontError
+
+```rust
+#[non_exhaustive]
+pub enum FontError {
+    /// The data ends before a table directory, a table or a record it announces.
+    Truncated,
+    /// Not a TrueType, OpenType, TrueType collection or WOFF file.
+    UnknownFormat,
+    /// A WOFF2 file: its tables are Brotli-compressed, and this crate has no Brotli decoder.
+    UnsupportedWoff2,
+    /// A WOFF table whose compressed data is invalid or does not have its announced size.
+    InvalidCompressedData,
+    /// The file has no `name` table.
+    MissingNameTable,
+    /// The `name` table holds neither a typographic nor a plain family name.
+    MissingFamily,
+}
+```
+
+Why a font file could not be read.
+
 ## Module `fs` (Cargo feature `fs`)
 
 File-system helpers: safe writes, missing-file-as-`None`, listing and path checks.
@@ -4924,7 +5613,37 @@ SVG `matrix(a b c d e f)`.
 
 Enough to map between coordinate spaces: build and multiply transforms, invert one to bring a
 point back, take the bounding box of a transformed rectangle (hit areas, gradient bounds), place
-content in a container like CSS `object-fit` (`fit`), and simplify a polyline.
+content in a container like CSS `object-fit` (`fit`), simplify a polyline, and work with SVG
+path data: parse it (`parse_path`), transform it by a matrix (`transform_path`) and write
+rectangles and ellipses as paths (`rounded_rect_path`, `ellipse_path`).
+
+### geometry::ellipse_path
+
+```rust
+pub fn ellipse_path(bounds: Rect) -> String
+```
+
+The path of the ellipse that fills a box, as SVG path data: two half-turn arcs. A square box
+gives a circle.
+
+#### Arguments
+
+- `bounds` - The bounding box of the ellipse.
+
+#### Returns
+
+The path data, closed.
+
+#### Examples
+
+```rust
+use helpers4::geometry::{ellipse_path, Rect};
+
+assert_eq!(
+    ellipse_path(Rect::new(0.0, 0.0, 10.0, 6.0)),
+    "M0 3 A5 3 0 0 1 10 3 A5 3 0 0 1 0 3 Z"
+);
+```
 
 ### geometry::FitAlign
 
@@ -5011,6 +5730,40 @@ assert_eq!(m, Matrix::new(0.5, 0.0, 0.0, 0.5, 0.0, 25.0));
 
 let left = fit(Size::new(200.0, 100.0), Size::new(100.0, 100.0), FitMode::Cover, FitAlign::new(0.0, 0.5));
 assert_eq!(left, Matrix::new(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)); // cropped on the right
+```
+
+### geometry::format_path
+
+```rust
+pub fn format_path(commands: &[PathCommand], precision: usize) -> String
+```
+
+Writes path commands back as SVG path data: letters glued to their first number, single
+spaces elsewhere, numbers rounded to `precision` decimals with the trailing zeros dropped
+(`-0` is written `0`).
+
+#### Arguments
+
+- `commands` - The commands, as `parse_path` returns them.
+- `precision` - Decimals kept per number; `6` is a good default.
+
+#### Returns
+
+The path data.
+
+#### Examples
+
+```rust
+use helpers4::geometry::{format_path, PathCommand};
+
+let d = format_path(
+    &[
+        PathCommand::new('M', vec![0.0, 0.5]),
+        PathCommand::new('L', vec![10.0, 1.0 / 3.0]),
+    ],
+    6,
+);
+assert_eq!(d, "M0 0.5 L10 0.333333");
 ```
 
 ### geometry::Matrix
@@ -5121,6 +5874,34 @@ assert_eq!(shift.invert(), Some(Matrix::new(1.0, 0.0, 0.0, 1.0, -10.0, -5.0)));
 assert_eq!(Matrix::new(0.0, 0.0, 0.0, 0.0, 1.0, 1.0).invert(), None);
 ```
 
+#### Matrix::rect_to_rect
+
+```rust
+pub fn rect_to_rect(from: Rect, to: Rect) -> Self
+```
+
+The translation and scale that put one rectangle exactly on another, for animating or
+fitting between two boxes. An axis where `from` has no extent is only translated (scale
+`1`).
+
+##### Arguments
+
+- `from` - The rectangle to move.
+- `to` - The rectangle to reach.
+
+##### Returns
+
+The matrix that maps `from` onto `to`.
+
+##### Examples
+
+```rust
+use helpers4::geometry::{Matrix, Rect};
+
+let m = Matrix::rect_to_rect(Rect::new(0.0, 0.0, 10.0, 10.0), Rect::new(5.0, 5.0, 20.0, 10.0));
+assert_eq!(m, Matrix::new(2.0, 0.0, 0.0, 1.0, 5.0, 5.0));
+```
+
 #### Matrix::to_css
 
 ```rust
@@ -5193,6 +5974,72 @@ use helpers4::geometry::{Matrix, Rect};
 
 let flip = Matrix::new(-2.0, 0.0, 0.0, 1.0, 0.0, 0.0);
 assert_eq!(flip.bounding_box(Rect::new(1.0, 0.0, 2.0, 3.0)), Rect::new(-6.0, 0.0, 4.0, 3.0));
+```
+
+### geometry::parse_path
+
+```rust
+pub fn parse_path(d: &str) -> Result<Vec<PathCommand>, ParsePathError>
+```
+
+Parses SVG path data (the `d` attribute) into commands, as written: the letters keep their
+case (absolute or relative), `H`/`V`/`S`/`T`/`A` stay what they are, and a command repeated
+without its letter (`L 1 2 3 4`) becomes one command per set of numbers (`M` repeats as `L`,
+`m` as `l`).
+
+It follows the SVG grammar: numbers may be glued (`1-2`, `.5.5`, `1e-3`), separators are
+optional, and the two arc flags may be written without any separator (`a1 1 0 011 1`).
+
+#### Arguments
+
+- `d` - The path data.
+
+#### Returns
+
+The commands, in order. Empty for an empty or blank string.
+
+#### Errors
+
+A `ParsePathError` if the data does not start with a move, has an unknown letter, or misses
+numbers or flags.
+
+#### Examples
+
+```rust
+use helpers4::geometry::{parse_path, PathCommand};
+
+let commands = parse_path("M0 0h10v10z")?;
+assert_eq!(commands[0], PathCommand::new('M', vec![0.0, 0.0]));
+assert_eq!(commands[1], PathCommand::new('h', vec![10.0]));
+assert_eq!(commands.len(), 4);
+```
+
+### geometry::PathCommand
+
+```rust
+pub struct PathCommand { /* private fields */ }
+```
+
+One command of SVG path data: its letter (uppercase is absolute, lowercase relative to the
+current point) and its numbers, as written in the `d` attribute.
+
+| Letter | Command | Numbers |
+| --- | --- | --- |
+| `M` `L` `T` | move, line, smooth quadratic | `x y` |
+| `H` `V` | horizontal, vertical line | `x` or `y` |
+| `C` | cubic Bézier | `x1 y1 x2 y2 x y` |
+| `S` `Q` | smooth cubic, quadratic | `x2 y2 x y` or `x1 y1 x y` |
+| `A` | elliptical arc | `rx ry rotation large-arc sweep x y` |
+| `Z` | close the subpath | none |
+
+#### Examples
+
+```rust
+use helpers4::geometry::PathCommand;
+
+let line = PathCommand::new('L', vec![10.0, 5.0]);
+assert_eq!(line.letter, 'L');
+assert_eq!(line.values, [10.0, 5.0]);
 ```
 
 ### geometry::Point
@@ -5434,6 +6281,38 @@ use helpers4::geometry::Rect;
 assert_eq!(Rect::new(0.0, 1.0, 0.0, 2.0).bottom(), 3.0);
 ```
 
+### geometry::rounded_rect_path
+
+```rust
+pub fn rounded_rect_path(rect: Rect, radii: [f64; 4]) -> String
+```
+
+The path of a rectangle with a radius per corner, as SVG path data. Each radius is clamped to
+half the smaller side, and a radius of `0` gives a square corner (no arc is written).
+
+#### Arguments
+
+- `rect` - The rectangle.
+- `radii` - `[top_left, top_right, bottom_right, bottom_left]`, as in CSS `border-radius`;
+  pass `[r; 4]` for one radius. Negative radii count as `0`.
+
+#### Returns
+
+The path data, closed.
+
+#### Examples
+
+```rust
+use helpers4::geometry::{rounded_rect_path, Rect};
+
+let square = Rect::new(0.0, 0.0, 10.0, 10.0);
+assert_eq!(rounded_rect_path(square, [0.0; 4]), "M0 0 L10 0 L10 10 L0 10 L0 0 Z");
+assert_eq!(
+    rounded_rect_path(square, [5.0, 0.0, 0.0, 0.0]),
+    "M5 0 L10 0 L10 10 L0 10 L0 5 A5 5 0 0 1 5 0 Z"
+);
+```
+
 ### geometry::simplify_polyline
 
 ```rust
@@ -5487,6 +6366,66 @@ use helpers4::geometry::Size;
 let frame = Size::new(390.0, 844.0);
 assert_eq!((frame.width, frame.height), (390.0, 844.0));
 ```
+
+### geometry::transform_path
+
+```rust
+pub fn transform_path(d: &str, matrix: Matrix, precision: usize) -> Result<String, ParsePathError>
+```
+
+Transforms SVG path data by a matrix. The result is written with absolute `M`, `L`, `C`, `Q`
+and `Z` only: relative commands are made absolute, `H`/`V`/`S`/`T` are expanded, and arcs
+become cubic curves (so any matrix works, skews included). Moving a path is the common case.
+
+#### Arguments
+
+- `d` - The path data.
+- `matrix` - The matrix, in the CSS/SVG layout.
+- `precision` - Decimals kept per number; `6` is a good default.
+
+#### Returns
+
+The transformed path data.
+
+#### Errors
+
+A `ParsePathError` if `d` is not valid path data.
+
+#### Examples
+
+```rust
+use helpers4::geometry::{transform_path, Matrix};
+
+let moved = transform_path("M0 0 h10 v10 z", Matrix::translate(5.0, 5.0), 6)?;
+assert_eq!(moved, "M5 5 L15 5 L15 15 Z");
+```
+
+### geometry::ParsePathError
+
+```rust
+#[non_exhaustive]
+pub enum ParsePathError {
+    /// The data does not start with a move (`M` or `m`).
+    MissingMove,
+    /// A letter that is not a path command.
+    UnknownCommand {
+        /// Byte offset of the letter in the input.
+        index: usize,
+    },
+    /// A command is missing a number, or the text is not a number.
+    ExpectedNumber {
+        /// Byte offset where a number was expected.
+        index: usize,
+    },
+    /// An arc flag is not `0` or `1`.
+    ExpectedFlag {
+        /// Byte offset where a flag was expected.
+        index: usize,
+    },
+}
+```
+
+Why SVG path data could not be parsed.
 
 ## Module `hex` (Cargo feature `hex`)
 
@@ -6510,6 +7449,455 @@ assert_eq!(min_max(1..=5), Some((1, 5)));
 assert_eq!(min_max([3, 1, 4, 1, 5]), Some((1, 5)));
 assert_eq!(min_max(Vec::<i32>::new()), None);
 ```
+
+## Module `kiwi` (Cargo feature `kiwi`)
+
+Decoding of the [Kiwi](https://github.com/evanw/kiwi) binary format, Evan Wallace's
+schema-based serialization (used by Figma's `.fig` files, but generic).
+
+A Kiwi message is meaningless without its schema. `Schema::parse` reads a *binary* schema
+(the compiled form Kiwi writes, which `.fig` files embed), then `Schema::decode` decodes a
+message against one of its definitions into a dynamic `Value` tree: objects, arrays, enums
+by name and the usual scalars. Every failure on truncated or invalid data is a precise
+`KiwiError`.
+
+Built on `bytes::ByteReader`, plus Kiwi's own 64-bit varints and
+floats, which are not LEB128 and IEEE 754 on the wire.
+
+### kiwi::Definition
+
+```rust
+pub struct Definition { /* private fields */ }
+```
+
+A named enum, struct or message of a Kiwi schema.
+
+#### Examples
+
+```rust
+use helpers4::kiwi::{Definition, Kind};
+
+let empty = Definition { name: "Empty".into(), kind: Kind::Message, fields: vec![] };
+assert_eq!(&*empty.name, "Empty");
+```
+
+### kiwi::Field
+
+```rust
+pub struct Field { /* private fields */ }
+```
+
+One field of a `Definition`. On an enum, a field is a member: only its name and `value`
+matter.
+
+#### Examples
+
+```rust
+use helpers4::kiwi::{Field, FieldType};
+
+let field = Field { name: "id".into(), field_type: Some(FieldType::Uint), is_array: false, value: 1 };
+assert_eq!(&*field.name, "id");
+```
+
+### kiwi::FieldType
+
+```rust
+#[non_exhaustive]
+pub enum FieldType {
+    /// One byte, `0` is false.
+    Bool,
+    /// An unsigned byte.
+    Byte,
+    /// A signed 32-bit integer.
+    Int,
+    /// An unsigned 32-bit integer.
+    Uint,
+    /// A 32-bit float.
+    Float,
+    /// A UTF-8 string.
+    String,
+    /// A signed 64-bit integer.
+    Int64,
+    /// An unsigned 64-bit integer.
+    Uint64,
+    /// Another definition, by its index in [`Schema::definitions`](super::Schema::definitions).
+    Definition(usize),
+}
+```
+
+The type of a `Field`: one of Kiwi's built-in types, or another definition of the schema.
+
+#### Examples
+
+```rust
+use helpers4::kiwi::FieldType;
+
+assert_eq!(FieldType::Definition(2), FieldType::Definition(2));
+```
+
+### kiwi::Kind
+
+```rust
+#[non_exhaustive]
+pub enum Kind {
+    /// A set of named numbers.
+    Enum,
+    /// A fixed list of fields, always all present.
+    Struct,
+    /// A list of optional fields, each written with its id.
+    Message,
+}
+```
+
+What a `Definition` is: an enum, a struct (all its fields, in order) or a message (any of
+its fields, each with an id, ended by a `0`).
+
+#### Examples
+
+```rust
+use helpers4::kiwi::Kind;
+
+assert_ne!(Kind::Enum, Kind::Message);
+```
+
+### kiwi::Schema
+
+```rust
+pub struct Schema { /* private fields */ }
+```
+
+A Kiwi schema: the definitions (enums, structs and messages) that give meaning to the bytes
+of a message.
+
+Read one from its binary form with `Schema::parse`, then decode messages with
+`Schema::decode`.
+
+#### Examples
+
+```rust
+use helpers4::kiwi::Schema;
+
+// A schema with one message, `Ping`, holding a `uint` field `id` (field number 1).
+let schema = Schema::parse(b"\x01Ping\0\x02\x01id\0\x07\x00\x01")?;
+let ping = schema.decode(&[1, 42, 0], "Ping")?;
+assert_eq!(ping.get("id").and_then(|id| id.as_u32()), Some(42));
+```
+
+#### Schema::parse
+
+```rust
+pub fn parse(bytes: &[u8]) -> Result<Self, KiwiError>
+```
+
+Reads a binary Kiwi schema (what Kiwi's `compileSchema` / `encodeBinarySchema` write; in
+a `.fig` file, the first decompressed chunk).
+
+##### Arguments
+
+- `bytes` - The binary schema. Bytes after the last definition are ignored.
+
+##### Returns
+
+The schema.
+
+##### Errors
+
+A `KiwiError` on truncated data, an invalid string, an unknown definition kind, or a
+field whose type is not a built-in type nor a definition of the schema.
+
+##### Examples
+
+```rust
+use helpers4::kiwi::{Kind, Schema};
+
+let schema = Schema::parse(b"\x01Ping\0\x02\x01id\0\x07\x00\x01")?;
+assert_eq!(&*schema.definitions[0].name, "Ping");
+assert_eq!(schema.definitions[0].kind, Kind::Message);
+```
+
+#### Schema::find
+
+```rust
+pub fn find(&self, name: &str) -> Option<usize>
+```
+
+The index of the definition with this name.
+
+##### Arguments
+
+- `name` - The definition name.
+
+##### Returns
+
+The index in `definitions`, or `None`.
+
+##### Examples
+
+```rust
+use helpers4::kiwi::Schema;
+
+let schema = Schema::parse(b"\x01Ping\0\x02\x00")?;
+assert_eq!(schema.find("Ping"), Some(0));
+assert_eq!(schema.find("Pong"), None);
+```
+
+#### Schema::decode
+
+```rust
+pub fn decode(&self, bytes: &[u8], root: &str) -> Result<Value, KiwiError>
+```
+
+Decodes a message as an instance of one definition (usually a message, the root of the
+file). Bytes after the value are left alone.
+
+##### Arguments
+
+- `bytes` - The encoded value.
+- `root` - The name of the definition it is an instance of.
+
+##### Returns
+
+The value: an `Value::Object` for a message or a struct, with enums by name and a
+`byte[]` as `Value::Bytes`.
+
+##### Errors
+
+A `KiwiError` when `root` is unknown, the data is truncated or invalid (a message with a
+field id its definition lacks, a bad string), or it nests deeper than 64 levels.
+
+##### Examples
+
+```rust
+use helpers4::kiwi::{KiwiError, Schema};
+
+let schema = Schema::parse(b"\x01Ping\0\x02\x01id\0\x07\x00\x01")?;
+assert_eq!(schema.decode(&[1], "Ping"), Err(KiwiError::UnexpectedEof { index: 1 }));
+assert!(schema.decode(&[0], "Pong").is_err());
+```
+
+### kiwi::Value
+
+```rust
+#[non_exhaustive]
+pub enum Value {
+    /// A `bool`.
+    Bool(bool),
+    /// A `byte`.
+    Byte(u8),
+    /// An `int`.
+    Int(i32),
+    /// A `uint`.
+    Uint(u32),
+    /// A `float`.
+    Float(f32),
+    /// A `string`.
+    String(String),
+    /// An `int64`.
+    Int64(i64),
+    /// A `uint64`.
+    Uint64(u64),
+    /// A `byte[]`, kept as bytes.
+    Bytes(Vec<u8>),
+    /// An enum member, by name.
+    Enum(Arc<str>),
+    /// An enum number the schema does not list.
+    UnknownEnum(u32),
+    /// A list of values.
+    Array(Vec<Value>),
+    /// A struct or message: its fields by name, in data order.
+    Object(Vec<(Arc<str>, Value)>),
+}
+```
+
+A decoded Kiwi value. Messages and structs are `Object`s that keep the field
+order of the data.
+
+The `as_*` accessors return `None` when the value is of another type, so a chain of `get`
+and `as_*` reads like a path.
+
+#### Examples
+
+```rust
+use helpers4::kiwi::Value;
+
+let node = Value::Object(vec![
+    ("name".into(), Value::String("Frame 1".to_string())),
+    ("size".into(), Value::Float(10.0)),
+]);
+assert_eq!(node.get("name").and_then(Value::as_str), Some("Frame 1"));
+assert_eq!(node.get("size").and_then(Value::as_f32), Some(10.0));
+assert_eq!(node.get("missing"), None);
+```
+
+#### Value::get
+
+```rust
+pub fn get(&self, name: &str) -> Option<&Self>
+```
+
+A field of an object.
+
+##### Arguments
+
+- `name` - The field name.
+
+##### Returns
+
+The field, or `None` when this is not an object or has no such field (a message omits its
+absent fields).
+
+#### Value::as_str
+
+```rust
+pub fn as_str(&self) -> Option<&str>
+```
+
+The text of a string or of an enum member name.
+
+##### Returns
+
+The text, or `None` for any other value.
+
+#### Value::as_bool
+
+```rust
+pub fn as_bool(&self) -> Option<bool>
+```
+
+The value of a `bool`.
+
+##### Returns
+
+The boolean, or `None` for any other value.
+
+#### Value::as_i32
+
+```rust
+pub fn as_i32(&self) -> Option<i32>
+```
+
+The value of an `int`.
+
+##### Returns
+
+The integer, or `None` for any other value.
+
+#### Value::as_u32
+
+```rust
+pub fn as_u32(&self) -> Option<u32>
+```
+
+The value of a `uint`.
+
+##### Returns
+
+The integer, or `None` for any other value.
+
+#### Value::as_i64
+
+```rust
+pub fn as_i64(&self) -> Option<i64>
+```
+
+The value of an `int64`.
+
+##### Returns
+
+The integer, or `None` for any other value.
+
+#### Value::as_u64
+
+```rust
+pub fn as_u64(&self) -> Option<u64>
+```
+
+The value of a `uint64`.
+
+##### Returns
+
+The integer, or `None` for any other value.
+
+#### Value::as_f32
+
+```rust
+pub fn as_f32(&self) -> Option<f32>
+```
+
+The value of a `float`.
+
+##### Returns
+
+The float, or `None` for any other value.
+
+#### Value::as_bytes
+
+```rust
+pub fn as_bytes(&self) -> Option<&[u8]>
+```
+
+The bytes of a `byte[]`.
+
+##### Returns
+
+The bytes, or `None` for any other value.
+
+#### Value::as_array
+
+```rust
+pub fn as_array(&self) -> &[Self]
+```
+
+The items of an array.
+
+##### Returns
+
+The items, or an empty slice for any other value, so a missing list reads as an empty one.
+
+### kiwi::KiwiError
+
+```rust
+#[non_exhaustive]
+pub enum KiwiError {
+    /// The data ends in the middle of a value.
+    UnexpectedEof {
+        /// Byte offset where the read that fell short started.
+        index: usize,
+    },
+    /// A string that is not valid UTF-8, or has no terminating `0`.
+    InvalidString {
+        /// Byte offset where the string starts.
+        index: usize,
+    },
+    /// A definition whose kind byte is not enum, struct or message.
+    UnknownKind {
+        /// The kind byte.
+        kind: u8,
+    },
+    /// A field whose type is neither a built-in type nor a definition of the schema.
+    UnknownType {
+        /// The raw type number.
+        type_id: i32,
+    },
+    /// No definition has the requested name.
+    UnknownDefinition {
+        /// The name that was asked for.
+        name: String,
+    },
+    /// A message holds a field id its definition does not list.
+    UnknownField {
+        /// The message definition.
+        message: String,
+        /// The field id.
+        id: u32,
+    },
+    /// The data nests deeper than the decoder allows (a malformed or hostile schema can recurse
+    /// forever).
+    TooDeep,
+}
+```
+
+Why a Kiwi schema or message could not be decoded.
 
 ## Module `license` (Cargo feature `license`)
 
@@ -8857,6 +10245,97 @@ assert!(match_glob("*.fig", "design.fig"));
 assert!(match_glob("frame-?", "frame-é"));
 assert!(!match_glob("frame-?", "frame-12"));
 assert!(match_glob("screen *", &"Screen 2".to_lowercase())); // ignore case
+```
+
+### string::match_glob_ignore_case
+
+```rust
+pub fn match_glob_ignore_case(pattern: &str, text: &str) -> bool
+```
+
+Like `match_glob`, ignoring case: both sides are compared in Unicode lower case. A character
+that lower-cases to several (`İ`) counts as several for `?`.
+
+#### Arguments
+
+- `pattern` - The glob pattern.
+- `text` - The string to test.
+
+#### Returns
+
+`true` if `text` matches `pattern` in full.
+
+#### Examples
+
+```rust
+use helpers4::string::match_glob_ignore_case;
+
+assert!(match_glob_ignore_case("screen *", "Screen 2"));
+assert!(match_glob_ignore_case("É*", "école"));
+assert!(!match_glob_ignore_case("screen *", "Home"));
+```
+
+### string::Pattern
+
+```rust
+#[non_exhaustive]
+pub enum Pattern {
+    /// A glob, to use with [`match_glob`](super::match_glob).
+    Glob(String),
+    /// A regular expression written `/source/flags`.
+    RegExp {
+        /// The source, without the slashes.
+        source: String,
+        /// The flags (any of `d`, `g`, `i`, `m`, `s`, `u`, `v`, `y`), possibly empty.
+        flags: String,
+    },
+}
+```
+
+A pattern read by `parse_pattern`: a glob, or a regular expression kept as text for the
+regex engine of your choice (this crate has none).
+
+#### Examples
+
+```rust
+use helpers4::string::{parse_pattern, Pattern};
+
+assert_eq!(parse_pattern("SF Pro*"), Pattern::Glob("SF Pro*".to_string()));
+```
+
+### string::parse_pattern
+
+```rust
+pub fn parse_pattern(pattern: &str) -> Pattern
+```
+
+Reads a setting that is either a regular expression or a glob: `/source/flags` is a regular
+expression when every flag is valid (`d`, `g`, `i`, `m`, `s`, `u`, `v`, `y`), anything else is
+a glob. For font substitution rules, ignore lists, filters. Note that `/usr/lib/img` is the
+regular expression `usr/lib` with the flags `img`: for paths, build a `Pattern::Glob`
+yourself.
+
+The regular expression is returned as text, since this crate has no regex engine; the source
+is not validated.
+
+#### Arguments
+
+- `pattern` - A `/source/flags` regular expression or a glob.
+
+#### Returns
+
+The `Pattern`.
+
+#### Examples
+
+```rust
+use helpers4::string::{parse_pattern, Pattern};
+
+assert_eq!(
+    parse_pattern("/^SF Pro/i"),
+    Pattern::RegExp { source: "^SF Pro".to_string(), flags: "i".to_string() }
+);
+assert_eq!(parse_pattern("/src/*.ts/x"), Pattern::Glob("/src/*.ts/x".to_string()));
 ```
 
 ### string::pascal_case

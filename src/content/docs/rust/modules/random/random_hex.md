@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["random"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["random"] }
 ```
 
 ## Signature
@@ -86,4 +86,4 @@ match random_bytes(16) {
 
 ## Source
 
-[src/random/random_hex.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/random/random_hex.rs#L35)
+[src/random/random_hex.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/random/random_hex.rs#L35)

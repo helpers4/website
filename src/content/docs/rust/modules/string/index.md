@@ -20,7 +20,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["string"] }
 ```
 
 Opt-in sub-feature `string-diacritics` (adds the `unicode-normalization` dependency): [`remove_diacritics`](/rust/modules/string/remove_diacritics/).
@@ -45,6 +45,9 @@ Import path: `helpers4::string`.
 | [`levenshtein_distance`](/rust/modules/string/levenshtein_distance/) | The Levenshtein edit distance between `a` and `b`: the fewest single-character insertions, deletions or substitutions needed to turn one into the other. |
 | [`levenshtein_similarity`](/rust/modules/string/levenshtein_similarity/) | Normalized `levenshtein_distance` between `a` and `b`, in `[0, 1]`. |
 | [`match_glob`](/rust/modules/string/match_glob/) | Whether `text` matches a simple glob pattern in full: `*` matches any sequence of characters (including none), `?` exactly one character, everything else is literal. |
+| [`match_glob_ignore_case`](/rust/modules/string/match_glob_ignore_case/) | Like `match_glob`, ignoring case: both sides are compared in Unicode lower case. |
+| [`Pattern`](/rust/modules/string/pattern/) | A pattern read by `parse_pattern`: a glob, or a regular expression kept as text for the regex engine of your choice (this crate has none). |
+| [`parse_pattern`](/rust/modules/string/parse_pattern/) | Reads a setting that is either a regular expression or a glob: `/source/flags` is a regular expression when every flag is valid (`d`, `g`, `i`, `m`, `s`, `u`, `v`, `y`), anything else is a glob. |
 | [`pascal_case`](/rust/modules/string/pascal_case/) | Converts `s` to `PascalCase`. |
 | [`remove_diacritics`](/rust/modules/string/remove_diacritics/) | Removes diacritical marks (accents) from `s`, e.g. |
 | [`slugify`](/rust/modules/string/slugify/) | Converts `s` into a lowercase, hyphen-separated slug safe for URLs. |

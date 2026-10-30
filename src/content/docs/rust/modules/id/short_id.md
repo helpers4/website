@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["id"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["id"] }
 ```
 
 ## Signature
@@ -62,4 +62,4 @@ assert_eq!(id, short_id(&Alphabet::safe(), 8, &mut Rng::seeded(1))); // reproduc
 
 ## Source
 
-[src/id/short_id.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/id/short_id.rs#L36)
+[src/id/short_id.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/id/short_id.rs#L36)

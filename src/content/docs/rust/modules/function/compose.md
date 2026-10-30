@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["function"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["function"] }
 ```
 
 ## Signature
@@ -57,4 +57,4 @@ assert_eq!(shout("hello"), "HELLO!");
 
 ## Source
 
-[src/function/compose.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/function/compose.rs#L27)
+[src/function/compose.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/function/compose.rs#L27)

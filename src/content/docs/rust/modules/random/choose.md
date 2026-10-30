@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["random"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["random"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert_eq!(choose::<u8>(&[], &mut Rng::seeded(3)), None);
 
 ## Source
 
-[src/random/choose.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/random/choose.rs#L29)
+[src/random/choose.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/random/choose.rs#L29)

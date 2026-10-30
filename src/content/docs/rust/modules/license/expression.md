@@ -32,7 +32,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["license"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["license"] }
 ```
 
 ## Definition
@@ -161,4 +161,4 @@ pub enum ParseExpressionError {
 
 ## Source
 
-[src/license/expression.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/license/expression.rs#L34)
+[src/license/expression.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/license/expression.rs#L34)

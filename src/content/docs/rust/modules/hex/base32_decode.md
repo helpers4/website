@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["hex"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["hex"] }
 ```
 
 ## Signature
@@ -84,4 +84,4 @@ pub enum Base32DecodeError {
 
 ## Source
 
-[src/hex/base32_decode.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/hex/base32_decode.rs#L46)
+[src/hex/base32_decode.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/hex/base32_decode.rs#L46)

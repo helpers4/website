@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["license"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["license"] }
 ```
 
 ## Definition
@@ -56,4 +56,4 @@ assert_eq!(lookup("GPL-3.0-only").map(|info| info.category()), Some(Category::St
 
 ## Source
 
-[src/license/category.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/license/category.rs#L16)
+[src/license/category.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/license/category.rs#L16)

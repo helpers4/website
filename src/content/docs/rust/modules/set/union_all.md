@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["set"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["set"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(union_all(&[a, b, c]), HashSet::from([1, 2, 3, 4]));
 
 ## Source
 
-[src/set/union_all.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/set/union_all.rs#L33)
+[src/set/union_all.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/set/union_all.rs#L33)

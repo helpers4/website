@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["geometry"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["geometry"] }
 ```
 
 ## Definition
@@ -138,6 +138,36 @@ assert_eq!(shift.invert(), Some(Matrix::new(1.0, 0.0, 0.0, 1.0, -10.0, -5.0)));
 assert_eq!(Matrix::new(0.0, 0.0, 0.0, 0.0, 1.0, 1.0).invert(), None);
 ```
 
+### `rect_to_rect`
+
+```rust
+pub fn rect_to_rect(from: Rect, to: Rect) -> Self
+```
+
+The translation and scale that put one rectangle exactly on another, for animating or
+fitting between two boxes. An axis where `from` has no extent is only translated (scale
+`1`).
+
+**Parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `from` | `Rect` | The rectangle to move. |
+| `to` | `Rect` | The rectangle to reach. |
+
+**Returns**
+
+`Self` — The matrix that maps `from` onto `to`.
+
+**Examples**
+
+```rust
+use helpers4::geometry::{Matrix, Rect};
+
+let m = Matrix::rect_to_rect(Rect::new(0.0, 0.0, 10.0, 10.0), Rect::new(5.0, 5.0, 20.0, 10.0));
+assert_eq!(m, Matrix::new(2.0, 0.0, 0.0, 1.0, 5.0, 5.0));
+```
+
 ### `to_css`
 
 ```rust
@@ -218,4 +248,4 @@ assert_eq!(flip.bounding_box(Rect::new(1.0, 0.0, 2.0, 3.0)), Rect::new(-6.0, 0.0
 
 ## Source
 
-[src/geometry/matrix.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/geometry/matrix.rs#L28)
+[src/geometry/matrix.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/geometry/matrix.rs#L28)

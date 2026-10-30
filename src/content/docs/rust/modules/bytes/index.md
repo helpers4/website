@@ -10,7 +10,8 @@ Helpers for byte slices and sizes that the standard library does not provide.
 
 Reading integers at an offset without panicking, a [`ByteReader`](/rust/modules/bytes/bytereader/) cursor for binary formats
 (fixed-size values, LEB128 varints, zigzag, NUL-terminated strings), a byte-slice search, a
-constant-time comparison, XOR, and human-readable sizes (`1.5 KiB`) in both directions.
+constant-time comparison, XOR, human-readable sizes (`1.5 KiB`) in both directions, and the
+media type of an image from its first bytes or of a file from its extension.
 
 ## Install
 
@@ -24,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["bytes"] }
 ```
 
 Import path: `helpers4::bytes`.
@@ -38,6 +39,8 @@ Import path: `helpers4::bytes`.
 | [`Endian`](/rust/modules/bytes/endian/) | The byte order of a multi-byte integer. |
 | [`find`](/rust/modules/bytes/find/) | The index of the first occurrence of `needle` in `haystack`. |
 | [`format_size`](/rust/modules/bytes/format_size/) | Formats a number of bytes with a binary unit and at most one decimal, such as `"1.5 KiB"`. |
+| [`media_type_of`](/rust/modules/bytes/media_type_of/) | Finds the media type of an image from its first bytes (its magic number), whatever its name says: PNG, JPEG, GIF, WebP, AVIF and SVG. |
+| [`media_type_of_path`](/rust/modules/bytes/media_type_of_path/) | Finds the media type of a file from the extension of its path or URL: images, fonts, web documents, scripts and styles, data, audio and video. |
 | [`parse_size`](/rust/modules/bytes/parse_size/) | Parses a human-written size such as `"1.5 KiB"`, `"10MB"` or `"512"` into a number of bytes. |
 | [`read_u16`](/rust/modules/bytes/read_u16/) | Reads a `u16` from `bytes` at `offset`, in the given byte order. |
 | [`read_u32`](/rust/modules/bytes/read_u32/) | Reads a `u32` from `bytes` at `offset`, in the given byte order. |

@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["geometry"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["geometry"] }
 ```
 
 ## Signature
@@ -64,4 +64,4 @@ assert_eq!(simplify_polyline(&line, -1.0), None);
 
 ## Source
 
-[src/geometry/simplify_polyline.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/geometry/simplify_polyline.rs#L38)
+[src/geometry/simplify_polyline.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/geometry/simplify_polyline.rs#L38)

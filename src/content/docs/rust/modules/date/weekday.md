@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["date"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["date"] }
 ```
 
 ## Definition
@@ -99,4 +99,4 @@ Whether the day is a Saturday or a Sunday.
 
 ## Source
 
-[src/date/weekday.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/date/weekday.rs#L20)
+[src/date/weekday.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/date/weekday.rs#L20)

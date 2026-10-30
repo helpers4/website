@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["bytes"] }
 ```
 
 ## Signature
@@ -57,4 +57,4 @@ assert_eq!(read_u16(&bytes, 1, Endian::Big), None);
 
 ## Source
 
-[src/bytes/read_u16.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/bytes/read_u16.rs#L30)
+[src/bytes/read_u16.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/bytes/read_u16.rs#L30)

@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["color"] }
 ```
 
 ## Definition
@@ -179,6 +179,28 @@ The same color as hue, saturation and lightness.
 
 `Hsl` — The [`Hsl`](/rust/modules/color/hsl/) value. Converting it back with [`Hsl::to_rgb`](/rust/modules/color/hsl/) gives this color again.
 
+### `to_hsb`
+
+```rust
+pub fn to_hsb(self) -> Hsb
+```
+
+The same color as hue, saturation and brightness (HSB, also called HSV), the model of
+design tool color pickers.
+
+**Returns**
+
+`Hsb` — The [`Hsb`](/rust/modules/color/hsb/) value. Converting it back with [`Hsb::to_rgb`](/rust/modules/color/hsb/) gives this color again.
+
+**Examples**
+
+```rust
+use helpers4::color::{Hsb, Rgb};
+
+assert_eq!(Rgb::new(255, 0, 0).to_hsb(), Hsb::new(0.0, 1.0, 1.0));
+assert_eq!(Rgb::new(10, 10, 10).to_hsb().s(), 0.0);
+```
+
 ### `luminance`
 
 ```rust
@@ -262,4 +284,4 @@ pub enum ParseColorError {
 
 ## Source
 
-[src/color/rgb.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/color/rgb.rs#L28)
+[src/color/rgb.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/color/rgb.rs#L28)

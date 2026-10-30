@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["geometry"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["geometry"] }
 ```
 
 ## Definition
@@ -58,4 +58,4 @@ assert_eq!((whole.a, filled.a), (0.5, 1.0));
 
 ## Source
 
-[src/geometry/fit.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/geometry/fit.rs#L21)
+[src/geometry/fit.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/geometry/fit.rs#L21)

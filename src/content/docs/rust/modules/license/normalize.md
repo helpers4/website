@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["license"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["license"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(normalize("MIT"), None);
 
 ## Source
 
-[src/license/normalize.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/license/normalize.rs#L32)
+[src/license/normalize.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/license/normalize.rs#L32)

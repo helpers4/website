@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["color"] }
 ```
 
 ## Definition
@@ -212,6 +212,59 @@ assert_eq!(Rgba::new(0, 0, 0, 255).opacity(), 1.0);
 assert_eq!(Rgba::new(0, 0, 0, 0).opacity(), 0.0);
 ```
 
+### `from_unit`
+
+```rust
+pub fn from_unit(r: f64, g: f64, b: f64, a: f64) -> Self
+```
+
+Builds a color from channels given as floats from `0.0` to `1.0`, the way Figma, Sketch
+and Penpot store them. Each value is clamped to that range (a `NaN` counts as `0.0`) and
+rounded to the nearest 8-bit value.
+
+**Parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `r` | `f64` | Red, `0.0` to `1.0`. |
+| `g` | `f64` | Green, `0.0` to `1.0`. |
+| `b` | `f64` | Blue, `0.0` to `1.0`. |
+| `a` | `f64` | Alpha, `0.0` (transparent) to `1.0` (opaque). |
+
+**Returns**
+
+`Self` — The 8-bit color.
+
+**Examples**
+
+```rust
+use helpers4::color::Rgba;
+
+let orange = Rgba::from_unit(1.0, 0.5, 0.0, 0.5);
+assert_eq!(orange, Rgba::new(255, 128, 0, 128));
+assert_eq!(orange.to_hex(), "#ff800080");
+```
+
+### `to_unit`
+
+```rust
+pub fn to_unit(self) -> [f64; 4]
+```
+
+The channels as floats from `0.0` to `1.0`, the way Figma, Sketch and Penpot store them.
+
+**Returns**
+
+`[f64; 4]` — `[r, g, b, a]`.
+
+**Examples**
+
+```rust
+use helpers4::color::Rgba;
+
+assert_eq!(Rgba::new(255, 51, 0, 255).to_unit(), [1.0, 0.2, 0.0, 1.0]);
+```
+
 ### `to_rgb`
 
 ```rust
@@ -306,4 +359,4 @@ pub enum ParseColorError {
 
 ## Source
 
-[src/color/rgba.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/color/rgba.rs#L29)
+[src/color/rgba.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/color/rgba.rs#L29)

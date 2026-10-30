@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["function"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["function"] }
 ```
 
 ## Signature
@@ -64,4 +64,4 @@ assert_eq!(backoff(10, base, max), max);
 
 ## Source
 
-[src/function/backoff.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/function/backoff.rs#L37)
+[src/function/backoff.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/function/backoff.rs#L37)

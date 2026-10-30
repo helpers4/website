@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["geometry"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["geometry"] }
 ```
 
 ## Signature
@@ -65,4 +65,4 @@ assert_eq!(left, Matrix::new(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)); // cropped on the r
 
 ## Source
 
-[src/geometry/fit.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/geometry/fit.rs#L111)
+[src/geometry/fit.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/geometry/fit.rs#L111)

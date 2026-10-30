@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["secret"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["secret"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert_eq!(findings[0].kind(), TokenKind::AwsAccessKey);
 
 ## Source
 
-[src/secret/scan.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/secret/scan.rs#L84)
+[src/secret/scan.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/secret/scan.rs#L84)

@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -62,4 +62,4 @@ assert_eq!(toggle_by(&layers, ("c", 3), |layer| layer.1), vec![("a", 1), ("b", 2
 
 ## Source
 
-[src/array/toggle_by.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/array/toggle_by.rs#L29)
+[src/array/toggle_by.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/array/toggle_by.rs#L29)

@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["array"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["array"] }
 ```
 
 ## Signature
@@ -67,4 +67,4 @@ assert_eq!(
 
 ## Source
 
-[src/array/replace_or_append.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/array/replace_or_append.rs#L34)
+[src/array/replace_or_append.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/array/replace_or_append.rs#L34)

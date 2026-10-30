@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["validate"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["validate"] }
 ```
 
 ## Signature
@@ -58,4 +58,4 @@ assert!(!is_uuid("not-a-uuid"));
 
 ## Source
 
-[src/validate/is_uuid.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/validate/is_uuid.rs#L29)
+[src/validate/is_uuid.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/validate/is_uuid.rs#L29)

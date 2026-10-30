@@ -30,7 +30,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["random"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["random"] }
 ```
 
 ## Definition
@@ -214,4 +214,4 @@ match random_bytes(16) {
 
 ## Source
 
-[src/random/rng.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/random/rng.rs#L27)
+[src/random/rng.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/random/rng.rs#L27)

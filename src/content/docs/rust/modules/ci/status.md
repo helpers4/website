@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["ci"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["ci"] }
 ```
 
 ## Definition
@@ -105,4 +105,4 @@ The lower-case name of the status.
 
 ## Source
 
-[src/ci/status.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/ci/status.rs#L19)
+[src/ci/status.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/ci/status.rs#L19)

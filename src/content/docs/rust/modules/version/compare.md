@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["version"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["version"] }
 ```
 
 ## Signature
@@ -97,4 +97,4 @@ pub enum ParseVersionError {
 
 ## Source
 
-[src/version/compare.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/version/compare.rs#L33)
+[src/version/compare.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/version/compare.rs#L33)

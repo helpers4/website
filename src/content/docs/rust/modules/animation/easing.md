@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["animation"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["animation"] }
 ```
 
 ## Definition
@@ -209,4 +209,4 @@ assert_eq!(Easing::parse("steps(0)"), Err(ParseEasingError::InvalidArguments));
 
 ## Source
 
-[src/animation/easing.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/animation/easing.rs#L30)
+[src/animation/easing.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/animation/easing.rs#L30)

@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["fs"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["fs"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(read_to_string_opt("/definitely/not/here.txt")?, None);
 
 ## Source
 
-[src/fs/read_to_string_opt.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/fs/read_to_string_opt.rs#L29)
+[src/fs/read_to_string_opt.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/fs/read_to_string_opt.rs#L29)

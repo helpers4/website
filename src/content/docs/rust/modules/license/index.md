@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["license"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["license"] }
 ```
 
 Import path: `helpers4::license`.

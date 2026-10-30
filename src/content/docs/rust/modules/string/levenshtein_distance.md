@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(levenshtein_distance("Kitten", "kitten", false), 0);
 
 ## Source
 
-[src/string/levenshtein_distance.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/string/levenshtein_distance.rs#L30)
+[src/string/levenshtein_distance.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/string/levenshtein_distance.rs#L30)

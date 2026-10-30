@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["ansi"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["ansi"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(strip("plain"), "plain");
 
 ## Source
 
-[src/ansi/strip.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/ansi/strip.rs#L32)
+[src/ansi/strip.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/ansi/strip.rs#L32)

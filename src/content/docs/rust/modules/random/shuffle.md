@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["random"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["random"] }
 ```
 
 ## Signature
@@ -63,4 +63,4 @@ assert_eq!(sorted, deck); // nothing lost, nothing added
 
 ## Source
 
-[src/random/shuffle.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/random/shuffle.rs#L36)
+[src/random/shuffle.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/random/shuffle.rs#L36)

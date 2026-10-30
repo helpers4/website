@@ -4,12 +4,12 @@ sidebar:
   order: 3
 ---
 
-Thank you for helping. This page is the long version; [AGENTS.md](https://github.com/helpers4/rust/blob/v0.0.9/AGENTS.md) holds the layout,
+Thank you for helping. This page is the long version; [AGENTS.md](https://github.com/helpers4/rust/blob/v0.0.10/AGENTS.md) holds the layout,
 the rules and the commands in a form short enough for a checklist, and
-[.github/workflows/README.md](https://github.com/helpers4/rust/blob/v0.0.9/.github/workflows/README.md) explains what CI runs.
+[.github/workflows/README.md](https://github.com/helpers4/rust/blob/v0.0.10/.github/workflows/README.md) explains what CI runs.
 
 By contributing you agree that your work is licensed under the
-[LGPL-3.0-or-later](https://github.com/helpers4/rust/blob/v0.0.9/LICENSE).
+[LGPL-3.0-or-later](https://github.com/helpers4/rust/blob/v0.0.10/LICENSE).
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ Open the organization workspace in VS Code and *Reopen in Container*. It ships t
   `cargo-llvm-cov`, `cargo-hack`, `cargo-mutants`, `cargo-deny`, `cargo-machete`, `typos-cli`,
   `cargo-semver-checks`
 - `git-cliff` and `cargo-public-api` (needs the nightly toolchain: `rustup toolchain install
-  nightly`) if you prepare a release (see [Releasing](https://github.com/helpers4/rust/blob/v0.0.9/.github/workflows/README.md#releasing))
+  nightly`) if you prepare a release (see [Releasing](https://github.com/helpers4/rust/blob/v0.0.10/.github/workflows/README.md#releasing))
 - `cargo-fuzz` (also nightly) if you touch a parser and want to fuzz it locally: `fuzz/` is a
   detached workspace, see [Fuzzing](#fuzzing)
 
@@ -54,7 +54,7 @@ These come from the crate's philosophy (see the [site](https://helpers4.dev/rust
 and CI enforces most of them.
 
 - **Check the standard library first.** Do not add what `std` already does. The list of what it
-  covers is [docs/native-alternatives.json](https://github.com/helpers4/rust/blob/v0.0.9/docs/native-alternatives.json); a helper that only wraps
+  covers is [docs/native-alternatives.json](https://github.com/helpers4/rust/blob/v0.0.10/docs/native-alternatives.json); a helper that only wraps
   a std call has to say what it adds (a typed error, several inputs, a stable order, ...).
 - **Zero third-party dependencies by default.** A module that needs one gets its own Cargo feature
   and the dependency is `optional = true`.
@@ -68,6 +68,15 @@ and CI enforces most of them.
   module's feature (see `validate/is_slug.spec.rs`).
 - **Names may repeat across modules** (`set::union_all`, `array::...`); callers import through the
   module path, so pick the plain-English name that fits the module.
+- **Free functions, no extension traits.** A helper is a function called through its module path
+  (`array::chunk(&v, 2)`), never a method added to a std type through a trait: an extension method
+  can start clashing with a future std method (`unstable_name_collisions`) or with `itertools` at
+  the caller. A `prelude` of extension traits is not part of the crate; it would be an opt-in
+  addition if real demand shows up. When a helper has the name of a std or `itertools` method,
+  keep the module path as the disambiguation and say in its rustdoc what it does differently.
+  A policy-laden helper (for example recovering from a poisoned `Mutex`, which can hide a broken
+  invariant) is not added under a short generic name; if it is ever wanted it gets an explicit one
+  and documents the policy.
 
 ## Adding a helper
 
@@ -266,7 +275,7 @@ the same, or it can only hang) is listed with its reason in `.cargo/mutants.toml
 ## Commit messages
 
 `<type>(<scope>): <emoji> <description>`, with the Conventional Commits types. The **scope** is a
-module or an area from [scopes.json](https://github.com/helpers4/rust/blob/v0.0.9/scopes.json), and CI rejects any other; omit it rather than
+module or an area from [scopes.json](https://github.com/helpers4/rust/blob/v0.0.10/scopes.json), and CI rejects any other; omit it rather than
 invent one. The emoji is the primary gitmoji of the type (`feat` ✨, `fix` 🐛, `docs` 📝,
 `refactor` ♻️, `test` ✅, `chore` 🔧, `perf` ⚡️, `style` 💄, `ci` 👷, `build` 📦️, `revert` ⏪️); the
 full mapping and the alternatives are in the
@@ -280,6 +289,17 @@ test(commit): ✅ cover type characters
 
 A breaking change uses the real Conventional Commits `BREAKING CHANGE:` footer in its own
 paragraph: the changelog generator only detects that.
+
+## MSRV and `no_std`
+
+- **MSRV** is the `rust-version` in `Cargo.toml` (1.85 today) and the CI tests it. Raising it is a
+  minor change, never a patch: it is announced in the changelog and the release notes, and only
+  done when a language or std feature is worth it. While the crate is `0.0.x`, that means a
+  `0.0.(x+1)` release.
+- **`no_std`** is not supported yet: every module uses `std`. It is deferred until someone needs
+  it and will be decided before 1.0. Nothing prevents it, since modules are independent: the pure
+  ones (`hex`, `version`, `string`, `array`, `color`, `bytes`) could become `no_std + alloc` behind
+  a default `std` feature.
 
 ## Pull requests
 
@@ -304,9 +324,9 @@ paragraph: the changelog generator only detects that.
 
 If you are an AI coding agent working in this repository:
 
-- Read [AGENTS.md](https://github.com/helpers4/rust/blob/v0.0.9/AGENTS.md); the `add-helper` skill in `.claude/skills/` walks through the steps
+- Read [AGENTS.md](https://github.com/helpers4/rust/blob/v0.0.10/AGENTS.md); the `add-helper` skill in `.claude/skills/` walks through the steps
   above and the checks.
-- Check [docs/native-alternatives.json](https://github.com/helpers4/rust/blob/v0.0.9/docs/native-alternatives.json) before writing a helper.
+- Check [docs/native-alternatives.json](https://github.com/helpers4/rust/blob/v0.0.10/docs/native-alternatives.json) before writing a helper.
 - Write code, comments, commits and documentation in English.
 - Do not build test data that looks like a real credential in one string literal: GitHub's push
   protection refuses the push (assemble it at run time).
@@ -316,4 +336,4 @@ If you are an AI coding agent working in this repository:
 
 - Open an [issue](https://github.com/helpers4/rust/issues) for a question or a missing helper.
 - Read a similar helper: `src/set`, `src/url` and `src/version` show most of the patterns above.
-- Vulnerabilities go through [SECURITY.md](https://github.com/helpers4/rust/blob/v0.0.9/SECURITY.md), not an issue.
+- Vulnerabilities go through [SECURITY.md](https://github.com/helpers4/rust/blob/v0.0.10/SECURITY.md), not an issue.

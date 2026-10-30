@@ -31,7 +31,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -63,4 +63,4 @@ assert_eq!(frames, ["frame 1", "frame 2", "frame 10"]);
 
 ## Source
 
-[src/string/compare_natural.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/string/compare_natural.rs#L38)
+[src/string/compare_natural.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/string/compare_natural.rs#L38)

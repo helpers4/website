@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["id"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["id"] }
 ```
 
 ## Definition
@@ -259,4 +259,4 @@ assert_eq!(Alphabet::new("abca"), Err(AlphabetError::Duplicate { character: 'a' 
 
 ## Source
 
-[src/id/alphabet.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/id/alphabet.rs#L26)
+[src/id/alphabet.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/id/alphabet.rs#L26)

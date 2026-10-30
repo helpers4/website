@@ -32,7 +32,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["string"] }
 ```
 
 ## Definition
@@ -114,4 +114,4 @@ assert!(!GlobSet::new(&["!*.tmp"]).is_match("a.tmp"));
 
 ## Source
 
-[src/string/glob_set.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/string/glob_set.rs#L30)
+[src/string/glob_set.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/string/glob_set.rs#L30)

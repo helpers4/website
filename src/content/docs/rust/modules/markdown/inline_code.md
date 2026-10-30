@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["markdown"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["markdown"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert_eq!(inline_code("`tick`"), "`` `tick` ``");
 
 ## Source
 
-[src/markdown/inline_code.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/markdown/inline_code.rs#L31)
+[src/markdown/inline_code.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/markdown/inline_code.rs#L31)

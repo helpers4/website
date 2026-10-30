@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["license"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["license"] }
 ```
 
 ## Definition
@@ -85,4 +85,4 @@ The family the license belongs to.
 
 ## Source
 
-[src/license/license_info.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/license/license_info.rs#L22)
+[src/license/license_info.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/license/license_info.rs#L22)

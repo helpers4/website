@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["animation"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["animation"] }
 ```
 
 ## Definition
@@ -56,4 +56,4 @@ assert_eq!(jump_first.map(|e| e.at(0.3)), Some(0.5));
 
 ## Source
 
-[src/animation/step_position.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/animation/step_position.rs#L18)
+[src/animation/step_position.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/animation/step_position.rs#L18)

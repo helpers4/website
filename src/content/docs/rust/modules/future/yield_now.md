@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["future"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["future"] }
 ```
 
 ## Signature
@@ -52,4 +52,4 @@ block_on(async {
 
 ## Source
 
-[src/future/yield_now.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/future/yield_now.rs#L27)
+[src/future/yield_now.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/future/yield_now.rs#L27)

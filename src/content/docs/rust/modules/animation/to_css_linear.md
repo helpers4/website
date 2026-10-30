@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["animation"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["animation"] }
 ```
 
 ## Signature
@@ -65,4 +65,4 @@ assert!(css.is_some_and(|css| css.starts_with("linear(0, ")));
 
 ## Source
 
-[src/animation/to_css_linear.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/animation/to_css_linear.rs#L38)
+[src/animation/to_css_linear.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/animation/to_css_linear.rs#L38)

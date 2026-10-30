@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["id"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["id"] }
 ```
 
 ## Definition
@@ -146,4 +146,4 @@ assert_eq!(Ulid::parse("8ZZZZZZZZZZZZZZZZZZZZZZZZZ"), Err(ParseUlidError::Overfl
 
 ## Source
 
-[src/id/ulid.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/id/ulid.rs#L31)
+[src/id/ulid.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/id/ulid.rs#L31)

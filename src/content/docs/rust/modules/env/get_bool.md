@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["env"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["env"] }
 ```
 
 ## Signature
@@ -60,4 +60,4 @@ assert!(get_bool(content, "MISSING", true));
 
 ## Source
 
-[src/env/get_bool.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/env/get_bool.rs#L33)
+[src/env/get_bool.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/env/get_bool.rs#L33)

@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["color"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert!(contrast_ratio(Rgb::parse("#767676")?, Rgb::new(255, 255, 255)) >= 4.5);
 
 ## Source
 
-[src/color/contrast_ratio.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/color/contrast_ratio.rs#L33)
+[src/color/contrast_ratio.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/color/contrast_ratio.rs#L33)

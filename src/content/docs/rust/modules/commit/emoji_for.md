@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["commit"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["commit"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(emoji_for("wip"), None);
 
 ## Source
 
-[src/commit/emoji_for.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/commit/emoji_for.rs#L30)
+[src/commit/emoji_for.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/commit/emoji_for.rs#L30)

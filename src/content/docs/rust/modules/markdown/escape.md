@@ -30,7 +30,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["markdown"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["markdown"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert_eq!(escape("1. not a list"), "1\\. not a list");
 
 ## Source
 
-[src/markdown/escape.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/markdown/escape.rs#L32)
+[src/markdown/escape.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/markdown/escape.rs#L32)

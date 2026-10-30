@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["ansi"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["ansi"] }
 ```
 
 ## Signature
@@ -58,4 +58,4 @@ assert_eq!(visible_len("plain"), 5);
 
 ## Source
 
-[src/ansi/visible_len.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/ansi/visible_len.rs#L29)
+[src/ansi/visible_len.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/ansi/visible_len.rs#L29)

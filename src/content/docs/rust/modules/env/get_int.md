@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["env"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["env"] }
 ```
 
 ## Signature
@@ -59,4 +59,4 @@ assert_eq!(get_int(content, "MISSING", 80), 80);
 
 ## Source
 
-[src/env/get_int.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/env/get_int.rs#L32)
+[src/env/get_int.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/env/get_int.rs#L32)

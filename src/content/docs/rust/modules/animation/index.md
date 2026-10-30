@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["animation"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["animation"] }
 ```
 
 Import path: `helpers4::animation`.

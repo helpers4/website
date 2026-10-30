@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["set"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["set"] }
 ```
 
 ## Signature
@@ -57,4 +57,4 @@ assert_eq!(to_sorted_vec(&set), vec![1, 2, 3]);
 
 ## Source
 
-[src/set/to_sorted_vec.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/set/to_sorted_vec.rs#L31)
+[src/set/to_sorted_vec.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/set/to_sorted_vec.rs#L31)

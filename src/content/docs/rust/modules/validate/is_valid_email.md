@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.9", default-features = false, features = ["validate"] }
+helpers4 = { version = "0.0.10", default-features = false, features = ["validate"] }
 ```
 
 ## Signature
@@ -61,4 +61,4 @@ assert!(!is_valid_email("jane@localhost"));
 
 ## Source
 
-[src/validate/is_valid_email.rs](https://github.com/helpers4/rust/blob/v0.0.9/src/validate/is_valid_email.rs#L32)
+[src/validate/is_valid_email.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/validate/is_valid_email.rs#L32)
