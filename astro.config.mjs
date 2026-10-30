@@ -171,6 +171,18 @@ export default defineConfig({
               { label: 'Legal', items: [{ autogenerate: { directory: 'action/legal' } }] },
             ],
           },
+          {
+            label: 'Guides',
+            link: '/guides/',
+            icon: 'open-book',
+            items: [{ slug: 'guides' }, { slug: 'guides/ci' }],
+          },
+          {
+            label: 'Sponsors',
+            link: '/sponsors/',
+            icon: 'heart',
+            items: [{ slug: 'sponsors' }],
+          },
         ]),
         starlightThemeNova(),
       ],
