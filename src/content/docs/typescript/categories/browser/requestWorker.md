@@ -3,7 +3,7 @@ title: "requestWorker"
 sidebar:
   label: "requestWorker"
 description: "Runs one job in a module worker: starts it, posts the request, relays its progress, resolves with its result and ends i…"
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Runs one job in a module worker: starts it, posts the request, relays its progress, resolves

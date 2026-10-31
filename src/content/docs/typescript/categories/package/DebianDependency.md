@@ -3,7 +3,7 @@ title: "DebianDependency"
 sidebar:
   label: "DebianDependency"
 description: "One package reference of a Debian relationship field: `name[:arch] [(op version)] [[archs]] [<profiles>]`."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 One package reference of a Debian relationship field: `name[:arch] [(op version)] [[archs]] [<profiles>]`.

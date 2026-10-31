@@ -2,13 +2,12 @@
 title: "safeFetch"
 sidebar:
   label: "safeFetch"
-description: "Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, non-OK status, or par…"
-version: "3.1.10"
+description: "Wraps `fetch` and returns `null` when the request fails (network error, non-OK status, or parse error) instead of throw…"
+version: "3.1.11"
 ---
 
-Wraps `fetch` with built-in error handling: returns `null` when the
-request fails (network error, non-OK status, or parse error) instead
-of throwing.
+Wraps `fetch` and returns `null` when the request fails (network error, non-OK status, or parse
+error) instead of throwing.
 
 > Available since v2.0.0
 
@@ -41,31 +40,12 @@ safeFetch<T>(input: RequestInfo | URL, init?: RequestInit, options: SafeFetchOpt
 
 ## Examples
 
-### Fetch JSON safely
+### safeFetch
 
-Returns `null` on network error or non-OK status instead of throwing.
 
-```ts
-const repo = await safeFetch<{ stars: number }>(
-  'https://api.github.com/repos/helpers4/typescript'
-);
-if (repo === null) {
-  console.warn('Failed to fetch repo data');
-} else {
-  console.log(repo.stars);
-}
-```
-
-### Fetch plain text
-
-Pass { parse: "text" } to get the raw response body as a string.
 
 ```ts
-const content = await safeFetch<string>(
-  'https://example.com/data.txt',
-  undefined,
-  { parse: 'text' }
-);
+const data = await safeFetch<{ stars: number }>('https://api.example.com/repo');
 ```
 
 ## Related Types
@@ -75,10 +55,19 @@ const content = await safeFetch<string>(
 Options for safeFetch.
 
 ```ts
-interface SafeFetchOptions {
-  parse?: "json" | "text";
-}
+type SafeFetchOptions = FetchSafeFetchOptions
 ```
+
+:::caution[Name conflict]
+A helper named `safeFetch` also exists in [`@helpers4/fetch`](../fetch/safefetch/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { safeFetch as safeFetch4promise } from '@helpers4/promise';
+import { safeFetch as safeFetch4fetch } from '@helpers4/fetch';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
 
 ## Source
 

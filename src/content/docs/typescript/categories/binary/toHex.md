@@ -3,7 +3,7 @@ title: "toHex"
 sidebar:
   label: "toHex"
 description: "Writes bytes as lowercase hexadecimal, two digits per byte."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Writes bytes as lowercase hexadecimal, two digits per byte. For content keys, hashes and

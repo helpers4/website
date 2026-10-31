@@ -2,13 +2,11 @@
 title: "fetchOrThrow"
 sidebar:
   label: "fetchOrThrow"
-description: "Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of resolving like any other response — the…"
-version: "3.1.10"
+description: "Wraps `fetch` so that a non-2xx response rejects with an HttpError."
+version: "3.1.11"
 ---
 
-Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of
-resolving like any other response — the throwing counterpart to `safeFetch`, for when a
-failed request should fail loud. Network errors reject as `fetch` itself rejects them.
+Wraps `fetch` so that a non-2xx response rejects with an HttpError.
 
 > Available since v3.1.3
 
@@ -40,28 +38,34 @@ fetchOrThrow(input: RequestInfo | URL, init?: RequestInit): Promise<Response>
 
 ## Examples
 
-### Fail loud on a non-2xx response
+### fetchOrThrow
 
-Resolves with the response on success, rejects with an HttpError otherwise.
+
 
 ```ts
 const response = await fetchOrThrow('https://api.example.com/repo');
-const repo = await response.json();
 ```
 
-### Handle a specific status
+## Related Types
 
-HttpError carries the status, the URL and the response, so a caller can branch on it.
+### `HttpError`
+
+
 
 ```ts
-try {
-  await fetchOrThrow('https://api.example.com/missing');
-} catch (error) {
-  if (error instanceof HttpError && error.status === 404) {
-    // error.message => 'HTTP 404 Not Found: https://api.example.com/missing'
-  }
-}
+type HttpError = FetchHttpError
 ```
+
+:::caution[Name conflict]
+A helper named `fetchOrThrow` also exists in [`@helpers4/fetch`](../fetch/fetchorthrow/). If you need both in the same file, rename at import with `as`:
+
+```ts
+import { fetchOrThrow as fetchOrThrow4promise } from '@helpers4/promise';
+import { fetchOrThrow as fetchOrThrow4fetch } from '@helpers4/fetch';
+```
+
+See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution guide.
+:::
 
 ## Source
 

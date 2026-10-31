@@ -3,7 +3,7 @@ title: "contrastRatio"
 sidebar:
   label: "contrastRatio"
 description: "Computes the WCAG 2 contrast ratio between two colors, from 1 (identical) to 21 (black on white)."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Computes the WCAG 2 contrast ratio between two colors, from 1 (identical) to 21 (black on

@@ -3,7 +3,7 @@ title: "AbortSignalLike"
 sidebar:
   label: "AbortSignalLike"
 description: "What helpers4 needs of an `AbortSignal`: whether it is aborted, why, and a way to listen for the abort."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 What helpers4 needs of an `AbortSignal`: whether it is aborted, why, and a way to listen for

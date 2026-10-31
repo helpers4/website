@@ -3,7 +3,7 @@ title: "levenshteinDistance"
 sidebar:
   label: "levenshteinDistance"
 description: "Levenshtein edit distance between two strings — the minimum number of single-character insertions, deletions, or substi…"
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Levenshtein edit distance between two strings — the minimum number of single-character

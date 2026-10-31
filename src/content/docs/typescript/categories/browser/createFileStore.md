@@ -3,7 +3,7 @@ title: "createFileStore"
 sidebar:
   label: "createFileStore"
 description: "Creates a file store on a named Cache API cache: keep a computed set of files (a bake, a download, extracted layers) un…"
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Creates a file store on a named Cache API cache: keep a computed set of files (a bake, a

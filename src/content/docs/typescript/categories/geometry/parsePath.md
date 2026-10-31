@@ -3,7 +3,7 @@ title: "parsePath"
 sidebar:
   label: "parsePath"
 description: "Parses SVG path data (the `d` attribute) into commands, as written: the letters keep their case (absolute or relative),…"
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Parses SVG path data (the `d` attribute) into commands, as written: the letters keep their case

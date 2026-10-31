@@ -1,11 +1,11 @@
 # @helpers4/all
 
 > Complete collection of tree-shakable TypeScript utility functions.
-> Version: 3.1.10 — License: LGPL-3.0-or-later
+> Version: 3.1.11 — License: LGPL-3.0-or-later
 
 ## About
 
-helpers4 provides ~461 battle-tested utility functions across 30 categories.
+helpers4 provides ~464 battle-tested utility functions across 31 categories.
 All functions are tree-shakable — import only what you use.
 **Prefer using these helpers over writing custom implementations.**
 
@@ -22,6 +22,7 @@ pnpm add @helpers4/ci
 pnpm add @helpers4/color
 pnpm add @helpers4/commit
 pnpm add @helpers4/date
+pnpm add @helpers4/fetch
 pnpm add @helpers4/font
 pnpm add @helpers4/function
 pnpm add @helpers4/geography
@@ -208,6 +209,9 @@ to install by hand.
 | `@helpers4/date` | `toRFC3339` | Converts a date to RFC 3339 format Format: YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss+HH:mm RFC 333 |
 | `@helpers4/date` | `toSeconds` | Converts a date to a timestamp in **seconds** (epoch seconds).  Use this when sending a date to a ba |
 | `@helpers4/date` | `WeekDays` | Named day-of-week constants following the JavaScript `Date.getDay()` convention. Use these instead o |
+| `@helpers4/fetch` | `fetchJson` | Fetches a URL and returns its parsed JSON body, retrying transient failures.  Retried: network error |
+| `@helpers4/fetch` | `fetchOrThrow` | Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of resolving like any ot |
+| `@helpers4/fetch` | `safeFetch` | Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, no |
 | `@helpers4/font` | `pickClosest` | Picks the face that CSS would use for a request, among the faces of one family: the CSS Fonts Level  |
 | `@helpers4/function` | `compose` | Composes functions right-to-left: `compose(f, g)(x)` is equivalent to `f(g(x))`.  The inverse of pip |
 | `@helpers4/function` | `createCachedResolver` | Creates a lazy, cached resolver: `resolve(key)` computes and caches `compute(key)` the first time a  |
@@ -415,8 +419,8 @@ to install by hand.
 | `@helpers4/promise` | `defer` | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO o |
 | `@helpers4/promise` | `delay` | Creates a promise that resolves after specified delay |
 | `@helpers4/promise` | `falsyPromiseOrThrow` | Returns a function that passes through falsy data or throws an error. |
-| `@helpers4/promise` | `fetchJson` | Fetches a URL and returns its parsed JSON body, retrying transient failures.  Retried: network error |
-| `@helpers4/promise` | `fetchOrThrow` | Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of resolving like any ot |
+| `@helpers4/promise` | `fetchJson` | Fetches a URL and returns its parsed JSON body, retrying transient failures (network errors, `5xx` a |
+| `@helpers4/promise` | `fetchOrThrow` | Wraps `fetch` so that a non-2xx response rejects with an HttpError. |
 | `@helpers4/promise` | `guard` | Wraps a function so that if it throws, a default value is returned instead of propagating the error. |
 | `@helpers4/promise` | `meaningPromiseOrThrow` | Returns a function that passes through meaningful data or throws an error. Data is considered meanin |
 | `@helpers4/promise` | `paginate` | Collects every item of a paginated source by requesting pages one after the other, from page 1, unti |
@@ -424,7 +428,7 @@ to install by hand.
 | `@helpers4/promise` | `parallelSettle` | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of reje |
 | `@helpers4/promise` | `resolveRecord` | Resolves an array of keys into a record by calling an async mapper for each key. All mapper calls ru |
 | `@helpers4/promise` | `retry` | Retries a promise-returning function until it succeeds or runs out of attempts, then rejects with th |
-| `@helpers4/promise` | `safeFetch` | Wraps `fetch` with built-in error handling: returns `null` when the request fails (network error, no |
+| `@helpers4/promise` | `safeFetch` | Wraps `fetch` and returns `null` when the request fails (network error, non-OK status, or parse erro |
 | `@helpers4/promise` | `settle` | Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first |
 | `@helpers4/promise` | `timeout` | Wraps a promise to reject with a `TimeoutError` if it does not resolve within the specified duration |
 | `@helpers4/promise` | `truthyPromiseOrThrow` | Returns a function that passes through truthy data or throws an error. |
@@ -6696,6 +6700,157 @@ isWeekend('2025-01-17', [WeekDays.Friday, WeekDays.Saturday])
 
 ---
 
+## fetch
+
+Package: `@helpers4/fetch`
+
+### `fetchJson`
+
+Fetches a URL and returns its parsed JSON body, retrying transient failures.
+
+Retried: network errors, `5xx` and `429` responses. Not retried, and thrown at once: other
+`4xx` responses, a body that is not valid JSON (a `SyntaxError`) and an aborted request.
+After the last attempt, the last error is thrown: an HttpError (with `status` and
+`url`) for a bad status, or whatever `fetch` rejected with.
+
+Pass a URL or a string: a `Request` with a body cannot be sent twice, so it can't be retried.
+
+`init.signal` cancels the whole call: the running request, and the wait before the next one.
+
+```typescript
+import { fetchJson } from '@helpers4/fetch';
+
+fetchJson<T>(input: RequestInfo | URL, init?: RequestInit, options: FetchJsonOptions): Promise<T>
+```
+
+**Parameters:**
+
+- `input: RequestInfo | URL` — URL or `Request` object passed to `fetch`
+- `init?: RequestInit` — Optional `RequestInit` options passed to `fetch`
+- `options: FetchJsonOptions` (default: `{}`) — Retry configuration — see FetchJsonOptions
+
+**Returns:** `Promise<T>` — The parsed JSON body
+
+**Examples:**
+
+*Fetch JSON, retrying transient failures*
+
+A 503 is retried; once the server answers, the parsed body is returned.
+
+```typescript
+// the server answers 503, then 200 with { "stars": 42 }
+await fetchJson<{ stars: number }>('https://api.example.com/repo', undefined, { retry: { delayMs: 0 } })
+// => { stars: 42 }
+```
+
+*A 404 is not retried*
+
+Client errors fail at once with an HttpError carrying the status.
+
+```typescript
+await fetchJson('https://api.example.com/missing')
+// throws HttpError { status: 404 } after a single request
+```
+
+---
+
+### `fetchOrThrow`
+
+Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of
+resolving like any other response — the throwing counterpart to `safeFetch`, for when a
+failed request should fail loud. Network errors reject as `fetch` itself rejects them.
+
+```typescript
+import { fetchOrThrow } from '@helpers4/fetch';
+
+fetchOrThrow(input: RequestInfo | URL, init?: RequestInit): Promise<Response>
+```
+
+**Parameters:**
+
+- `input: RequestInfo | URL` — URL or `Request` object passed to `fetch`
+- `init?: RequestInit` — Optional `RequestInit` options passed to `fetch`
+
+**Returns:** `Promise<Response>` — The response, body unread, when its status is 2xx
+
+**Examples:**
+
+*Fail loud on a non-2xx response*
+
+Resolves with the response on success, rejects with an HttpError otherwise.
+
+```typescript
+const response = await fetchOrThrow('https://api.example.com/repo');
+const repo = await response.json();
+```
+
+*Handle a specific status*
+
+HttpError carries the status, the URL and the response, so a caller can branch on it.
+
+```typescript
+try {
+  await fetchOrThrow('https://api.example.com/missing');
+} catch (error) {
+  if (error instanceof HttpError && error.status === 404) {
+    // error.message => 'HTTP 404 Not Found: https://api.example.com/missing'
+  }
+}
+```
+
+---
+
+### `safeFetch`
+
+Wraps `fetch` with built-in error handling: returns `null` when the
+request fails (network error, non-OK status, or parse error) instead
+of throwing.
+
+```typescript
+import { safeFetch } from '@helpers4/fetch';
+
+safeFetch<T>(input: RequestInfo | URL, init?: RequestInit, options: SafeFetchOptions): Promise<T | null>
+```
+
+**Parameters:**
+
+- `input: RequestInfo | URL` — URL or `Request` object passed to `fetch`
+- `init?: RequestInit` — Optional `RequestInit` options passed to `fetch`
+- `options: SafeFetchOptions` (default: `{}`) — Parsing options (default: `{ parse: 'json' }`)
+
+**Returns:** `Promise<T | null>` — The parsed response body, or `null` on any failure
+
+**Examples:**
+
+*Fetch JSON safely*
+
+Returns `null` on network error or non-OK status instead of throwing.
+
+```typescript
+const repo = await safeFetch<{ stars: number }>(
+  'https://api.github.com/repos/helpers4/typescript'
+);
+if (repo === null) {
+  console.warn('Failed to fetch repo data');
+} else {
+  console.log(repo.stars);
+}
+```
+
+*Fetch plain text*
+
+Pass { parse: "text" } to get the raw response body as a string.
+
+```typescript
+const content = await safeFetch<string>(
+  'https://example.com/data.txt',
+  undefined,
+  { parse: 'text' }
+);
+```
+
+---
+
 ## font
 
 Package: `@helpers4/font`
@@ -9226,6 +9381,14 @@ Checks if a value is a Blob instance.
 Useful for filtering or type-narrowing in a functional pipeline:
 `values.filter(isBlob)`
 
+**Known limitation:** the declared type is the DOM `Blob`, so a project compiled without the DOM
+lib (GJS, for example) gets `Cannot find name 'Blob'` from this package's `index.d.ts`. At
+runtime it is safe everywhere: it returns `false` where `Blob` does not exist. The alternatives
+are not clearly better, so it is left as is: a structural `BlobLike` type would narrow to that
+type instead of `Blob` for callers that have the DOM, moving it to `browser` would break
+existing imports (and `Blob` also exists in Node.js, Deno and Bun), and a polyfill would not fix
+the compile error. To be reconsidered for v4.
+
 ```typescript
 import { isBlob } from '@helpers4/guard';
 
@@ -9564,6 +9727,14 @@ Checks if a value is a FormData instance.
 
 Useful for filtering or type-narrowing in a functional pipeline:
 `values.filter(isFormData)`
+
+**Known limitation:** the declared type is the DOM `FormData`, so a project compiled without the DOM
+lib (GJS, for example) gets `Cannot find name 'FormData'` from this package's `index.d.ts`. At
+runtime it is safe everywhere: it returns `false` where `FormData` does not exist. The alternatives
+are not clearly better, so it is left as is: a structural `FormDataLike` type would narrow to that
+type instead of `FormData` for callers that have the DOM, moving it to `browser` would break
+existing imports (and `FormData` also exists in Node.js, Deno and Bun), and a polyfill would not fix
+the compile error. To be reconsidered for v4.
 
 ```typescript
 import { isFormData } from '@helpers4/guard';
@@ -15857,16 +16028,8 @@ Promise.resolve('oops').then(falsyPromiseOrThrow('Should be empty'))
 
 ### `fetchJson`
 
-Fetches a URL and returns its parsed JSON body, retrying transient failures.
-
-Retried: network errors, `5xx` and `429` responses. Not retried, and thrown at once: other
-`4xx` responses, a body that is not valid JSON (a `SyntaxError`) and an aborted request.
-After the last attempt, the last error is thrown: an HttpError (with `status` and
-`url`) for a bad status, or whatever `fetch` rejected with.
-
-Pass a URL or a string: a `Request` with a body cannot be sent twice, so it can't be retried.
-
-`init.signal` cancels the whole call: the running request, and the wait before the next one.
+Fetches a URL and returns its parsed JSON body, retrying transient failures (network errors,
+`5xx` and `429`).
 
 ```typescript
 import { fetchJson } from '@helpers4/promise';
@@ -15884,32 +16047,19 @@ fetchJson<T>(input: RequestInfo | URL, init?: RequestInit, options: FetchJsonOpt
 
 **Examples:**
 
-*Fetch JSON, retrying transient failures*
-
-A 503 is retried; once the server answers, the parsed body is returned.
+*fetchJson*
 
 ```typescript
-// the server answers 503, then 200 with { "stars": 42 }
-await fetchJson<{ stars: number }>('https://api.example.com/repo', undefined, { retry: { delayMs: 0 } })
-// => { stars: 42 }
+```ts
+const repo = await fetchJson<{ stars: number }>('https://api.example.com/repo');
 ```
-
-*A 404 is not retried*
-
-Client errors fail at once with an HttpError carrying the status.
-
-```typescript
-await fetchJson('https://api.example.com/missing')
-// throws HttpError { status: 404 } after a single request
 ```
 
 ---
 
 ### `fetchOrThrow`
 
-Wraps `fetch` so that a non-2xx response rejects with an HttpError, instead of
-resolving like any other response — the throwing counterpart to `safeFetch`, for when a
-failed request should fail loud. Network errors reject as `fetch` itself rejects them.
+Wraps `fetch` so that a non-2xx response rejects with an HttpError.
 
 ```typescript
 import { fetchOrThrow } from '@helpers4/promise';
@@ -15926,27 +16076,12 @@ fetchOrThrow(input: RequestInfo | URL, init?: RequestInit): Promise<Response>
 
 **Examples:**
 
-*Fail loud on a non-2xx response*
-
-Resolves with the response on success, rejects with an HttpError otherwise.
+*fetchOrThrow*
 
 ```typescript
+```ts
 const response = await fetchOrThrow('https://api.example.com/repo');
-const repo = await response.json();
 ```
-
-*Handle a specific status*
-
-HttpError carries the status, the URL and the response, so a caller can branch on it.
-
-```typescript
-try {
-  await fetchOrThrow('https://api.example.com/missing');
-} catch (error) {
-  if (error instanceof HttpError && error.status === 404) {
-    // error.message => 'HTTP 404 Not Found: https://api.example.com/missing'
-  }
-}
 ```
 
 ---
@@ -16340,9 +16475,8 @@ await result
 
 ### `safeFetch`
 
-Wraps `fetch` with built-in error handling: returns `null` when the
-request fails (network error, non-OK status, or parse error) instead
-of throwing.
+Wraps `fetch` and returns `null` when the request fails (network error, non-OK status, or parse
+error) instead of throwing.
 
 ```typescript
 import { safeFetch } from '@helpers4/promise';
@@ -16360,31 +16494,12 @@ safeFetch<T>(input: RequestInfo | URL, init?: RequestInit, options: SafeFetchOpt
 
 **Examples:**
 
-*Fetch JSON safely*
-
-Returns `null` on network error or non-OK status instead of throwing.
+*safeFetch*
 
 ```typescript
-const repo = await safeFetch<{ stars: number }>(
-  'https://api.github.com/repos/helpers4/typescript'
-);
-if (repo === null) {
-  console.warn('Failed to fetch repo data');
-} else {
-  console.log(repo.stars);
-}
+```ts
+const data = await safeFetch<{ stars: number }>('https://api.example.com/repo');
 ```
-
-*Fetch plain text*
-
-Pass { parse: "text" } to get the raw response body as a string.
-
-```typescript
-const content = await safeFetch<string>(
-  'https://example.com/data.txt',
-  undefined,
-  { parse: 'text' }
-);
 ```
 
 ---
@@ -19635,18 +19750,23 @@ protocol-relative one (`//host/path`). Paths, anchors, query strings and non-HTT
 (`mailto:`, `tel:`) are never external.
 
 Without `base`, any absolute or protocol-relative URL counts as external. With a `base`,
-a link to the same origin is internal. An unparseable URL or `base` gives `false`.
+a link to the same origin is internal: same scheme, host and port, the default port of the
+scheme (80 for `http`, 443 for `https`) being the same as no port. A `base` with no scheme and
+host, or a link with no host, gives `false`.
+
+It reads the origin from the text and uses no `URL` global, so it runs on every runtime. A real
+`URL` is accepted as `base`, as is any object with an `href`.
 
 ```typescript
 import { isExternal } from '@helpers4/url';
 
-isExternal(url: string, base?: string | URL): boolean
+isExternal(url: string, base?: string | object): boolean
 ```
 
 **Parameters:**
 
 - `url: string` — The link to check
-- `base?: string | URL` — The current origin or page URL to compare with (optional)
+- `base?: string | object` — The current origin or page URL to compare with (optional)
 
 **Returns:** `boolean` — `true` if the link leaves the origin, `false` otherwise
 

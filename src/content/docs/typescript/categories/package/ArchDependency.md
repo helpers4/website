@@ -3,7 +3,7 @@ title: "ArchDependency"
 sidebar:
   label: "ArchDependency"
 description: "One package reference of an Arch Linux `depends` array."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 One package reference of an Arch Linux `depends` array.

@@ -3,7 +3,7 @@ title: "roundedRectPath"
 sidebar:
   label: "roundedRectPath"
 description: "The path of a rectangle with a radius per corner, as SVG path data."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 The path of a rectangle with a radius per corner, as SVG path data. Each radius is clamped to

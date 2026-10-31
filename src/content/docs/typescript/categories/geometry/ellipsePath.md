@@ -3,7 +3,7 @@ title: "ellipsePath"
 sidebar:
   label: "ellipsePath"
 description: "The path of the ellipse that fills a box, as SVG path data: two half-turn arcs."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 The path of the ellipse that fills a box, as SVG path data: two half-turn arcs. A square box

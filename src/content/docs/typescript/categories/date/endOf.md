@@ -3,7 +3,7 @@ title: "endOf"
 sidebar:
   label: "endOf"
 description: "Returns a new `Date` set to the **end** of the given unit."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Returns a new `Date` set to the **end** of the given unit.

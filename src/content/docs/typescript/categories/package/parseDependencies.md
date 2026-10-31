@@ -3,7 +3,7 @@ title: "parseDependencies"
 sidebar:
   label: "parseDependencies"
 description: "Parses the value of a package dependency field (`Depends`, `Requires`, `depends`, ...) into a structure: groups of alte…"
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Parses the value of a package dependency field (`Depends`, `Requires`, `depends`, ...) into a

@@ -3,7 +3,7 @@ title: "mediaTypeOfPath"
 sidebar:
   label: "mediaTypeOfPath"
 description: "Finds the media type of a file from the extension of its path or URL: images, fonts, web documents, scripts and styles,…"
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Finds the media type of a file from the extension of its path or URL: images, fonts, web

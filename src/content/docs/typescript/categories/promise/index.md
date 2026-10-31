@@ -17,8 +17,8 @@ Utility functions for working with promise operations.
 | [`defer`](./defer/) | Runs an async function and guarantees that all deferred callbacks are executed afterwards, in LIFO order \(last register… |
 | [`delay`](./delay/) | Creates a promise that resolves after specified delay |
 | [`falsyPromiseOrThrow`](./falsypromiseorthrow/) | Returns a function that passes through falsy data or throws an error\. |
-| [`fetchJson`](./fetchjson/) | Fetches a URL and returns its parsed JSON body, retrying transient failures\. |
-| [`fetchOrThrow`](./fetchorthrow/) | Wraps \`fetch\` so that a non\-2xx response rejects with an HttpError, instead of resolving like any other response — the… |
+| [`fetchJson`](./fetchjson/) | Fetches a URL and returns its parsed JSON body, retrying transient failures \(network errors, \`5xx\` and \`429\`\)\. |
+| [`fetchOrThrow`](./fetchorthrow/) | Wraps \`fetch\` so that a non\-2xx response rejects with an HttpError\. |
 | [`guard`](./guard/) | Wraps a function so that if it throws, a default value is returned instead of propagating the error\. |
 | [`meaningPromiseOrThrow`](./meaningpromiseorthrow/) | Returns a function that passes through meaningful data or throws an error\. |
 | [`paginate`](./paginate/) | Collects every item of a paginated source by requesting pages one after the other, from page 1, until the source runs o… |
@@ -26,7 +26,7 @@ Utility functions for working with promise operations.
 | [`parallelSettle`](./parallelsettle/) | Runs an array of async functions with a concurrency limit, partitioning the outcomes instead of rejecting on the first… |
 | [`resolveRecord`](./resolverecord/) | Resolves an array of keys into a record by calling an async mapper for each key\. |
 | [`retry`](./retry/) | Retries a promise\-returning function until it succeeds or runs out of attempts, then rejects with the last error, waiti… |
-| [`safeFetch`](./safefetch/) | Wraps \`fetch\` with built\-in error handling: returns \`null\` when the request fails \(network error, non\-OK status, or par… |
+| [`safeFetch`](./safefetch/) | Wraps \`fetch\` and returns \`null\` when the request fails \(network error, non\-OK status, or parse error\) instead of throw… |
 | [`settle`](./settle/) | Runs an array of promises concurrently and partitions the outcomes instead of rejecting on the first failure, unlike \`P… |
 | [`timeout`](./timeout/) | Wraps a promise to reject with a \`TimeoutError\` if it does not resolve within the specified duration\. |
 | [`truthyPromiseOrThrow`](./truthypromiseorthrow/) | Returns a function that passes through truthy data or throws an error\. |

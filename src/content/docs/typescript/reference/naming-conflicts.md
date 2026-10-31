@@ -24,6 +24,8 @@ This is not a bug. `compact` for arrays and `compact` for objects are genuinely 
 | `difference` | [`array`](../categories/array/difference/), [`date`](../categories/date/difference/) |
 | `equalsDeep` | [`array`](../categories/array/equalsdeep/), [`object`](../categories/object/equalsdeep/) |
 | `equalsShallow` | [`array`](../categories/array/equalsshallow/), [`object`](../categories/object/equalsshallow/) |
+| `fetchJson` | [`fetch`](../categories/fetch/fetchjson/), [`promise`](../categories/promise/fetchjson/) |
+| `fetchOrThrow` | [`fetch`](../categories/fetch/fetchorthrow/), [`promise`](../categories/promise/fetchorthrow/) |
 | `filter` | [`map`](../categories/map/filter/), [`set`](../categories/set/filter/) |
 | `identity` | [`function`](../categories/function/identity/), [`geometry`](../categories/geometry/identity/) |
 | `intersection` | [`array`](../categories/array/intersection/), [`geometry`](../categories/geometry/intersection/) |
@@ -34,6 +36,7 @@ This is not a bug. `compact` for arrays and `compact` for objects are genuinely 
 | `isValid` | [`date`](../categories/date/isvalid/), [`version`](../categories/version/isvalid/) |
 | `map` | [`object`](../categories/object/map/), [`set`](../categories/set/map/) |
 | `parse` | [`json`](../categories/json/parse/), [`version`](../categories/version/parse/) |
+| `safeFetch` | [`fetch`](../categories/fetch/safefetch/), [`promise`](../categories/promise/safefetch/) |
 | `stringify` | [`json`](../categories/json/stringify/), [`version`](../categories/version/stringify/) |
 | `toMapByKey` | [`map`](../categories/map/tomapbykey/), [`set`](../categories/set/tomapbykey/) |
 
@@ -99,6 +102,20 @@ import { equalsDeep as equalsDeep4object } from '@helpers4/object';
 ```ts
 import { equalsShallow as equalsShallow4array } from '@helpers4/array';
 import { equalsShallow as equalsShallow4object } from '@helpers4/object';
+```
+
+### `fetchJson`
+
+```ts
+import { fetchJson as fetchJson4fetch } from '@helpers4/fetch';
+import { fetchJson as fetchJson4promise } from '@helpers4/promise';
+```
+
+### `fetchOrThrow`
+
+```ts
+import { fetchOrThrow as fetchOrThrow4fetch } from '@helpers4/fetch';
+import { fetchOrThrow as fetchOrThrow4promise } from '@helpers4/promise';
 ```
 
 ### `filter`
@@ -171,6 +188,13 @@ import { map as map4set } from '@helpers4/set';
 ```ts
 import { parse as parse4json } from '@helpers4/json';
 import { parse as parse4version } from '@helpers4/version';
+```
+
+### `safeFetch`
+
+```ts
+import { safeFetch as safeFetch4fetch } from '@helpers4/fetch';
+import { safeFetch as safeFetch4promise } from '@helpers4/promise';
 ```
 
 ### `stringify`

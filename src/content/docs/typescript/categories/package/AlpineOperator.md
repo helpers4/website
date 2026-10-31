@@ -3,7 +3,7 @@ title: "AlpineOperator"
 sidebar:
   label: "AlpineOperator"
 description: "The operators of an Alpine (apk) version constraint, as apk writes them: the five comparisons;"
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 The operators of an Alpine (apk) version constraint, as apk writes them: the five comparisons;

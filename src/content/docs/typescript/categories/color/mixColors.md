@@ -3,7 +3,7 @@ title: "mixColors"
 sidebar:
   label: "mixColors"
 description: "Mixes two colors in sRGB, as CSS `color-mix(in srgb, color P%, base)` does: `percent`% of `color` and the rest of `base…"
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Mixes two colors in sRGB, as CSS `color-mix(in srgb, color P%, base)` does: `percent`% of

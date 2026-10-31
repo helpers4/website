@@ -3,7 +3,7 @@ title: "applyToPoint"
 sidebar:
   label: "applyToPoint"
 description: "Transforms a point by a matrix."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Transforms a point by a matrix.

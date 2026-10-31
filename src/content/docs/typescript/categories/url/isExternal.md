@@ -3,7 +3,7 @@ title: "isExternal"
 sidebar:
   label: "isExternal"
 description: "Whether a link points to another origin than `base`: an absolute `http(s)` URL or a protocol-relative one (`//host/path…"
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Whether a link points to another origin than `base`: an absolute `http(s)` URL or a
@@ -11,7 +11,12 @@ protocol-relative one (`//host/path`). Paths, anchors, query strings and non-HTT
 (`mailto:`, `tel:`) are never external.
 
 Without `base`, any absolute or protocol-relative URL counts as external. With a `base`,
-a link to the same origin is internal. An unparseable URL or `base` gives `false`.
+a link to the same origin is internal: same scheme, host and port, the default port of the
+scheme (80 for `http`, 443 for `https`) being the same as no port. A `base` with no scheme and
+host, or a link with no host, gives `false`.
+
+It reads the origin from the text and uses no `URL` global, so it runs on every runtime. A real
+`URL` is accepted as `base`, as is any object with an `href`.
 
 > Available since v3.1.4
 
@@ -27,7 +32,7 @@ import { isExternal } from 'helpers4/url';
 
 
 ```ts
-isExternal(url: string, base?: string | URL): boolean
+isExternal(url: string, base?: string | object): boolean
 ```
 
 ## Parameters
@@ -35,7 +40,7 @@ isExternal(url: string, base?: string | URL): boolean
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `url` | `string` | The link to check |
-| `base` | `string \| URL` | The current origin or page URL to compare with \(optional\) *(optional)* |
+| `base` | `string \| object` | The current origin or page URL to compare with \(optional\) *(optional)* |
 
 ## Returns
 

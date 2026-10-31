@@ -3,7 +3,7 @@ title: "ComparisonOperator"
 sidebar:
   label: "ComparisonOperator"
 description: "The operators of an RPM or Arch Linux version constraint."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 The operators of an RPM or Arch Linux version constraint.

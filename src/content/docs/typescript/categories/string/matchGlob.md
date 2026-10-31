@@ -3,7 +3,7 @@ title: "matchGlob"
 sidebar:
   label: "matchGlob"
 description: "Whether `text` matches a glob pattern in full: `*` matches any run of characters, `?` exactly one."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Whether `text` matches a glob pattern in full: `*` matches any run of characters, `?` exactly

@@ -8,7 +8,7 @@ sidebar:
 
 # All Functions
 
-**461** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
+**464** implemented helpers + **60** covered by native JavaScript APIs, sorted alphabetically.
 
 | Function | Category | Description |
 |----------|----------|-------------|
@@ -119,8 +119,10 @@ sidebar:
 | [`extractPureURI`](../url/extractpureuri/) | [url](../url/) | Extracts the pure URI from a URL by removing query parameters and fragments\. |
 | [`falsyPromiseOrThrow`](../promise/falsypromiseorthrow/) | [promise](../promise/) | Returns a function that passes through falsy data or throws an error\. |
 | [`families`](../license/families/) | [license](../license/) | Groups a raw, possibly compound license string into its coarse family set — e\.g\. |
-| [`fetchJson`](../promise/fetchjson/) | [promise](../promise/) | Fetches a URL and returns its parsed JSON body, retrying transient failures\. |
-| [`fetchOrThrow`](../promise/fetchorthrow/) | [promise](../promise/) | Wraps \`fetch\` so that a non\-2xx response rejects with an HttpError, instead of resolving like any other response — the… |
+| [`fetchJson`](../fetch/fetchjson/) | [fetch](../fetch/) | Fetches a URL and returns its parsed JSON body, retrying transient failures\. |
+| [`fetchJson`](../promise/fetchjson/) | [promise](../promise/) | Fetches a URL and returns its parsed JSON body, retrying transient failures \(network errors, \`5xx\` and \`429\`\)\. |
+| [`fetchOrThrow`](../fetch/fetchorthrow/) | [fetch](../fetch/) | Wraps \`fetch\` so that a non\-2xx response rejects with an HttpError, instead of resolving like any other response — the… |
+| [`fetchOrThrow`](../promise/fetchorthrow/) | [promise](../promise/) | Wraps \`fetch\` so that a non\-2xx response rejects with an HttpError\. |
 | [`filter`](../map/filter/) | [map](../map/) | Creates a new Map containing only the entries for which the predicate returns true\. |
 | [`filter`](../set/filter/) | [set](../set/) | Creates a new Set containing only the values for which the predicate returns true\. |
 | [`filterAsync`](../array/filterasync/) | [array](../array/) | The async counterpart to \`Array\.prototype\.filter\`: runs \`predicate\` for every item and resolves to the items whose pred… |
@@ -413,7 +415,8 @@ sidebar:
 | [`roundedRectPath`](../geometry/roundedrectpath/) | [geometry](../geometry/) | The path of a rectangle with a radius per corner, as SVG path data\. |
 | [`roundTo`](../number/roundto/) | [number](../number/) | Rounds a number to specified decimal places |
 | [`RpmDependency`](../package/rpmdependency/) | [package](../package/) | One package reference of an RPM \`Requires\` field\. |
-| [`safeFetch`](../promise/safefetch/) | [promise](../promise/) | Wraps \`fetch\` with built\-in error handling: returns \`null\` when the request fails \(network error, non\-OK status, or par… |
+| [`safeFetch`](../fetch/safefetch/) | [fetch](../fetch/) | Wraps \`fetch\` with built\-in error handling: returns \`null\` when the request fails \(network error, non\-OK status, or par… |
+| [`safeFetch`](../promise/safefetch/) | [promise](../promise/) | Wraps \`fetch\` and returns \`null\` when the request fails \(network error, non\-OK status, or parse error\) instead of throw… |
 | [`safeJsonParse`](../object/safejsonparse/) | [object](../object/) | Parses a JSON string, returning \`null\` \(or a fallback\) on any parse failure\. |
 | [`safeParse`](../json/safeparse/) | [json](../json/) | Parses JSON permissively like parse — strict JSON, JSONC \(HuJSON, JWCC\) and JSON5 — but returns \`null\` \(or \`fallback\`\)… |
 | [`safeParseLines`](../json/safeparselines/) | [json](../json/) | Parses newline\-delimited JSON \(NDJSON, JSON Lines\) like parseLines, but returns \`null\` \(or \`fallback\`\) instead of throw… |

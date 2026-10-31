@@ -3,7 +3,7 @@ title: "deobfuscate"
 sidebar:
   label: "deobfuscate"
 description: "Reverses obfuscate."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Reverses obfuscate. Never throws: a token that `obfuscate` could not have produced

@@ -3,7 +3,7 @@ title: "daysInMonth"
 sidebar:
   label: "daysInMonth"
 description: "Returns the number of days in the given month of the given year."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Returns the number of days in the given month of the given year.

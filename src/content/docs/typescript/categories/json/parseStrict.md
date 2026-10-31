@@ -3,7 +3,7 @@ title: "parseStrict"
 sidebar:
   label: "parseStrict"
 description: "Parses strict JSON (RFC 8259) — exactly what `JSON.parse` accepts, nothing more."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Parses strict JSON (RFC 8259) — exactly what `JSON.parse` accepts, nothing more.

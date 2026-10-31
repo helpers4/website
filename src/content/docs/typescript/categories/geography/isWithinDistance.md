@@ -3,7 +3,7 @@ title: "isWithinDistance"
 sidebar:
   label: "isWithinDistance"
 description: "Whether a point lies within a radius of a center, the border included."
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Whether a point lies within a radius of a center, the border included.

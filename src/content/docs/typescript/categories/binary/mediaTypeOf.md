@@ -3,7 +3,7 @@ title: "mediaTypeOf"
 sidebar:
   label: "mediaTypeOf"
 description: "Finds the media type of an image from its first bytes (its magic number), whatever its name says: PNG, JPEG, GIF, WebP,…"
-version: "3.1.10"
+version: "3.1.11"
 ---
 
 Finds the media type of an image from its first bytes (its magic number), whatever its name
