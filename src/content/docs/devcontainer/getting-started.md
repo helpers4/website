@@ -49,7 +49,6 @@ and options.
 | [cline-dev](./features/cline-dev/) | Cline AI coding agent extension + optional CLI |
 | [copilot-dev](./features/copilot-dev/) | Copilot Chat + `gh copilot` CLI, with shared commit/PR/review instructions |
 | [mistral-dev](./features/mistral-dev/) | Mistral Vibe extension, with `~/.vibe` persisted across rebuilds |
-| [peon-ping](./features/peon-ping/) | Game-character voice/audio notifications when your AI agent finishes or needs input |
 
 ### Editor & Git tooling
 
@@ -60,7 +59,7 @@ and options.
 | [git-absorb](./features/git-absorb/) | Automatically absorbs staged changes into their logical commits |
 | [auto-header](./features/auto-header/) | Auto-configures VS Code file headers (license, company, contributors) |
 | [dotfiles-sync](./features/dotfiles-sync/) | Syncs local Git/SSH/GPG/npm/yarn config (and opt-in cloud credentials) into the container |
-| [shell-history-per-project](./features/shell-history-per-project/) | Persists shell history per project (zsh, bash, fish) |
+| [shell-history](./features/shell-history/) | Keeps your bash, zsh and fish history across rebuilds and Codespaces, in a Docker named volume |
 
 ### Language & build toolchains
 
@@ -98,15 +97,16 @@ what runs and which features include it.
 
 ## Combining Features
 
-Mix multiple features for your perfect environment:
+Mix multiple features for your perfect environment (or tick boxes in the [devcontainer.json bootstrap guide](/guides/devcontainer/)):
 
 ```json
 {
   "name": "Vite+ Project",
-  "image": "ghcr.io/helpers4/devcontainer/vite-plus:latest",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:26",
   "features": {
-    "ghcr.io/helpers4/devcontainer/shell-history-per-project": {},
-    "ghcr.io/helpers4/devcontainer/pnpm-store": {}
+    "ghcr.io/helpers4/devcontainer/vite-plus:1": {},
+    "ghcr.io/helpers4/devcontainer/shell-history:1": {},
+    "ghcr.io/helpers4/devcontainer/pnpm-store:1": {}
   },
   "postCreateCommand": "pnpm install"
 }

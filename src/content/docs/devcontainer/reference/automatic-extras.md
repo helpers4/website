@@ -47,9 +47,9 @@ features:
 [essential-dev](../features/essential-dev/) · [git-absorb](../features/git-absorb/) ·
 [mistral-dev](../features/mistral-dev/) · [nub](../features/nub/) ·
 [package-auto-install](../features/package-auto-install/) ·
-[peon-ping](../features/peon-ping/) · [playwright-dev](../features/playwright-dev/) ·
+[playwright-dev](../features/playwright-dev/) ·
 [pnpm-store](../features/pnpm-store/) ·
-[shell-history-per-project](../features/shell-history-per-project/) ·
+[shell-history](../features/shell-history/) ·
 [vite-plus](../features/vite-plus/)
 
 (`cline-dev`, `copilot-dev`, `github-dev`, and `typescript-dev` don't currently include it.)
