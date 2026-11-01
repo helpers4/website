@@ -8,17 +8,11 @@
  * GitHub stars are fetched at build time.
  */
 
-import { getCollection } from 'astro:content';
 import ProjectCard, { type ProjectCard as ProjectCardType } from '../components/ProjectCard.astro';
+import { formatPostDate, getPosts, postHref } from '../lib/blog';
 import { getRepoStats } from '../lib/repoStats';
 
-const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 1);
-
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-}
+const latestPosts = (await getPosts()).slice(0, 1);
 
 const PROJECTS: ProjectCardType[] = [
   {
@@ -178,10 +172,10 @@ const currentYear = new Date().getFullYear();
           <h2>Latest from the blog</h2>
           <div class="blog-strips">
             {latestPosts.map((post) => (
-              <a href={`/blog/${post.id}`} class="blog-strip">
+              <a href={postHref(post)} class="blog-strip">
                 <h3 class="blog-strip-title">{post.data.title}</h3>
                 <div class="blog-strip-meta">
-                  <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+                  <time datetime={post.data.date.toISOString()}>{formatPostDate(post.data.date)}</time>
                   <span>·</span>
                   <span>{post.data.author}</span>
                   {post.data.tags.length > 0 && (
@@ -190,17 +184,17 @@ const currentYear = new Date().getFullYear();
                     </div>
                   )}
                 </div>
-                <p class="blog-strip-excerpt">{post.data.excerpt}</p>
+                <p class="blog-strip-excerpt">{post.data.description}</p>
               </a>
             ))}
           </div>
-          <a href="/blog" class="blog-see-all">See all articles →</a>
+          <a href="/blog/" class="blog-see-all">See all articles →</a>
         </section>
       )}
     </div>
 
     <p class="copyright-credit">
-      © {currentYear} helpers4 · <a href="/blog">Blog</a> · <a href="/guides/">Guides</a> · <a href="/sponsors/">Sponsors</a> · <a href="https://github.com/helpers4" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="/typescript/legal/license">LGPL-3.0</a>
+      © {currentYear} helpers4 · <a href="/blog/">Blog</a> · <a href="/guides/">Guides</a> · <a href="/sponsors/">Sponsors</a> · <a href="https://github.com/helpers4" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="/typescript/legal/license">LGPL-3.0</a>
     </p>
   </body>
 </html>

@@ -6,21 +6,19 @@
  * Blog feed (RSS 2.0) at /blog/rss.xml — static, generated at build time.
  */
 
-import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
+import { getPosts, postHref } from '../../lib/blog';
 
 const escapeXml = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 
 export async function GET({ site }: APIContext) {
   const base = site!;
-  const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
-    (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-  );
+  const posts = await getPosts();
   const feedUrl = new URL('/blog/rss.xml', base).href;
 
   const items = posts.map((post) => {
-    const url = new URL(`/blog/${post.id}/`, base).href;
+    const url = new URL(postHref(post), base).href;
     const categories = post.data.tags.map((t) => `      <category>${escapeXml(t)}</category>`).join('\n');
     return `    <item>
       <title>${escapeXml(post.data.title)}</title>
@@ -28,9 +26,9 @@ export async function GET({ site }: APIContext) {
       <guid isPermaLink="true">${url}</guid>
       <pubDate>${post.data.date.toUTCString()}</pubDate>
       <dc:date>${post.data.date.toISOString()}</dc:date>
-      <dc:creator>${escapeXml(post.data.author)}</dc:creator>
+      <dc:creator>${escapeXml(post.data.author ?? 'helpers4')}</dc:creator>
 ${categories}
-      <description>${escapeXml(post.data.excerpt)}</description>
+      <description>${escapeXml(post.data.description)}</description>
     </item>`;
   });
 

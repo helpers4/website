@@ -3,7 +3,7 @@ title: "Shipping helpers4 TypeScript v2 — 10 Years of Copy-Pasting the Same Ut
 date: 2026-05-23
 author: Bérenger (baxyz)
 tags: [typescript, release, helpers4]
-excerpt: "After two years of solo development, 22 pre-releases, and more than a little bit of stubbornness, helpers4/typescript v2 is finally out. Here's the story behind it."
+description: "After two years of solo development, 22 pre-releases, and more than a little bit of stubbornness, helpers4/typescript v2 is finally out. Here's the story behind it."
 ---
 
 Let me be honest with you: I've rewritten the same `capitalize()` function approximately fourteen times across ten different companies over twenty years of professional development.

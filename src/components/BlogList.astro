@@ -1,0 +1,65 @@
+---
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * Every published post, newest first — rendered by the blog overview page (docs/blog/index.mdx).
+ */
+import { formatPostDate, getPosts, postHref } from '../lib/blog';
+
+const posts = await getPosts();
+---
+
+{posts.length === 0 && <p>No posts yet. Check back soon!</p>}
+<ul class="blog-list">
+  {posts.map((post) => (
+    <li>
+      <a href={postHref(post)} class="blog-list-title">{post.data.title}</a>
+      <p class="blog-list-meta">
+        <time datetime={post.data.date.toISOString()}>{formatPostDate(post.data.date)}</time>
+        {post.data.author && <> · {post.data.author}</>}
+        {post.data.tags.map((tag) => <span class="blog-tag">{tag}</span>)}
+      </p>
+      <p class="blog-list-excerpt">{post.data.description}</p>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .blog-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .blog-list li {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--sl-color-hairline);
+  }
+
+  .blog-list-title {
+    font-size: var(--sl-text-xl);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .blog-list-meta {
+    margin-top: 0.25rem;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+
+  .blog-list-excerpt {
+    margin-top: 0.5rem;
+    color: var(--sl-color-gray-2);
+  }
+
+  .blog-tag {
+    display: inline-block;
+    margin-inline-start: 0.4rem;
+    padding: 0 0.5rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 9999px;
+    font-size: var(--sl-text-xs);
+  }
+</style>
