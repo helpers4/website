@@ -1,7 +1,7 @@
 ---
 title: "Nub — Fast TypeScript/Node Toolchain"
 sidebar:
-  order: 15
+  order: 16
 ---
 
 > Code name: `nub`

@@ -1,7 +1,7 @@
 ---
 title: "Kimi Code Development Environment"
 sidebar:
-  order: 13
+  order: 14
 ---
 
 > Code name: `kimi-dev`

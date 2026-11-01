@@ -1,7 +1,7 @@
 ---
 title: "Playwright Development Environment"
 sidebar:
-  order: 19
+  order: 20
 ---
 
 > Code name: `playwright-dev`
