@@ -1,8 +1,12 @@
 ---
 title: "Conventional Commits Check"
 sidebar:
-  order: 1
+  label: "conventional-commits"
 ---
+
+:::note[helpers4/action]
+Part of the [helpers4/action](https://github.com/helpers4/action/tree/main/conventional-commits) repository: `uses: helpers4/action/conventional-commits@v1`.
+:::
 
 Validate commit messages against the Conventional Commits specification.
 

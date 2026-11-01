@@ -35,7 +35,8 @@ website/
 │   │                                  #   pages + public/rust/llms-full.txt; RUST_REPO_PATH points at a checkout
 │   ├── generate-typescript-docs.js    # JSDoc → Markdown + publishes llms-full.txt
 │   ├── generate-devcontainer-docs.js  # feature READMEs → Markdown
-│   ├── generate-action-docs.js        # action README → Markdown
+│   ├── generate-action-docs.js        # action READMEs → Markdown: helpers4/action folders and the
+│   │                                  #   actions with their own repo (MARKETPLACE_ACTIONS), one flat actions/ group
 │   ├── check-internal-links.mjs       # every internal href of dist/ resolved from its own page URL; exit 1 if any is broken
 │   ├── fix-titles.mjs                 # strip duplicate H1 (Starlight renders title: as h1)
 │   └── sync-from-repos.js            # run all generators
@@ -43,7 +44,7 @@ website/
     ├── on-rust-release.yml            # auto-triggered by rust repo release (event rust-release)
     ├── on-typescript-release.yml      # auto-triggered by typescript repo release
     ├── on-devcontainer-release.yml    # auto-triggered by devcontainer repo release
-    └── on-action-release.yml          # auto-triggered by action repo release
+    └── on-action-release.yml          # auto-triggered by an action release (client_payload.repo: action, action-release)
 ```
 
 **Key commands:**

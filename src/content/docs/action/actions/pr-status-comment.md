@@ -1,8 +1,12 @@
 ---
 title: "PR Status Comment"
 sidebar:
-  order: 3
+  label: "pr-status-comment"
 ---
+
+:::note[helpers4/action]
+Part of the [helpers4/action](https://github.com/helpers4/action/tree/main/pr-status-comment) repository: `uses: helpers4/action/pr-status-comment@v1`.
+:::
 
 Post or update a single sticky PR comment summarizing your CI job statuses as a table — one bot
 comment per PR that updates in place across pushes, instead of a new comment piling up every run.

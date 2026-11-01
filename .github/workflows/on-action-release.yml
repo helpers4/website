@@ -1,8 +1,21 @@
 name: On Action Release
 
+# Regenerates the pages of the repository that was released: helpers4/action (the monorepo, the
+# default) or one of the actions that have their own repository (client_payload.repo).
 on:
   repository_dispatch:
     types: [ action-release ]
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: "Released repository: action, or an action with its own repository (action-release)"
+        required: true
+        default: action
+        type: string
+      version:
+        description: "Tag to generate the docs from (e.g. v0.6.1)"
+        required: true
+        type: string
 
 jobs:
   update-docs:
@@ -28,29 +41,43 @@ jobs:
         with:
           node-version: "26"
 
-      - name: Checkout Action repo
+      - name: Resolve released repository
+        id: source
+        env:
+          REPO: ${{ github.event.client_payload.repo || inputs.repo || 'action' }}
+          VERSION: ${{ github.event.client_payload.version || inputs.version }}
+        run: |
+          set -euo pipefail
+          # Keep in step with MARKETPLACE_ACTIONS in scripts/generate-action-docs.js.
+          case "${REPO}" in
+            action|action-release) ;;
+            *) echo "Unknown action repository: ${REPO}"; exit 1 ;;
+          esac
+          echo "repo=${REPO}" >> "$GITHUB_OUTPUT"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout released repo
         uses: actions/checkout@v7
         with:
-          repository: helpers4/action
-          ref: ${{ github.event.client_payload.version }}
-          path: _action
+          repository: helpers4/${{ steps.source.outputs.repo }}
+          ref: ${{ steps.source.outputs.version }}
+          path: _repos/${{ steps.source.outputs.repo }}
 
       - name: Generate Action docs
         env:
-          GH_WORKSPACE: ${{ github.workspace }}
-        run: |
-          ln -sfn "${GH_WORKSPACE}/_action" "${GH_WORKSPACE}/../action"
-          node scripts/generate-action-docs.js
+          ACTION_REPOS_PATH: ${{ github.workspace }}/_repos
+        run: node scripts/generate-action-docs.js
 
       - name: Commit and push updated docs
         env:
-          RELEASE_VERSION: ${{ github.event.client_payload.version }}
+          RELEASE_VERSION: ${{ steps.source.outputs.version }}
+          RELEASE_REPO: ${{ steps.source.outputs.repo }}
         run: |
           git config user.name "pushinator[bot]"
           git config user.email "pushinator[bot]@users.noreply.github.com"
           git add src/content/docs/action/
           git diff --staged --quiet && echo "No changes to commit" && exit 0
-          git commit -m "chore(lib-action): 🔧 update docs for ${RELEASE_VERSION}"
+          git commit -m "chore(lib-action): 🔧 update ${RELEASE_REPO} docs for ${RELEASE_VERSION}"
           for attempt in 1 2 3; do
             git fetch origin main
             if git rebase origin/main && git push origin HEAD:main; then
