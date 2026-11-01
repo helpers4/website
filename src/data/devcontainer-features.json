@@ -1,0 +1,514 @@
+{
+  "features": [
+    {
+      "id": "angular-dev",
+      "name": "Angular Development Environment",
+      "description": "Angular-specific development environment with port forwarding, VS Code extensions, and CLI autocompletion. Also self-heals your devcontainer setup.",
+      "version": "1.2.3",
+      "options": {
+        "installCli": {
+          "type": "boolean",
+          "default": false,
+          "description": "Install Angular CLI globally (set to true if not using another feature for CLI installation)"
+        }
+      }
+    },
+    {
+      "id": "auto-header",
+      "name": "Automatic File Headers",
+      "description": "Automatically configures VS Code file headers with customizable templates based on project, license, company, and contributors information. Also self-heals your devcontainer setup.",
+      "version": "1.2.4",
+      "options": {
+        "headerType": {
+          "type": "string",
+          "default": "simple",
+          "description": "Header style: 'simple' (project + copyright + license) or 'custom' (user-defined lines)",
+          "values": [
+            "simple",
+            "custom"
+          ]
+        },
+        "projectName": {
+          "type": "string",
+          "default": "",
+          "description": "Project name to include in headers (auto-detects from directory name if empty)"
+        },
+        "license": {
+          "type": "string",
+          "default": "MIT",
+          "description": "SPDX license identifier (e.g., MIT, Apache-2.0, LGPL-3.0)"
+        },
+        "company": {
+          "type": "string",
+          "default": "",
+          "description": "Company or organization name (optional)"
+        },
+        "contributors": {
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated list of contributors (optional)"
+        },
+        "sinceYear": {
+          "type": "string",
+          "default": "",
+          "description": "Copyright start year (optional, defaults to current year if not provided)"
+        },
+        "customHeaderLines": {
+          "type": "string",
+          "default": "",
+          "description": "Custom header content (required when headerType is 'custom'). Multiple lines separated by \\n"
+        }
+      }
+    },
+    {
+      "id": "bitwarden-secrets-manager",
+      "name": "Bitwarden Secrets Manager CLI",
+      "description": "Installs bws, the official Bitwarden Secrets Manager CLI, from bitwarden/sdk-sm GitHub releases. Non-interactive, machine-account-token auth only (BWS_ACCESS_TOKEN) — no vault login, no persisted state, no bind mounts. Also self-heals your devcontainer setup.",
+      "version": "1.2.4",
+      "options": {
+        "version": {
+          "type": "string",
+          "default": "latest",
+          "description": "Version of bws to install (latest, or a specific version like '2.1.0' or 'bws-v2.1.0')"
+        }
+      }
+    },
+    {
+      "id": "claude-dev",
+      "name": "Claude Code Development Environment",
+      "description": "Installs the Claude Code IDE extension (anthropic.claude-code) for VS Code and Cursor, and optionally the claude CLI. Persists ~/.claude (credentials, config, memory) across rebuilds and Codespaces via a Docker named volume, dedicated to this devcontainer. Also self-heals your devcontainer setup.",
+      "version": "1.4.0",
+      "options": {
+        "username": {
+          "type": "string",
+          "default": "auto",
+          "description": "Username in the container that should receive the Claude credentials symlink. 'auto' detects vscode/node/codespace/uid-1000, in that order."
+        },
+        "installCli": {
+          "type": "boolean",
+          "default": false,
+          "description": "Also install the Claude Code CLI (claude command) via the official native installer."
+        },
+        "remoteControl": {
+          "type": "boolean",
+          "default": false,
+          "description": "Keep a Claude Code Remote Control server (claude remote-control) running in a background tmux session, so sessions can be started from claude.ai/code or the Claude mobile app. Implies installCli. Sends session transcripts to Anthropic while connected."
+        },
+        "remoteControlName": {
+          "type": "string",
+          "default": "",
+          "description": "Title of the server's first session and prefix of every session name in claude.ai/code (not the environment label, which Claude Code takes from the git repository name). Empty means: $CLAUDE_RC_NAME, then org-workspace's org, then the owner of the origin remote, then the workspace folder name."
+        },
+        "remoteControlDir": {
+          "type": "string",
+          "default": "",
+          "description": "Directory the server runs in (what its sessions start in). Empty means the workspace folder, the one you opened in VS Code."
+        },
+        "remoteControlSpawn": {
+          "type": "string",
+          "default": "same-dir",
+          "description": "How the server creates sessions: same-dir (all share the directory) or worktree (one git worktree per session; needs the directory to be a git repository).",
+          "values": [
+            "same-dir",
+            "worktree"
+          ]
+        },
+        "remoteControlAutoTrust": {
+          "type": "boolean",
+          "default": false,
+          "description": "Answer yes to Claude Code's 'Trust this folder?' question for the Remote Control folder, so the server starts with no manual step. Trusting applies that folder's project settings (hooks, MCP servers, permission rules) to the server's sessions: enable it only for code you trust. Off: you run `claude` once in the folder and accept it yourself."
+        },
+        "remoteControlPermissionMode": {
+          "type": "string",
+          "default": "",
+          "description": "Starting permission mode for the server's sessions (e.g. acceptEdits, plan). Empty means Claude Code's default."
+        }
+      }
+    },
+    {
+      "id": "cline-dev",
+      "name": "Cline Development Environment",
+      "description": "Installs the Cline AI coding agent extension (saoudrizwan.claude-dev) for VS Code and Cursor, and optionally the cline CLI. Persists ~/.cline (provider keys, settings, history) across rebuilds and Codespaces via a Docker named volume, dedicated to this devcontainer. Also self-heals your devcontainer setup.",
+      "version": "1.1.0",
+      "options": {
+        "username": {
+          "type": "string",
+          "default": "auto",
+          "description": "Username in the container that should receive the Cline data symlink. 'auto' detects vscode/node/codespace/uid-1000, in that order."
+        },
+        "installCli": {
+          "type": "boolean",
+          "default": false,
+          "description": "Install the Cline CLI (cline command) via npm. Requires Node.js/npm to be present in the container. Skipped with a warning if npm is not found."
+        }
+      }
+    },
+    {
+      "id": "copilot-dev",
+      "name": "GitHub Copilot Development Environment",
+      "description": "GitHub Copilot Chat VS Code extension, gh copilot CLI extension, and shared instructions for commit messages, pull-request descriptions, and code reviews (Conventional Commits + gitmoji + active repo PR template).",
+      "version": "1.0.4",
+      "options": {
+        "installCli": {
+          "type": "boolean",
+          "default": true,
+          "description": "Install the gh copilot CLI extension (gh copilot explain / suggest). Requires gh CLI to be present (e.g. via github-dev). Skipped with a warning if gh is not found."
+        }
+      }
+    },
+    {
+      "id": "dotfiles-sync",
+      "name": "Dotfiles Sync",
+      "description": "Syncs local Git, SSH, GPG, npm, yarn config files into the devcontainer. Optionally syncs cloud credentials (AWS, kube, Docker) and SSH private key files — opt-in only. Works on macOS, Linux, Windows (WSL), Codespaces, Gitpod, DevPod. Merges instead of overwriting. Also self-heals your devcontainer setup.",
+      "version": "1.2.3",
+      "options": {
+        "username": {
+          "type": "string",
+          "default": "node",
+          "description": "Username in the container that should receive synchronized local config files"
+        },
+        "syncAwsConfig": {
+          "type": "boolean",
+          "default": false,
+          "description": "Sync ~/.aws/config (profiles only, NOT ~/.aws/credentials which contains long-lived access keys)."
+        },
+        "syncKubeConfig": {
+          "type": "boolean",
+          "default": false,
+          "description": "Sync ~/.kube/config (cluster credentials and tokens). Skipped on cloud environments."
+        },
+        "syncDockerConfig": {
+          "type": "boolean",
+          "default": false,
+          "description": "Sync ~/.docker/config.json (registry auth tokens). Skipped on cloud environments."
+        },
+        "syncSshKeys": {
+          "type": "boolean",
+          "default": false,
+          "description": "Sync SSH private/public key files themselves (~/.ssh/id_*). Off by default: SSH auth normally works through the client's own forwarded ssh-agent with no local key file needed, and enabling this puts private key material on the container's filesystem. ~/.ssh/config and known_hosts always sync regardless — agent forwarding doesn't provide either of those."
+        }
+      }
+    },
+    {
+      "id": "essential-dev",
+      "name": "Essential Development Environment",
+      "description": "Core development environment with Git visualization, Markdown support, and essential editor enhancements. Also self-heals your devcontainer setup.",
+      "version": "1.2.4",
+      "options": {}
+    },
+    {
+      "id": "git-absorb",
+      "name": "git absorb — Automatic Fixup Commits",
+      "description": "Installs git-absorb, a tool to automatically absorb staged changes into their logical commits. Like 'git commit --fixup' but automatic. Also self-heals your devcontainer setup.",
+      "version": "1.2.3",
+      "options": {
+        "version": {
+          "type": "string",
+          "default": "latest",
+          "description": "Version of git-absorb to install (latest, or specific version like 0.6.11)"
+        }
+      }
+    },
+    {
+      "id": "github-dev",
+      "name": "GitHub Development Environment",
+      "description": "GitHub CLI (gh) and GitHub VS Code platform extensions (Pull Requests & Issues, GitHub Actions, RemoteHub). For Copilot Chat and AI generation instructions use the copilot-dev feature.",
+      "version": "1.0.7",
+      "options": {
+        "ghVersion": {
+          "type": "string",
+          "default": "latest",
+          "description": "GitHub CLI version to install (e.g. '2.50.0' or 'latest')"
+        }
+      }
+    },
+    {
+      "id": "graphite-dev",
+      "name": "Graphite Development Environment",
+      "description": "Installs the Graphite CLI (gt) for stacked pull requests and the Graphite VS Code extension (Graphite.gti-vscode). Authenticates gt from a GRAPHITE_TOKEN environment variable on every container start — no token stored in the image. Also self-heals your devcontainer setup.",
+      "version": "1.0.0",
+      "options": {
+        "version": {
+          "type": "string",
+          "default": "stable",
+          "description": "Version or npm dist-tag of @withgraphite/graphite-cli to install ('stable', 'latest', or a specific version like '1.8.6')."
+        }
+      }
+    },
+    {
+      "id": "jj",
+      "name": "Jujutsu (jj)",
+      "description": "Installs the jj CLI (Jujutsu, a Git-compatible VCS) and the VisualJJ extension, ready to use with no setup: identity and commit signing taken from your git config, your repo turned into a colocated jj repo, jj config kept across rebuilds, and safe defaults when Claude Code or another AI agent runs jj. Also self-heals your devcontainer setup.",
+      "version": "1.0.0",
+      "options": {
+        "username": {
+          "type": "string",
+          "default": "auto",
+          "description": "Container user who uses jj. 'auto' detects vscode/node/codespace/uid-1000, in that order."
+        },
+        "version": {
+          "type": "string",
+          "default": "latest",
+          "description": "jj version to install: latest, or a release such as 0.46.0."
+        },
+        "initRepos": {
+          "type": "string",
+          "default": "auto",
+          "description": "Git repos to turn into colocated jj repos (git keeps working in them). auto = among the repo you opened and the ones next to it (such as org-workspace's), only those whose history already has jj commits: plain git repos stay untouched. workspace = the repo you opened; all = it and every repo next to it; off = none, run `jj git init` yourself.",
+          "values": [
+            "auto",
+            "workspace",
+            "all",
+            "off"
+          ]
+        },
+        "gitIdentity": {
+          "type": "boolean",
+          "default": true,
+          "description": "Give jj the name, email and commit signing of your git config, on every attach. jj doesn't read git's. Your own jj config always wins."
+        },
+        "claudeSkill": {
+          "type": "boolean",
+          "default": true,
+          "description": "Add a jj skill to Claude Code (when Claude Code is in the container), so it uses jj instead of git in jj repos."
+        }
+      }
+    },
+    {
+      "id": "kimi-dev",
+      "name": "Kimi Code Development Environment",
+      "description": "Installs the Kimi Code IDE extension (moonshot-ai.kimi-code) for VS Code and Cursor, and optionally the kimi CLI. Persists ~/.kimi-code (credentials, config) across rebuilds and Codespaces via a Docker named volume, dedicated to this devcontainer. Also self-heals your devcontainer setup.",
+      "version": "1.0.0",
+      "options": {
+        "username": {
+          "type": "string",
+          "default": "auto",
+          "description": "Username in the container that should receive the Kimi Code credentials symlink. 'auto' detects vscode/node/codespace/uid-1000, in that order."
+        },
+        "installCli": {
+          "type": "boolean",
+          "default": false,
+          "description": "Also install the Kimi Code CLI (kimi command) via the official native installer."
+        }
+      }
+    },
+    {
+      "id": "mistral-dev",
+      "name": "Mistral Vibe Development Environment",
+      "description": "Installs the Mistral Vibe IDE extension (mistralai.mistral-vibe-code) for VS Code and Cursor. Persists ~/.vibe (credentials, config) across rebuilds and Codespaces via a Docker named volume, dedicated to this devcontainer. Also self-heals your devcontainer setup.",
+      "version": "1.3.2",
+      "options": {
+        "username": {
+          "type": "string",
+          "default": "auto",
+          "description": "Username in the container that should receive the Mistral Vibe credentials symlink. 'auto' detects vscode/node/codespace/uid-1000, in that order."
+        },
+        "installCli": {
+          "type": "boolean",
+          "default": false,
+          "description": "Also install the Mistral Vibe CLI (vibe command). Requires Python 3.12+ and pip in the container."
+        }
+      }
+    },
+    {
+      "id": "nub",
+      "name": "Nub — Fast TypeScript/Node Toolchain",
+      "description": "Installs nub (nubjs.com): a Rust binary that runs TypeScript/JavaScript files, package.json scripts, and local CLIs directly on the Node.js and package manager already in the container — no new runtime, no lock-in. Does not manage Node versions itself (dependsOn the official node feature), so it never competes with this container's own version-selection mechanism. Also self-heals your devcontainer setup.",
+      "version": "1.2.4",
+      "options": {
+        "version": {
+          "type": "string",
+          "default": "latest",
+          "description": "Version of nub to install (latest, or a specific release like 1.2.3)."
+        },
+        "installGlobally": {
+          "type": "boolean",
+          "default": true,
+          "description": "Symlink nub and nubx into /usr/local/bin so they're available system-wide (all users, root, sudo) without relying on the user's PATH."
+        }
+      }
+    },
+    {
+      "id": "org-workspace",
+      "name": "Org Workspace",
+      "description": "Clones the repos of a GitHub org into sibling /workspaces folders and keeps a multi-root .code-workspace file up to date.",
+      "version": "1.2.0",
+      "options": {
+        "org": {
+          "type": "string",
+          "default": "",
+          "description": "GitHub org (or user) to clone from. Empty means the owner of this project's origin remote."
+        },
+        "repos": {
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated repos to clone, e.g. \"typescript,action\". When set, autoDiscover is ignored."
+        },
+        "autoDiscover": {
+          "type": "string",
+          "default": "true",
+          "description": "Clone the org's repos automatically. \"true\" means public and private, no forks, no archived. \"false\" clones nothing. A list such as \"public,fork\" picks the categories: public, private, internal, fork, archived."
+        },
+        "exclude": {
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated repos to skip, whether they come from repos or autoDiscover."
+        },
+        "generateCodeWorkspace": {
+          "type": "boolean",
+          "default": true,
+          "description": "Create or update the .code-workspace file. Folders get a status icon; names you wrote and settings are kept."
+        },
+        "codeWorkspaceName": {
+          "type": "string",
+          "default": "",
+          "description": "Name of the .code-workspace file, in the project's root folder. Empty means <org>.code-workspace."
+        }
+      }
+    },
+    {
+      "id": "package-auto-install",
+      "name": "Automatic Package Installation",
+      "description": "Automatically detects and runs npm/yarn/pnpm/nub install in non-interactive mode after container creation. Also self-heals your devcontainer setup.",
+      "version": "1.2.3",
+      "options": {
+        "command": {
+          "type": "string",
+          "default": "auto",
+          "description": "Installation command to use: 'install', 'ci' (npm ci/pnpm install --frozen-lockfile), or 'auto' to detect. Ignored when packageManager resolves to 'nub' — nub only has 'install'.",
+          "values": [
+            "install",
+            "ci",
+            "auto"
+          ]
+        },
+        "packageManager": {
+          "type": "string",
+          "default": "auto",
+          "description": "Package manager to use. 'auto' detects based on lockfile (never resolves to 'nub' — that's an explicit opt-in, not auto-detected, since nub isn't itself a lockfile format). 'nub' runs 'nub install', which requires the nub feature also be installed with its default installGlobally:true (otherwise nub isn't on PATH here), and only understands npm/pnpm/bun lockfiles — not yarn.lock.",
+          "values": [
+            "auto",
+            "npm",
+            "yarn",
+            "pnpm",
+            "nub"
+          ]
+        },
+        "workingDirectory": {
+          "type": "string",
+          "default": "/workspaces/${localWorkspaceFolderBasename}",
+          "description": "Directory where to run the install command"
+        },
+        "skipIfNodeModulesExists": {
+          "type": "boolean",
+          "default": false,
+          "description": "Skip installation if node_modules directory already exists"
+        },
+        "additionalArgs": {
+          "type": "string",
+          "default": "",
+          "description": "Additional arguments to pass to the install command"
+        },
+        "directories": {
+          "type": "string",
+          "default": "",
+          "description": "Comma-separated list of directories to run install in. Overrides workingDirectory and autoDiscover."
+        },
+        "autoDiscover": {
+          "type": "boolean",
+          "default": false,
+          "description": "Scan /workspaces for VS Code/Cursor (.code-workspace) and IntelliJ (.idea/modules.xml) project files and install packages in every discovered root that contains a package.json."
+        }
+      }
+    },
+    {
+      "id": "playwright-dev",
+      "name": "Playwright Development Environment",
+      "description": "Playwright E2E/browser-automation toolchain: OS-level dependencies for headless Chromium, Firefox, and WebKit (via the official `playwright install-deps`), a browser-binary cache shared across every local project and rebuild through a Docker named volume, and the official Playwright Test VS Code extension. Also self-heals your devcontainer setup.",
+      "version": "1.3.2",
+      "options": {
+        "browsers": {
+          "type": "string",
+          "default": "all",
+          "description": "Which browser engine(s) to install OS-level dependencies for, and to pre-download into the shared browser cache.",
+          "values": [
+            "chromium",
+            "firefox",
+            "webkit",
+            "all"
+          ]
+        },
+        "installDeps": {
+          "type": "boolean",
+          "default": true,
+          "description": "Install the OS packages required to run the selected browser(s) headless, via `playwright install-deps`. Disable if the base image already provides them."
+        }
+      }
+    },
+    {
+      "id": "pnpm-store",
+      "name": "pnpm Store (shared)",
+      "description": "Shares a single pnpm content-addressable store across every local devcontainer for this host OS user and across rebuilds via a Docker named volume, so no stray .pnpm-store folders pollute your repos and packages aren't re-downloaded per project. Zero-config and autonomous: the volume is created automatically, with no host directory to pre-create. Also self-heals your devcontainer setup.",
+      "version": "1.3.1",
+      "options": {}
+    },
+    {
+      "id": "shell-history",
+      "name": "Shell History",
+      "description": "Keeps your bash, zsh and fish history across rebuilds and Codespaces via a Docker named volume, dedicated to this devcontainer. Also self-heals your devcontainer setup.",
+      "version": "1.0.0",
+      "options": {
+        "username": {
+          "type": "string",
+          "default": "auto",
+          "description": "Container user whose shells keep their history. 'auto' detects vscode/node/codespace/uid-1000, in that order."
+        },
+        "maxHistorySize": {
+          "type": "string",
+          "default": "10000",
+          "description": "Number of history entries to keep, in memory and in the history file (bash and zsh)."
+        }
+      }
+    },
+    {
+      "id": "typescript-dev",
+      "name": "TypeScript Development Environment",
+      "description": "TypeScript/JavaScript development setup with indexing, import management, HTML/CSS intelligence, and web tools. Built on top of essential-dev for core Git/editor enhancements, with Copilot and PR tooling provided by github-dev.",
+      "version": "1.0.8",
+      "options": {}
+    },
+    {
+      "id": "vite-plus",
+      "name": "Vite+ Development Environment",
+      "description": "Complete Vite+ unified toolchain setup (vp) with Vite, Vitest, Oxlint, Oxfmt, Rolldown, tsdown, and VS Code integration. Also self-heals your devcontainer setup.",
+      "version": "1.2.3",
+      "options": {
+        "installVitePlus": {
+          "type": "boolean",
+          "default": true,
+          "description": "Install Vite+ unified CLI (vp) for the devcontainer user (~/.vite-plus/bin)"
+        },
+        "installGlobally": {
+          "type": "boolean",
+          "default": true,
+          "description": "Symlink vp into /usr/local/bin so it is available system-wide (all users, root, sudo) without relying on the user's PATH. Requires installVitePlus."
+        },
+        "installVite": {
+          "type": "boolean",
+          "default": false,
+          "description": "Install Vite CLI globally via npm (not needed if using vp)"
+        },
+        "installVitest": {
+          "type": "boolean",
+          "default": false,
+          "description": "Install Vitest CLI globally via npm (not needed if using vp)"
+        },
+        "installOxc": {
+          "type": "boolean",
+          "default": false,
+          "description": "Install Oxc language server globally via npm (not needed if using vp)"
+        }
+      }
+    }
+  ]
+}

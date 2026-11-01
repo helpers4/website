@@ -1,0 +1,23 @@
+---
+title: Bootstrap a devcontainer.json
+description: Tick boxes, get a ready devcontainer.json with the helpers4 features and the essential external ones — the setup every helpers4 organization shares, pre-configured.
+sidebar:
+  label: "Bootstrap a devcontainer.json"
+  order: 3
+tableOfContents: false
+---
+
+import DevcontainerBootstrap from '../../../components/DevcontainerBootstrap.astro';
+
+Every helpers4 organization devcontainer (helpers4, baxyz, tuxery, feature-today, brig-id) starts from the same base: shell history that survives rebuilds, the host Docker engine, Git LFS and `git absorb`, the GitHub CLI, automatic license headers, Claude Code, and the TypeScript toolchain with a shared pnpm store. That base is ticked below. Add what your project needs, then copy or download the file.
+
+The list comes from the [helpers4 Dev Container features](/devcontainer/) of the latest release, so a new feature shows up here by itself. The file is generated in your browser; nothing is sent anywhere.
+
+<DevcontainerBootstrap />
+
+## Next steps
+
+1. **Organization workspace**: create a `.dev` repository in the organization and commit the file as `.devcontainer/devcontainer.json`. [org-workspace](/devcontainer/features/org-workspace/) clones the other repositories of the organization next to it on the first start, and keeps a `.code-workspace` file listing them.
+2. **Token**: export the token variable on the host (a fine-grained token scoped to the organization), then *Reopen in Container*. `gh` and the GitHub extensions are signed in from the start.
+3. **Lock the versions**: run `devcontainer upgrade --workspace-folder .` to write `.devcontainer/devcontainer-lock.json`, and commit it; Dependabot (`package-ecosystem: devcontainers`) keeps it current.
+4. Read each feature's page for its options — the form only sets the ones every organization uses.

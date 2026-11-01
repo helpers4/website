@@ -13,4 +13,5 @@ Short, opinionated guides based on what the helpers4 repositories actually do â€
 | Guide | What it covers |
 | ----- | -------------- |
 | [Building a good CI](/guides/ci/) | Structure, security, speed and readable results for GitHub Actions pipelines. |
+| [Bootstrap a devcontainer.json](/guides/devcontainer/) | An interactive form: tick the features, copy or download a ready `devcontainer.json`. |
 
