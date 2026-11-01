@@ -177,6 +177,16 @@ export default defineConfig({
             ],
           },
           {
+            label: 'AI',
+            link: '/ai/',
+            icon: 'puzzle',
+            items: [
+              { slug: 'ai' },
+              { slug: 'ai/llms' },
+              { label: 'Plugins', items: [{ autogenerate: { directory: 'ai/plugins' } }] },
+            ],
+          },
+          {
             label: 'Guides',
             link: '/guides/',
             icon: 'open-book',

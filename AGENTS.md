@@ -4,7 +4,7 @@
 
 ## This Repository
 
-**Purpose:** Astro + Starlight docs site at **helpers4.dev** (Cloudflare Pages), one section per product: TypeScript, Rust, Dev Container, GitHub Actions.
+**Purpose:** Astro + Starlight docs site at **helpers4.dev** (Cloudflare Pages), one section per product: TypeScript, Rust, Dev Container, GitHub Actions, plus AI (llms.txt and assistant plugins, hand-authored).
 **Stack:** Astro 6 · Starlight · starlight-theme-nova · pnpm · no workspaces
 
 ```text
@@ -21,9 +21,10 @@ website/
 │   │   ├── legal/              # open-source-libraries.md is ⚠ GENERATED; license.md is hand-authored
 │   │   └── index.md, getting-started.md  # hand-authored
 │   ├── devcontainer/  # ⚠ GENERATED — do not edit by hand
-│   └── action/        # ⚠ GENERATED — do not edit by hand
+│   ├── action/        # ⚠ GENERATED — do not edit by hand
+│   └── ai/            # hand-authored: llms.txt guide + assistant plugins (helpers4/ai)
 ├── public/
-│   ├── llms.txt                # hand-authored site index (llmstxt.org spec) — 4 products,
+│   ├── llms.txt                # hand-authored site index (llmstxt.org spec) — 4 products + AI,
 │   │                            # H2 per product, edit by hand when a product is added/removed
 │   ├── rust/llms-full.txt      # ⚠ GENERATED — every public item of the crate in one file
 │   └── typescript/<slug>/llms-full.txt  # ⚠ GENERATED — copy of typescript's own
