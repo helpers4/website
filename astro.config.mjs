@@ -19,7 +19,7 @@ const versions = JSON.parse(fs.readFileSync(path.join(rootDir, 'src', 'data', 'v
 
 /**
  * Builds one typescript topic's `items` for a given version slot (root/next/vN), reading the
- * real content directory to decide whether to include the Comparisons group — older archives
+ * real content directory to decide whether to include the Presets and Comparisons groups — older archives
  * (e.g. v1) don't have one, and this way nothing has to remember to omit it by hand.
  *
  * The AI & LLM Support page (which links DeepWiki) only exists under `typescript/reference/` for
@@ -35,8 +35,13 @@ function typescriptTopicItems(slug) {
       label: 'Categories',
       items: [{ autogenerate: { directory: `${slug}/categories`, collapsed: true } }],
     },
-    { label: 'Reference', items: [{ autogenerate: { directory: `${slug}/reference` } }] },
   ];
+  // Presets are not a category (tool configs, no functions): their own group, and only in the
+  // slots generated since @helpers4/presets exists (3.1.10).
+  if (fs.existsSync(path.join(docsDir, slug, 'presets'))) {
+    items.push({ label: 'Presets', items: [{ autogenerate: { directory: `${slug}/presets`, collapsed: true } }] });
+  }
+  items.push({ label: 'Reference', items: [{ autogenerate: { directory: `${slug}/reference` } }] });
   if (fs.existsSync(path.join(docsDir, slug, 'comparisons'))) {
     items.push({ label: 'Comparisons', items: [{ autogenerate: { directory: `${slug}/comparisons` } }] });
   }
