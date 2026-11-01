@@ -22,7 +22,9 @@ website/
 │   │   └── index.md, getting-started.md  # hand-authored
 │   ├── devcontainer/  # ⚠ GENERATED — do not edit by hand
 │   ├── action/        # ⚠ GENERATED — do not edit by hand
-│   └── ai/            # hand-authored: llms.txt guide + assistant plugins (helpers4/ai)
+│   ├── ai/            # hand-authored: llms.txt guide + assistant plugins (helpers4/ai)
+│   └── blog/          # hand-authored posts: a `date:` makes a page a post (src/lib/blog.ts);
+│                      #   listed newest first by blogPostItems() in astro.config.mjs, feed at /blog/rss.xml
 ├── public/
 │   ├── llms.txt                # hand-authored site index (llmstxt.org spec) — 4 products + AI,
 │   │                            # H2 per product, edit by hand when a product is added/removed
@@ -63,4 +65,4 @@ pnpm build && pnpm check:links   # fails on any broken internal link (also run b
 
 **Pre-1.0 notice (Rust):** `rust/index.md`, `rust/getting-started.md` and the `public/llms.txt` Rust section carry a "Version 0: expect changes" note written by hand — remove it when the crate reaches 1.0. The one on `rust/modules/index.md` and in `llms-full.txt` is generated and goes away by itself (`PRE_1_NOTICE` in `scripts/generate-rust-docs.js`).
 
-**Relative links (`src/lib/remark-file-relative-links.mjs`):** pages are served with a trailing slash, so a link written relative to the Markdown *file* (`../object/compact/`) resolves one level too deep in the browser. The remark plugin, applied to every docs page, tries both readings against the docs pages that exist and rewrites the link to the absolute path that matches (the browser's reading wins; a link matching neither is left as written). Prefer absolute links (`/rust/modules/...`) in new content; the plugin only covers `src/content/docs`, so blog posts must use absolute links. After changing the plugin, clear the Astro content cache (`rm -rf .astro node_modules/.astro dist`) before rebuilding, or the old output is served from cache. `pnpm check:links` is the safety net.
+**Relative links (`src/lib/remark-file-relative-links.mjs`):** pages are served with a trailing slash, so a link written relative to the Markdown *file* (`../object/compact/`) resolves one level too deep in the browser. The remark plugin, applied to every docs page, tries both readings against the docs pages that exist and rewrites the link to the absolute path that matches (the browser's reading wins; a link matching neither is left as written). Prefer absolute links (`/rust/modules/...`) in new content; the plugin covers everything under `src/content/docs`, blog posts included. After changing the plugin, clear the Astro content cache (`rm -rf .astro node_modules/.astro dist`) before rebuilding, or the old output is served from cache. `pnpm check:links` is the safety net.

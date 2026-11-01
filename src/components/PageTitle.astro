@@ -1,0 +1,40 @@
+---
+/**
+ * This file is part of helpers4.
+ * Copyright (C) 2025 baxyz
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ *
+ * Starlight `PageTitle` override — under the title of a blog post (a page with a `date`, see
+ * src/lib/blog.ts), adds its date, author and tags. Every other page renders unchanged.
+ */
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+import { formatPostDate } from '../lib/blog';
+
+const { date, author, tags } = Astro.locals.starlightRoute.entry.data;
+---
+
+<Default />
+{date && (
+  <p class="post-meta">
+    <time datetime={date.toISOString()}>{formatPostDate(date)}</time>
+    {author && <> · {author}</>}
+    {tags.map((tag) => <span class="post-tag">{tag}</span>)}
+  </p>
+)}
+
+<style>
+  .post-meta {
+    margin-top: 0.5rem;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+
+  .post-tag {
+    display: inline-block;
+    margin-inline-start: 0.4rem;
+    padding: 0 0.5rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 9999px;
+    font-size: var(--sl-text-xs);
+  }
+</style>

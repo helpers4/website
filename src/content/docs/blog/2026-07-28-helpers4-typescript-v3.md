@@ -3,7 +3,7 @@ title: "helpers4 TypeScript v3 — From Complement to Contender"
 date: 2026-07-28
 author: Bérenger (baxyz)
 tags: [typescript, release, helpers4]
-excerpt: "v3 ships a breaking cleanup (type predicates move to @helpers4/guard), but the real story is bigger: helpers4 has grown from 'the library you add alongside es-toolkit or radashi' into something that can stand on its own."
+description: "v3 ships a breaking cleanup (type predicates move to @helpers4/guard), but the real story is bigger: helpers4 has grown from 'the library you add alongside es-toolkit or radashi' into something that can stand on its own."
 ---
 
 Back in May, I wrote about [twenty years of copy-pasting the same `capitalize()` function](/blog/2026-05-23-helpers4-typescript-v2) across every project I've worked on. That post is still the fuller origin story, if you want it — go read it. This one is about what happens after you stop apologizing for existing.

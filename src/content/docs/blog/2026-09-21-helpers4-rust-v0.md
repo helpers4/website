@@ -3,7 +3,7 @@ title: "helpers4 Rust v0 — A General-Purpose Library, Starting From Scratch"
 date: 2026-09-21
 author: Bérenger (baxyz)
 tags: [rust, release, helpers4]
-excerpt: "helpers4 now has a Rust crate. It starts at version 0 on purpose: the quality is already there, but the third-party security audits are not, and a library whose goal is to be trusted in critical applications has to earn its 1.0. Here is what exists, what does not yet, and why you should wait for v1 before using it where it really matters."
+description: "helpers4 now has a Rust crate. It starts at version 0 on purpose: the quality is already there, but the third-party security audits are not, and a library whose goal is to be trusted in critical applications has to earn its 1.0. Here is what exists, what does not yet, and why you should wait for v1 before using it where it really matters."
 ---
 
 helpers4 has a Rust crate. It is on [crates.io](https://crates.io/crates/helpers4), it is documented [here](/rust/), and it is at **version 0**. This post explains what that means, what is already in it, and — the part I care about most — **what you should not use it for yet**.

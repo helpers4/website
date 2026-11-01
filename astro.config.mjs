@@ -80,6 +80,25 @@ function typescriptTopicId(entry) {
 // if their topic didn't exist at all. Hiding happens purely at the display layer instead: see
 // TopicsSwitcher.astro (switcher row) and lib/versions.ts (version dropdown), both of which
 // filter on this same `hidden` flag from versions.json.
+/**
+ * Blog posts, newest first: the `date:` of each post's frontmatter (see src/lib/blog.ts), read
+ * from the files like typescriptTopicItems() does, since autogenerate can only sort by filename.
+ */
+function blogPostItems() {
+  const blogDir = path.join(docsDir, 'blog');
+  return fs
+    .readdirSync(blogDir)
+    .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'))
+    .map((file) => {
+      const source = fs.readFileSync(path.join(blogDir, file), 'utf-8');
+      const date = source.match(/^date:\s*(\S+)/m)?.[1];
+      return { slug: `blog/${file.replace(/\.mdx?$/, '')}`, date };
+    })
+    .filter((post) => post.date)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map(({ slug }) => ({ slug }));
+}
+
 const typescriptTopics = versions.typescript
   .filter((v) => v.role in ROLE_ORDER)
   .sort((a, b) => ROLE_ORDER[a.role] - ROLE_ORDER[b.role])
@@ -187,6 +206,12 @@ export default defineConfig({
             ],
           },
           {
+            label: 'Blog',
+            link: '/blog/',
+            icon: 'rss',
+            items: [{ slug: 'blog' }, { label: 'Posts', items: blogPostItems() }],
+          },
+          {
             label: 'Guides',
             link: '/guides/',
             icon: 'open-book',
@@ -205,6 +230,7 @@ export default defineConfig({
         Head: './src/components/Head.astro',
         LastUpdated: './src/components/LastUpdated.astro',
         MarkdownContent: './src/components/MarkdownContent.astro',
+        PageTitle: './src/components/PageTitle.astro',
         Search: './src/components/Search.astro',
         Sidebar: './src/components/Sidebar.astro',
         SocialIcons: './src/components/SocialIcons.astro',
