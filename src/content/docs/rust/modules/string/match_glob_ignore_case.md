@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert!(!match_glob_ignore_case("screen *", "Home"));
 
 ## Source
 
-[src/string/match_glob_ignore_case.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/string/match_glob_ignore_case.rs#L29)
+[src/string/match_glob_ignore_case.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/string/match_glob_ignore_case.rs#L29)

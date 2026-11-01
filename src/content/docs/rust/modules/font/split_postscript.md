@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["font"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["font"] }
 ```
 
 ## Signature
@@ -54,4 +54,4 @@ assert_eq!(split_postscript("Helvetica"), ("Helvetica", ""));
 
 ## Source
 
-[src/font/split_postscript.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/font/split_postscript.rs#L25)
+[src/font/split_postscript.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/font/split_postscript.rs#L25)

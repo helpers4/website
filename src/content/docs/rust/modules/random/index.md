@@ -14,8 +14,8 @@ the same result. It is **not** for secrets: a 64-bit seed can be guessed.
 
 Keys, tokens and anything an attacker must not predict come from the operating system, with
 the `random-entropy` feature (not in `default`, it pulls the `getrandom` crate):
-[`random_bytes`](/rust/modules/random/random_bytes/), [`random_hex`](/rust/modules/random/random_hex/), [`random_alphanumeric`](/rust/modules/random/random_alphanumeric/) and [`Rng::from_entropy`](/rust/modules/random/rng/). They
-return an [`EntropyError`](/rust/modules/random/random_alphanumeric/#error-type-entropyerror) when the system cannot provide bytes, and never fall back to
+`random_bytes`, `random_hex`, `random_alphanumeric` and `Rng::from_entropy`. They
+return an `EntropyError` when the system cannot provide bytes, and never fall back to
 weaker randomness. They are not built for `wasm32-unknown-unknown`, which has no default
 entropy source: pass bytes from the host (`crypto.getRandomValues`) to the pure constructors
 of the `id` module instead.
@@ -32,7 +32,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["random"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["random"] }
 ```
 
 Opt-in sub-feature `random-entropy` (adds the `getrandom` dependency): .

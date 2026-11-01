@@ -27,7 +27,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["font"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["font"] }
 ```
 
 ## Signature
@@ -58,4 +58,4 @@ assert_eq!(weight_of_style("Italic"), 400.0);
 
 ## Source
 
-[src/font/weight_of_style.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/font/weight_of_style.rs#L54)
+[src/font/weight_of_style.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/font/weight_of_style.rs#L54)

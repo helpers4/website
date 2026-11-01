@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["geometry"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["geometry"] }
 ```
 
 ## Signature
@@ -95,4 +95,4 @@ pub enum ParsePathError {
 
 ## Source
 
-[src/geometry/parse_path.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/geometry/parse_path.rs#L97)
+[src/geometry/parse_path.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/geometry/parse_path.rs#L97)

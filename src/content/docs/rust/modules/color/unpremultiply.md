@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["color"] }
 ```
 
 ## Signature
@@ -55,4 +55,4 @@ assert_eq!(unpremultiply(Rgba::new(9, 9, 9, 0)), Rgba::new(0, 0, 0, 0));
 
 ## Source
 
-[src/color/unpremultiply.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/color/unpremultiply.rs#L29)
+[src/color/unpremultiply.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/color/unpremultiply.rs#L29)

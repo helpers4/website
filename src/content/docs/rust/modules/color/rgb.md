@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["color"] }
 ```
 
 ## Definition
@@ -284,4 +284,4 @@ pub enum ParseColorError {
 
 ## Source
 
-[src/color/rgb.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/color/rgb.rs#L28)
+[src/color/rgb.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/color/rgb.rs#L28)

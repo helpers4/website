@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["geometry"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["geometry"] }
 ```
 
 ## Signature
@@ -62,4 +62,4 @@ assert_eq!(d, "M0 0.5 L10 0.333333");
 
 ## Source
 
-[src/geometry/format_path.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/geometry/format_path.rs#L46)
+[src/geometry/format_path.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/geometry/format_path.rs#L46)

@@ -20,7 +20,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["string"] }
 ```
 
 Opt-in sub-feature `string-diacritics` (adds the `unicode-normalization` dependency): [`remove_diacritics`](/rust/modules/string/remove_diacritics/).

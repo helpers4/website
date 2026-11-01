@@ -30,7 +30,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["kiwi"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["kiwi"] }
 ```
 
 Import path: `helpers4::kiwi`.

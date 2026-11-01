@@ -12,7 +12,11 @@ regular expression `usr/lib` with the flags `img`: for paths, build a [`Pattern:
 yourself.
 
 The regular expression is returned as text, since this crate has no regex engine; the source
-is not validated.
+is not validated. This differs from the TypeScript `parsePatternOrRegExp`, which compiles the
+expression and throws a `SyntaxError` when it is invalid or repeats a flag (`/a/ii`): here
+both come back as a [`Pattern::RegExp`](/rust/modules/string/pattern/), and the error appears when you compile it. The flags
+are the JavaScript ones; an engine such as the `regex` crate knows only some of them (`i`,
+`m`, `s`, `u`), so write rules with those to read the same on both sides.
 
 ## Import
 
@@ -30,7 +34,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["string"] }
 ```
 
 ## Signature
@@ -63,4 +67,4 @@ assert_eq!(parse_pattern("/src/*.ts/x"), Pattern::Glob("/src/*.ts/x".to_string()
 
 ## Source
 
-[src/string/parse_pattern.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/string/parse_pattern.rs#L58)
+[src/string/parse_pattern.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/string/parse_pattern.rs#L62)

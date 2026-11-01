@@ -34,7 +34,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["font"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["font"] }
 ```
 
 ## Signature
@@ -73,4 +73,4 @@ assert_eq!(pick_closest(&variable, FontRequest::new(450.0, FontStyle::Normal)), 
 
 ## Source
 
-[src/font/pick_closest.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/font/pick_closest.rs#L120)
+[src/font/pick_closest.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/font/pick_closest.rs#L120)

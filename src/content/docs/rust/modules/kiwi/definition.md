@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["kiwi"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["kiwi"] }
 ```
 
 ## Definition
@@ -43,4 +43,4 @@ assert_eq!(&*empty.name, "Empty");
 
 ## Source
 
-[src/kiwi/definition.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/kiwi/definition.rs#L94)
+[src/kiwi/definition.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/kiwi/definition.rs#L94)

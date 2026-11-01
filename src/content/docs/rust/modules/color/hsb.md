@@ -28,7 +28,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["color"] }
 ```
 
 ## Definition
@@ -119,4 +119,4 @@ The nearest 8-bit sRGB color.
 
 ## Source
 
-[src/color/hsb.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/color/hsb.rs#L23)
+[src/color/hsb.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/color/hsb.rs#L23)

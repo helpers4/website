@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["string"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["string"] }
 ```
 
 ## Definition
@@ -54,4 +54,4 @@ assert_eq!(parse_pattern("SF Pro*"), Pattern::Glob("SF Pro*".to_string()));
 
 ## Source
 
-[src/string/parse_pattern.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/string/parse_pattern.rs#L17)
+[src/string/parse_pattern.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/string/parse_pattern.rs#L17)

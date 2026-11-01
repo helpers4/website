@@ -1,4 +1,4 @@
-# helpers4 (Rust) — full reference, version 0.0.10
+# helpers4 (Rust) — full reference, version 0.0.11
 
 > Every public item of the `helpers4` crate with its signature, documentation and examples.
 > The examples are doctests that run in the crate's CI: treat them as verified usage.
@@ -4645,7 +4645,40 @@ styles, and reading a font file's names, weight and style.
 variable faces that cover a weight range. `weight_of_style`, `is_italic`,
 `split_postscript` and `same_family` read the names fonts and design files carry
 (`"Semi Bold Italic"`, `"NeutrifPro-SemiBold"`). `read_font` reads a TrueType, OpenType or
-WOFF file: family (typographic first), PostScript name, weight or `wght` range, style.
+WOFF file: family (typographic first), PostScript name, weight or `wght` range, style;
+`font_count` and `read_font_at` reach every font of a collection, and `to_sfnt` hands
+back the decompressed font file a shaper reads.
+
+### font::font_count
+
+```rust
+pub fn font_count(bytes: &[u8]) -> Result<usize, FontError>
+```
+
+How many fonts a font file holds: the number of fonts of a collection (`.ttc`), 1 for a
+TrueType, OpenType or WOFF file. Only the first bytes are read; the fonts themselves are not
+parsed.
+
+#### Arguments
+
+- `bytes` - The font file.
+
+#### Returns
+
+The number of fonts, to use as the bound of the `index` of `read_font_at`.
+
+#### Errors
+
+A `FontError` for data that is not a supported font, or is truncated.
+
+#### Examples
+
+```rust
+use helpers4::font::{font_count, FontError};
+
+assert_eq!(font_count(b"not a font"), Err(FontError::UnknownFormat));
+assert_eq!(font_count(b"\0\x01\0\0\0\0\0\0"), Ok(1));
+```
 
 ### font::FontFace
 
@@ -4828,8 +4861,8 @@ pub fn read_font(bytes: &[u8]) -> Result<FontInfo, FontError>
 
 Reads what a font file says about itself: its family (typographic first), style, PostScript
 name, weight or `wght` range and whether it is italic. Reads TrueType and OpenType files
-(`.ttf`, `.otf`), the first font of a collection (`.ttc`) and WOFF files; it does not
-interpret glyphs and does not check checksums.
+(`.ttf`, `.otf`), the first font of a collection (`.ttc`, see `read_font_at` for the
+others) and WOFF files; it does not interpret glyphs and does not check checksums.
 
 WOFF2 tables are Brotli-compressed, and this crate has no Brotli decoder: a WOFF2 file is a
 `FontError::UnsupportedWoff2`.
@@ -4854,6 +4887,38 @@ use helpers4::font::{read_font, FontError};
 
 assert_eq!(read_font(b"not a font"), Err(FontError::UnknownFormat));
 assert_eq!(read_font(b"wOF2...."), Err(FontError::UnsupportedWoff2));
+```
+
+### font::read_font_at
+
+```rust
+pub fn read_font_at(bytes: &[u8], index: usize) -> Result<FontInfo, FontError>
+```
+
+Reads what the font number `index` of a file says about itself, as `read_font`
+does for the first one: the way to read the other fonts of a collection (`.ttc`), whose count
+`font_count` gives. Any other file holds the single font number 0.
+
+#### Arguments
+
+- `bytes` - The font file.
+- `index` - The font to read, from 0.
+
+#### Returns
+
+The `FontInfo`.
+
+#### Errors
+
+A `FontError` as for `read_font`, and `FontError::IndexOutOfRange`
+when the file holds no font number `index`.
+
+#### Examples
+
+```rust
+use helpers4::font::{read_font_at, FontError};
+
+assert_eq!(read_font_at(b"not a font", 0), Err(FontError::UnknownFormat));
 ```
 
 ### font::same_family
@@ -4909,6 +4974,43 @@ assert_eq!(split_postscript("NeutrifPro-SemiBold"), ("NeutrifPro", "SemiBold"));
 assert_eq!(split_postscript("Helvetica"), ("Helvetica", ""));
 ```
 
+### font::to_sfnt
+
+```rust
+pub fn to_sfnt(bytes: &[u8]) -> Result<Cow<'_, [u8]>, FontError>
+```
+
+The font file as the sfnt that shapers and rasterizers read (`skrifa`, `ttf-parser`, ...):
+a WOFF file is rebuilt with its tables decompressed; a TrueType, OpenType or collection file
+is already one and comes back as it is, without a copy. A collection keeps all its fonts:
+open it with the same index as `read_font_at`.
+
+Checksums are neither verified nor recomputed: the table checksums are the ones the WOFF
+file records.
+
+#### Arguments
+
+- `bytes` - The font file.
+
+#### Returns
+
+The sfnt bytes, borrowed from `bytes` unless the file was WOFF.
+
+#### Errors
+
+A `FontError` for data that is not a supported font, is truncated, or holds a WOFF table
+that does not decompress to its announced size.
+
+#### Examples
+
+```rust
+use helpers4::font::{to_sfnt, FontError};
+
+let ttf = b"\0\x01\0\0\0\0\0\0\0\0\0\0";
+assert_eq!(to_sfnt(ttf).unwrap().as_ref(), ttf);
+assert_eq!(to_sfnt(b"wOF2....").err(), Some(FontError::UnsupportedWoff2));
+```
+
 ### font::weight_of_style
 
 ```rust
@@ -4956,6 +5058,9 @@ pub enum FontError {
     MissingNameTable,
     /// The `name` table holds neither a typographic nor a plain family name.
     MissingFamily,
+    /// The font number asked for is not in the file: a collection holds fewer fonts, and any
+    /// other file holds only the font number 0.
+    IndexOutOfRange,
 }
 ```
 
@@ -10316,7 +10421,11 @@ regular expression `usr/lib` with the flags `img`: for paths, build a `Pattern::
 yourself.
 
 The regular expression is returned as text, since this crate has no regex engine; the source
-is not validated.
+is not validated. This differs from the TypeScript `parsePatternOrRegExp`, which compiles the
+expression and throws a `SyntaxError` when it is invalid or repeats a flag (`/a/ii`): here
+both come back as a `Pattern::RegExp`, and the error appears when you compile it. The flags
+are the JavaScript ones; an engine such as the `regex` crate knows only some of them (`i`,
+`m`, `s`, `u`), so write rules with those to read the same on both sides.
 
 #### Arguments
 

@@ -24,7 +24,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["font"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["font"] }
 ```
 
 ## Signature
@@ -55,4 +55,4 @@ assert!(!is_italic("Bold"));
 
 ## Source
 
-[src/font/is_italic.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/font/is_italic.rs#L26)
+[src/font/is_italic.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/font/is_italic.rs#L26)

@@ -10,7 +10,7 @@ characters of Crockford's base32 (`01ARYZ6S41TSV4RRFFQ69G5FAV`).
 
 Ulids sort by creation time, both as numbers and as text, and are shorter than a UUID. Time
 and randomness are **parameters** of [`from_parts`](#from_parts); with the
-`random-entropy` feature, [`new`](#new) takes them from the system. Ids made in the
+`random-entropy` feature, `new` takes them from the system. Ids made in the
 same millisecond are not ordered among themselves (there is no monotonic counter).
 
 ## Import
@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["id"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["id"] }
 ```
 
 ## Definition
@@ -146,4 +146,4 @@ assert_eq!(Ulid::parse("8ZZZZZZZZZZZZZZZZZZZZZZZZZ"), Err(ParseUlidError::Overfl
 
 ## Source
 
-[src/id/ulid.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/id/ulid.rs#L31)
+[src/id/ulid.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/id/ulid.rs#L31)

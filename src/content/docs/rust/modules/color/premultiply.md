@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["color"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert_eq!(premultiply(Rgba::new(200, 100, 50, 255)), Rgba::new(200, 100, 50, 25
 
 ## Source
 
-[src/color/premultiply.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/color/premultiply.rs#L30)
+[src/color/premultiply.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/color/premultiply.rs#L30)

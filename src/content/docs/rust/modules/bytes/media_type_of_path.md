@@ -25,7 +25,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["bytes"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["bytes"] }
 ```
 
 ## Signature
@@ -56,4 +56,4 @@ assert_eq!(media_type_of_path("LICENSE"), None);
 
 ## Source
 
-[src/bytes/media_type_of_path.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/bytes/media_type_of_path.rs#L60)
+[src/bytes/media_type_of_path.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/bytes/media_type_of_path.rs#L60)

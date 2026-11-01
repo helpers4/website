@@ -26,7 +26,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["color"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["color"] }
 ```
 
 ## Signature
@@ -63,4 +63,4 @@ assert_eq!(blend(orange, gray, BlendMode::Multiply), Rgba::new(78, 39, 20, 255))
 
 ## Source
 
-[src/color/blend.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/color/blend.rs#L198)
+[src/color/blend.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/color/blend.rs#L198)

@@ -31,7 +31,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["string", "hex"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["string", "hex"] }
 ```
 
 ## Modules
@@ -49,7 +49,7 @@ helpers4 = { version = "0.0.10", default-features = false, features = ["string",
 | [`date`](/rust/modules/date/) | `date` | Calendar dates without time zones: validation, ISO 8601 text, weekdays and day arithmetic. | 5 |
 | [`duration`](/rust/modules/duration/) | `duration` | Parsing and formatting of durations as short human-readable strings (`1h30m`). | 3 |
 | [`env`](/rust/modules/env/) | `env` | Dotenv (`.env`) helpers working on plain text: no file or process-environment access, so they are deterministic and easy to test. | 9 |
-| [`font`](/rust/modules/font/) | `font` | Fonts without a dependency: CSS font matching, the names design tools give to weights and styles, and reading a font file's names, weight and style. | 11 |
+| [`font`](/rust/modules/font/) | `font` | Fonts without a dependency: CSS font matching, the names design tools give to weights and styles, and reading a font file's names, weight and style. | 14 |
 | [`fs`](/rust/modules/fs/) | `fs` | File-system helpers: safe writes, missing-file-as-`None`, listing and path checks. | 5 |
 | [`function`](/rust/modules/function/) | `function` | Helpers around functions: composition, memoization, retrying and rate limiting. | 6 |
 | [`future`](/rust/modules/future/) | `future` | Runtime-neutral helpers for `Future`s, built on the standard library only. | 5 |
@@ -75,4 +75,4 @@ helpers4 = { version = "0.0.10", default-features = false, features = ["string",
 
 Import through the module path (`helpers4::string::capitalize`): names can repeat across modules on purpose, so never glob-import a module.
 
-Documented version: **0.0.10**. Minimum supported Rust version: **1.85**.
+Documented version: **0.0.11**. Minimum supported Rust version: **1.85**.

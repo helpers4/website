@@ -7,8 +7,8 @@ sidebar:
 
 Reads what a font file says about itself: its family (typographic first), style, PostScript
 name, weight or `wght` range and whether it is italic. Reads TrueType and OpenType files
-(`.ttf`, `.otf`), the first font of a collection (`.ttc`) and WOFF files; it does not
-interpret glyphs and does not check checksums.
+(`.ttf`, `.otf`), the first font of a collection (`.ttc`, see [`read_font_at`](/rust/modules/font/read_font_at/) for the
+others) and WOFF files; it does not interpret glyphs and does not check checksums.
 
 WOFF2 tables are Brotli-compressed, and this crate has no Brotli decoder: a WOFF2 file is a
 [`FontError::UnsupportedWoff2`](#error-type-fonterror).
@@ -29,7 +29,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["font"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["font"] }
 ```
 
 ## Signature
@@ -83,9 +83,12 @@ pub enum FontError {
     MissingNameTable,
     /// The `name` table holds neither a typographic nor a plain family name.
     MissingFamily,
+    /// The font number asked for is not in the file: a collection holds fewer fonts, and any
+    /// other file holds only the font number 0.
+    IndexOutOfRange,
 }
 ```
 
 ## Source
 
-[src/font/read_font.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/font/read_font.rs#L138)
+[src/font/read_font.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/font/read_font.rs#L36)

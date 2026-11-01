@@ -23,7 +23,7 @@ or in `Cargo.toml`:
 
 ```toml
 [dependencies]
-helpers4 = { version = "0.0.10", default-features = false, features = ["font"] }
+helpers4 = { version = "0.0.11", default-features = false, features = ["font"] }
 ```
 
 ## Definition
@@ -65,4 +65,4 @@ The face to give to [`pick_closest`](/rust/modules/font/pick_closest/): a variab
 
 ## Source
 
-[src/font/font_info.rs](https://github.com/helpers4/rust/blob/v0.0.10/src/font/font_info.rs#L25)
+[src/font/font_info.rs](https://github.com/helpers4/rust/blob/v0.0.11/src/font/font_info.rs#L25)
