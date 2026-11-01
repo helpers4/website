@@ -1,8 +1,12 @@
 ---
 title: "Setup pnpm"
 sidebar:
-  order: 4
+  label: "setup-pnpm"
 ---
+
+:::note[helpers4/action]
+Part of the [helpers4/action](https://github.com/helpers4/action/tree/main/setup-pnpm) repository: `uses: helpers4/action/setup-pnpm@v1`.
+:::
 
 Set up Node.js and pnpm in one step, optionally installing dependencies. Wraps the official
 [`pnpm/action-setup`](https://github.com/pnpm/action-setup) (actively maintained by the pnpm org)

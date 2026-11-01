@@ -45,9 +45,12 @@ Plug-and-play [Dev Container Features](https://containers.dev/implementors/featu
 
 ## GitHub Actions
 
-Reusable GitHub Actions for consistent, automated workflows.
+Reusable GitHub Actions for consistent, automated workflows. Most are folders of the
+helpers4/action repository (`uses: helpers4/action/<name>@v1`); an action published on the
+GitHub Marketplace has its own repository (`uses: helpers4/<name>@vN`), today `action-release`.
 
 - [Browse Actions](https://helpers4.dev/action/actions/conventional-commits/): all available actions
+- [action-release](https://helpers4.dev/action/actions/action-release/): release a TypeScript, Rust or mixed repository (version, changelog, tag, GitHub Release, npm, crates.io, JSR) in one step
 - [Getting Started](https://helpers4.dev/action/getting-started/)
 - [GitHub](https://github.com/helpers4/action) · [Marketplace](https://github.com/marketplace?type=actions&query=helpers4)
 

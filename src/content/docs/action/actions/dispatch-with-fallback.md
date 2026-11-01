@@ -1,8 +1,12 @@
 ---
 title: "Dispatch with Fallback"
 sidebar:
-  order: 2
+  label: "dispatch-with-fallback"
 ---
+
+:::note[helpers4/action]
+Part of the [helpers4/action](https://github.com/helpers4/action/tree/main/dispatch-with-fallback) repository: `uses: helpers4/action/dispatch-with-fallback@v1`.
+:::
 
 Send a `repository_dispatch` event to a repository using a GitHub App token, with an optional
 second identity retried automatically if the first attempt fails. Useful for cross-repo
