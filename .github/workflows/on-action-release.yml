@@ -26,7 +26,7 @@ jobs:
 
       - uses: helpers4/action/setup-pnpm@main
         with:
-          node-version: "24"
+          node-version: "26"
 
       - name: Checkout Action repo
         uses: actions/checkout@v7

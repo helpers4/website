@@ -31,7 +31,7 @@ jobs:
 
       - uses: helpers4/action/setup-pnpm@main
         with:
-          node-version: "24"
+          node-version: "26"
 
       - name: Build all packages
         run: pnpm build
@@ -52,7 +52,7 @@ jobs:
 
       - uses: helpers4/action/setup-pnpm@main
         with:
-          node-version: "24"
+          node-version: "26"
 
       - name: Build all packages
         run: pnpm build
@@ -74,7 +74,7 @@ jobs:
 
       - uses: helpers4/action/setup-pnpm@main
         with:
-          node-version: "24"
+          node-version: "26"
 
       - name: TypeScript check
         run: |
