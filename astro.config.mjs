@@ -211,7 +211,7 @@ export default defineConfig({
             link: '/guides/',
             icon: 'open-book',
             items: [
-              { label: 'Guides', items: [{ slug: 'guides' }, { slug: 'guides/ci' }] },
+              { label: 'Guides', items: [{ slug: 'guides' }, { slug: 'guides/ci' }, { slug: 'guides/devcontainer' }] },
               { label: 'Blog', items: [{ slug: 'blog' }, ...blogPostItems()] },
               { slug: 'sponsors' },
             ],

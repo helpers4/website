@@ -37,7 +37,8 @@ website/
 │   ├── generate-rust-docs.js          # crate source (/// docs, Cargo.toml, CHANGELOG, CONTRIBUTING) → Markdown
 │   │                                  #   pages + public/rust/llms-full.txt; RUST_REPO_PATH points at a checkout
 │   ├── generate-typescript-docs.js    # JSDoc → Markdown + publishes llms-full.txt
-│   ├── generate-devcontainer-docs.js  # feature READMEs → Markdown
+│   ├── generate-devcontainer-docs.js  # feature READMEs → Markdown, + src/data/devcontainer-features.json
+│   │                                  #   (⚠ GENERATED catalog read by the guides/devcontainer bootstrap form)
 │   ├── generate-action-docs.js        # action READMEs → Markdown: helpers4/action folders and the
 │   │                                  #   actions with their own repo (MARKETPLACE_ACTIONS), one flat actions/ group
 │   ├── check-internal-links.mjs       # every internal href of dist/ resolved from its own page URL; exit 1 if any is broken

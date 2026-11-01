@@ -8,6 +8,10 @@
  *
  * Active features   → src/<name>/devcontainer-feature.json present → docs/features/
  * Deprecated features → src/<name>/devcontainer-feature.json absent  → docs/deprecated/
+ *
+ * Also writes src/data/devcontainer-features.json, the catalog the devcontainer.json bootstrap
+ * guide (src/components/DevcontainerBootstrap.astro) builds its form from: every active feature
+ * with its version and options, minus the deprecated ones and the internal helpers4-common.
  */
 
 import fs from 'fs';
@@ -17,7 +21,10 @@ import { safeReadJsonFile } from 'helpers4/node';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
-const devcontainerRepoPath = path.join(rootDir, '..', 'devcontainer');
+const devcontainerRepoPath = process.env.DEVCONTAINER_REPO_PATH || path.join(rootDir, '..', 'devcontainer');
+const catalogPath = path.join(rootDir, 'src', 'data', 'devcontainer-features.json');
+/** Pulled in through `dependsOn` by the features that need it: never picked by hand. */
+const INTERNAL_FEATURES = ['helpers4-common'];
 const docsOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'devcontainer', 'features');
 const deprecatedOutputPath = path.join(rootDir, 'src', 'content', 'docs', 'devcontainer', 'deprecated');
 const deprecatedSourcePath = path.join(devcontainerRepoPath, 'deprecated');
@@ -157,6 +164,8 @@ deprecated: true
     }
   }
 
+  writeFeatureCatalog(featuresPath, activeFeatures, deprecatedFeatures);
+
   console.log(`\n✅ Generated documentation for ${activeFeatures.length} active + ${deprecatedFeatures.length} deprecated features`);
   console.log(`📁 Output: ${docsOutputPath}\n`);
 
@@ -202,4 +211,39 @@ function fixDeprecatedFeatureLinks(content) {
     'https://helpers4.dev/devcontainer/'
   );
   return content;
+}
+
+/**
+ * Write the feature catalog of the bootstrap guide: id, name, description, version and options
+ * of every active feature a user may pick. A feature that also has a deprecated/ page is being
+ * removed and is left out, like the internal ones.
+ */
+function writeFeatureCatalog(featuresPath, activeFeatures, deprecatedFeatures) {
+  const features = activeFeatures
+    .filter((id) => !INTERNAL_FEATURES.includes(id) && !deprecatedFeatures.includes(id))
+    .sort()
+    .map((id) => {
+      const manifest = safeReadJsonFile(path.join(featuresPath, id, 'devcontainer-feature.json')) ?? {};
+      const options = Object.fromEntries(
+        Object.entries(manifest.options ?? {}).map(([key, option]) => [
+          key,
+          {
+            type: option.type,
+            default: option.default,
+            description: option.description ?? '',
+            ...(option.enum || option.proposals ? { values: option.enum ?? option.proposals } : {}),
+          },
+        ]),
+      );
+      return {
+        id,
+        name: manifest.name ?? id,
+        description: manifest.description ?? '',
+        version: manifest.version ?? '1.0.0',
+        options,
+      };
+    });
+  fs.mkdirSync(path.dirname(catalogPath), { recursive: true });
+  fs.writeFileSync(catalogPath, JSON.stringify({ features }, null, 2) + '\n');
+  console.log(`\n🗃️  Feature catalog: ${features.length} features → src/data/devcontainer-features.json`);
 }
