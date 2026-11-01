@@ -3,7 +3,7 @@ title: "equalsDeep"
 sidebar:
   label: "equalsDeep"
 description: "Recursive structural array equality."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Recursive structural array equality.

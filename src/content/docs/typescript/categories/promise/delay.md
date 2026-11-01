@@ -3,7 +3,7 @@ title: "delay"
 sidebar:
   label: "delay"
 description: "Creates a promise that resolves after specified delay"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Creates a promise that resolves after specified delay

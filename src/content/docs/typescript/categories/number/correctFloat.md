@@ -3,7 +3,7 @@ title: "correctFloat"
 sidebar:
   label: "correctFloat"
 description: "Corrects floating-point arithmetic errors by rounding to a given number of significant digits."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Corrects floating-point arithmetic errors by rounding to a given number

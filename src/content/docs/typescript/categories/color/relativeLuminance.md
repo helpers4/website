@@ -3,7 +3,7 @@ title: "relativeLuminance"
 sidebar:
   label: "relativeLuminance"
 description: "Computes the WCAG 2.x relative luminance of a color: the perceived brightness from 0 (black) to 1 (white), after linear…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Computes the WCAG 2.x relative luminance of a color: the perceived brightness from 0 (black) to

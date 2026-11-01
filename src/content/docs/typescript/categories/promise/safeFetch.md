@@ -3,7 +3,7 @@ title: "safeFetch"
 sidebar:
   label: "safeFetch"
 description: "Wraps `fetch` and returns `null` when the request fails (network error, non-OK status, or parse error) instead of throw…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Wraps `fetch` and returns `null` when the request fails (network error, non-OK status, or parse

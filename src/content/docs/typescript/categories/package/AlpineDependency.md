@@ -3,7 +3,7 @@ title: "AlpineDependency"
 sidebar:
   label: "AlpineDependency"
 description: "One package reference of an Alpine (apk) `depends` list."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 One package reference of an Alpine (apk) `depends` list.

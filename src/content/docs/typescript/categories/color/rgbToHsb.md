@@ -3,7 +3,7 @@ title: "rgbToHsb"
 sidebar:
   label: "rgbToHsb"
 description: "Converts an RGB(A) color into HSB(A), the model design tools (Figma, Sketch, XD) show in their color pickers."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Converts an RGB(A) color into HSB(A), the model design tools (Figma, Sketch, XD) show in their

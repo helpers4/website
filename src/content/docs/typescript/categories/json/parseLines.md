@@ -3,7 +3,7 @@ title: "parseLines"
 sidebar:
   label: "parseLines"
 description: "Parses newline-delimited JSON — one JSON value per line."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Parses newline-delimited JSON — one JSON value per line. Covers both NDJSON

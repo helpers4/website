@@ -3,7 +3,7 @@ title: "DebianDependencyOptions"
 sidebar:
   label: "DebianDependencyOptions"
 description: "Options of the Debian format of parseDependencies."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Options of the Debian format of parseDependencies.

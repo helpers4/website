@@ -3,7 +3,7 @@ title: "formatPath"
 sidebar:
   label: "formatPath"
 description: "Writes path commands back as SVG path data: letters and numbers separated by single spaces, numbers rounded to `precisi…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Writes path commands back as SVG path data: letters and numbers separated by single spaces,

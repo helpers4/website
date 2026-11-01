@@ -3,7 +3,7 @@ title: "fetchJson"
 sidebar:
   label: "fetchJson"
 description: "Fetches a URL and returns its parsed JSON body, retrying transient failures (network errors, `5xx` and `429`)."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Fetches a URL and returns its parsed JSON body, retrying transient failures (network errors,

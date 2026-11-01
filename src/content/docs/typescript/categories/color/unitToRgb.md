@@ -3,7 +3,7 @@ title: "unitToRgb"
 sidebar:
   label: "unitToRgb"
 description: "Converts a color whose channels are floats from `0` to `1` (as Figma, Sketch and Penpot store them) into an RgbColor, w…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Converts a color whose channels are floats from `0` to `1` (as Figma, Sketch and Penpot store

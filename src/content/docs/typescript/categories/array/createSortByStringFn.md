@@ -3,7 +3,7 @@ title: "createSortByStringFn"
 sidebar:
   label: "createSortByStringFn"
 description: "Creates a sort function for objects by one or more string properties."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Creates a sort function for objects by one or more string properties.

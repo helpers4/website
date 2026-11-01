@@ -3,7 +3,7 @@ title: "pickClosest"
 sidebar:
   label: "pickClosest"
 description: "Picks the face that CSS would use for a request, among the faces of one family: the CSS Fonts Level 4 matching algorith…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Picks the face that CSS would use for a request, among the faces of one family: the CSS Fonts

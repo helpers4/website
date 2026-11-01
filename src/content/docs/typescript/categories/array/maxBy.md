@@ -3,7 +3,7 @@ title: "maxBy"
 sidebar:
   label: "maxBy"
 description: "Returns the element of an array with the greatest derived key, computed by `keyFn`."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Returns the element of an array with the greatest derived key, computed by `keyFn`.

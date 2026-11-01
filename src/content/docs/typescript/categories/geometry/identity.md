@@ -3,7 +3,7 @@ title: "identity"
 sidebar:
   label: "identity"
 description: "The matrix that changes nothing."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 The matrix that changes nothing.

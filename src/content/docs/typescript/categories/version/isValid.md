@@ -3,7 +3,7 @@ title: "isValid"
 sidebar:
   label: "isValid"
 description: "Whether `version` is a valid version in the given `scheme`."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Whether `version` is a valid version in the given `scheme`. Never throws: any input that is

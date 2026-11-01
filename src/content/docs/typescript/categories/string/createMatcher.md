@@ -3,7 +3,7 @@ title: "createMatcher"
 sidebar:
   label: "createMatcher"
 description: "Turns user-supplied filters (a setting, a CLI flag, a list of rules) into one predicate."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Turns user-supplied filters (a setting, a CLI flag, a list of rules) into one predicate.

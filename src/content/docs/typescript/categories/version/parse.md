@@ -3,7 +3,7 @@ title: "parse"
 sidebar:
   label: "parse"
 description: "Parses a version string into its components, according to the given `scheme`."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Parses a version string into its components, according to the given `scheme`.

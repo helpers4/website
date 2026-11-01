@@ -3,7 +3,7 @@ title: "parseDeb822"
 sidebar:
   label: "parseDeb822"
 description: "Parses a deb822 document, the format of Debian `Packages`, `Sources` and `Release` indexes, `control` and `.dsc` and `.…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Parses a deb822 document, the format of Debian `Packages`, `Sources` and `Release` indexes,

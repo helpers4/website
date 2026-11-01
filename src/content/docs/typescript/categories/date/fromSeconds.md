@@ -3,7 +3,7 @@ title: "fromSeconds"
 sidebar:
   label: "fromSeconds"
 description: "Creates a `Date` from a timestamp in **seconds**."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Creates a `Date` from a timestamp in **seconds**.

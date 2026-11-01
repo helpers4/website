@@ -3,7 +3,7 @@ title: "fetchOrThrow"
 sidebar:
   label: "fetchOrThrow"
 description: "Wraps `fetch` so that a non-2xx response rejects with an HttpError."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Wraps `fetch` so that a non-2xx response rejects with an HttpError.

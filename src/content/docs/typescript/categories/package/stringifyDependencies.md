@@ -3,7 +3,7 @@ title: "stringifyDependencies"
 sidebar:
   label: "stringifyDependencies"
 description: "Writes dependency groups back as a field value, the inverse of parseDependencies;"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Writes dependency groups back as a field value, the inverse of parseDependencies; the

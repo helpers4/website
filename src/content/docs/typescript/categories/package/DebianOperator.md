@@ -3,7 +3,7 @@ title: "DebianOperator"
 sidebar:
   label: "DebianOperator"
 description: "The operators of a Debian version constraint (Debian Policy 7.1): `<<` (strictly earlier), `<=`, `=`, `>=` and `>>` (st…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 The operators of a Debian version constraint (Debian Policy 7.1): `<<` (strictly earlier), `<=`,

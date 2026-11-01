@@ -3,7 +3,7 @@ title: "formatSize"
 sidebar:
   label: "formatSize"
 description: "Format a byte count into a human-readable string with the appropriate unit."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Format a byte count into a human-readable string with the appropriate unit.

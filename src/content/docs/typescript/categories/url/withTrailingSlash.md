@@ -3,7 +3,7 @@ title: "withTrailingSlash"
 sidebar:
   label: "withTrailingSlash"
 description: "Adds a trailing slash `/` to the given URL if it is not already present."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Adds a trailing slash `/` to the given URL if it is not already present.

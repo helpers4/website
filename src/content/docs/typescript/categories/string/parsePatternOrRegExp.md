@@ -3,7 +3,7 @@ title: "parsePatternOrRegExp"
 sidebar:
   label: "parsePatternOrRegExp"
 description: "Reads a setting that is either a regular expression or a glob: `/source/flags` is a regular expression when every flag…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Reads a setting that is either a regular expression or a glob: `/source/flags` is a regular

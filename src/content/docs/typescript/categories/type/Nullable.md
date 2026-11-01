@@ -3,7 +3,7 @@ title: "Nullable"
 sidebar:
   label: "Nullable"
 description: "Adds `null` to a type (`T | null`)."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Adds `null` to a type (`T | null`).

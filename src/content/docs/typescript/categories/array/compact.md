@@ -3,7 +3,7 @@ title: "compact"
 sidebar:
   label: "compact"
 description: "Removes all falsy values (`false`, `null`, `undefined`, `0`, `\"\"`, `NaN`) from an array."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Removes all falsy values (`false`, `null`, `undefined`, `0`, `""`, `NaN`) from an array.

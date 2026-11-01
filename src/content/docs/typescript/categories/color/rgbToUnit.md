@@ -3,7 +3,7 @@ title: "rgbToUnit"
 sidebar:
   label: "rgbToUnit"
 description: "Converts an RgbColor (channels from `0` to `255`) into a color whose channels are floats from `0` to `1`, the way Figma…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Converts an RgbColor (channels from `0` to `255`) into a color whose channels are floats

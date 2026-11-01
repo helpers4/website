@@ -3,7 +3,7 @@ title: "shuffle"
 sidebar:
   label: "shuffle"
 description: "Randomly reorders elements of an array using the Fisher-Yates algorithm."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Randomly reorders elements of an array using the Fisher-Yates algorithm.

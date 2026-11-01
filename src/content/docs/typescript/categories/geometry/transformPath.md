@@ -3,7 +3,7 @@ title: "transformPath"
 sidebar:
   label: "transformPath"
 description: "Transforms SVG path data by a matrix."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Transforms SVG path data by a matrix. The result is written with absolute `M`, `L`, `C`, `Q`

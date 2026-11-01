@@ -3,7 +3,7 @@ title: "isMap"
 sidebar:
   label: "isMap"
 description: "Checks if a value is a Map instance."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Checks if a value is a Map instance.

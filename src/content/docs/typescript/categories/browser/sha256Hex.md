@@ -3,7 +3,7 @@ title: "sha256Hex"
 sidebar:
   label: "sha256Hex"
 description: "The SHA-256 digest of some data as a hexadecimal string, optionally cut short: a compact content key, not a security ch…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 The SHA-256 digest of some data as a hexadecimal string, optionally cut short: a compact

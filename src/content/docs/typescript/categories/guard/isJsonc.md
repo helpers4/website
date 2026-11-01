@@ -3,7 +3,7 @@ title: "isJsonc"
 sidebar:
   label: "isJsonc"
 description: "Checks whether a value is a string holding valid JSONC — JSON with comments and trailing commas, the dialect of `tsconf…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Checks whether a value is a string holding valid JSONC — JSON with comments and trailing

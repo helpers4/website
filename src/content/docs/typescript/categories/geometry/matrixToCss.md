@@ -3,7 +3,7 @@ title: "matrixToCss"
 sidebar:
   label: "matrixToCss"
 description: "Writes a matrix as a CSS `transform` or SVG `transform` value."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Writes a matrix as a CSS `transform` or SVG `transform` value.

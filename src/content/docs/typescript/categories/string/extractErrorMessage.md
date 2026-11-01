@@ -3,7 +3,7 @@ title: "extractErrorMessage"
 sidebar:
   label: "extractErrorMessage"
 description: "Convert an error to a readable message."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Convert an error to a readable message.

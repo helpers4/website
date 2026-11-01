@@ -3,7 +3,7 @@ title: "Pep508Dependency"
 sidebar:
   label: "Pep508Dependency"
 description: "One requirement of a PEP 508 dependency specification."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 One requirement of a PEP 508 dependency specification.

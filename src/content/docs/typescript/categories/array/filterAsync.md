@@ -3,7 +3,7 @@ title: "filterAsync"
 sidebar:
   label: "filterAsync"
 description: "The async counterpart to `Array.prototype.filter`: runs `predicate` for every item and resolves to the items whose pred…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 The async counterpart to `Array.prototype.filter`: runs `predicate` for every item and

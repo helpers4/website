@@ -3,7 +3,7 @@ title: "snakeCase"
 sidebar:
   label: "snakeCase"
 description: "Converts a string to snake_case."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Converts a string to snake_case.

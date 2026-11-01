@@ -3,7 +3,7 @@ title: "RpmDependency"
 sidebar:
   label: "RpmDependency"
 description: "One package reference of an RPM `Requires` field."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 One package reference of an RPM `Requires` field.

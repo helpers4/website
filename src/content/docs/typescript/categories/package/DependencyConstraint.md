@@ -3,7 +3,7 @@ title: "DependencyConstraint"
 sidebar:
   label: "DependencyConstraint"
 description: "A version constraint such as the `(>= 2.34)` of `libc6 (>= 2.34)`, with the operator spelled as the format spells it."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 A version constraint such as the `(>= 2.34)` of `libc6 (>= 2.34)`, with the operator spelled as

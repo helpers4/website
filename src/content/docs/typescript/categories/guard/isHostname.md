@@ -3,7 +3,7 @@ title: "isHostname"
 sidebar:
   label: "isHostname"
 description: "Checks whether a value is a syntactically valid DNS hostname (RFC 952, RFC 1123, RFC 3696 section 2)."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Checks whether a value is a syntactically valid DNS hostname (RFC 952, RFC 1123, RFC 3696 section 2).

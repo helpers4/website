@@ -3,7 +3,7 @@ title: "unpremultiply"
 sidebar:
   label: "unpremultiply"
 description: "Divides the color channels by the alpha channel: the inverse of premultiply."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Divides the color channels by the alpha channel: the inverse of premultiply. A fully

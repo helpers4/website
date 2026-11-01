@@ -3,7 +3,7 @@ title: "isBlob"
 sidebar:
   label: "isBlob"
 description: "Checks if a value is a Blob instance."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Checks if a value is a Blob instance.

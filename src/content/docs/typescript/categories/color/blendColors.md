@@ -3,7 +3,7 @@ title: "blendColors"
 sidebar:
   label: "blendColors"
 description: "Composites a source color over a backdrop with a blend mode, as the browser does for `mix-blend-mode` (W3C Compositing…"
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Composites a source color over a backdrop with a blend mode, as the browser does for

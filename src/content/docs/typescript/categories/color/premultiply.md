@@ -3,7 +3,7 @@ title: "premultiply"
 sidebar:
   label: "premultiply"
 description: "Multiplies the color channels by the alpha channel (premultiplied alpha), the form compositing and GPU blending work in."
-version: "3.1.11"
+version: "3.1.12"
 ---
 
 Multiplies the color channels by the alpha channel (premultiplied alpha), the form compositing
