@@ -14,6 +14,9 @@
  * Rendered at build time from the feature catalog written by scripts/generate-devcontainer-docs.js:
  * a feature missing from the catalog drops out, a new one shows up under "Other helpers4 features".
  * The client script writes the JSONC; nothing leaves the browser.
+ *
+ * `not-content`: Starlight's Markdown styles give every element after a sibling a top margin,
+ * which shifts every radio, checkbox and button after the first one of a row.
  */
 import catalog from '../data/devcontainer-features.json';
 
@@ -59,7 +62,7 @@ const assistants = [
 const others = catalog.features.filter((f) => !KNOWN.has(f.id));
 ---
 
-<form class="bootstrap" data-refs={JSON.stringify({ ...refs, ...Object.fromEntries(others.map((f) => [f.id, ref(f.id)])) })}>
+<form class="bootstrap not-content" data-refs={JSON.stringify({ ...refs, ...Object.fromEntries(others.map((f) => [f.id, ref(f.id)])) })}>
   <fieldset>
     <legend>Organization</legend>
     <label class="field">
@@ -146,7 +149,7 @@ const others = catalog.features.filter((f) => !KNOWN.has(f.id));
   </p>
 </form>
 
-<div class="bootstrap-output">
+<div class="bootstrap-output not-content">
   <div class="bootstrap-actions">
     <strong><code>.devcontainer/devcontainer.json</code></strong>
     <button type="button" data-action="copy">Copy</button>
@@ -329,6 +332,23 @@ const others = catalog.features.filter((f) => !KNOWN.has(f.id));
 </script>
 
 <style>
+  /* Out of the Markdown styles (not-content): links and code get their look back here. */
+  .bootstrap a {
+    color: var(--sl-color-text-accent);
+  }
+
+  .bootstrap code,
+  .bootstrap-actions code {
+    font-family: var(--__sl-font-mono);
+    font-size: 0.875em;
+  }
+
+  .bootstrap input[type='radio'],
+  .bootstrap input[type='checkbox'] {
+    margin: 0;
+    align-self: center;
+  }
+
   .bootstrap fieldset {
     margin: 1.5rem 0 0;
     padding: 0.75rem 1rem 1rem;
@@ -371,13 +391,19 @@ const others = catalog.features.filter((f) => !KNOWN.has(f.id));
 
   .bootstrap label {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0.4rem;
   }
 
   .bootstrap .choice {
     display: flex;
+    align-items: flex-start;
     margin-top: 0.5rem;
+  }
+
+  .bootstrap .choice input {
+    margin-top: 0.3em;
+    align-self: flex-start;
   }
 
   .bootstrap small,
@@ -436,6 +462,7 @@ const others = catalog.features.filter((f) => !KNOWN.has(f.id));
   }
 
   .bootstrap-output pre {
+    margin-top: 0.75rem;
     max-height: 32rem;
     overflow: auto;
     padding: 1rem;
