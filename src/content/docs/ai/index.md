@@ -15,7 +15,7 @@ An assistant that does not know a helper exists writes it again. helpers4 gives 
 
 - **[llms.txt](/ai/llms/)** — what each file holds and how to point an agent at it
 - **[Claude Code plugin](/ai/plugins/claude-code/)** — install it in two commands
-- **[GitHub](https://github.com/helpers4/ai)** · **[License (LGPL-3.0)](/typescript/legal/license/)**
+- **[GitHub](https://github.com/helpers4/ai)** · **[License (LGPL-3.0)](/ai/legal/license/)**
 
 ## Which one do I need?
 

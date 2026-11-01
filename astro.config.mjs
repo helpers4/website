@@ -203,6 +203,7 @@ export default defineConfig({
               { slug: 'ai' },
               { slug: 'ai/llms' },
               { label: 'Plugins', items: [{ autogenerate: { directory: 'ai/plugins' } }] },
+              { label: 'Legal', items: [{ autogenerate: { directory: 'ai/legal' } }] },
             ],
           },
           // Guides, blog and sponsors: one topic, so the switcher keeps one row per product.
@@ -214,6 +215,7 @@ export default defineConfig({
               { label: 'Guides', items: [{ slug: 'guides' }, { slug: 'guides/ci' }, { slug: 'guides/devcontainer' }] },
               { label: 'Blog', items: [{ slug: 'blog' }, ...blogPostItems()] },
               { slug: 'sponsors' },
+              { label: 'Legal', items: [{ autogenerate: { directory: 'legal' } }] },
             ],
           },
         ]),

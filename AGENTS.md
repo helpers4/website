@@ -22,7 +22,8 @@ website/
 │   │   └── index.md, getting-started.md  # hand-authored
 │   ├── devcontainer/  # ⚠ GENERATED — do not edit by hand
 │   ├── action/        # ⚠ GENERATED — do not edit by hand
-│   ├── ai/            # hand-authored: llms.txt guide + assistant plugins (helpers4/ai)
+│   ├── ai/            # hand-authored: llms.txt guide + assistant plugins (helpers4/ai) + legal/
+│   ├── legal/         # hand-authored: Resources topic legal (website license, website dependencies)
 │   └── blog/          # hand-authored posts: a `date:` makes a page a post (src/lib/blog.ts);
 │                      #   listed newest first by blogPostItems() in astro.config.mjs, feed at /blog/rss.xml
 ├── public/
