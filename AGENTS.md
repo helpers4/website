@@ -62,6 +62,16 @@ pnpm test             # unit tests (node --test), e.g. the remark link plugin
 pnpm build && pnpm check:links   # fails on any broken internal link (also run by the PR build job)
 ```
 
+**Adding an action that has its own repository** (`helpers4/<name>`, for the GitHub Marketplace — see `action/reference/repositories.md`), in order:
+
+1. `scripts/generate-action-docs.js`: add `<name>` to `MARKETPLACE_ACTIONS` (the page lands in the same `action/actions/` group, with a Marketplace badge).
+2. `.github/workflows/on-action-release.yml`: add `<name>` to the `case` allowlist of the *Resolve released repository* step.
+3. In the new repository's release workflow, after the release step: dispatch `action-release` to `helpers4/website` with `{"repo": "<name>", "version": "<tag>"}` (`helpers4/action/dispatch-with-fallback`, `TRIGGANATOR_ID` / `TRIGGANATOR_KEY`, `continue-on-error: true`) — copy the step from helpers4/action-release's `release.yml`.
+4. Hand-authored lists: the tables of `action/index.md` and `action/getting-started.md`, the "Today" row of `action/reference/repositories.md`, and the GitHub Actions section of `public/llms.txt`.
+5. Generate once (`ACTION_REPOS_PATH=<dir with the checkout> pnpm generate-docs:action`), then `pnpm build && pnpm check:links`.
+
+Moving an action out of the monorepo is the same list, plus removing its folder from helpers4/action (its old page is replaced by the new one, same URL).
+
 **No duplicate H1:** Starlight renders `title:` frontmatter as `<h1>` — content body must not start with `# Heading`. Enforced by `fix-titles.mjs`.
 
 **Pre-1.0 notice (Rust):** `rust/index.md`, `rust/getting-started.md` and the `public/llms.txt` Rust section carry a "Version 0: expect changes" note written by hand — remove it when the crate reaches 1.0. The one on `rust/modules/index.md` and in `llms-full.txt` is generated and goes away by itself (`PRE_1_NOTICE` in `scripts/generate-rust-docs.js`).
