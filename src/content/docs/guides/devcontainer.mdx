@@ -9,15 +9,15 @@ tableOfContents: false
 
 import DevcontainerBootstrap from '../../../components/DevcontainerBootstrap.astro';
 
-Every helpers4 organization devcontainer (helpers4, baxyz, tuxery, feature-today, brig-id) starts from the same base: shell history that survives rebuilds, the host Docker engine, Git LFS and `git absorb`, the GitHub CLI, automatic license headers, Claude Code, and the TypeScript toolchain with a shared pnpm store. That base is ticked below. Add what your project needs, then copy or download the file.
+This form writes the `devcontainer.json` of a new organization workspace: a `.dev` repository that, once opened in a container, clones every other repository of the organization next to it. It is opinionated on purpose. What every helpers4 organization (helpers4, baxyz, tuxery, feature-today, brig-id) has in common is always included, and you only answer what actually differs: license, base image, version control, languages, assistants. Choices bring what they need with them: TypeScript adds package-auto-install and a pinned Node, Graphite and Bitwarden add their token variable, and Angular and Vite+ add their forwarded port.
 
-The list comes from the [helpers4 Dev Container features](/devcontainer/) of the latest release, so a new feature shows up here by itself. The file is generated in your browser; nothing is sent anywhere.
+The features come from the [helpers4 Dev Container features](/devcontainer/) of the latest release, so a new one shows up here by itself. The file is generated in your browser; nothing is sent anywhere.
 
 <DevcontainerBootstrap />
 
 ## Next steps
 
-1. **Organization workspace**: create a `.dev` repository in the organization and commit the file as `.devcontainer/devcontainer.json`. [org-workspace](/devcontainer/features/org-workspace/) clones the other repositories of the organization next to it on the first start, and keeps a `.code-workspace` file listing them.
-2. **Token**: export the token variable on the host (a fine-grained token scoped to the organization), then *Reopen in Container*. `gh` and the GitHub extensions are signed in from the start.
+1. **The `.dev` repository**: create it in the organization and commit the file as `.devcontainer/devcontainer.json`. [org-workspace](/devcontainer/features/org-workspace/) clones the other repositories of the organization next to it on the first start, and keeps a `.code-workspace` file listing them.
+2. **Tokens**: export the variables named in the file's comment on the host (for GitHub, a fine-grained token scoped to the organization), then *Reopen in Container*. `gh` and the GitHub extensions are signed in from the start.
 3. **Lock the versions**: run `devcontainer upgrade --workspace-folder .` to write `.devcontainer/devcontainer-lock.json`, and commit it; Dependabot (`package-ecosystem: devcontainers`) keeps it current.
-4. Read each feature's page for its options — the form only sets the ones every organization uses.
+4. Read each feature's page for its options: the form only sets the ones every organization uses. Working on a single repository rather than an organization? Drop `org-workspace`, `workspaceFolder` and `workspaceMount`.

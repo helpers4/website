@@ -4,227 +4,146 @@
  * Copyright (C) 2025 baxyz
  * SPDX-License-Identifier: LGPL-3.0-or-later
  *
- * devcontainer.json bootstrap form (guides/devcontainer.mdx). The form is rendered at build time
- * from the feature catalog written by scripts/generate-devcontainer-docs.js, so a feature that is
- * removed disappears and a new one shows up under "Other helpers4 features" with no edit here.
- * GROUPS below is the curated part: the pre-checked boxes are what every helpers4 organization
- * devcontainer (baxyz, helpers4, tuxery, feature-today, brig-id) has in common. The client script
- * reads the form and writes the JSONC; nothing leaves the browser.
+ * devcontainer.json bootstrap form (guides/devcontainer.mdx): an organization workspace (a .dev
+ * repository that clones the rest of the org), opinionated on purpose. What every helpers4
+ * organization has is always included and not offered as a choice; the form only asks what
+ * really differs between them. Choices imply the rest: TypeScript brings package-auto-install
+ * and a pinned Node, Graphite or Bitwarden bring their token variable, Angular and Vite+ bring
+ * their forwarded port.
+ *
+ * Rendered at build time from the feature catalog written by scripts/generate-devcontainer-docs.js:
+ * a feature missing from the catalog drops out, a new one shows up under "Other helpers4 features".
+ * The client script writes the JSONC; nothing leaves the browser.
  */
 import catalog from '../data/devcontainer-features.json';
 
-interface Choice {
-  key: string;
-  ref: string;
-  label: string;
-  description: string;
-  docs: string;
-  checked: boolean;
-  /** Options written as they are; options that depend on the form are set by the script. */
-  options?: Record<string, unknown>;
-  /** Needs Node.js in the container: pulls in the pinned node feature. */
-  node?: boolean;
-  note?: string;
-}
-
-interface Group {
-  label: string;
-  items: Choice[];
-}
-
 type CatalogFeature = (typeof catalog.features)[number];
 const byId = new Map<string, CatalogFeature>(catalog.features.map((f) => [f.id, f]));
-const used = new Set<string>(['org-workspace']);
 
-function shortDescription(text: string): string {
+/** Every feature id this form knows about, whether always included or offered. */
+const KNOWN = new Set([
+  'org-workspace', 'shell-history', 'dotfiles-sync', 'essential-dev', 'github-dev', 'auto-header',
+  'git-absorb', 'jj', 'typescript-dev', 'package-auto-install', 'pnpm-store', 'vite-plus', 'nub',
+  'playwright-dev', 'angular-dev', 'claude-dev', 'copilot-dev', 'cline-dev', 'mistral-dev',
+  'kimi-dev', 'graphite-dev',
+]);
+
+/** `ghcr.io/helpers4/devcontainer/<id>:<major>`, or '' when the catalog no longer has it. */
+function ref(id: string): string {
+  const feature = byId.get(id);
+  return feature ? `ghcr.io/helpers4/devcontainer/${id}:${feature.version.split('.')[0]}` : '';
+}
+
+function summary(id: string): string {
+  const text = byId.get(id)?.description ?? '';
   return text.replace(/\s*Also self-heals your devcontainer setup\.?/, '').split(/(?<=\.)\s/)[0] ?? text;
 }
 
-/** A helpers4 feature, or nothing when the catalog no longer has it. */
-function h(id: string, checked: boolean, extra: Partial<Choice> = {}): Choice[] {
-  const feature = byId.get(id);
-  if (!feature) return [];
-  used.add(id);
-  return [
-    {
-      key: id,
-      ref: `ghcr.io/helpers4/devcontainer/${id}:${feature.version.split('.')[0]}`,
-      label: id,
-      description: shortDescription(feature.description),
-      docs: `/devcontainer/features/${id}/`,
-      checked,
-      ...extra,
-    },
-  ];
-}
-
-/** A feature from outside helpers4. */
-function ext(key: string, ref: string, description: string, docs: string, checked: boolean, extra: Partial<Choice> = {}): Choice[] {
-  return [{ key, ref, label: key, description, docs, checked, ...extra }];
-}
-
-const GROUPS: Group[] = [
-  {
-    label: 'Infrastructure',
-    items: [
-      ...h('shell-history', true),
-      ...ext(
-        'docker-outside-of-docker',
-        'ghcr.io/devcontainers/features/docker-outside-of-docker:1',
-        'The docker CLI and compose, talking to the host engine.',
-        'https://github.com/devcontainers/features/tree/main/src/docker-outside-of-docker',
-        true,
-        // The Debian trixie images no longer package moby-cli.
-        { options: { moby: false } },
-      ),
-      ...ext(
-        'devcontainers-cli',
-        'ghcr.io/devcontainers-extra/features/devcontainers-cli:1',
-        'The devcontainer CLI, to build and test containers from inside.',
-        'https://github.com/devcontainers-extra/features/tree/main/src/devcontainers-cli',
-        false,
-      ),
-      ...h('dotfiles-sync', false, { note: 'Bind-mounts host files: breaks on Codespaces.' }),
-    ],
-  },
-  {
-    label: 'Git & GitHub',
-    items: [
-      ...ext('git-lfs', 'ghcr.io/devcontainers/features/git-lfs:1', 'Git Large File Storage.', 'https://github.com/devcontainers/features/tree/main/src/git-lfs', true),
-      ...h('git-absorb', true),
-      ...h('essential-dev', true),
-      ...h('github-dev', true),
-      ...h('auto-header', true, { note: 'Uses the name and license above.' }),
-      ...h('jj', false),
-      ...h('graphite-dev', false, { node: true, note: 'Reads GRAPHITE_TOKEN from the environment.' }),
-    ],
-  },
-  {
-    label: 'AI assistants',
-    items: [
-      ...h('claude-dev', true, { options: { installCli: true } }),
-      ...h('copilot-dev', false),
-      ...h('cline-dev', false),
-      ...h('mistral-dev', false),
-      ...h('kimi-dev', false),
-    ],
-  },
-  {
-    label: 'JavaScript & TypeScript',
-    items: [
-      ...h('typescript-dev', true, { node: true }),
-      ...h('pnpm-store', true, { node: true }),
-      ...h('package-auto-install', true, { node: true }),
-      ...h('vite-plus', true, { node: true }),
-      ...h('nub', false, { node: true }),
-      ...h('playwright-dev', false, { node: true }),
-      ...h('angular-dev', false, { node: true }),
-    ],
-  },
-  {
-    label: 'Rust',
-    items: [
-      ...ext('rust', 'ghcr.io/devcontainers/features/rust:1', 'rustup, cargo and the rust-analyzer extension.', 'https://github.com/devcontainers/features/tree/main/src/rust', false),
-    ],
-  },
-  { label: 'Secrets', items: [...h('bitwarden-secrets-manager', false)] },
-];
-
-const others = catalog.features.filter((f) => !used.has(f.id)).flatMap((f) => h(f.id, false));
-const groups = [...GROUPS, ...(others.length ? [{ label: 'Other helpers4 features', items: others }] : [])].filter(
-  (g) => g.items.length > 0,
-);
-const orgWorkspace = byId.get('org-workspace');
+const refs = Object.fromEntries([...KNOWN].map((id) => [id, ref(id)]));
+const always = ['org-workspace', 'shell-history', 'dotfiles-sync', 'essential-dev', 'github-dev', 'auto-header'].filter((id) => refs[id]);
+const jsTooling = [
+  { id: 'pnpm-store', label: 'pnpm', checked: true },
+  { id: 'vite-plus', label: 'Vite+', checked: true },
+  { id: 'nub', label: 'nub', checked: false },
+  { id: 'playwright-dev', label: 'Playwright', checked: false },
+  { id: 'angular-dev', label: 'Angular', checked: false },
+].filter((t) => refs[t.id]);
+const assistants = [
+  { id: 'claude-dev', label: 'Claude Code', checked: true },
+  { id: 'copilot-dev', label: 'GitHub Copilot', checked: false },
+  { id: 'cline-dev', label: 'Cline', checked: false },
+  { id: 'mistral-dev', label: 'Mistral Vibe', checked: false },
+  { id: 'kimi-dev', label: 'Kimi Code', checked: false },
+  { id: 'graphite-dev', label: 'Graphite (stacked PRs)', checked: false },
+].filter((a) => refs[a.id]);
+const others = catalog.features.filter((f) => !KNOWN.has(f.id));
 ---
 
-<form class="bootstrap" data-org-workspace-ref={orgWorkspace ? `ghcr.io/helpers4/devcontainer/org-workspace:${orgWorkspace.version.split('.')[0]}` : ''}>
+<form class="bootstrap" data-refs={JSON.stringify({ ...refs, ...Object.fromEntries(others.map((f) => [f.id, ref(f.id)])) })}>
   <fieldset>
-    <legend>Project</legend>
+    <legend>Organization</legend>
     <label class="field">
       <span>Name</span>
       <input name="name" type="text" value="my-org" required />
-      <small>Organization or project name: container name, file headers, token variable.</small>
     </label>
     <div class="field">
-      <span>Layout</span>
-      {orgWorkspace && (
-        <label class="inline">
-          <input type="radio" name="layout" value="org" checked />
-          Organization workspace — a <code>.dev</code> repository that clones every repo of the org next to it
-        </label>
-      )}
-      <label class="inline">
-        <input type="radio" name="layout" value="repo" checked={!orgWorkspace} />
-        Single repository
-      </label>
-    </div>
-    <label class="field">
-      <span>Base image</span>
-      <select name="image">
-        <option value="mcr.microsoft.com/devcontainers/typescript-node:26" selected>typescript-node:26 (Node 26)</option>
-        <option value="mcr.microsoft.com/devcontainers/typescript-node:24">typescript-node:24 (Node 24)</option>
-        <option value="mcr.microsoft.com/devcontainers/base:debian">base:debian (no Node)</option>
-      </select>
-    </label>
-    <label class="field">
       <span>License</span>
-      <input name="license" type="text" value="LGPL-3.0-or-later" list="bootstrap-licenses" />
-      <datalist id="bootstrap-licenses">
-        <option value="LGPL-3.0-or-later"></option>
-        <option value="AGPL-3.0-or-later"></option>
-        <option value="AGPL-3.0-only"></option>
-        <option value="GPL-3.0-or-later"></option>
-        <option value="MIT"></option>
-        <option value="Apache-2.0"></option>
-      </datalist>
-      <small>SPDX identifier, written in every new file header by auto-header.</small>
+      <div class="row">
+        <label><input type="radio" name="license" value="AGPL-3.0-or-later" /> AGPL</label>
+        <label><input type="radio" name="license" value="LGPL-3.0-or-later" checked /> LGPL</label>
+        <label><input type="radio" name="license" value="MIT" /> MIT</label>
+        <label><input type="radio" name="license" value="other" /> Other</label>
+        <input name="license-other" type="text" placeholder="SPDX id, e.g. Apache-2.0" aria-label="Other license (SPDX id)" />
+      </div>
+    </div>
+    <div class="field">
+      <span>Base image</span>
+      <div class="row">
+        <label><input type="radio" name="image" value="mcr.microsoft.com/devcontainers/typescript-node:26" checked /> TypeScript (Node 26)</label>
+        <label><input type="radio" name="image" value="mcr.microsoft.com/devcontainers/base:debian" /> Debian</label>
+        <label><input type="radio" name="image" value="mcr.microsoft.com/devcontainers/base:ubuntu" /> Ubuntu</label>
+      </div>
+    </div>
+    <div class="field">
+      <span>Version control</span>
+      <div class="row">
+        <label><input type="radio" name="vcs" value="git" checked /> Git</label>
+        {refs.jj && <label><input type="radio" name="vcs" value="jj" /> jj</label>}
+        {refs.jj && <label><input type="radio" name="vcs" value="both" /> Git + jj</label>}
+      </div>
+      <small>Git comes with Git LFS and git absorb. <a href="/devcontainer/features/jj/">jj</a> works on the same repositories (colocated).</small>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Languages</legend>
+    <label class="choice">
+      <input type="checkbox" name="typescript" checked />
+      <span>TypeScript <small class="ts-hint">— with package-auto-install and a pinned Node</small></span>
     </label>
-    <label class="inline">
-      <input type="checkbox" name="token" checked />
-      Forward a GitHub token from the host (<code class="token-name">GH_TOKEN_FOR_MY_ORG</code>)
+    <div class="nested js-tooling">
+      {jsTooling.map((tool) => (
+        <label title={summary(tool.id)}>
+          <input type="checkbox" name="feature" value={tool.id} checked={tool.checked} data-group="TypeScript" />
+          <a href={`/devcontainer/features/${tool.id}/`}>{tool.label}</a>
+        </label>
+      ))}
+    </div>
+    <label class="choice">
+      <input type="checkbox" name="rust" />
+      <span>Rust <small>— rustup, cargo, rust-analyzer</small></span>
     </label>
   </fieldset>
 
-  {groups.map((group) => (
+  <fieldset>
+    <legend>AI</legend>
+    <div class="row">
+      {assistants.map((assistant) => (
+        <label title={summary(assistant.id)}>
+          <input type="checkbox" name="feature" value={assistant.id} checked={assistant.checked} data-group="AI" />
+          <a href={`/devcontainer/features/${assistant.id}/`}>{assistant.label}</a>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+
+  {others.length > 0 && (
     <fieldset>
-      <legend>{group.label}</legend>
-      {group.items.map((item) => (
+      <legend>Other helpers4 features</legend>
+      {others.map((feature) => (
         <label class="choice">
-          <input
-            type="checkbox"
-            name="feature"
-            value={item.key}
-            checked={item.checked}
-            data-ref={item.ref}
-            data-group={group.label}
-            data-options={JSON.stringify(item.options ?? {})}
-            data-node={item.node ? 'true' : undefined}
-          />
-          <span>
-            <a href={item.docs}>{item.label}</a> — {item.description}
-            {item.note && <em> {item.note}</em>}
-          </span>
+          <input type="checkbox" name="feature" value={feature.id} data-group="Other" />
+          <span><a href={`/devcontainer/features/${feature.id}/`}>{feature.id}</a> — {summary(feature.id)}</span>
         </label>
       ))}
     </fieldset>
-  ))}
+  )}
 
-  <fieldset>
-    <legend>Editor and ports</legend>
-    <label class="inline">
-      <input type="checkbox" name="extension" value="streetsidesoftware.code-spell-checker" checked />
-      Code Spell Checker
-    </label>
-    <label class="inline">
-      <input type="checkbox" name="extension" value="timonwong.shellcheck" checked />
-      ShellCheck
-    </label>
-    <label class="field">
-      <span>Forwarded ports</span>
-      <input name="ports" type="text" placeholder="4321, 5173" inputmode="numeric" />
-      <small>Comma-separated. Dev servers must listen on 0.0.0.0 to be reachable from the host.</small>
-    </label>
-  </fieldset>
+  <p class="always">
+    Always included:{' '}
+    {always.map((id, i) => <>{i > 0 && ', '}<a href={`/devcontainer/features/${id}/`}>{id}</a></>)}, Docker outside of
+    Docker, the GitHub token, Code Spell Checker and ShellCheck.
+  </p>
 </form>
 
 <div class="bootstrap-output">
@@ -239,77 +158,106 @@ const orgWorkspace = byId.get('org-workspace');
 
 <script>
   type Json = string | number | boolean | null | Json[] | { [key: string]: Json };
+  interface Feature { group: string; ref: string; options: Record<string, Json>; comment?: string }
 
   const form = document.querySelector<HTMLFormElement>('form.bootstrap');
   const result = document.querySelector<HTMLElement>('.bootstrap-result');
   const status = document.querySelector<HTMLElement>('.bootstrap-status');
+  const refs: Record<string, string> = JSON.parse(form?.dataset.refs ?? '{}');
 
-  /** A JSON value indented to sit at `depth` inside the generated file. */
+  /** Dev server ports of the features that have one: features cannot forward ports themselves. */
+  const PORTS: Record<string, { port: number; label: string }> = {
+    'angular-dev': { port: 4200, label: 'Angular dev server' },
+    'vite-plus': { port: 5173, label: 'Vite dev server' },
+  };
+  /** Features that read a token: forwarded from a host variable named after the organization. */
+  const TOKENS: Record<string, { variable: string; host: string }> = {
+    'graphite-dev': { variable: 'GRAPHITE_TOKEN', host: 'GRAPHITE_TOKEN_FOR' },
+    'bitwarden-secrets-manager': { variable: 'BWS_ACCESS_TOKEN', host: 'BWS_ACCESS_TOKEN_FOR' },
+  };
+
   function value(json: Json, depth: number): string {
     return JSON.stringify(json, null, 2).replace(/\n/g, '\n' + '  '.repeat(depth));
   }
 
-  function tokenName(name: string): string {
-    const slug = name.toUpperCase().replace(/[^A-Z0-9]+/g, '_').replace(/^_|_$/g, '');
-    return `GH_TOKEN_FOR_${slug || 'ORG'}`;
+  function suffix(name: string): string {
+    return name.toUpperCase().replace(/[^A-Z0-9]+/g, '_').replace(/^_|_$/g, '') || 'ORG';
   }
 
   function render(): string {
     if (!form) return '';
     const data = new FormData(form);
     const name = String(data.get('name') || 'my-org').trim();
-    const layout = String(data.get('layout') ?? 'repo');
+    const licenseChoice = String(data.get('license'));
+    const license = licenseChoice === 'other' ? String(data.get('license-other') || 'MIT').trim() : licenseChoice;
     const image = String(data.get('image'));
-    const license = String(data.get('license') || 'MIT').trim();
+    const vcs = String(data.get('vcs') ?? 'git');
     const nodeMajor = image.match(/typescript-node:(\d+)/)?.[1];
+    // The TypeScript image means a TypeScript workspace.
+    const typescript = Boolean(nodeMajor) || data.get('typescript') !== null;
+    const picked = new Set(
+      [...form.querySelectorAll<HTMLInputElement>('input[name="feature"]:checked')]
+        .filter((box) => typescript || box.dataset.group !== 'TypeScript')
+        .map((box) => box.value),
+    );
 
-    // Features, in group order, with the options that depend on the form.
-    const boxes = [...form.querySelectorAll<HTMLInputElement>('input[name="feature"]:checked')];
-    const features: { group: string; ref: string; options: Record<string, Json>; comment?: string }[] = [];
-    if (layout === 'org' && form.dataset.orgWorkspaceRef) {
+    const features: Feature[] = [];
+    const add = (group: string, id: string, options: Record<string, Json> = {}, comment?: string) => {
+      if (refs[id]) features.push({ group, ref: refs[id], options, comment });
+    };
+
+    add('Workspace', 'org-workspace', { autoDiscover: 'public,private,internal,fork' });
+    add('Infrastructure', 'shell-history');
+    add('Infrastructure', 'dotfiles-sync');
+    features.push({ group: 'Infrastructure', ref: 'ghcr.io/devcontainers/features/docker-outside-of-docker:1', options: { moby: false } });
+    if (vcs !== 'jj') {
+      features.push({ group: 'Version control', ref: 'ghcr.io/devcontainers/features/git-lfs:1', options: {} });
+      add('Version control', 'git-absorb');
+    }
+    if (vcs !== 'git') add('Version control', 'jj');
+    add('Dev environment', 'essential-dev');
+    add('Dev environment', 'github-dev');
+    add('Dev environment', 'auto-header', { projectName: name, license });
+    for (const id of ['claude-dev', 'copilot-dev', 'cline-dev', 'mistral-dev', 'kimi-dev', 'graphite-dev']) {
+      if (picked.has(id)) add('AI', id, id === 'claude-dev' ? { installCli: true } : {});
+    }
+    if (typescript) {
       features.push({
-        group: 'Workspace',
-        ref: form.dataset.orgWorkspaceRef,
-        options: { autoDiscover: 'public,private,internal,fork' },
+        group: 'TypeScript',
+        ref: 'ghcr.io/devcontainers/features/node:2',
+        options: { version: nodeMajor ?? 'lts' },
+        comment: nodeMajor
+          ? `Pinned to the image's Node ${nodeMajor}: helpers4 features depend on this feature,\n    // whose default (lts) would install a second Node next to the image's own.`
+          : undefined,
       });
+      add('TypeScript', 'typescript-dev');
+      for (const id of ['pnpm-store', 'nub', 'vite-plus', 'playwright-dev', 'angular-dev']) if (picked.has(id)) add('TypeScript', id);
+      add('TypeScript', 'package-auto-install', { autoDiscover: true });
     }
-    let nodeAdded = false;
-    for (const box of boxes) {
-      const options: Record<string, Json> = JSON.parse(box.dataset.options ?? '{}');
-      if (box.value === 'auto-header') Object.assign(options, { projectName: name, license });
-      if (box.value === 'package-auto-install' && layout === 'org') options.autoDiscover = true;
-      if (box.dataset.node && !nodeAdded) {
-        nodeAdded = true;
-        features.push({
-          group: box.dataset.group ?? '',
-          ref: 'ghcr.io/devcontainers/features/node:2',
-          options: { version: nodeMajor ?? 'lts' },
-          comment: nodeMajor
-            ? `Pinned to the image's Node ${nodeMajor}: helpers4 features depend on this feature,\n    // whose default (lts) would install a second Node next to the image's own.`
-            : undefined,
-        });
-      }
-      features.push({ group: box.dataset.group ?? '', ref: box.dataset.ref ?? '', options });
+    if (data.get('rust') !== null) features.push({ group: 'Rust', ref: 'ghcr.io/devcontainers/features/rust:1', options: {} });
+    for (const id of picked) {
+      if (!features.some((f) => f.ref === refs[id])) add('Other', id);
     }
 
-    const lines: string[] = ['{', `  "name": ${value(name, 1)},`, `  "image": ${value(image, 1)},`];
-    if (layout === 'org') {
-      lines.push(
-        '  // The .dev repository is the one opened in the container; org-workspace clones the',
-        '  // other repos of the org into sibling /workspaces/<name> folders.',
-        '  "workspaceFolder": "/workspaces/.dev",',
-        '  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/.dev,type=bind,consistency=cached",',
-      );
+    const env: Record<string, string> = { GH_TOKEN: `\${localEnv:GH_TOKEN_FOR_${suffix(name)}}` };
+    for (const [id, token] of Object.entries(TOKENS)) {
+      if (picked.has(id)) env[token.variable] = `\${localEnv:${token.host}_${suffix(name)}}`;
     }
-    if (data.get('token')) {
-      const env = { GH_TOKEN: `\${localEnv:${tokenName(name)}}` };
-      lines.push(
-        `  // Set on the host: export ${tokenName(name)}=<token>`,
-        `  "containerEnv": ${value(env, 1)},`,
-        `  "remoteEnv": ${value(env, 1)},`,
-      );
-    }
-    lines.push('  "features": {');
+    const hostVariables = Object.values(env).map((v) => v.slice('${localEnv:'.length, -1));
+
+    const lines: string[] = [
+      '{',
+      `  "name": ${value(name, 1)},`,
+      `  "image": ${value(image, 1)},`,
+      '  // The .dev repository is the one opened in the container; org-workspace clones the',
+      '  // other repos of the org into sibling /workspaces/<name> folders.',
+      '  "workspaceFolder": "/workspaces/.dev",',
+      '  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/.dev,type=bind,consistency=cached",',
+      `  // Set on the host: ${hostVariables.map((v) => `export ${v}=<token>`).join('; ')}`,
+      `  "containerEnv": ${value(env, 1)},`,
+      `  "remoteEnv": ${value(env, 1)},`,
+      '  "features": {',
+    ];
     let group = '';
     features.forEach((feature, index) => {
       if (feature.group !== group) {
@@ -321,23 +269,38 @@ const orgWorkspace = byId.get('org-workspace');
       lines.push(`    ${value(feature.ref, 2)}: ${value(feature.options, 2)}${comma}`);
     });
     lines.push('  },');
-
-    const extensions = data.getAll('extension').map(String);
-    if (extensions.length) lines.push(`  "customizations": ${value({ vscode: { extensions } }, 1)},`);
-    const ports = String(data.get('ports') ?? '')
-      .split(/[\s,]+/)
-      .map(Number)
-      .filter((port) => Number.isInteger(port) && port > 0 && port < 65536);
-    if (ports.length) lines.push(`  "forwardPorts": ${value(ports, 1)},`);
+    const extensions = ['streetsidesoftware.code-spell-checker', 'timonwong.shellcheck'];
+    lines.push(`  "customizations": ${value({ vscode: { extensions } }, 1)},`);
+    const ports = Object.entries(PORTS).filter(([id]) => picked.has(id) && typescript).map(([, p]) => p);
+    if (ports.length) {
+      lines.push(
+        '  // Dev servers must listen on 0.0.0.0 (--host) to be reachable from the host browser.',
+        `  "forwardPorts": ${value(ports.map((p) => p.port), 1)},`,
+        `  "portsAttributes": ${value(Object.fromEntries(ports.map((p) => [String(p.port), { label: p.label, onAutoForward: 'notify' }])), 1)},`,
+      );
+    }
     lines.push(`  "remoteUser": ${value(nodeMajor ? 'node' : 'vscode', 1)}`, '}');
     return lines.join('\n') + '\n';
   }
 
+  /** Keeps the form consistent: TypeScript is implied by its image, its tooling hides without it. */
+  function sync() {
+    if (!form) return;
+    const data = new FormData(form);
+    const tsImage = /typescript-node/.test(String(data.get('image')));
+    const tsBox = form.querySelector<HTMLInputElement>('input[name="typescript"]');
+    if (tsBox) {
+      if (tsImage) tsBox.checked = true;
+      tsBox.disabled = tsImage;
+    }
+    form.querySelector<HTMLElement>('.js-tooling')?.toggleAttribute('hidden', !(tsBox?.checked ?? false));
+    const other = form.querySelector<HTMLInputElement>('input[name="license-other"]');
+    if (other) other.disabled = data.get('license') !== 'other';
+  }
+
   function update() {
-    if (!form || !result) return;
-    result.textContent = render();
-    const name = String(new FormData(form).get('name') || 'my-org');
-    form.querySelectorAll('.token-name').forEach((el) => (el.textContent = tokenName(name)));
+    sync();
+    if (result) result.textContent = render();
   }
 
   function say(message: string) {
@@ -382,7 +345,7 @@ const orgWorkspace = byId.get('org-workspace');
   .bootstrap .field {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.35rem;
     margin-top: 0.75rem;
   }
 
@@ -390,14 +353,46 @@ const orgWorkspace = byId.get('org-workspace');
     font-weight: 600;
   }
 
-  .bootstrap small {
+  .bootstrap .row,
+  .bootstrap .nested {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.25rem;
+  }
+
+  .bootstrap .nested {
+    margin: 0.4rem 0 0.6rem 1.6rem;
+  }
+
+  .bootstrap .nested[hidden] {
+    display: none;
+  }
+
+  .bootstrap label {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .bootstrap .choice {
+    display: flex;
+    margin-top: 0.5rem;
+  }
+
+  .bootstrap small,
+  .bootstrap .always {
     color: var(--sl-color-gray-3);
   }
 
-  .bootstrap input[type='text'],
-  .bootstrap select {
-    max-width: 28rem;
-    padding: 0.35rem 0.5rem;
+  .bootstrap .always {
+    margin-top: 1rem;
+    font-size: var(--sl-text-sm);
+  }
+
+  .bootstrap input[type='text'] {
+    max-width: 20rem;
+    padding: 0.3rem 0.5rem;
     border: 1px solid var(--sl-color-gray-4);
     border-radius: 0.25rem;
     background: var(--sl-color-black);
@@ -405,16 +400,8 @@ const orgWorkspace = byId.get('org-workspace');
     font: inherit;
   }
 
-  .bootstrap .inline,
-  .bootstrap .choice {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .bootstrap .choice em {
-    color: var(--sl-color-gray-3);
+  .bootstrap input[type='text']:disabled {
+    opacity: 0.5;
   }
 
   .bootstrap-output {
