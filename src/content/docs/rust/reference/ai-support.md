@@ -31,3 +31,7 @@ Then import through the module path (`helpers4::string::capitalize`), never with
 ## docs.rs
 
 The API documentation as compiled by rustdoc is also on [docs.rs/helpers4](https://docs.rs/helpers4), with every feature enabled.
+
+## Assistant plugins
+
+The [helpers4 Claude Code plugin](/ai/plugins/claude-code/) scans a project for code helpers4 already provides and proposes the replacement. See the [AI section](/ai/) for every assistant integration.

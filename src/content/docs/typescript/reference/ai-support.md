@@ -20,8 +20,7 @@ no setup required.
 ## `llms.txt`
 
 [`/llms.txt`](/llms.txt) is a site-level index (following the
-[llmstxt.org](https://llmstxt.org) convention) listing all three helpers4 products — TypeScript,
-DevContainer Features, and GitHub Actions — with links an AI agent can follow for more detail.
+[llmstxt.org](https://llmstxt.org) convention) listing every helpers4 product — with links an AI agent can follow for more detail.
 
 ## Full reference (`llms-full.txt`)
 
@@ -35,3 +34,7 @@ If you're telling an agent how to install helpers4, point it at the `helpers4` p
 (`npm install helpers4`, then `import ... from 'helpers4/<category>'`) rather than a list of
 `@helpers4/<category>` packages to install one by one — one install gets every category, with
 no follow-up peer-dependency installs to remember.
+
+## Assistant plugins
+
+The [helpers4 Claude Code plugin](/ai/plugins/claude-code/) scans a project for code helpers4 already provides and proposes the replacement. See the [AI section](/ai/) for every assistant integration.
