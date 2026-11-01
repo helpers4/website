@@ -205,23 +205,16 @@ export default defineConfig({
               { label: 'Plugins', items: [{ autogenerate: { directory: 'ai/plugins' } }] },
             ],
           },
+          // Guides, blog and sponsors: one topic, so the switcher keeps one row per product.
           {
-            label: 'Blog',
-            link: '/blog/',
-            icon: 'rss',
-            items: [{ slug: 'blog' }, { label: 'Posts', items: blogPostItems() }],
-          },
-          {
-            label: 'Guides',
+            label: 'Resources',
             link: '/guides/',
             icon: 'open-book',
-            items: [{ slug: 'guides' }, { slug: 'guides/ci' }],
-          },
-          {
-            label: 'Sponsors',
-            link: '/sponsors/',
-            icon: 'heart',
-            items: [{ slug: 'sponsors' }],
+            items: [
+              { label: 'Guides', items: [{ slug: 'guides' }, { slug: 'guides/ci' }] },
+              { label: 'Blog', items: [{ slug: 'blog' }, ...blogPostItems()] },
+              { slug: 'sponsors' },
+            ],
           },
         ]),
         starlightThemeNova(),
