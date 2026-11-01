@@ -39,7 +39,7 @@ jobs:
 
       - uses: helpers4/action/setup-pnpm@main
         with:
-          node-version: "24"
+          node-version: "26"
 
       - name: Download TypeScript build artifacts
         env:

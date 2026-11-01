@@ -46,7 +46,7 @@ jobs:
 
       - uses: helpers4/action/setup-pnpm@main
         with:
-          node-version: "24"
+          node-version: "26"
 
       # The generator only reads files from this checkout: nothing from the crate is executed.
       - name: Checkout the Rust crate at the release tag
