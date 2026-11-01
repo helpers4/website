@@ -15,7 +15,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { createSortByStringFn } from 'helpers4/array';
 import { escape } from 'helpers4/markdown';
-import { capitalize, leadingSentence, truncate } from 'helpers4/string';
+import { capitalize, leadingSentence, slugify, truncate } from 'helpers4/string';
 import { compare } from 'helpers4/version';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -33,7 +33,7 @@ const VERSIONS_MANIFEST_PATH = path.join(rootDir, 'src', 'data', 'versions.json'
 /** Sidebar label of a category's overview page: the mark tells it apart from the function pages. */
 const OVERVIEW_LABEL = '≡ Overview';
 
-const ARCHIVABLE_ENTRIES = ['categories', 'comparisons', 'legal', 'reference', 'getting-started.md', 'index.md'];
+const ARCHIVABLE_ENTRIES = ['categories', 'comparisons', 'legal', 'presets', 'reference', 'getting-started.md', 'index.md'];
 
 // DOCS_TARGET selects which content/docs/<slug> tree to (re)generate — one slot per
 // concurrently documented version line (e.g. "typescript" for the current stable line,
@@ -406,6 +406,9 @@ See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution 
   // --- naming conflicts reference page (generated from nameConflicts map) ---
   generateNamingConflictsPage(nameConflicts);
 
+  // --- presets pages (@helpers4/presets README, one page per tool) ---
+  generatePresetsDocs();
+
   // --- contributing page (synced from typescript repo) ---
   syncContributingPage();
 
@@ -441,6 +444,82 @@ See [Name Conflicts](../../reference/naming-conflicts/) for the full resolution 
 } catch (error) {
   console.error('❌ Error generating documentation:', error.message);
   process.exit(1);
+}
+
+/**
+ * Generate the presets/ pages from the @helpers4/presets README (build/presets/README.md).
+ *
+ * Presets are not a category: no functions, no api.json — the build/ discovery above skips
+ * them. The README is split on its H2 headings: the intro and the "Versions" section make the
+ * overview page, every other H2 (one per tool) becomes its own page, in README order. When the
+ * build has no presets (a release before 3.1.10), the existing pages are left untouched.
+ */
+function generatePresetsDocs() {
+  const readmePath = path.join(buildPath, 'presets', 'README.md');
+  if (!fs.existsSync(readmePath)) {
+    console.warn('  ⚠ build/presets/README.md not found, presets pages left as they are');
+    return;
+  }
+
+  const presetsDir = path.join(rootDir, 'src', 'content', 'docs', DOCS_TARGET, 'presets');
+  fs.rmSync(presetsDir, { recursive: true, force: true });
+  fs.mkdirSync(presetsDir, { recursive: true });
+
+  const readme = fs.readFileSync(readmePath, 'utf-8').replace(/^# .+\n+/m, '');
+  const [intro, ...chunks] = readme.split(/^## /m);
+  const sections = chunks.map((chunk) => {
+    const newline = chunk.indexOf('\n');
+    return { heading: chunk.slice(0, newline).trim(), body: chunk.slice(newline + 1).trim() };
+  });
+  const overviewSections = sections.filter((s) => s.heading === 'Versions');
+  const toolSections = sections.filter((s) => s.heading !== 'Versions');
+  const sourceLink = `[View source on GitHub](https://github.com/helpers4/typescript/tree/${SOURCE_BRANCH}/presets)`;
+
+  for (const [index, section] of toolSections.entries()) {
+    const content = `---
+title: "${escapeYamlDoubleQuoted(section.heading)} preset"
+sidebar:
+  label: "${escapeYamlDoubleQuoted(section.heading)}"
+  order: ${index + 1}
+version: "${LIBRARY_VERSION}"
+---
+
+${section.body}
+
+## Source
+
+${sourceLink}
+`;
+    fs.writeFileSync(path.join(presetsDir, `${slugify(section.heading)}.md`), content);
+  }
+
+  const toolList = toolSections.map((s) => `- [${s.heading}](./${slugify(s.heading)}/)`).join('\n');
+  const index = `---
+title: "Presets"
+description: "Shared tool configurations of the helpers4 projects: tsconfig, oxlint, oxfmt, Vitest, Stryker, cspell, EditorConfig and git-cliff."
+sidebar:
+  label: "${OVERVIEW_LABEL}"
+  order: 0
+---
+
+:::note[Not a category]
+\`@helpers4/presets\` holds no functions: it ships configuration files that your tools extend.
+:::
+
+${intro.trim()}
+
+## Tools
+
+${toolList}
+
+${overviewSections.map((s) => `## ${s.heading}\n\n${s.body}`).join('\n\n')}
+
+## Source
+
+${sourceLink}
+`;
+  fs.writeFileSync(path.join(presetsDir, 'index.md'), index);
+  console.log(`  ✓ presets (${toolSections.length} tools)`);
 }
 
 /**

@@ -14,6 +14,7 @@ Tree-shakable utility functions, one npm package per category (`@helpers4/array`
 
 - [Getting Started](https://helpers4.dev/typescript/getting-started/): installation and first import
 - [Categories](https://helpers4.dev/typescript/categories/array/): browse all 31 categories
+- [Presets](https://helpers4.dev/typescript/presets/): `@helpers4/presets`, shared tool configs (tsconfig, oxlint, oxfmt, Vitest, Stryker, cspell, EditorConfig, git-cliff) — not a category, no functions
 - [Full reference (llms-full.txt)](https://helpers4.dev/typescript/llms-full.txt): every function's full signature, params, and examples in one file — the canonical machine-readable reference, prefer this over crawling individual pages
 - [Philosophy](https://helpers4.dev/typescript/reference/philosophy/): design rationale
 - [Changelog](https://helpers4.dev/typescript/reference/changelog/)

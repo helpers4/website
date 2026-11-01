@@ -141,6 +141,28 @@ jobs:
             echo "✅ Using npm metadata fallback source"
           fi
 
+          # @helpers4/presets is not a category (no meta/): its README feeds the presets pages.
+          # Releases before 3.1.10 have no such package — the pages are then left untouched.
+          fetch_presets_readme() {
+            local presets_tmp="/tmp/typescript-presets"
+            rm -rf "${presets_tmp}"
+            mkdir -p "${presets_tmp}"
+            pushd "${presets_tmp}" > /dev/null
+            if ! npm pack "@helpers4/presets@${RELEASE_VERSION}" --silent > /dev/null 2>&1; then
+              popd > /dev/null
+              echo "ℹ️ No @helpers4/presets@${RELEASE_VERSION} on npm, presets pages unchanged"
+              return 0
+            fi
+            local presets_tgz
+            presets_tgz="$(ls -1 *.tgz | head -n1)"
+            safe_extract_tarball "${presets_tmp}/${presets_tgz}" "${presets_tmp}"
+            popd > /dev/null
+            mkdir -p /tmp/typescript/build/presets
+            cp "${presets_tmp}/package/README.md" /tmp/typescript/build/presets/
+          }
+
+          fetch_presets_readme
+
           echo "✅ TypeScript metadata prepared for v${RELEASE_VERSION}"
 
       - name: Determine docs target

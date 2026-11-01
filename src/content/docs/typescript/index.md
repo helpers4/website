@@ -11,6 +11,7 @@ Production-ready TypeScript utility functions — modular, strictly typed, exhau
 
 - **[Get Started](./getting-started)** — Installation and first import
 - **[Browse Categories](./categories/array)** — 464 helpers across 31 categories
+- **[Presets](./presets/)** — shared tool configs (tsconfig, oxlint, oxfmt, Vitest, Stryker, cspell…) in `@helpers4/presets`
 - **[AI & LLM Support](./reference/ai-support)** — DeepWiki Q&A, `llms.txt`, full machine-readable reference
 - **[GitHub](https://github.com/helpers4/typescript)** · **[npm: helpers4](https://www.npmjs.com/package/helpers4)** · **[npm: @helpers4/all](https://www.npmjs.com/package/@helpers4/all)** · **[License (LGPL-3.0)](./legal/license)**
 
