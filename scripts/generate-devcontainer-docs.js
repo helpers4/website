@@ -79,6 +79,14 @@ try {
 
   console.log(`📁 Found ${activeFeatures.length} active features:\n`);
 
+  // A feature removed from src/ (moved to deprecated/, or gone) must lose its active page.
+  for (const page of fs.readdirSync(docsOutputPath).filter((f) => f.endsWith('.md'))) {
+    if (!activeFeatures.includes(page.replace(/\.md$/, ''))) {
+      fs.rmSync(path.join(docsOutputPath, page));
+      console.log(`  🗑️  ${page} (no longer in src/)`);
+    }
+  }
+
   for (const [index, feature] of activeFeatures.entries()) {
     const featureReadme = path.join(featuresPath, feature, 'README.md');
     const featureManifest = path.join(featuresPath, feature, 'devcontainer-feature.json');
