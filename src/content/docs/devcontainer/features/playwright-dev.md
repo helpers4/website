@@ -1,7 +1,7 @@
 ---
 title: "Playwright Development Environment"
 sidebar:
-  order: 20
+  order: 19
 ---
 
 > Code name: `playwright-dev`
@@ -141,6 +141,10 @@ The guard script needs network access at `postCreateCommand` time. Re-run it man
 ```bash
 npx playwright install
 ```
+
+### `node` fails to install on a bare image
+
+The official `node` feature installs the Node LTS. From Node 26, its build needs `libatomic1`, which bare `debian` / `ubuntu` images don't have, and the `node` feature doesn't install it: the build stops with `libatomic.so.1: cannot open shared object file`. Use a `mcr.microsoft.com/devcontainers/base:*` image (it has it), or add `libatomic1` to your image before the features run.
 
 ### `install-deps` fails on an unsupported base image
 

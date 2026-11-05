@@ -55,6 +55,10 @@ request/issue/Actions extensions.
 - `mechatroner.rainbow-csv` - CSV/TSV highlighting
 - `ms-vscode.makefile-tools` - Makefile support
 
+### Spelling & Shell
+- `streetsidesoftware.code-spell-checker` - Spell checker for code and docs
+- `timonwong.shellcheck` - ShellCheck linting for shell scripts
+
 ## Usage
 
 ### Basic Setup
@@ -123,6 +127,8 @@ exit-code indicators (✓/✗), run history, smart suggestions, and command deco
 
 ## Version History
 
+- **v1.2.5**: Adds `streetsidesoftware.code-spell-checker` and `timonwong.shellcheck` to the
+  extensions, so projects no longer need to list them in their own `devcontainer.json`.
 - **v1.2.4**: Removed `install.sh`'s "Configure VS Code shell integration" loop — it grepped
   shell config files and printed a status line, but never wrote anything; shell integration is a
   VS Code client capability, not something this feature configures. The "Terminal Shell
