@@ -1,11 +1,12 @@
 [
   "action",
   "blog",
-  "CI-CD",
+  "ci",
   "deps-dev",
   "deps",
   "devcontainer",
   "docs",
   "typescript",
-  "rust"
+  "rust",
+  "ai"
 ]

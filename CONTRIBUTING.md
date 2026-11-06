@@ -72,7 +72,7 @@ Use conventional commits with gitmoji — see AGENTS.md for the full type/emoji 
 ```bash
 git commit -m "feat(docs): ✨ add new section"
 git commit -m "fix(lib-typescript): 🐛 resolve broken sidebar link"
-git commit -m "chore(CI-CD): 🔧 update workflow"
+git commit -m "chore(ci): 🔧 update workflow"
 ```
 
 ### 7. Push & PR
