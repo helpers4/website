@@ -110,4 +110,5 @@ After `refresh`, open a new terminal, or run **Developer: Reload Window** for VS
 
 ## Version History
 
+- **v1.0.1**: Remove every temp file (curl bodies, token headers) when `openbao-env` exits, is interrupted or killed; 1.0.0 left them in `/dev/shm/openbao`. Leftovers older than 2 minutes are purged.
 - **v1.0.0**: Initial release.
