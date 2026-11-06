@@ -1,7 +1,7 @@
 ---
 title: "Shell History"
 sidebar:
-  order: 21
+  order: 22
 ---
 
 > Code name: `shell-history`

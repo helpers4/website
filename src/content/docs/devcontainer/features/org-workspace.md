@@ -1,7 +1,7 @@
 ---
 title: "Org Workspace"
 sidebar:
-  order: 17
+  order: 18
 ---
 
 > Code name: `org-workspace`
