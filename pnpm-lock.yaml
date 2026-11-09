@@ -198,8 +198,8 @@ importers:
         version: 0.12.3(@astrojs/starlight@0.40.0(patch_hash=599bdb03dd282c7657baec4132aae245c885c53f963e7650ed30632f4144bc14)(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.46.0)(yaml@2.9.1))(typescript@5.9.3))(satteri@0.10.5)(typescript@5.9.3)
     devDependencies:
       '@pagefind/default-ui':
-        specifier: 1.5.2
-        version: 1.5.2
+        specifier: 1.6.0
+        version: 1.6.0
       '@types/node':
         specifier: ^26.6.6
         version: 26.6.6
@@ -948,8 +948,8 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@pagefind/default-ui@1.5.2':
-    resolution: {integrity: sha512-pm1LMnQg8N2B3n2TnjKlhaFihpz6zTiA4HiGQ6/slKO/+8K9CAU5kcjdSSPgpuk1PMuuN4hxLipUIifnrkl3Sg==}
+  '@pagefind/default-ui@1.6.0':
+    resolution: {integrity: sha512-Wj93IzlLnaYYrMpOYrsqUerzA7+Vrs5Ri1U78hBh3zuKHNVkcjApNo5DUM99MzAam6f437VGG64jDenAObIt+w==}
 
   '@pagefind/freebsd-x64@1.5.2':
     resolution: {integrity: sha512-7EVzo9+0w+2cbe671BtMj10UlNo83I+HrLVLfRxO731svHRJKUfJ/mo05gU14pe9PCfpKNQT8FS3Xc/oDN6pOA==}
@@ -2663,7 +2663,7 @@ snapshots:
       '@astrojs/markdown-remark': 7.2.0
       '@astrojs/mdx': 6.0.3(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.2)(jiti@1.21.7)(terser@5.46.0)(yaml@2.9.1))
       '@astrojs/sitemap': 3.7.3
-      '@pagefind/default-ui': 1.5.2
+      '@pagefind/default-ui': 1.6.0
       '@types/hast': 3.0.4
       '@types/js-yaml': 4.0.9
       '@types/mdast': 4.0.4
@@ -3160,7 +3160,7 @@ snapshots:
   '@pagefind/darwin-x64@1.5.2':
     optional: true
 
-  '@pagefind/default-ui@1.5.2': {}
+  '@pagefind/default-ui@1.6.0': {}
 
   '@pagefind/freebsd-x64@1.5.2':
     optional: true
@@ -4998,7 +4998,7 @@ snapshots:
       '@aria-ui/core': 0.2.1
       '@aria-ui/utils': 0.1.7
       '@astrojs/markdown-satteri': 0.4.1
-      '@pagefind/default-ui': 1.5.2
+      '@pagefind/default-ui': 1.6.0
       '@shikijs/transformers': 4.3.1
       '@shikijs/twoslash': 4.3.1(typescript@5.9.3)
       '@shikijs/types': 4.3.1
